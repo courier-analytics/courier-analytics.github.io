@@ -93,7 +93,7 @@
     </div>
     <div class="footnotes">
       <p>Доработка смены оценивается по времени последней успешно завершённой доставки: не раньше чем за 30 минут до планового окончания. Учитываются курьеры, подтвердившие выход доставками.</p>
-      <p>Последние показатели обучения предварительные: возможны повторные курьеры; ориентировочная база расчёта — 97 человек.</p>
+      <p>Обучение за 15–17.10 — предварительные показатели: возможны повторно обученные курьеры. Данные за 17.10 по выходам также предварительные. Для оценки доработки смены: 15.10 — 27 из 41 подтверждённых смен, 16.10 — 20 из 40; строка графика с двумя ФИО считается одной сменой, прежние исключения сохраняются.</p>
     </div>
   </section>
   <div class="footer"><span>ДС 5818 · Операционные метрики курьеров</span><span>Автономная версия · без платных сервисов</span></div>
@@ -105,17 +105,17 @@ const dates = ["08.10","09.10","10.10","11.10","12.10","13.10","14.10","15.10","
 // Значения хранятся строками, чтобы сохранять точность и форматирование из исходной таблицы.
 // null означает, что показатель за дату не предоставлен.
 const metrics = [
-  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","100","50","100","100","100","100","100","0",null]},
-  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:["38","53","35,10","38,10","33,33","33,33","52,94","40,96","51,49",null]},
-  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:["78,20","80","73","40","82,76","85","73,80","84,60","80,00",null]},
+  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","100","50","100","100","100","100","100","0","0"]},
+  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:["38","53","35,10","38,10","33,33","33,33","52,94","40,96","51,49","61,17"]},
+  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:["78,20","80","73","40","82,76","85","73,80","84,60","80,00","80"]},
   {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["80,95","78,38","73,68","94,12","93,75","80,70","90,24","79,17","91,11","77,14"]},
   {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:["23,53","68,97","50","50","42,22","41,30","35,14","28,95","39,02","44,44"]},
   {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:["27,66","25,64","44","75","16,67","25,81","47,89","26,79","35,38","46,15"]},
   {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:[null,null,null,null,null,null,null,"65,85","50",null]},
   {name:"Работа с обращениями",goal:"100",better:"high",values:["26,67","36,67","51,85","60","66,67","62,50","53,85",null,null,null]},
-  {name:"Инфраструктура",goal:"100",better:"high",values:["71,40","71,40","71,40","71,40","71,40","71,40","71,40","71,40","71,40",null]},
+  {name:"Инфраструктура",goal:"100",better:"high",values:["71,40","71,40","71,40","71,40","71,40","71,40","71,40","71,40","71,40","71,40"]},
   {name:"Обучение курьеров",goal:"100",better:"high",values:["27,84","28,87","28,87","28,87","28,87","42,27","49,48","65,98","73,20","82,47"]},
-  {name:"Медицинские книжки",goal:"100",better:"high",values:["50","50","50","51","54","54","54","54","54,70",null]}
+  {name:"Медицинские книжки",goal:"100",better:"high",values:["50","50","50","51","54","54","54","54","54,70","54,70"]}
 ];
 function textCell(tag,content,className) {
   const el=document.createElement(tag);
@@ -123,10 +123,14 @@ function textCell(tag,content,className) {
   if(className) el.className=className;
   return el;
 }
-function statusClass(value,better) {
+function statusClass(value,metric) {
+  const values=metric.values.filter(function(v){return v!==null;}).map(function(v){return Number(v.replace(",","."));});
   const num=Number(value.replace(",","."));
-  if(better==="low") return num<=10?"good":num<=30?"mid":"bad";
-  return num>=90?"good":num>=70?"mid":"bad";
+  const min=Math.min.apply(null,values),max=Math.max.apply(null,values);
+  if(max===min) return "mid";
+  let ratio=(num-min)/(max-min);
+  if(metric.better==="low") ratio=1-ratio;
+  return ratio>=2/3?"good":ratio<=1/3?"bad":"mid";
 }
 function render() {
   const head=document.getElementById("headerRow");
@@ -151,7 +155,7 @@ function render() {
     tr.appendChild(th);
     metric.values.forEach(function(value){
       const td=document.createElement("td");
-      const span=textCell("span",value===null?"—":value+"%",value===null?"cell empty":"cell "+statusClass(value,metric.better));
+      const span=textCell("span",value===null?"—":value+"%",value===null?"cell empty":"cell "+statusClass(value,metric));
       td.appendChild(span);
       tr.appendChild(td);
     });
