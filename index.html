@@ -102,7 +102,7 @@
 <script>
 "use strict";
 const dates = ["08.10","09.10","10.10","11.10","12.10","13.10","14.10","15.10","16.10","17.10","18.10"];
-// Значения хранятся строками, чтобы сохранять точность и форматирование из исходной таблицы.
+// Значения хранятся строками; отображение всех процентов единообразно: две цифры после запятой.
 // null означает, что показатель за дату не предоставлен.
 const metrics = [
   {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","100","50","100","100","100","100","100","0","0","100"]},
@@ -117,6 +117,10 @@ const metrics = [
   {name:"Обучение курьеров",goal:"100",better:"high",values:["27,84","28,87","28,87","28,87","28,87","42,27","49,48","65,98","73,20","82,47","82,47"]},
   {name:"Медицинские книжки",goal:"100",better:"high",values:["50","50","50","51","54","54","54","54","54,70","54,70","56,20"]},
 ];
+function formatPercent(value) {
+  const number=Number(String(value).replace(",", "."));
+  return number.toFixed(2).replace(".", ",")+"%";
+}
 function textCell(tag,content,className) {
   const el=document.createElement(tag);
   el.textContent=content;
@@ -155,11 +159,11 @@ function render() {
     tr.appendChild(th);
     metric.values.forEach(function(value){
       const td=document.createElement("td");
-      const span=textCell("span",value===null?"—":value+"%",value===null?"cell empty":"cell "+statusClass(value,metric));
+      const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell "+statusClass(value,metric));
       td.appendChild(span);
       tr.appendChild(td);
     });
-    tr.appendChild(textCell("td",metric.goal+"%","goal"));
+    tr.appendChild(textCell("td",formatPercent(metric.goal),"goal"));
     body.appendChild(tr);
   });
 }
@@ -168,7 +172,7 @@ function csvQuote(value) {
 }
 function downloadCsv() {
   const rows=[["Показатель"].concat(dates).concat(["Цель"])];
-  metrics.forEach(function(m){rows.push([m.name].concat(m.values.map(function(v){return v===null?"":v+"%";})).concat([m.goal+"%"]));});
+  metrics.forEach(function(m){rows.push([m.name].concat(m.values.map(function(v){return v===null?"":formatPercent(v);})).concat([formatPercent(m.goal)]));});
   const csv="\ufeff"+rows.map(function(row){return row.map(csvQuote).join(";");}).join("\r\n");
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
   const link=document.createElement("a");
