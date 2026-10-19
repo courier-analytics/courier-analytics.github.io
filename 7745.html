@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8fc">
+  <meta name="description" content="Операционные показатели курьеров ДС 7745 по датам с 15.10 по 17.10.2026">
+  <title>ДС 7745 — Операционные метрики курьеров</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232b62cf'/%3E%3Cpath d='M14 42h36M18 28h28M25 17h14' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root{color-scheme:light;--bg:#f6f8fc;--paper:#fff;--ink:#17253b;--muted:#69788d;--line:#e4eaf2;--blue:#285dcc;--blue-soft:#edf3ff;--green-bg:#e5f6ed;--green:#14744a;--amber-bg:#fff4db;--amber:#986212;--rose-bg:#ffebec;--rose:#b63c4b;--radius:18px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    .shell{max-width:1640px;margin:0 auto;padding:35px 24px 52px}
+    .eyebrow{display:flex;align-items:center;gap:10px;color:var(--blue);font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+    .eyebrow .mark{width:10px;height:10px;border-radius:3px;background:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+    header{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin:14px 0 26px}
+    h1{font-size:clamp(24px,3vw,36px);letter-spacing:-.045em;line-height:1.18;margin:0 0 9px;font-weight:780}
+    .description{color:var(--muted);margin:0;font-size:14px}
+    .actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px}
+    button{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;cursor:pointer;border:1px solid #dce4ee;border-radius:10px;background:white;color:#34465e;padding:10px 13px;font:600 13px/1.2 inherit;transition:background .16s,border-color .16s}
+    button:hover{background:#f4f7fd;border-color:#bdcce3}
+    button:focus-visible{outline:3px solid #9cbbf8;outline-offset:2px}
+    button svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .primary{background:var(--blue);border-color:var(--blue);color:#fff}
+    .primary:hover{background:#204fab;border-color:#204fab}
+    .panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 35px rgba(24,49,88,.035);overflow:hidden}
+    .panel-heading{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:19px 23px 17px;border-bottom:1px solid var(--line)}
+    h2{font-size:16px;letter-spacing:-.015em;margin:0;font-weight:750}
+    .panel-note{color:var(--muted);font-size:12px;white-space:nowrap}
+    .table-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-color:#cbd6e7 transparent}
+    table{width:100%;min-width:1140px;border-collapse:separate;border-spacing:0;table-layout:fixed;font-variant-numeric:tabular-nums}
+    col.metric-col{width:315px}
+    col.day-col{width:91px}
+    col.goal-col{width:96px}
+    thead th{background:#f8fafd;color:#65758b;font-size:12px;font-weight:720;text-align:center;white-space:nowrap;border-bottom:1px solid var(--line);padding:15px 7px}
+    thead th:first-child{text-align:left;padding-left:23px}
+    thead th:last-child{background:#f0f5ff;color:var(--blue)}
+    tbody td,tbody th{border-bottom:1px solid #edf0f5;padding:12px 7px;text-align:center;background:white;height:63px}
+    tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+    tbody th{font-size:13px;font-weight:630;text-align:left;padding-left:23px;padding-right:15px;line-height:1.32}
+    tbody tr:hover td,tbody tr:hover th{background:#fafcff}
+    thead th:first-child,tbody th{position:sticky;left:0;z-index:2;box-shadow:1px 0 0 #e8edf5}
+    thead th:first-child{z-index:4}
+    .metric-title{display:flex;align-items:center;gap:11px}
+    .metric-index{flex:none;width:24px;height:24px;display:grid;place-items:center;border-radius:7px;background:#f0f3f8;color:#8190a4;font-size:11px;font-weight:700}
+    .cell{display:inline-flex;min-width:64px;min-height:33px;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:700;padding:6px 5px}
+    .cell.good{background:var(--green-bg);color:var(--green)}
+    .cell.mid{background:var(--amber-bg);color:var(--amber)}
+    .cell.bad{background:var(--rose-bg);color:var(--rose)}
+    .cell.empty{color:#b4becc;font-weight:500}
+    .goal{color:var(--blue);font-weight:750;font-size:13px;background:#f5f8ff}
+    .date-latest{background:#f0f5ff}
+    .footnotes{padding:16px 23px 18px;border-top:1px solid var(--line);background:#fcfdff;color:#78869a;font-size:12px}
+    .footnotes p{margin:0}
+    .footnotes p+p{margin-top:5px}
+    .footer{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:#8a97a8;font-size:12px;padding:17px 4px}
+    .toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,16px);padding:11px 17px;border-radius:10px;background:#172b4b;color:#fff;box-shadow:0 10px 25px #172b4b33;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:10}
+    .toast.visible{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:820px){.shell{padding:22px 12px 32px}header{display:block;margin:15px 4px 20px}h1{font-size:26px}.actions{justify-content:flex-start;margin-top:18px}.panel-heading{padding:15px 16px}.panel-note{white-space:normal;text-align:right}.footnotes{padding:15px 16px}col.metric-col{width:235px}tbody th{padding-left:12px;font-size:12px}.metric-title{gap:7px}.metric-index{width:20px;height:20px}thead th:first-child{padding-left:12px}.footer{padding:14px 4px}}
+    @media print{@page{size:A3 landscape;margin:12mm}body{background:white;font-size:11px}.shell{max-width:none;padding:0}.actions,.footer,.toast{display:none!important}header{margin:0 0 14px}h1{font-size:24px}.panel{border:1px solid #ccd3df;box-shadow:none}.panel-heading{padding:10px 12px}.table-scroll{overflow:visible}table{min-width:0;width:100%}col.metric-col{width:250px}col.day-col{width:auto}col.goal-col{width:70px}thead th{padding:9px 3px}tbody td,tbody th{padding:6px 2px;height:42px}tbody th{padding-left:8px;font-size:10px}.cell{min-width:0;width:100%;font-size:10px;padding:5px 1px}.metric-index{display:none}.footnotes{padding:10px 12px}thead th:first-child,tbody th{position:static;box-shadow:none}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+    .store-picker{display:flex;align-items:center;gap:12px;margin-bottom:22px;font-weight:700;color:var(--ink)}
+    .store-picker select{appearance:auto;min-width:180px;padding:11px 14px;border:1px solid #cbd6e7;border-radius:10px;background:#fff;color:#17253b;font:700 14px inherit;cursor:pointer}
+    .store-picker select:focus-visible{outline:3px solid #9cbbf8;outline-offset:2px}
+    @media print{.store-picker{display:none}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <nav aria-label="Выбор даркстора" class="store-picker"><label for="storeSelect">Даркстор</label><select id="storeSelect" aria-label="Выбрать даркстор"><option value="5818" >ДС 5818</option><option value="7745" selected>ДС 7745</option></select></nav>
+  <div class="eyebrow"><span class="mark" aria-hidden="true"></span> Курьерская служба · ДС 7745</div>
+  <header>
+    <div>
+      <h1>Операционные метрики курьеров — ДС 7745</h1>
+      <p class="description">Ежедневные показатели работы курьеров · 15–17 октября 2026 года</p>
+    </div>
+    <div class="actions">
+      <button id="copyLink" type="button" aria-label="Скопировать ссылку на таблицу">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>Скопировать ссылку
+      </button>
+      <button id="printReport" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6zM18 12h.01"/></svg>Печать
+      </button>
+      <button class="primary" id="downloadCsv" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg>Скачать CSV
+      </button>
+    </div>
+  </header>
+  <section class="panel" aria-labelledby="tableTitle">
+    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">11 метрик · 3 дня · Цель</span></div>
+    <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
+      <table id="metricsTable">
+        <colgroup><col class="metric-col"><col class="day-col" span="3"><col class="goal-col"></colgroup>
+        <thead><tr id="headerRow"><th scope="col">Показатель</th></tr></thead>
+        <tbody id="metricsBody"></tbody>
+      </table>
+    </div>
+    <div class="footnotes">
+      <p>ДС 7745: данные за 15 и 17 октября 2026 года. За 16 октября данные отсутствуют. «—» означает, что метрика не рассчитана; это не 0%.</p>
+      <p>15.10: выход по плану 23 из 29 (79,31%) — предварительно по отсутствию отметки «не вышел»; доставки не подтверждены для всех 23.</p>
+      <p>17.10: в графике 28 человек, двое отмечены выходными. Из 26 плановых курьеров 24 имеют успешно завершённые доставки: 92,31%. В Superset 36 уникальных курьеров с завершёнными заказами: 11 вне списка и 1 отмечен выходным (12 из 36, 33,33%). Отсутствие доставок не доказывает невыход.</p>
+      <p>Доработка 17.10: 14 из 24 подтверждённых плановых смен (58,33%) — последняя успешная доставка не ранее чем за 30 минут до конца графика. Смена Тарамова Хасана уточнена: 12:00–00:00 следующего дня. Последняя успешная доставка 17.10 в 23:23:32, что раньше допустимого порога 23:30, поэтому смена учитывается в знаменателе, но не в числителе. Это оценка по доставкам, не фактическое закрытие слота.</p>
+      <p>Статус опоздания по первой доставке не рассчитывается без времени фактического выхода и утверждённого норматива. Источник: график 17.10 и CSV Superset за 17.10.</p>
+    </div>
+  </section>
+  <div class="footer"><span>ДС 7745 · Операционные метрики курьеров</span><span>Автономная версия · без платных сервисов</span></div>
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+"use strict";
+const dates = ["15.10","16.10","17.10"];
+// Значения хранятся строками; отображение всех процентов единообразно: две цифры после запятой.
+// null означает, что показатель за дату не предоставлен.
+const metrics = [
+  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["79,31",null,"92,31"]},
+  {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:[null,null,null]},
+  {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:[null,null,"33,33"]},
+  {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:[null,null,"58,33"]},
+  {name:"Работа с обращениями",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Инфраструктура",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Обучение курьеров",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Медицинские книжки",goal:"100",better:"high",values:[null,null,null]},
+];
+function formatPercent(value) {
+  const number=Number(String(value).replace(",", "."));
+  return number.toFixed(2).replace(".", ",")+"%";
+}
+function textCell(tag,content,className) {
+  const el=document.createElement(tag);
+  el.textContent=content;
+  if(className) el.className=className;
+  return el;
+}
+function statusClass(value,metric) {
+  const values=metric.values.filter(function(v){return v!==null;}).map(function(v){return Number(v.replace(",","."));});
+  const num=Number(value.replace(",","."));
+  const min=Math.min.apply(null,values),max=Math.max.apply(null,values);
+  if(max===min) return "mid";
+  let ratio=(num-min)/(max-min);
+  if(metric.better==="low") ratio=1-ratio;
+  return ratio>=2/3?"good":ratio<=1/3?"bad":"mid";
+}
+function render() {
+  const head=document.getElementById("headerRow");
+  dates.forEach(function(date,i){
+    const th=textCell("th",date,i===dates.length-1?"date-latest":"");
+    th.scope="col";
+    head.appendChild(th);
+  });
+  const goalHead=textCell("th","Цель");
+  goalHead.scope="col";
+  head.appendChild(goalHead);
+  const body=document.getElementById("metricsBody");
+  metrics.forEach(function(metric,index){
+    const tr=document.createElement("tr");
+    const th=document.createElement("th");
+    th.scope="row";
+    const wrap=document.createElement("span");
+    wrap.className="metric-title";
+    wrap.appendChild(textCell("span",String(index+1),"metric-index"));
+    wrap.appendChild(textCell("span",metric.name));
+    th.appendChild(wrap);
+    tr.appendChild(th);
+    metric.values.forEach(function(value){
+      const td=document.createElement("td");
+      const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell "+statusClass(value,metric));
+      td.appendChild(span);
+      tr.appendChild(td);
+    });
+    tr.appendChild(textCell("td",formatPercent(metric.goal),"goal"));
+    body.appendChild(tr);
+  });
+}
+function csvQuote(value) {
+  return '"'+String(value).replace(/"/g,'""')+'"';
+}
+function downloadCsv() {
+  const rows=[["Показатель"].concat(dates).concat(["Цель"])];
+  metrics.forEach(function(m){rows.push([m.name].concat(m.values.map(function(v){return v===null?"":formatPercent(v);})).concat([formatPercent(m.goal)]));});
+  const csv="\ufeff"+rows.map(function(row){return row.map(csvQuote).join(";");}).join("\r\n");
+  const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
+  const link=document.createElement("a");
+  link.href=url;
+  link.download="ds-7745-courier-metrics-2026-10-17.csv";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(function(){URL.revokeObjectURL(url);},1000);
+}
+let toastTimer;
+function notify(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;
+  el.classList.add("visible");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){el.classList.remove("visible");},2500);
+}
+async function copyLink(){
+  try{
+    if(navigator.clipboard&&window.isSecureContext){
+      await navigator.clipboard.writeText(location.href);
+    }else{
+      const input=document.createElement("textarea");
+      input.value=location.href;
+      input.style.position="fixed";
+      input.style.opacity="0";
+      document.body.appendChild(input);
+      input.select();
+      const ok=document.execCommand("copy");
+      input.remove();
+      if(!ok) throw new Error("Copy unavailable");
+    }
+    notify("Ссылка скопирована");
+  }catch(e){notify("Скопируйте адрес из строки браузера");}
+}
+document.getElementById("storeSelect").addEventListener("change",function(e){window.location.href=e.target.value==="7745"?"7745.html":"index.html";});
+render();
+document.getElementById("downloadCsv").addEventListener("click",downloadCsv);
+document.getElementById("copyLink").addEventListener("click",copyLink);
+document.getElementById("printReport").addEventListener("click",function(){window.print();});
+</script>
+</body>
+</html>
