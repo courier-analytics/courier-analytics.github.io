@@ -60,14 +60,15 @@
     .toast.visible{opacity:1;transform:translate(-50%,0)}
     @media(max-width:820px){.shell{padding:22px 12px 32px}header{display:block;margin:15px 4px 20px}h1{font-size:26px}.actions{justify-content:flex-start;margin-top:18px}.panel-heading{padding:15px 16px}.panel-note{white-space:normal;text-align:right}.footnotes{padding:15px 16px}col.metric-col{width:235px}tbody th{padding-left:12px;font-size:12px}.metric-title{gap:7px}.metric-index{width:20px;height:20px}thead th:first-child{padding-left:12px}.footer{padding:14px 4px}}
     @media print{@page{size:A3 landscape;margin:12mm}body{background:white;font-size:11px}.shell{max-width:none;padding:0}.actions,.footer,.toast{display:none!important}header{margin:0 0 14px}h1{font-size:24px}.panel{border:1px solid #ccd3df;box-shadow:none}.panel-heading{padding:10px 12px}.table-scroll{overflow:visible}table{min-width:0;width:100%}col.metric-col{width:250px}col.day-col{width:auto}col.goal-col{width:70px}thead th{padding:9px 3px}tbody td,tbody th{padding:6px 2px;height:42px}tbody th{padding-left:8px;font-size:10px}.cell{min-width:0;width:100%;font-size:10px;padding:5px 1px}.metric-index{display:none}.footnotes{padding:10px 12px}thead th:first-child,tbody th{position:static;box-shadow:none}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+    .store-picker{display:flex;align-items:center;gap:12px;margin-bottom:22px;font-weight:700;color:var(--ink)}
+    .store-picker select{appearance:auto;min-width:180px;padding:11px 14px;border:1px solid #cbd6e7;border-radius:10px;background:#fff;color:#17253b;font:700 14px inherit;cursor:pointer}
+    .store-picker select:focus-visible{outline:3px solid #9cbbf8;outline-offset:2px}
+    @media print{.store-picker{display:none}}
   </style>
 </head>
 <body>
 <main class="shell">
-  <nav aria-label="Выбор даркстора" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-  <a href="index.html" style="text-decoration:none;border:1px solid #dce4ee;border-radius:10px;padding:8px 13px;font-weight:700;background:#285dcc;color:white">ДС 5818</a>
-  <a href="7745.html" style="text-decoration:none;border:1px solid #dce4ee;border-radius:10px;padding:8px 13px;font-weight:700;background:white;color:#285dcc">ДС 7745</a>
-</nav>
+  <nav aria-label="Выбор даркстора" class="store-picker"><label for="storeSelect">Даркстор</label><select id="storeSelect" aria-label="Выбрать даркстор"><option value="5818" selected>ДС 5818</option><option value="7745" >ДС 7745</option></select></nav>
   <div class="eyebrow"><span class="mark" aria-hidden="true"></span> Курьерская служба · ДС 5818</div>
   <header>
     <div>
@@ -213,6 +214,7 @@ async function copyLink(){
     notify("Ссылка скопирована");
   }catch(e){notify("Скопируйте адрес из строки браузера");}
 }
+document.getElementById("storeSelect").addEventListener("change",function(e){window.location.href=e.target.value==="7745"?"7745.html":"index.html";});
 render();
 document.getElementById("downloadCsv").addEventListener("click",downloadCsv);
 document.getElementById("copyLink").addEventListener("click",copyLink);
