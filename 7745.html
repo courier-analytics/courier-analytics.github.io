@@ -46,7 +46,9 @@
     .metric-title{display:flex;align-items:center;gap:11px}
     .metric-index{flex:none;width:24px;height:24px;display:grid;place-items:center;border-radius:7px;background:#f0f3f8;color:#8190a4;font-size:11px;font-weight:700}
     .cell{display:inline-flex;min-width:64px;min-height:33px;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:700;padding:6px 5px}
-    .cell{background:transparent;color:var(--ink)}
+    .cell.good{background:#e5f6ed;color:#14744a}
+    .cell.mid{background:#fff4db;color:#986212}
+    .cell.bad{background:#ffebec;color:#b63c4b}
     .cell.empty{color:#b4becc;font-weight:500}
     .goal{color:var(--ink);font-weight:750;font-size:13px;background:white}
     .date-latest{background:#f8fafd}
@@ -134,6 +136,19 @@ function textCell(tag,content,className) {
   if(className) el.className=className;
   return el;
 }
+// Пороговые значения для метрик в порядке отображения. На границе выбирается лучший цвет.
+function statusClass(value,index) {
+  const num=Number(String(value).replace(",","."));
+  if(index===0) return num>=100?"good":num>=50?"mid":"bad";
+  if(index===1) return num>=90?"good":num>=70?"mid":"bad";
+  if(index===2) return num>=85?"good":num>=70?"mid":"bad";
+  if(index===3) return num>=90?"good":num>=80?"mid":"bad";
+  if(index===4||index===5) return num<=10?"good":num<=20?"mid":"bad";
+  if(index===6) return num>=90?"good":num>=80?"mid":"bad";
+  if(index===7) return num>=90?"good":num>=70?"mid":"bad";
+  if(index===8||index===9) return num>=80?"good":num>=60?"mid":"bad";
+  return "";
+}
 function render() {
   const head=document.getElementById("headerRow");
   dates.forEach(function(date,i){
@@ -157,7 +172,7 @@ function render() {
     tr.appendChild(th);
     metric.values.forEach(function(value){
       const td=document.createElement("td");
-      const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell");
+      const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell "+statusClass(value,index));
       td.appendChild(span);
       tr.appendChild(td);
     });
