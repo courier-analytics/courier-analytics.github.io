@@ -73,7 +73,7 @@
   <header>
     <div>
       <h1>Операционные метрики курьеров — ДС 7745</h1>
-      <p class="description">Ежедневные показатели работы курьеров · 15–17 октября 2026 года</p>
+      <p class="description">Ежедневные показатели работы курьеров · 15–18 октября 2026 года</p>
     </div>
     <div class="actions">
       <button id="copyLink" type="button" aria-label="Скопировать ссылку на таблицу">
@@ -88,16 +88,16 @@
     </div>
   </header>
   <section class="panel" aria-labelledby="tableTitle">
-    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">11 метрик · 3 дня · Цель</span></div>
+    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">11 метрик · 4 дня · Цель</span></div>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
       <table id="metricsTable">
-        <colgroup><col class="metric-col"><col class="day-col" span="3"><col class="goal-col"></colgroup>
+        <colgroup><col class="metric-col"><col class="day-col" span="4"><col class="goal-col"></colgroup>
         <thead><tr id="headerRow"><th scope="col">Показатель</th></tr></thead>
         <tbody id="metricsBody"></tbody>
       </table>
     </div>
     <div class="footnotes">
-      <p>ДС 7745: данные за 15–17 октября 2026 года. «—» означает, что метрика не рассчитана; это не 0%.</p>
+      <p>ДС 7745: данные за 15–18 октября 2026 года. «—» означает, что метрика не рассчитана; это не 0%.</p>
       <p>15.10: выход по плану 23 из 29 (79,31%) — предварительно по отсутствию отметки «не вышел»; доставки не подтверждены для всех 23.</p>
       <p>16.10: в графике 28 человек, из них 2 выходных. В выгрузке 1 659 заказов, 1 614 успешно завершены, 37 уникальных курьеров с успешными доставками. Из 26 плановых курьеров у 24 есть успешные заказы в выгрузке за 16.10 (92,31%). У Коломиеца Фёдора и Кучарова Сирожиддина успешных доставок в выгрузке нет — это не доказывает невыход. Важно: у Абдулкасимова Сайгидомара только 2 доставки в 01:14 и 01:31, до начала смены 08:00; подтверждение именно его плановой смены требует уточнения. Вне графика/в выходной работали 13 из 37 (35,14%): 12 не указаны в графике и Рахмонов Насимджон отмечен выходным, но выполнил доставки.</p>
       <p>Доработка 16.10: 16 из 24 плановых курьеров с успешными заказами (66,67%) — последняя успешная доставка не ранее чем за 30 минут до конца графика. Для Тургунова Нурилло конец смены — 00:00 17.10. Показатель предварительный: оценивает время последней доставки, а не фактическое закрытие слота.</p>
@@ -111,21 +111,21 @@
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
 "use strict";
-const dates = ["15.10","16.10","17.10"];
+const dates = ["15.10","16.10","17.10","18.10"];
 // Значения хранятся строками; отображение всех процентов единообразно: две цифры после запятой.
 // null означает, что показатель за дату не предоставлен.
 const metrics = [
-  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","0","0"]},
-  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["79,31","92,31","92,31"]},
-  {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:[null,null,null]},
-  {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:[null,"35,14","33,33"]},
-  {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:[null,"66,67","58,33"]},
-  {name:"Работа с обращениями",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Инфраструктура",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Обучение курьеров",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Медицинские книжки",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","0","0",null]},
+  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:[null,null,null,null]},
+  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:[null,null,null,null]},
+  {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["79,31","92,31","92,31",null]},
+  {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:[null,null,null,null]},
+  {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:[null,"35,14","33,33",null]},
+  {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:[null,"66,67","58,33",null]},
+  {name:"Работа с обращениями",goal:"100",better:"high",values:[null,null,null,"0"]},
+  {name:"Инфраструктура",goal:"100",better:"high",values:[null,null,null,null]},
+  {name:"Обучение курьеров",goal:"100",better:"high",values:[null,null,null,null]},
+  {name:"Медицинские книжки",goal:"100",better:"high",values:[null,null,null,null]},
 ];
 function formatPercent(value) {
   const number=Number(String(value).replace(",", "."));
@@ -187,7 +187,7 @@ function downloadCsv() {
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
   const link=document.createElement("a");
   link.href=url;
-  link.download="ds-7745-courier-metrics-2026-10-17.csv";
+  link.download="ds-7745-courier-metrics-2026-10-18.csv";
   document.body.appendChild(link);
   link.click();
   link.remove();
