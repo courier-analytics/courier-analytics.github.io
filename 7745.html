@@ -8,7 +8,7 @@
   <title>ДС 7745 — Операционные метрики курьеров</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232b62cf'/%3E%3Cpath d='M14 42h36M18 28h28M25 17h14' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
   <style>
-    :root{color-scheme:light;--bg:#f6f8fc;--paper:#fff;--ink:#17253b;--muted:#69788d;--line:#e4eaf2;--blue:#285dcc;--blue-soft:#edf3ff;--green-bg:#e5f6ed;--green:#14744a;--amber-bg:#fff4db;--amber:#986212;--rose-bg:#ffebec;--rose:#b63c4b;--radius:18px}
+    :root{color-scheme:light;--bg:#f6f8fc;--paper:#fff;--ink:#17253b;--muted:#69788d;--line:#e4eaf2;--blue:#285dcc;--blue-soft:#edf3ff;--radius:18px}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}
@@ -36,7 +36,7 @@
     col.goal-col{width:96px}
     thead th{background:#f8fafd;color:#65758b;font-size:12px;font-weight:720;text-align:center;white-space:nowrap;border-bottom:1px solid var(--line);padding:15px 7px}
     thead th:first-child{text-align:left;padding-left:23px}
-    thead th:last-child{background:#f0f5ff;color:var(--blue)}
+    thead th:last-child{background:#f8fafd;color:#65758b}
     tbody td,tbody th{border-bottom:1px solid #edf0f5;padding:12px 7px;text-align:center;background:white;height:63px}
     tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
     tbody th{font-size:13px;font-weight:630;text-align:left;padding-left:23px;padding-right:15px;line-height:1.32}
@@ -46,12 +46,10 @@
     .metric-title{display:flex;align-items:center;gap:11px}
     .metric-index{flex:none;width:24px;height:24px;display:grid;place-items:center;border-radius:7px;background:#f0f3f8;color:#8190a4;font-size:11px;font-weight:700}
     .cell{display:inline-flex;min-width:64px;min-height:33px;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:700;padding:6px 5px}
-    .cell.good{background:var(--green-bg);color:var(--green)}
-    .cell.mid{background:var(--amber-bg);color:var(--amber)}
-    .cell.bad{background:var(--rose-bg);color:var(--rose)}
+    .cell{background:transparent;color:var(--ink)}
     .cell.empty{color:#b4becc;font-weight:500}
-    .goal{color:var(--blue);font-weight:750;font-size:13px;background:#f5f8ff}
-    .date-latest{background:#f0f5ff}
+    .goal{color:var(--ink);font-weight:750;font-size:13px;background:white}
+    .date-latest{background:#f8fafd}
     .footnotes{padding:16px 23px 18px;border-top:1px solid var(--line);background:#fcfdff;color:#78869a;font-size:12px}
     .footnotes p{margin:0}
     .footnotes p+p{margin-top:5px}
@@ -136,15 +134,6 @@ function textCell(tag,content,className) {
   if(className) el.className=className;
   return el;
 }
-function statusClass(value,metric) {
-  const values=metric.values.filter(function(v){return v!==null;}).map(function(v){return Number(v.replace(",","."));});
-  const num=Number(value.replace(",","."));
-  const min=Math.min.apply(null,values),max=Math.max.apply(null,values);
-  if(max===min) return "mid";
-  let ratio=(num-min)/(max-min);
-  if(metric.better==="low") ratio=1-ratio;
-  return ratio>=2/3?"good":ratio<=1/3?"bad":"mid";
-}
 function render() {
   const head=document.getElementById("headerRow");
   dates.forEach(function(date,i){
@@ -168,7 +157,7 @@ function render() {
     tr.appendChild(th);
     metric.values.forEach(function(value){
       const td=document.createElement("td");
-      const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell "+statusClass(value,metric));
+      const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell");
       td.appendChild(span);
       tr.appendChild(td);
     });
