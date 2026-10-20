@@ -73,7 +73,7 @@
   <header>
     <div>
       <h1>Операционные метрики курьеров — ДС 7745</h1>
-      <p class="description">Ежедневные показатели работы курьеров · 15–18 октября 2026 года</p>
+      <p class="description">Ежедневные показатели работы курьеров · 15–20 октября 2026 года</p>
     </div>
     <div class="actions">
       <button id="copyLink" type="button" aria-label="Скопировать ссылку на таблицу">
@@ -88,10 +88,10 @@
     </div>
   </header>
   <section class="panel" aria-labelledby="tableTitle">
-    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">11 метрик · 4 дня · Цель</span></div>
+    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">11 метрик · 6 дней · Цель</span></div>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
       <table id="metricsTable">
-        <colgroup><col class="metric-col"><col class="day-col" span="4"><col class="goal-col"></colgroup>
+        <colgroup><col class="metric-col"><col class="day-col" span="6"><col class="goal-col"></colgroup>
         <thead><tr id="headerRow"><th scope="col">Показатель</th></tr></thead>
         <tbody id="metricsBody"></tbody>
       </table>
@@ -111,21 +111,21 @@
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
 "use strict";
-const dates = ["15.10","16.10","17.10","18.10"];
+const dates = ["15.10","16.10","17.10","18.10","19.10","20.10"];
 // Значения хранятся строками; отображение всех процентов единообразно: две цифры после запятой.
 // null означает, что показатель за дату не предоставлен.
 const metrics = [
-  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","0","0",null]},
-  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:[null,null,null,null]},
-  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:[null,null,null,null]},
-  {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["79,31","92,31","92,31",null]},
-  {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:[null,null,null,null]},
-  {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:[null,"35,14","33,33",null]},
-  {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:[null,"66,67","58,33",null]},
-  {name:"Работа с обращениями",goal:"100",better:"high",values:[null,null,null,"0"]},
-  {name:"Инфраструктура",goal:"100",better:"high",values:[null,null,null,null]},
-  {name:"Обучение курьеров",goal:"100",better:"high",values:[null,null,null,null]},
-  {name:"Медицинские книжки",goal:"100",better:"high",values:[null,null,null,null]},
+  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","0","0","0","0","0"]},
+  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:[null,null,null,null,null,null]},
+  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:[null,null,null,null,null,null]},
+  {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["79,31","92,31","92,31",null,null,null]},
+  {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:[null,null,null,null,null,null]},
+  {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:[null,"35,14","33,33",null,null,null]},
+  {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:[null,"66,67","58,33",null,null,null]},
+  {name:"Работа с обращениями",goal:"100",better:"high",values:[null,null,null,"0",null,null]},
+  {name:"Инфраструктура",goal:"100",better:"high",values:[null,null,null,null,null,null]},
+  {name:"Обучение курьеров",goal:"100",better:"high",values:[null,null,null,null,null,null]},
+  {name:"Медицинские книжки",goal:"100",better:"high",values:[null,null,null,null,null,null]},
 ];
 function formatPercent(value) {
   const number=Number(String(value).replace(",", "."));
@@ -187,7 +187,7 @@ function downloadCsv() {
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
   const link=document.createElement("a");
   link.href=url;
-  link.download="ds-7745-courier-metrics-2026-10-18.csv";
+  link.download="ds-7745-courier-metrics-2026-10-20.csv";
   document.body.appendChild(link);
   link.click();
   link.remove();
