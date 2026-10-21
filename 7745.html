@@ -111,20 +111,20 @@
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
 "use strict";
-const dates = ["15.10","16.10","17.10","18.10","19.10","20.10"];
+const dates = ["18.10","19.10","20.10"];
 // Значения хранятся строками; отображение всех процентов единообразно: две цифры после запятой.
 // null означает, что показатель за дату не предоставлен.
 const metrics = [
-  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","0","0","0","0","0"]},
-  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:["0","0","0","0","0","0"]},
-  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:[null,null,null,null,null,null]},
-  {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["79,31","92,31","92,31","78,26","86,36","82,61"]},
-  {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:[null,null,null,"72,22","57,89","42,11"]},
-  {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:[null,"35,14","33,33","50,00","50,00","44,12"]},
-  {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:[null,"66,67","58,33","66,67","73,68","73,68"]},
-  {name:"Работа с обращениями",goal:"100",better:"high",values:[null,null,null,"0",null,null]},
-  {name:"Обучение курьеров",goal:"100",better:"high",values:[null,null,null,null,null,null]},
-  {name:"Медицинские книжки",goal:"100",better:"high",values:["36,5","36,5","36,5","36,5","36,5","36,5"]},
+  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","0","0"]},
+  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:["0","0","0"]},
+  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["78,26","86,36","82,61"]},
+  {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:["72,22","57,89","42,11"]},
+  {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:["50,00","50,00","44,12"]},
+  {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:["66,67","73,68","73,68"]},
+  {name:"Работа с обращениями",goal:"100",better:"high",values:["0",null,null]},
+  {name:"Обучение курьеров",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Медицинские книжки",goal:"100",better:"high",values:["36,5","36,5","36,5"]},
 ];
 function formatPercent(value) {
   const number=Number(String(value).replace(",", "."));
