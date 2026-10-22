@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f8fc">
-  <meta name="description" content="Операционные показатели курьеров ДС 5818 по датам с 08.10 по 21.10.2026">
+  <meta name="description" content="Операционные показатели курьеров ДС 5818 по датам с 08.10 по 22.10.2026">
   <title>ДС 5818 — Операционные метрики курьеров</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232b62cf'/%3E%3Cpath d='M14 42h36M18 28h28M25 17h14' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
   <style>
@@ -30,7 +30,7 @@
     h2{font-size:16px;letter-spacing:-.015em;margin:0;font-weight:750}
     .panel-note{color:var(--muted);font-size:12px;white-space:nowrap}
     .table-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-color:#cbd6e7 transparent}
-    table{width:100%;min-width:1140px;border-collapse:separate;border-spacing:0;table-layout:fixed;font-variant-numeric:tabular-nums}
+    table{width:100%;min-width:1776px;border-collapse:separate;border-spacing:0;table-layout:fixed;font-variant-numeric:tabular-nums}
     col.metric-col{width:315px}
     col.day-col{width:91px}
     col.goal-col{width:96px}
@@ -73,7 +73,7 @@
   <header>
     <div>
       <h1>Операционные метрики курьеров — ДС 5818</h1>
-      <p class="description">Ежедневные показатели работы курьеров · 08–21 октября 2026 года</p>
+      <p class="description">Ежедневные показатели работы курьеров · 08–22 октября 2026 года</p>
     </div>
     <div class="actions">
       <button id="copyLink" type="button" aria-label="Скопировать ссылку на таблицу">
@@ -88,10 +88,10 @@
     </div>
   </header>
   <section class="panel" aria-labelledby="tableTitle">
-    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">10 метрик · 13 дней · Цель</span></div>
+    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">10 метрик · 15 дней · Цель</span></div>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
       <table id="metricsTable">
-        <colgroup><col class="metric-col"><col class="day-col" span="13"><col class="goal-col"></colgroup>
+        <colgroup><col class="metric-col"><col class="day-col" span="15"><col class="goal-col"></colgroup>
         <thead><tr id="headerRow"><th scope="col">Показатель</th></tr></thead>
         <tbody id="metricsBody"></tbody>
       </table>
