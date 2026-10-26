@@ -99,7 +99,7 @@
   </section>
   <section class="panel" aria-labelledby="tableTitle">
     <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">10 метрик · 5 дней · Цель</span></div>
-    <p class="tool-transition-note" id="toolTransitionNote">23 октября · Переход на инструмент «Выходы курьеров»</p>
+    <p class="tool-transition-note" id="toolTransitionNote">25 октября · Переход на инструмент «Выходы курьеров»</p>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
       <table id="metricsTable">
         <colgroup><col class="metric-col"><col class="day-col" span="5"><col class="goal-col"></colgroup>
@@ -154,9 +154,9 @@ function render() {
   while(head.children.length>1) head.lastElementChild.remove();
   dates.forEach(function(date,i){
     const th=textCell("th",date,i===dates.length-1?"date-latest":"");
-    if(date==="23.10" && dates[i-1]==="22.10"){
+    if(date==="25.10" && dates[i-1]==="24.10"){
       th.classList.add("tool-transition");
-      th.title="Переход на инструмент «Выходы курьеров» с 23 октября";
+      th.title="Переход на инструмент «Выходы курьеров» с 25 октября";
       th.setAttribute("aria-describedby","toolTransitionNote");
     }
     th.scope="col";
@@ -179,7 +179,7 @@ function render() {
     tr.appendChild(th);
     metric.values.forEach(function(value,dayIndex){
       const td=document.createElement("td");
-      if(dates[dayIndex]==="23.10" && dates[dayIndex-1]==="22.10") td.classList.add("tool-transition");
+      if(dates[dayIndex]==="25.10" && dates[dayIndex-1]==="24.10") td.classList.add("tool-transition");
       const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell "+statusClass(value,index));
       if(index===9 && approvedManualMedicalDates.has(dates[dayIndex]) && value!==null){
         td.title="Значение утверждено пользователем вручную.";
