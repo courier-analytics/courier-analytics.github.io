@@ -7,6 +7,7 @@ Wants=network-online.target
 Type=oneshot
 User=root
 UMask=0077
+EnvironmentFile=-/etc/courier-analytics/proxy.env
 TimeoutStartSec=600
 ExecStart=/usr/bin/flock -n /opt/courier-analytics/refresh.lock /opt/courier-analytics/import-venv/bin/python /opt/courier-analytics/current-app/tools/refresh_dashboard.py --scopes /opt/courier-analytics/current-app/tools/scopes.json --feed /opt/courier-analytics/current-site/data/dashboard.json
 ExecStartPost=/usr/bin/flock -n /opt/courier-analytics/publish.lock /opt/courier-analytics/import-venv/bin/python /opt/courier-analytics/current-app/tools/publish_dashboard.py --feed /opt/courier-analytics/current-site/data/dashboard.json

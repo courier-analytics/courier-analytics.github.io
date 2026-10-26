@@ -1,0 +1,21 @@
+[Unit]
+Description=Loopback SOCKS proxy for courier data collection
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=courier-proxy
+Group=courier-proxy
+ExecStart=/usr/local/lib/courier-proxy/xray run -config /etc/courier-proxy/config.json
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectHome=yes
+ProtectSystem=strict
+UMask=0077
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
