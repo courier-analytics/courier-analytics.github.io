@@ -11,12 +11,12 @@ class BackfillTests(unittest.TestCase):
     def test_real_manual_history_has_correct_shop_start_and_preserves_entered_values(self):
         manual = manual_history(Path(__file__).resolve().parents[1])
         work = needed({'records': []}, manual, '2026-10-26')
-        self.assertNotIn((5818, '2026-10-08'), work)
+        self.assertEqual(work[5818, '2026-10-08'], {'planned_completion'})
         self.assertNotIn((7745, '2026-10-17'), work)
         self.assertEqual(work[7745, '2026-10-18'], {'slot_fill'})
-        self.assertEqual(work[4747, '2026-10-21'], {'slot_fill'})
+        self.assertEqual(work[4747, '2026-10-21'], {'slot_fill', 'planned_completion'})
         for shop in (5818, 7745, 4747):
-            self.assertEqual(work[shop, '2026-10-23'], {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late'})
+            self.assertEqual(work[shop, '2026-10-23'], {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late', 'planned_completion'})
 
     def test_zero_denominator_is_a_complete_answer_not_a_missing_day(self):
         row = {'shop_id': 5818, 'date': '2026-10-26', 'metrics': {
@@ -24,6 +24,7 @@ class BackfillTests(unittest.TestCase):
             'shift_marked': metric(0, 0, basis=BASE)}}
         row['metrics'].update(planned_attendance=metric(0, 0, basis='current_limited_bookings_unique_couriers'),
                               planned_late=metric(0, 0, basis='current_limited_bookings_unique_couriers'))
+        row['metrics']['planned_completion'] = metric(0, 0, basis='current_limited_all_shifts_site_10min_tolerance')
         work = needed({'records': [row]}, {(5818, '2026-10-26'): set(),
             (7745, '2026-10-26'): set(), (4747, '2026-10-26'): set()}, '2026-10-26')
         self.assertNotIn((5818, '2026-10-26'), work)

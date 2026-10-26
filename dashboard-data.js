@@ -76,7 +76,9 @@
     }));
     const imported = new Map();
     own.forEach(row => {
-      next[2][indexes.get(row.date)] = row.fill_percent === null ? null : String(row.fill_percent);
+      if (!row.metrics || row.metrics.slot_fill) {
+        next[2][indexes.get(row.date)] = row.fill_percent === null ? null : String(row.fill_percent);
+      }
       Object.entries(row.metrics || {}).forEach(([key, metric]) => {
         next[metricIndexes[key]][indexes.get(row.date)] = metric.value === null ? null : String(metric.value);
       });
@@ -91,8 +93,10 @@
     const rowsInTable = document.querySelectorAll("#metricsBody tr");
     const cells = rowsInTable[2].querySelectorAll("td");
     imported.forEach((row, i) => {
-      cells[i].title = row.capacity ? "Лимитированные слоты: занято " + row.booked_places + " из " + row.capacity + " мест. Один курьер может занимать несколько слотов." : "Нет данных о потребности: вместимость лимитированных слотов равна нулю.";
-      cells[i].dataset.source = "slots_export";
+      if (!row.metrics || row.metrics.slot_fill) {
+        cells[i].title = row.capacity ? "Лимитированные слоты: занято " + row.booked_places + " из " + row.capacity + " мест. Один курьер может занимать несколько слотов." : "Нет данных о потребности: вместимость лимитированных слотов равна нулю.";
+        cells[i].dataset.source = "slots_export";
+      }
       Object.entries(row.metrics || {}).forEach(([key, metric]) => {
         const cell = rowsInTable[metricIndexes[key]].querySelectorAll("td")[i];
         const basis = {
@@ -108,6 +112,9 @@
         if (metric.basis === "current_limited_bookings_unique_couriers") {
           basis.planned_attendance = " уникальных записавшихся в лимитированные слоты, имеющих статус «вышел», «раньше» или «опоздал». Текущий список записей; план накануне не подтверждён. «Ожидается» пока не считается выходом, день может быть не завершён.";
           basis.planned_late = " вышедших уникальных курьеров лимитированных слотов с хотя бы одним опозданием. По текущим карточкам слотов; план накануне не подтверждён.";
+        }
+        if (metric.basis === "current_limited_all_shifts_site_10min_tolerance") {
+          basis.planned_completion = " уникальных записавшихся курьеров, завершивших все свои лимитированные слоты. Сравнивается фактический уход с окончанием слота, допуск — 10 минут. По текущим карточкам; план накануне не подтверждён. Неявка считается незавершением.";
         }
         cell.title = metric.value === null ? reasons[metric.reason] :
           "По данным сайта: " + metric.numerator + " из " + metric.denominator + basis[key];

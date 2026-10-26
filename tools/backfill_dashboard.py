@@ -43,7 +43,7 @@ def needed(previous, manual, until):
             row = indexed.get((shop, day), {})
             known = manual.get((shop, day), set())
             wanted = set()
-            for key in ('shift_marked', 'slot_fill', 'planned_attendance', 'planned_late'):
+            for key in ('shift_marked', 'slot_fill', 'planned_attendance', 'planned_late', 'planned_completion'):
                 if key in known:
                     continue
                 metric = row.get('metrics', {}).get(key)
@@ -68,7 +68,9 @@ def select_rows(fresh, previous, manual, work, day):
         key = row['shop_id'], row['date']
         if row['date'] != day or key not in work:
             continue
-        if any(row['metrics'][m]['reason'] not in (None, 'zero_denominator') for m in work[key]):
+        if any(row['metrics'][m]['reason'] not in (
+            (None, 'zero_denominator', 'shift_end_or_final_status_missing', 'unknown_shift_status')
+            if m == 'planned_completion' else (None, 'zero_denominator')) for m in work[key]):
             raise ValueError('Incomplete required historical source; candidate not published')
         # Existing manually entered facts win over retrospective automatic facts.
         row = dict(row)
@@ -122,7 +124,8 @@ if __name__ == '__main__':
                     m = row['metrics'].get('shift_marked')
                     arrival = row['metrics'].get('planned_attendance', {}).get('value', 'manual history')
                     late = row['metrics'].get('planned_late', {}).get('value', 'manual history')
-                    print(f"{day} DS {row['shop_id']}: fill={row['fill_percent']}; active booking share={m['value'] if m else 'manual history'}; arrived={arrival}; late={late}", flush=True)
+                    completion = row['metrics'].get('planned_completion', {})
+                    print(f"{day} DS {row['shop_id']}: fill={row['fill_percent']}; active booking share={m['value'] if m else 'manual history'}; arrived={arrival}; late={late}; completed={completion.get('value', 'manual history')} ({completion.get('reason') or 'ready'})", flush=True)
         print('Candidate complete. Manual history preserved. Missing frozen plans remain unavailable.', flush=True)
     except (ValueError, KeyError, TypeError, OSError, RuntimeError):
         raise SystemExit('Backfill incomplete; active site unchanged. Private responses hidden.')
