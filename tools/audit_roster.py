@@ -4,7 +4,7 @@ import json
 import os
 from pathlib import Path
 
-from enrich_slots import atomic_json
+from enrich_slots import atomic_json, api_get, ApiError
 from roster_client import RosterError, get_rosters
 
 
@@ -15,7 +15,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     private = Path('/opt/courier-analytics/private')
     try:
-        primary = json.loads(Path('/root/curator-session.json').read_text())['token']
+        saved_session = json.loads(Path('/root/curator-session.json').read_text())
+        primary = saved_session['token']
         if not isinstance(primary, str) or not primary or '\r' in primary or '\n' in primary:
             raise RosterError('invalid_primary_session')
         rosters, errors = get_rosters(primary, args.proxy, private/'one-c-session.json')
@@ -44,6 +45,17 @@ if __name__ == '__main__':
             atomic_json(folder/'roster-enabled.json', {'enabled': True})
             print('Assigned-roster lookup enabled for future refreshes. Secrets not printed.')
     except RosterError as error:
+        if str(error) == 'own_profile_http_401':
+            diagnosis = {'saved_session_has_fio': bool(
+                isinstance(saved_session.get('fio'), str) and saved_session['fio'].strip())}
+            try:
+                api_get('/v1/shops', primary, args.proxy)
+                diagnosis['schedules_session'] = 'accepted'
+            except ApiError:
+                diagnosis['schedules_session'] = 'http_error'
+            except RuntimeError:
+                diagnosis['schedules_session'] = 'connection_or_response_error'
+            print(json.dumps(diagnosis, ensure_ascii=False))
         raise SystemExit('Roster lookup unavailable: '+str(error))
     except (ValueError, KeyError, OSError, TypeError):
         raise SystemExit('Roster check failed validation; no private response printed.')
