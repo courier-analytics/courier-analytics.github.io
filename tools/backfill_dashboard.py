@@ -116,7 +116,8 @@ if __name__ == '__main__':
                 print('Collecting '+day+'...', flush=True)
                 daily = Path(temporary)/'feed.json'
                 atomic_json(daily, {'schema_version': 1, 'records': []})
-                refresh(day, token, args.proxy, private/day, daily, active_base=True)
+                result = refresh(day, token, args.proxy, private/day, daily, active_base=True)
+                print('Overnight end check: '+json.dumps(result.get('overnight_completion', {})), flush=True)
                 selected = select_rows(json.loads(daily.read_text()), public, manual, work, day)
                 public = merge_feed(public, selected)
                 atomic_json(args.feed, public)

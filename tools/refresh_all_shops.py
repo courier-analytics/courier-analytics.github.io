@@ -10,6 +10,7 @@ from audit_sources import audit
 from build_dashboard_feed import build
 from calculate_metrics import calculate, metric
 from active_base import collect as collect_active_base, BASIS as ACTIVE_BASIS
+from overnight_completion import resolve as resolve_overnight
 from enrich_slots import atomic_json
 from refresh_dashboard import merge_feed, private_xlsx, HEADERS
 
@@ -30,6 +31,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False):
     summaries = []
     for shop in observations['shops']:
         identity = shop['shop_id']
+        shop['slots'], shop['overnight_completion'] = resolve_overnight(shop['slots'], token, proxy)
         source_plan = next((p for p in (plan or {}).get('shops', []) if p['shop_id'] == identity), None)
         daily_plan = {'verified': True, 'date': day, 'slots': source_plan['slots']} if (
             source_plan and plan.get('verified') is True and plan.get('date') == day) else None
@@ -45,6 +47,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False):
                           'fill_percent': fill['value'], 'metrics': metrics})
     if not summaries:
         raise ValueError('None of the requested DS is available; previous feed preserved')
+    atomic_json(folder/'all-shops-observations.json', observations)
     report = {'schema_version': 1, 'snapshot_consistent': True, 'issues': [],
               'generated_at': datetime.now(timezone.utc).isoformat(), 'summaries': summaries}
     fresh = build([report])
@@ -66,7 +69,9 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False):
     private_xlsx(private_dir/('all-shops-'+day+'.xlsx'), export_rows)
     atomic_json(feed_path, combined)
     feed_path.chmod(0o644)
-    return {'scope_summary': audit_summary, 'roster_errors': roster_errors, 'report': report}
+    return {'scope_summary': audit_summary, 'roster_errors': roster_errors,
+            'overnight_completion': {s['shop_id']: s['overnight_completion'] for s in observations['shops']},
+            'report': report}
 
 
 if __name__ == '__main__':
