@@ -25,7 +25,7 @@ unit=/etc/systemd/system/courier-proxy.service
 binary=/usr/local/lib/courier-proxy/xray
 config=/etc/courier-proxy/config.json
 was_active=no
-systemctl is-active --quiet courier-proxy.service && was_active=yes
+systemctl --no-ask-password is-active --quiet courier-proxy.service && was_active=yes
 for file in "$unit" "$binary" "$config"; do
   if [[ -e "$file" ]]; then
     cp -a -- "$file" "$stage/$(basename "$file").previous"
@@ -33,7 +33,7 @@ for file in "$unit" "$binary" "$config"; do
 done
 rollback() {
   trap - ERR
-  systemctl stop courier-proxy.service >/dev/null 2>&1 || true
+  systemctl --no-ask-password stop courier-proxy.service >/dev/null 2>&1 || true
   for file in "$unit" "$binary" "$config"; do
     previous="$stage/$(basename "$file").previous"
     if [[ -e "$previous" ]]; then
@@ -42,9 +42,9 @@ rollback() {
       rm -f -- "$file"
     fi
   done
-  systemctl daemon-reload
+  systemctl --no-ask-password daemon-reload
   if [[ "$was_active" == yes ]]; then
-    systemctl start courier-proxy.service || true
+    systemctl --no-ask-password start courier-proxy.service || true
   fi
   echo "New proxy check failed. Previous proxy files restored; Mac tunnel was not changed. Private diagnostics: $stage" >&2
 }
@@ -52,8 +52,8 @@ trap rollback ERR
 install -m 755 "$stage/xray" "$binary"
 install -m 640 -o root -g courier-proxy "$stage/config.json" "$config"
 install -m 644 "$tools_dir/courier-proxy.service" "$unit"
-systemctl daemon-reload
-systemctl restart courier-proxy.service
+systemctl --no-ask-password daemon-reload
+systemctl --no-ask-password restart courier-proxy.service
 
 # Give the socket time to bind. The request carries no account token.
 proxy_http=$(curl --proxy socks5h://127.0.0.1:18081 --noproxy '' \
@@ -79,8 +79,8 @@ printf '%s\n' '[Unit]' 'Wants=courier-proxy.service' 'After=courier-proxy.servic
   > /etc/systemd/system/courier-refresh.service.d/proxy.conf
 printf '%s\n' '[Unit]' 'Wants=courier-proxy.service' 'After=courier-proxy.service' \
   > /etc/systemd/system/courier-plan.service.d/proxy.conf
-systemctl daemon-reload
-systemctl enable courier-proxy.service
+systemctl --no-ask-password daemon-reload
+systemctl --no-ask-password enable courier-proxy.service
 echo 'Server proxy verified, loopback only: 127.0.0.1:18081.'
 echo 'Collector switched to the server proxy. SSH and default routes unchanged.'
 echo 'Mac tunnel remains available as fallback on port 18080.'
