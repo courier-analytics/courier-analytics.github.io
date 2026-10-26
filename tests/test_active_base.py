@@ -21,6 +21,7 @@ class ActiveBaseTests(unittest.TestCase):
         self.assertEqual(row['scheduled_unique_5d'], 6)
         self.assertEqual(row['attendance_observed_unique_5d'], 5)
         self.assertEqual(row['with_slot_on_selected_day'], 2)
+        self.assertEqual(row['scope_breakdown'][0]['unique_5d'], 6)
         self.assertFalse(report['shops'][1]['available'])
 
     def test_missing_or_repeated_day_is_rejected(self):
