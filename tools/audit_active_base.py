@@ -1,5 +1,6 @@
 """Compare five-day scheduled participants with observed attendance, without PII."""
 import argparse
+from proxy_config import configured_proxy
 from datetime import date, datetime, timedelta
 import json
 import os
@@ -54,7 +55,7 @@ def summarize(observations, day):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--date', default=datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat())
-    parser.add_argument('--proxy', default=os.environ.get('COURIER_PROXY_URL', 'socks5h://127.0.0.1:18080'))
+    parser.add_argument('--proxy', default=configured_proxy())
     parser.add_argument('--saved', action='store_true', help='Analyze saved snapshots without API access')
     args = parser.parse_args()
     try:

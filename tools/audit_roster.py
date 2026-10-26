@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+from proxy_config import configured_proxy
 from pathlib import Path
 
 from enrich_slots import atomic_json, api_get, ApiError
@@ -10,7 +11,7 @@ from roster_client import RosterError, get_rosters
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--proxy', default=os.environ.get('COURIER_PROXY_URL', 'socks5h://127.0.0.1:18080'))
+    parser.add_argument('--proxy', default=configured_proxy())
     parser.add_argument('--enable', action='store_true')
     args = parser.parse_args()
     private = Path('/opt/courier-analytics/private')

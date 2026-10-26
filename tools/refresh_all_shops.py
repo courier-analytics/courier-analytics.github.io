@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+from proxy_config import configured_proxy
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -88,7 +89,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--feed', type=Path, required=True)
     parser.add_argument('--session', type=Path, default=Path('/root/curator-session.json'))
-    parser.add_argument('--proxy', default=os.environ.get('COURIER_PROXY_URL', 'socks5h://127.0.0.1:18080'))
+    parser.add_argument('--proxy', default=configured_proxy())
     parser.add_argument('--private-dir', type=Path, default=Path('/opt/courier-analytics/private'))
     parser.add_argument('--date', default=datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat())
     parser.add_argument('--active-base', action='store_true')

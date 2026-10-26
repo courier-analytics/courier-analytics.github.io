@@ -1,5 +1,6 @@
 """Fill missing API-backed dates while preserving existing manual history."""
 import argparse
+from proxy_config import configured_proxy
 from datetime import date, datetime, timedelta
 import json
 import os
@@ -98,7 +99,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--feed', type=Path, required=True, help='Private candidate feed, not the active site')
     parser.add_argument('--until', default=datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat())
-    parser.add_argument('--proxy', default=os.environ.get('COURIER_PROXY_URL', 'socks5h://127.0.0.1:18080'))
+    parser.add_argument('--proxy', default=configured_proxy())
     args = parser.parse_args()
     try:
         date.fromisoformat(args.until)

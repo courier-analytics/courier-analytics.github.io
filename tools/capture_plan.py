@@ -1,5 +1,6 @@
 """Freeze tomorrow's booked slots during the agreed 23:59 Moscow window."""
 import argparse
+from proxy_config import configured_proxy
 from datetime import datetime, timedelta, timezone
 import json
 import os
@@ -55,7 +56,7 @@ def write_immutable(path, result):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--session', type=Path, default=Path('/root/curator-session.json'))
-    parser.add_argument('--proxy', default=os.environ.get('COURIER_PROXY_URL', 'socks5h://127.0.0.1:18080'))
+    parser.add_argument('--proxy', default=configured_proxy())
     parser.add_argument('--private-dir', type=Path, default=Path('/opt/courier-analytics/private'))
     args = parser.parse_args()
     started = datetime.now(timezone.utc)

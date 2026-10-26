@@ -1,5 +1,6 @@
 """Collect all dashboard DS scopes in one read-only, privacy-preserving audit."""
 import argparse
+from proxy_config import configured_proxy
 from collections import Counter
 from datetime import datetime, timezone
 import json
@@ -135,7 +136,7 @@ def audit(day, token, proxy, directory, extra_details=True):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--session', type=Path, default=Path('/root/curator-session.json'))
-    parser.add_argument('--proxy', default=os.environ.get('COURIER_PROXY_URL', 'socks5h://127.0.0.1:18080'))
+    parser.add_argument('--proxy', default=configured_proxy())
     parser.add_argument('--date', default=datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat())
     parser.add_argument('--output-dir', type=Path, default=Path('/opt/courier-analytics/private/audit'))
     args = parser.parse_args()

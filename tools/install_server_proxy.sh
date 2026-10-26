@@ -63,9 +63,8 @@ proxy_http=$(curl --proxy socks5h://127.0.0.1:18081 --noproxy '' \
   https://couriers-schedules.vkusvill.ru/v1/shops)
 [[ "$proxy_http" == 401 || "$proxy_http" == 200 ]]
 # Real authenticated read through the new proxy before changing the timer's route.
-/opt/courier-analytics/import-venv/bin/python "$tools_dir/refresh_dashboard.py" \
-  --scopes "$tools_dir/scopes.json" --proxy socks5h://127.0.0.1:18081 \
-  --private-dir "$stage/private" --feed "$stage/feed.json" >"$stage/api-check.json"
+/opt/courier-analytics/import-venv/bin/python "$tools_dir/verify_server_proxy.py" \
+  --proxy socks5h://127.0.0.1:18081 >"$stage/api-check.log"
 trap - ERR
 
 # All connection tests passed. Switch collection without changing system routes.
@@ -74,10 +73,12 @@ proxy_env=$(mktemp /etc/courier-analytics/.proxy-env-XXXXXXXX)
 printf '%s\n' 'COURIER_PROXY_URL=socks5h://127.0.0.1:18081' > "$proxy_env"
 chmod 600 "$proxy_env"
 mv -f -- "$proxy_env" /etc/courier-analytics/proxy.env
-install -m 644 "$tools_dir/courier-refresh.service" /etc/systemd/system/courier-refresh.service
 install -d -m 755 /etc/systemd/system/courier-refresh.service.d
+install -d -m 755 /etc/systemd/system/courier-plan.service.d
 printf '%s\n' '[Unit]' 'Wants=courier-proxy.service' 'After=courier-proxy.service' \
   > /etc/systemd/system/courier-refresh.service.d/proxy.conf
+printf '%s\n' '[Unit]' 'Wants=courier-proxy.service' 'After=courier-proxy.service' \
+  > /etc/systemd/system/courier-plan.service.d/proxy.conf
 systemctl daemon-reload
 systemctl enable courier-proxy.service
 echo 'Server proxy verified, loopback only: 127.0.0.1:18081.'

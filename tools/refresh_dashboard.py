@@ -1,5 +1,6 @@
 """Read slot APIs, save a private XLSX, and refresh the public dashboard feed."""
 import argparse
+from proxy_config import configured_proxy
 from datetime import datetime
 import json
 import os
@@ -140,7 +141,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--scopes', type=Path, required=True)
     parser.add_argument('--session', type=Path, default=Path('/root/curator-session.json'))
-    parser.add_argument('--proxy', default=os.environ.get('COURIER_PROXY_URL', 'socks5h://127.0.0.1:18080'))
+    parser.add_argument('--proxy', default=configured_proxy())
     parser.add_argument('--private-dir', type=Path, default=Path('/opt/courier-analytics/private'))
     parser.add_argument('--feed', type=Path, required=True)
     parser.add_argument('--date', default=datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat())

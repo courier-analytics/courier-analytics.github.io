@@ -1,5 +1,6 @@
 """Join an XLSX snapshot to read-only API details and emit anonymous aggregates."""
 import argparse
+from proxy_config import configured_proxy
 from collections import Counter
 from copy import deepcopy
 from datetime import datetime, timezone
@@ -225,7 +226,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('xlsx', type=Path)
     parser.add_argument('--session', type=Path, required=True)
-    parser.add_argument('--proxy', default=os.environ.get('COURIER_PROXY_URL', 'socks5h://127.0.0.1:18080'))
+    parser.add_argument('--proxy', default=configured_proxy())
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     slots = read_export(args.xlsx)
