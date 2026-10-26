@@ -12,8 +12,10 @@ def process(pid):
         command = (root/'cmdline').read_bytes().split(b'\0')
         command = [part.decode(errors='replace') for part in command if part]
         stat = (root/'stat').read_text()
-        parent = int(stat[stat.rfind(')')+2:].split()[1])
+        fields = stat[stat.rfind(')')+2:].split()
+        parent = int(fields[1])
         return {'pid': pid, 'parent': parent, 'command': command,
+                'started': fields[19],
                 'exe': (root/'exe').resolve(strict=True).name}
     except (OSError, ValueError, IndexError):
         return None
@@ -22,6 +24,30 @@ def process(pid):
 def is_installer(info):
     return bool(info and info['exe'] in ('bash', 'dash') and
                 any(Path(arg).name == 'install_server_proxy.sh' for arg in info['command'][1:]))
+
+
+def same_agent(expected, candidate):
+    return bool(candidate and candidate['exe'] == 'systemd-tty-ask-password-agent'
+                and all(candidate[key] == expected[key] for key in ('pid', 'parent', 'started')))
+
+
+def stop_agent(info):
+    for sig in (signal.SIGTERM, signal.SIGKILL):
+        candidate = process(info['pid'])
+        if not candidate:
+            return 'exited'
+        parent = process(info['parent'])
+        if not same_agent(info, candidate) or not parent or parent['exe'] != 'systemctl':
+            return 'identity_changed_no_signal'
+        try:
+            os.kill(info['pid'], sig)
+        except ProcessLookupError:
+            return 'exited'
+        for _ in range(5):
+            time.sleep(.1)
+            if process(info['pid']) is None:
+                return 'exited_after_'+sig.name
+    return 'still_running_after_signals'
 
 
 if __name__ == '__main__':
@@ -33,9 +59,10 @@ if __name__ == '__main__':
         raise SystemExit('Installer is no longer running or identity does not match; no processes changed.')
     deadline = time.monotonic()+45
     count = 0
+    attempted = set()
     while time.monotonic() < deadline:
         current = process(args.installer)
-        if not current or current['command'] != original['command']:
+        if not current or current['command'] != original['command'] or current['started'] != original['started']:
             print('Original installer exited. Read its result in the original terminal.', flush=True)
             break
         processes = {int(p.name): process(int(p.name)) for p in Path('/proc').iterdir() if p.name.isdigit()}
@@ -49,16 +76,18 @@ if __name__ == '__main__':
             parent = processes.get(info['parent'])
             if not parent or parent['exe'] != 'systemctl':
                 continue
+            identity = pid, info['started']
+            if identity in attempted:
+                continue
+            attempted.add(identity)
             # Recheck executable/parent just before signalling. Never signal
             # the password request process, VPN, SSH, proxy or systemctl itself.
             confirmed = process(pid)
-            if confirmed and confirmed['exe'] == info['exe'] and confirmed['parent'] == info['parent']:
-                try:
-                    os.kill(pid, signal.SIGTERM)
+            if same_agent(info, confirmed):
+                result = stop_agent(info)
+                if result.startswith('exited'):
                     count += 1
-                    print('Closed installer-owned interactive systemd agent PID '+str(pid), flush=True)
-                except ProcessLookupError:
-                    pass
+                print('Installer-owned systemd agent PID '+str(pid)+': '+result, flush=True)
         time.sleep(.5)
     else:
         children = [p['exe'] for p in (process(int(d.name)) for d in Path('/proc').iterdir() if d.name.isdigit())
