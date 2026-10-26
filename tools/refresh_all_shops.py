@@ -11,11 +11,12 @@ from build_dashboard_feed import build
 from calculate_metrics import calculate, metric
 from active_base import collect as collect_active_base, BASIS as ACTIVE_BASIS
 from overnight_completion import resolve as resolve_overnight
+from completion_reporting import collect as collect_completion, BASIS as COMPLETION_BASIS
 from enrich_slots import atomic_json
 from refresh_dashboard import merge_feed, private_xlsx, HEADERS
 
 
-def refresh(day, token, proxy, private_dir, feed_path, active_base=False):
+def refresh(day, token, proxy, private_dir, feed_path, active_base=False, completion_state_dir=None):
     folder = private_dir/'all-shops'
     audit_summary = audit(day, token, proxy, folder, extra_details=False)
     observations = json.loads((folder/'all-shops-observations.json').read_text())
@@ -36,6 +37,14 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False):
         daily_plan = {'verified': True, 'date': day, 'slots': source_plan['slots']} if (
             source_plan and plan.get('verified') is True and plan.get('date') == day) else None
         metrics = calculate(shop['slots'], day, roster=rosters.get(identity), plan=daily_plan)
+        try:
+            scope_config = next(s for s in observations['scope_config']['shops'] if s['shop_id'] == identity)
+            metrics['planned_completion'], shop['completion_reporting'] = collect_completion(
+                day, identity, scope_config, shop['slots'], token, proxy,
+                completion_state_dir or private_dir)
+        except (RuntimeError, ValueError, KeyError, TypeError, OSError, StopIteration):
+            metrics['planned_completion'] = metric(reason='completion_history_incomplete', basis=COMPLETION_BASIS)
+            shop['completion_reporting'] = {'source_complete': False}
         if active_base:
             try:
                 metrics['shift_marked'] = collect_active_base(day, identity, shop['slots'], token, proxy)
@@ -71,6 +80,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False):
     feed_path.chmod(0o644)
     return {'scope_summary': audit_summary, 'roster_errors': roster_errors,
             'overnight_completion': {s['shop_id']: s['overnight_completion'] for s in observations['shops']},
+            'completion_reporting': {s['shop_id']: s['completion_reporting'] for s in observations['shops']},
             'report': report}
 
 

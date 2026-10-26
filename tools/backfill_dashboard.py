@@ -11,6 +11,7 @@ from zoneinfo import ZoneInfo
 from enrich_slots import atomic_json
 from refresh_all_shops import refresh
 from refresh_dashboard import merge_feed
+from completion_reporting import BASIS as COMPLETION_BASIS
 
 PAGES = {5818: 'index.html', 7745: '7745.html', 4747: '4747.html'}
 INDEXES = {'shift_marked': 1, 'slot_fill': 2, 'planned_attendance': 3,
@@ -50,6 +51,8 @@ def needed(previous, manual, until):
                 complete = metric and (
                     metric.get('value') is not None or metric.get('reason') == 'zero_denominator')
                 if key == 'shift_marked' and metric and metric.get('basis') != BASE:
+                    complete = False
+                if key == 'planned_completion' and metric and metric.get('basis') != COMPLETION_BASIS:
                     complete = False
                 if key == 'slot_fill' and row and 'metrics' not in row:
                     complete = True  # An earlier validated slot-fill import.
@@ -116,8 +119,10 @@ if __name__ == '__main__':
                 print('Collecting '+day+'...', flush=True)
                 daily = Path(temporary)/'feed.json'
                 atomic_json(daily, {'schema_version': 1, 'records': []})
-                result = refresh(day, token, args.proxy, private/day, daily, active_base=True)
+                result = refresh(day, token, args.proxy, private/day, daily, active_base=True,
+                                 completion_state_dir=private.parent)
                 print('Overnight end check: '+json.dumps(result.get('overnight_completion', {})), flush=True)
+                print('Completion reporting dates: '+json.dumps(result.get('completion_reporting', {})), flush=True)
                 selected = select_rows(json.loads(daily.read_text()), public, manual, work, day)
                 public = merge_feed(public, selected)
                 atomic_json(args.feed, public)

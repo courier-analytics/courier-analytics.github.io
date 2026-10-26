@@ -139,14 +139,14 @@ def current_slot_completion(limited, now=None):
             start, planned_end = period(slot)
         except (ValueError, KeyError, TypeError, AttributeError):
             return metric(reason='shift_end_or_final_status_missing', basis=SLOT_COMPLETION_BASIS)
-        if planned_end > now:
-            return metric(reason='shift_end_or_final_status_missing', basis=SLOT_COMPLETION_BASIS)
         for person in slot['couriers']:
             identity = person['courier_id']
             state = source_status(person.get('shift_status'))
             if state == 'unknown':
                 return metric(reason='unknown_shift_status', basis=SLOT_COMPLETION_BASIS)
             if state == 'no_show':
+                if planned_end > now:
+                    return metric(reason='shift_end_or_final_status_missing', basis=SLOT_COMPLETION_BASIS)
                 completion[identity] = False
                 continue
             end = timestamp(person.get('shift_end'))

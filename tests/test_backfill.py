@@ -24,7 +24,7 @@ class BackfillTests(unittest.TestCase):
             'shift_marked': metric(0, 0, basis=BASE)}}
         row['metrics'].update(planned_attendance=metric(0, 0, basis='current_limited_bookings_unique_couriers'),
                               planned_late=metric(0, 0, basis='current_limited_bookings_unique_couriers'))
-        row['metrics']['planned_completion'] = metric(0, 0, basis='current_limited_all_shifts_site_10min_tolerance')
+        row['metrics']['planned_completion'] = metric(0, 0, basis='slot_completion_by_actual_night_end_date')
         work = needed({'records': [row]}, {(5818, '2026-10-26'): set(),
             (7745, '2026-10-26'): set(), (4747, '2026-10-26'): set()}, '2026-10-26')
         self.assertNotIn((5818, '2026-10-26'), work)
