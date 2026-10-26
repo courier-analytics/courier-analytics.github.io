@@ -70,12 +70,12 @@ def merge_feed(previous, incoming):
             reports.append({'schema_version': 1, 'snapshot_consistent': True, 'issues': [],
                 'generated_at': row['reported_at'], 'summaries': [{
                     **{k: row[k] for k in ('date', 'shop_id', 'booked_places', 'capacity', 'fill_percent')},
-                    'slot_type': 'limited'}]})
+                    'slot_type': 'limited', **({'metrics': row['metrics']} if 'metrics' in row else {})}]})
     for row in incoming['records']:
         reports.append({'schema_version': 1, 'snapshot_consistent': True, 'issues': [],
             'generated_at': row['reported_at'], 'summaries': [{
                 **{k: row[k] for k in ('date', 'shop_id', 'booked_places', 'capacity', 'fill_percent')},
-                'slot_type': 'limited'}]})
+                'slot_type': 'limited', **({'metrics': row['metrics']} if 'metrics' in row else {})}]})
     return build(reports)
 
 

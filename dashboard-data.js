@@ -8,12 +8,25 @@
   const refresh = document.getElementById("refreshData");
   let busy = false;
   let lastSuccess = "";
+  const metricIndexes = {slot_fill: 2, shift_marked: 1, planned_attendance: 3,
+    planned_late: 4, unplanned_work: 5, planned_completion: 6};
+  const reasons = {
+    zero_denominator: "Нет данных для знаменателя; это не 0%.",
+    assigned_roster_not_verified: "Полный список закреплённых курьеров ещё не подтверждён.",
+    bookings_outside_verified_roster: "Есть записавшиеся вне подтверждённого списка курьеров; нужна сверка.",
+    frozen_plan_missing: "Нет сохранённого плана на 23:59 накануне. Текущие записи не подменяют план.",
+    planned_booking_missing_from_current_data: "Запись из сохранённого плана исчезла из текущих данных; нужна история изменений.",
+    planned_slot_times_changed: "Время слота изменилось после фиксации плана; нужна сверка.",
+    unknown_planned_shift_status: "У плановой записи неизвестный статус смены.",
+    unknown_shift_status: "Не все фактические статусы смен распознаны.",
+    shift_end_or_final_status_missing: "Не у всех плановых курьеров есть время окончания или окончательный статус смены."
+  };
 
   function validate(payload) {
     if (!payload || payload.schema_version !== 1 || !Array.isArray(payload.records)) throw Error("format");
     const seen = new Set();
     return payload.records.map(row => {
-      if (!row || ![5818, 7745].includes(row.shop_id) ||
+      if (!row || ![5818, 7745, 4747].includes(row.shop_id) ||
           !/^\d{4}-\d{2}-\d{2}$/.test(row.date) ||
           !Number.isFinite(Date.parse(row.date)) || new Date(row.date).toISOString().slice(0, 10) !== row.date ||
           ![row.capacity, row.booked_places].every(n => Number.isSafeInteger(n) && n >= 0) ||
@@ -24,6 +37,24 @@
       const expected = row.capacity ? row.booked_places / row.capacity * 100 : null;
       if ((!row.capacity && (row.booked_places || row.fill_percent !== null)) ||
           (row.capacity && (typeof row.fill_percent !== "number" || !Number.isFinite(row.fill_percent) || Math.abs(expected - row.fill_percent) > .011))) throw Error("counts");
+      if (row.metrics !== undefined) {
+        if (!row.metrics || typeof row.metrics !== "object" || Array.isArray(row.metrics)) throw Error("metrics");
+        Object.entries(row.metrics).forEach(([key, metric]) => {
+          if (!Object.prototype.hasOwnProperty.call(metricIndexes, key) || !metric ||
+              (metric.reason !== null && !Object.prototype.hasOwnProperty.call(reasons, metric.reason))) throw Error("metric");
+          for (const count of [metric.numerator, metric.denominator]) {
+            if (count !== null && (!Number.isSafeInteger(count) || count < 0)) throw Error("metric counts");
+          }
+          if (metric.value === null) {
+            if (!metric.reason) throw Error("missing reason");
+          } else if (metric.reason !== null || typeof metric.value !== "number" ||
+                     !Number.isFinite(metric.value) || !metric.denominator ||
+                     metric.numerator === null ||
+                     Math.abs(metric.value - metric.numerator / metric.denominator * 100) > .011) throw Error("metric percentage");
+        });
+        if (row.metrics.slot_fill && (row.metrics.slot_fill.value !== row.fill_percent ||
+            row.metrics.slot_fill.numerator !== row.booked_places || row.metrics.slot_fill.denominator !== row.capacity)) throw Error("fill mismatch");
+      }
       return row;
     });
   }
@@ -45,6 +76,9 @@
     const imported = new Map();
     own.forEach(row => {
       next[2][indexes.get(row.date)] = row.fill_percent === null ? null : String(row.fill_percent);
+      Object.entries(row.metrics || {}).forEach(([key, metric]) => {
+        next[metricIndexes[key]][indexes.get(row.date)] = metric.value === null ? null : String(metric.value);
+      });
       imported.set(indexes.get(row.date), row);
     });
     dates.splice(0, dates.length, ...days.map(d => d.slice(8) + "." + d.slice(5, 7)));
@@ -53,14 +87,30 @@
     document.querySelector("col.day-col").span = days.length;
     document.querySelector(".panel-note").textContent = metrics.length + " метрик · Дней: " + days.length + " · Цель";
     document.querySelector(".description").textContent = "Ежедневные показатели · " + dates[0] + "–" + dates[dates.length - 1] + ".2026";
-    const cells = document.querySelectorAll("#metricsBody tr")[2].querySelectorAll("td");
+    const rowsInTable = document.querySelectorAll("#metricsBody tr");
+    const cells = rowsInTable[2].querySelectorAll("td");
     imported.forEach((row, i) => {
       cells[i].title = row.capacity ? "Лимитированные слоты: занято " + row.booked_places + " из " + row.capacity + " мест. Один курьер может занимать несколько слотов." : "Нет данных о потребности: вместимость лимитированных слотов равна нулю.";
       cells[i].dataset.source = "slots_export";
+      Object.entries(row.metrics || {}).forEach(([key, metric]) => {
+        const cell = rowsInTable[metricIndexes[key]].querySelectorAll("td")[i];
+        const basis = {
+          slot_fill: " мест. Один курьер может занимать несколько слотов.",
+          shift_marked: " уникальных курьеров из закреплённых за ДС.",
+          planned_attendance: " курьеров из зафиксированного накануне плана.",
+          planned_late: " курьеров, опоздавших среди вышедших по плану.",
+          unplanned_work: " вышедших курьеров: ручной выход без записи в зафиксированном плане.",
+          planned_completion: " курьеров, завершивших все плановые смены. Допуск окончания — 10 минут, как на исходном сайте."
+        };
+        cell.title = metric.value === null ? reasons[metric.reason] :
+          "По данным сайта: " + metric.numerator + " из " + metric.denominator + basis[key];
+        cell.dataset.source = "slots_export";
+      });
     });
     const latest = own.slice().sort((a, b) => a.date.localeCompare(b.date)).pop();
     const time = new Intl.DateTimeFormat("ru-RU", {timeZone: "Europe/Moscow", dateStyle: "short", timeStyle: "short"}).format(new Date(latest.reported_at));
-    lastSuccess = "Выгрузка за " + latest.date.slice(8) + "." + latest.date.slice(5, 7) + "." + latest.date.slice(0, 4) + " · Сформирована " + time + " МСК. Автоматически загружено только заполнение слотов; остальные новые значения — прочерки.";
+    const ready = latest.metrics ? Object.values(latest.metrics).filter(metric => metric.value !== null).length : (latest.fill_percent === null ? 0 : 1);
+    lastSuccess = "Выгрузка за " + latest.date.slice(8) + "." + latest.date.slice(5, 7) + "." + latest.date.slice(0, 4) + " · Сформирована " + time + " МСК. Рассчитано автоматических показателей: " + ready + " из 6. Причины прочерков — в подсказках ячеек.";
     status.textContent = lastSuccess;
     if (!status.dataset.positioned) {
       const viewport = document.querySelector(".table-scroll");

@@ -135,10 +135,16 @@ def scopes(slots):
                     s['slot_type']) for s in slots})
 
 
-def fetch(scope, token, proxy):
-    day, kind, identity, slot_type = scope
-    url = BASE + '/v1/schedules/slots?' + urlencode({
-        'date': day, kind: identity, 'slot_type': slot_type})
+class ApiError(RuntimeError):
+    def __init__(self, status):
+        self.status = int(status)
+        super().__init__(f'API HTTP {status}; response hidden')
+
+
+def api_get(path, token, proxy):
+    if not path.startswith('/v1/') or any(value in path for value in ('\n', '\r', '..')):
+        raise ValueError('Unexpected API path')
+    url = BASE + path
     command = ['curl', '--silent', '--show-error', '--connect-timeout', '10',
                '--max-time', '45', '--max-filesize', '20000000',
                '--header', '@-', '--write-out', '\n%{http_code}']
@@ -154,8 +160,24 @@ def fetch(scope, token, proxy):
         raise RuntimeError(f'API connection failed (curl {response.returncode})')
     body, _, status = response.stdout.rpartition('\n')
     if status != '200':
-        raise RuntimeError(f'API HTTP {status}; response hidden')
-    return json.loads(body)
+        raise ApiError(status)
+    payload = json.loads(body)
+    if isinstance(payload, dict) and payload.get('code') is not None:
+        try:
+            code = int(payload['code'])
+        except (ValueError, TypeError):
+            code = 0
+        if code != 0 and (payload.get('message') or payload.get('error')):
+            raise RuntimeError(f'API application error {code}; response hidden')
+    return payload
+
+
+def fetch(scope, token, proxy):
+    day, kind, identity, slot_type = scope
+    query = {'date': day, kind: identity}
+    if slot_type != 'all':
+        query['slot_type'] = slot_type
+    return api_get('/v1/schedules/slots?' + urlencode(query), token, proxy)
 
 
 def report(slots, issues):

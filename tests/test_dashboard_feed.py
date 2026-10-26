@@ -5,6 +5,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from build_dashboard_feed import build
+from calculate_metrics import metric
 
 
 class FeedTests(unittest.TestCase):
@@ -41,3 +42,21 @@ class FeedTests(unittest.TestCase):
     def test_duplicate_snapshot_is_not_silently_overwritten(self):
         with self.assertRaises(ValueError):
             build([self.report(), deepcopy(self.report())])
+
+    def test_third_shop_and_metric_reasons_preserved(self):
+        report = self.report()
+        row = report['summaries'][0]
+        row['shop_id'] = 4747
+        row['metrics'] = {'slot_fill': metric(57, 102, basis='limited_slot_places'),
+                          'planned_attendance': metric(reason='frozen_plan_missing')}
+        result = build([report])['records'][0]
+        self.assertEqual(result['shop_id'], 4747)
+        self.assertEqual(result['metrics']['planned_attendance']['reason'], 'frozen_plan_missing')
+
+    def test_metric_cannot_publish_unknown_plan_as_zero(self):
+        report = self.report()
+        report['summaries'][0]['metrics'] = {'planned_attendance': {
+            'value': 0, 'numerator': 0, 'denominator': 10,
+            'reason': 'frozen_plan_missing', 'basis': None}}
+        with self.assertRaises(ValueError):
+            build([report])

@@ -64,6 +64,9 @@
     .store-picker select{appearance:auto;min-width:180px;padding:11px 14px;border:1px solid #cbd6e7;border-radius:10px;background:#fff;color:#17253b;font:700 14px inherit;cursor:pointer}
     .store-picker select:focus-visible{outline:3px solid #9cbbf8;outline-offset:2px}
     @media print{.store-picker{display:none}}
+    .data-status{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 18px;padding:14px 18px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+    .data-status p{margin:0;color:var(--muted);font-size:13px}
+    @media(max-width:820px){.data-status{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body>
@@ -87,6 +90,10 @@
       </button>
     </div>
   </header>
+  <section class="data-status" aria-label="Источник данных">
+    <p id="dataStatus" role="status" aria-live="polite">Загружаем последнюю выгрузку…</p>
+    <button id="refreshData" type="button">Обновить данные</button>
+  </section>
   <section class="panel" aria-labelledby="tableTitle">
     <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">10 метрик · 2 дня · Цель</span></div>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
@@ -139,6 +146,7 @@ function statusClass(value,index) {
 }
 function render() {
   const head=document.getElementById("headerRow");
+  while(head.children.length>1) head.lastElementChild.remove();
   dates.forEach(function(date,i){
     const th=textCell("th",date,i===dates.length-1?"date-latest":"");
     th.scope="col";
@@ -148,6 +156,7 @@ function render() {
   goalHead.scope="col";
   head.appendChild(goalHead);
   const body=document.getElementById("metricsBody");
+  body.replaceChildren();
   metrics.forEach(function(metric,index){
     const tr=document.createElement("tr");
     const th=document.createElement("th");
@@ -178,7 +187,7 @@ function downloadCsv() {
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
   const link=document.createElement("a");
   link.href=url;
-  link.download="ds-4747-courier-metrics-2026-10-22.csv";
+  link.download="ds-4747-courier-metrics-2026-"+dates[dates.length-1].slice(3)+"-"+dates[dates.length-1].slice(0,2)+".csv";
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -216,5 +225,6 @@ document.getElementById("downloadCsv").addEventListener("click",downloadCsv);
 document.getElementById("copyLink").addEventListener("click",copyLink);
 document.getElementById("printReport").addEventListener("click",function(){window.print();});
 </script>
+<script src="dashboard-data.js"></script>
 </body>
 </html>

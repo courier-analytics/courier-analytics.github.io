@@ -1,0 +1,12 @@
+[Unit]
+Description=Freeze next-day courier plan at 23:59 Moscow
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+UMask=0077
+EnvironmentFile=-/etc/courier-analytics/proxy.env
+TimeoutStartSec=55
+ExecStart=/usr/bin/flock -n /opt/courier-analytics/plan.lock /opt/courier-analytics/import-venv/bin/python /opt/courier-analytics/current-app/tools/capture_plan.py

@@ -7,6 +7,44 @@ from pathlib import Path
 
 from enrich_slots import atomic_json
 
+METRIC_KEYS = {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late',
+               'unplanned_work', 'planned_completion'}
+REASONS = {'zero_denominator', 'assigned_roster_not_verified',
+           'bookings_outside_verified_roster', 'frozen_plan_missing',
+           'planned_booking_missing_from_current_data', 'planned_slot_times_changed',
+           'unknown_planned_shift_status', 'unknown_shift_status',
+           'shift_end_or_final_status_missing'}
+BASES = {'limited_slot_places', 'all_assigned_unique_couriers',
+         'frozen_plan_unique_couriers', 'manual_work_without_frozen_plan',
+         'frozen_plan_all_shifts_site_10min_tolerance'}
+
+
+def validate_metrics(metrics):
+    if not isinstance(metrics, dict) or not set(metrics).issubset(METRIC_KEYS):
+        raise ValueError('Unknown metrics')
+    clean = {}
+    for key, item in metrics.items():
+        n, d, value = item.get('numerator'), item.get('denominator'), item.get('value')
+        reason, basis = item.get('reason'), item.get('basis')
+        if reason is not None and reason not in REASONS:
+            raise ValueError('Unknown metric reason')
+        if basis is not None and basis not in BASES:
+            raise ValueError('Unknown metric basis')
+        if any(v is not None and (type(v) is not int or v < 0) for v in (n, d)):
+            raise ValueError('Invalid metric counts')
+        if value is not None:
+            if reason is not None or n is None or not d or type(value) not in (float, int) or not math.isfinite(value):
+                raise ValueError('Unverified or invalid percentage')
+            if abs(value-round(n/d*100, 2)) > .011:
+                raise ValueError('Metric percentage does not match counts')
+            if key != 'slot_fill' and n > d:
+                raise ValueError('Unique-courier numerator exceeds denominator')
+        elif reason is None:
+            raise ValueError('Missing metric requires an explicit reason')
+        clean[key] = {'value': value, 'numerator': n, 'denominator': d,
+                      'reason': reason, 'basis': basis}
+    return clean
+
 
 def build(reports):
     records = {}
@@ -21,7 +59,7 @@ def build(reports):
                 continue
             day = date.fromisoformat(row['date']).isoformat()
             shop = row['shop_id']
-            if type(shop) is not int or shop not in (5818, 7745):
+            if type(shop) is not int or shop not in (5818, 7745, 4747):
                 raise ValueError('Unknown dashboard shop')
             booked, capacity = row['booked_places'], row['capacity']
             if any(type(v) is not int or v < 0 for v in (booked, capacity)):
@@ -38,6 +76,11 @@ def build(reports):
             record = {'date': day, 'shop_id': shop, 'booked_places': booked,
                       'capacity': capacity, 'fill_percent': percent,
                       'source': 'slots_export', 'reported_at': generated}
+            if 'metrics' in row:
+                record['metrics'] = validate_metrics(row['metrics'])
+                fill = record['metrics'].get('slot_fill')
+                if fill and (fill['numerator'] != booked or fill['denominator'] != capacity or fill['value'] != percent):
+                    raise ValueError('Slot metric differs from slot totals')
             key = (day, shop)
             if key in records:
                 raise ValueError('Duplicate day and shop; choose one explicit snapshot')
