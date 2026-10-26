@@ -6,10 +6,15 @@ import json
 from pathlib import Path
 import urllib.parse
 import urllib.request
+import urllib.error
 from uuid import UUID
 
 from enrich_slots import atomic_json
 from prepare_proxy_config import canonical_config
+
+
+class ImportProblem(ValueError):
+    """Contains only a fixed diagnostic code, never subscription content."""
 
 
 def uri_node(link):
@@ -56,18 +61,50 @@ def parse_nodes(text):
     if len(text) > 2_000_000:
         raise ValueError('Input too large')
     text = text.strip()
-    if text.startswith('{'):
-        data = json.loads(text)
-        canonical_config(data)
-        return [data]
+    if not text:
+        raise ImportProblem('empty_input_or_response')
+    if text.startswith('happ://crypt'):
+        raise ImportProblem('encrypted_happ_link_requires_standard_vless_export')
+    if text.startswith('<'):
+        raise ImportProblem('subscription_returned_html_not_connection_configuration')
+    if text.startswith(('{', '[')):
+        try:
+            data = json.loads(text)
+        except ValueError:
+            raise ImportProblem('invalid_json_configuration') from None
+        choices = data if isinstance(data, list) else [data]
+        nodes = []
+        for choice in choices:
+            if isinstance(choice, dict) and isinstance(choice.get('outbounds'), list):
+                candidates = [o for o in choice['outbounds'] if isinstance(o, dict) and o.get('protocol') == 'vless']
+            else:
+                candidates = [choice]
+            for candidate in candidates:
+                try:
+                    canonical_config(candidate)
+                    nodes.append(candidate)
+                except (ValueError, TypeError, KeyError):
+                    continue
+        if not nodes:
+            raise ImportProblem('json_has_no_supported_xray_vless_nodes')
+        return nodes
     if 'vless://' not in text:
-        text = base64.b64decode(text+'='*(-len(text) % 4), altchars=b'-_', validate=True).decode()
+        try:
+            encoded = ''.join(text.split())
+            text = base64.b64decode(encoded+'='*(-len(encoded) % 4), altchars=b'-_', validate=True).decode()
+        except (ValueError, UnicodeError):
+            raise ImportProblem('not_vless_json_or_standard_base64_subscription') from None
+        if text.strip().startswith(('{', '[', '<', 'happ://crypt')):
+            return parse_nodes(text)
     nodes = []
     for line in text.splitlines():
         if line.strip().startswith('vless://'):
-            nodes.append(uri_node(line))
+            try:
+                nodes.append(uri_node(line))
+            except (ValueError, TypeError, KeyError):
+                continue
     if not nodes:
-        raise ValueError('No supported VLESS nodes')
+        raise ImportProblem('no_supported_vless_nodes_or_connection_parameters_invalid')
     return nodes
 
 
@@ -79,14 +116,26 @@ class HTTPSOnlyRedirect(urllib.request.HTTPRedirectHandler):
 
 
 def read_nodes(value):
+    value = value.strip()
+    for prefix in ('happ://add/', 'happ://add-profile/'):
+        if value.startswith(prefix):
+            value = urllib.parse.unquote(value[len(prefix):])
+            break
+    if value.startswith('happ://crypt'):
+        raise ImportProblem('encrypted_happ_link_requires_standard_vless_export')
     if value.startswith('https://'):
         parsed = urllib.parse.urlsplit(value)
         if not parsed.hostname or parsed.username or parsed.password:
             raise ValueError('Invalid subscription URL')
         request = urllib.request.Request(value, headers={'User-Agent': 'courier-proxy-setup'})
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), HTTPSOnlyRedirect())
-        with opener.open(request, timeout=40) as response:
-            content = response.read(2_000_001)
+        try:
+            with opener.open(request, timeout=40) as response:
+                content = response.read(2_000_001)
+        except urllib.error.HTTPError as error:
+            raise ImportProblem('subscription_http_'+str(error.code)) from None
+        except (urllib.error.URLError, OSError):
+            raise ImportProblem('subscription_connection_or_tls_failed') from None
         if len(content) > 2_000_000:
             raise ValueError('Subscription too large')
         value = content.decode('utf-8-sig')
@@ -110,5 +159,7 @@ if __name__ == '__main__':
                 raise ValueError('Invalid node number')
         atomic_json(args.output, nodes[index])
         print('Private node saved, permissions 600. Secret not printed. Working network unchanged.')
+    except ImportProblem as error:
+        raise SystemExit('Private import failed: '+str(error)+'. Working network unchanged; secrets hidden.')
     except (ValueError, OSError, TypeError, KeyError, UnicodeError, EOFError):
         raise SystemExit('Private import failed. Need a standard VLESS link, Xray JSON or VLESS subscription. Working network unchanged; secrets hidden.')
