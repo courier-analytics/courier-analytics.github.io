@@ -34,6 +34,7 @@ class AllShopTests(unittest.TestCase):
             self.assertEqual([r['shop_id'] for r in public['records']], [4747, 5818, 7745])
             self.assertEqual(public['records'][0]['fill_percent'], 50)
             self.assertIsNone(public['records'][2]['fill_percent'])
-            self.assertEqual(public['records'][0]['metrics']['planned_attendance']['reason'], 'frozen_plan_missing')
+            self.assertEqual(public['records'][0]['metrics']['planned_attendance']['value'], 100)
+            self.assertEqual(public['records'][0]['metrics']['unplanned_work']['reason'], 'frozen_plan_missing')
             self.assertNotIn('courier_id', (folder/'public.json').read_text())
             self.assertTrue((folder/'private/all-shops-2026-10-26.xlsx').is_file())

@@ -19,8 +19,26 @@ class MetricTests(unittest.TestCase):
     def test_no_retrospective_plan_guess(self):
         result = calculate([slot()], '2026-10-26')
         self.assertEqual(result['slot_fill']['value'], 66.67)
-        self.assertIsNone(result['planned_attendance']['value'])
-        self.assertEqual(result['planned_attendance']['reason'], 'frozen_plan_missing')
+        self.assertEqual(result['planned_attendance']['value'], 100)
+        self.assertEqual(result['planned_attendance']['basis'], 'current_limited_bookings_unique_couriers')
+        self.assertEqual(result['unplanned_work']['reason'], 'frozen_plan_missing')
+
+    def test_slot_card_six_arrived_four_late_and_duplicates(self):
+        people = [{'courier_id': str(i), 'shift_status': 'Опоздал на 6 минут' if i < 4 else 'Вышел раньше на час'} for i in range(6)]
+        result = calculate([slot(people=people), slot(2, people=people),
+                            slot(3, 'manual', [{'courier_id': '99', 'shift_status': 'Вышел'}])], '2026-10-26')
+        self.assertEqual(result['planned_attendance']['numerator'], 6)
+        self.assertEqual(result['planned_attendance']['denominator'], 6)
+        self.assertEqual(result['planned_late']['value'], 66.67)
+
+    def test_pending_and_unknown_are_not_invented_arrivals(self):
+        people = [{'courier_id': '1', 'shift_status': 'Вышел'},
+                  {'courier_id': '2', 'shift_status': 'Не вышел'},
+                  {'courier_id': '3', 'shift_status': 'Ожидается'}]
+        result = calculate([slot(people=people)], '2026-10-26')
+        self.assertEqual(result['planned_attendance']['value'], 33.33)
+        people[2]['shift_status'] = None
+        self.assertEqual(calculate([slot(people=people)], '2026-10-26')['planned_attendance']['reason'], 'unknown_shift_status')
 
     def test_roster_counts_people_not_slots(self):
         result = calculate([slot(), slot(2)], '2026-10-26',

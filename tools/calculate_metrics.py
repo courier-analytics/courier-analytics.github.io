@@ -5,6 +5,7 @@ from zoneinfo import ZoneInfo
 from enrich_slots import source_status
 
 MOSCOW = ZoneInfo('Europe/Moscow')
+SLOT_ATTENDANCE_BASIS = 'current_limited_bookings_unique_couriers'
 
 
 def timestamp(value):
@@ -52,6 +53,9 @@ def calculate(slots, day, roster=None, plan=None):
     plan_metrics = ('planned_attendance', 'planned_late', 'unplanned_work', 'planned_completion')
     if not plan or plan.get('verified') is not True or plan.get('date') != day:
         output.update({key: metric(reason='frozen_plan_missing') for key in plan_metrics})
+        # User-selected fallback: facts in current limited-slot cards, rather
+        # than an assertion that these bookings existed on the preceding day.
+        output.update(current_slot_attendance(limited))
         return output
     current = {(s['slot_type'], s['slot_id'], c['courier_id']): (s, c)
                for s in slots for c in s['couriers']}
@@ -108,3 +112,16 @@ def calculate(slots, day, roster=None, plan=None):
         sum(completion.get(identity, False) for identity in planned), len(planned),
         basis='frozen_plan_all_shifts_site_10min_tolerance')
     return output
+
+
+def current_slot_attendance(limited):
+    people = [(c['courier_id'], source_status(c.get('shift_status')))
+              for slot in limited for c in slot['couriers']]
+    keys = ('planned_attendance', 'planned_late')
+    if any(state == 'unknown' for _, state in people):
+        return {key: metric(reason='unknown_shift_status', basis=SLOT_ATTENDANCE_BASIS) for key in keys}
+    booked = {identity for identity, _ in people}
+    arrived = {identity for identity, state in people if state in ('on_time', 'early', 'late')}
+    late = {identity for identity, state in people if state == 'late'}
+    return {'planned_attendance': metric(len(arrived), len(booked), basis=SLOT_ATTENDANCE_BASIS),
+            'planned_late': metric(len(late), len(arrived), basis=SLOT_ATTENDANCE_BASIS)}

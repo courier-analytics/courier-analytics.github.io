@@ -15,6 +15,7 @@ REASONS = {'zero_denominator', 'assigned_roster_not_verified', 'active_base_inco
            'unknown_planned_shift_status', 'unknown_shift_status',
            'shift_end_or_final_status_missing'}
 BASES = {'limited_slot_places', 'all_assigned_unique_couriers', 'direct_shop_scheduled_unique_5d_including_day',
+         'current_limited_bookings_unique_couriers',
          'frozen_plan_unique_couriers', 'manual_work_without_frozen_plan',
          'frozen_plan_all_shifts_site_10min_tolerance'}
 

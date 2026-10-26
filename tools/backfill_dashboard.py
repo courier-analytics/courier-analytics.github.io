@@ -43,7 +43,7 @@ def needed(previous, manual, until):
             row = indexed.get((shop, day), {})
             known = manual.get((shop, day), set())
             wanted = set()
-            for key in ('shift_marked', 'slot_fill'):
+            for key in ('shift_marked', 'slot_fill', 'planned_attendance', 'planned_late'):
                 if key in known:
                     continue
                 metric = row.get('metrics', {}).get(key)
@@ -120,7 +120,9 @@ if __name__ == '__main__':
                 atomic_json(args.feed, public)
                 for row in selected['records']:
                     m = row['metrics'].get('shift_marked')
-                    print(f"{day} DS {row['shop_id']}: fill={row['fill_percent']}; active booking share={m['value'] if m else 'manual history'}", flush=True)
+                    arrival = row['metrics'].get('planned_attendance', {}).get('value', 'manual history')
+                    late = row['metrics'].get('planned_late', {}).get('value', 'manual history')
+                    print(f"{day} DS {row['shop_id']}: fill={row['fill_percent']}; active booking share={m['value'] if m else 'manual history'}; arrived={arrival}; late={late}", flush=True)
         print('Candidate complete. Manual history preserved. Missing frozen plans remain unavailable.', flush=True)
     except (ValueError, KeyError, TypeError, OSError, RuntimeError):
         raise SystemExit('Backfill incomplete; active site unchanged. Private responses hidden.')
