@@ -64,6 +64,10 @@
     .store-picker select{appearance:auto;min-width:180px;padding:11px 14px;border:1px solid #cbd6e7;border-radius:10px;background:#fff;color:#17253b;font:700 14px inherit;cursor:pointer}
     .store-picker select:focus-visible{outline:3px solid #9cbbf8;outline-offset:2px}
     @media print{.store-picker{display:none}}
+    .data-status{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 18px;padding:14px 18px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+    .footnotes summary{cursor:pointer;margin:8px 0;font-weight:600}
+    .data-status p{margin:0;color:var(--muted);font-size:13px}
+    @media(max-width:820px){.data-status{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body>
@@ -87,6 +91,10 @@
       </button>
     </div>
   </header>
+  <section class="data-status" aria-label="Источник данных">
+    <p id="dataStatus" role="status" aria-live="polite">Загружаем последнюю выгрузку…</p>
+    <button id="refreshData" type="button">Обновить данные</button>
+  </section>
   <section class="panel" aria-labelledby="tableTitle">
     <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">11 метрик · 12 дней · Цель</span></div>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
@@ -97,8 +105,11 @@
       </table>
     </div>
     <div class="footnotes">
+      <p>В новых выгрузках заполнение — занятые места в лимитированных слотах, делённые на их вместимость, включая кластеры ДС. Это число мест, а не уникальных курьеров. Прочерк означает отсутствие рассчитанного значения.</p>
+      <details><summary>Пояснения к историческим данным за октябрь</summary>
       <p>Доработка смены оценивается по времени последней успешно завершённой доставки: не раньше чем за 30 минут до планового окончания. Учитываются курьеры, подтвердившие выход доставками.</p>
       <p>Обучение за 15–17.10 — предварительные показатели: возможны повторно обученные курьеры. За 17.10 выход по плану уточнён по более поздней выгрузке доставок: 30 из 35 плановых смен (85,71%) вместо ранее опубликованных 27 из 35 (77,14%). Для оценки доработки смены: 15.10 — 27 из 41 подтверждённых смен, 16.10 — 20 из 40, 17.10 — 16 из 30 (по поздней выгрузке заказов), 18.10 — 25 из 39; строка графика с несколькими ФИО считается одной сменой. За 18.10 выход по плану определяется наличием доставок, независимо от статуса в графике: 39 из 45 плановых смен; опоздания — только среди подтверждённых доставками смен со статусом «опоздал»: 3 из 39. Работа вне плана — по уникальным курьерам с заказами (20 из 65), доработка — по последней успешной доставке с допуском 30 минут (25 из 39 смен). Двое отдельно указанных курьеров исключены из расчётов плана и внеплана. Данные за 18.10 предварительные; отсутствующие показатели не заполнялись. За 19.10 предварительные значения по выгрузке до 16:29: выход по плану 38 из 45 (84,44%), опоздания 16 из 38 (42,11%) по первой успешной доставке позже 30 минут от начала смены, внеплан 16 из 55 (29,09%); опросники 61 из 104 (58,65%). Остальные показатели за 19.10 пока не предоставлены.</p>
+      </details>
     </div>
   </section>
   <div class="footer"><span>ДС 5818 · Операционные метрики курьеров</span><span>Автономная версия · без платных сервисов</span></div>
@@ -143,6 +154,7 @@ function statusClass(value,metric) {
 }
 function render() {
   const head=document.getElementById("headerRow");
+  while(head.children.length>1) head.lastElementChild.remove();
   dates.forEach(function(date,i){
     const th=textCell("th",date,i===dates.length-1?"date-latest":"");
     th.scope="col";
@@ -152,6 +164,7 @@ function render() {
   goalHead.scope="col";
   head.appendChild(goalHead);
   const body=document.getElementById("metricsBody");
+  body.replaceChildren();
   metrics.forEach(function(metric,index){
     const tr=document.createElement("tr");
     const th=document.createElement("th");
@@ -182,7 +195,7 @@ function downloadCsv() {
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
   const link=document.createElement("a");
   link.href=url;
-  link.download="ds-5818-courier-metrics-2026-10-19.csv";
+  link.download="ds-5818-courier-metrics-2026-"+dates[dates.length-1].slice(3)+"-"+dates[dates.length-1].slice(0,2)+".csv";
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -220,5 +233,6 @@ document.getElementById("downloadCsv").addEventListener("click",downloadCsv);
 document.getElementById("copyLink").addEventListener("click",copyLink);
 document.getElementById("printReport").addEventListener("click",function(){window.print();});
 </script>
+<script src="dashboard-data.js"></script>
 </body>
 </html>

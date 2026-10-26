@@ -64,6 +64,10 @@
     .store-picker select{appearance:auto;min-width:180px;padding:11px 14px;border:1px solid #cbd6e7;border-radius:10px;background:#fff;color:#17253b;font:700 14px inherit;cursor:pointer}
     .store-picker select:focus-visible{outline:3px solid #9cbbf8;outline-offset:2px}
     @media print{.store-picker{display:none}}
+    .data-status{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 18px;padding:14px 18px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+    .footnotes summary{cursor:pointer;margin:8px 0;font-weight:600}
+    .data-status p{margin:0;color:var(--muted);font-size:13px}
+    @media(max-width:820px){.data-status{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body>
@@ -87,6 +91,10 @@
       </button>
     </div>
   </header>
+  <section class="data-status" aria-label="Источник данных">
+    <p id="dataStatus" role="status" aria-live="polite">Загружаем последнюю выгрузку…</p>
+    <button id="refreshData" type="button">Обновить данные</button>
+  </section>
   <section class="panel" aria-labelledby="tableTitle">
     <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">11 метрик · 3 дня · Цель</span></div>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
@@ -97,6 +105,8 @@
       </table>
     </div>
     <div class="footnotes">
+      <p>В новых выгрузках заполнение — занятые места в лимитированных слотах, делённые на их вместимость, включая кластеры ДС. Это число мест, а не уникальных курьеров. Прочерк означает отсутствие рассчитанного значения.</p>
+      <details><summary>Пояснения к историческим данным за октябрь</summary>
       <p>ДС 7745: данные за 15–17 октября 2026 года. «—» означает, что метрика не рассчитана; это не 0%.</p>
       <p>15.10: выход по плану 23 из 29 (79,31%) — предварительно по отсутствию отметки «не вышел»; доставки не подтверждены для всех 23.</p>
       <p>16.10: в графике 28 человек, из них 2 выходных. В выгрузке 1 659 заказов, 1 614 успешно завершены, 37 уникальных курьеров с успешными доставками. Из 26 плановых курьеров у 24 есть успешные заказы в выгрузке за 16.10 (92,31%). У Коломиеца Фёдора и Кучарова Сирожиддина успешных доставок в выгрузке нет — это не доказывает невыход. Важно: у Абдулкасимова Сайгидомара только 2 доставки в 01:14 и 01:31, до начала смены 08:00; подтверждение именно его плановой смены требует уточнения. Вне графика/в выходной работали 13 из 37 (35,14%): 12 не указаны в графике и Рахмонов Насимджон отмечен выходным, но выполнил доставки.</p>
@@ -104,6 +114,7 @@
       <p>17.10: в графике 28 человек, двое отмечены выходными. Из 26 плановых курьеров 24 имеют успешно завершённые доставки: 92,31%. В Superset 36 уникальных курьеров с завершёнными заказами: 11 вне списка и 1 отмечен выходным (12 из 36, 33,33%). Отсутствие доставок не доказывает невыход.</p>
       <p>Доработка 17.10: 14 из 24 подтверждённых плановых смен (58,33%) — последняя успешная доставка не ранее чем за 30 минут до конца графика. Смена Тарамова Хасана уточнена: 12:00–00:00 следующего дня. Последняя успешная доставка 17.10 в 23:23:32, что раньше допустимого порога 23:30, поэтому смена учитывается в знаменателе, но не в числителе. Это оценка по доставкам, не фактическое закрытие слота.</p>
       <p>Статус опоздания по первой доставке не рассчитывается без времени фактического выхода и утверждённого норматива. Источник: график 17.10 и CSV Superset за 17.10.</p>
+      </details>
     </div>
   </section>
   <div class="footer"><span>ДС 7745 · Операционные метрики курьеров</span><span>Автономная версия · без платных сервисов</span></div>
@@ -148,6 +159,7 @@ function statusClass(value,metric) {
 }
 function render() {
   const head=document.getElementById("headerRow");
+  while(head.children.length>1) head.lastElementChild.remove();
   dates.forEach(function(date,i){
     const th=textCell("th",date,i===dates.length-1?"date-latest":"");
     th.scope="col";
@@ -157,6 +169,7 @@ function render() {
   goalHead.scope="col";
   head.appendChild(goalHead);
   const body=document.getElementById("metricsBody");
+  body.replaceChildren();
   metrics.forEach(function(metric,index){
     const tr=document.createElement("tr");
     const th=document.createElement("th");
@@ -187,7 +200,7 @@ function downloadCsv() {
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
   const link=document.createElement("a");
   link.href=url;
-  link.download="ds-7745-courier-metrics-2026-10-17.csv";
+  link.download="ds-7745-courier-metrics-2026-"+dates[dates.length-1].slice(3)+"-"+dates[dates.length-1].slice(0,2)+".csv";
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -225,5 +238,6 @@ document.getElementById("downloadCsv").addEventListener("click",downloadCsv);
 document.getElementById("copyLink").addEventListener("click",copyLink);
 document.getElementById("printReport").addEventListener("click",function(){window.print();});
 </script>
+<script src="dashboard-data.js"></script>
 </body>
 </html>

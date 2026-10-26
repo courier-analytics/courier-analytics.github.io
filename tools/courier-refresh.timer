@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh courier dashboard every 15 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=15min
+Unit=courier-refresh.service
+
+[Install]
+WantedBy=timers.target
