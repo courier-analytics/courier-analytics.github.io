@@ -17,6 +17,8 @@ class BackfillTests(unittest.TestCase):
         self.assertEqual(work[4747, '2026-10-21'], {'slot_fill', 'planned_completion'})
         for shop in (5818, 7745, 4747):
             self.assertEqual(work[shop, '2026-10-23'], {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late', 'planned_completion'})
+        self.assertNotIn((8092, '2026-10-25'), work)
+        self.assertEqual(work[8092, '2026-10-26'], {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late', 'planned_completion'})
 
     def test_zero_denominator_is_a_complete_answer_not_a_missing_day(self):
         row = {'shop_id': 5818, 'date': '2026-10-26', 'metrics': {

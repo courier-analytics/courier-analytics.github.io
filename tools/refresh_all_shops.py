@@ -1,4 +1,4 @@
-"""Collect all three DS using the same catalogue rules as the source website."""
+"""Collect configured DS using the same catalogue rules as the source website."""
 import argparse
 import json
 import os

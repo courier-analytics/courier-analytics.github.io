@@ -6,6 +6,7 @@ import math
 from pathlib import Path
 
 from enrich_slots import atomic_json
+from dashboard_shops import TARGETS
 
 METRIC_KEYS = {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late',
                'unplanned_work', 'planned_completion'}
@@ -62,7 +63,7 @@ def build(reports):
                 continue
             day = date.fromisoformat(row['date']).isoformat()
             shop = row['shop_id']
-            if type(shop) is not int or shop not in (5818, 7745, 4747):
+            if type(shop) is not int or shop not in TARGETS:
                 raise ValueError('Unknown dashboard shop')
             booked, capacity = row['booked_places'], row['capacity']
             if any(type(v) is not int or v < 0 for v in (booked, capacity)):

@@ -28,7 +28,7 @@
     if (!payload || payload.schema_version !== 1 || !Array.isArray(payload.records)) throw Error("format");
     const seen = new Set();
     return payload.records.map(row => {
-      if (!row || ![5818, 7745, 4747].includes(row.shop_id) ||
+      if (!row || ![5818, 7745, 4747, 8092].includes(row.shop_id) ||
           !/^\d{4}-\d{2}-\d{2}$/.test(row.date) ||
           !Number.isFinite(Date.parse(row.date)) || new Date(row.date).toISOString().slice(0, 10) !== row.date ||
           ![row.capacity, row.booked_places].every(n => Number.isSafeInteger(n) && n >= 0) ||

@@ -11,16 +11,18 @@ candidate=$(mktemp "$private/.active-base-feed-XXXXXXXX")
 trap 'rm -f -- "$candidate"' EXIT
 cp "$feed" "$candidate"
 "$python" "$tools_dir/refresh_all_shops.py" --active-base --feed "$candidate"
-"$python" - "$candidate" <<'PY'
+"$python" - "$candidate" "$tools_dir" <<'PY'
 from datetime import datetime
 import json
 from pathlib import Path
 import sys
 from zoneinfo import ZoneInfo
+sys.path.insert(0, sys.argv[2])
+from dashboard_shops import TARGETS
 day = datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat()
 rows = [r for r in json.loads(Path(sys.argv[1]).read_text())['records'] if r['date'] == day]
-if {r['shop_id'] for r in rows} != {5818, 7745, 4747}:
-    raise SystemExit('Not all three DS available; activation cancelled.')
+if {r['shop_id'] for r in rows} != set(TARGETS):
+    raise SystemExit('Not all configured DS available; activation cancelled.')
 for row in rows:
     metric = row.get('metrics', {}).get('shift_marked', {})
     if metric.get('basis') != 'direct_shop_scheduled_unique_5d_including_day' or metric.get('value') is None:

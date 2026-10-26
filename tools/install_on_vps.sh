@@ -7,7 +7,7 @@ test -r /root/curator-session.json || { echo 'Existing session file missing.' >&
 mkdir -p /opt/courier-analytics
 release=$(mktemp -d /opt/courier-analytics/site-XXXXXXXX)
 mkdir -p "$release/data"
-cp "$source_root/index.html" "$source_root/7745.html" "$source_root/4747.html" \
+cp "$source_root/index.html" "$source_root/7745.html" "$source_root/4747.html" "$source_root/8092.html" \
   "$source_root/dashboard-data.js" "$release/"
 if [[ -r /opt/courier-analytics/current-site/data/dashboard.json ]]; then
   cp /opt/courier-analytics/current-site/data/dashboard.json "$release/data/dashboard.json"

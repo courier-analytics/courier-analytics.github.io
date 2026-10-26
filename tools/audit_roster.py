@@ -7,6 +7,7 @@ from pathlib import Path
 
 from enrich_slots import atomic_json, api_get, ApiError
 from roster_client import RosterError, get_rosters
+from dashboard_shops import TARGETS
 
 
 if __name__ == '__main__':
@@ -23,7 +24,7 @@ if __name__ == '__main__':
         rosters, errors = get_rosters(primary, args.proxy, private/'one-c-session.json')
         observations = json.loads((private/'all-shops/all-shops-observations.json').read_text())
         summaries = []
-        for shop in (5818, 7745, 4747):
+        for shop in TARGETS:
             roster = rosters.get(shop)
             if roster is None:
                 summaries.append({'shop_id': shop, 'roster_verified': False, 'reason': errors.get(shop)})

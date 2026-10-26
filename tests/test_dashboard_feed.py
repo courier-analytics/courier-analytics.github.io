@@ -60,3 +60,11 @@ class FeedTests(unittest.TestCase):
             'reason': 'frozen_plan_missing', 'basis': None}}
         with self.assertRaises(ValueError):
             build([report])
+
+    def test_fourth_shop_8092_accepted_and_unconfigured_shop_rejected(self):
+        report = self.report()
+        report['summaries'][0]['shop_id'] = 8092
+        self.assertEqual(build([report])['records'][0]['shop_id'], 8092)
+        report['summaries'][0]['shop_id'] = 9999
+        with self.assertRaises(ValueError):
+            build([report])

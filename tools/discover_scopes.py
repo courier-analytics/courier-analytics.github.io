@@ -1,7 +1,7 @@
 """Mirror the site's AF/PF/LF catalogue mapping; no guesses from ID proximity."""
 import re
 
-TARGETS = (5818, 7745, 4747)
+from dashboard_shops import TARGETS
 
 
 def items(payload):

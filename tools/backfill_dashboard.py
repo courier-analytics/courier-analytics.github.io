@@ -13,8 +13,9 @@ from enrich_slots import atomic_json
 from refresh_all_shops import refresh
 from refresh_dashboard import merge_feed
 from completion_reporting import BASIS as COMPLETION_BASIS
+from dashboard_shops import SHOPS
 
-PAGES = {5818: 'index.html', 7745: '7745.html', 4747: '4747.html'}
+PAGES = {shop: config['page'] for shop, config in SHOPS.items()}
 INDEXES = {'shift_marked': 1, 'slot_fill': 2, 'planned_attendance': 3,
            'planned_late': 4, 'unplanned_work': 5, 'planned_completion': 6}
 BASE = 'direct_shop_scheduled_unique_5d_including_day'
@@ -38,6 +39,8 @@ def needed(previous, manual, until):
     indexed = {(r['shop_id'], r['date']): r for r in previous['records']}
     output = {}
     for shop in PAGES:
+        if not any(s == shop for s, _ in manual):
+            continue
         first = min(d for s, d in manual if s == shop)
         current = date.fromisoformat(first)
         while current <= date.fromisoformat(until):

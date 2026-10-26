@@ -20,8 +20,11 @@ if __name__ == '__main__':
         day = datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat()
         with tempfile.TemporaryDirectory(prefix='courier-proxy-verification-') as directory:
             result = audit(day, token, args.proxy, Path(directory), extra_details=False)
-        if {s['shop_id'] for s in result['shops'] if s['scope_verified']} != {5818, 7745, 4747}:
+        verified = {s['shop_id'] for s in result['shops'] if s['scope_verified']}
+        required = {5818, 7745, 4747} | {s['shop_id'] for s in result['shops']
+                     if s.get('reason') != 'shop_missing_from_catalogue'}
+        if verified != required:
             raise ValueError('Not all DS scopes verified')
-        print('Candidate server proxy: authenticated API reads passed for all three DS and their clusters.')
+        print('Candidate server proxy: authenticated API reads passed for '+str(len(verified))+' available DS and their clusters.')
     except (ValueError, OSError, KeyError, TypeError, RuntimeError):
         raise SystemExit('Candidate proxy/session verification failed; no active route changed; private responses hidden.')

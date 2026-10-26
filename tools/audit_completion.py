@@ -7,6 +7,7 @@ from pathlib import Path
 
 from calculate_metrics import MOSCOW, period, timestamp
 from enrich_slots import source_status
+from dashboard_shops import TARGETS
 
 
 def blockers(slots, now=None):
@@ -55,7 +56,7 @@ def blockers(slots, now=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--date', required=True)
-    parser.add_argument('--shop', type=int, choices=(5818, 7745, 4747), required=True)
+    parser.add_argument('--shop', type=int, choices=TARGETS, required=True)
     args = parser.parse_args()
     try:
         from datetime import date

@@ -12,6 +12,7 @@ from urllib.parse import urlencode
 
 from discover_scopes import items
 from enrich_slots import atomic_json
+from dashboard_shops import TARGETS
 
 WORKER = 'https://courator-api-proxy.vkusvill-curator.workers.dev'
 
@@ -24,7 +25,7 @@ def request(path, headers, proxy, form_file=None):
     allowed = (path == '/delivery/v1/courier/courier' or
                path == '/direct-profile' or
                path == '/auth/api/v1/couriers/auth/1c' or
-               re.fullmatch(r'/delivery/v1/couriers\?shopno=(5818|7745|4747)', path))
+               re.fullmatch(r'/delivery/v1/couriers\?shopno=('+'|'.join(map(str, TARGETS))+')', path))
     if not allowed:
         raise RosterError('roster_path_not_allowed')
     if any('\n' in str(v) or '\r' in str(v) for v in headers.values()):
@@ -183,7 +184,7 @@ def normalize(payload, shop):
             'raw_rows': len(rows), 'duplicate_rows': len(rows)-len(identities)}
 
 
-def get_rosters(primary, proxy, cache, shops=(5818, 7745, 4747), source=Path('/root/curator-app.js')):
+def get_rosters(primary, proxy, cache, shops=TARGETS, source=Path('/root/curator-app.js')):
     token = one_c_token(primary, proxy, cache, source)
     rosters, errors = {}, {}
     for shop in shops:

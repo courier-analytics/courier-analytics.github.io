@@ -7,9 +7,10 @@ from calculate_metrics import MOSCOW, current_slot_completion, period, timestamp
 from enrich_slots import atomic_json, fetch, source_status
 from shift_reporting_day import reporting_day
 from overnight_completion import resolve as resolve_overnight
+from dashboard_shops import SHOPS
 
 BASIS = 'slot_completion_by_actual_night_end_date'
-FIRST_DAYS = {5818: '2026-10-08', 7745: '2026-10-18', 4747: '2026-10-21'}
+FIRST_DAYS = {shop: config['first_day'] for shop, config in SHOPS.items()}
 
 
 def is_night(slot):

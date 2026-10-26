@@ -11,10 +11,10 @@ from refresh_all_shops import refresh
 
 
 class AllShopTests(unittest.TestCase):
-    def test_all_three_shops_real_zero_and_missing_plan_not_confused(self):
+    def test_all_four_shops_real_zero_and_missing_plan_not_confused(self):
         def audit(day, token, proxy, directory, extra_details=False):
             shops = []
-            for identity in (5818, 7745, 4747):
+            for identity in (5818, 7745, 4747, 8092):
                 slots = [] if identity == 7745 else [{
                     'date': day, 'slot_id': identity, 'slot_type': 'limited',
                     'scope_kind': 'shopno', 'scope_id': identity,
@@ -31,7 +31,7 @@ class AllShopTests(unittest.TestCase):
             with patch('refresh_all_shops.audit', side_effect=audit):
                 refresh('2026-10-26', 'secret', '', folder/'private', folder/'public.json')
             public = json.loads((folder/'public.json').read_text())
-            self.assertEqual([r['shop_id'] for r in public['records']], [4747, 5818, 7745])
+            self.assertEqual([r['shop_id'] for r in public['records']], [4747, 5818, 7745, 8092])
             self.assertEqual(public['records'][0]['fill_percent'], 50)
             self.assertIsNone(public['records'][2]['fill_percent'])
             self.assertEqual(public['records'][0]['metrics']['planned_attendance']['value'], 100)

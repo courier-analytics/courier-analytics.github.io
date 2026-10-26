@@ -23,12 +23,13 @@ class ScopeTests(unittest.TestCase):
         self.assertEqual(name_shop_numbers('5818 Олимпийка, 7745; 3'), [5818, 7745])
         self.assertEqual(name_shop_numbers('Кластер 58; 4747'), [4747])
 
-    def test_three_shops_without_cross_contamination(self):
-        config = discover({'items': [{'id': 5818, 'cluster_id': 7000}, {'id': 7745}, {'id': 4747}]},
+    def test_four_shops_without_cross_contamination(self):
+        config = discover({'items': [{'id': 5818, 'cluster_id': 7000}, {'id': 7745}, {'id': 4747}, {'id': 8092}]},
                           [{'id': 7332, 'name': '5818 Олимпийка'},
                            {'id': 8000, 'name': '7745 Точка'}, {'id': 8001, 'name': '4747 Точка'},
+                           {'id': 8002, 'name': '8092 Точка'},
                            {'id': 9999, 'name': '15818 Другой ДС'}])
-        self.assertEqual([s['cluster_ids'] for s in config['shops']], [[7000, 7332], [8000], [8001]])
+        self.assertEqual([s['cluster_ids'] for s in config['shops']], [[7000, 7332], [8000], [8001], [8002]])
 
     def test_missing_shop_is_not_silently_zero(self):
         config = discover([{'id': 5818}], [])
