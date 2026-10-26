@@ -19,13 +19,20 @@ def refresh(day, token, proxy, private_dir, feed_path):
     observations = json.loads((folder/'all-shops-observations.json').read_text())
     plan_path = private_dir/'plans'/('plan-'+day+'.json')
     plan = json.loads(plan_path.read_text()) if plan_path.exists() else None
+    rosters, roster_errors = {}, {}
+    if Path('/etc/courier-analytics/roster-enabled.json').exists():
+        from roster_client import get_rosters, RosterError
+        try:
+            rosters, roster_errors = get_rosters(token, proxy, private_dir/'one-c-session.json')
+        except RosterError as error:
+            roster_errors = {s['shop_id']: str(error) for s in observations['shops']}
     summaries = []
     for shop in observations['shops']:
         identity = shop['shop_id']
         source_plan = next((p for p in (plan or {}).get('shops', []) if p['shop_id'] == identity), None)
         daily_plan = {'verified': True, 'date': day, 'slots': source_plan['slots']} if (
             source_plan and plan.get('verified') is True and plan.get('date') == day) else None
-        metrics = calculate(shop['slots'], day, plan=daily_plan)
+        metrics = calculate(shop['slots'], day, roster=rosters.get(identity), plan=daily_plan)
         fill = metrics['slot_fill']
         summaries.append({'date': day, 'shop_id': identity, 'slot_type': 'limited',
                           'booked_places': fill['numerator'], 'capacity': fill['denominator'],
@@ -53,7 +60,7 @@ def refresh(day, token, proxy, private_dir, feed_path):
     private_xlsx(private_dir/('all-shops-'+day+'.xlsx'), export_rows)
     atomic_json(feed_path, combined)
     feed_path.chmod(0o644)
-    return {'scope_summary': audit_summary, 'report': report}
+    return {'scope_summary': audit_summary, 'roster_errors': roster_errors, 'report': report}
 
 
 if __name__ == '__main__':

@@ -46,10 +46,7 @@ def calculate(slots, day, roster=None, plan=None):
     booked_ids = {c['courier_id'] for s in slots for c in s['couriers']}
     if roster and roster.get('verified') is True:
         assigned = set(roster['courier_ids'])
-        if not booked_ids.issubset(assigned):
-            output['shift_marked'] = metric(reason='bookings_outside_verified_roster')
-        else:
-            output['shift_marked'] = metric(len(booked_ids), len(assigned), basis='all_assigned_unique_couriers')
+        output['shift_marked'] = metric(len(booked_ids & assigned), len(assigned), basis='all_assigned_unique_couriers')
     else:
         output['shift_marked'] = metric(reason='assigned_roster_not_verified')
     plan_metrics = ('planned_attendance', 'planned_late', 'unplanned_work', 'planned_completion')
