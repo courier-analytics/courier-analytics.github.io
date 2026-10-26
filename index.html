@@ -29,6 +29,9 @@
     .panel-heading{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:19px 23px 17px;border-bottom:1px solid var(--line)}
     h2{font-size:16px;letter-spacing:-.015em;margin:0;font-weight:750}
     .panel-note{color:var(--muted);font-size:12px;white-space:nowrap}
+    .tool-transition-note{display:flex;align-items:center;gap:9px;margin:0;padding:10px 23px;background:#f5f3ff;border-bottom:1px solid #ede9fe;color:#5b21b6;font-size:12px;line-height:1.4}
+    .tool-transition-note::before{content:"";flex:none;width:4px;height:22px;background:#8b5cf6;border-radius:2px}
+    #metricsTable .tool-transition{border-left:4px solid #8b5cf6}
     .table-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-color:#cbd6e7 transparent}
     table{width:100%;min-width:1776px;border-collapse:separate;border-spacing:0;table-layout:fixed;font-variant-numeric:tabular-nums}
     col.metric-col{width:315px}
@@ -96,6 +99,7 @@
   </section>
   <section class="panel" aria-labelledby="tableTitle">
     <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">10 метрик · 15 дней · Цель</span></div>
+    <p class="tool-transition-note" id="toolTransitionNote">23 октября · Переход на инструмент «Выходы курьеров»</p>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
       <table id="metricsTable">
         <colgroup><col class="metric-col"><col class="day-col" span="15"><col class="goal-col"></colgroup>
@@ -149,6 +153,11 @@ function render() {
   while(head.children.length>1) head.lastElementChild.remove();
   dates.forEach(function(date,i){
     const th=textCell("th",date,i===dates.length-1?"date-latest":"");
+    if(date==="23.10" && dates[i-1]==="22.10"){
+      th.classList.add("tool-transition");
+      th.title="Переход на инструмент «Выходы курьеров» с 23 октября";
+      th.setAttribute("aria-describedby","toolTransitionNote");
+    }
     th.scope="col";
     head.appendChild(th);
   });
@@ -167,8 +176,9 @@ function render() {
     wrap.appendChild(textCell("span",metric.name));
     th.appendChild(wrap);
     tr.appendChild(th);
-    metric.values.forEach(function(value){
+    metric.values.forEach(function(value,dayIndex){
       const td=document.createElement("td");
+      if(dates[dayIndex]==="23.10" && dates[dayIndex-1]==="22.10") td.classList.add("tool-transition");
       const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell "+statusClass(value,index));
       td.appendChild(span);
       tr.appendChild(td);
