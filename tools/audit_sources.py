@@ -8,7 +8,7 @@ from pathlib import Path
 from urllib.parse import urlencode
 from zoneinfo import ZoneInfo
 
-from discover_scopes import discover, items, TARGETS
+from discover_scopes import discover, first
 from enrich_slots import ApiError, api_get, atomic_json, fetch, optional, source_status
 
 
@@ -23,11 +23,11 @@ def shape(value, depth=0):
 
 
 def sanitize_slot(raw, day, kind, scope_id):
-    identity = raw.get('slot_id', raw.get('limited_slot_id', raw.get('id')))
-    slot_type = str(raw.get('type', raw.get('slot_type', raw.get('slotType', '')))).lower()
+    identity = first(raw, 'slot_id', 'limited_slot_id', 'id')
+    slot_type = str(first(raw, 'type', 'slot_type', 'slotType') or '').lower()
     if slot_type not in ('limited', 'manual'):
         raise ValueError('Unrecognized slot type')
-    actual_scope = raw.get('shopno_cluster_id', raw.get('shopno', raw.get('shop_id')))
+    actual_scope = first(raw, 'shopno_cluster_id', 'shopno', 'shop_id')
     if actual_scope is None or int(actual_scope) != scope_id:
         raise ValueError('API returned a different scope')
     if raw.get('date') and str(raw['date'])[:10] != day:
@@ -52,8 +52,8 @@ def sanitize_slot(raw, day, kind, scope_id):
     return {'slot_id': int(identity), 'slot_type': slot_type, 'date': day,
             'scope_kind': kind, 'scope_id': scope_id,
             'time_from': raw.get('time_from'), 'time_to': raw.get('time_to'),
-            'capacity': raw.get('capacity', raw.get('courier_limits')),
-            'occupied': raw.get('occupied', raw.get('booked', raw.get('total_occupied'))),
+            'capacity': first(raw, 'capacity', 'courier_limits'),
+            'occupied': first(raw, 'occupied', 'booked', 'total_occupied'),
             'couriers': clean}
 
 

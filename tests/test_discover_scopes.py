@@ -41,6 +41,14 @@ class ScopeTests(unittest.TestCase):
         self.assertNotIn('name', slot['couriers'][0])
         self.assertNotIn('phone', slot['couriers'][0])
 
+    def test_null_aliases_do_not_hide_real_fields(self):
+        slot = sanitize_slot({'slot_id': None, 'id': 1, 'type': None, 'slot_type': 'manual',
+            'shopno_cluster_id': None, 'shopno': 5818, 'capacity': None, 'courier_limits': 0,
+            'occupied': None, 'booked': 0, 'couriers': []}, '2026-10-26', 'shopno', 5818)
+        self.assertEqual(slot['slot_id'], 1)
+        self.assertEqual(slot['slot_type'], 'manual')
+        self.assertEqual(slot['capacity'], 0)
+
     def test_forbidden_ds_does_not_become_zero_or_block_other_ds(self):
         def catalogue(path, token, proxy):
             return [{'id': n} for n in (5818, 7745, 4747)] if path == '/v1/shops' else []
