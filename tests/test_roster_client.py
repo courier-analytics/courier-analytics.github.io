@@ -23,10 +23,21 @@ class RosterTests(unittest.TestCase):
             run.return_value.returncode = 0
             run.return_value.stdout = 'private response\n401'
             for path, stage in [('/delivery/v1/courier/courier', 'own_profile'),
+                                ('/direct-profile', 'direct_own_profile'),
                                 ('/auth/api/v1/couriers/auth/1c', 'one_c_login'),
                                 ('/delivery/v1/couriers?shopno=5818', 'assigned_couriers')]:
                 with self.assertRaisesRegex(RosterError, '^'+stage+'_http_401$'):
                     request(path, {}, '')
+
+    def test_direct_profile_uses_only_fixed_canonical_origin(self):
+        with patch('roster_client.subprocess.run') as run:
+            run.return_value.returncode = 0
+            run.return_value.stdout = '{}\n200'
+            request('/direct-profile', {'Authorization': 'Bearer private'}, 'socks5h://127.0.0.1:18080')
+            command = run.call_args.args[0]
+            self.assertEqual(command[-1], 'https://delivery-api.vkusvill.ru/v1/courier/courier')
+            self.assertIn('socks5h://127.0.0.1:18080', command)
+            self.assertNotIn('--location', command)
 
     def test_unique_ids_and_scope(self):
         result = normalize({'items': [{'id': '12', 'shopno': 5818}, {'id': '12'}]}, 5818)

@@ -22,6 +22,7 @@ class RosterError(RuntimeError):
 
 def request(path, headers, proxy, form_file=None):
     allowed = (path == '/delivery/v1/courier/courier' or
+               path == '/direct-profile' or
                path == '/auth/api/v1/couriers/auth/1c' or
                re.fullmatch(r'/delivery/v1/couriers\?shopno=(5818|7745|4747)', path))
     if not allowed:
@@ -37,7 +38,9 @@ def request(path, headers, proxy, form_file=None):
         # The actual name is read from a private file, not exposed in argv.
         command += ['--form', 'name=<' + str(form_file)]
     try:
-        result = subprocess.run(command + [WORKER+path],
+        url = ('https://delivery-api.vkusvill.ru/v1/courier/courier'
+               if path == '/direct-profile' else WORKER+path)
+        result = subprocess.run(command + [url],
             input=''.join(key+': '+str(value)+'\n' for key, value in headers.items()),
             capture_output=True, text=True, timeout=50)
     except subprocess.TimeoutExpired:
@@ -46,7 +49,8 @@ def request(path, headers, proxy, form_file=None):
         raise RosterError(f'roster_connection_curl_{result.returncode}')
     body, _, status = result.stdout.rpartition('\n')
     if status not in ('200', '204'):
-        stage = ('own_profile' if path == '/delivery/v1/courier/courier' else
+        stage = ('direct_own_profile' if path == '/direct-profile' else
+                 'own_profile' if path == '/delivery/v1/courier/courier' else
                  'one_c_login' if path == '/auth/api/v1/couriers/auth/1c' else
                  'assigned_couriers')
         raise RosterError(f'{stage}_http_{status}')
@@ -115,10 +119,18 @@ def one_c_token(primary, proxy, cache, source=Path('/root/curator-app.js'), forc
     # Only the caller's own profile is used. No arbitrary name input is accepted.
     name = own_session_name(primary)
     if not name:
-        profile = request('/delivery/v1/courier/courier', {
+        profile_headers = {
             'Accept': 'application/json', 'Accept-Language': 'ru-RU',
             'x-vkusvill-device': 'seagull_team', 'Authorization': 'Bearer '+primary,
-            'x-vkusvill-token': primary}, proxy)
+            'x-vkusvill-token': primary}
+        try:
+            profile = request('/delivery/v1/courier/courier', profile_headers, proxy)
+        except RosterError as error:
+            if str(error) != 'own_profile_http_401':
+                raise
+            # Canonical production origin from the site's MO constant. Same
+            # own-session headers, proxy route, and verified TLS; no redirects.
+            profile = request('/direct-profile', profile_headers, proxy)
         name = profile.get('name_courier') if isinstance(profile, dict) else None
     if not isinstance(name, str) or not name.strip():
         raise RosterError('own_profile_name_missing')
