@@ -46,7 +46,10 @@ def request(path, headers, proxy, form_file=None):
         raise RosterError(f'roster_connection_curl_{result.returncode}')
     body, _, status = result.stdout.rpartition('\n')
     if status not in ('200', '204'):
-        raise RosterError(f'roster_http_{status}')
+        stage = ('own_profile' if path == '/delivery/v1/courier/courier' else
+                 'one_c_login' if path == '/auth/api/v1/couriers/auth/1c' else
+                 'assigned_couriers')
+        raise RosterError(f'{stage}_http_{status}')
     if not body.strip():
         return None
     try:

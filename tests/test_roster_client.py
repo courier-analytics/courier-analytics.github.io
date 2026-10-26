@@ -11,6 +11,16 @@ from calculate_metrics import calculate
 
 
 class RosterTests(unittest.TestCase):
+    def test_auth_error_identifies_stage_without_response_body(self):
+        with patch('roster_client.subprocess.run') as run:
+            run.return_value.returncode = 0
+            run.return_value.stdout = 'private response\n401'
+            for path, stage in [('/delivery/v1/courier/courier', 'own_profile'),
+                                ('/auth/api/v1/couriers/auth/1c', 'one_c_login'),
+                                ('/delivery/v1/couriers?shopno=5818', 'assigned_couriers')]:
+                with self.assertRaisesRegex(RosterError, '^'+stage+'_http_401$'):
+                    request(path, {}, '')
+
     def test_unique_ids_and_scope(self):
         result = normalize({'items': [{'id': '12', 'shopno': 5818}, {'id': '12'}]}, 5818)
         self.assertEqual(result['courier_ids'], ['12'])
