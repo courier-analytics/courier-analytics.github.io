@@ -87,6 +87,21 @@ def expires_at(token, now):
         return now+300
 
 
+def own_session_name(primary):
+    # Match the site's I(): identity claims from the existing caller's token.
+    # This does not grant access: the remote API still authenticates the session.
+    try:
+        segment = primary.split('.')[1]
+        claims = json.loads(base64.urlsafe_b64decode(segment+'='*(-len(segment) % 4)))
+        for key in ('fio', 'name', 'full_name', 'fullName'):
+            value = claims.get(key)
+            if isinstance(value, str) and value.strip():
+                return value.replace('\r', ' ').replace('\n', ' ').strip()
+    except (ValueError, IndexError, TypeError, AttributeError, UnicodeError):
+        pass
+    return None
+
+
 def one_c_token(primary, proxy, cache, source=Path('/root/curator-app.js'), force=False):
     fingerprint = hashlib.sha256(primary.encode()).hexdigest()
     now = time.time()
@@ -98,11 +113,13 @@ def one_c_token(primary, proxy, cache, source=Path('/root/curator-app.js'), forc
     except (ValueError, OSError, TypeError):
         pass
     # Only the caller's own profile is used. No arbitrary name input is accepted.
-    profile = request('/delivery/v1/courier/courier', {
-        'Accept': 'application/json', 'Accept-Language': 'ru-RU',
-        'x-vkusvill-device': 'seagull_team', 'Authorization': 'Bearer '+primary,
-        'x-vkusvill-token': primary}, proxy)
-    name = profile.get('name_courier') if isinstance(profile, dict) else None
+    name = own_session_name(primary)
+    if not name:
+        profile = request('/delivery/v1/courier/courier', {
+            'Accept': 'application/json', 'Accept-Language': 'ru-RU',
+            'x-vkusvill-device': 'seagull_team', 'Authorization': 'Bearer '+primary,
+            'x-vkusvill-token': primary}, proxy)
+        name = profile.get('name_courier') if isinstance(profile, dict) else None
     if not isinstance(name, str) or not name.strip():
         raise RosterError('own_profile_name_missing')
     try:

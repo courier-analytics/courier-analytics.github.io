@@ -1,4 +1,5 @@
 import json
+import base64
 from pathlib import Path
 import sys
 import tempfile
@@ -6,11 +7,17 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from roster_client import normalize, RosterError, one_c_token, request
+from roster_client import normalize, RosterError, one_c_token, request, own_session_name
 from calculate_metrics import calculate
 
 
 class RosterTests(unittest.TestCase):
+    def test_name_from_own_token_matches_site(self):
+        segment = base64.urlsafe_b64encode(json.dumps({'full_name': 'Own Name'}).encode()).decode().rstrip('=')
+        self.assertEqual(own_session_name('eyJheader.'+segment+'.signature'), 'Own Name')
+        self.assertIsNone(own_session_name('invalid'))
+        self.assertIsNone(own_session_name('header.e30.signature'))
+
     def test_auth_error_identifies_stage_without_response_body(self):
         with patch('roster_client.subprocess.run') as run:
             run.return_value.returncode = 0
