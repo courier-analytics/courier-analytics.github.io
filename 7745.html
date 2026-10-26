@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f8fc">
   <meta name="description" content="Операционные показатели курьеров ДС 7745 по датам с 15.10 по 17.10.2026">
-  <title>ДС 7745 — Операционные метрики курьеров</title>
+  <title>ДС 7745 — Операционные метрики кураторов</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232b62cf'/%3E%3Cpath d='M14 42h36M18 28h28M25 17h14' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
   <style>
-    :root{color-scheme:light;--bg:#f6f8fc;--paper:#fff;--ink:#17253b;--muted:#69788d;--line:#e4eaf2;--blue:#285dcc;--blue-soft:#edf3ff;--green-bg:#e5f6ed;--green:#14744a;--amber-bg:#fff4db;--amber:#986212;--rose-bg:#ffebec;--rose:#b63c4b;--radius:18px}
+    :root{color-scheme:light;--bg:#f6f8fc;--paper:#fff;--ink:#17253b;--muted:#69788d;--line:#e4eaf2;--blue:#285dcc;--blue-soft:#edf3ff;--radius:18px}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}
@@ -36,7 +36,7 @@
     col.goal-col{width:96px}
     thead th{background:#f8fafd;color:#65758b;font-size:12px;font-weight:720;text-align:center;white-space:nowrap;border-bottom:1px solid var(--line);padding:15px 7px}
     thead th:first-child{text-align:left;padding-left:23px}
-    thead th:last-child{background:#f0f5ff;color:var(--blue)}
+    thead th:last-child{background:#f8fafd;color:#65758b}
     tbody td,tbody th{border-bottom:1px solid #edf0f5;padding:12px 7px;text-align:center;background:white;height:63px}
     tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
     tbody th{font-size:13px;font-weight:630;text-align:left;padding-left:23px;padding-right:15px;line-height:1.32}
@@ -46,12 +46,12 @@
     .metric-title{display:flex;align-items:center;gap:11px}
     .metric-index{flex:none;width:24px;height:24px;display:grid;place-items:center;border-radius:7px;background:#f0f3f8;color:#8190a4;font-size:11px;font-weight:700}
     .cell{display:inline-flex;min-width:64px;min-height:33px;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:700;padding:6px 5px}
-    .cell.good{background:var(--green-bg);color:var(--green)}
-    .cell.mid{background:var(--amber-bg);color:var(--amber)}
-    .cell.bad{background:var(--rose-bg);color:var(--rose)}
+    .cell.good{background:#e5f6ed;color:#14744a}
+    .cell.mid{background:#fff4db;color:#986212}
+    .cell.bad{background:#ffebec;color:#b63c4b}
     .cell.empty{color:#b4becc;font-weight:500}
-    .goal{color:var(--blue);font-weight:750;font-size:13px;background:#f5f8ff}
-    .date-latest{background:#f0f5ff}
+    .goal{color:var(--ink);font-weight:750;font-size:13px;background:white}
+    .date-latest{background:#f8fafd}
     .footnotes{padding:16px 23px 18px;border-top:1px solid var(--line);background:#fcfdff;color:#78869a;font-size:12px}
     .footnotes p{margin:0}
     .footnotes p+p{margin-top:5px}
@@ -65,19 +65,18 @@
     .store-picker select:focus-visible{outline:3px solid #9cbbf8;outline-offset:2px}
     @media print{.store-picker{display:none}}
     .data-status{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 18px;padding:14px 18px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
-    .footnotes summary{cursor:pointer;margin:8px 0;font-weight:600}
     .data-status p{margin:0;color:var(--muted);font-size:13px}
     @media(max-width:820px){.data-status{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body>
 <main class="shell">
-  <nav aria-label="Выбор даркстора" class="store-picker"><label for="storeSelect">Даркстор</label><select id="storeSelect" aria-label="Выбрать даркстор"><option value="5818" >ДС 5818</option><option value="7745" selected>ДС 7745</option></select></nav>
+  <nav aria-label="Выбор даркстора" class="store-picker"><label for="storeSelect">Даркстор</label><select id="storeSelect" aria-label="Выбрать даркстор"><option value="5818" >ДС 5818</option><option value="7745" selected>ДС 7745</option><option value="4747">ДС 4747</option></select></nav>
   <div class="eyebrow"><span class="mark" aria-hidden="true"></span> Курьерская служба · ДС 7745</div>
   <header>
     <div>
-      <h1>Операционные метрики курьеров — ДС 7745</h1>
-      <p class="description">Ежедневные показатели работы курьеров · 15–17 октября 2026 года</p>
+      <h1>Операционные метрики кураторов — ДС 7745</h1>
+      <p class="description">Ежедневные показатели работы кураторов · 15–20 октября 2026 года</p>
     </div>
     <div class="actions">
       <button id="copyLink" type="button" aria-label="Скопировать ссылку на таблицу">
@@ -96,47 +95,31 @@
     <button id="refreshData" type="button">Обновить данные</button>
   </section>
   <section class="panel" aria-labelledby="tableTitle">
-    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">11 метрик · 3 дня · Цель</span></div>
+    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">10 метрик · 5 дней · Цель</span></div>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
       <table id="metricsTable">
-        <colgroup><col class="metric-col"><col class="day-col" span="3"><col class="goal-col"></colgroup>
+        <colgroup><col class="metric-col"><col class="day-col" span="5"><col class="goal-col"></colgroup>
         <thead><tr id="headerRow"><th scope="col">Показатель</th></tr></thead>
         <tbody id="metricsBody"></tbody>
       </table>
-    </div>
-    <div class="footnotes">
-      <p>В новых выгрузках заполнение — занятые места в лимитированных слотах, делённые на их вместимость, включая кластеры ДС. Это число мест, а не уникальных курьеров. Прочерк означает отсутствие рассчитанного значения.</p>
-      <details><summary>Пояснения к историческим данным за октябрь</summary>
-      <p>ДС 7745: данные за 15–17 октября 2026 года. «—» означает, что метрика не рассчитана; это не 0%.</p>
-      <p>15.10: выход по плану 23 из 29 (79,31%) — предварительно по отсутствию отметки «не вышел»; доставки не подтверждены для всех 23.</p>
-      <p>16.10: в графике 28 человек, из них 2 выходных. В выгрузке 1 659 заказов, 1 614 успешно завершены, 37 уникальных курьеров с успешными доставками. Из 26 плановых курьеров у 24 есть успешные заказы в выгрузке за 16.10 (92,31%). У Коломиеца Фёдора и Кучарова Сирожиддина успешных доставок в выгрузке нет — это не доказывает невыход. Важно: у Абдулкасимова Сайгидомара только 2 доставки в 01:14 и 01:31, до начала смены 08:00; подтверждение именно его плановой смены требует уточнения. Вне графика/в выходной работали 13 из 37 (35,14%): 12 не указаны в графике и Рахмонов Насимджон отмечен выходным, но выполнил доставки.</p>
-      <p>Доработка 16.10: 16 из 24 плановых курьеров с успешными заказами (66,67%) — последняя успешная доставка не ранее чем за 30 минут до конца графика. Для Тургунова Нурилло конец смены — 00:00 17.10. Показатель предварительный: оценивает время последней доставки, а не фактическое закрытие слота.</p>
-      <p>17.10: в графике 28 человек, двое отмечены выходными. Из 26 плановых курьеров 24 имеют успешно завершённые доставки: 92,31%. В Superset 36 уникальных курьеров с завершёнными заказами: 11 вне списка и 1 отмечен выходным (12 из 36, 33,33%). Отсутствие доставок не доказывает невыход.</p>
-      <p>Доработка 17.10: 14 из 24 подтверждённых плановых смен (58,33%) — последняя успешная доставка не ранее чем за 30 минут до конца графика. Смена Тарамова Хасана уточнена: 12:00–00:00 следующего дня. Последняя успешная доставка 17.10 в 23:23:32, что раньше допустимого порога 23:30, поэтому смена учитывается в знаменателе, но не в числителе. Это оценка по доставкам, не фактическое закрытие слота.</p>
-      <p>Статус опоздания по первой доставке не рассчитывается без времени фактического выхода и утверждённого норматива. Источник: график 17.10 и CSV Superset за 17.10.</p>
-      </details>
-    </div>
-  </section>
-  <div class="footer"><span>ДС 7745 · Операционные метрики курьеров</span><span>Автономная версия · без платных сервисов</span></div>
-</main>
+    </div></section></main>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
 "use strict";
-const dates = ["15.10","16.10","17.10"];
+const dates = ["18.10","19.10","20.10","21.10","22.10"];
 // Значения хранятся строками; отображение всех процентов единообразно: две цифры после запятой.
 // null означает, что показатель за дату не предоставлен.
 const metrics = [
-  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","0","0"]},
-  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["79,31","92,31","92,31"]},
-  {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:[null,null,null]},
-  {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:[null,"35,14","33,33"]},
-  {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:[null,"66,67","58,33"]},
-  {name:"Работа с обращениями",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Инфраструктура",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Обучение курьеров",goal:"100",better:"high",values:[null,null,null]},
-  {name:"Медицинские книжки",goal:"100",better:"high",values:[null,null,null]},
+  {name:"Знание прогноза на завтра",goal:"100",better:"high",values:["0","0","0","0","0"]},
+  {name:"Курьеры, отметившиеся в опроснике",goal:"100",better:"high",values:["0","0","0","0","0"]},
+  {name:"Заполнение слотов относительно ориентира",goal:"100",better:"high",values:[null,null,null,null,null]},
+  {name:"Курьеры, вышедшие по плану",goal:"100",better:"high",values:["78,26","86,36","82,61","87,10","77,42"]},
+  {name:"Опоздавшие среди вышедших по плану",goal:"0",better:"low",values:["72,22","57,89","42,11","70,37","62,50"]},
+  {name:"Курьеры, работавшие вне плана",goal:"0",better:"low",values:["50,00","50,00","44,12","22,86","16,67"]},
+  {name:"Курьеры, доработавшие плановую смену до конца",goal:"100",better:"high",values:["66,67","73,68","73,68","70,37","62,50"]},
+  {name:"Работа с обращениями",goal:"100",better:"high",values:["0","14,29","0","0","0"]},
+  {name:"Обучение курьеров",goal:"100",better:"high",values:[null,null,null,null,null]},
+  {name:"Медицинские книжки",goal:"100",better:"high",values:["36,5","36,5","36,5","39,2","39,1"]}
 ];
 function formatPercent(value) {
   const number=Number(String(value).replace(",", "."));
@@ -148,14 +131,18 @@ function textCell(tag,content,className) {
   if(className) el.className=className;
   return el;
 }
-function statusClass(value,metric) {
-  const values=metric.values.filter(function(v){return v!==null;}).map(function(v){return Number(v.replace(",","."));});
-  const num=Number(value.replace(",","."));
-  const min=Math.min.apply(null,values),max=Math.max.apply(null,values);
-  if(max===min) return "mid";
-  let ratio=(num-min)/(max-min);
-  if(metric.better==="low") ratio=1-ratio;
-  return ratio>=2/3?"good":ratio<=1/3?"bad":"mid";
+// Пороговые значения для метрик в порядке отображения. На границе выбирается лучший цвет.
+function statusClass(value,index) {
+  const num=Number(String(value).replace(",","."));
+  if(index===0) return num>=100?"good":num>=50?"mid":"bad";
+  if(index===1) return num>=90?"good":num>=70?"mid":"bad";
+  if(index===2) return num>=85?"good":num>=70?"mid":"bad";
+  if(index===3) return num>=90?"good":num>=80?"mid":"bad";
+  if(index===4||index===5) return num<=10?"good":num<=20?"mid":"bad";
+  if(index===6) return num>=90?"good":num>=80?"mid":"bad";
+  if(index===7) return num>=90?"good":num>=70?"mid":"bad";
+  if(index===8||index===9) return num>=80?"good":num>=60?"mid":"bad";
+  return "";
 }
 function render() {
   const head=document.getElementById("headerRow");
@@ -182,7 +169,7 @@ function render() {
     tr.appendChild(th);
     metric.values.forEach(function(value){
       const td=document.createElement("td");
-      const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell "+statusClass(value,metric));
+      const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell "+statusClass(value,index));
       td.appendChild(span);
       tr.appendChild(td);
     });
@@ -232,7 +219,7 @@ async function copyLink(){
     notify("Ссылка скопирована");
   }catch(e){notify("Скопируйте адрес из строки браузера");}
 }
-document.getElementById("storeSelect").addEventListener("change",function(e){window.location.href=e.target.value==="7745"?"7745.html":"index.html";});
+document.getElementById("storeSelect").addEventListener("change",function(e){window.location.href=e.target.value==="4747"?"4747.html":e.target.value==="7745"?"7745.html":"index.html";});
 render();
 document.getElementById("downloadCsv").addEventListener("click",downloadCsv);
 document.getElementById("copyLink").addEventListener("click",copyLink);
