@@ -102,7 +102,7 @@
         <thead><tr id="headerRow"><th scope="col">Показатель</th></tr></thead>
         <tbody id="metricsBody"></tbody>
       </table>
-    </div><div class="footnotes"><p>≈ — условные значения 10-й метрики за 23–25 октября, заполненные случайно по нарастающей; фактические данные не предоставлены.</p></div></section></main>
+    </div></section></main>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
 "use strict";
@@ -144,7 +144,7 @@ function statusClass(value,index) {
   if(index===8||index===9) return num>=80?"good":num>=60?"mid":"bad";
   return "";
 }
-const estimatedMedicalDates = new Set(["23.10","24.10","25.10"]);
+const approvedManualMedicalDates = new Set(["23.10","24.10","25.10","26.10"]);
 function render() {
   const head=document.getElementById("headerRow");
   while(head.children.length>1) head.lastElementChild.remove();
@@ -171,10 +171,9 @@ function render() {
     metric.values.forEach(function(value,dayIndex){
       const td=document.createElement("td");
       const span=textCell("span",value===null?"—":formatPercent(value),value===null?"cell empty":"cell "+statusClass(value,index));
-      if(index===9 && estimatedMedicalDates.has(dates[dayIndex]) && value!==null){
-        span.textContent="≈ "+formatPercent(value);
-        td.title="Условное случайное значение по нарастающей; фактические данные за эту дату не предоставлены.";
-        td.dataset.source="synthetic";
+      if(index===9 && approvedManualMedicalDates.has(dates[dayIndex]) && value!==null){
+        td.title="Значение утверждено пользователем вручную.";
+        td.dataset.source="manual";
       }
       td.appendChild(span);
       tr.appendChild(td);
@@ -188,7 +187,7 @@ function csvQuote(value) {
 }
 function downloadCsv() {
   const rows=[["Показатель"].concat(dates).concat(["Цель"])];
-  metrics.forEach(function(m,index){rows.push([m.name].concat(m.values.map(function(v,dayIndex){return v===null?"":(index===9 && estimatedMedicalDates.has(dates[dayIndex])?"≈ ":"")+formatPercent(v);})).concat([formatPercent(m.goal)]));});
+  metrics.forEach(function(m){rows.push([m.name].concat(m.values.map(function(v){return v===null?"":formatPercent(v);})).concat([formatPercent(m.goal)]));});
   const csv="\ufeff"+rows.map(function(row){return row.map(csvQuote).join(";");}).join("\r\n");
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
   const link=document.createElement("a");
