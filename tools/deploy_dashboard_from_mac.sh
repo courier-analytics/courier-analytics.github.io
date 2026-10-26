@@ -20,7 +20,7 @@ scp "${dashboard_ssh[@]}" "$dashboard_root"/tools/*.py \
   "$dashboard_root/tools/requirements.txt" "$dashboard_root/tools/scopes.json" \
   "$dashboard_root/tools/courier-refresh.service" "$dashboard_root/tools/courier-refresh.timer" \
   "$dashboard_host:$dashboard_remote/tools/"
-scp "${dashboard_ssh[@]}" "$dashboard_root/index.html" "$dashboard_root/7745.html" \
+scp "${dashboard_ssh[@]}" "$dashboard_root/index.html" "$dashboard_root/7745.html" "$dashboard_root/4747.html" \
   "$dashboard_root/dashboard-data.js" "$dashboard_host:$dashboard_remote/site/"
 scp "${dashboard_ssh[@]}" "$dashboard_root/data/dashboard.json" \
   "$dashboard_host:$dashboard_remote/site/data/dashboard.json"
@@ -40,7 +40,7 @@ fi
 /opt/courier-analytics/import-venv/bin/python "$destination/tools/refresh_dashboard.py" \
   --scopes "$destination/tools/scopes.json" --feed "$destination/site/data/dashboard.json"
 chmod 755 "$destination" "$destination/site" "$destination/site/data"
-chmod 644 "$destination/site/index.html" "$destination/site/7745.html" \
+chmod 644 "$destination/site/index.html" "$destination/site/7745.html" "$destination/site/4747.html" \
   "$destination/site/dashboard-data.js" "$destination/site/data/dashboard.json"
 python3 - "$destination" <<'PY'
 import os
