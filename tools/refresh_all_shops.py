@@ -8,12 +8,13 @@ from zoneinfo import ZoneInfo
 
 from audit_sources import audit
 from build_dashboard_feed import build
-from calculate_metrics import calculate
+from calculate_metrics import calculate, metric
+from active_base import collect as collect_active_base, BASIS as ACTIVE_BASIS
 from enrich_slots import atomic_json
 from refresh_dashboard import merge_feed, private_xlsx, HEADERS
 
 
-def refresh(day, token, proxy, private_dir, feed_path):
+def refresh(day, token, proxy, private_dir, feed_path, active_base=False):
     folder = private_dir/'all-shops'
     audit_summary = audit(day, token, proxy, folder, extra_details=False)
     observations = json.loads((folder/'all-shops-observations.json').read_text())
@@ -33,6 +34,11 @@ def refresh(day, token, proxy, private_dir, feed_path):
         daily_plan = {'verified': True, 'date': day, 'slots': source_plan['slots']} if (
             source_plan and plan.get('verified') is True and plan.get('date') == day) else None
         metrics = calculate(shop['slots'], day, roster=rosters.get(identity), plan=daily_plan)
+        if active_base:
+            try:
+                metrics['shift_marked'] = collect_active_base(day, identity, shop['slots'], token, proxy)
+            except (RuntimeError, ValueError, KeyError, TypeError):
+                metrics['shift_marked'] = metric(reason='active_base_incomplete', basis=ACTIVE_BASIS)
         fill = metrics['slot_fill']
         summaries.append({'date': day, 'shop_id': identity, 'slot_type': 'limited',
                           'booked_places': fill['numerator'], 'capacity': fill['denominator'],
@@ -70,6 +76,7 @@ if __name__ == '__main__':
     parser.add_argument('--proxy', default=os.environ.get('COURIER_PROXY_URL', 'socks5h://127.0.0.1:18080'))
     parser.add_argument('--private-dir', type=Path, default=Path('/opt/courier-analytics/private'))
     parser.add_argument('--date', default=datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat())
+    parser.add_argument('--active-base', action='store_true')
     args = parser.parse_args()
     try:
         from datetime import date
@@ -79,7 +86,8 @@ if __name__ == '__main__':
             raise ValueError('Invalid session')
         args.private_dir.mkdir(parents=True, exist_ok=True)
         args.private_dir.chmod(0o700)
-        print(json.dumps(refresh(args.date, token, args.proxy, args.private_dir, args.feed), ensure_ascii=False, indent=2))
+        enabled = args.active_base or Path('/etc/courier-analytics/active-base-enabled.json').exists()
+        print(json.dumps(refresh(args.date, token, args.proxy, args.private_dir, args.feed, active_base=enabled), ensure_ascii=False, indent=2))
     except RuntimeError as error:
         raise SystemExit(str(error))
     except (ValueError, KeyError, OSError, TypeError) as error:

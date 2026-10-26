@@ -9,12 +9,12 @@ from enrich_slots import atomic_json
 
 METRIC_KEYS = {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late',
                'unplanned_work', 'planned_completion'}
-REASONS = {'zero_denominator', 'assigned_roster_not_verified',
+REASONS = {'zero_denominator', 'assigned_roster_not_verified', 'active_base_incomplete',
            'bookings_outside_verified_roster', 'frozen_plan_missing',
            'planned_booking_missing_from_current_data', 'planned_slot_times_changed',
            'unknown_planned_shift_status', 'unknown_shift_status',
            'shift_end_or_final_status_missing'}
-BASES = {'limited_slot_places', 'all_assigned_unique_couriers',
+BASES = {'limited_slot_places', 'all_assigned_unique_couriers', 'direct_shop_scheduled_unique_5d_including_day',
          'frozen_plan_unique_couriers', 'manual_work_without_frozen_plan',
          'frozen_plan_all_shifts_site_10min_tolerance'}
 
