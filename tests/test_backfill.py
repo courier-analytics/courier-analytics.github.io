@@ -3,11 +3,17 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from backfill_dashboard import manual_history, needed, select_rows, work_for_date, BASE, REFRESHABLE
+from backfill_dashboard import manual_history, needed, select_rows, work_for_date, safe_failure, BASE, REFRESHABLE
 from calculate_metrics import metric
 
 
 class BackfillTests(unittest.TestCase):
+    def test_diagnostic_keeps_stage_without_private_exception_contents(self):
+        self.assertNotIn('private-secret', str(safe_failure(ValueError('private-secret'), 'collect_source_data', '2026-10-26')))
+        result = safe_failure(RuntimeError('API connection failed (curl 7)'), 'collect_source_data', '2026-10-26')
+        self.assertEqual(result['code'], 'authenticated_connection_curl_7')
+        self.assertEqual(result['stage'], 'collect_source_data')
+
     def test_explicit_date_recalculates_all_four_ds_and_protects_manual_metrics(self):
         manual = manual_history(Path(__file__).resolve().parents[1])
         work = work_for_date(manual, '2026-10-26')

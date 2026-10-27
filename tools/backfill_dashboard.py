@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import re
 import tempfile
+import traceback
 from zoneinfo import ZoneInfo
 
 from enrich_slots import atomic_json
@@ -14,12 +15,42 @@ from refresh_all_shops import refresh
 from refresh_dashboard import merge_feed
 from completion_reporting import BASIS as COMPLETION_BASIS
 from dashboard_shops import SHOPS
+from verify_server_proxy import error_code
 
 PAGES = {shop: config['page'] for shop, config in SHOPS.items()}
 INDEXES = {'shift_marked': 1, 'slot_fill': 2, 'planned_attendance': 3,
            'planned_late': 4, 'unplanned_work': 5, 'planned_completion': 6}
 BASE = 'direct_shop_scheduled_unique_5d_including_day'
 REFRESHABLE = {'shift_marked', 'slot_fill', 'planned_attendance', 'planned_late', 'planned_completion'}
+
+
+class BackfillCheckError(ValueError):
+    def __init__(self, details):
+        self.details = details
+        super().__init__('Historical candidate validation failed')
+
+
+def safe_failure(error, stage, day=None):
+    frame = traceback.extract_tb(error.__traceback__)[-1] if error.__traceback__ else None
+    known = {
+        'API returned a different scope': 'source_scope_mismatch',
+        'API returned a different day': 'source_date_mismatch',
+        'Repeated slot across scopes': 'duplicate_slot_across_scopes',
+        'Occupied count differs from limited-slot courier list': 'occupied_count_differs_from_courier_details',
+        'Invalid limited-slot capacity': 'invalid_limited_capacity',
+        'Unknown slot list format': 'unknown_slot_list_format',
+        'Unrecognized slot type': 'unknown_slot_type',
+        'Duplicate courier in one slot': 'duplicate_courier_in_slot',
+        'Invalid courier identity': 'invalid_courier_identity',
+        'Slot courier details absent': 'courier_details_absent',
+    }
+    info = {'stage': stage, 'date': day, 'type': type(error).__name__,
+            'code': known.get(str(error), error_code(error))}
+    if frame:
+        info.update(function=frame.name, line=frame.lineno)
+    if isinstance(error, BackfillCheckError):
+        info['checks'] = error.details
+    return info
 
 
 def work_for_date(manual, day):
@@ -88,10 +119,12 @@ def select_rows(fresh, previous, manual, work, day):
         key = row['shop_id'], row['date']
         if row['date'] != day or key not in work:
             continue
-        if any(row['metrics'][m]['reason'] not in (
+        failures = [{'shop_id': key[0], 'metric': m, 'reason': row['metrics'][m]['reason']}
+                    for m in sorted(work[key]) if row['metrics'][m]['reason'] not in (
             (None, 'zero_denominator', 'shift_end_or_final_status_missing', 'unknown_shift_status')
-            if m == 'planned_completion' else (None, 'zero_denominator')) for m in work[key]):
-            raise ValueError('Incomplete required historical source; candidate not published')
+            if m == 'planned_completion' else (None, 'zero_denominator'))]
+        if failures:
+            raise BackfillCheckError(failures)
         # Existing manually entered facts win over retrospective automatic facts.
         row = dict(row)
         incoming = {k: v for k, v in row['metrics'].items() if k not in manual.get(key, set())}
@@ -107,7 +140,7 @@ def select_rows(fresh, previous, manual, work, day):
         rows.append(row)
     expected = {s for s, d in work if d == day}
     if {r['shop_id'] for r in rows} != expected:
-        raise ValueError('A required DS is unavailable; candidate not published')
+        raise BackfillCheckError([{'unavailable_shop_id': shop} for shop in sorted(expected-{r['shop_id'] for r in rows})])
     return {'schema_version': 1, 'records': rows}
 
 
@@ -118,6 +151,7 @@ if __name__ == '__main__':
     parser.add_argument('--date', help='Recalculate available automatic metrics for exactly one date, including existing values')
     parser.add_argument('--proxy', default=configured_proxy())
     args = parser.parse_args()
+    stage, collecting_day = 'load_configuration', None
     try:
         selected_day = args.date or args.until
         date.fromisoformat(selected_day)
@@ -135,6 +169,7 @@ if __name__ == '__main__':
         private.mkdir(parents=True, exist_ok=True, mode=0o700)
         with tempfile.TemporaryDirectory(prefix='.daily-', dir=private) as temporary:
             for day in sorted({d for _, d in work}):
+                stage, collecting_day = 'collect_source_data', day
                 print('Collecting '+day+'...', flush=True)
                 daily = Path(temporary)/'feed.json'
                 atomic_json(daily, {'schema_version': 1, 'records': []})
@@ -142,7 +177,9 @@ if __name__ == '__main__':
                                  completion_state_dir=private.parent)
                 print('Overnight end check: '+json.dumps(result.get('overnight_completion', {})), flush=True)
                 print('Completion reporting dates: '+json.dumps(result.get('completion_reporting', {})), flush=True)
+                stage = 'validate_candidate'
                 selected = select_rows(json.loads(daily.read_text()), public, manual, work, day)
+                stage = 'merge_candidate'
                 public = merge_feed(public, selected)
                 atomic_json(args.feed, public)
                 for row in selected['records']:
@@ -152,5 +189,6 @@ if __name__ == '__main__':
                     completion = row['metrics'].get('planned_completion', {})
                     print(f"{day} DS {row['shop_id']}: fill={row['fill_percent']}; active booking share={m['value'] if m else 'manual history'}; arrived={arrival}; late={late}; completed={completion.get('value', 'manual history')} ({completion.get('reason') or 'ready'})", flush=True)
         print('Candidate complete. Manual history preserved. Missing frozen plans remain unavailable.', flush=True)
-    except (ValueError, KeyError, TypeError, OSError, RuntimeError):
+    except (ValueError, KeyError, TypeError, OSError, RuntimeError) as error:
+        print('Backfill diagnostic: '+json.dumps(safe_failure(error, stage, collecting_day), ensure_ascii=False), flush=True)
         raise SystemExit('Backfill incomplete; active site unchanged. Private responses hidden.')
