@@ -8,6 +8,12 @@ from build_dashboard_feed import validate_metrics
 
 
 class ActiveCollectionTests(unittest.TestCase):
+    def test_no_schedule_ratio_calculated_for_7745_before_tool_start(self):
+        with patch('active_base.fetch') as request:
+            for day in ('2026-10-23', '2026-10-24'):
+                self.assertIsNone(collect(day, 7745, [], '', '')['value'])
+            request.assert_not_called()
+
     def test_direct_scope_and_unique_people_only(self):
         current = [dict(scope_kind='shopno', scope_id=5818, couriers=[{'courier_id': '1'}]),
                    dict(scope_kind='cluster_id', scope_id=7332, couriers=[{'courier_id': '99'}])]

@@ -9,6 +9,19 @@ from calculate_metrics import metric
 
 
 class FeedTests(unittest.TestCase):
+    def test_pre_transition_schedule_ratios_are_not_published_as_mobile_entries(self):
+        for day in ('2026-10-23', '2026-10-24', '2026-10-25'):
+            report = self.report()
+            row = report['summaries'][0]
+            row.update(shop_id=7745, date=day,
+                       metrics={'shift_marked': metric(40, 57, basis='direct_shop_scheduled_unique_5d_including_day')})
+            value = build([report])['records'][0]['metrics']['shift_marked']
+            if day < '2026-10-25':
+                self.assertIsNone(value['value'])
+                self.assertIsNone(value['numerator'])
+            else:
+                self.assertEqual(value['value'], 70.18)
+
     def report(self):
         return {'schema_version': 1, 'snapshot_consistent': True, 'issues': [],
                 'generated_at': '2026-10-26T07:12:12.215078+00:00',

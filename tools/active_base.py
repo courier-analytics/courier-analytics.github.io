@@ -3,6 +3,7 @@ from datetime import date, timedelta
 from audit_sources import sanitize_slot
 from calculate_metrics import metric
 from enrich_slots import fetch
+from dashboard_shops import TOOL_START
 
 BASIS = 'direct_shop_scheduled_unique_5d_including_day'
 
@@ -14,6 +15,8 @@ def participants(slots, shop):
 
 
 def collect(day, shop, current_slots, token, proxy):
+    if day < TOOL_START.get(shop, day):
+        return metric(reason='assigned_roster_not_verified', basis=BASIS)
     direct_today = participants(current_slots, shop)
     today = {c['courier_id'] for s in current_slots for c in s['couriers']}
     population = set(direct_today)

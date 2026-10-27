@@ -4,6 +4,11 @@
   const shop = Number(document.getElementById("storeSelect").value);
   const initialDates = dates.map(d => "2026-" + d.slice(3, 5) + "-" + d.slice(0, 2));
   const historical = metrics.map(m => m.values.slice());
+  const toolStart = {5818: "2026-10-23", 7745: "2026-10-25"};
+  function hasManualValue(index, day) {
+    const oldIndex = initialDates.indexOf(day);
+    return oldIndex >= 0 && historical[index][oldIndex] !== null;
+  }
   const status = document.getElementById("dataStatus");
   const refresh = document.getElementById("refreshData");
   let busy = false;
@@ -77,10 +82,15 @@
     }));
     const imported = new Map();
     own.forEach(row => {
-      if (!row.metrics || row.metrics.slot_fill) {
+      if ((!row.metrics || row.metrics.slot_fill) && !hasManualValue(2, row.date)) {
         next[2][indexes.get(row.date)] = row.fill_percent === null ? null : String(row.fill_percent);
       }
       Object.entries(row.metrics || {}).forEach(([key, metric]) => {
+        if (hasManualValue(metricIndexes[key], row.date)) return;
+        if (key === "shift_marked" && row.date < (toolStart[shop] || row.date)) {
+          next[1][indexes.get(row.date)] = null;
+          return;
+        }
         next[metricIndexes[key]][indexes.get(row.date)] = metric.value === null ? null : String(metric.value);
       });
       imported.set(indexes.get(row.date), row);
@@ -94,12 +104,22 @@
     const rowsInTable = document.querySelectorAll("#metricsBody tr");
     const cells = rowsInTable[2].querySelectorAll("td");
     imported.forEach((row, i) => {
-      if (!row.metrics || row.metrics.slot_fill) {
+      if ((!row.metrics || row.metrics.slot_fill) && !hasManualValue(2, row.date)) {
         cells[i].title = row.capacity ? "Лимитированные слоты: занято " + row.booked_places + " из " + row.capacity + " мест. Один курьер может занимать несколько слотов." : "Нет данных о потребности: вместимость лимитированных слотов равна нулю.";
         cells[i].dataset.source = "slots_export";
       }
       Object.entries(row.metrics || {}).forEach(([key, metric]) => {
         const cell = rowsInTable[metricIndexes[key]].querySelectorAll("td")[i];
+        if (hasManualValue(metricIndexes[key], row.date)) {
+          cell.title = "Сохранено ранее внесённое вручную значение.";
+          cell.dataset.source = "manual";
+          return;
+        }
+        if (key === "shift_marked" && row.date < (toolStart[shop] || row.date)) {
+          cell.title = "До перехода ДС на инструмент «Выходы курьеров»: записи в расписании не подтверждают проставление смены в МП.";
+          cell.dataset.source = "unavailable";
+          return;
+        }
         const basis = {
           slot_fill: " мест. Один курьер может занимать несколько слотов.",
           shift_marked: metric.basis === "direct_shop_scheduled_unique_5d_including_day" ?

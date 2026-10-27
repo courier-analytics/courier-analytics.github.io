@@ -14,7 +14,7 @@ from enrich_slots import atomic_json
 from refresh_all_shops import refresh
 from refresh_dashboard import merge_feed
 from completion_reporting import BASIS as COMPLETION_BASIS
-from dashboard_shops import SHOPS
+from dashboard_shops import SHOPS, TOOL_START
 from verify_server_proxy import error_code
 
 PAGES = {shop: config['page'] for shop, config in SHOPS.items()}
@@ -122,7 +122,10 @@ def select_rows(fresh, previous, manual, work, day):
         failures = [{'shop_id': key[0], 'metric': m, 'reason': row['metrics'][m]['reason']}
                     for m in sorted(work[key]) if row['metrics'][m]['reason'] not in (
             (None, 'zero_denominator', 'shift_end_or_final_status_missing', 'unknown_shift_status')
-            if m == 'planned_completion' else (None, 'zero_denominator'))]
+            if m == 'planned_completion' else
+            (None, 'zero_denominator', 'assigned_roster_not_verified')
+            if m == 'shift_marked' and day < TOOL_START.get(key[0], day) else
+            (None, 'zero_denominator'))]
         if failures:
             raise BackfillCheckError(failures)
         # Existing manually entered facts win over retrospective automatic facts.

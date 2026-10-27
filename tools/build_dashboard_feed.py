@@ -6,7 +6,7 @@ import math
 from pathlib import Path
 
 from enrich_slots import atomic_json
-from dashboard_shops import TARGETS
+from dashboard_shops import TARGETS, TOOL_START
 
 METRIC_KEYS = {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late',
                'unplanned_work', 'planned_completion'}
@@ -82,6 +82,12 @@ def build(reports):
                       'source': 'slots_export', 'reported_at': generated}
             if 'metrics' in row:
                 record['metrics'] = validate_metrics(row['metrics'])
+                marked = record['metrics'].get('shift_marked')
+                if (marked and marked.get('basis') == 'direct_shop_scheduled_unique_5d_including_day'
+                        and day < TOOL_START.get(shop, day)):
+                    record['metrics']['shift_marked'] = {
+                        'value': None, 'numerator': None, 'denominator': None,
+                        'reason': 'assigned_roster_not_verified', 'basis': marked['basis']}
                 fill = record['metrics'].get('slot_fill')
                 if fill and (fill['numerator'] != booked or fill['denominator'] != capacity or fill['value'] != percent):
                     raise ValueError('Slot metric differs from slot totals')
