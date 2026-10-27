@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#f6f8fc">
   <meta name="description" content="Операционные показатели курьеров ДС 5818 по датам с 08.10 по 22.10.2026">
   <title>ДС 5818 — Операционные метрики кураторов</title>
+  <link rel="stylesheet" href="dashboard-trends.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232b62cf'/%3E%3Cpath d='M14 42h36M18 28h28M25 17h14' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
   <style>
     :root{color-scheme:light;--bg:#f6f8fc;--paper:#fff;--ink:#17253b;--muted:#69788d;--line:#e4eaf2;--blue:#285dcc;--blue-soft:#edf3ff;--radius:18px}
@@ -97,6 +98,23 @@
     <p id="dataStatus" role="status" aria-live="polite">Загружаем последнюю выгрузку…</p>
     <button id="refreshData" type="button">Обновить данные</button>
   </section>
+  <section class="panel trends" aria-labelledby="trendsTitle">
+    <div class="trends-heading">
+      <div><h2 id="trendsTitle">Динамика показателей</h2><p>ДС 5818 · Выбери метрику, чтобы увидеть изменения</p></div>
+      <label class="trends-control">Период<select id="trendPeriod"><option value="after">С 23 октября</option><option value="week">Последние 7 дней</option><option value="all">Вся история</option></select></label>
+    </div>
+    <div id="trendOverview" class="trends-overview" aria-label="Динамика десяти метрик"></div>
+    <div class="trends-chart-heading">
+      <label class="trends-control trends-metric-control">Метрика<select id="trendMetric"></select></label>
+      <span id="trendDirection" class="trends-direction"></span>
+    </div>
+    <div id="trendSummary" class="trends-summary" aria-live="polite"></div>
+    <div class="trends-plot"><svg id="trendChart" role="img" aria-label="График выбранной метрики"></svg><p id="trendEmpty" hidden>Нет данных за выбранный период.</p></div>
+    <div class="trends-legend"><span><i class="trends-key trends-key-value"></i>Значение</span><span><i class="trends-key trends-key-goal"></i>Цель</span><span><i class="trends-key trends-key-transition"></i>Переход 23 октября</span></div>
+    <p id="trendHover" class="trends-hover" aria-live="polite">Наведи на точку или выбери её клавишей Tab, чтобы увидеть значение.</p>
+    <p id="trendComparisonNote" class="trends-note"></p>
+    <p class="trends-note">Изменение — между первой и последней доступными датами периода, в процентных пунктах. Прочерки не считаются нулём. Показатели за текущий день ещё могут измениться.</p>
+  </section>
   <section class="panel" aria-labelledby="tableTitle">
     <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">10 метрик · 15 дней · Цель</span></div>
     <p class="tool-transition-note" id="toolTransitionNote">23 октября · Переход на инструмент «Выходы курьеров»</p>
@@ -186,6 +204,7 @@ function render() {
     tr.appendChild(textCell("td",formatPercent(metric.goal),"goal"));
     body.appendChild(tr);
   });
+  window.dispatchEvent(new Event("courier-metrics-rendered"));
 }
 function csvQuote(value) {
   return '"'+String(value).replace(/"/g,'""')+'"';
@@ -235,6 +254,7 @@ document.getElementById("downloadCsv").addEventListener("click",downloadCsv);
 document.getElementById("copyLink").addEventListener("click",copyLink);
 document.getElementById("printReport").addEventListener("click",function(){window.print();});
 </script>
+<script src="dashboard-trends.js"></script>
 <script src="dashboard-data.js"></script>
 </body>
 </html>

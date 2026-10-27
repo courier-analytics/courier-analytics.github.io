@@ -8,7 +8,7 @@ mkdir -p /opt/courier-analytics
 release=$(mktemp -d /opt/courier-analytics/site-XXXXXXXX)
 mkdir -p "$release/data"
 cp "$source_root/index.html" "$source_root/7745.html" "$source_root/4747.html" "$source_root/8092.html" \
-  "$source_root/dashboard-data.js" "$release/"
+  "$source_root/dashboard-data.js" "$source_root/dashboard-trends.js" "$source_root/dashboard-trends.css" "$release/"
 if [[ -r /opt/courier-analytics/current-site/data/dashboard.json ]]; then
   cp /opt/courier-analytics/current-site/data/dashboard.json "$release/data/dashboard.json"
 else
@@ -21,7 +21,7 @@ fi
 /opt/courier-analytics/import-venv/bin/python "$source_root/tools/refresh_dashboard.py" \
   --scopes "$source_root/tools/scopes.json" --feed "$release/data/dashboard.json"
 chmod 755 "$release" "$release/data"
-chmod 644 "$release"/*.html "$release/dashboard-data.js" "$release/data/dashboard.json"
+chmod 644 "$release"/*.html "$release/dashboard-data.js" "$release/dashboard-trends.js" "$release/dashboard-trends.css" "$release/data/dashboard.json"
 python3 - "$source_root" "$release" <<'PY'
 import os
 from pathlib import Path
