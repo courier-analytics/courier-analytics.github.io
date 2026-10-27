@@ -21,7 +21,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
     folder = private_dir/'all-shops'
     audit_summary = audit(day, token, proxy, folder, extra_details=False)
     observations = json.loads((folder/'all-shops-observations.json').read_text())
-    plan_path = private_dir/'plans'/('plan-'+day+'.json')
+    plan_path = (completion_state_dir or private_dir)/'plans'/('plan-'+day+'.json')
     plan = json.loads(plan_path.read_text()) if plan_path.exists() else None
     rosters, roster_errors = {}, {}
     if Path('/etc/courier-analytics/roster-enabled.json').exists():

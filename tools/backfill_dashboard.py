@@ -19,6 +19,19 @@ PAGES = {shop: config['page'] for shop, config in SHOPS.items()}
 INDEXES = {'shift_marked': 1, 'slot_fill': 2, 'planned_attendance': 3,
            'planned_late': 4, 'unplanned_work': 5, 'planned_completion': 6}
 BASE = 'direct_shop_scheduled_unique_5d_including_day'
+REFRESHABLE = {'shift_marked', 'slot_fill', 'planned_attendance', 'planned_late', 'planned_completion'}
+
+
+def work_for_date(manual, day):
+    date.fromisoformat(day)
+    work = {}
+    for shop in PAGES:
+        days = [d for s, d in manual if s == shop]
+        if days and day >= min(days):
+            keys = REFRESHABLE-manual.get((shop, day), set())
+            if keys:
+                work[shop, day] = keys
+    return work
 
 
 def manual_history(root):
@@ -102,16 +115,18 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--feed', type=Path, required=True, help='Private candidate feed, not the active site')
     parser.add_argument('--until', default=datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat())
+    parser.add_argument('--date', help='Recalculate available automatic metrics for exactly one date, including existing values')
     parser.add_argument('--proxy', default=configured_proxy())
     args = parser.parse_args()
     try:
-        date.fromisoformat(args.until)
-        if args.until > datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat():
+        selected_day = args.date or args.until
+        date.fromisoformat(selected_day)
+        if selected_day > datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat():
             raise ValueError('Future dates cannot be backfilled')
         root = Path(__file__).resolve().parents[1]
         manual = manual_history(root)
         public = json.loads(args.feed.read_text())
-        work = needed(public, manual, args.until)
+        work = work_for_date(manual, args.date) if args.date else needed(public, manual, args.until)
         print('Missing DS/dates: '+str(len(work)), flush=True)
         token = json.loads(Path('/root/curator-session.json').read_text())['token']
         if not isinstance(token, str) or not token or '\n' in token or '\r' in token:

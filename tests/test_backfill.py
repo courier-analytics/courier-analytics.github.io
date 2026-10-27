@@ -3,11 +3,18 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from backfill_dashboard import manual_history, needed, select_rows, BASE
+from backfill_dashboard import manual_history, needed, select_rows, work_for_date, BASE, REFRESHABLE
 from calculate_metrics import metric
 
 
 class BackfillTests(unittest.TestCase):
+    def test_explicit_date_recalculates_all_four_ds_and_protects_manual_metrics(self):
+        manual = manual_history(Path(__file__).resolve().parents[1])
+        work = work_for_date(manual, '2026-10-26')
+        self.assertEqual(set(work), {(s, '2026-10-26') for s in (5818, 7745, 4747, 8092)})
+        self.assertEqual(work[5818, '2026-10-26'], REFRESHABLE)
+        manual[5818, '2026-10-26'].add('slot_fill')
+        self.assertNotIn('slot_fill', work_for_date(manual, '2026-10-26')[5818, '2026-10-26'])
     def test_real_manual_history_has_correct_shop_start_and_preserves_entered_values(self):
         manual = manual_history(Path(__file__).resolve().parents[1])
         work = needed({'records': []}, manual, '2026-10-26')
