@@ -430,3 +430,20 @@ ID, принадлежность магазину и признаки непол
 проверенный источник при следующих запусках обновления. Ошибка источника оставляет
 эту метрику без значения, а заполнение слотов продолжает рассчитываться.
 
+
+### OpenVPN candidate preparation
+
+Run `python3 tools/prepare_openvpn.py` on the VPS after privately uploading
+`/root/courier-openvpn.ovpn`. It writes `/root/courier-openvpn-candidate.conf`
+with mode 600; it never starts a VPN, changes the collector or enables services.
+Only the currently resolved IPv4 addresses of the schedules API receive routes.
+Pushed routes/DNS are disabled with `route-nopull`; original static routes and
+default-route options are removed. Unknown directives, executable hooks and
+external certificate/key paths require review and are rejected without values.
+
+An authentication file, if required, must be supplied privately. Do not start
+the same VPN certificate simultaneously on the Mac and VPS without confirming
+concurrent-session support. Test connectivity, SSH and authenticated API reads
+before switching the collector to direct access. Corporate DNS and routes for
+Superset/Power BI are deliberately outside this initial candidate. Address
+changes require regeneration and verification of the candidate routes.
