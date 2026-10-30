@@ -2,10 +2,10 @@ from pathlib import Path
 import sys
 import json
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 import urllib.error
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from superset_access import api, NoRedirect, login_diagnostic
+from superset_access import api, NoRedirect, login_diagnostic, check_protected_endpoints
 
 
 class SupersetAccessTests(unittest.TestCase):
@@ -39,3 +39,20 @@ class LoginDiagnosticTests(unittest.TestCase):
     def test_csrf_category_without_raw_message(self):
         self.assertTrue(login_diagnostic({'message': 'CSRF private cookie'})['csrf_related'])
         self.assertEqual(login_diagnostic(None)['validation_fields'], [])
+
+
+class ProtectedEndpointTests(unittest.TestCase):
+    @patch('superset_access.api')
+    def test_identity_failure_does_not_skip_dataset(self, call):
+        call.side_effect = [(401, {'message': 'private'}), (200, {'result': 'private-csrf'}),
+                            (200, {'result': {'id': 6856}})]
+        opener = MagicMock(); opener.addheaders = []
+        with patch('builtins.print') as output:
+            self.assertTrue(check_protected_endpoints(opener, 'private-token'))
+        self.assertEqual(call.call_count, 3)
+        self.assertNotIn('private', str(output.call_args_list))
+
+    @patch('superset_access.api', return_value=(401, {'message': 'unauthorized'}))
+    def test_all_protected_failures_not_authenticated(self, call):
+        with patch('builtins.print'):
+            self.assertFalse(check_protected_endpoints(MagicMock(), 'private-token'))

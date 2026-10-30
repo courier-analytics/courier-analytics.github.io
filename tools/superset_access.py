@@ -19,7 +19,8 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 
 def api(opener, path, payload=None, token=None):
-    headers = {'Accept': 'application/json'}
+    headers = {'Accept': 'application/json', 'Referer': BASE + '/',
+               'User-Agent': 'courier-analytics-superset/1.0'}
     body = None
     if payload is not None:
         headers['Content-Type'] = 'application/json'
@@ -49,6 +50,30 @@ def login_diagnostic(data):
             'csrf_related': 'csrf' in json.dumps(data, ensure_ascii=True).lower()}
 
 
+def check_protected_endpoints(opener, token):
+    status, me = api(opener, '/api/v1/me/', token=token)
+    print('Superset authenticated identity HTTP: ' + str(status), flush=True)
+    identity_ok = status == 200 and isinstance(me, dict) and isinstance(me.get('result'), dict)
+    status, csrf = api(opener, '/api/v1/security/csrf_token/', token=token)
+    print('Superset authenticated CSRF HTTP: ' + str(status), flush=True)
+    csrf_ok = status == 200 and isinstance(csrf, dict) and isinstance(csrf.get('result'), str) and bool(csrf['result'])
+    if csrf_ok:
+        opener.addheaders = list(opener.addheaders) + [('X-CSRFToken', csrf['result'])]
+    status, dataset = api(opener, '/api/v1/dataset/6856', token=token)
+    print('Schedule dataset 6856 metadata HTTP: ' + str(status), flush=True)
+    dataset_ok = status == 200 and isinstance(dataset, dict) and isinstance(dataset.get('result'), dict)
+    print('Dataset metadata access: ' + ('confirmed' if dataset_ok else 'not confirmed'), flush=True)
+    for label, response in (('identity', me), ('csrf', csrf), ('dataset', dataset)):
+        text = json.dumps(response).lower()
+        print('Safe token diagnostic: ' + json.dumps({
+            'endpoint': label, 'expired_reported': 'expired' in text,
+            'signature_error_reported': 'signature' in text,
+            'missing_authorization_reported': 'missing authorization' in text,
+            'subject_error_reported': 'subject must be' in text}), flush=True)
+    print('No tokens, personal data or dataset contents printed. Nothing published.', flush=True)
+    return identity_ok or csrf_ok or dataset_ok
+
+
 def check_login(provider_override=None):
     try:
         if CREDENTIALS.stat().st_mode & 0o077:
@@ -68,14 +93,7 @@ def check_login(provider_override=None):
         if status != 200 or not isinstance(data, dict) or not isinstance(data.get('access_token'), str) or not data['access_token']:
             return False
         token = data['access_token']
-        status, me = api(opener, '/api/v1/me/', token=token)
-        print('Superset authenticated identity HTTP: ' + str(status), flush=True)
-        if status != 200 or not isinstance(me, dict) or not isinstance(me.get('result'), dict):
-            return False
-        status, _ = api(opener, '/api/v1/dataset/6856', token=token)
-        print('Schedule dataset 6856 metadata HTTP: ' + str(status), flush=True)
-        print('No tokens, personal data or dataset contents printed. Nothing published.', flush=True)
-        return True
+        return check_protected_endpoints(opener, token)
     except (OSError, ValueError, KeyError, TypeError):
         print('Superset check failed: file, network, TLS or response format; details hidden.', flush=True)
         return False
