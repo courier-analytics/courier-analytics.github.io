@@ -74,7 +74,7 @@
 </head>
 <body>
 <main class="shell">
-  <nav aria-label="Выбор даркстора" class="store-picker"><label for="storeSelect">Даркстор</label><select id="storeSelect" aria-label="Выбрать даркстор"><option value="5818">ДС 5818</option><option value="7745" selected>ДС 7745</option><option value="4747">ДС 4747</option><option value="8092">ДС 8092</option></select></nav>
+  <nav aria-label="Выбор даркстора" class="store-picker"><label for="storeSelect">Даркстор</label><select id="storeSelect" aria-label="Выбрать даркстор"><option value="5818">ДС 5818</option><option value="7745" selected>ДС 7745</option></select></nav>
   <div class="eyebrow"><span class="mark" aria-hidden="true"></span> Курьерская служба · ДС 7745</div>
   <header>
     <div>
@@ -234,7 +234,7 @@ async function copyLink(){
     notify("Ссылка скопирована");
   }catch(e){notify("Скопируйте адрес из строки браузера");}
 }
-document.getElementById("storeSelect").addEventListener("change",function(e){window.location.href=({"5818":"index.html","7745":"7745.html","4747":"4747.html","8092":"8092.html"})[e.target.value]||"index.html";});
+document.getElementById("storeSelect").addEventListener("change",function(e){window.location.href=({"5818":"index.html","7745":"7745.html"})[e.target.value]||"index.html";});
 render();
 document.getElementById("downloadCsv").addEventListener("click",downloadCsv);
 document.getElementById("copyLink").addEventListener("click",copyLink);
