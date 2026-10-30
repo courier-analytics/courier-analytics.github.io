@@ -33,6 +33,7 @@ def health_probe(address):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check-login', action='store_true', help='Verify saved Superset credentials while VPN is connected')
     parser.add_argument('--profile', type=Path, default=Path('/root/courier-openvpn-tcp.ovpn'))
     parser.add_argument('--auth', type=Path, default=Path('/root/courier-openvpn.auth'))
     args = parser.parse_args()
@@ -81,6 +82,10 @@ def main():
                 print(json.dumps(result), flush=True)
             success = bool(probes) and all(p['curl_exit'] == 0 and p['http_status'] == '200' for p in probes)
             print('Superset health: ' + ('PASSED' if success else 'not confirmed'))
+            if success and args.check_login:
+                from superset_access import check_login
+                success = check_login()
+                print('Superset authentication: ' + ('PASSED' if success else 'not confirmed'))
             return 0 if success else 1
         finally:
             if worker.poll() is None:
