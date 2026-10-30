@@ -33,6 +33,7 @@ def health_probe(address):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--provider', choices=('ldap', 'db'), help='Override Superset provider for this test only')
     parser.add_argument('--check-login', action='store_true', help='Verify saved Superset credentials while VPN is connected')
     parser.add_argument('--profile', type=Path, default=Path('/root/courier-openvpn-tcp.ovpn'))
     parser.add_argument('--auth', type=Path, default=Path('/root/courier-openvpn.auth'))
@@ -84,7 +85,7 @@ def main():
             print('Superset health: ' + ('PASSED' if success else 'not confirmed'))
             if success and args.check_login:
                 from superset_access import check_login
-                success = check_login()
+                success = check_login(args.provider)
                 print('Superset authentication: ' + ('PASSED' if success else 'not confirmed'))
             return 0 if success else 1
         finally:

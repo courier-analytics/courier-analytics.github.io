@@ -31,16 +31,30 @@ def api(opener, path, payload=None, token=None):
         with opener.open(request, timeout=12) as response:
             return response.status, json.load(response)
     except urllib.error.HTTPError as error:
-        error.close()
-        return error.code, None
+        try:
+            data = json.loads(error.read(65536))
+        except (ValueError, OSError, TypeError):
+            data = None
+        finally:
+            error.close()
+        return error.code, data
 
 
-def check_login():
+def login_diagnostic(data):
+    # Return categories only, never server messages (may echo submitted credentials).
+    message = data.get('message') if isinstance(data, dict) else None
+    fields = [key for key in ('provider', 'username', 'password', 'refresh')
+              if isinstance(message, dict) and key in message]
+    return {'validation_fields': fields,
+            'csrf_related': 'csrf' in json.dumps(data, ensure_ascii=True).lower()}
+
+
+def check_login(provider_override=None):
     try:
         if CREDENTIALS.stat().st_mode & 0o077:
             raise ValueError('Credential permissions must be 600')
         saved = json.loads(CREDENTIALS.read_text())
-        provider = saved['provider']
+        provider = provider_override or saved['provider']
         if provider not in ('ldap', 'db'):
             raise ValueError('Invalid authentication provider')
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({}),
@@ -48,7 +62,9 @@ def check_login():
         status, data = api(opener, '/api/v1/security/login', {
             'username': saved['username'], 'password': saved['password'],
             'provider': provider, 'refresh': False})
-        print('Superset login HTTP: ' + str(status), flush=True)
+        print('Superset login HTTP: ' + str(status) + '; provider=' + provider, flush=True)
+        if status != 200:
+            print('Safe login diagnostic: ' + json.dumps(login_diagnostic(data)), flush=True)
         if status != 200 or not isinstance(data, dict) or not isinstance(data.get('access_token'), str) or not data['access_token']:
             return False
         token = data['access_token']
@@ -71,7 +87,7 @@ def main():
     parser.add_argument('--provider', choices=('ldap', 'db'), default='ldap')
     args = parser.parse_args()
     if not args.save:
-        raise SystemExit(0 if check_login() else 1)
+        raise SystemExit(0 if check_login(args.provider) else 1)
     username = getpass.getpass('Superset username (hidden): ').strip()
     password = getpass.getpass('Superset password (hidden): ')
     if not username or not password or any(c in username + password for c in '\r\n'):

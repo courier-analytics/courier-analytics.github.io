@@ -1,10 +1,11 @@
 from pathlib import Path
 import sys
+import json
 import unittest
 from unittest.mock import MagicMock
 import urllib.error
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from superset_access import api, NoRedirect
+from superset_access import api, NoRedirect, login_diagnostic
 
 
 class SupersetAccessTests(unittest.TestCase):
@@ -26,3 +27,15 @@ class SupersetAccessTests(unittest.TestCase):
 
     def test_redirect_does_not_forward_credentials(self):
         self.assertIsNone(NoRedirect().redirect_request(None, None, 302, '', {}, 'http://other.example'))
+
+
+class LoginDiagnosticTests(unittest.TestCase):
+    def test_provider_validation_without_echoing_secrets(self):
+        diagnostic = login_diagnostic({'message': {'provider': ['must be db; private-password'],
+                                                  'username': ['private-login']}})
+        self.assertEqual(diagnostic['validation_fields'], ['provider', 'username'])
+        self.assertNotIn('private', json.dumps(diagnostic))
+
+    def test_csrf_category_without_raw_message(self):
+        self.assertTrue(login_diagnostic({'message': 'CSRF private cookie'})['csrf_related'])
+        self.assertEqual(login_diagnostic(None)['validation_fields'], [])
