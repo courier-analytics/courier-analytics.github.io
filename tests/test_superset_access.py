@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 import urllib.error
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from superset_access import api, NoRedirect, login_diagnostic, check_protected_endpoints
+from superset_access import api, NoRedirect, login_diagnostic, check_protected_endpoints, dataset_structure
 
 
 class SupersetAccessTests(unittest.TestCase):
@@ -56,3 +56,15 @@ class ProtectedEndpointTests(unittest.TestCase):
     def test_all_protected_failures_not_authenticated(self, call):
         with patch('builtins.print'):
             self.assertFalse(check_protected_endpoints(MagicMock(), 'private-token'))
+
+
+class DatasetSchemaTests(unittest.TestCase):
+    def test_schema_excludes_sql_rows_and_owner_identity(self):
+        source = {'table_name': 'schedule', 'sql': 'private-sql', 'owners': ['private-owner'],
+                  'data': ['private-row'], 'columns': [{'column_name': 'shift_end', 'type': 'DATETIME',
+                  'is_dttm': True, 'expression': 'private-expression'}],
+                  'metrics': [{'metric_name': 'count', 'expression': 'private-sql'}]}
+        result = dataset_structure(6856, source)
+        self.assertNotIn('private', json.dumps(result))
+        self.assertEqual(result['columns'][0]['name'], 'shift_end')
+        self.assertEqual(result['metrics'], ['count'])

@@ -50,7 +50,37 @@ def login_diagnostic(data):
             'csrf_related': 'csrf' in json.dumps(data, ensure_ascii=True).lower()}
 
 
-def check_protected_endpoints(opener, token):
+def dataset_structure(identity, result):
+    # Schema only. Never return rows, SQL, owners or connection details.
+    columns = result.get('columns') if isinstance(result.get('columns'), list) else []
+    metrics = result.get('metrics') if isinstance(result.get('metrics'), list) else []
+    return {'dataset_id': identity, 'table_name': result.get('table_name'),
+            'columns': [{'name': c.get('column_name'), 'type': c.get('type'),
+                         'is_datetime': bool(c.get('is_dttm'))} for c in columns if isinstance(c, dict)],
+            'metrics': [m.get('metric_name') for m in metrics if isinstance(m, dict)]}
+
+
+def inspect_metadata(opener, token, schedule=None):
+    structures = []
+    for identity in (6856, 6802, 4778):
+        if identity == 6856 and schedule is not None:
+            status, data = 200, schedule
+        else:
+            status, data = api(opener, '/api/v1/dataset/' + str(identity), token=token)
+        result = data.get('result') if isinstance(data, dict) else None
+        if status != 200 or not isinstance(result, dict):
+            print('Dataset ' + str(identity) + ' metadata HTTP: ' + str(status), flush=True)
+            continue
+        schema = dataset_structure(identity, result)
+        structures.append(schema)
+        print('Dataset schema: ' + json.dumps(schema, ensure_ascii=False), flush=True)
+    folder = Path('/opt/courier-analytics/private')
+    folder.mkdir(parents=True, exist_ok=True, mode=0o700)
+    private_write(folder / 'superset-dataset-schema.json', json.dumps(structures, ensure_ascii=False, indent=2))
+    print('Schema saved privately. No data rows queried; metric formulas not yet validated.', flush=True)
+
+
+def check_protected_endpoints(opener, token, inspect_datasets=False):
     status, me = api(opener, '/api/v1/me/', token=token)
     print('Superset authenticated identity HTTP: ' + str(status), flush=True)
     identity_ok = status == 200 and isinstance(me, dict) and isinstance(me.get('result'), dict)
@@ -71,10 +101,12 @@ def check_protected_endpoints(opener, token):
             'missing_authorization_reported': 'missing authorization' in text,
             'subject_error_reported': 'subject must be' in text}), flush=True)
     print('No tokens, personal data or dataset contents printed. Nothing published.', flush=True)
+    if inspect_datasets and (csrf_ok or dataset_ok):
+        inspect_metadata(opener, token, dataset if dataset_ok else None)
     return identity_ok or csrf_ok or dataset_ok
 
 
-def check_login(provider_override=None):
+def check_login(provider_override=None, inspect_datasets=False):
     try:
         if CREDENTIALS.stat().st_mode & 0o077:
             raise ValueError('Credential permissions must be 600')
@@ -93,7 +125,7 @@ def check_login(provider_override=None):
         if status != 200 or not isinstance(data, dict) or not isinstance(data.get('access_token'), str) or not data['access_token']:
             return False
         token = data['access_token']
-        return check_protected_endpoints(opener, token)
+        return check_protected_endpoints(opener, token, inspect_datasets)
     except (OSError, ValueError, KeyError, TypeError):
         print('Superset check failed: file, network, TLS or response format; details hidden.', flush=True)
         return False
