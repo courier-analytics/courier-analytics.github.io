@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 import unittest
-from unittest.mock import Mock
+from unittest.mock import MagicMock
 import urllib.error
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from superset_access import api, NoRedirect
@@ -9,7 +9,7 @@ from superset_access import api, NoRedirect
 
 class SupersetAccessTests(unittest.TestCase):
     def test_login_payload_not_in_url_and_https_kept(self):
-        opener = Mock()
+        opener = MagicMock()
         opener.open.return_value.__enter__.return_value.status = 200
         opener.open.return_value.__enter__.return_value.read.return_value = b'{"access_token":"private"}'
         code, data = api(opener, '/api/v1/security/login', {'password': 'secret'})
@@ -20,7 +20,7 @@ class SupersetAccessTests(unittest.TestCase):
         self.assertEqual(data['access_token'], 'private')
 
     def test_http_error_body_not_exposed(self):
-        opener = Mock()
+        opener = MagicMock()
         opener.open.side_effect = urllib.error.HTTPError('url', 401, 'hidden', {}, None)
         self.assertEqual(api(opener, '/api/v1/me/'), (401, None))
 
