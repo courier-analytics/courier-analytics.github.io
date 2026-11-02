@@ -41,6 +41,34 @@ class PlanTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 load_plan(path, '2026-11-01')
 
+    def test_transient_connection_retry_stays_inside_capture_window(self):
+        import json
+        from unittest.mock import patch
+        from capture_plan import collect
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            now = lambda: datetime.fromisoformat('2026-10-31T20:59:20+00:00')
+            data = {'scope_config': {}, 'shops': [{'shop_id': 5818, 'slots': []},
+                                                     {'shop_id': 7745, 'slots': []}]}
+            def success(*args, **kwargs):
+                (folder/'all-shops-observations.json').write_text(json.dumps(data))
+            calls = []
+            def flaky(*args, **kwargs):
+                calls.append(1)
+                if len(calls) == 1:
+                    raise RuntimeError('API connection failed (curl 35)')
+                success()
+            with patch('capture_plan.audit', side_effect=flaky) as audit:
+                result = collect('2026-11-01', 'hidden', 'socks5h://127.0.0.1:18081', folder,
+                                 now=now, pause=lambda seconds: None)
+                self.assertTrue(result['verified'])
+                self.assertEqual(audit.call_count, 2)
+            with patch('capture_plan.audit') as audit:
+                with self.assertRaises(ValueError):
+                    collect('2026-11-01', 'hidden', '', folder,
+                            now=lambda: datetime.fromisoformat('2026-10-31T21:00:00+00:00'))
+                audit.assert_not_called()
+
     def test_freeze_contains_ids_not_personal_details(self):
         data = {'scope_config': {}, 'shops': [{'shop_id': 5818, 'slots': [{
             'date': '2026-10-27', 'slot_id': 1, 'slot_type': 'limited',
