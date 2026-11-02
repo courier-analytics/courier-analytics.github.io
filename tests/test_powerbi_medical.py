@@ -64,6 +64,54 @@ class PowerBIMedicalTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             build_request(source)
 
+    def test_inactive_filter_cards_do_not_exclude_an_aggregate_table(self):
+        source = definition()
+        inactive = [{'name': 'filter-card', 'expression': {'Column': {
+            'Expression': {'SourceRef': {'Entity': 'main_mc06'}}, 'Property': 'format'}},
+            'type': 'Categorical'}]
+        source['definition']['exploration']['sections'][0]['filters'] = json.dumps(inactive)
+        source['definition']['exploration']['sections'][0]['visualContainers'][0]['filters'] = json.dumps(inactive)
+        request = build_request(source)
+        query = request['queries'][0]['Query']['Commands'][0]['SemanticQueryDataShapeCommand']['Query']
+        self.assertNotIn('Where', query)
+
+    def test_prototype_is_used_when_optional_compiled_query_is_absent(self):
+        source = definition()
+        visual = source['definition']['exploration']['sections'][0]['visualContainers'][0]
+        config = json.loads(visual['config'])
+        config['singleVisual']['prototypeQuery'] = json.loads(visual['query'])['Commands'][0]['SemanticQueryDataShapeCommand']['Query']
+        visual['config'] = json.dumps(config)
+        visual['query'] = None
+        diagnostic = {}
+        request = build_request(source, diagnostic)
+        self.assertEqual(diagnostic['query_source'], 'prototype')
+        self.assertEqual(len(request['queries'][0]['Query']['Commands'][0]['SemanticQueryDataShapeCommand']['Query']['Select']), 5)
+
+    def test_format_filter_is_preserved_with_source_alias_rewritten(self):
+        source = definition()
+        scoped = {'Version': 2, 'From': [{'Name': 'different', 'Entity': 'main_mc06', 'Type': 0}],
+                  'Where': [{'Condition': {'Comparison': {'ComparisonKind': 0,
+                      'Left': {'Column': {'Expression': {'SourceRef': {'Source': 'different'}}, 'Property': 'format'}},
+                      'Right': {'Literal': {'Value': "'DS'"}}}}}]}
+        source['definition']['exploration']['filters'] = json.dumps([{'filter': scoped}])
+        original = copy.deepcopy(source)
+        diagnostic = {}
+        query = build_request(source, diagnostic)['queries'][0]['Query']['Commands'][0]['SemanticQueryDataShapeCommand']['Query']
+        self.assertEqual(query['Where'][0]['Condition']['Comparison']['Left']['Column']['Expression']['SourceRef'], {'Source': 'a'})
+        self.assertEqual(query['Where'][0]['Condition']['Comparison']['Right']['Literal']['Value'], "'DS'")
+        self.assertEqual(diagnostic['scope_fields'], ['format'])
+        self.assertEqual(source, original)
+
+    def test_filters_on_people_or_medical_status_cannot_change_coverage_denominator(self):
+        for prop in ('name', 'Есть ЛМК', 'ЛМК просрочена_'):
+            source = definition()
+            scope = {'Where': [{'Condition': {'In': {'Expressions': [{'Column': {
+                'Expression': {'SourceRef': {'Entity': 'main_mc06'}}, 'Property': prop}}],
+                'Values': [[{'Literal': {'Value': "'value'"}}]]}}}]}
+            source['definition']['exploration']['filters'] = json.dumps([{'filter': scope}])
+            with self.subTest(prop=prop), self.assertRaises(ValueError):
+                build_request(source)
+
     def test_decodes_dictionary_and_repeat_masks_before_calculating_valid_books(self):
         rows = decode_rows(response(), ['field' + str(i) for i in range(5)])
         self.assertEqual(rows, [['ДС 5818', 100, 90, 10, .2], ['ДС 7745', 100, 90, 5, .15]])

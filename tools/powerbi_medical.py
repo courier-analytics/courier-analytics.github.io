@@ -23,16 +23,84 @@ def normalized(value):
     return ' '.join(value.split()) if isinstance(value, str) else None
 
 
-def has_filters(value):
+def filter_queries(value):
     if value in (None, '', [], {}):
-        return False
-    result = parsed(value)
-    if result is None:
-        raise ValueError('Report filter encoding needs review')
-    return bool(result)
+        return []
+    if isinstance(value, str):
+        try:
+            value = json.loads(value)
+        except ValueError:
+            raise ValueError('Report filter encoding needs review')
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return [query for item in value for query in filter_queries(item)]
+    if not isinstance(value, dict):
+        raise ValueError('Unexpected report filter structure')
+    if 'filter' in value:
+        return filter_queries(value['filter'])
+    if 'Where' in value or set(value).issubset({'Version', 'From'}):
+        if value.get('Where') and not isinstance(value['Where'], list):
+            raise ValueError('Unexpected report filter conditions')
+        return [value] if value.get('Where') else []
+    if 'Condition' in value:
+        return [{'From': [], 'Where': [value]}]
+    metadata_keys = {'name', 'expression', 'type', 'howCreated', 'isHiddenInViewMode',
+                     'isLockedInViewMode', 'objects', 'restatement', 'displayName'}
+    if 'expression' in value and set(value).issubset(metadata_keys):
+        # A filter-pane field/card without a semantic filter is not an active predicate.
+        return []
+    raise ValueError('Unrecognized active report filter; no predicates ignored')
 
 
-def build_request(saved):
+def scoped_conditions(query, scopes):
+    root_sources = {item['Name']: item['Entity'] for item in query['From']}
+    root_aliases = {entity: alias for alias, entity in root_sources.items()}
+    predicates = []
+    field_names = set()
+    column_count = 0
+    for scope in [{'From': query['From'], 'Where': query.get('Where', [])}] + scopes:
+        aliases = {item['Name']: item['Entity'] for item in scope.get('From', [])}
+        if set(aliases.values()) - set(root_aliases):
+            raise ValueError('Unknown entity in medical report scope')
+
+        def rewrite(value, depth=0):
+            nonlocal column_count
+            if depth > 40:
+                raise ValueError('Report scope nesting exceeds limit')
+            if isinstance(value, list):
+                return [rewrite(item, depth + 1) for item in value]
+            if not isinstance(value, dict):
+                return value
+            if 'Measure' in value:
+                raise ValueError('Aggregate measure filters require explicit denominator review')
+            if 'Column' in value:
+                prop = value['Column'].get('Property')
+                if prop not in ('name_TT', 'format'):
+                    raise ValueError('Medical coverage scope must not filter individual couriers or medical status')
+                field_names.add(prop)
+                column_count += 1
+            result = {}
+            for key, item in value.items():
+                if key == 'SourceRef':
+                    entity = item.get('Entity') or aliases.get(item.get('Source')) or root_sources.get(item.get('Source'))
+                    if entity != 'main_mc06':
+                        raise ValueError('Unknown source reference in medical report scope')
+                    result[key] = {'Source': root_aliases[entity]}
+                else:
+                    result[key] = rewrite(item, depth + 1)
+            return result
+
+        for predicate in scope.get('Where') or []:
+            fields_before = column_count
+            rewritten = rewrite(predicate)
+            if column_count == fields_before:
+                raise ValueError('Report scope has no supported shop or format field')
+            predicates.append(rewritten)
+    return predicates, sorted(field_names)
+
+
+def build_request(saved, diagnostic=None):
     if not isinstance(saved, dict) or saved.get('literal_values_redacted'):
         raise ValueError('Use the original private report definition')
     UUID(saved['report_id'])
@@ -44,28 +112,44 @@ def build_request(saved):
     if not isinstance(model_id, (str, int)) or isinstance(model_id, bool):
         raise ValueError('Invalid report model identity')
     exploration = parsed(definition['exploration'])
-    if has_filters(exploration.get('filters', [])):
-        raise ValueError('Report-level filters need review before collecting aggregates')
+    report_scopes = filter_queries(exploration.get('filters', []))
+    skipped = {}
+    def skip(reason):
+        skipped[reason] = skipped.get(reason, 0) + 1
     for section in exploration.get('sections', []):
-        if has_filters(section.get('filters', [])):
-            continue
+        section_scopes = report_scopes + filter_queries(section.get('filters', []))
         for visual in section.get('visualContainers', []):
             config = parsed(visual.get('config'))
             query_container = parsed(visual.get('query'))
-            if not isinstance(config, dict) or not isinstance(query_container, dict):
+            if not isinstance(config, dict):
+                skip('config_missing')
                 continue
             single = config.get('singleVisual', {})
-            if single.get('visualType') != 'tableEx' or has_filters(visual.get('filters', [])) or has_filters(config.get('filters', [])):
+            if not isinstance(single, dict) or single.get('visualType') not in ('tableEx', 'pivotTable'):
+                skip('not_aggregate_table')
                 continue
-            commands = query_container.get('Commands', [])
-            if len(commands) != 1 or 'SemanticQueryDataShapeCommand' not in commands[0]:
+            commands = query_container.get('Commands', []) if isinstance(query_container, dict) else []
+            query = None
+            query_source = 'prototype'
+            if len(commands) == 1 and isinstance(commands[0], dict):
+                source_command = commands[0].get('SemanticQueryDataShapeCommand')
+                query = source_command.get('Query') if isinstance(source_command, dict) else None
+                if isinstance(query, dict):
+                    query_source = 'compiled'
+            if not isinstance(query, dict):
+                query = parsed(single.get('prototypeQuery'))
+            if not isinstance(query, dict):
+                skip('query_and_prototype_missing')
                 continue
-            query = commands[0]['SemanticQueryDataShapeCommand'].get('Query', {})
-            if query.get('Where'):
+            source_rows = query.get('From')
+            if not isinstance(source_rows, list) or len(source_rows) != 2 or any(
+                    not isinstance(item, dict) or not isinstance(item.get('Name'), str) or
+                    not isinstance(item.get('Entity'), str) or item.get('Type') != 0 for item in source_rows):
+                skip('unsupported_sources')
                 continue
-            sources = {item['Name']: item['Entity'] for item in query.get('From', [])}
-            if set(sources.values()) != {'main_mc06', 'Меры'} or any(
-                    item.get('Type') != 0 for item in query.get('From', [])):
+            sources = {item['Name']: item['Entity'] for item in source_rows}
+            if len(sources) != 2 or set(sources.values()) != {'main_mc06', 'Меры'}:
+                skip('unsupported_sources')
                 continue
             selected = {}
             for item in query.get('Select', []):
@@ -80,10 +164,20 @@ def build_request(saved):
                         raise ValueError('Duplicate required medical field')
                     selected[prop] = copy.deepcopy(item)
             if set(selected) != set(PROPERTIES):
+                skip('required_aggregate_fields_missing')
                 continue
+            scopes = section_scopes + filter_queries(visual.get('filters', [])) + filter_queries(config.get('filters', []))
+            where, scope_fields = scoped_conditions(query, scopes)
             aggregate_query = copy.deepcopy(query)
             aggregate_query['Select'] = [selected[prop] for prop in PROPERTIES]
             aggregate_query.pop('OrderBy', None)
+            if where:
+                aggregate_query['Where'] = where
+            else:
+                aggregate_query.pop('Where', None)
+            if diagnostic is not None:
+                diagnostic.update({'query_source': query_source, 'scope_predicates': len(where),
+                                   'scope_fields': scope_fields, 'selected_aggregate_columns': len(PROPERTIES)})
             command = {'Query': aggregate_query, 'Binding': {'Primary': {'Groupings': [
                 {'Projections': list(range(len(PROPERTIES)))}]}, 'DataReduction': {
                 'DataVolume': 3, 'Primary': {'Window': {'Count': WINDOW}}}, 'Version': 1},
@@ -91,7 +185,7 @@ def build_request(saved):
             return {'version': '1.0.0', 'modelId': model_id, 'queries': [
                 {'Query': {'Commands': [{'SemanticQueryDataShapeCommand': command}]}}],
                 'cancelQueries': []}
-    raise ValueError('No unfiltered medical aggregate table with the expected fields')
+    raise ValueError('No compatible medical aggregate table; selection diagnostics: ' + json.dumps(skipped))
 
 
 def query_request(address, credentials, folder, base_path, payload):
@@ -267,7 +361,9 @@ def response_shape(payload):
 
 def collect_candidate(address, credentials, folder, private_folder, shops=SHOPS):
     definition = json.loads((private_folder / 'powerbi-report-definition.json').read_text())
-    request = build_request(definition)
+    diagnostic = {}
+    request = build_request(definition, diagnostic)
+    print('Medical aggregate source context: ' + json.dumps(diagnostic, ensure_ascii=False), flush=True)
     status, data = query_request(address, credentials, folder, definition['base_path'], request)
     print('Power BI aggregate query: ' + json.dumps({**status, 'json_received': isinstance(data, dict)}), flush=True)
     if status['curl_exit'] or status['http_status'] != 200 or not isinstance(data, dict):
