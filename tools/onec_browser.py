@@ -6,13 +6,19 @@ import os
 from pathlib import Path
 import stat
 import re
+import sys
 from urllib.parse import urlsplit
 
-from onec_access import HOST, PATH
-from powerbi_access import corporate_interface
 from prepare_openvpn import private_write
 
+HOST = 'couriers.int.vkusvill.ru'
+PATH = '/couriers/ru_RU/'
 CREDENTIALS = Path('/root/courier-onec.json')
+
+
+def corporate_interface(address):
+    from powerbi_access import corporate_interface as resolve
+    return resolve(address)
 
 
 def save_credentials(path=CREDENTIALS, replace=False):
@@ -116,15 +122,22 @@ def submit_login(page, credentials):
     return {**matched, 'matches_at_submit': True, 'submit_method': 'native_keyboard_enter'}
 
 
-def check_login(address, private=Path('/opt/courier-analytics/private')):
+def check_login(address, private=Path('/opt/courier-analytics/private'), local_credentials=None):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
-    credentials = load_credentials()
-    corporate_interface(address)
+    local_mac = local_credentials is not None
+    if local_mac and (sys.platform != 'darwin' or address != '10.210.254.19'):
+        raise ValueError('Local comparison requires the authorized Mac and fixed 1C address')
+    credentials = local_credentials if local_mac else load_credentials()
+    if not local_mac:
+        corporate_interface(address)
     private.mkdir(parents=True, exist_ok=True)
     result = {'login_submitted': False, 'authenticated': False, 'login_http_statuses': [],
               'two_factor_required': False, 'password_change_required': False}
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True, args=[
+        options = {'headless': not local_mac}
+        if local_mac:
+            options['executable_path'] = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+        browser = playwright.chromium.launch(**options, args=[
             '--no-proxy-server', '--disable-quic',
             '--host-resolver-rules=MAP '+HOST+' '+address])
         context = browser.new_context(service_workers='block', accept_downloads=False)
@@ -136,7 +149,8 @@ def check_login(address, private=Path('/opt/courier-analytics/private')):
                 route.abort()
                 return
             try:
-                corporate_interface(address)
+                if not local_mac:
+                    corporate_interface(address)
             except (ValueError, OSError):
                 route.abort()
                 return
@@ -189,6 +203,11 @@ def check_login(address, private=Path('/opt/courier-analytics/private')):
                 # full DOM, screenshots, response bodies or authentication tokens.
                 labels = ('Курьеры', 'Справочники', 'Сотрудники', 'Отчеты', 'Отчёты', 'Доставка')
                 result['navigation_labels'] = [text for text in labels if page.get_by_text(text, exact=True).count()]
+            elif local_mac:
+                print('Автоматический вход не завершился. Попробуйте обычный ручной вход в открытом окне Chrome. После этого вернитесь в Терминал и нажмите Enter. Не вводите здесь реквизиты.', flush=True)
+                input()
+                page.wait_for_timeout(1000)
+                result['manual_authenticated'] = bool(final_response) and not page.locator('#userPassword').is_visible()
         except BrowserTimeout:
             result['stage_timeout'] = True
         finally:
@@ -198,3 +217,17 @@ def check_login(address, private=Path('/opt/courier-analytics/private')):
     print('1C browser login: '+json.dumps(result, ensure_ascii=False), flush=True)
     print('Courier roster not queried; dashboard unchanged.', flush=True)
     return result['authenticated']
+
+
+if __name__ == '__main__':
+    import tempfile
+    if sys.platform != 'darwin':
+        raise SystemExit('This entry point is only for local Mac comparison')
+    username = getpass.getpass('1C username (hidden): ')
+    password = getpass.getpass('1C password (hidden): ')
+    try:
+        with tempfile.TemporaryDirectory(prefix='onec-local-check-') as directory:
+            check_login('10.210.254.19', Path(directory),
+                        local_credentials={'username': username, 'password': password})
+    except Exception:
+        raise SystemExit('Local browser comparison failed; private details hidden.') from None
