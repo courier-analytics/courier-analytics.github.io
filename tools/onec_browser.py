@@ -7,6 +7,7 @@ from pathlib import Path
 import stat
 import re
 import sys
+import subprocess
 from urllib.parse import urlsplit
 
 from prepare_openvpn import private_write
@@ -134,7 +135,51 @@ def wait_manual_login(page, completed, attempts=360):
     return False
 
 
-def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False):
+def compare_manual_inputs(page, expected, report):
+    if not page.url.startswith('https://' + HOST + PATH):
+        raise ValueError('Unexpected origin for manual input comparison')
+    page.locator('#userName').wait_for(state='visible', timeout=60000)
+    def receive(value):
+        keys = {'username_matches_vps', 'password_matches_vps'}
+        if isinstance(value, dict) and set(value) == keys and all(type(v) is bool for v in value.values()):
+            report['manual_input_vs_vps'] = value
+    page.expose_function('__courierReportMatch', receive)
+    page.evaluate('''expected => {
+        function compare(event) {
+            const enter = event.type === 'keydown' && event.key === 'Enter' &&
+                ['userName','userPassword'].includes(event.target.id);
+            const click = event.type === 'pointerdown' && event.target.closest('#okButton');
+            if (!enter && !click) return;
+            const user = document.querySelector('#userName');
+            const password = document.querySelector('#userPassword');
+            if (user && password) window.__courierReportMatch({
+                username_matches_vps: user.value === expected.username,
+                password_matches_vps: password.value === expected.password
+            });
+        }
+        document.addEventListener('keydown', compare, true);
+        document.addEventListener('pointerdown', compare, true);
+    }''', expected)
+
+
+def read_vps_credentials():
+    # The user's existing SSH connection authenticates on /dev/tty. Capture
+    # only stdout into memory; never echo or save the private JSON on the Mac.
+    response = subprocess.run(['ssh', '-o', 'StrictHostKeyChecking=yes',
+        '-o', 'ConnectTimeout=20',
+        '-o', 'ProxyCommand=nc -X 5 -x 127.0.0.1:10808 %h %p',
+        'root@147.90.10.158', 'cat /root/courier-onec.json'],
+        stdout=subprocess.PIPE, text=True, timeout=120)
+    if response.returncode:
+        raise ValueError('Could not read private VPS credentials for comparison')
+    saved = json.loads(response.stdout)
+    if not isinstance(saved, dict) or any(not isinstance(saved.get(k), str) or not saved[k]
+                                         for k in ('username', 'password')):
+        raise ValueError('Invalid private VPS credential format')
+    return {k: saved[k] for k in ('username', 'password')}
+
+
+def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     if local_mac and (sys.platform != 'darwin' or address != '10.210.254.19'):
         raise ValueError('Local comparison requires the authorized Mac and fixed 1C address')
@@ -202,6 +247,8 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
         try:
             page.goto('https://'+HOST+PATH, wait_until='domcontentloaded', timeout=60000)
             if local_mac:
+                if comparison_credentials is not None:
+                    compare_manual_inputs(page, comparison_credentials, result)
                 print('Открылось отдельное окно Chrome. Войдите в 1С вручную. Проверка подождёт до трёх минут; в Терминале ничего нажимать не нужно.', flush=True)
                 wait_manual_login(page, lambda: bool(final_response))
                 result['login_submitted'] = bool(result['login_http_statuses'])
@@ -241,10 +288,18 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
 
 if __name__ == '__main__':
     import tempfile
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--compare-vps', action='store_true')
+    args = parser.parse_args()
     if sys.platform != 'darwin':
         raise SystemExit('This entry point is only for local Mac comparison')
     try:
+        expected = None
+        if args.compare_vps:
+            print('Сравнение с сохранёнными реквизитами VPS. SSH запросит пароль сервера VPS. Пароль 1С вводите затем только в открытом окне браузера.', flush=True)
+            expected = read_vps_credentials()
         with tempfile.TemporaryDirectory(prefix='onec-local-check-') as directory:
-            check_login('10.210.254.19', Path(directory), local_mac=True)
+            check_login('10.210.254.19', Path(directory), local_mac=True, comparison_credentials=expected)
     except Exception:
         raise SystemExit('Local browser comparison failed; private details hidden.') from None

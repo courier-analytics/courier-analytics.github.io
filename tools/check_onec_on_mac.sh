@@ -22,4 +22,4 @@ if [[ ! -x "$root/venv/bin/python" ]]; then
 fi
 "$root/venv/bin/python" -m pip install --quiet 'playwright>=1.48,<2'
 echo 'Откроется отдельное окно Chrome для ручного входа. Включите корпоративный VPN. В Терминале логин и пароль вводить не нужно.'
-exec "$root/venv/bin/python" "$root/onec_browser.py" </dev/tty
+exec "$root/venv/bin/python" "$root/onec_browser.py" "$@" </dev/tty

@@ -4,12 +4,38 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_browser import wait_manual_login
+from onec_browser import wait_manual_login, compare_manual_inputs
 
 
 @unittest.skipUnless(importlib.util.find_spec('playwright') and Path('/usr/lib/chromium/chromium').exists(),
                      'Optional local Chromium integration check')
 class ManualLoginEventsTests(unittest.TestCase):
+    def test_manual_credentials_compare_reports_only_equality_flags(self):
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(executable_path='/usr/lib/chromium/chromium',
+                                                 headless=True, args=['--no-sandbox'])
+            try:
+                page = browser.new_page()
+                page.route('**/*', lambda route: route.fulfill(content_type='text/html',
+                    body='<input id="userName"><input id="userPassword" type="password"><button id="okButton">Login</button>'))
+                page.goto('https://couriers.int.vkusvill.ru/couriers/ru_RU/')
+                report = {}
+                compare_manual_inputs(page, {'username': 'expected-user', 'password': 'expected-secret'}, report)
+                page.locator('#userName').fill('expected-user')
+                page.locator('#userPassword').fill('different-secret')
+                page.locator('#okButton').click()
+                page.wait_for_timeout(50)
+                self.assertEqual(report['manual_input_vs_vps'], {
+                    'username_matches_vps': True, 'password_matches_vps': False})
+                self.assertNotIn('secret', str(report))
+                page.locator('#userPassword').fill('expected-secret')
+                page.locator('#userPassword').press('Enter')
+                page.wait_for_timeout(50)
+                self.assertTrue(report['manual_input_vs_vps']['password_matches_vps'])
+            finally:
+                browser.close()
+
     def test_hidden_login_form_does_not_end_wait_before_final_server_response(self):
         from playwright.sync_api import sync_playwright
         with sync_playwright() as playwright:
