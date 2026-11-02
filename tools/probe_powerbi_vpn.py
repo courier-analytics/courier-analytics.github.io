@@ -76,8 +76,11 @@ def main():
     parser.add_argument('--shops', type=int, nargs='+', choices=(5818, 7745), default=[5818, 7745])
     parser.add_argument('--preflight', action='store_true', help='Check saved report structure locally before connecting; requires --collect-medical')
     parser.add_argument('--onec-probe', action='store_true', help='Inspect only the supplied 1C web login page; no authentication or courier queries')
+    parser.add_argument('--onec-assets', action='store_true', help='Collect static login form resources; requires --onec-probe')
     args = parser.parse_args()
     address = private_address(args.address)
+    if args.onec_assets and not args.onec_probe:
+        raise ValueError('--onec-assets requires --onec-probe')
     if args.onec_probe and any((args.check_login, args.save_login, args.replace_login,
                                args.inspect_model, args.collect_medical, args.preflight)):
         raise ValueError('1C page inspection cannot be combined with Power BI actions')
@@ -127,7 +130,7 @@ def main():
             print('VPN connected; only the specified corporate IPv4 is routed through it.', flush=True)
             if args.onec_probe:
                 from onec_access import inspect_page
-                return 0 if inspect_page(address, folder) else 1
+                return 0 if inspect_page(address, folder, assets=args.onec_assets) else 1
             results = [probe(address, scheme, path, folder) for scheme, path in
                        [('http', '/reports/'), ('http', REPORT_PATH),
                         ('http', '/reports/api/v2.0/PowerBIReports'), ('https', '/reports/')]]
