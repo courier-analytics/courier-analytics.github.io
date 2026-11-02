@@ -19,6 +19,10 @@ WINDOW = 5000
 SHOPS = (5818, 7745)
 
 
+class StaleMedicalScope(ValueError):
+    """The server confirmed this report-template entity no longer exists."""
+
+
 def normalized(value):
     return ' '.join(value.split()) if isinstance(value, str) else None
 
@@ -92,6 +96,8 @@ def scoped_conditions(query, scopes):
                 prop = value['Column'].get('Property')
                 ref = value['Column'].get('Expression', {}).get('SourceRef', {})
                 entity = ref.get('Entity') or aliases.get(ref.get('Source')) or root_sources.get(ref.get('Source'))
+                if entity == 'customer_complaint' and prop == 'tag':
+                    raise StaleMedicalScope('Server-rejected customer_complaint.tag scope')
                 if (entity, prop) not in {('main_mc06', 'name_TT'), ('main_mc06', 'format'),
                                          ('customer_complaint', 'tag')}:
                     label = entity if isinstance(entity, str) and len(entity) < 256 else '<unresolved>'
@@ -190,7 +196,13 @@ def build_request(saved, diagnostic=None):
                 continue
             scopes = section_scopes + filter_queries(visual.get('filters', [])) + filter_queries(config.get('filters', []))
             aggregate_query = copy.deepcopy(query)
-            where, scope_fields = scoped_conditions(aggregate_query, scopes)
+            try:
+                where, scope_fields = scoped_conditions(aggregate_query, scopes)
+            except StaleMedicalScope:
+                # Select another complete visual with its own scope. Never remove
+                # a predicate from the rejected visual or remap it to another table.
+                skip('server_rejected_customer_complaint_scope')
+                continue
             aggregate_query['Select'] = [selected[prop] for prop in PROPERTIES]
             aggregate_query.pop('OrderBy', None)
             if where:
@@ -341,6 +353,11 @@ def decode_rows(payload, select_names):
         raise ValueError('Unexpected query result envelope')
     data = results[0].get('result', {}).get('data', {})
     dsr = data.get('dsr', {})
+    for shape in dsr.get('DataShapes', []):
+        if isinstance(shape, dict) and 'odata.error' in shape:
+            metadata = query_error_metadata(shape['odata.error'])
+            raise ValueError('Power BI semantic query failed: ' +
+                             metadata.get('code', 'unrecognized_error'))
     datasets = dsr.get('DS', [])
     if not isinstance(datasets, list) or len(datasets) != 1:
         raise ValueError('Unexpected DSR dataset count')

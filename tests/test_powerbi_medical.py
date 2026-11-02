@@ -117,26 +117,33 @@ class PowerBIMedicalTests(unittest.TestCase):
         self.assertEqual(query['Where'][0]['Condition']['In']['Expressions'][0]['Column']['Expression']['SourceRef'], {'Source': 'a'})
         self.assertEqual(query['Where'][0]['Condition']['In']['Values'], [[{'Literal': {'Value': "'DS'"}}]])
 
-    def test_verified_section_tag_filter_preserves_its_real_entity_and_value(self):
+    def test_stale_section_is_skipped_without_removing_its_filter(self):
         source = definition()
+        sections = source['definition']['exploration']['sections']
+        clean = copy.deepcopy(sections[0])
         scope = {'From': [{'Name': 'c', 'Entity': 'customer_complaint', 'Type': 0}],
                  'Where': [{'Condition': {'In': {'Expressions': [{'Column': {
                      'Expression': {'SourceRef': {'Source': 'c'}}, 'Property': 'tag'}}],
                      'Values': [[{'Literal': {'Value': "'PRIVATE_TAG_VALUE'"}}]]}}}]}
-        source['definition']['exploration']['sections'][0]['filters'] = json.dumps([{'filter': scope}])
+        sections[0]['filters'] = json.dumps([{'filter': scope}])
         original = copy.deepcopy(source)
+        with self.assertRaisesRegex(ValueError, 'server_rejected_customer_complaint_scope'):
+            build_request(source)
+        sections.append(clean)
         diagnostic = {}
         request = build_request(source, diagnostic)
-        query = request['queries'][0]['Query']['Commands'][0]['SemanticQueryDataShapeCommand']['Query']
-        customer_sources = [item for item in query['From'] if item['Entity'] == 'customer_complaint']
-        self.assertEqual(len(customer_sources), 1)
-        column = query['Where'][0]['Condition']['In']['Expressions'][0]['Column']
-        self.assertEqual(column['Property'], 'tag')
-        self.assertEqual(column['Expression']['SourceRef']['Source'], customer_sources[0]['Name'])
-        self.assertEqual(query['Where'][0]['Condition']['In']['Values'], [[{'Literal': {'Value': "'PRIVATE_TAG_VALUE'"}}]])
-        self.assertEqual(diagnostic['scope_fields'], ['customer_complaint.tag'])
-        self.assertNotIn('PRIVATE_TAG_VALUE', json.dumps(diagnostic))
-        self.assertEqual(source, original)
+        self.assertNotIn('customer_complaint', json.dumps(request))
+        self.assertEqual(diagnostic['scope_predicates'], 0)
+        self.assertEqual(sections[0], original['definition']['exploration']['sections'][0])
+
+    def test_http_200_semantic_error_is_not_misreported_as_dataset_count(self):
+        payload = {'jobIds': ['0'], 'results': [{'jobId': '0', 'result': {'data': {
+            'dsr': {'DataShapes': [{'odata.error': {
+                'code': 'CouldNotResolveSemanticQueryDefinition',
+                'message': {'value': 'PRIVATE_ERROR_DETAIL'}}}]}}}}]}
+        with self.assertRaisesRegex(ValueError, 'Power BI semantic query failed: CouldNotResolveSemanticQueryDefinition') as error:
+            decode_rows(payload, list(PROPERTIES))
+        self.assertNotIn('PRIVATE_ERROR_DETAIL', str(error.exception))
 
     @patch('powerbi_medical.subprocess.run')
     def test_referenced_legacy_entity_is_rejected_with_private_offline_diagnostic(self, run):

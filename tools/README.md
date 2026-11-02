@@ -566,3 +566,10 @@ concurrent-session support. Test connectivity, SSH and authenticated API reads
 before switching the collector to direct access. Corporate DNS and routes for
 Superset/Power BI are deliberately outside this initial candidate. Address
 changes require regeneration and verification of the candidate routes.
+Medical query responses can contain semantic errors inside HTTP 200 results.
+The collector rejects `DataShapes[].odata.error` before decoding counts and logs
+only the error code. The live server confirmed that `customer_complaint.tag`
+references a missing entity. Visuals carrying that predicate are skipped as a
+whole; the collector may use another complete aggregate visual with its own
+scope. It never strips that predicate from the original visual. If no compatible
+visual remains, collection stops without creating a candidate or publishing.
