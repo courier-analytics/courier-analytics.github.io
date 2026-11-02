@@ -10,7 +10,7 @@ from dashboard_shops import TARGETS, TOOL_START
 
 METRIC_KEYS = {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late',
                'unplanned_work', 'planned_completion'}
-REASONS = {'zero_denominator', 'assigned_roster_not_verified', 'active_base_incomplete', 'completion_history_incomplete',
+REASONS = {'lateness_duration_missing', 'zero_denominator', 'assigned_roster_not_verified', 'active_base_incomplete', 'completion_history_incomplete',
            'bookings_outside_verified_roster', 'frozen_plan_missing',
            'planned_booking_missing_from_current_data', 'planned_slot_times_changed',
            'unknown_planned_shift_status', 'unknown_shift_status',

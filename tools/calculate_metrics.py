@@ -1,5 +1,6 @@
 """Daily unique-courier metrics with explicit roster and frozen-plan prerequisites."""
 from datetime import datetime, timedelta
+import re
 from zoneinfo import ZoneInfo
 
 from enrich_slots import source_status
@@ -36,6 +37,22 @@ def period(slot):
         end += 1440
     midnight = datetime.fromisoformat(slot['date']).replace(tzinfo=MOSCOW)
     return midnight+timedelta(minutes=start), midnight+timedelta(minutes=end)
+
+
+def late_15_minutes(slot, person):
+    start = timestamp(person.get('shift_start'))
+    if start is not None:
+        scheduled, _ = period(slot)
+        return start - scheduled >= timedelta(minutes=15)
+    if source_status(person.get('shift_status')) != 'late':
+        return False
+    text = person.get('shift_status', '').lower()
+    parts = re.findall(r'(\d+(?:[.,]\d+)?)\s*(час\w*|ч\b|мин\w*|м\b|сек\w*|с\b)', text)
+    if not parts:
+        return None
+    seconds = sum(float(n.replace(',', '.')) * (3600 if unit.startswith('ч') else
+                  60 if unit.startswith('м') else 1) for n, unit in parts)
+    return seconds >= 900
 
 
 def calculate(slots, day, roster=None, plan=None):
@@ -95,10 +112,13 @@ def calculate(slots, day, roster=None, plan=None):
         return output
     arrived_states = {'on_time', 'early', 'late'}
     arrived = {key[2] for key, state in states.items() if state in arrived_states}
-    late = {key[2] for key, state in states.items() if state == 'late'}
+    delays = [(key[2], late_15_minutes(*current[key])) for key, state in states.items() if state in arrived_states]
+    late = {identity for identity, qualifies in delays if qualifies is True}
     basis = 'frozen_plan_unique_couriers'
     output['planned_attendance'] = metric(len(arrived), len(planned), basis=basis)
-    output['planned_late'] = metric(len(late), len(arrived), basis=basis)
+    output['planned_late'] = (metric(reason='lateness_duration_missing', basis=basis)
+                              if any(value is None for _, value in delays) else
+                              metric(len(late), len(arrived), basis=basis))
     # The website's BM/zM flags leaving early when the gap exceeds 10 minutes.
     completion, unfinished_facts = {}, False
     for key, slot in expected.items():
@@ -127,9 +147,13 @@ def current_slot_attendance(limited):
         return {key: metric(reason='unknown_shift_status', basis=SLOT_ATTENDANCE_BASIS) for key in keys}
     booked = {identity for identity, _ in people}
     arrived = {identity for identity, state in people if state in ('on_time', 'early', 'late')}
-    late = {identity for identity, state in people if state == 'late'}
+    delays = [(c['courier_id'], late_15_minutes(slot, c)) for slot in limited for c in slot['couriers']
+              if source_status(c.get('shift_status')) in ('on_time', 'early', 'late')]
+    late = {identity for identity, qualifies in delays if qualifies is True}
     return {'planned_attendance': metric(len(arrived), len(booked), basis=SLOT_ATTENDANCE_BASIS),
-            'planned_late': metric(len(late), len(arrived), basis=SLOT_ATTENDANCE_BASIS)}
+            'planned_late': (metric(reason='lateness_duration_missing', basis=SLOT_ATTENDANCE_BASIS)
+                             if any(value is None for _, value in delays) else
+                             metric(len(late), len(arrived), basis=SLOT_ATTENDANCE_BASIS))}
 
 
 def current_slot_completion(limited, now=None):

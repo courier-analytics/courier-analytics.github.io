@@ -123,6 +123,8 @@ def select_rows(fresh, previous, manual, work, day):
                     for m in sorted(work[key]) if row['metrics'][m]['reason'] not in (
             (None, 'zero_denominator', 'shift_end_or_final_status_missing', 'unknown_shift_status')
             if m == 'planned_completion' else
+            (None, 'zero_denominator', 'lateness_duration_missing')
+            if m == 'planned_late' else
             (None, 'zero_denominator', 'assigned_roster_not_verified')
             if m == 'shift_marked' and day < TOOL_START.get(key[0], day) else
             (None, 'zero_denominator'))]

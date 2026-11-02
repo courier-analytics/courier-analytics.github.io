@@ -29,7 +29,8 @@ class MetricTests(unittest.TestCase):
                             slot(3, 'manual', [{'courier_id': '99', 'shift_status': 'Вышел'}])], '2026-10-26')
         self.assertEqual(result['planned_attendance']['numerator'], 6)
         self.assertEqual(result['planned_attendance']['denominator'], 6)
-        self.assertEqual(result['planned_late']['value'], 66.67)
+        self.assertEqual(result['planned_late']['value'], 0)
+        self.assertEqual(result['planned_late']['denominator'], 6)
 
     def test_pending_and_unknown_are_not_invented_arrivals(self):
         people = [{'courier_id': '1', 'shift_status': 'Вышел'},
@@ -73,6 +74,24 @@ class MetricTests(unittest.TestCase):
         self.assertEqual(result['planned_attendance']['reason'], 'planned_booking_missing_from_current_data')
         self.assertEqual(result['unplanned_work']['value'], 50)
         self.assertEqual(result['unplanned_work']['numerator'], 1)
+
+    def test_lateness_threshold_includes_15_minutes_and_excludes_14_59(self):
+        for duration, expected in [('14 минут', 0), ('15 минут', 100),
+                                   ('1 час 5 минут', 100), ('899 секунд', 0)]:
+            people = [{'courier_id': '1', 'shift_status': 'Опоздал на ' + duration, 'shift_end': None}]
+            current = slot(people=people)
+            for plan in (None, {'date': '2026-10-26', 'verified': True, 'slots': [deepcopy(current)]}):
+                with self.subTest(duration=duration, plan=bool(plan)):
+                    result = calculate([current], '2026-10-26', plan=plan)
+                    self.assertEqual(result['planned_late']['value'], expected)
+                    self.assertEqual(result['planned_late']['denominator'], 1)
+        person = {'courier_id': '1', 'shift_status': 'Опоздал',
+                  'shift_start': '2026-10-26T07:14:59+03:00'}
+        self.assertEqual(calculate([slot(people=[person])], '2026-10-26')['planned_late']['value'], 0)
+        person['shift_start'] = '2026-10-26T07:15:00+03:00'
+        self.assertEqual(calculate([slot(people=[person])], '2026-10-26')['planned_late']['value'], 100)
+        del person['shift_start']
+        self.assertEqual(calculate([slot(people=[person])], '2026-10-26')['planned_late']['reason'], 'lateness_duration_missing')
 
     def test_missing_planned_courier_not_treated_as_no_show(self):
         original = slot()
