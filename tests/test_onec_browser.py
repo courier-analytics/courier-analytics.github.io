@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_browser import save_credentials, load_credentials, final_login_shape
+from onec_browser import save_credentials, load_credentials, final_login_shape, failure_shape
 
 
 class OneCBrowserTests(unittest.TestCase):
@@ -32,6 +32,17 @@ class OneCBrowserTests(unittest.TestCase):
             link.symlink_to(path)
             with self.assertRaises(ValueError):
                 load_credentials(link)
+
+    def test_failure_diagnostics_do_not_expose_server_messages_or_accounts(self):
+        import base64
+        description = 'Неправильное имя пользователя или пароль: PRIVATE_ACCOUNT'
+        text = json.dumps({'exception': {'reason': 402, 'inner': {
+            'reason': -15, 'encoded': True, 'descr': base64.b64encode(description.encode()).decode()}}})
+        shape = failure_shape(text)
+        self.assertEqual(shape['reason_codes'], [-15, 402])
+        self.assertIn('credentials_rejected', shape['categories'])
+        self.assertNotIn('PRIVATE_ACCOUNT', json.dumps(shape))
+        self.assertIn('license_unavailable', failure_shape('Не найдена лицензия PRIVATE_SERVER')['categories'])
 
     def test_http_200_challenge_is_not_successful_authentication(self):
         self.assertFalse(final_login_shape({'cred': 'challenge'}))

@@ -1,9 +1,11 @@
 """Use the evidenced 1C login form; keep credentials and session details private."""
 import getpass
+import base64
 import json
 import os
 from pathlib import Path
 import stat
+import re
 from urllib.parse import urlsplit
 
 from onec_access import HOST, PATH
@@ -44,6 +46,43 @@ def final_login_shape(value):
         isinstance(v, dict) and 'passwordExpirationStatus' in v for v in value.values())
 
 
+def failure_shape(text):
+    """Keep numeric error reasons and fixed categories, never server messages."""
+    reasons, descriptions = [], [text]
+    try:
+        stack = [json.loads(text)]
+        for _ in range(30):
+            if not stack:
+                break
+            node = stack.pop()
+            if not isinstance(node, dict):
+                continue
+            for key in ('reason', 'reason_2fa'):
+                if type(node.get(key)) is int:
+                    reasons.append(node[key])
+            description = node.get('descr')
+            if isinstance(description, str):
+                if node.get('encoded'):
+                    try:
+                        description = base64.b64decode(description, validate=True).decode('utf-8')
+                    except (ValueError, UnicodeError):
+                        description = ''
+                descriptions.append(description)
+            stack.extend(node.get(key) for key in ('exception', 'inner'))
+    except ValueError:
+        pass
+    combined = '\n'.join(descriptions).lower()
+    rules = {
+        'credentials_rejected': r'(?:неверн|неправильн).{0,60}(?:парол|пользовател)|invalid.{0,40}(?:password|user)|authentication failed',
+        'license_unavailable': r'лицензи|licen[cs]e',
+        'access_denied': r'недостаточно прав|доступ запрещ|access denied',
+        'account_locked': r'пользовател.{0,40}заблок|account.{0,20}lock',
+        'two_factor': r'двухфактор|two.factor|2fa',
+        'password_expired': r'парол.{0,40}(?:ист[её]к|просроч)|password.{0,30}expir'}
+    return {'reason_codes': sorted(set(reasons)), 'categories': [
+        name for name, pattern in rules.items() if re.search(pattern, combined, re.S)]}
+
+
 def check_login(address, private=Path('/opt/courier-analytics/private')):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     credentials = load_credentials()
@@ -72,12 +111,25 @@ def check_login(address, private=Path('/opt/courier-analytics/private')):
         context.route('**/*', route_request)
         context.route_web_socket('**/*', lambda websocket: websocket.close())
         page = context.new_page()
-        page.on('dialog', lambda dialog: dialog.dismiss())
+        result['login_failures'] = []
+        def dialog_received(dialog):
+            shape = failure_shape(dialog.message)
+            if shape['categories']:
+                result['login_failures'].append(shape)
+            dialog.dismiss()
+        page.on('dialog', dialog_received)
         final_response = []
         def response_received(response):
             if urlsplit(response.url).path != PATH+'e1cib/login':
                 return
             result['login_http_statuses'].append(response.status)
+            if response.status != 200:
+                try:
+                    text = response.text()
+                    result['login_failures'].append(failure_shape(text))
+                    private_write(private/'onec-login-error-response.txt', text)
+                except Exception:
+                    result['error_response_unavailable'] = True
             if response.status == 200:
                 try:
                     data = response.json()
