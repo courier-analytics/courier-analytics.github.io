@@ -134,6 +134,10 @@ def select_rows(fresh, previous, manual, work, day):
         old_row = old.get(key, {})
         retained = {k: v for k, v in old_row.get('metrics', {}).items()
                     if k not in work[key]}
+        unplanned = incoming.get('unplanned_work', {})
+        if (unplanned.get('basis') == 'worked_without_frozen_plan_unique_couriers' and
+                unplanned.get('reason') in (None, 'zero_denominator')):
+            retained.pop('unplanned_work', None)
         row['metrics'] = {**incoming, **retained}
         if old_row and 'slot_fill' not in work[key]:
             for field in ('booked_places', 'capacity', 'fill_percent'):

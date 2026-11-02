@@ -72,16 +72,26 @@ def calculate(slots, day, roster=None, plan=None):
                 raise ValueError('Duplicate planned booking')
             expected[key] = slot
     planned = {key[2] for key in expected}
+    arrived_states = {'on_time', 'early', 'late'}
+    all_states = [source_status(c['shift_status']) for s in slots for c in s['couriers']]
+    worked = {c['courier_id'] for s in slots for c in s['couriers']
+              if source_status(c['shift_status']) in arrived_states}
+    unplanned = metric(reason='unknown_shift_status') if 'unknown' in all_states else metric(
+        len(worked - planned), len(worked), basis='worked_without_frozen_plan_unique_couriers')
+    # Membership comparison does not require a planned booking to remain in
+    # its original slot. Slot-specific attendance checks below are separate.
+    slot_plan_metrics = ('planned_attendance', 'planned_late', 'planned_completion')
+    output['unplanned_work'] = unplanned
     if any(key not in current for key in expected):
-        output.update({key: metric(reason='planned_booking_missing_from_current_data') for key in plan_metrics})
+        output.update({key: metric(reason='planned_booking_missing_from_current_data') for key in slot_plan_metrics})
         return output
     if any(current[key][0]['time_from'] != slot['time_from'] or
            current[key][0]['time_to'] != slot['time_to'] for key, slot in expected.items()):
-        output.update({key: metric(reason='planned_slot_times_changed') for key in plan_metrics})
+        output.update({key: metric(reason='planned_slot_times_changed') for key in slot_plan_metrics})
         return output
     states = {key: source_status(current[key][1]['shift_status']) for key in expected}
     if 'unknown' in states.values():
-        output.update({key: metric(reason='unknown_planned_shift_status') for key in plan_metrics})
+        output.update({key: metric(reason='unknown_planned_shift_status') for key in slot_plan_metrics})
         return output
     arrived_states = {'on_time', 'early', 'late'}
     arrived = {key[2] for key, state in states.items() if state in arrived_states}
@@ -89,13 +99,6 @@ def calculate(slots, day, roster=None, plan=None):
     basis = 'frozen_plan_unique_couriers'
     output['planned_attendance'] = metric(len(arrived), len(planned), basis=basis)
     output['planned_late'] = metric(len(late), len(arrived), basis=basis)
-    all_states = [source_status(c['shift_status']) for s in slots for c in s['couriers']]
-    worked = {c['courier_id'] for s in slots for c in s['couriers']
-              if source_status(c['shift_status']) in arrived_states}
-    manual_worked = {c['courier_id'] for s in slots if s['slot_type'] == 'manual'
-                     for c in s['couriers'] if source_status(c['shift_status']) in arrived_states}
-    output['unplanned_work'] = metric(reason='unknown_shift_status') if 'unknown' in all_states else metric(
-        len(manual_worked-planned), len(worked), basis='manual_work_without_frozen_plan')
     # The website's BM/zM flags leaving early when the gap exceeds 10 minutes.
     completion, unfinished_facts = {}, False
     for key, slot in expected.items():

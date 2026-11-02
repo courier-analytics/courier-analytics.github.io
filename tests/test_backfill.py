@@ -61,6 +61,16 @@ class BackfillTests(unittest.TestCase):
         self.assertEqual(out['fill_percent'], 50)
         self.assertNotIn('slot_fill', out['metrics'])
 
+    def test_verified_plan_comparison_replaces_previous_missing_unplanned_metric(self):
+        old = {'shop_id': 5818, 'date': '2026-10-25', 'booked_places': 5,
+               'capacity': 10, 'fill_percent': 50, 'metrics': {
+                   'unplanned_work': metric(reason='frozen_plan_missing')}}
+        fresh = {**old, 'metrics': {'slot_fill': metric(5, 10, basis='limited_slot_places'),
+            'unplanned_work': metric(1, 4, basis='worked_without_frozen_plan_unique_couriers')}}
+        result = select_rows({'records': [fresh]}, {'records': [old]}, {},
+                             {(5818, '2026-10-25'): {'slot_fill'}}, '2026-10-25')
+        self.assertEqual(result['records'][0]['metrics']['unplanned_work']['value'], 25)
+
     def test_partial_required_source_stops_publication(self):
         with self.assertRaises(ValueError):
             select_rows({'records': []}, {'records': []}, {},

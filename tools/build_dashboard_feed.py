@@ -20,6 +20,7 @@ BASES = {'limited_slot_places', 'all_assigned_unique_couriers', 'direct_shop_sch
          'current_limited_all_shifts_site_10min_tolerance',
          'slot_completion_by_actual_night_end_date',
          'frozen_plan_unique_couriers', 'manual_work_without_frozen_plan',
+         'worked_without_frozen_plan_unique_couriers',
          'frozen_plan_all_shifts_site_10min_tolerance'}
 
 

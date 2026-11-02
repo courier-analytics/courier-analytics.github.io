@@ -9,4 +9,4 @@ User=root
 UMask=0077
 EnvironmentFile=-/etc/courier-analytics/proxy.env
 TimeoutStartSec=55
-ExecStart=/usr/bin/flock -n /opt/courier-analytics/plan.lock /opt/courier-analytics/import-venv/bin/python /opt/courier-analytics/current-app/tools/capture_plan.py
+ExecStart=/usr/bin/flock -n /opt/courier-analytics/plan.lock /opt/courier-analytics/import-venv/bin/python /opt/courier-analytics/dashboard-code/tools/capture_plan.py

@@ -56,6 +56,24 @@ class MetricTests(unittest.TestCase):
         self.assertEqual(result['unplanned_work']['value'], 33.33)
         self.assertIsNone(result['planned_completion']['value'])
 
+    def test_late_additions_in_limited_slots_are_unplanned_and_counted_once(self):
+        planned = slot()
+        added = slot(2, people=[{'courier_id': '13', 'shift_status': 'Вышел'}])
+        result = calculate([planned, added, slot(3, 'manual', added['couriers'])], '2026-10-26',
+                           plan={'date': '2026-10-26', 'verified': True, 'slots': [deepcopy(planned)]})
+        self.assertEqual(result['unplanned_work']['numerator'], 1)
+        self.assertEqual(result['unplanned_work']['denominator'], 3)
+        self.assertEqual(result['unplanned_work']['value'], 33.33)
+
+    def test_plan_membership_comparison_survives_deleted_booking_and_slot_move(self):
+        planned = slot()
+        moved = slot(2, people=[planned['couriers'][0], {'courier_id': '13', 'shift_status': 'Вышел'}])
+        result = calculate([moved], '2026-10-26',
+                           plan={'date': '2026-10-26', 'verified': True, 'slots': [deepcopy(planned)]})
+        self.assertEqual(result['planned_attendance']['reason'], 'planned_booking_missing_from_current_data')
+        self.assertEqual(result['unplanned_work']['value'], 50)
+        self.assertEqual(result['unplanned_work']['numerator'], 1)
+
     def test_missing_planned_courier_not_treated_as_no_show(self):
         original = slot()
         current = slot(people=original['couriers'][:1])

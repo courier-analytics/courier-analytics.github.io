@@ -25,6 +25,22 @@ class PlanTests(unittest.TestCase):
             freeze(data, datetime.fromisoformat('2026-10-26T20:59:10+00:00'),
                    datetime.fromisoformat('2026-10-26T21:00:01+00:00'), '2026-10-27')
 
+    def test_audit_rejects_falsely_dated_or_out_of_window_plan(self):
+        import json
+        from check_plan_capture import load_plan
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)/'plan.json'
+            self.assertIsNone(load_plan(path, '2026-11-01'))
+            data = {'date': '2026-11-01', 'verified': True, 'shops': [],
+                    'started_at': '2026-10-31T20:59:00+00:00',
+                    'completed_at': '2026-10-31T20:59:45+00:00'}
+            path.write_text(json.dumps(data))
+            self.assertTrue(load_plan(path, '2026-11-01')['verified'])
+            data['completed_at'] = '2026-10-31T21:00:01+00:00'
+            path.write_text(json.dumps(data))
+            with self.assertRaises(ValueError):
+                load_plan(path, '2026-11-01')
+
     def test_freeze_contains_ids_not_personal_details(self):
         data = {'scope_config': {}, 'shops': [{'shop_id': 5818, 'slots': [{
             'date': '2026-10-27', 'slot_id': 1, 'slot_type': 'limited',
