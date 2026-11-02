@@ -1,0 +1,11 @@
+[Unit]
+Description=Collect and publish valid LMK courier aggregates
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+UMask=0077
+TimeoutStartSec=420
+ExecStart=/bin/bash /opt/courier-analytics/dashboard-code/tools/refresh_medical.sh

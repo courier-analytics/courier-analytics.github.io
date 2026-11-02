@@ -573,3 +573,36 @@ references a missing entity. For the separately requested valid-LMK calculation,
 `customer_complaint.tag` are excluded and counted in diagnostics. Mixed predicates
 combining that field with any other field are rejected. All other supported
 shop/format predicates remain intact; no filter literals are logged.
+
+### Автоматическое обновление действующих ЛМК
+
+После проверки реального ответа для обеих ДС выполните на VPS:
+
+```bash
+bash /opt/courier-analytics/dashboard-code/tools/enable_medical.sh
+```
+
+Установщик сначала выполняет свежий сбор через временный корпоративный VPN
+и публикацию, затем включает `courier-medical.timer`: каждый час в :17 МСК
+с задержкой до минуты. Используются уже сохранённые VPN/NTLM реквизиты.
+При ошибке первого сбора таймер не устанавливается. Сбор сериализован
+`medical.lock`; публикация использует общий с API-сборщиком `publish.lock`.
+Чужой процесс OpenVPN приводит к отказу, а не изменению его подключения.
+
+Публикуется отдельный `data/medical-books.json`: только дата наблюдения,
+ДС, количество действующих/общее количество, процент и происхождение.
+Числовые строки десятичных мер DSR проверяются как числа; контрольный
+процент отсутствующих/просроченных должен подтвердить расчёт.
+Дата относится к получению данных по Москве; время обновления модели
+Power BI неизвестно. Новые наблюдения не заполняют прошлые даты.
+История медицинского файла сохраняется, более старое наблюдение не
+заменяет более новое. Ручные значения в HTML имеют приоритет.
+Клиент сохраняет последние доступные медицинские данные при повторном
+обновлении API и при временной ошибке медицинского файла.
+
+Проверка расписания и последнего запуска:
+
+```bash
+systemctl list-timers courier-medical.timer --no-pager
+journalctl -u courier-medical.service -n 30 --no-pager
+```

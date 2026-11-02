@@ -233,6 +233,18 @@ class PowerBIMedicalTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             candidate_records([['ДС 7745', 100, 90, 10, .2]] * 2, datetime.now(timezone.utc), shops=(7745,))
 
+    def test_live_decimal_string_percentages_confirm_valid_lmk_counts(self):
+        rows = [['ДС 5818', 102, 61, 14, '0.53921568627450978'],
+                ['ДС 7745', 44, 37, 1, '0.18181818181818182']]
+        with contextlib.redirect_stdout(io.StringIO()):
+            candidate = candidate_records(rows, datetime(2026, 11, 2, 14, tzinfo=timezone.utc))
+        self.assertEqual([r['numerator'] for r in candidate['records']], [47, 36])
+        self.assertEqual([r['value'] for r in candidate['records']], [46.08, 81.82])
+        for invalid in ('NaN', 'Infinity', '18,18%', '', ' 0.2', '1e999', '0.5'):
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                candidate_records([['ДС 7745', 44, 37, 1, invalid]],
+                                  datetime.now(timezone.utc), shops=(7745,))
+
     def test_counts_must_agree_with_source_invalid_book_percentage(self):
         now = datetime.now(timezone.utc)
         for row in (['ДС 7745', 100, 90, 10, .1], ['ДС 7745', 0, 0, 0, 0],

@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh valid LMK aggregates hourly
+
+[Timer]
+OnCalendar=*-*-* *:17:00 Europe/Moscow
+RandomizedDelaySec=60
+Persistent=true
+Unit=courier-medical.service
+
+[Install]
+WantedBy=timers.target

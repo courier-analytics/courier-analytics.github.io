@@ -12,13 +12,18 @@ from refresh_dashboard import merge_feed
 REPOSITORY = 'git@github.com:courier-analytics/courier-analytics.github.io.git'
 
 
-def publish(feed, checkout, repository=REPOSITORY, environment=None):
+def publish(feed, checkout, repository=REPOSITORY, environment=None, medical=False):
     payload = json.loads(Path(feed).read_text())
     if payload.get('schema_version') != 1 or not payload.get('records'):
         raise ValueError('Invalid public feed')
-    if any(row.get('source') != 'slots_export' for row in payload['records']):
+    if any(row.get('source') != ('powerbi_lmk' if medical else 'slots_export') for row in payload['records']):
         raise ValueError('Unknown public data source')
-    public = merge_feed(None, payload)  # Validate counts; discard nonpublic fields.
+    if medical:
+        from medical_feed import merge
+    else:
+        merge = merge_feed
+    relative = 'data/medical-books.json' if medical else 'data/dashboard.json'
+    public = merge(None, payload)  # Validate counts; discard nonpublic fields.
     checkout = Path(checkout)
     def git(*args, cwd=checkout):
         return subprocess.run(['git', *args], cwd=cwd, env=environment,
@@ -36,20 +41,20 @@ def publish(feed, checkout, repository=REPOSITORY, environment=None):
         raise ValueError('Publisher checkout has local changes; preserved')
     git('fetch', 'origin', 'main')
     git('checkout', '--detach', 'FETCH_HEAD')
-    destination = checkout/'data/dashboard.json'
+    destination = checkout/relative
     # Preserve history that another refresh may have published since our last run.
     if destination.exists():
-        public = merge_feed(json.loads(destination.read_text()), public)
+        public = merge(json.loads(destination.read_text()), public)
     atomic_json(destination, public)
     destination.chmod(0o644)
-    git('add', '--', 'data/dashboard.json')
+    git('add', '--', relative)
     staged = git('diff', '--cached', '--name-only').stdout.splitlines()
     if not staged:
         return 'Public aggregates already up to date'
-    if staged != ['data/dashboard.json']:
+    if staged != [relative]:
         raise ValueError('Unexpected staged files; publication stopped')
     git('-c', 'user.name=Courier data updater', '-c', 'user.email=courier-data@users.noreply.github.com',
-        'commit', '-m', 'Update courier slot aggregates')
+        'commit', '-m', 'Update valid LMK aggregates' if medical else 'Update courier slot aggregates')
     # A concurrent update rejects this push. No force push or branch reset.
     git('push', 'origin', 'HEAD:refs/heads/main')
     return 'Public aggregates pushed to main'
@@ -58,6 +63,7 @@ def publish(feed, checkout, repository=REPOSITORY, environment=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--feed', type=Path, required=True)
+    parser.add_argument('--medical', action='store_true')
     parser.add_argument('--checkout', type=Path, default=Path('/opt/courier-analytics/publisher'))
     args = parser.parse_args()
     key = Path('/root/.ssh/courier-publisher')
@@ -70,7 +76,7 @@ if __name__ == '__main__':
         ' -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes'
         ' -o UserKnownHostsFile=' + shlex.quote(str(hosts)))
     try:
-        print(publish(args.feed, args.checkout, environment=environment))
+        print(publish(args.feed, args.checkout, environment=environment, medical=args.medical))
     except subprocess.CalledProcessError as error:
         raise SystemExit(f'Git publication failed (exit {error.returncode}); local feed retained. Check deploy key write access, branch protection and connectivity.')
     except (ValueError, KeyError, OSError):

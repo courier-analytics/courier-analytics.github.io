@@ -472,6 +472,11 @@ def candidate_records(rows, observed_at, shops=SHOPS):
         total, has_book, expired = map(int, counts)
         if not total or not 0 <= expired <= has_book <= total:
             raise ValueError(f'DS {shop}: invalid medical denominator or count relationship')
+        # DSR decimal measures (schema T=3) can be JSON strings; preserve the
+        # same cross-check after accepting only a bounded decimal encoding.
+        if isinstance(invalid_percent, str) and len(invalid_percent) <= 100 and re.fullmatch(
+                r'-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?', invalid_percent):
+            invalid_percent = float(invalid_percent)
         if isinstance(invalid_percent, bool) or not isinstance(invalid_percent, (int, float)) or not math.isfinite(invalid_percent):
             raise ValueError(f'DS {shop}: missing source cross-check percentage')
         valid = has_book - expired

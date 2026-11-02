@@ -13,6 +13,7 @@
   const refresh = document.getElementById("refreshData");
   let busy = false;
   let lastSuccess = "";
+  let cachedSlots = [], cachedMedical = [];
   const metricIndexes = {slot_fill: 2, shift_marked: 1, planned_attendance: 3,
     planned_late: 4, unplanned_work: 5, planned_completion: 6};
   const reasons = {
@@ -66,13 +67,34 @@
     });
   }
 
-  function update(rows) {
+  function validateMedical(payload) {
+    if (!payload || payload.schema_version !== 1 || !Array.isArray(payload.records)) throw Error("medical format");
+    const seen = new Set();
+    return payload.records.map(row => {
+      if (!row || ![5818, 7745].includes(row.shop_id) ||
+          !/^2026-\d{2}-\d{2}$/.test(row.date) || !Number.isFinite(Date.parse(row.date)) ||
+          new Date(row.date).toISOString().slice(0, 10) !== row.date ||
+          row.source !== "powerbi_lmk" || row.basis !== "present_and_not_expired_lmk" ||
+          ![row.numerator, row.denominator].every(n => Number.isSafeInteger(n) && n >= 0) ||
+          !row.denominator || row.numerator > row.denominator ||
+          typeof row.value !== "number" || !Number.isFinite(row.value) ||
+          Math.abs(row.value - row.numerator / row.denominator * 100) > .0051 ||
+          !Number.isFinite(Date.parse(row.reported_at))) throw Error("medical counts");
+      const key = row.shop_id + ":" + row.date;
+      if (seen.has(key)) throw Error("duplicate medical");
+      seen.add(key);
+      return row;
+    });
+  }
+
+  function update(rows, medicalRows) {
+    const medical = medicalRows.filter(r => r.shop_id === shop);
     const own = rows.filter(r => r.shop_id === shop);
-    if (!own.length) {
+    if (!own.length && !medical.length) {
       status.textContent = lastSuccess ? lastSuccess + " · Новый файл не содержит данных этой ДС; сохранён предыдущий отчёт." : "Для этой ДС новых выгрузок пока нет. Показана история.";
       return;
     }
-    const days = Array.from(new Set(initialDates.concat(own.map(r => r.date)))).sort();
+    const days = Array.from(new Set(initialDates.concat(own.map(r => r.date), medical.map(r => r.date)))).sort();
     // The existing dashboard has one column per day/month; do not merge different years.
     if (days.some(d => !d.startsWith("2026-"))) throw Error("year");
     const indexes = new Map(days.map((day, i) => [day, i]));
@@ -94,6 +116,9 @@
         next[metricIndexes[key]][indexes.get(row.date)] = metric.value === null ? null : String(metric.value);
       });
       imported.set(indexes.get(row.date), row);
+    });
+    medical.forEach(row => {
+      if (!hasManualValue(9, row.date)) next[9][indexes.get(row.date)] = String(row.value);
     });
     dates.splice(0, dates.length, ...days.map(d => d.slice(8) + "." + d.slice(5, 7)));
     metrics.forEach((metric, i) => { metric.values = next[i]; });
@@ -145,10 +170,23 @@
         cell.dataset.source = "slots_export";
       });
     });
-    const latest = own.slice().sort((a, b) => a.date.localeCompare(b.date)).pop();
+    medical.forEach(row => {
+      const cell = rowsInTable[9].querySelectorAll("td")[indexes.get(row.date)];
+      const manual = hasManualValue(9, row.date);
+      cell.dataset.source = manual ? "manual" : "powerbi_lmk";
+      cell.title = manual ? "Сохранено ранее внесённое вручную значение." :
+        "По данным Power BI: действующая ЛМК у " + row.numerator + " из " + row.denominator +
+        " курьеров. Просроченные исключены. Получено " + new Date(row.reported_at).toLocaleString("ru-RU", {timeZone: "Europe/Moscow"}) +
+        " МСК. Дата обновления модели источником не подтверждена.";
+    });
+    const latest = own.slice().sort((a, b) => a.date.localeCompare(b.date)).pop() || medical.slice().sort((a, b) => a.date.localeCompare(b.date)).pop();
     const time = new Intl.DateTimeFormat("ru-RU", {timeZone: "Europe/Moscow", dateStyle: "short", timeStyle: "short"}).format(new Date(latest.reported_at));
     const ready = latest.metrics ? Object.values(latest.metrics).filter(metric => metric.value !== null).length : (latest.fill_percent === null ? 0 : 1);
     lastSuccess = "Выгрузка за " + latest.date.slice(8) + "." + latest.date.slice(5, 7) + "." + latest.date.slice(0, 4) + " · Сформирована " + time + " МСК. Рассчитано автоматических показателей: " + ready + " из 6. Причины прочерков — в подсказках ячеек.";
+    if (medical.length) {
+      const latestMedical = medical.slice().sort((a, b) => a.date.localeCompare(b.date)).pop();
+      lastSuccess += " ЛМК: " + latestMedical.value.toLocaleString("ru-RU") + "% за " + latestMedical.date.slice(8) + "." + latestMedical.date.slice(5, 7) + ".";
+    }
     status.textContent = lastSuccess;
     if (!status.dataset.positioned) {
       const viewport = document.querySelector(".table-scroll");
@@ -164,9 +202,21 @@
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 15000);
     try {
-      const response = await fetch("data/dashboard.json", {cache: "no-store", signal: controller.signal});
-      if (!response.ok) throw Error("http");
-      update(validate(await response.json()));
+      const results = await Promise.allSettled([
+        (async () => {
+          const response = await fetch("data/dashboard.json", {cache: "no-store", signal: controller.signal});
+          if (!response.ok) throw Error("http");
+          cachedSlots = validate(await response.json());
+        })(),
+        (async () => {
+          const response = await fetch("data/medical-books.json", {cache: "no-store", signal: controller.signal});
+          if (!response.ok) throw Error("http");
+          cachedMedical = validateMedical(await response.json());
+        })()
+      ]);
+      if (!cachedSlots.length && !cachedMedical.length) throw Error("no feeds");
+      update(cachedSlots, cachedMedical);
+      if (results.some(result => result.status === "rejected")) status.textContent += " Часть источников не обновилась; сохранены последние доступные данные.";
     } catch (_) {
       status.textContent = lastSuccess ? lastSuccess + " · Новую выгрузку загрузить не удалось; сохранены последние данные." : "Новую выгрузку загрузить не удалось. Показаны исторические данные.";
     } finally {

@@ -38,6 +38,15 @@ class PublisherTests(unittest.TestCase):
             self.assertNotIn('must not publish', public)
             self.assertEqual(self.git('diff-tree', '--no-commit-id', '--name-only', '-r', 'origin/main', cwd=seed).strip(), 'data/dashboard.json')
             self.assertIn('already up to date', publish(feed, root/'publisher', str(remote)))
+            from test_medical_feed import feed as medical_payload
+            medical = root/'medical.json'
+            medical.write_text(json.dumps(medical_payload()))
+            self.assertIn('pushed', publish(medical, root/'publisher', str(remote), medical=True))
+            self.git('fetch', 'origin', cwd=seed)
+            self.assertEqual(self.git('show', 'origin/main:data/dashboard.json', cwd=seed), public)
+            medical_public = self.git('show', 'origin/main:data/medical-books.json', cwd=seed)
+            self.assertNotIn('private_field', medical_public)
+            self.assertEqual(self.git('diff-tree', '--no-commit-id', '--name-only', '-r', 'origin/main', cwd=seed).strip(), 'data/medical-books.json')
             (root/'publisher/index.html').write_text('local user change')
             with self.assertRaises(ValueError):
                 publish(feed, root/'publisher', str(remote))
