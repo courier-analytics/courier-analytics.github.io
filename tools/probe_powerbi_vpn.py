@@ -1,0 +1,130 @@
+"""Anonymous Power BI access test through a temporary corporate VPN on the VPS."""
+import argparse
+import ipaddress
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import tempfile
+import time
+from urllib.parse import quote
+
+from prepare_openvpn import candidate, private_write
+
+HOST = 'izb-dwh-ssrs01'
+REPORT_PATH = '/reports/powerbi/' + quote('Управления_ВВ/Последняя_миля/ЛМК Курьеров', safe='/')
+PRIVATE_NETWORKS = tuple(ipaddress.IPv4Network(n) for n in
+                         ('10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'))
+
+
+def private_address(value):
+    address = ipaddress.IPv4Address(value)
+    if not any(address in network for network in PRIVATE_NETWORKS):
+        raise ValueError('Power BI address must be a corporate private IPv4 address')
+    return str(address)
+
+
+def response_metadata(headers):
+    # Authentication headers can contain opaque credentials: retain scheme names only.
+    challenges = re.findall(r'^WWW-Authenticate:\s*([^\r\n]+)', headers,
+                            flags=re.IGNORECASE | re.MULTILINE)
+    schemes = [scheme for challenge in challenges for scheme in re.findall(
+        r'(?:^|,)\s*(Negotiate|NTLM|Basic|Bearer)\b', challenge, flags=re.IGNORECASE)]
+    return sorted({scheme.lower() for scheme in schemes})
+
+
+def probe(address, scheme, path, folder):
+    address = private_address(address)
+    if scheme not in ('http', 'https') or path not in ('/reports/', REPORT_PATH,
+                                                     '/reports/api/v2.0/PowerBIReports'):
+        raise ValueError('Unexpected probe endpoint')
+    headers = folder / 'response-headers'
+    private_write(headers, '')
+    port = 443 if scheme == 'https' else 80
+    command = ['curl', '--proxy', '', '--noproxy', '*', '--silent',
+               '--connect-timeout', '5', '--max-time', '12',
+               '--resolve', f'{HOST}:{port}:{address}',
+               '--dump-header', str(headers), '--output', '/dev/null',
+               '--write-out', '%{http_code}', f'{scheme}://{HOST}{path}']
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, timeout=16)
+        code = result.stdout.strip()
+        status = int(code) if re.fullmatch(r'[1-5][0-9]{2}', code) else None
+        auth = response_metadata(headers.read_text(errors='replace'))
+        return {'scheme': scheme, 'endpoint': 'catalog' if 'api/v2.0' in path else
+                ('report' if path == REPORT_PATH else 'portal'),
+                'curl_exit': result.returncode, 'http_status': status,
+                'auth_schemes': auth}
+    except subprocess.TimeoutExpired:
+        return {'scheme': scheme, 'curl_exit': 28, 'http_status': None,
+                'auth_schemes': []}
+    finally:
+        headers.unlink(missing_ok=True)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--address', required=True, help='IPv4 resolved on the corporate network')
+    parser.add_argument('--profile', type=Path, default=Path('/root/courier-openvpn-tcp.ovpn'))
+    parser.add_argument('--auth', type=Path, default=Path('/root/courier-openvpn.auth'))
+    args = parser.parse_args()
+    address = private_address(args.address)
+    if os.geteuid() != 0:
+        raise ValueError('Run on the VPS as root')
+    if not args.auth.is_absolute() or any(c.isspace() for c in str(args.auth)):
+        raise ValueError('Invalid VPN auth file path')
+    config, needs_auth = candidate(args.profile.read_text(), [address], args.auth)
+    if needs_auth and (not args.auth.is_file() or args.auth.stat().st_mode & 0o077):
+        raise ValueError('Saved VPN auth file missing or permissions broader than 600')
+    if subprocess.run(['pgrep', '-x', 'openvpn'], capture_output=True).returncode != 1:
+        raise ValueError('An OpenVPN process exists; review it before starting this test')
+    with tempfile.TemporaryDirectory(prefix='courier-powerbi-', dir='/root') as directory:
+        folder = Path(directory)
+        profile, log = folder / 'candidate.conf', folder / 'private.log'
+        private_write(profile, config)
+        private_write(log, '')
+        worker = subprocess.Popen(['timeout', '--signal=TERM', '--kill-after=5s', '180s',
+            'openvpn', '--config', str(profile), '--log', str(log), '--verb', '3'],
+            stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        try:
+            print('Temporary corporate VPN test; anonymous requests, no report data printed.', flush=True)
+            deadline = time.monotonic() + 60
+            while time.monotonic() < deadline:
+                text = log.read_text(errors='replace')
+                if 'Initialization Sequence Completed' in text:
+                    break
+                if worker.poll() is not None or 'AUTH_FAILED' in text:
+                    break
+                time.sleep(.5)
+            text = log.read_text(errors='replace')
+            if 'Initialization Sequence Completed' not in text:
+                print(json.dumps({'vpn_connected': False, 'auth_failed': 'AUTH_FAILED' in text,
+                    'tls_error': 'TLS Error' in text, 'certificate_error': 'VERIFY ERROR' in text}))
+                return 1
+            print('VPN connected; only the specified Power BI IPv4 is routed through it.', flush=True)
+            results = [probe(address, scheme, path, folder) for scheme, path in
+                       [('http', '/reports/'), ('http', REPORT_PATH),
+                        ('http', '/reports/api/v2.0/PowerBIReports'), ('https', '/reports/')]]
+            for result in results:
+                print(json.dumps(result), flush=True)
+            print('This test does not authenticate, export medical data, or update metric 10.', flush=True)
+            return 0 if any(r['curl_exit'] == 0 and r['http_status'] for r in results) else 1
+        finally:
+            if worker.poll() is None:
+                worker.terminate()
+                try:
+                    worker.wait(timeout=7)
+                except subprocess.TimeoutExpired:
+                    worker.kill()
+                    worker.wait(timeout=3)
+            print('Temporary VPN stopped; system DNS, public proxy and dashboard jobs unchanged.', flush=True)
+
+
+if __name__ == '__main__':
+    try:
+        raise SystemExit(main())
+    except ValueError as error:
+        raise SystemExit(str(error))
+    except (OSError, subprocess.SubprocessError):
+        raise SystemExit('Local file, network or process error; private details hidden.')
