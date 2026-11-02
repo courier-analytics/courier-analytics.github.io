@@ -83,6 +83,39 @@ def failure_shape(text):
         name for name, pattern in rules.items() if re.search(pattern, combined, re.S)]}
 
 
+def submit_login(page, credentials):
+    """Type into native controls and verify contents before the Enter handler."""
+    username, password = page.locator('#userName'), page.locator('#userPassword')
+    username.wait_for(state='visible', timeout=60000)
+    for field, value in ((username, credentials['username']), (password, credentials['password'])):
+        field.click()
+        # The supplied 1C focus handler schedules select() asynchronously.
+        page.evaluate('() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))')
+        field.fill('')
+        field.press_sequentially(value, delay=35)
+    matched = {'username_matches_saved': username.input_value() == credentials['username'],
+               'password_matches_saved': password.input_value() == credentials['password']}
+    if not all(matched.values()):
+        raise ValueError('1C input differs from saved credentials; login was not submitted')
+    # Observe only equality booleans at the actual submit event, before the
+    # 1C key handler. Never retain input values in the diagnostic object.
+    page.evaluate('''expected => {
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Enter' && event.target.id === 'userPassword') {
+                window.__courierInputCheck = {
+                    username_matches_saved: document.querySelector('#userName').value === expected.username,
+                    password_matches_saved: document.querySelector('#userPassword').value === expected.password
+                };
+            }
+        }, {capture: true, once: true});
+    }''', credentials)
+    password.press('Enter')
+    at_submit = page.evaluate('() => window.__courierInputCheck || null')
+    if not at_submit or not all(at_submit.values()):
+        raise ValueError('1C submit event input check failed')
+    return {**matched, 'matches_at_submit': True, 'submit_method': 'native_keyboard_enter'}
+
+
 def check_login(address, private=Path('/opt/courier-analytics/private')):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     credentials = load_credentials()
@@ -140,10 +173,7 @@ def check_login(address, private=Path('/opt/courier-analytics/private')):
         page.on('response', response_received)
         try:
             page.goto('https://'+HOST+PATH, wait_until='domcontentloaded', timeout=60000)
-            page.locator('#userName').wait_for(state='visible', timeout=60000)
-            page.locator('#userName').fill(credentials['username'])
-            page.locator('#userPassword').fill(credentials['password'])
-            page.locator('#okButton').click()
+            result['input_check'] = submit_login(page, credentials)
             result['login_submitted'] = True
             try:
                 page.wait_for_function("document.querySelector('#authWindow') && getComputedStyle(document.querySelector('#authWindow')).display === 'none'", timeout=45000)
