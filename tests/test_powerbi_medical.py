@@ -117,6 +117,27 @@ class PowerBIMedicalTests(unittest.TestCase):
         self.assertEqual(query['Where'][0]['Condition']['In']['Expressions'][0]['Column']['Expression']['SourceRef'], {'Source': 'a'})
         self.assertEqual(query['Where'][0]['Condition']['In']['Values'], [[{'Literal': {'Value': "'DS'"}}]])
 
+    def test_verified_section_tag_filter_preserves_its_real_entity_and_value(self):
+        source = definition()
+        scope = {'From': [{'Name': 'c', 'Entity': 'customer_complaint', 'Type': 0}],
+                 'Where': [{'Condition': {'In': {'Expressions': [{'Column': {
+                     'Expression': {'SourceRef': {'Source': 'c'}}, 'Property': 'tag'}}],
+                     'Values': [[{'Literal': {'Value': "'PRIVATE_TAG_VALUE'"}}]]}}}]}
+        source['definition']['exploration']['sections'][0]['filters'] = json.dumps([{'filter': scope}])
+        original = copy.deepcopy(source)
+        diagnostic = {}
+        request = build_request(source, diagnostic)
+        query = request['queries'][0]['Query']['Commands'][0]['SemanticQueryDataShapeCommand']['Query']
+        customer_sources = [item for item in query['From'] if item['Entity'] == 'customer_complaint']
+        self.assertEqual(len(customer_sources), 1)
+        column = query['Where'][0]['Condition']['In']['Expressions'][0]['Column']
+        self.assertEqual(column['Property'], 'tag')
+        self.assertEqual(column['Expression']['SourceRef']['Source'], customer_sources[0]['Name'])
+        self.assertEqual(query['Where'][0]['Condition']['In']['Values'], [[{'Literal': {'Value': "'PRIVATE_TAG_VALUE'"}}]])
+        self.assertEqual(diagnostic['scope_fields'], ['customer_complaint.tag'])
+        self.assertNotIn('PRIVATE_TAG_VALUE', json.dumps(diagnostic))
+        self.assertEqual(source, original)
+
     @patch('powerbi_medical.subprocess.run')
     def test_referenced_legacy_entity_is_rejected_with_private_offline_diagnostic(self, run):
         source = definition()

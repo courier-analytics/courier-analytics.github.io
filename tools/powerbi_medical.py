@@ -59,6 +59,19 @@ def scoped_conditions(query, scopes):
     predicates = []
     field_names = set()
     column_count = 0
+
+    def canonical_source(entity):
+        if entity not in root_aliases:
+            suffix = len(root_sources)
+            alias = 'lmk_scope' + str(suffix)
+            while alias in root_sources:
+                suffix += 1
+                alias = 'lmk_scope' + str(suffix)
+            query['From'].append({'Name': alias, 'Entity': entity, 'Type': 0})
+            root_sources[alias] = entity
+            root_aliases[entity] = alias
+        return root_aliases[entity]
+
     for scope in [{'From': query['From'], 'Where': query.get('Where', [])}] + scopes:
         aliases = {item['Name']: item['Entity'] for item in scope.get('From', [])}
         # Filter From lists may retain unused entities from the report template.
@@ -77,18 +90,23 @@ def scoped_conditions(query, scopes):
                 raise ValueError('Aggregate measure filters require explicit denominator review')
             if 'Column' in value:
                 prop = value['Column'].get('Property')
-                if prop not in ('name_TT', 'format'):
-                    raise ValueError('Medical coverage scope must not filter individual couriers or medical status')
-                field_names.add(prop)
+                ref = value['Column'].get('Expression', {}).get('SourceRef', {})
+                entity = ref.get('Entity') or aliases.get(ref.get('Source')) or root_sources.get(ref.get('Source'))
+                if (entity, prop) not in {('main_mc06', 'name_TT'), ('main_mc06', 'format'),
+                                         ('customer_complaint', 'tag')}:
+                    label = entity if isinstance(entity, str) and len(entity) < 256 else '<unresolved>'
+                    field = prop if isinstance(prop, str) and len(prop) < 256 else '<unknown>'
+                    raise ValueError('Unsupported medical scope field: ' + label + '.' + field)
+                field_names.add(prop if entity == 'main_mc06' else entity + '.' + prop)
                 column_count += 1
             result = {}
             for key, item in value.items():
                 if key == 'SourceRef':
                     entity = item.get('Entity') or aliases.get(item.get('Source')) or root_sources.get(item.get('Source'))
-                    if entity != 'main_mc06':
+                    if entity not in ('main_mc06', 'customer_complaint'):
                         label = entity if isinstance(entity, str) and len(entity) < 256 else '<unresolved>'
                         raise ValueError('Unsupported referenced entity in medical report scope: ' + label)
-                    result[key] = {'Source': root_aliases[entity]}
+                    result[key] = {'Source': canonical_source(entity)}
                 else:
                     result[key] = rewrite(item, depth + 1)
             return result
@@ -144,13 +162,15 @@ def build_request(saved, diagnostic=None):
                 skip('query_and_prototype_missing')
                 continue
             source_rows = query.get('From')
-            if not isinstance(source_rows, list) or len(source_rows) != 2 or any(
+            if not isinstance(source_rows, list) or not 2 <= len(source_rows) <= 3 or any(
                     not isinstance(item, dict) or not isinstance(item.get('Name'), str) or
                     not isinstance(item.get('Entity'), str) or item.get('Type') != 0 for item in source_rows):
                 skip('unsupported_sources')
                 continue
             sources = {item['Name']: item['Entity'] for item in source_rows}
-            if len(sources) != 2 or set(sources.values()) != {'main_mc06', 'Меры'}:
+            if (len(sources) != len(source_rows) or len(set(sources.values())) != len(sources) or
+                    not {'main_mc06', 'Меры'} <= set(sources.values()) or
+                    set(sources.values()) - {'main_mc06', 'Меры', 'customer_complaint'}):
                 skip('unsupported_sources')
                 continue
             selected = {}
@@ -169,8 +189,8 @@ def build_request(saved, diagnostic=None):
                 skip('required_aggregate_fields_missing')
                 continue
             scopes = section_scopes + filter_queries(visual.get('filters', [])) + filter_queries(config.get('filters', []))
-            where, scope_fields = scoped_conditions(query, scopes)
             aggregate_query = copy.deepcopy(query)
+            where, scope_fields = scoped_conditions(aggregate_query, scopes)
             aggregate_query['Select'] = [selected[prop] for prop in PROPERTIES]
             aggregate_query.pop('OrderBy', None)
             if where:
