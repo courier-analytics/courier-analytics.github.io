@@ -72,6 +72,8 @@ def main():
     parser.add_argument('--save-login', action='store_true', help='Save missing Windows credentials with hidden input, then test them')
     parser.add_argument('--replace-login', action='store_true', help='Replace saved Windows credentials; requires --save-login')
     parser.add_argument('--inspect-model', action='store_true', help='Read report field references using saved Windows credentials; no data query')
+    parser.add_argument('--collect-medical', action='store_true', help='Read shop aggregates and prepare a private validated LMK candidate; no publication')
+    parser.add_argument('--shops', type=int, nargs='+', choices=(5818, 7745), default=[5818, 7745])
     args = parser.parse_args()
     address = private_address(args.address)
     if os.geteuid() != 0:
@@ -117,9 +119,10 @@ def main():
                         ('http', '/reports/api/v2.0/PowerBIReports'), ('https', '/reports/')]]
             for result in results:
                 print(json.dumps(result), flush=True)
-            if args.check_login or args.save_login or args.inspect_model:
+            if args.check_login or args.save_login or args.inspect_model or args.collect_medical:
                 from powerbi_access import check_login
-                return 0 if check_login(address, folder, inspect_model=args.inspect_model) else 1
+                return 0 if check_login(address, folder, inspect_model=args.inspect_model,
+                    collect_medical=args.collect_medical, medical_shops=tuple(args.shops)) else 1
             print('This test does not authenticate, export medical data, or update metric 10.', flush=True)
             return 0 if any(r['curl_exit'] == 0 and r['http_status'] for r in results) else 1
         finally:

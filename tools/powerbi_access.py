@@ -145,7 +145,7 @@ def definition_summary(data):
             'truncated': truncated}
 
 
-def inspect_report_definition(address, saved, folder, metadata, output_folder):
+def inspect_report_definition(address, saved, folder, metadata, output_folder, quiet=False):
     identity = str(UUID(metadata['id']))
     # These are read-only report web-client endpoints, not the REST catalog.
     # No semantic data query is executed; deployments may expose either base path.
@@ -164,7 +164,8 @@ def inspect_report_definition(address, saved, folder, metadata, output_folder):
         private_write(output_folder / 'powerbi-report-definition.json',
                       json.dumps({'base_path': prefix, 'report_id': identity, 'definition': data}, ensure_ascii=False))
         private_write(output_folder / 'powerbi-report-fields.json', json.dumps(summary, ensure_ascii=False))
-        print('Medical report field references: ' + json.dumps(summary, ensure_ascii=False), flush=True)
+        if not quiet:
+            print('Medical report field references: ' + json.dumps(summary, ensure_ascii=False), flush=True)
         print('Definition saved privately. No courier data query executed; metric 10 unchanged.', flush=True)
         return True
     print('Report definition not confirmed; no metric values imported.', flush=True)
@@ -189,7 +190,7 @@ def report_metadata(data):
 
 def check_login(address, folder, credentials_path=CREDENTIALS,
                 metadata_path=Path('/opt/courier-analytics/private/powerbi-report-metadata.json'),
-                inspect_model=False):
+                inspect_model=False, collect_medical=False, medical_shops=(5818, 7745)):
     saved = load_credentials(credentials_path)
     result, data = catalog_request(address, saved, folder)
     metadata = report_metadata(data) if result['curl_exit'] == 0 and result['http_status'] == 200 else None
@@ -199,8 +200,13 @@ def check_login(address, folder, credentials_path=CREDENTIALS,
         metadata_path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
         private_write(metadata_path, json.dumps(metadata, ensure_ascii=False))
         print('Medical report metadata saved privately. No courier rows read; metric 10 unchanged.', flush=True)
-        if inspect_model:
-            return inspect_report_definition(address, saved, folder, metadata, metadata_path.parent)
+        if inspect_model or collect_medical:
+            if not inspect_report_definition(address, saved, folder, metadata, metadata_path.parent,
+                                             quiet=collect_medical):
+                return False
+        if collect_medical:
+            from powerbi_medical import collect_candidate
+            return collect_candidate(address, saved, folder, metadata_path.parent, shops=medical_shops)
     return metadata is not None
 
 
