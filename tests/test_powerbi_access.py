@@ -35,8 +35,8 @@ class PowerBIAccessTests(unittest.TestCase):
     def test_probe_preserves_service_identity_and_tls_without_credentials(self, run):
         def response(command, **kwargs):
             Path(command[command.index('--dump-header') + 1]).write_text('WWW-Authenticate: NTLM hidden\n')
-            self.assertIn('izb-dwh-ssrs01:443:10.20.30.40', command)
-            self.assertEqual(command[-1], 'https://izb-dwh-ssrs01/reports/')
+            self.assertIn('izb-dwh-ssrs01.izbenka.local:443:10.20.30.40', command)
+            self.assertEqual(command[-1], 'https://izb-dwh-ssrs01.izbenka.local/reports/')
             for forbidden in ('-k', '--insecure', '--user', '--location', '--location-trusted'):
                 self.assertNotIn(forbidden, command)
             return subprocess.CompletedProcess(command, 0, '401', '')

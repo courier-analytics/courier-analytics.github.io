@@ -12,7 +12,7 @@ from urllib.parse import quote
 
 from prepare_openvpn import candidate, private_write
 
-HOST = 'izb-dwh-ssrs01'
+HOST = 'izb-dwh-ssrs01.izbenka.local'
 REPORT_PATH = '/reports/powerbi/' + quote('Управления_ВВ/Последняя_миля/ЛМК Курьеров', safe='/')
 PRIVATE_NETWORKS = tuple(ipaddress.IPv4Network(n) for n in
                          ('10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'))
