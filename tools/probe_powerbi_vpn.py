@@ -80,8 +80,14 @@ def main():
     parser.add_argument('--onec-login', action='store_true', help='Check the real 1C browser login with private saved credentials')
     parser.add_argument('--onec-save-login', action='store_true', help='Save missing 1C credentials using hidden prompts; requires --onec-login')
     parser.add_argument('--onec-replace-login', action='store_true', help='Replace 1C credentials using hidden prompts; requires --onec-login')
+    parser.add_argument('--onec-route-check', action='store_true', help='Compare unauthenticated 1C entry, loader and auth-settings responses')
     args = parser.parse_args()
     address = private_address(args.address)
+    if args.onec_route_check and (address != '10.210.254.19' or any((
+            args.onec_probe, args.onec_assets, args.onec_login, args.onec_save_login,
+            args.onec_replace_login, args.check_login, args.save_login, args.replace_login,
+            args.inspect_model, args.collect_medical, args.preflight))):
+        raise ValueError('Use only the confirmed 1C address and route-check action')
     if args.onec_assets and not args.onec_probe:
         raise ValueError('--onec-assets requires --onec-probe')
     if args.onec_save_login and not args.onec_login:
@@ -146,6 +152,10 @@ def main():
                     'tls_error': 'TLS Error' in text, 'certificate_error': 'VERIFY ERROR' in text}))
                 return 1
             print('VPN connected; only the specified corporate IPv4 is routed through it.', flush=True)
+            if args.onec_route_check:
+                from onec_route_check import check
+                from powerbi_access import corporate_interface
+                return 0 if check(interface=corporate_interface(address)) else 1
             if args.onec_login:
                 from onec_browser import check_login
                 from playwright.sync_api import Error as BrowserError
