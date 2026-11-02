@@ -117,24 +117,30 @@ class PowerBIMedicalTests(unittest.TestCase):
         self.assertEqual(query['Where'][0]['Condition']['In']['Expressions'][0]['Column']['Expression']['SourceRef'], {'Source': 'a'})
         self.assertEqual(query['Where'][0]['Condition']['In']['Values'], [[{'Literal': {'Value': "'DS'"}}]])
 
-    def test_stale_section_is_skipped_without_removing_its_filter(self):
+    def test_separate_calculation_ignores_only_confirmed_stale_tag_predicate(self):
         source = definition()
         sections = source['definition']['exploration']['sections']
-        clean = copy.deepcopy(sections[0])
         scope = {'From': [{'Name': 'c', 'Entity': 'customer_complaint', 'Type': 0}],
                  'Where': [{'Condition': {'In': {'Expressions': [{'Column': {
                      'Expression': {'SourceRef': {'Source': 'c'}}, 'Property': 'tag'}}],
                      'Values': [[{'Literal': {'Value': "'PRIVATE_TAG_VALUE'"}}]]}}}]}
         sections[0]['filters'] = json.dumps([{'filter': scope}])
         original = copy.deepcopy(source)
-        with self.assertRaisesRegex(ValueError, 'server_rejected_customer_complaint_scope'):
-            build_request(source)
-        sections.append(clean)
         diagnostic = {}
         request = build_request(source, diagnostic)
         self.assertNotIn('customer_complaint', json.dumps(request))
         self.assertEqual(diagnostic['scope_predicates'], 0)
+        self.assertEqual(diagnostic['ignored_stale_tag_predicates'], 1)
         self.assertEqual(sections[0], original['definition']['exploration']['sections'][0])
+        mixed = copy.deepcopy(scope['Where'][0])
+        scope['Where'][0] = {'Condition': {'And': {
+            'Left': mixed['Condition'], 'Right': {'Comparison': {
+                'Left': {'Column': {'Expression': {'SourceRef': {'Entity': 'main_mc06'}},
+                                    'Property': 'format'}},
+                'Right': {'Literal': {'Value': "'DS'"}}}}}}}
+        sections[0]['filters'] = json.dumps([{'filter': scope}])
+        with self.assertRaisesRegex(ValueError, 'mixed scope'):
+            build_request(source)
 
     def test_http_200_semantic_error_is_not_misreported_as_dataset_count(self):
         payload = {'jobIds': ['0'], 'results': [{'jobId': '0', 'result': {'data': {

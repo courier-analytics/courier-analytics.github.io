@@ -19,10 +19,6 @@ WINDOW = 5000
 SHOPS = (5818, 7745)
 
 
-class StaleMedicalScope(ValueError):
-    """The server confirmed this report-template entity no longer exists."""
-
-
 def normalized(value):
     return ' '.join(value.split()) if isinstance(value, str) else None
 
@@ -57,7 +53,7 @@ def filter_queries(value):
     raise ValueError('Unrecognized active report filter; no predicates ignored')
 
 
-def scoped_conditions(query, scopes):
+def scoped_conditions(query, scopes, diagnostic=None):
     root_sources = {item['Name']: item['Entity'] for item in query['From']}
     root_aliases = {entity: alias for alias, entity in root_sources.items()}
     predicates = []
@@ -96,8 +92,6 @@ def scoped_conditions(query, scopes):
                 prop = value['Column'].get('Property')
                 ref = value['Column'].get('Expression', {}).get('SourceRef', {})
                 entity = ref.get('Entity') or aliases.get(ref.get('Source')) or root_sources.get(ref.get('Source'))
-                if entity == 'customer_complaint' and prop == 'tag':
-                    raise StaleMedicalScope('Server-rejected customer_complaint.tag scope')
                 if (entity, prop) not in {('main_mc06', 'name_TT'), ('main_mc06', 'format'),
                                          ('customer_complaint', 'tag')}:
                     label = entity if isinstance(entity, str) and len(entity) < 256 else '<unresolved>'
@@ -118,6 +112,35 @@ def scoped_conditions(query, scopes):
             return result
 
         for predicate in scope.get('Where') or []:
+            # Separate coverage calculation: ignore only predicates wholly about
+            # the entity confirmed missing by the live server. Mixed predicates
+            # cannot be simplified without changing the remaining conditions.
+            refs, entities, stack, nodes = set(), set(), [predicate], 0
+            while stack:
+                value = stack.pop()
+                nodes += 1
+                if nodes > 10000:
+                    raise ValueError('Report predicate exceeds inspection limit')
+                if isinstance(value, list):
+                    stack.extend(value)
+                elif isinstance(value, dict):
+                    for kind in ('Column', 'Measure'):
+                        expression = value.get(kind)
+                        if isinstance(expression, dict):
+                            ref = expression.get('Expression', {}).get('SourceRef', {})
+                            entity = ref.get('Entity') or aliases.get(ref.get('Source')) or root_sources.get(ref.get('Source'))
+                            refs.add((kind, entity, expression.get('Property')))
+                    ref = value.get('SourceRef')
+                    if isinstance(ref, dict):
+                        entities.add(ref.get('Entity') or aliases.get(ref.get('Source')) or root_sources.get(ref.get('Source')))
+                    stack.extend(value.values())
+            stale = ('Column', 'customer_complaint', 'tag')
+            if stale in refs:
+                if refs != {stale} or entities != {'customer_complaint'}:
+                    raise ValueError('Cannot separate stale customer_complaint.tag from mixed scope')
+                if diagnostic is not None:
+                    diagnostic['ignored_stale_tag_predicates'] = diagnostic.get('ignored_stale_tag_predicates', 0) + 1
+                continue
             fields_before = column_count
             rewritten = rewrite(predicate)
             if column_count == fields_before:
@@ -196,13 +219,9 @@ def build_request(saved, diagnostic=None):
                 continue
             scopes = section_scopes + filter_queries(visual.get('filters', [])) + filter_queries(config.get('filters', []))
             aggregate_query = copy.deepcopy(query)
-            try:
-                where, scope_fields = scoped_conditions(aggregate_query, scopes)
-            except StaleMedicalScope:
-                # Select another complete visual with its own scope. Never remove
-                # a predicate from the rejected visual or remap it to another table.
-                skip('server_rejected_customer_complaint_scope')
-                continue
+            where, scope_fields = scoped_conditions(aggregate_query, scopes, diagnostic)
+            aggregate_query['From'] = [item for item in aggregate_query['From']
+                                       if item['Entity'] != 'customer_complaint']
             aggregate_query['Select'] = [selected[prop] for prop in PROPERTIES]
             aggregate_query.pop('OrderBy', None)
             if where:

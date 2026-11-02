@@ -569,7 +569,7 @@ changes require regeneration and verification of the candidate routes.
 Medical query responses can contain semantic errors inside HTTP 200 results.
 The collector rejects `DataShapes[].odata.error` before decoding counts and logs
 only the error code. The live server confirmed that `customer_complaint.tag`
-references a missing entity. Visuals carrying that predicate are skipped as a
-whole; the collector may use another complete aggregate visual with its own
-scope. It never strips that predicate from the original visual. If no compatible
-visual remains, collection stops without creating a candidate or publishing.
+references a missing entity. For the separately requested valid-LMK calculation, predicates referencing only
+`customer_complaint.tag` are excluded and counted in diagnostics. Mixed predicates
+combining that field with any other field are rejected. All other supported
+shop/format predicates remain intact; no filter literals are logged.
