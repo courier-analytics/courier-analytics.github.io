@@ -1,4 +1,4 @@
-"""Anonymous Power BI access test through a temporary corporate VPN on the VPS."""
+"""Power BI access test through a temporary corporate VPN on the VPS."""
 import argparse
 import ipaddress
 import json
@@ -68,6 +68,9 @@ def main():
     parser.add_argument('--address', required=True, help='IPv4 resolved on the corporate network')
     parser.add_argument('--profile', type=Path, default=Path('/root/courier-openvpn-tcp.ovpn'))
     parser.add_argument('--auth', type=Path, default=Path('/root/courier-openvpn.auth'))
+    parser.add_argument('--check-login', action='store_true', help='Check saved Windows credentials using NTLM')
+    parser.add_argument('--save-login', action='store_true', help='Save missing Windows credentials with hidden input, then test them')
+    parser.add_argument('--replace-login', action='store_true', help='Replace saved Windows credentials; requires --save-login')
     args = parser.parse_args()
     address = private_address(args.address)
     if os.geteuid() != 0:
@@ -79,6 +82,11 @@ def main():
         raise ValueError('Saved VPN auth file missing or permissions broader than 600')
     if subprocess.run(['pgrep', '-x', 'openvpn'], capture_output=True).returncode != 1:
         raise ValueError('An OpenVPN process exists; review it before starting this test')
+    if args.replace_login and not args.save_login:
+        raise ValueError('--replace-login requires --save-login')
+    if args.save_login:
+        from powerbi_access import save_credentials
+        save_credentials(replace=args.replace_login)
     with tempfile.TemporaryDirectory(prefix='courier-powerbi-', dir='/root') as directory:
         folder = Path(directory)
         profile, log = folder / 'candidate.conf', folder / 'private.log'
@@ -88,7 +96,7 @@ def main():
             'openvpn', '--config', str(profile), '--log', str(log), '--verb', '3'],
             stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         try:
-            print('Temporary corporate VPN test; anonymous requests, no report data printed.', flush=True)
+            print('Temporary corporate VPN test; read-only requests, private data hidden.', flush=True)
             deadline = time.monotonic() + 60
             while time.monotonic() < deadline:
                 text = log.read_text(errors='replace')
@@ -108,6 +116,9 @@ def main():
                         ('http', '/reports/api/v2.0/PowerBIReports'), ('https', '/reports/')]]
             for result in results:
                 print(json.dumps(result), flush=True)
+            if args.check_login or args.save_login:
+                from powerbi_access import check_login
+                return 0 if check_login(address, folder) else 1
             print('This test does not authenticate, export medical data, or update metric 10.', flush=True)
             return 0 if any(r['curl_exit'] == 0 and r['http_status'] for r in results) else 1
         finally:
@@ -126,5 +137,5 @@ if __name__ == '__main__':
         raise SystemExit(main())
     except ValueError as error:
         raise SystemExit(str(error))
-    except (OSError, subprocess.SubprocessError):
+    except (OSError, EOFError, subprocess.SubprocessError):
         raise SystemExit('Local file, network or process error; private details hidden.')
