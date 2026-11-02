@@ -15,8 +15,8 @@ from prepare_openvpn import private_write
 CREDENTIALS = Path('/root/courier-onec.json')
 
 
-def save_credentials(path=CREDENTIALS):
-    if path.exists():
+def save_credentials(path=CREDENTIALS, replace=False):
+    if path.exists() and not replace:
         print('Existing 1C credentials preserved.', flush=True)
         return
     username = getpass.getpass('1C username (hidden): ')

@@ -24,6 +24,15 @@ class OneCBrowserTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 load_credentials(path)
 
+    @patch('onec_browser.getpass.getpass', side_effect=['correct user', 'correct password'])
+    def test_explicit_replacement_is_atomic_and_private(self, prompt):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)/'credentials.json'
+            path.write_text('{"username":"old","password":"old"}')
+            save_credentials(path, replace=True)
+            self.assertEqual(load_credentials(path)['username'], 'correct user')
+            self.assertEqual(path.stat().st_mode & 0o777, 0o600)
+
     def test_symlink_credentials_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory)/'real'

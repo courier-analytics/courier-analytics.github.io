@@ -79,12 +79,15 @@ def main():
     parser.add_argument('--onec-assets', action='store_true', help='Collect static login form resources; requires --onec-probe')
     parser.add_argument('--onec-login', action='store_true', help='Check the real 1C browser login with private saved credentials')
     parser.add_argument('--onec-save-login', action='store_true', help='Save missing 1C credentials using hidden prompts; requires --onec-login')
+    parser.add_argument('--onec-replace-login', action='store_true', help='Replace 1C credentials using hidden prompts; requires --onec-login')
     args = parser.parse_args()
     address = private_address(args.address)
     if args.onec_assets and not args.onec_probe:
         raise ValueError('--onec-assets requires --onec-probe')
     if args.onec_save_login and not args.onec_login:
         raise ValueError('--onec-save-login requires --onec-login')
+    if args.onec_replace_login and not args.onec_login:
+        raise ValueError('--onec-replace-login requires --onec-login')
     if args.onec_login and (args.onec_probe or args.onec_assets):
         raise ValueError('Choose 1C inspection or browser login')
     if (args.onec_probe or args.onec_login) and any((args.check_login, args.save_login, args.replace_login,
@@ -116,8 +119,8 @@ def main():
         except ImportError:
             raise ValueError('Install the dedicated 1C browser runtime and run with its Python')
         from onec_browser import save_credentials, load_credentials
-        if args.onec_save_login:
-            save_credentials()
+        if args.onec_save_login or args.onec_replace_login:
+            save_credentials(replace=args.onec_replace_login)
         load_credentials()
     with tempfile.TemporaryDirectory(prefix='courier-powerbi-', dir='/root') as directory:
         folder = Path(directory)
