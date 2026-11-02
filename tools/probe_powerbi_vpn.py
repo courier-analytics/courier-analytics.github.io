@@ -77,11 +77,17 @@ def main():
     parser.add_argument('--preflight', action='store_true', help='Check saved report structure locally before connecting; requires --collect-medical')
     parser.add_argument('--onec-probe', action='store_true', help='Inspect only the supplied 1C web login page; no authentication or courier queries')
     parser.add_argument('--onec-assets', action='store_true', help='Collect static login form resources; requires --onec-probe')
+    parser.add_argument('--onec-login', action='store_true', help='Check the real 1C browser login with private saved credentials')
+    parser.add_argument('--onec-save-login', action='store_true', help='Save missing 1C credentials using hidden prompts; requires --onec-login')
     args = parser.parse_args()
     address = private_address(args.address)
     if args.onec_assets and not args.onec_probe:
         raise ValueError('--onec-assets requires --onec-probe')
-    if args.onec_probe and any((args.check_login, args.save_login, args.replace_login,
+    if args.onec_save_login and not args.onec_login:
+        raise ValueError('--onec-save-login requires --onec-login')
+    if args.onec_login and (args.onec_probe or args.onec_assets):
+        raise ValueError('Choose 1C inspection or browser login')
+    if (args.onec_probe or args.onec_login) and any((args.check_login, args.save_login, args.replace_login,
                                args.inspect_model, args.collect_medical, args.preflight)):
         raise ValueError('1C page inspection cannot be combined with Power BI actions')
     if os.geteuid() != 0:
@@ -104,6 +110,15 @@ def main():
     if args.save_login:
         from powerbi_access import save_credentials
         save_credentials(replace=args.replace_login)
+    if args.onec_login:
+        try:
+            import playwright.sync_api
+        except ImportError:
+            raise ValueError('Install the dedicated 1C browser runtime and run with its Python')
+        from onec_browser import save_credentials, load_credentials
+        if args.onec_save_login:
+            save_credentials()
+        load_credentials()
     with tempfile.TemporaryDirectory(prefix='courier-powerbi-', dir='/root') as directory:
         folder = Path(directory)
         profile, log = folder / 'candidate.conf', folder / 'private.log'
@@ -128,6 +143,13 @@ def main():
                     'tls_error': 'TLS Error' in text, 'certificate_error': 'VERIFY ERROR' in text}))
                 return 1
             print('VPN connected; only the specified corporate IPv4 is routed through it.', flush=True)
+            if args.onec_login:
+                from onec_browser import check_login
+                from playwright.sync_api import Error as BrowserError
+                try:
+                    return 0 if check_login(address) else 1
+                except BrowserError:
+                    raise ValueError('1C browser operation failed; private details hidden') from None
             if args.onec_probe:
                 from onec_access import inspect_page
                 return 0 if inspect_page(address, folder, assets=args.onec_assets) else 1
