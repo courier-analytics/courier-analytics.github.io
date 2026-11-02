@@ -81,8 +81,11 @@ def main():
     parser.add_argument('--onec-save-login', action='store_true', help='Save missing 1C credentials using hidden prompts; requires --onec-login')
     parser.add_argument('--onec-replace-login', action='store_true', help='Replace 1C credentials using hidden prompts; requires --onec-login')
     parser.add_argument('--onec-route-check', action='store_true', help='Compare unauthenticated 1C entry, loader and auth-settings responses')
+    parser.add_argument('--onec-inspect-ui', action='store_true', help='Save private interface screenshot and control labels after 1C login')
     args = parser.parse_args()
     address = private_address(args.address)
+    if args.onec_inspect_ui and not args.onec_login:
+        raise ValueError('--onec-inspect-ui requires --onec-login')
     if args.onec_route_check and (address != '10.210.254.19' or any((
             args.onec_probe, args.onec_assets, args.onec_login, args.onec_save_login,
             args.onec_replace_login, args.check_login, args.save_login, args.replace_login,
@@ -160,7 +163,7 @@ def main():
                 from onec_browser import check_login
                 from playwright.sync_api import Error as BrowserError
                 try:
-                    return 0 if check_login(address) else 1
+                    return 0 if check_login(address, inspect_ui=args.onec_inspect_ui) else 1
                 except BrowserError:
                     raise ValueError('1C browser operation failed; private details hidden') from None
             if args.onec_probe:

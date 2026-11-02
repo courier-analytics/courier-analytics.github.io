@@ -9,6 +9,8 @@ import re
 import sys
 import subprocess
 import shlex
+import tempfile
+import zipfile
 from urllib.parse import urlsplit
 
 from prepare_openvpn import private_write
@@ -218,7 +220,43 @@ raise SystemExit(subprocess.run(['/opt/courier-analytics/onec-venv/bin/python','
     return response.returncode == 0
 
 
-def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False):
+def capture_interface(page, private):
+    if page.locator('#userPassword').is_visible():
+        raise ValueError('Cannot inspect interface while the password form is visible')
+    page.locator('#mainSurface').wait_for(state='visible', timeout=30000)
+    page.wait_for_timeout(3000)
+    structure = page.evaluate('''() => {
+        const visible = e => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden';
+        return {
+            controls: Array.from(document.querySelectorAll('button,[role=button],[role=menuitem],a'))
+                .filter(e => visible(e) && (e.innerText || '').trim())
+                .slice(0,200).map(e => ({id: e.id, role: e.getAttribute('role'),
+                    text: e.innerText.trim().slice(0,160)})),
+            column_headers: Array.from(document.querySelectorAll('th,[role=columnheader]'))
+                .filter(visible).slice(0,50).map(e => (e.innerText || '').trim().slice(0,160))
+        };
+    }''')
+    # The bundle is private: it can include account/navigation labels. No
+    # input values, whole DOM, HTTP bodies, headers, cookies or storage export.
+    with tempfile.TemporaryDirectory(prefix='.onec-ui-', dir=private) as directory:
+        folder = Path(directory)
+        picture = folder/'interface.png'
+        private_write(picture, '')
+        page.screenshot(path=str(picture))
+        fd, name = tempfile.mkstemp(prefix='.onec-ui-', dir=private)
+        try:
+            with os.fdopen(fd, 'wb') as output:
+                with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED) as bundle:
+                    bundle.writestr('ui-structure.json', json.dumps(structure, ensure_ascii=False))
+                    bundle.write(picture, 'interface.png')
+            os.replace(name, private/'onec-interface.zip')
+        finally:
+            if os.path.exists(name):
+                os.unlink(name)
+    print('1C interface saved privately: onec-interface.zip. No records edited.', flush=True)
+
+
+def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     if local_mac and (sys.platform != 'darwin' or address != '10.210.254.19'):
         raise ValueError('Local comparison requires the authorized Mac and fixed 1C address')
@@ -231,6 +269,8 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
     private.mkdir(parents=True, exist_ok=True)
     result = {'login_submitted': False, 'authenticated': False, 'login_http_statuses': [],
               'two_factor_required': False, 'password_change_required': False}
+    if inspect_ui:
+        result['interface_saved'] = False
     with sync_playwright() as playwright:
         options = {'headless': not local_mac}
         if local_mac:
@@ -311,6 +351,9 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
                 result['two_factor_required'] or result['password_change_required'])
             if result['authenticated']:
                 result['login_failures'] = []
+                if inspect_ui:
+                    capture_interface(page, private)
+                    result['interface_saved'] = True
                 # Only known navigation labels; never courier rows, account name,
                 # full DOM, screenshots, response bodies or authentication tokens.
                 labels = ('Курьеры', 'Справочники', 'Сотрудники', 'Отчеты', 'Отчёты', 'Доставка')
@@ -328,7 +371,7 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
     if sync_vps and result['authenticated']:
         print('Ручной вход завершён. Теперь SSH запросит пароль сервера VPS для переноса подтверждённых реквизитов и проверки серверного входа.', flush=True)
         sync_verified_credentials(captured, result['authenticated'])
-    return result['authenticated']
+    return result['authenticated'] and (not inspect_ui or result['interface_saved'])
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_browser import wait_manual_login, compare_manual_inputs
+from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface
 
 
 @unittest.skipUnless(importlib.util.find_spec('playwright') and Path('/usr/lib/chromium/chromium').exists(),
@@ -35,6 +35,26 @@ class ManualLoginEventsTests(unittest.TestCase):
                 page.locator('#userPassword').press('Enter')
                 page.wait_for_timeout(50)
                 self.assertTrue(report['manual_input_vs_vps']['password_matches_vps'])
+            finally:
+                browser.close()
+
+    def test_private_interface_bundle_does_not_export_input_values(self):
+        import tempfile, zipfile
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as playwright, tempfile.TemporaryDirectory() as directory:
+            browser = playwright.chromium.launch(executable_path='/usr/lib/chromium/chromium',
+                                                 headless=True, args=['--no-sandbox'])
+            try:
+                page = browser.new_page()
+                page.set_content('<input id="userPassword" type="password" style="display:none" value="PRIVATE_SECRET"><div id="mainSurface"><button>Курьеры</button></div>')
+                capture_interface(page, Path(directory))
+                archive = Path(directory)/'onec-interface.zip'
+                self.assertEqual(archive.stat().st_mode & 0o777, 0o600)
+                with zipfile.ZipFile(archive) as bundle:
+                    metadata = bundle.read('ui-structure.json').decode()
+                    self.assertNotIn('PRIVATE_SECRET', metadata)
+                    self.assertIn('Курьеры', metadata)
+                    self.assertEqual(set(bundle.namelist()), {'ui-structure.json', 'interface.png'})
             finally:
                 browser.close()
 
