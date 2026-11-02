@@ -21,5 +21,5 @@ if [[ ! -x "$root/venv/bin/python" ]]; then
   python3 -m venv "$root/venv"
 fi
 "$root/venv/bin/python" -m pip install --quiet 'playwright>=1.48,<2'
-echo 'Uses your installed Chrome in a separate temporary session. Corporate VPN must be connected. 1C credentials are held only in memory and are not saved on the Mac.'
+echo 'Откроется отдельное окно Chrome для ручного входа. Включите корпоративный VPN. В Терминале логин и пароль вводить не нужно.'
 exec "$root/venv/bin/python" "$root/onec_browser.py" </dev/tty

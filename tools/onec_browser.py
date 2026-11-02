@@ -122,12 +122,23 @@ def submit_login(page, credentials):
     return {**matched, 'matches_at_submit': True, 'submit_method': 'native_keyboard_enter'}
 
 
-def check_login(address, private=Path('/opt/courier-analytics/private'), local_credentials=None):
+def wait_manual_login(page, completed, attempts=360):
+    # input() here would block Playwright's synchronous event dispatch. Pump
+    # events until the native login response arrives and the form is hidden.
+    for _ in range(attempts):
+        if page.is_closed():
+            return False
+        page.wait_for_timeout(500)
+        if completed() and not page.locator('#userPassword').is_visible():
+            return True
+    return False
+
+
+def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
-    local_mac = local_credentials is not None
     if local_mac and (sys.platform != 'darwin' or address != '10.210.254.19'):
         raise ValueError('Local comparison requires the authorized Mac and fixed 1C address')
-    credentials = local_credentials if local_mac else load_credentials()
+    credentials = None if local_mac else load_credentials()
     if not local_mac:
         corporate_interface(address)
     private.mkdir(parents=True, exist_ok=True)
@@ -137,10 +148,11 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_c
         options = {'headless': not local_mac}
         if local_mac:
             options['executable_path'] = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-        browser = playwright.chromium.launch(**options, args=[
-            '--no-proxy-server', '--disable-quic',
-            '--host-resolver-rules=MAP '+HOST+' '+address])
-        context = browser.new_context(service_workers='block', accept_downloads=False)
+        if not local_mac:
+            options['args'] = ['--no-proxy-server', '--disable-quic',
+                               '--host-resolver-rules=MAP '+HOST+' '+address]
+        browser = playwright.chromium.launch(**options)
+        context = browser.new_context(service_workers='allow' if local_mac else 'block', accept_downloads=False)
         # No TLS verification bypass, external redirects, credential URLs or
         # alternate network routes. Validate the VPN route before each request.
         def route_request(route):
@@ -155,8 +167,9 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_c
                 route.abort()
                 return
             route.continue_()
-        context.route('**/*', route_request)
-        context.route_web_socket('**/*', lambda websocket: websocket.close())
+        if not local_mac:
+            context.route('**/*', route_request)
+            context.route_web_socket('**/*', lambda websocket: websocket.close())
         page = context.new_page()
         result['login_failures'] = []
         def dialog_received(dialog):
@@ -164,7 +177,8 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_c
             if shape['categories']:
                 result['login_failures'].append(shape)
             dialog.dismiss()
-        page.on('dialog', dialog_received)
+        if not local_mac:
+            page.on('dialog', dialog_received)
         final_response = []
         def response_received(response):
             if urlsplit(response.url).path != PATH+'e1cib/login':
@@ -187,12 +201,17 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_c
         page.on('response', response_received)
         try:
             page.goto('https://'+HOST+PATH, wait_until='domcontentloaded', timeout=60000)
-            result['input_check'] = submit_login(page, credentials)
-            result['login_submitted'] = True
-            try:
-                page.wait_for_function("document.querySelector('#authWindow') && getComputedStyle(document.querySelector('#authWindow')).display === 'none'", timeout=45000)
-            except BrowserTimeout:
-                pass
+            if local_mac:
+                print('Открылось отдельное окно Chrome. Войдите в 1С вручную. Проверка подождёт до трёх минут; в Терминале ничего нажимать не нужно.', flush=True)
+                wait_manual_login(page, lambda: bool(final_response))
+                result['login_submitted'] = bool(result['login_http_statuses'])
+            else:
+                result['input_check'] = submit_login(page, credentials)
+                result['login_submitted'] = True
+                try:
+                    page.wait_for_function("document.querySelector('#authWindow') && getComputedStyle(document.querySelector('#authWindow')).display === 'none'", timeout=45000)
+                except BrowserTimeout:
+                    pass
             result['authenticated'] = bool(final_response) and not page.locator('#userPassword').is_visible()
             result['two_factor_required'] = page.locator('#auth2FCodeField').is_visible()
             result['password_change_required'] = page.locator('#newPassword').is_visible()
@@ -203,11 +222,8 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_c
                 # full DOM, screenshots, response bodies or authentication tokens.
                 labels = ('Курьеры', 'Справочники', 'Сотрудники', 'Отчеты', 'Отчёты', 'Доставка')
                 result['navigation_labels'] = [text for text in labels if page.get_by_text(text, exact=True).count()]
-            elif local_mac:
-                print('Автоматический вход не завершился. Попробуйте обычный ручной вход в открытом окне Chrome. После этого вернитесь в Терминал и нажмите Enter. Не вводите здесь реквизиты.', flush=True)
-                input()
-                page.wait_for_timeout(1000)
-                result['manual_authenticated'] = bool(final_response) and not page.locator('#userPassword').is_visible()
+            if local_mac:
+                result['manual_authenticated'] = result['authenticated']
         except BrowserTimeout:
             result['stage_timeout'] = True
         finally:
@@ -223,11 +239,8 @@ if __name__ == '__main__':
     import tempfile
     if sys.platform != 'darwin':
         raise SystemExit('This entry point is only for local Mac comparison')
-    username = getpass.getpass('1C username (hidden): ')
-    password = getpass.getpass('1C password (hidden): ')
     try:
         with tempfile.TemporaryDirectory(prefix='onec-local-check-') as directory:
-            check_login('10.210.254.19', Path(directory),
-                        local_credentials={'username': username, 'password': password})
+            check_login('10.210.254.19', Path(directory), local_mac=True)
     except Exception:
         raise SystemExit('Local browser comparison failed; private details hidden.') from None
