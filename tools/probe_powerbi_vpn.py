@@ -71,6 +71,7 @@ def main():
     parser.add_argument('--check-login', action='store_true', help='Check saved Windows credentials using NTLM')
     parser.add_argument('--save-login', action='store_true', help='Save missing Windows credentials with hidden input, then test them')
     parser.add_argument('--replace-login', action='store_true', help='Replace saved Windows credentials; requires --save-login')
+    parser.add_argument('--inspect-model', action='store_true', help='Read report field references using saved Windows credentials; no data query')
     args = parser.parse_args()
     address = private_address(args.address)
     if os.geteuid() != 0:
@@ -92,7 +93,7 @@ def main():
         profile, log = folder / 'candidate.conf', folder / 'private.log'
         private_write(profile, config)
         private_write(log, '')
-        worker = subprocess.Popen(['timeout', '--signal=TERM', '--kill-after=5s', '180s',
+        worker = subprocess.Popen(['timeout', '--signal=TERM', '--kill-after=5s', '240s',
             'openvpn', '--config', str(profile), '--log', str(log), '--verb', '3'],
             stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         try:
@@ -116,9 +117,9 @@ def main():
                         ('http', '/reports/api/v2.0/PowerBIReports'), ('https', '/reports/')]]
             for result in results:
                 print(json.dumps(result), flush=True)
-            if args.check_login or args.save_login:
+            if args.check_login or args.save_login or args.inspect_model:
                 from powerbi_access import check_login
-                return 0 if check_login(address, folder) else 1
+                return 0 if check_login(address, folder, inspect_model=args.inspect_model) else 1
             print('This test does not authenticate, export medical data, or update metric 10.', flush=True)
             return 0 if any(r['curl_exit'] == 0 and r['http_status'] for r in results) else 1
         finally:

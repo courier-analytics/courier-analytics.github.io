@@ -12,7 +12,8 @@ from urllib.parse import parse_qs, urlsplit
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from powerbi_access import (CATALOG_PATH, REPORT_ITEM_PATH, validate_credentials,
                            load_credentials, save_credentials, catalog_request,
-                           report_metadata, check_login)
+                           report_metadata, check_login, definition_summary,
+                           authenticated_json_request, inspect_report_definition, corporate_interface)
 from prepare_openvpn import private_write
 
 LOGIN = {'username': 'EXAMPLE\\test', 'password': 'fake-secret-with-"-and-\\-colon:'}
@@ -46,10 +47,12 @@ class PowerBILoginTests(unittest.TestCase):
                 load_credentials(path)
 
     @patch('powerbi_access.subprocess.run')
-    def test_ntlm_uses_stdin_fixed_service_no_redirects_and_removes_response(self, run):
+    @patch('powerbi_access.corporate_interface', return_value='tun0')
+    def test_ntlm_uses_stdin_fixed_service_no_redirects_and_removes_response(self, interface, run):
         def response(command, **kwargs):
             self.assertEqual(command[:4], ['curl', '--disable', '--config', '-'])
             self.assertIn('--ntlm', command)
+            self.assertEqual(command[command.index('--interface') + 1], 'tun0')
             self.assertNotIn('--location', command)
             self.assertNotIn('--insecure', command)
             self.assertNotIn(LOGIN['username'], ' '.join(command))
@@ -104,13 +107,77 @@ class PowerBILoginTests(unittest.TestCase):
             self.assertEqual(metadata.stat().st_mode & 0o777, 0o600)
 
     @patch('powerbi_access.subprocess.run', side_effect=subprocess.TimeoutExpired('curl', 30))
-    def test_timeout_cleans_up_private_body(self, run):
+    @patch('powerbi_access.corporate_interface', return_value='tun0')
+    def test_timeout_cleans_up_private_body(self, interface, run):
         with tempfile.TemporaryDirectory() as directory:
             folder = Path(directory)
             status, data = catalog_request('10.20.30.40', LOGIN, folder)
             self.assertEqual(status, {'curl_exit': 28, 'http_status': None})
             self.assertIsNone(data)
             self.assertFalse((folder / 'catalog-response.json').exists())
+
+    @patch('powerbi_access.subprocess.run')
+    def test_authentication_requires_tunnel_route_and_binds_to_it(self, run):
+        run.return_value = subprocess.CompletedProcess([], 0, '[{"dev":"tun0"}]', '')
+        self.assertEqual(corporate_interface('10.20.30.40'), 'tun0')
+        for device in ('eth0', 'lo', 'wg0'):
+            run.return_value = subprocess.CompletedProcess([], 0, json.dumps([{'dev': device}]), '')
+            with tempfile.TemporaryDirectory() as directory:
+                with self.assertRaisesRegex(ValueError, 'credentials not sent'):
+                    catalog_request('10.20.30.40', LOGIN, Path(directory))
+            self.assertEqual(run.call_args.args[0][0], 'ip')
+
+    def test_definition_summary_reads_embedded_field_refs_but_excludes_literals(self):
+        config = {'singleVisual': {'visualType': 'card', 'projections': {
+            'Values': [{'queryRef': 'Medical.ValidPercent'}]}, 'prototypeQuery': {
+            'From': [{'Name': 'm', 'Entity': 'Medical'}], 'Select': [{'Measure': {
+                'Property': 'ValidPercent'}}], 'Where': [{'Literal': {'Value': 'PRIVATE_PERSON'}}]}}}
+        result = definition_summary({'exploration': json.dumps({'sections': [
+            {'visualContainers': [{'config': json.dumps(config)}]}]}),
+            'credentials': {'password': 'PRIVATE_PASSWORD'}})
+        self.assertEqual(result['entities'], ['Medical'])
+        self.assertEqual(result['fields'], ['ValidPercent'])
+        self.assertEqual(result['query_refs'], ['Medical.ValidPercent'])
+        self.assertEqual(result['visual_types'], ['card'])
+        self.assertNotIn('PRIVATE_PERSON', json.dumps(result))
+        self.assertNotIn('PRIVATE_PASSWORD', json.dumps(result))
+        self.assertFalse(result['truncated'])
+
+    @patch('powerbi_access.subprocess.run')
+    def test_authenticated_reader_rejects_arbitrary_or_invalid_model_paths(self, run):
+        with tempfile.TemporaryDirectory() as directory:
+            for path in ('https://other-host/steal', '/reports/api/v2.0/Users',
+                         '/powerbi/api/explore/reports/' + '-' * 36 + '/modelsAndExploration'):
+                with self.subTest(path=path), self.assertRaises(ValueError):
+                    authenticated_json_request('10.20.30.40', LOGIN, Path(directory), path)
+        run.assert_not_called()
+
+    @patch('powerbi_access.authenticated_json_request')
+    def test_definition_fallback_stays_on_same_report_and_saves_privately(self, request):
+        request.side_effect = [({'curl_exit': 0, 'http_status': 404}, None),
+            ({'curl_exit': 0, 'http_status': 200}, {'exploration': {'Entity': 'Medical',
+                'Measure': {'Property': 'ValidPercent'}, 'Literal': {'Value': 'PRIVATE_PERSON'}}})]
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                self.assertTrue(inspect_report_definition('10.20.30.40', LOGIN, folder,
+                                                         {'id': REPORT['Id']}, folder))
+            self.assertEqual(request.call_count, 2)
+            self.assertTrue(request.call_args.args[3].startswith('/reports/powerbi/api/explore/reports/' + REPORT['Id']))
+            self.assertNotIn('PRIVATE_PERSON', output.getvalue())
+            self.assertEqual((folder / 'powerbi-report-definition.json').stat().st_mode & 0o777, 0o600)
+            self.assertEqual((folder / 'powerbi-report-fields.json').stat().st_mode & 0o777, 0o600)
+
+    @patch('powerbi_access.authenticated_json_request', return_value=(
+        {'curl_exit': 0, 'http_status': 200}, {'error': 'unexpected payload'}))
+    def test_error_json_is_not_accepted_as_report_definition(self, request):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertFalse(inspect_report_definition('10.20.30.40', LOGIN, folder,
+                                                          {'id': REPORT['Id']}, folder))
+            self.assertFalse((folder / 'powerbi-report-definition.json').exists())
 
 
 if __name__ == '__main__':
