@@ -61,8 +61,9 @@ def scoped_conditions(query, scopes):
     column_count = 0
     for scope in [{'From': query['From'], 'Where': query.get('Where', [])}] + scopes:
         aliases = {item['Name']: item['Entity'] for item in scope.get('From', [])}
-        if set(aliases.values()) - set(root_aliases):
-            raise ValueError('Unknown entity in medical report scope')
+        # Filter From lists may retain unused entities from the report template.
+        # Validate every actual reference below; unused declarations are not added
+        # to the aggregate query and do not change its scope.
 
         def rewrite(value, depth=0):
             nonlocal column_count
@@ -85,7 +86,8 @@ def scoped_conditions(query, scopes):
                 if key == 'SourceRef':
                     entity = item.get('Entity') or aliases.get(item.get('Source')) or root_sources.get(item.get('Source'))
                     if entity != 'main_mc06':
-                        raise ValueError('Unknown source reference in medical report scope')
+                        label = entity if isinstance(entity, str) and len(entity) < 256 else '<unresolved>'
+                        raise ValueError('Unsupported referenced entity in medical report scope: ' + label)
                     result[key] = {'Source': root_aliases[entity]}
                 else:
                     result[key] = rewrite(item, depth + 1)
@@ -186,6 +188,76 @@ def build_request(saved, diagnostic=None):
                 {'Query': {'Commands': [{'SemanticQueryDataShapeCommand': command}]}}],
                 'cancelQueries': []}
     raise ValueError('No compatible medical aggregate table; selection diagnostics: ' + json.dumps(skipped))
+
+
+def scope_summary(saved):
+    """Describe filter entities and fields only; never emit literal values."""
+    exploration = parsed(saved.get('definition', {}).get('exploration', {}))
+    if not isinstance(exploration, dict):
+        return [{'scope': 'report', 'definition_recognized': False}]
+    contexts = [('report', exploration.get('filters', []))]
+    for section in exploration.get('sections', []):
+        for visual in section.get('visualContainers', []):
+            config = parsed(visual.get('config'))
+            single = config.get('singleVisual', {}) if isinstance(config, dict) else {}
+            if isinstance(single, dict) and single.get('visualType') in ('tableEx', 'pivotTable'):
+                contexts.extend([('section', section.get('filters', [])),
+                                 ('visual', visual.get('filters', [])), ('config', config.get('filters', []))])
+                container = parsed(visual.get('query'))
+                commands = container.get('Commands', []) if isinstance(container, dict) else []
+                source_command = commands[0].get('SemanticQueryDataShapeCommand') if commands and isinstance(commands[0], dict) else None
+                query = source_command.get('Query') if isinstance(source_command, dict) else None
+                if not isinstance(query, dict):
+                    query = parsed(single.get('prototypeQuery'))
+                if isinstance(query, dict):
+                    contexts.append(('query', {'From': query.get('From', []), 'Where': query.get('Where', [])}))
+                break
+        else:
+            continue
+        break
+    output = []
+    for context, value in contexts:
+        try:
+            filters = filter_queries(value)
+        except (ValueError, TypeError, AttributeError):
+            output.append({'scope': context, 'filter_encoding_recognized': False})
+            continue
+        for query in filters:
+            aliases = {item.get('Name'): item.get('Entity') for item in (query.get('From') or [])
+                       if isinstance(item, dict) and isinstance(item.get('Name'), str)}
+            refs, stack, visited = set(), [query.get('Where', [])], 0
+            while stack and visited < 10000:
+                item = stack.pop()
+                visited += 1
+                if isinstance(item, list):
+                    stack.extend(item)
+                elif isinstance(item, dict):
+                    for kind in ('Column', 'Measure'):
+                        expression = item.get(kind)
+                        if isinstance(expression, dict):
+                            ref = expression.get('Expression', {}).get('SourceRef', {})
+                            entity = ref.get('Entity') or aliases.get(ref.get('Source')) or '<unresolved>'
+                            prop = expression.get('Property')
+                            if isinstance(entity, str) and isinstance(prop, str):
+                                refs.add((entity[:256], prop[:256]))
+                    stack.extend(v for v in item.values() if isinstance(v, (dict, list)))
+            output.append({'scope': context, 'declared_entities': sorted({v for v in aliases.values() if isinstance(v, str)}),
+                           'referenced_fields': [{'entity': entity, 'field': prop} for entity, prop in sorted(refs)[:20]],
+                           'truncated': bool(stack) or len(refs) > 20})
+    return output
+
+
+def preflight(private_folder=Path('/opt/courier-analytics/private')):
+    saved = json.loads((private_folder / 'powerbi-report-definition.json').read_text())
+    diagnostic = {}
+    try:
+        build_request(saved, diagnostic)
+        print('Local medical structure check: ready; ' + json.dumps(diagnostic, ensure_ascii=False), flush=True)
+        return True
+    except (ValueError, KeyError, TypeError, AttributeError) as error:
+        print('Local medical structure check: ' + str(error), flush=True)
+        print('Safe medical scope context: ' + json.dumps(scope_summary(saved), ensure_ascii=False, indent=2), flush=True)
+        return False
 
 
 def query_request(address, credentials, folder, base_path, payload):
@@ -362,7 +434,11 @@ def response_shape(payload):
 def collect_candidate(address, credentials, folder, private_folder, shops=SHOPS):
     definition = json.loads((private_folder / 'powerbi-report-definition.json').read_text())
     diagnostic = {}
-    request = build_request(definition, diagnostic)
+    try:
+        request = build_request(definition, diagnostic)
+    except ValueError:
+        print('Safe medical scope context: ' + json.dumps(scope_summary(definition), ensure_ascii=False, indent=2), flush=True)
+        raise
     print('Medical aggregate source context: ' + json.dumps(diagnostic, ensure_ascii=False), flush=True)
     status, data = query_request(address, credentials, folder, definition['base_path'], request)
     print('Power BI aggregate query: ' + json.dumps({**status, 'json_received': isinstance(data, dict)}), flush=True)

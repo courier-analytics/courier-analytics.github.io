@@ -74,10 +74,17 @@ def main():
     parser.add_argument('--inspect-model', action='store_true', help='Read report field references using saved Windows credentials; no data query')
     parser.add_argument('--collect-medical', action='store_true', help='Read shop aggregates and prepare a private validated LMK candidate; no publication')
     parser.add_argument('--shops', type=int, nargs='+', choices=(5818, 7745), default=[5818, 7745])
+    parser.add_argument('--preflight', action='store_true', help='Check saved report structure locally before connecting; requires --collect-medical')
     args = parser.parse_args()
     address = private_address(args.address)
     if os.geteuid() != 0:
         raise ValueError('Run on the VPS as root')
+    if args.preflight:
+        if not args.collect_medical:
+            raise ValueError('--preflight requires --collect-medical')
+        from powerbi_medical import preflight
+        if not preflight():
+            return 1
     if not args.auth.is_absolute() or any(c.isspace() for c in str(args.auth)):
         raise ValueError('Invalid VPN auth file path')
     config, needs_auth = candidate(args.profile.read_text(), [address], args.auth)

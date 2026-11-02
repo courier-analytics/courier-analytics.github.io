@@ -11,7 +11,8 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from powerbi_medical import build_request, decode_rows, candidate_records, query_request, PROPERTIES, WINDOW
+from powerbi_medical import (build_request, decode_rows, candidate_records, query_request,
+                            scope_summary, preflight, PROPERTIES, WINDOW)
 
 
 def definition():
@@ -101,6 +102,43 @@ class PowerBIMedicalTests(unittest.TestCase):
         self.assertEqual(query['Where'][0]['Condition']['Comparison']['Right']['Literal']['Value'], "'DS'")
         self.assertEqual(diagnostic['scope_fields'], ['format'])
         self.assertEqual(source, original)
+
+    def test_unused_legacy_filter_entity_does_not_change_aggregate_query(self):
+        source = definition()
+        scope = {'From': [{'Name': 'old', 'Entity': 'customer_complaint', 'Type': 0},
+                          {'Name': 'shop', 'Entity': 'main_mc06', 'Type': 0}],
+                 'Where': [{'Condition': {'In': {'Expressions': [{'Column': {
+                     'Expression': {'SourceRef': {'Source': 'shop'}}, 'Property': 'format'}}],
+                     'Values': [[{'Literal': {'Value': "'DS'"}}]]}}}]}
+        source['definition']['exploration']['filters'] = json.dumps([{'filter': scope}])
+        request = build_request(source)
+        self.assertNotIn('customer_complaint', json.dumps(request))
+        query = request['queries'][0]['Query']['Commands'][0]['SemanticQueryDataShapeCommand']['Query']
+        self.assertEqual(query['Where'][0]['Condition']['In']['Expressions'][0]['Column']['Expression']['SourceRef'], {'Source': 'a'})
+        self.assertEqual(query['Where'][0]['Condition']['In']['Values'], [[{'Literal': {'Value': "'DS'"}}]])
+
+    @patch('powerbi_medical.subprocess.run')
+    def test_referenced_legacy_entity_is_rejected_with_private_offline_diagnostic(self, run):
+        source = definition()
+        scope = {'From': [{'Name': 'old', 'Entity': 'customer_complaint', 'Type': 0}],
+                 'Where': [{'Condition': {'In': {'Expressions': [{'Column': {
+                     'Expression': {'SourceRef': {'Source': 'old'}}, 'Property': 'format'}}],
+                     'Values': [[{'Literal': {'Value': "'PRIVATE_FILTER_VALUE'"}}]]}}}]}
+        source['definition']['exploration']['filters'] = json.dumps([{'filter': scope}])
+        with self.assertRaisesRegex(ValueError, 'customer_complaint'):
+            build_request(source)
+        summary = scope_summary(source)
+        self.assertEqual(summary[0]['referenced_fields'], [{'entity': 'customer_complaint', 'field': 'format'}])
+        self.assertNotIn('PRIVATE_FILTER_VALUE', json.dumps(summary))
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            (folder / 'powerbi-report-definition.json').write_text(json.dumps(source))
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                self.assertFalse(preflight(folder))
+            self.assertIn('customer_complaint', output.getvalue())
+            self.assertNotIn('PRIVATE_FILTER_VALUE', output.getvalue())
+        run.assert_not_called()
 
     def test_filters_on_people_or_medical_status_cannot_change_coverage_denominator(self):
         for prop in ('name', 'Есть ЛМК', 'ЛМК просрочена_'):
