@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_browser import save_credentials, load_credentials, final_login_shape, failure_shape
+from onec_browser import save_credentials, load_credentials, final_login_shape, failure_shape, sync_verified_credentials
 
 
 class OneCBrowserTests(unittest.TestCase):
@@ -52,6 +52,22 @@ class OneCBrowserTests(unittest.TestCase):
         self.assertIn('credentials_rejected', shape['categories'])
         self.assertNotIn('PRIVATE_ACCOUNT', json.dumps(shape))
         self.assertIn('license_unavailable', failure_shape('Не найдена лицензия PRIVATE_SERVER')['categories'])
+
+    @patch('onec_browser.subprocess.run')
+    def test_only_confirmed_manual_credentials_are_sent_to_vps_stdin(self, run):
+        import subprocess
+        saved = [{'username': 'manual-user', 'password': 'manual-secret'}]
+        self.assertFalse(sync_verified_credentials(saved, False))
+        run.assert_not_called()
+        run.return_value = subprocess.CompletedProcess([], 0)
+        self.assertTrue(sync_verified_credentials(saved, True))
+        self.assertEqual(saved, [])
+        args = run.call_args.args[0]
+        self.assertNotIn('manual-secret', str(args))
+        self.assertNotIn('manual-user', str(args))
+        self.assertEqual(json.loads(run.call_args.kwargs['input'])['password'], 'manual-secret')
+        with self.assertRaises(ValueError):
+            sync_verified_credentials([], True)
 
     def test_http_200_challenge_is_not_successful_authentication(self):
         self.assertFalse(final_login_shape({'cred': 'challenge'}))

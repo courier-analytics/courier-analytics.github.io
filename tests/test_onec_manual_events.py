@@ -21,7 +21,8 @@ class ManualLoginEventsTests(unittest.TestCase):
                     body='<input id="userName"><input id="userPassword" type="password"><button id="okButton">Login</button>'))
                 page.goto('https://couriers.int.vkusvill.ru/couriers/ru_RU/')
                 report = {}
-                compare_manual_inputs(page, {'username': 'expected-user', 'password': 'expected-secret'}, report)
+                captured = []
+                compare_manual_inputs(page, {'username': 'expected-user', 'password': 'expected-secret'}, report, captured)
                 page.locator('#userName').fill('expected-user')
                 page.locator('#userPassword').fill('different-secret')
                 page.locator('#okButton').click()
@@ -29,6 +30,7 @@ class ManualLoginEventsTests(unittest.TestCase):
                 self.assertEqual(report['manual_input_vs_vps'], {
                     'username_matches_vps': True, 'password_matches_vps': False})
                 self.assertNotIn('secret', str(report))
+                self.assertEqual(captured[0]['password'], 'different-secret')
                 page.locator('#userPassword').fill('expected-secret')
                 page.locator('#userPassword').press('Enter')
                 page.wait_for_timeout(50)
