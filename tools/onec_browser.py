@@ -220,11 +220,24 @@ raise SystemExit(subprocess.run(['/opt/courier-analytics/onec-venv/bin/python','
     return response.returncode == 0
 
 
-def capture_interface(page, private):
+def open_roster_navigation(page):
+    """Only open evidenced reference navigation, never edit or submit forms."""
+    for label in ('Справочники', 'Курьеры'):
+        links = page.get_by_text(label, exact=True)
+        visible = [links.nth(i) for i in range(links.count()) if links.nth(i).is_visible()]
+        if len(visible) != 1:
+            return label
+        visible[0].click(timeout=5000)
+        page.wait_for_timeout(3000)
+    return None
+
+
+def capture_interface(page, private, inspect_roster=False):
     if page.locator('#userPassword').is_visible():
         raise ValueError('Cannot inspect interface while the password form is visible')
     page.locator('#mainSurface').wait_for(state='visible', timeout=30000)
     page.wait_for_timeout(3000)
+    navigation_stopped_at = open_roster_navigation(page) if inspect_roster else None
     structure = page.evaluate('''() => {
         const visible = e => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden';
         return {
@@ -232,10 +245,18 @@ def capture_interface(page, private):
                 .filter(e => visible(e) && (e.innerText || '').trim())
                 .slice(0,200).map(e => ({id: e.id, role: e.getAttribute('role'),
                     text: e.innerText.trim().slice(0,160)})),
+            labels: Array.from(document.querySelectorAll('#mainSurface *'))
+                .filter(e => visible(e) && !e.children.length &&
+                    !['INPUT','TEXTAREA','SCRIPT','STYLE'].includes(e.tagName) &&
+                    (e.innerText || '').trim())
+                .slice(0,400).map(e => ({id: e.id, tag: e.tagName,
+                    text: e.innerText.trim().slice(0,160)})),
             column_headers: Array.from(document.querySelectorAll('th,[role=columnheader]'))
                 .filter(visible).slice(0,50).map(e => (e.innerText || '').trim().slice(0,160))
         };
     }''')
+    if inspect_roster:
+        structure['navigation_stopped_at'] = navigation_stopped_at
     # The bundle is private: it can include account/navigation labels. No
     # input values, whole DOM, HTTP bodies, headers, cookies or storage export.
     with tempfile.TemporaryDirectory(prefix='.onec-ui-', dir=private) as directory:
@@ -256,7 +277,7 @@ def capture_interface(page, private):
     print('1C interface saved privately: onec-interface.zip. No records edited.', flush=True)
 
 
-def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False):
+def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False, inspect_roster=False):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     if local_mac and (sys.platform != 'darwin' or address != '10.210.254.19'):
         raise ValueError('Local comparison requires the authorized Mac and fixed 1C address')
@@ -352,7 +373,7 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
             if result['authenticated']:
                 result['login_failures'] = []
                 if inspect_ui:
-                    capture_interface(page, private)
+                    capture_interface(page, private, inspect_roster=inspect_roster)
                     result['interface_saved'] = True
                 # Only known navigation labels; never courier rows, account name,
                 # full DOM, screenshots, response bodies or authentication tokens.
@@ -367,7 +388,7 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
             browser.close()
     private_write(private/'onec-browser-status.json', json.dumps(result, ensure_ascii=False))
     print('1C browser login: '+json.dumps(result, ensure_ascii=False), flush=True)
-    print('Courier roster not queried; dashboard unchanged.', flush=True)
+    print('Full courier roster not collected; dashboard unchanged.', flush=True)
     if sync_vps and result['authenticated']:
         print('Ручной вход завершён. Теперь SSH запросит пароль сервера VPS для переноса подтверждённых реквизитов и проверки серверного входа.', flush=True)
         sync_verified_credentials(captured, result['authenticated'])

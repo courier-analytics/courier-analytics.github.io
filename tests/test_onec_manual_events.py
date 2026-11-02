@@ -4,12 +4,32 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface
+from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface, open_roster_navigation
 
 
 @unittest.skipUnless(importlib.util.find_spec('playwright') and Path('/usr/lib/chromium/chromium').exists(),
                      'Optional local Chromium integration check')
 class ManualLoginEventsTests(unittest.TestCase):
+    def test_roster_navigation_opens_only_reference_and_list(self):
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(executable_path='/usr/lib/chromium/chromium',
+                                                 headless=True, args=['--no-sandbox'])
+            try:
+                page = browser.new_page()
+                page.set_content('''<div id="mainSurface">
+                    <span onclick="document.querySelector('#couriers').hidden=false">Справочники</span>
+                    <span id="couriers" hidden onclick="document.querySelector('#result').hidden=false">Курьеры</span>
+                    <div id="result" hidden>Список курьеров</div>
+                    <button onclick="window.edited=true">Создать</button></div>''')
+                self.assertIsNone(open_roster_navigation(page))
+                self.assertTrue(page.locator('#result').is_visible())
+                self.assertIsNone(page.evaluate('window.edited'))
+                page.set_content('<span>Справочники</span><span>Справочники</span>')
+                self.assertEqual(open_roster_navigation(page), 'Справочники')
+            finally:
+                browser.close()
+
     def test_manual_credentials_compare_reports_only_equality_flags(self):
         from playwright.sync_api import sync_playwright
         with sync_playwright() as playwright:
@@ -46,13 +66,15 @@ class ManualLoginEventsTests(unittest.TestCase):
                                                  headless=True, args=['--no-sandbox'])
             try:
                 page = browser.new_page()
-                page.set_content('<input id="userPassword" type="password" style="display:none" value="PRIVATE_SECRET"><div id="mainSurface"><button>Курьеры</button></div>')
+                page.set_content('<input id="userPassword" type="password" style="display:none" value="PRIVATE_SECRET"><div id="mainSurface"><button>Курьеры</button><span>Справочники</span><input value="PRIVATE_FIELD"></div>')
                 capture_interface(page, Path(directory))
                 archive = Path(directory)/'onec-interface.zip'
                 self.assertEqual(archive.stat().st_mode & 0o777, 0o600)
                 with zipfile.ZipFile(archive) as bundle:
                     metadata = bundle.read('ui-structure.json').decode()
                     self.assertNotIn('PRIVATE_SECRET', metadata)
+                    self.assertNotIn('PRIVATE_FIELD', metadata)
+                    self.assertIn('Справочники', metadata)
                     self.assertIn('Курьеры', metadata)
                     self.assertEqual(set(bundle.namelist()), {'ui-structure.json', 'interface.png'})
             finally:
