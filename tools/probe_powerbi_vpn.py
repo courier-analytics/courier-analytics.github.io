@@ -75,8 +75,12 @@ def main():
     parser.add_argument('--collect-medical', action='store_true', help='Read shop aggregates and prepare a private validated LMK candidate; no publication')
     parser.add_argument('--shops', type=int, nargs='+', choices=(5818, 7745), default=[5818, 7745])
     parser.add_argument('--preflight', action='store_true', help='Check saved report structure locally before connecting; requires --collect-medical')
+    parser.add_argument('--onec-probe', action='store_true', help='Inspect only the supplied 1C web login page; no authentication or courier queries')
     args = parser.parse_args()
     address = private_address(args.address)
+    if args.onec_probe and any((args.check_login, args.save_login, args.replace_login,
+                               args.inspect_model, args.collect_medical, args.preflight)):
+        raise ValueError('1C page inspection cannot be combined with Power BI actions')
     if os.geteuid() != 0:
         raise ValueError('Run on the VPS as root')
     if args.preflight:
@@ -120,7 +124,10 @@ def main():
                 print(json.dumps({'vpn_connected': False, 'auth_failed': 'AUTH_FAILED' in text,
                     'tls_error': 'TLS Error' in text, 'certificate_error': 'VERIFY ERROR' in text}))
                 return 1
-            print('VPN connected; only the specified Power BI IPv4 is routed through it.', flush=True)
+            print('VPN connected; only the specified corporate IPv4 is routed through it.', flush=True)
+            if args.onec_probe:
+                from onec_access import inspect_page
+                return 0 if inspect_page(address, folder) else 1
             results = [probe(address, scheme, path, folder) for scheme, path in
                        [('http', '/reports/'), ('http', REPORT_PATH),
                         ('http', '/reports/api/v2.0/PowerBIReports'), ('https', '/reports/')]]
