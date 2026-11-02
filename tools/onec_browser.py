@@ -222,12 +222,23 @@ raise SystemExit(subprocess.run(['/opt/courier-analytics/onec-venv/bin/python','
 
 def open_roster_navigation(page):
     """Only open evidenced reference navigation, never edit or submit forms."""
+    from playwright.sync_api import TimeoutError as BrowserTimeout
     for label in ('Справочники', 'Курьеры'):
-        links = page.get_by_text(label, exact=True)
-        visible = [links.nth(i) for i in range(links.count()) if links.nth(i).is_visible()]
-        if len(visible) != 1:
+        links = page.get_by_text(label, exact=True).and_(page.locator(':visible'))
+        try:
+            links.first.wait_for(state='visible', timeout=20000)
+        except BrowserTimeout:
             return label
-        visible[0].click(timeout=5000)
+        # 1C can render the same caption on a wrapper and its inner span.
+        # Prefer the evidenced leaf caption; never choose among distinct items.
+        leaves = []
+        for i in range(links.count()):
+            link = links.nth(i)
+            if link.evaluate('(e) => !Array.from(e.children).some(c => c.innerText?.trim() === e.innerText.trim())'):
+                leaves.append(link)
+        if len(leaves) != 1:
+            return label
+        leaves[0].click(timeout=5000)
         page.wait_for_timeout(3000)
     return None
 

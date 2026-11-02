@@ -17,11 +17,13 @@ class ManualLoginEventsTests(unittest.TestCase):
                                                  headless=True, args=['--no-sandbox'])
             try:
                 page = browser.new_page()
-                page.set_content('''<div id="mainSurface">
-                    <span onclick="document.querySelector('#couriers').hidden=false">Справочники</span>
+                page.set_content('''<div id="mainSurface" hidden>
+                    <span hidden>Справочники</span>
+                    <div onclick="document.querySelector('#couriers').hidden=false"><span>Справочники</span></div>
                     <span id="couriers" hidden onclick="document.querySelector('#result').hidden=false">Курьеры</span>
                     <div id="result" hidden>Список курьеров</div>
-                    <button onclick="window.edited=true">Создать</button></div>''')
+                    <button onclick="window.edited=true">Создать</button></div>
+                    <script>setTimeout(()=>document.querySelector('#mainSurface').hidden=false,750)</script>''')
                 self.assertIsNone(open_roster_navigation(page))
                 self.assertTrue(page.locator('#result').is_visible())
                 self.assertIsNone(page.evaluate('window.edited'))
