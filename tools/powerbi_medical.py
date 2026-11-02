@@ -280,9 +280,25 @@ def preflight(private_folder=Path('/opt/courier-analytics/private')):
         return False
 
 
-def query_request(address, credentials, folder, base_path, payload):
+def query_error_metadata(payload):
+    error = payload.get('error') if isinstance(payload.get('error'), dict) else payload
+    result = {}
+    code = error.get('code')
+    if isinstance(code, str) and re.fullmatch(r'[A-Za-z][A-Za-z0-9_.-]{0,99}', code):
+        result['code'] = code
+    model_state = payload.get('ModelState', payload.get('modelState'))
+    if isinstance(model_state, dict):
+        result['validation_fields'] = sorted(key for key in model_state if isinstance(key, str)
+            and re.fullmatch(r'(?:request|payload|modelId|ModelId|queries|Queries|query|Query|version|cancelQueries)(?:[.\[\]A-Za-z0-9_]{0,100})', key))[:20]
+    text = json.dumps(payload).lower()
+    result['categories'] = [word for word in ('csrf', 'forgery', 'model', 'query', 'permission', 'authentication') if word in text]
+    return result
+
+
+def query_request(address, credentials, folder, base_path, payload, report_id):
     if base_path not in ('/powerbi', '/reports/powerbi'):
         raise ValueError('Unexpected report web-client base path')
+    report_id = str(UUID(report_id))
     interface = corporate_interface(address)
     request_path, response_path = folder / 'medical-request.json', folder / 'medical-response.json'
     private_write(request_path, json.dumps(payload, ensure_ascii=False))
@@ -294,19 +310,24 @@ def query_request(address, credentials, folder, base_path, payload):
                '--header', 'Content-Type: application/json',
                '--header', f'Origin: http://{HOST}', '--referer', f'http://{HOST}{base_path}/',
                '--data-binary', '@' + str(request_path), '--output', str(response_path),
-               '--write-out', '%{http_code}', f'http://{HOST}{base_path}/api/explore/querydata']
+               '--write-out', '%{http_code}', f'http://{HOST}{base_path}/api/explore/reports/{report_id}/querydata']
     try:
         result = subprocess.run(command, input=curl_credentials(credentials), capture_output=True,
                                 text=True, timeout=40)
         code = result.stdout.strip()
         status = int(code) if re.fullmatch(r'[1-5][0-9]{2}', code) else None
+        info = {'curl_exit': result.returncode, 'http_status': status}
         data = None
-        if result.returncode == 0 and status == 200 and response_path.stat().st_size <= 8388608:
+        if result.returncode == 0 and response_path.stat().st_size <= 8388608:
             try:
-                data = json.loads(response_path.read_text(encoding='utf-8-sig'))
+                decoded = json.loads(response_path.read_text(encoding='utf-8-sig'))
+                if status == 200:
+                    data = decoded
+                elif isinstance(decoded, dict):
+                    info['server_error'] = query_error_metadata(decoded)
             except (ValueError, UnicodeError, RecursionError):
                 pass
-        return {'curl_exit': result.returncode, 'http_status': status}, data
+        return info, data
     except subprocess.TimeoutExpired:
         return {'curl_exit': 28, 'http_status': None}, None
     finally:
@@ -460,7 +481,7 @@ def collect_candidate(address, credentials, folder, private_folder, shops=SHOPS)
         print('Safe medical scope context: ' + json.dumps(scope_summary(definition), ensure_ascii=False, indent=2), flush=True)
         raise
     print('Medical aggregate source context: ' + json.dumps(diagnostic, ensure_ascii=False), flush=True)
-    status, data = query_request(address, credentials, folder, definition['base_path'], request)
+    status, data = query_request(address, credentials, folder, definition['base_path'], request, definition['report_id'])
     print('Power BI aggregate query: ' + json.dumps({**status, 'json_received': isinstance(data, dict)}), flush=True)
     if status['curl_exit'] or status['http_status'] != 200 or not isinstance(data, dict):
         return False

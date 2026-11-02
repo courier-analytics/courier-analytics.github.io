@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from powerbi_medical import (build_request, decode_rows, candidate_records, query_request,
-                            scope_summary, preflight, PROPERTIES, WINDOW)
+                            query_error_metadata, scope_summary, preflight, PROPERTIES, WINDOW)
 
 
 def definition():
@@ -237,7 +237,7 @@ class PowerBIMedicalTests(unittest.TestCase):
         payload = build_request(definition())
         credentials = {'username': 'EXAMPLE\\user', 'password': 'fake-password'}
         def execute(command, **kwargs):
-            self.assertEqual(command[-1], 'http://izb-dwh-ssrs01.izbenka.local/powerbi/api/explore/querydata')
+            self.assertEqual(command[-1], 'http://izb-dwh-ssrs01.izbenka.local/powerbi/api/explore/reports/fd112002-03e7-47ce-9a80-aa770a911307/querydata')
             self.assertNotIn('fake-password', ' '.join(command))
             self.assertNotIn('--location', command)
             self.assertEqual(command[command.index('--interface') + 1], 'tun0')
@@ -250,10 +250,25 @@ class PowerBIMedicalTests(unittest.TestCase):
         run.side_effect = execute
         with tempfile.TemporaryDirectory() as directory:
             folder = Path(directory)
-            status, data = query_request('10.20.30.40', credentials, folder, '/powerbi', payload)
+            status, data = query_request('10.20.30.40', credentials, folder, '/powerbi', payload,
+                                        'fd112002-03e7-47ce-9a80-aa770a911307')
             self.assertEqual(status['http_status'], 200)
             self.assertEqual(len(decode_rows(data, ['field' + str(i) for i in range(5)])), 2)
             self.assertEqual(list(folder.iterdir()), [])
+
+    def test_server_error_diagnostic_excludes_messages_and_values(self):
+        result = query_error_metadata({'error': {'code': 'InvalidQuery', 'message': 'PRIVATE_ERROR_VALUE model query failed'},
+            'ModelState': {'request.modelId': ['PRIVATE_ERROR_VALUE'], 'PRIVATE_FIELD': ['PRIVATE_ERROR_VALUE']}})
+        self.assertEqual(result['code'], 'InvalidQuery')
+        self.assertEqual(result['validation_fields'], ['request.modelId'])
+        self.assertNotIn('PRIVATE_ERROR_VALUE', json.dumps(result))
+        self.assertNotIn('PRIVATE_FIELD', json.dumps(result))
+
+    @patch('powerbi_medical.corporate_interface')
+    def test_report_id_is_validated_before_any_network_access(self, interface):
+        with tempfile.TemporaryDirectory() as directory, self.assertRaises(ValueError):
+            query_request('10.20.30.40', {}, Path(directory), '/powerbi', {}, '../../other')
+        interface.assert_not_called()
 
 
 if __name__ == '__main__':
