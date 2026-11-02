@@ -206,18 +206,22 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
                 wait_manual_login(page, lambda: bool(final_response))
                 result['login_submitted'] = bool(result['login_http_statuses'])
             else:
-                result['input_check'] = submit_login(page, credentials)
+                # Showing the login dialog can follow an initial unauthenticated
+                # HTTP 402. It is not the result of the supplied credentials.
+                page.locator('#userName').wait_for(state='visible', timeout=60000)
+                result['initial_login_http_count'] = len(result['login_http_statuses'])
+                result['login_failures'] = []
                 result['login_submitted'] = True
-                try:
-                    page.wait_for_function("document.querySelector('#authWindow') && getComputedStyle(document.querySelector('#authWindow')).display === 'none'", timeout=45000)
-                except BrowserTimeout:
-                    pass
+                result['input_check'] = submit_login(page, credentials)
+                result['login_response_completed'] = wait_manual_login(
+                    page, lambda: bool(final_response), attempts=90)
             result['authenticated'] = bool(final_response) and not page.locator('#userPassword').is_visible()
             result['two_factor_required'] = page.locator('#auth2FCodeField').is_visible()
             result['password_change_required'] = page.locator('#newPassword').is_visible()
             result['authenticated'] = result['authenticated'] and not (
                 result['two_factor_required'] or result['password_change_required'])
             if result['authenticated']:
+                result['login_failures'] = []
                 # Only known navigation labels; never courier rows, account name,
                 # full DOM, screenshots, response bodies or authentication tokens.
                 labels = ('Курьеры', 'Справочники', 'Сотрудники', 'Отчеты', 'Отчёты', 'Доставка')
