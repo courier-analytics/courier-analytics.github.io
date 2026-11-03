@@ -34,8 +34,9 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
     private_details = []
     for shop in observations['shops']:
         identity = shop['shop_id']
-        native_path = private_dir/'onec-rosters'/'7745.json'
-        use_native = identity == 7745 and day == datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat() and native_path.exists()
+        state_dir=completion_state_dir or private_dir
+        native_path = state_dir/'onec-rosters'/'7745.json'
+        use_native = identity == 7745 and native_path.exists()
         if use_native:
             from onec_roster_cache import load as load_native_roster
             rosters.pop(identity, None)
@@ -47,12 +48,28 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
         source_plan = next((p for p in (plan or {}).get('shops', []) if p['shop_id'] == identity), None)
         daily_plan = {'verified': True, 'date': day, 'slots': source_plan['slots']} if (
             source_plan and plan.get('verified') is True and plan.get('date') == day) else None
+        from metric_exclusions import load as load_exclusions,views,filter_slots
+        excluded=load_exclusions(state_dir,day,identity)
+        if excluded:
+            shop['source_slots_before_exclusions']=shop['slots']
+            shop['slots'],daily_plan,adjusted_roster=views(shop['slots'],daily_plan,rosters.get(identity),excluded)
+            if adjusted_roster:rosters[identity]=adjusted_roster
+            shop['excluded_courier_ids']=sorted(excluded)
         metrics = calculate(shop['slots'], day, roster=rosters.get(identity), plan=daily_plan)
         try:
             scope_config = next(s for s in observations['scope_config']['shops'] if s['shop_id'] == identity)
             metrics['planned_completion'], shop['completion_reporting'] = collect_completion(
                 day, identity, scope_config, shop['slots'], token, proxy,
                 completion_state_dir or private_dir)
+            if excluded:
+                state_path=(completion_state_dir or private_dir)/'completion-night-state'/f'{identity}.json'
+                state=json.loads(state_path.read_text())
+                from completion_reporting import choose
+                from calculate_metrics import current_slot_completion
+                history=[s for origin,saved in state.get('days',{}).items() if origin<day for s in saved['slots']]
+                selected=filter_slots(choose(history+[s for s in shop['slots'] if s['slot_type']=='limited'],day),excluded)
+                metrics['planned_completion']=current_slot_completion(selected)
+                metrics['planned_completion']['basis']=COMPLETION_BASIS
         except (RuntimeError, ValueError, KeyError, TypeError, OSError, StopIteration):
             metrics['planned_completion'] = metric(reason='completion_history_incomplete', basis=COMPLETION_BASIS)
             shop['completion_reporting'] = {'source_complete': False}
@@ -66,12 +83,18 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
         from completion_reporting import choose as choose_completion
         try:
             completion_slots=None
+            history=[]
             state_path=(completion_state_dir or private_dir)/'completion-night-state'/f'{identity}.json'
             if state_path.exists():
                 state=json.loads(state_path.read_text())
                 history=[s for origin,saved in state.get('days',{}).items() if origin<day for s in saved['slots']]
-                completion_slots=choose_completion(history+[s for s in shop['slots'] if s['slot_type']=='limited'],day)
-            private_details.append(build_details(day,shop,metrics,rosters.get(identity),daily_plan,completion_slots))
+            completion_slots=choose_completion(history+[s for s in shop['slots'] if s['slot_type']=='limited'],day)
+            completion_slots=filter_slots(completion_slots,excluded)
+            detail=build_details(day,shop,metrics,rosters.get(identity),daily_plan,completion_slots)
+            if excluded:
+                for item in detail['metrics'].values():
+                    item['note']=(item.get('note','')+' Из расчёта исключено отключённых курьеров по подтверждению пользователя: '+str(len(excluded))+'.').strip()
+            private_details.append(detail)
         except (OSError,ValueError,KeyError,TypeError):
             private_details.append({'kind':'courier_metric_details','schema_version':1,'date':day,'shop_id':identity,
                 'metrics':{key:{'aggregate':value,'groups':[],'reconciled':False,
@@ -87,7 +110,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
     fresh = build([report])
     for detail in private_details:
         detail['generated_at']=report['generated_at']
-        atomic_json(private_dir/'details'/f"{day}-{detail['shop_id']}.json",detail)
+        atomic_json((completion_state_dir or private_dir)/'details'/f"{day}-{detail['shop_id']}.json",detail)
     previous = json.loads(feed_path.read_text()) if feed_path.exists() else None
     combined = merge_feed(previous, fresh)
     atomic_json(private_dir/('metrics-'+day+'.json'), report)
