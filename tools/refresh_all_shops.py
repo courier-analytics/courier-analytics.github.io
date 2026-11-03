@@ -36,12 +36,12 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
         identity = shop['shop_id']
         state_dir=completion_state_dir or private_dir
         native_path = state_dir/'onec-rosters'/'7745.json'
-        use_native = identity == 7745 and native_path.exists()
+        use_native = identity == 7745 and (native_path.exists() or (native_path.parent/'by-date'/(day+'-7745.json')).exists())
         if use_native:
-            from onec_roster_cache import load as load_native_roster
+            from onec_roster_cache import load_for_day as load_native_roster
             rosters.pop(identity, None)
             try:
-                rosters[identity] = load_native_roster(native_path, day)
+                rosters[identity] = load_native_roster(native_path.parent, day)
             except (OSError, ValueError, KeyError, TypeError):
                 roster_errors[identity] = 'native_roster_stale_or_invalid'
         shop['slots'], shop['overnight_completion'] = resolve_overnight(shop['slots'], token, proxy)

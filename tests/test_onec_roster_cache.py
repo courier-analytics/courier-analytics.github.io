@@ -4,13 +4,13 @@ from pathlib import Path
 import sys,tempfile,unittest
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_roster_cache import save,load,BASIS,MOSCOW
+from onec_roster_cache import save,load,load_for_day,BASIS,MOSCOW
 from enrich_slots import atomic_json
 from refresh_all_shops import refresh
 
 class NativeRosterCacheTests(unittest.TestCase):
     def setUp(self):
-        self.now=datetime.now(timezone.utc);self.day=self.now.astimezone(MOSCOW).date().isoformat()
+        self.now=datetime.now(timezone.utc).replace(hour=9,minute=0,second=0,microsecond=0);self.day=self.now.astimezone(MOSCOW).date().isoformat()
         self.temp=tempfile.TemporaryDirectory();self.folder=Path(self.temp.name)
         self.native={'verified':True,'courier_ids':['111111','222222'],'count':2}
         save(self.native,{'filters_verified':True},self.folder/'onec-rosters',self.now)
@@ -23,6 +23,19 @@ class NativeRosterCacheTests(unittest.TestCase):
     def test_stale_future_and_historical_snapshot_rejected(self):
         for now,day in [(self.now+timedelta(hours=3),self.day),(self.now-timedelta(seconds=1),self.day),(self.now,'2020-01-01')]:
             with self.assertRaises(ValueError):load(self.path,day,now)
+    def test_historical_snapshot_survives_midnight_and_new_roster(self):
+        tomorrow=self.now+timedelta(days=1)
+        save({'verified':True,'courier_ids':['333333'],'count':1},
+             {'filters_verified':True},self.path.parent,tomorrow)
+        old=load_for_day(self.path.parent,self.day,tomorrow)
+        self.assertEqual(old['courier_ids'],['111111','222222'])
+        self.assertEqual(load_for_day(self.path.parent,tomorrow.astimezone(MOSCOW).date().isoformat(),tomorrow)['count'],1)
+
+    def test_report_date_must_match_observation_date(self):
+        data=json.loads(self.path.read_text());data['date']='2020-01-01'
+        atomic_json(self.path,data)
+        with self.assertRaises(ValueError):load(self.path,'2020-01-01',self.now)
+
     def test_unverified_empty_and_duplicate_rosters_rejected(self):
         for native in [{'verified':False,'courier_ids':['111111'],'count':1},
                        {'verified':True,'courier_ids':[],'count':0},
@@ -39,7 +52,9 @@ class NativeRosterCacheTests(unittest.TestCase):
                             for i in ['111111','333333']]}]}]})
             return {'shops':[{'shop_id':7745}]}
         def run():
-            with patch('refresh_all_shops.audit',side_effect=audit), patch('refresh_all_shops.resolve_overnight',side_effect=lambda slots,*a:(slots,{})), patch('refresh_all_shops.collect_active_base') as old:
+            with patch('onec_roster_cache.datetime') as clock, patch('refresh_all_shops.audit',side_effect=audit), patch('refresh_all_shops.resolve_overnight',side_effect=lambda slots,*a:(slots,{})), patch('refresh_all_shops.collect_active_base') as old:
+                clock.now.return_value=self.now
+                clock.fromisoformat.side_effect=datetime.fromisoformat
                 result=refresh(self.day,'secret','',self.folder,self.folder/'public.json',active_base=True)
                 old.assert_not_called()
             return result
