@@ -36,6 +36,24 @@ class ManualLoginEventsTests(unittest.TestCase):
                 self.assertIn('Мобильный Авто Курьер', str(metadata))
                 self.assertNotIn('PRIVATE_SEARCH', str(metadata))
                 self.assertNotIn('PRIVATE_SECRET', str(metadata))
+                page.evaluate('''(root) => {
+                    const values = {'form0_Служба_i0':'Без отбора'};
+                    values[root+'5ВидСравненияЭлементаОтбора_i0']='Not in list';
+                    values[root+'7ВидСравненияЭлементаОтбора_i0']='Not equal';
+                    values[root+'7Значение_i0']='1';
+                    for(const [id,value] of Object.entries(values)){
+                        const e=document.createElement('input');e.id=id;e.value=value;document.body.append(e);
+                    }
+                    for(const n of [4,5,7]){
+                        const e=document.createElement('div');e.id=root+n+'Использование';e.className='checkbox select';document.body.append(e);
+                    }
+                    for(const title of ['6 - Мобильный Авто Курьер','9 - Мобильный Вело Курьер']){
+                        const e=document.createElement('div');e.className='chipsItem';e.title=title;document.body.append(e);
+                    }
+                }''', prefix)
+                self.assertTrue(roster_filter_structure(page)['filters_verified'])
+                page.evaluate('''() => {const e=document.createElement('div');e.className='chipsItem';e.title='3 - Другой тип';document.body.append(e)}''')
+                self.assertFalse(roster_filter_structure(page)['filters_verified'])
             finally:
                 browser.close()
 

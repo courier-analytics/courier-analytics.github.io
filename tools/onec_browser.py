@@ -263,9 +263,9 @@ def select_roster_shop(page):
 
 def roster_filter_structure(page):
     # Only known list-filter values, never search text or courier form fields.
-    return page.evaluate('''() => {
+    return page.evaluate(r'''() => {
         const root = 'form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент';
-        const ids = ['form0_НомерТочки_i0', ...[
+        const ids = ['form0_НомерТочки_i0', 'form0_Служба_i0', ...[
             '4Значение_i0','5ВидСравненияЭлементаОтбора_i0',
             '7ВидСравненияЭлементаОтбора_i0','7Значение_i0'
         ].map(x => root+x)];
@@ -284,7 +284,18 @@ def roster_filter_structure(page):
         const grid_structure = table ? Array.from(table.querySelectorAll('*')).slice(0,250)
             .map(e => ({id:e.id,tag:e.tagName,class:e.className,role:e.getAttribute('role'),
                 parent_id:e.parentElement?.id || '',children:e.children.length})) : [];
-        return {values,settings,grid,grid_structure,filters_verified:false,complete_roster:false};
+        const excluded_types = Array.from(document.querySelectorAll('.chipsItem[title]'))
+            .map(e => e.getAttribute('title')).filter(t => /^\s*[0-9]+\s*-/.test(t));
+        const enabled = n => document.getElementById(root+n+'Использование')?.classList.contains('select') === true;
+        const excludedCodes = new Set(excluded_types.map(t => t.trim().split(/\s*-/)[0]));
+        const verified = values['form0_НомерТочки_i0'] === '7745' &&
+            ['', 'Без отбора', 'No filter', 'Without filter'].includes(values['form0_Служба_i0']) &&
+            ['Да','Yes'].includes(values[root+'4Значение_i0']) &&
+            ['Не в списке','Not in list'].includes(values[root+'5ВидСравненияЭлементаОтбора_i0']) &&
+            ['Не равно','Not equal'].includes(values[root+'7ВидСравненияЭлементаОтбора_i0']) &&
+            values[root+'7Значение_i0'] === '1' && enabled(4) && enabled(5) && enabled(7) &&
+            !enabled(6) && !enabled(8) && excludedCodes.size === 2 && excludedCodes.has('6') && excludedCodes.has('9');
+        return {values,settings,grid,grid_structure,excluded_types,filters_verified:verified,complete_roster:false};
     }''')
 
 
@@ -331,6 +342,11 @@ def capture_interface(page, private, inspect_roster=False):
         structure['navigation_stopped_at'] = navigation_stopped_at
         if navigation_stopped_at is None:
             structure['roster_filters'] = roster_filter_structure(page)
+            page.keyboard.press('Escape')
+            from onec_roster import scan_grid, inspect_export_dialog
+            structure['roster_candidate'] = scan_grid(page)
+            structure['roster_candidate']['filters_verified'] = structure['roster_filters']['filters_verified']
+            structure['export_dialog'] = inspect_export_dialog(page)
     # The bundle is private: it can include account/navigation labels. No
     # input values, whole DOM, HTTP bodies, headers, cookies or storage export.
     with tempfile.TemporaryDirectory(prefix='.onec-ui-', dir=private) as directory:
