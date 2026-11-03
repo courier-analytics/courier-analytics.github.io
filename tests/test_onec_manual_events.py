@@ -18,13 +18,16 @@ class ManualLoginEventsTests(unittest.TestCase):
             try:
                 page = browser.new_page()
                 prefix = 'form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент'
-                page.set_content(f'''<input id="form0_НомерТочки_i0" onblur="window.point=this.value">
+                page.set_content(f'''<input id="form0_НомерТочки_i0"
+                    onkeydown="if(event.key === 'Enter')window.point=this.value"
+                    onkeyup="if(event.key === '5')window.typed=true">
                     <input id="{prefix}4Значение_i0" value="Да">
                     <div id="{prefix}5Значение"><span>Мобильный Вело Курьер</span><span>Мобильный Авто Курьер</span></div>
                     <input id="search" value="PRIVATE_SEARCH"><input type="password" value="PRIVATE_SECRET">
                     <button onclick="window.edited=true">Записать</button>''')
                 select_roster_shop(page)
                 self.assertEqual(page.evaluate('window.point'), '7745')
+                self.assertTrue(page.evaluate('window.typed'))
                 self.assertIsNone(page.evaluate('window.edited'))
                 metadata = roster_filter_structure(page)
                 self.assertEqual(metadata['values']['form0_НомерТочки_i0'], '7745')

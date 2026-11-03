@@ -248,10 +248,15 @@ def select_roster_shop(page):
     field = page.locator('[id="form0_НомерТочки_i0"]')
     field.wait_for(state='visible', timeout=20000)
     field.click()
-    page.wait_for_timeout(100)
-    field.fill('7745')
+    page.evaluate('() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))')
+    # 1C maintains its own edit buffer; fill() can leave the displayed value
+    # different from the value committed by the framework.
+    field.press('Control+A')
+    field.press('Backspace')
+    field.press_sequentially('7745', delay=100)
+    field.press('Enter')
     field.press('Tab')
-    page.wait_for_timeout(4000)
+    page.wait_for_timeout(6000)
     if field.input_value().strip() != '7745':
         raise ValueError('1C list point filter was not retained')
 
@@ -275,7 +280,11 @@ def roster_filter_structure(page):
             .filter(e => e.id.startsWith('form0_') &&
                 /Список|list|grid|scroll|pager/i.test(e.id)).slice(0,100)
             .map(e => ({id:e.id,tag:e.tagName,class:e.className,role:e.getAttribute('role')}));
-        return {values,settings,grid,filters_verified:false,complete_roster:false};
+        const table = document.getElementById('form0_Список');
+        const grid_structure = table ? Array.from(table.querySelectorAll('*')).slice(0,250)
+            .map(e => ({id:e.id,tag:e.tagName,class:e.className,role:e.getAttribute('role'),
+                parent_id:e.parentElement?.id || '',children:e.children.length})) : [];
+        return {values,settings,grid,grid_structure,filters_verified:false,complete_roster:false};
     }''')
 
 
@@ -287,6 +296,10 @@ def capture_interface(page, private, inspect_roster=False):
     navigation_stopped_at = open_roster_navigation(page) if inspect_roster else None
     if inspect_roster and navigation_stopped_at is None:
         select_roster_shop(page)
+        more = page.locator('[id="form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент5Значение_multipleValues_more"]')
+        if more.is_visible():
+            more.click()
+            page.wait_for_timeout(500)
     structure = page.evaluate('''() => {
         const visible = e => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden';
         return {
