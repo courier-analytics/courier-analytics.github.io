@@ -243,16 +243,19 @@ def open_roster_navigation(page):
     return None
 
 
-def ensure_roster_filters(page):
+def ensure_roster_filters(page, progress=None):
     """Restore the user's confirmed list filters, regardless of saved UI state."""
     prefix='form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент'
     for number,required in ((4,True),(5,True),(6,False),(7,True),(8,False)):
         identity=prefix+str(number)+'Использование'
         control=page.locator('[id="'+identity+'"]')
+        if progress:progress(f'filter_{number}_visible')
         control.wait_for(state='visible',timeout=10000)
         selected=control.evaluate('(e)=>e.classList.contains("select")')
         if selected != required:
+            if progress:progress(f'filter_{number}_click')
             control.click(timeout=5000)
+            if progress:progress(f'filter_{number}_state')
             page.wait_for_function('''([id,required]) => {
                 const e=document.getElementById(id);
                 return e && e.classList.contains('select') === required;
@@ -316,16 +319,25 @@ def roster_filter_structure(page):
     }''')
 
 
-def capture_interface(page, private, inspect_roster=False):
+def capture_interface(page, private, inspect_roster=False, status=None):
+    def mark(stage):
+        if status is not None:status['stage']=stage
+    mark('interface_main_surface')
     if page.locator('#userPassword').is_visible():
         raise ValueError('Cannot inspect interface while the password form is visible')
     page.locator('#mainSurface').wait_for(state='visible', timeout=30000)
     page.wait_for_timeout(3000)
+    mark('roster_navigation')
     navigation_stopped_at = open_roster_navigation(page) if inspect_roster else None
     if inspect_roster and navigation_stopped_at is None:
-        ensure_roster_filters(page)
+        mark('roster_grid_ready')
+        page.locator('[id="grid_form0_Список"] .gridBody').wait_for(state='visible',timeout=30000)
+        page.wait_for_timeout(500)
+        ensure_roster_filters(page,lambda stage:mark('before_point.'+stage))
+        mark('point_filter')
         select_roster_shop(page)
-        ensure_roster_filters(page)
+        ensure_roster_filters(page,lambda stage:mark('after_point.'+stage))
+        mark('excluded_types_popup')
         more = page.locator('[id="form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент5Значение_multipleValues_more"]')
         if more.is_visible():
             more.click()
@@ -361,15 +373,19 @@ def capture_interface(page, private, inspect_roster=False):
         structure['navigation_stopped_at'] = navigation_stopped_at
         if navigation_stopped_at is None:
             structure['roster_filters'] = roster_filter_structure(page)
+            mark('close_excluded_types_popup')
             page.locator('[id="captionbarTitle"]').click(timeout=5000)
-            ensure_roster_filters(page)
+            ensure_roster_filters(page,lambda stage:mark('after_popup.'+stage))
             from onec_roster import scan_grid, inspect_export_dialog, export_id_list, verify_id_export
+            mark('grid_scan')
             structure['roster_candidate'] = scan_grid(page)
             structure['roster_candidate']['filters_verified'] = structure['roster_filters']['filters_verified']
+            mark('export_dialog')
             structure['export_dialog'] = inspect_export_dialog(page)
             if structure['export_dialog']['opened']:
                 from playwright.sync_api import Error as BrowserError
                 try:
+                    mark('native_export')
                     structure['id_export'] = export_id_list(page, structure['roster_filters']['filters_verified'])
                 except BrowserError:
                     structure['id_export'] = {'confirmed': False, 'reason': 'native_export_ui_operation_failed'}
@@ -392,6 +408,7 @@ def capture_interface(page, private, inspect_roster=False):
         finally:
             if os.path.exists(name):
                 os.unlink(name)
+    mark('interface_bundle_saved')
     print('1C interface saved privately: onec-interface.zip. No records edited.', flush=True)
     native = structure.get('native_roster', {})
     if native.get('verified') is True and structure.get('roster_filters', {}).get('filters_verified') is True:
@@ -399,6 +416,32 @@ def capture_interface(page, private, inspect_roster=False):
         count = save(native, structure['roster_filters'], private/'onec-rosters')
         print(f'1C verified roster saved privately: DS 7745, {count} couriers.', flush=True)
     return structure
+
+
+def save_failure_interface(page, private, stage):
+    """Replace the prior archive with this run's safe diagnostic, even on UI timeout."""
+    from datetime import datetime, timezone
+    if page.locator('#userPassword').is_visible():
+        raise ValueError('Cannot capture failure while login form is visible')
+    data={'failure_stage':stage,'observed_at':datetime.now(timezone.utc).isoformat(),
+          'roster_filters':roster_filter_structure(page),'screenshot_available':False}
+    with tempfile.TemporaryDirectory(prefix='.onec-failure-',dir=private) as folder:
+        picture=Path(folder)/'interface.png'
+        private_write(picture,'')
+        try:
+            page.screenshot(path=str(picture),timeout=5000)
+            data['screenshot_available']=True
+        except Exception:
+            pass
+        fd,name=tempfile.mkstemp(prefix='.onec-failure-',dir=private)
+        try:
+            with os.fdopen(fd,'wb') as output:
+                with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED) as bundle:
+                    bundle.writestr('ui-structure.json',json.dumps(data,ensure_ascii=False))
+                    if data['screenshot_available']:bundle.write(picture,'interface.png')
+            os.replace(name,private/'onec-interface.zip')
+        finally:
+            if os.path.exists(name):os.unlink(name)
 
 
 def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False, inspect_roster=False):
@@ -497,7 +540,7 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
             if result['authenticated']:
                 result['login_failures'] = []
                 if inspect_ui:
-                    interface = capture_interface(page, private, inspect_roster=inspect_roster)
+                    interface = capture_interface(page, private, inspect_roster=inspect_roster, status=result)
                     result['interface_saved'] = True
                     if inspect_roster:
                         result['roster_verified'] = interface.get('native_roster', {}).get('verified') is True and interface.get('roster_filters', {}).get('filters_verified') is True
@@ -514,6 +557,12 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
                 result['manual_authenticated'] = result['authenticated']
         except BrowserTimeout:
             result['stage_timeout'] = True
+            if result['authenticated']:
+                try:
+                    save_failure_interface(page, private, result.get('stage','unknown'))
+                    result['failure_snapshot_saved'] = True
+                except Exception:
+                    result['failure_snapshot_saved'] = False
         finally:
             context.close()
             browser.close()

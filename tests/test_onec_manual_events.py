@@ -4,7 +4,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface, open_roster_navigation, select_roster_shop, roster_filter_structure, ensure_roster_filters
+from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface, open_roster_navigation, select_roster_shop, roster_filter_structure, ensure_roster_filters, save_failure_interface
 
 
 @unittest.skipUnless(importlib.util.find_spec('playwright') and Path('/usr/lib/chromium/chromium').exists(),
@@ -18,12 +18,33 @@ class ManualLoginEventsTests(unittest.TestCase):
                 page=browser.new_page();prefix='form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент'
                 controls=''.join(f'<div id="{prefix}{n}Использование" class="checkbox {"select" if n in (4,6,7,8) else ""}" onclick="window.toggles++;setTimeout(()=>this.classList.toggle(\'select\'),50)"></div>' for n in (4,5,6,7,8))
                 page.set_content('<style>.checkbox{width:20px;height:20px}</style><script>window.toggles=0</script>'+controls)
-                ensure_roster_filters(page)
+                stages=[]
+                ensure_roster_filters(page,stages.append)
+                self.assertIn('filter_5_state',stages)
                 selected=page.locator('.checkbox.select').evaluate_all('(es)=>es.map(e=>e.id)')
                 self.assertEqual(set(selected),{prefix+str(n)+'Использование' for n in (4,5,7)})
                 self.assertEqual(page.evaluate('window.toggles'),3)
                 ensure_roster_filters(page)
                 self.assertEqual(page.evaluate('window.toggles'),3)
+            finally:browser.close()
+
+    def test_timeout_archive_replaces_old_snapshot_even_when_screenshot_fails(self):
+        import tempfile,zipfile,json
+        from unittest.mock import patch
+        from playwright.sync_api import sync_playwright,TimeoutError
+        with sync_playwright() as playwright,tempfile.TemporaryDirectory() as folder:
+            browser=playwright.chromium.launch(executable_path='/usr/lib/chromium/chromium',headless=True,args=['--no-sandbox'])
+            try:
+                page=browser.new_page();page.set_content('<input type="password" id="userPassword" style="display:none" value="DO_NOT_EXPORT"><div id="mainSurface"></div>')
+                archive=Path(folder)/'onec-interface.zip';archive.write_bytes(b'old snapshot')
+                with patch.object(page,'screenshot',side_effect=TimeoutError('PRIVATE_ERROR_DETAIL')):
+                    save_failure_interface(page,Path(folder),'before_point.filter_5_state')
+                self.assertEqual(archive.stat().st_mode & 0o777,0o600)
+                with zipfile.ZipFile(archive) as bundle:
+                    raw=bundle.read('ui-structure.json').decode();data=json.loads(raw)
+                    self.assertEqual(data['failure_stage'],'before_point.filter_5_state')
+                    self.assertFalse(data['screenshot_available'])
+                    self.assertNotIn('DO_NOT_EXPORT',raw);self.assertNotIn('PRIVATE_ERROR_DETAIL',raw)
             finally:browser.close()
 
     def test_point_filter_changes_only_list_and_snapshot_excludes_other_values(self):
