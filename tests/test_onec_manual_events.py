@@ -18,8 +18,8 @@ class ManualLoginEventsTests(unittest.TestCase):
             try:
                 page = browser.new_page()
                 page.set_content('''<div id="mainSurface" hidden>
-                    <span hidden>Справочники</span>
-                    <div onclick="document.querySelector('#couriers').hidden=false"><span>Справочники</span></div>
+                    <span hidden>Самозанятые</span>
+                    <div onclick="document.querySelector('#couriers').hidden=false"><span>Самозанятые</span></div>
                     <span id="couriers" hidden onclick="document.querySelector('#result').hidden=false">Курьеры</span>
                     <div id="result" hidden>Список курьеров</div>
                     <button onclick="window.edited=true">Создать</button></div>
@@ -27,8 +27,8 @@ class ManualLoginEventsTests(unittest.TestCase):
                 self.assertIsNone(open_roster_navigation(page))
                 self.assertTrue(page.locator('#result').is_visible())
                 self.assertIsNone(page.evaluate('window.edited'))
-                page.set_content('<span>Справочники</span><span>Справочники</span>')
-                self.assertEqual(open_roster_navigation(page), 'Справочники')
+                page.set_content('<span>Самозанятые</span><span>Самозанятые</span>')
+                self.assertEqual(open_roster_navigation(page), 'Самозанятые')
             finally:
                 browser.close()
 

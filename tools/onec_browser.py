@@ -223,7 +223,7 @@ raise SystemExit(subprocess.run(['/opt/courier-analytics/onec-venv/bin/python','
 def open_roster_navigation(page):
     """Only open evidenced reference navigation, never edit or submit forms."""
     from playwright.sync_api import TimeoutError as BrowserTimeout
-    for label in ('Справочники', 'Курьеры'):
+    for label in ('Самозанятые', 'Курьеры'):
         links = page.get_by_text(label, exact=True).and_(page.locator(':visible'))
         try:
             links.first.wait_for(state='visible', timeout=20000)
@@ -256,6 +256,16 @@ def capture_interface(page, private, inspect_roster=False):
                 .filter(e => visible(e) && (e.innerText || '').trim())
                 .slice(0,200).map(e => ({id: e.id, role: e.getAttribute('role'),
                     text: e.innerText.trim().slice(0,160)})),
+            fields: Array.from(document.querySelectorAll('#mainSurface input,#mainSurface select,[role=combobox],[role=checkbox]'))
+                .filter(e => visible(e) && e.type !== 'password')
+                .slice(0,100).map(e => {
+                    const r = e.getBoundingClientRect();
+                    return {id: e.id, tag: e.tagName, type: e.type || null,
+                        role: e.getAttribute('role'), label: e.getAttribute('aria-label'),
+                        disabled: !!e.disabled,
+                        checked: e.type === 'checkbox' ? e.checked : e.getAttribute('aria-checked'),
+                        bounds: {x:r.x,y:r.y,width:r.width,height:r.height}};
+                }),
             labels: Array.from(document.querySelectorAll('#mainSurface *'))
                 .filter(e => visible(e) && !e.children.length &&
                     !['INPUT','TEXTAREA','SCRIPT','STYLE'].includes(e.tagName) &&
