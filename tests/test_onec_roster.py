@@ -54,23 +54,24 @@ class RosterGridTests(unittest.TestCase):
         self.assertFalse(result['confirmed'])
         self.assertIsNone(self.page.evaluate('window.confirmed'))
 
-    def test_native_export_selects_only_ids_and_all_rows(self):
+    def test_native_export_selects_ids_and_names_without_phones(self):
         from onec_roster import export_id_list, verify_id_export
         self.page.set_content('''<style>.checkbox{display:inline-block;width:18px;height:18px}</style><a id="form1_UnckeckAll" onclick="document.querySelectorAll('.checkbox').forEach(e=>e.classList.remove('select'))">Clear</a>
             <div id="form1_AvailableColumnsElement"><div class="gridBody">
              <div class="gridLine"><span class="checkbox select" onclick="this.classList.toggle('select')"></span><span>Id</span></div>
+             <div class="gridLine"><span class="checkbox select" onclick="this.classList.toggle('select')"></span><span>Name</span></div>
              <div class="gridLine"><span class="checkbox select"></span><span>Phone</span></div></div></div>
             <div id="form1_OnlySelectedElement" class="checkbox" onclick="this.classList.toggle('select')"></div>
             <input id="form1_DocumentTypeElement_i0" value="Text document">
             <a id="form1_Ok" onclick="window.exported=true;document.querySelector('textarea').hidden=false;document.querySelector('#form1_DocumentTypeElement_i0').hidden=true">OK</a>
-            <textarea hidden>Id
-1800115894
-1800128719</textarea>''')
+            <textarea hidden>Id	Name
+1800115894	TEST_ONE
+1800128719	TEST_TWO</textarea>''')
         self.assertFalse(export_id_list(self.page,False)['confirmed'])
         self.assertIsNone(self.page.evaluate('window.exported'))
         result=export_id_list(self.page,True)
         self.assertTrue(result['confirmed'])
-        self.assertEqual(result['columns'],['Id'])
+        self.assertEqual(result['columns'],['Id','Name'])
         self.assertFalse(result['only_selected'])
         verified=verify_id_export(result,['1800115894'])
         self.assertTrue(verified['verified'])

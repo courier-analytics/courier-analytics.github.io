@@ -126,8 +126,16 @@ def export_id_list(page, filters_verified):
     if 'select' not in (checkbox.get_attribute('class') or '').split():
         checkbox.click(timeout=5000)
         page.wait_for_timeout(500)
+    columns=['Id']
+    name_row=rows.filter(has=page.get_by_text('Name',exact=True))
+    if name_row.count()==1:
+        name_box=name_row.locator('.checkbox')
+        if name_box.count()==1:
+            if 'select' not in (name_box.get_attribute('class') or '').split():
+                name_box.click(timeout=5000);page.wait_for_timeout(500)
+            columns.append('Name')
     selected = rows.filter(has=page.locator('.checkbox.select'))
-    if selected.count() != 1 or selected.first.inner_text().strip() != 'Id':
+    if sorted(text.strip() for text in selected.all_inner_texts()) != sorted(columns):
         return {'confirmed': False, 'reason': 'id_only_selection_not_confirmed'}
     only_selected = page.locator('[id="form1_OnlySelectedElement"]')
     if 'select' in (only_selected.get_attribute('class') or '').split():
@@ -166,7 +174,7 @@ def export_id_list(page, filters_verified):
                 .slice(0,150).map(e=>({id:e.id,tag:e.tagName,class:e.className}))
         };
     }''')
-    return {'confirmed': True, 'columns': ['Id'], 'only_selected': False,
+    return {'confirmed': True, 'columns': columns, 'only_selected': False,
             'format': 'text', 'documents': documents, 'complete_roster': False}
 
 
@@ -185,18 +193,33 @@ def parse_id_document(text):
 
 
 def verify_id_export(export, observed):
-    if not export.get('confirmed') or export.get('columns') != ['Id'] or export.get('only_selected') is not False:
+    if not export.get('confirmed') or export.get('columns') not in (['Id'],['Id','Name']) or export.get('only_selected') is not False:
         return {'verified': False, 'reason': 'native_export_not_confirmed'}
     parsed = []
+    names={}
     for doc in export.get('documents', {}).get('text_fields', []):
+        candidate_names={}
         try:
-            identities = parse_id_document(doc['text'])
-        except (ValueError, KeyError, TypeError):
+            if export['columns']==['Id','Name']:
+                import re
+                lines=[line.strip() for line in doc['text'].splitlines() if line.strip()]
+                if not re.fullmatch(r'Id\s+Name',lines[0]):raise ValueError('Unexpected name output header')
+                people=[]
+                for line in lines[1:]:
+                    match=re.fullmatch(r'([0-9]{6,12})[ \t]+(\S[^\t\r\n]*)',line)
+                    if not match:raise ValueError('Unexpected name output row')
+                    people.append(match.groups())
+                identities=[i for i,n in people]
+                if not people or len(set(identities))!=len(identities):raise ValueError('Duplicate name output IDs')
+                candidate_names=dict(people)
+            else:identities = parse_id_document(doc['text'])
+        except (ValueError, KeyError, TypeError, IndexError):
             continue
         if not set(observed).issubset(identities):
             continue
+        names=candidate_names
         parsed.append(identities)
     if not parsed or any(set(ids) != set(parsed[0]) for ids in parsed[1:]):
         return {'verified': False, 'reason': 'complete_plain_text_output_not_verified'}
-    return {'verified': True, 'courier_ids': parsed[0], 'count': len(parsed[0]),
+    return {'verified': True, 'courier_ids': parsed[0], 'names':names,'count': len(parsed[0]),
             'basis': 'native_all_filtered_rows_id_only_text_output'}

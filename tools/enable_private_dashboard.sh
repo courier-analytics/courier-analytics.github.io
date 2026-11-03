@@ -23,6 +23,7 @@ id courier-web >/dev/null 2>&1 || useradd --system --home /var/lib/courier-dashb
 install -d -m 755 "$root" "$root/app" "$root/site" "$root/site/data"
 install -d -o root -g courier-web -m 750 /etc/courier-dashboard
 install -d -o courier-web -g courier-web -m 700 /var/lib/courier-dashboard
+install -d -o root -g courier-web -m 2750 "$root/details"
 install -m 644 "$scripts/private_web/app.py" "$scripts/private_web/sync_data.py" "$scripts/private_web/requirements.txt" "$root/app/"
 (
   umask 022
@@ -37,10 +38,14 @@ from app import FILES
 source,target=map(Path,sys.argv[1:])
 for name in FILES:
     text=(source/name).read_text()
-    if name.endswith('.html'):text=text.replace('</body>','<script src="/private-session.js"></script>\n</body>')
+    if name.endswith('.html'):
+        text=text.replace('</head>','<script>window.courierPrivate=true;</script></head>')
+        text=text.replace('</body>','<script src="/private-session.js"></script><script src="/private-details.js"></script>\n</body>')
     path=target/name;path.write_text(text);path.chmod(0o644)
 shutil.copyfile(source/'tools/private_web/private-session.js',target/'private-session.js')
 (target/'private-session.js').chmod(0o644)
+shutil.copyfile(source/'tools/private_web/private-details.js',target/'private-details.js')
+(target/'private-details.js').chmod(0o644)
 PY
 "$root/venv/bin/python" - "$host" <<'PY'
 import json,secrets,sys

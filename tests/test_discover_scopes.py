@@ -35,11 +35,11 @@ class ScopeTests(unittest.TestCase):
         config = discover([{'id': 5818}], [])
         self.assertFalse(config['shops'][1]['scope_verified'])
 
-    def test_private_slot_discards_names_and_phones(self):
+    def test_private_slot_keeps_authorized_name_but_discards_phone(self):
         slot = sanitize_slot({'slot_id': 1, 'slot_type': 'manual', 'shopno_cluster_id': 5818,
             'couriers': [{'id': '11', 'name': 'private', 'phone': 'private',
                           'shift_status': 'Вышел'}]}, '2026-10-26', 'shopno', 5818)
-        self.assertNotIn('name', slot['couriers'][0])
+        self.assertEqual(slot['couriers'][0]['name'], 'private')
         self.assertNotIn('phone', slot['couriers'][0])
 
     def test_null_aliases_do_not_hide_real_fields(self):

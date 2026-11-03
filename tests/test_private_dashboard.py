@@ -9,12 +9,13 @@ class PrivateDashboardTests(unittest.TestCase):
         from werkzeug.security import generate_password_hash
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)
         (self.root/'site').mkdir();(self.root/'data').mkdir()
+        (self.root/'details').mkdir()
         (self.root/'site/index.html').write_text('PRIVATE_DASHBOARD')
         (self.root/'site/private-session.js').write_text('logout UI')
         (self.root/'data/dashboard.json').write_text('{"records":[]}')
         self.userfile=self.root/'users.json';self.password='valid-long-password'
         self.userfile.write_text(json.dumps({'max':generate_password_hash(self.password)}))
-        self.app=create_app({'secret':'test-secret'*8,'host':'test.example','users':str(self.userfile),'database':str(self.root/'auth.db'),'site_root':str(self.root/'site'),'data_root':str(self.root/'data')})
+        self.app=create_app({'secret':'test-secret'*8,'host':'test.example','users':str(self.userfile),'database':str(self.root/'auth.db'),'site_root':str(self.root/'site'),'data_root':str(self.root/'data'),'details_root':str(self.root/'details')})
         self.app.testing=True;self.client=self.app.test_client()
     def tearDown(self):self.temp.cleanup()
     def get(self,path,**kw):return self.client.get(path,base_url='https://test.example',**kw)
@@ -61,3 +62,14 @@ class PrivateDashboardTests(unittest.TestCase):
         self.login()
         with sqlite3.connect(self.root/'auth.db') as db:db.execute('UPDATE sessions SET expires=0')
         self.assertEqual(self.get('/data/dashboard.json').status_code,401)
+
+    def test_named_details_require_login_and_are_not_static_files(self):
+        payload={'kind':'courier_metric_details','date':'2026-11-03','shop_id':7745,'generated_at':'2026-11-03T09:00:00Z',
+                 'metrics':{'planned_late':{'groups':[{'couriers':[{'name':'TEST_NAME','courier_id':'111111'}]}]}}}
+        (self.root/'details/2026-11-03-7745.json').write_text(json.dumps(payload))
+        url='/api/details/7745/2026-11-03/planned_late'
+        self.assertEqual(self.get(url).status_code,401)
+        self.login();response=self.get(url)
+        self.assertTrue(response.json['available']);self.assertIn('TEST_NAME',response.text)
+        self.assertEqual(self.get('/data/2026-11-03-7745.json').status_code,404)
+        self.assertEqual(self.get('/api/details/7745/not-a-date/planned_late').status_code,400)

@@ -42,6 +42,24 @@ def sync(sources,target):
     return result
 
 
+def sync_details(source,target):
+    target=Path(target)
+    if not target.is_dir():return 0
+    count=0
+    for path in Path(source).glob('????-??-??-*.json'):
+        data=json.loads(path.read_text())
+        if data.get('kind')!='courier_metric_details' or data.get('schema_version')!=1:
+            continue
+        if path.name!=f"{data.get('date')}-{data.get('shop_id')}.json":continue
+        fd,tmp=tempfile.mkstemp(prefix='.detail-',dir=target)
+        try:
+            with os.fdopen(fd,'w') as output:json.dump(data,output,ensure_ascii=False)
+            os.chmod(tmp,0o640);os.replace(tmp,target/path.name);count+=1
+        finally:
+            if os.path.exists(tmp):os.unlink(tmp)
+    return count
+
+
 def main():
     base=Path('/opt/courier-analytics')
     sources={
@@ -49,5 +67,6 @@ def main():
         'medical-books.json':[base/'publisher/data/medical-books.json',base/'current-site/data/medical-books.json',base/'dashboard-code/data/medical-books.json']
     }
     print(json.dumps(sync(sources,Path('/opt/courier-dashboard/site/data'))))
+    print('Private detail snapshots copied:',sync_details(base/'private/details',Path('/opt/courier-dashboard/details')))
 
 if __name__=='__main__':main()

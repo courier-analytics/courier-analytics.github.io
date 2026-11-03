@@ -31,6 +31,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
         except RosterError as error:
             roster_errors = {s['shop_id']: str(error) for s in observations['shops']}
     summaries = []
+    private_details = []
     for shop in observations['shops']:
         identity = shop['shop_id']
         native_path = private_dir/'onec-rosters'/'7745.json'
@@ -61,6 +62,20 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
             except (RuntimeError, ValueError, KeyError, TypeError):
                 metrics['shift_marked'] = metric(reason='active_base_incomplete', basis=ACTIVE_BASIS)
         fill = metrics['slot_fill']
+        from courier_details import build as build_details
+        from completion_reporting import choose as choose_completion
+        try:
+            completion_slots=None
+            state_path=(completion_state_dir or private_dir)/'completion-night-state'/f'{identity}.json'
+            if state_path.exists():
+                state=json.loads(state_path.read_text())
+                history=[s for origin,saved in state.get('days',{}).items() if origin<day for s in saved['slots']]
+                completion_slots=choose_completion(history+[s for s in shop['slots'] if s['slot_type']=='limited'],day)
+            private_details.append(build_details(day,shop,metrics,rosters.get(identity),daily_plan,completion_slots))
+        except (OSError,ValueError,KeyError,TypeError):
+            private_details.append({'kind':'courier_metric_details','schema_version':1,'date':day,'shop_id':identity,
+                'metrics':{key:{'aggregate':value,'groups':[],'reconciled':False,
+                    'note':'Персональную выборку не удалось согласовать с источником.'} for key,value in metrics.items()}})
         summaries.append({'date': day, 'shop_id': identity, 'slot_type': 'limited',
                           'booked_places': fill['numerator'], 'capacity': fill['denominator'],
                           'fill_percent': fill['value'], 'metrics': metrics})
@@ -70,6 +85,9 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
     report = {'schema_version': 1, 'snapshot_consistent': True, 'issues': [],
               'generated_at': datetime.now(timezone.utc).isoformat(), 'summaries': summaries}
     fresh = build([report])
+    for detail in private_details:
+        detail['generated_at']=report['generated_at']
+        atomic_json(private_dir/'details'/f"{day}-{detail['shop_id']}.json",detail)
     previous = json.loads(feed_path.read_text()) if feed_path.exists() else None
     combined = merge_feed(previous, fresh)
     atomic_json(private_dir/('metrics-'+day+'.json'), report)

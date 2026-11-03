@@ -55,12 +55,16 @@
     dialog.append(element("p", "Данные получены: " + new Date(detail.reportedAt).toLocaleString("ru-RU", {timeZone: "Europe/Moscow"}) + " МСК", "detail-note"));
     dialog.showModal();
     close.focus();
+    window.dispatchEvent(new CustomEvent('metric-detail-open',{detail:{...detail,dialog}}));
   }
   dialog.addEventListener("click", event => {
     if (event.target !== dialog) return;
     const bounds = dialog.getBoundingClientRect();
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
   });
+  dialog.addEventListener("keydown", event => {
+    if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); dialog.close(); }
+  }, true);
   dialog.addEventListener("close", () => {
     if (opener && opener.isConnected) opener.focus();
     else document.getElementById("refreshData")?.focus();

@@ -44,6 +44,7 @@ def sanitize_slot(raw, day, kind, scope_id):
         if not courier_id or not courier_id.isdigit():
             raise ValueError('Invalid courier identity')
         clean.append({'courier_id': courier_id,
+                      'name': str(person.get('name') or '').strip(),
                       'shift_status': optional(person, 'shift_status', 'shiftStatus'),
                       'shift_start': optional(person, 'shift_start', 'shiftStart'),
                       'shift_end': optional(person, 'shift_end', 'shiftEnd'),
@@ -51,6 +52,7 @@ def sanitize_slot(raw, day, kind, scope_id):
     if len({c['courier_id'] for c in clean}) != len(clean):
         raise ValueError('Duplicate courier in one slot')
     return {'slot_id': int(identity), 'slot_type': slot_type, 'date': day,
+            'name': str(raw.get('name') or scope_id),
             'scope_kind': kind, 'scope_id': scope_id,
             'time_from': raw.get('time_from'), 'time_to': raw.get('time_to'),
             'capacity': first(raw, 'capacity', 'courier_limits'),

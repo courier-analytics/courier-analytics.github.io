@@ -20,7 +20,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 FILES = {'index.html','7745.html','4747.html','8092.html','dashboard-data.js',
          'dashboard-trends.js','dashboard-trends.css','metric-details.js'}
 FEEDS = {'dashboard.json','medical-books.json'}
-EXTRA_FILES = {'private-session.js'}
+EXTRA_FILES = {'private-session.js','private-details.js'}
 PAGE = '''<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Вход — Курьерский дашборд</title><style>
 *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:24px;background:#f1f5f9;color:#18364b;font:16px/1.5 system-ui}main{background:white;border:1px solid #e2e8f0;border-radius:20px;padding:32px;width:min(100%,390px);box-shadow:0 12px 40px #18364b12}h1{font-size:24px;margin:0 0 8px}p{color:#64748b;margin:0 0 22px}label{display:block;margin:16px 0 6px}input,button{font:inherit;width:100%;padding:11px 12px;border-radius:9px;border:1px solid #cbd5e1}input:focus{outline:2px solid #2563eb;outline-offset:1px}button{margin-top:22px;background:#245fd3;color:white;border:0;cursor:pointer}.error{color:#a32626;background:#fff1f2;border-radius:8px;padding:10px;margin:18px 0 0}</style>
@@ -144,6 +144,21 @@ def create_app(config=None):
 
     @app.get('/api/session')
     def session_info():return jsonify(username=g.user,csrf=csrf())
+
+    @app.get('/api/details/<int:shop>/<day>/<key>')
+    def metric_details(shop,day,key):
+        from datetime import date
+        try:
+            if date.fromisoformat(day).isoformat()!=day:abort(400)
+        except ValueError:abort(400)
+        if shop not in (7745,5818,4747,8092) or key not in ('shift_marked','slot_fill','planned_attendance','planned_late','unplanned_work','planned_completion','medical'):abort(404)
+        if key=='medical':return jsonify(available=False,note='Персональная выгрузка медицинских книжек пока не подключена. Доступны только общие количества.')
+        path=Path(values.get('details_root','/opt/courier-dashboard/details'))/f'{day}-{shop}.json'
+        if not path.is_file():return jsonify(available=False,note='Персональная детализация за эту дату ещё не сохранена.'),404
+        data=json.loads(path.read_text())
+        if data.get('kind')!='courier_metric_details' or data.get('date')!=day or data.get('shop_id')!=shop:abort(500)
+        if key not in data.get('metrics',{}):abort(404)
+        return jsonify(available=True,date=day,shop_id=shop,generated_at=data['generated_at'],detail=data['metrics'][key])
 
     @app.post('/logout')
     def logout():

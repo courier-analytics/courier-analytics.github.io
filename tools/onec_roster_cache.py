@@ -23,6 +23,7 @@ def save(native, filters, directory, now=None):
                 'source':'native_all_filtered_rows_id_only_text_output',
                 'observed_at':now.isoformat(),'date':now.astimezone(MOSCOW).date().isoformat(),
                 'courier_ids':sorted(ids),'count':len(ids),'filters_verified':True}
+    snapshot['names']={i:n for i,n in native.get('names',{}).items() if i in ids and isinstance(n,str)}
     private_write(directory/'7745.json',json.dumps(snapshot,ensure_ascii=False))
     return len(ids)
 
