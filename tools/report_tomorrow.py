@@ -117,6 +117,7 @@ def main():
     parser.add_argument('--shops', nargs='+', type=int, default=[8889, 7745])
     parser.add_argument('--proxy', default=configured_proxy())
     parser.add_argument('--output-dir', type=Path, default=Path('/opt/courier-analytics/private/reports'))
+    parser.add_argument('--export-json', action='store_true', help='Save private detailed snapshot for a named slot/attendance report')
     args = parser.parse_args()
     date.fromisoformat(args.date)
     token = json.loads(Path('/root/curator-session.json').read_text())['token']
@@ -126,6 +127,11 @@ def main():
     generated = datetime.now(MOSCOW).isoformat(timespec='seconds')
     concise, detailed = reports(args.date, generated, shops)
     args.output_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
+    if args.export_json:
+        private_write(args.output_dir / f'slots-{args.date}.json', json.dumps({
+            'date': args.date, 'generated_at': generated, 'shops': shops,
+            'note': 'Current bookings; not proof of who created the booking or a frozen 23:59 plan.'
+        }, ensure_ascii=False, indent=2))
     for variant, content in [('concise', concise), ('detailed', detailed)]:
         path = args.output_dir / f'exits-{args.date}-{variant}.txt'
         private_write(path, content)
