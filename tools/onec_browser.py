@@ -263,6 +263,13 @@ def ensure_roster_filters(page, progress=None):
             page.wait_for_timeout(500)
 
 
+def close_roster_popup(page):
+    # A 1C popup can intercept clicks outside itself, including the caption.
+    # Escape dismisses it without depending on a clickable background element.
+    page.keyboard.press('Escape')
+    page.wait_for_timeout(250)
+
+
 def select_roster_shop(page):
     """Change only the list's point filter; no courier record is edited."""
     field = page.locator('[id="form0_НомерТочки_i0"]')
@@ -374,7 +381,7 @@ def capture_interface(page, private, inspect_roster=False, status=None):
         if navigation_stopped_at is None:
             structure['roster_filters'] = roster_filter_structure(page)
             mark('close_excluded_types_popup')
-            page.locator('[id="captionbarTitle"]').click(timeout=5000)
+            close_roster_popup(page)
             ensure_roster_filters(page,lambda stage:mark('after_popup.'+stage))
             from onec_roster import scan_grid, inspect_export_dialog, export_id_list, verify_id_export
             mark('grid_scan')

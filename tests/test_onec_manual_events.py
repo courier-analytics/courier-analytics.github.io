@@ -4,12 +4,26 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface, open_roster_navigation, select_roster_shop, roster_filter_structure, ensure_roster_filters, save_failure_interface
+from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface, open_roster_navigation, select_roster_shop, roster_filter_structure, ensure_roster_filters, save_failure_interface, close_roster_popup
 
 
 @unittest.skipUnless(importlib.util.find_spec('playwright') and Path('/usr/lib/chromium/chromium').exists(),
                      'Optional local Chromium integration check')
 class ManualLoginEventsTests(unittest.TestCase):
+    def test_popup_closes_with_escape_when_caption_cannot_receive_clicks(self):
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as playwright:
+            browser=playwright.chromium.launch(executable_path='/usr/lib/chromium/chromium',headless=True,args=['--no-sandbox'])
+            try:
+                page=browser.new_page()
+                page.set_content('''<div id="captionbarTitle" style="pointer-events:none">Caption</div>
+                    <div id="popup">Excluded types</div><script>
+                    document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelector('#popup').hidden=true});
+                    </script>''')
+                close_roster_popup(page)
+                self.assertFalse(page.locator('#popup').is_visible())
+            finally:browser.close()
+
     def test_required_filter_checkbox_is_restored_and_second_pass_does_not_toggle_it_off(self):
         from playwright.sync_api import sync_playwright
         with sync_playwright() as playwright:
