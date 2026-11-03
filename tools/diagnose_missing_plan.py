@@ -30,6 +30,12 @@ def redact(value):
     return value
 
 
+def slot_history_path(slot_id,slot_type):
+    if slot_type not in ('manual','limited') or type(slot_id) is not int or slot_id<=0:
+        raise ValueError('Invalid evidenced slot history identity')
+    return '/v1/schedules/slots/'+str(slot_id)+'/history?'+urlencode({'slot_type':slot_type})
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--date',required=True);parser.add_argument('--shop',type=int,choices=[7745,5818],default=7745)
     args=parser.parse_args();date.fromisoformat(args.date)
@@ -42,13 +48,18 @@ def main():
     missing=differences(original['slots'],shop['slots'])
     result={'date':args.date,'shop_id':args.shop,'observed_at':datetime.now(timezone.utc).isoformat(),
             'plan_started_at':plan['started_at'],'plan_completed_at':plan['completed_at'],
-            'plan_slots':original['slots'],'current_slots':shop['slots'],'missing':missing,'histories':{},'raw_slots':[]}
+            'plan_slots':original['slots'],'current_slots':shop['slots'],'missing':missing,'histories':{},'slot_versions':{},'raw_slots':[]}
     if missing:
         query=urlencode({'date_from':args.date,'date_to':args.date,'shops':args.shop})
         try:result['courier_schedule_source']=redact(api_get('/v1/couriers/schedules/slots?'+query,token,proxy))
         except (RuntimeError,ValueError):result['courier_schedule_source_error']='source_unavailable'
     scopes=set()
     for item in missing:
+        version_key=item['slot_type']+':'+str(item['slot_id'])
+        if version_key not in result['slot_versions']:
+            try:result['slot_versions'][version_key]=redact(api_get(slot_history_path(item['slot_id'],item['slot_type']),token,proxy))
+            except ApiError as error:result['slot_versions'][version_key]={'http_status':error.status}
+            except (RuntimeError,ValueError):result['slot_versions'][version_key]={'error':'source_unavailable'}
         if item['slot_type']=='limited' and str(item['slot_id']) not in result['histories']:
             try:result['histories'][str(item['slot_id'])]=redact(api_get('/v1/schedules/limited-slots/'+str(item['slot_id'])+'/reservations/history',token,proxy))
             except ApiError as error:result['histories'][str(item['slot_id'])]={'http_status':error.status}
@@ -56,6 +67,11 @@ def main():
         for slot in shop['slots']:
             if (slot['slot_type'],slot['slot_id'])==(item['slot_type'],item['slot_id']):scopes.add((slot['scope_kind'],slot['scope_id']))
     wanted={str(m['slot_id']) for m in missing}
+    if missing:
+        query=urlencode({'date':args.date,'shopno':args.shop})
+        try:result['day_slot_versions']=redact(api_get('/v1/schedules/slots/dates/history?'+query,token,proxy))
+        except ApiError as error:result['day_slot_versions']={'http_status':error.status}
+        except (RuntimeError,ValueError):result['day_slot_versions']={'error':'source_unavailable'}
     for kind,identity in scopes:
         try:
             raw=fetch((args.date,kind,identity,'all'),token,proxy)
@@ -63,7 +79,7 @@ def main():
             result['raw_slots'].extend(redact(row) for row in raw if str(first(row,'slot_id','limited_slot_id','id')) in wanted)
         except (RuntimeError,ValueError,TypeError):result['raw_source_error']='source_unavailable'
     path=private/f'missing-plan-{args.date}-{args.shop}.json';atomic_json(path,result)
-    print(json.dumps({'date':args.date,'shop_id':args.shop,'missing_bookings':len(missing),'history_slots':len(result['histories']),'file':str(path)},ensure_ascii=False,indent=2))
+    print(json.dumps({'date':args.date,'shop_id':args.shop,'missing_bookings':len(missing),'history_slots':len(result['histories']),'slot_version_sources':len(result['slot_versions']),'file':str(path)},ensure_ascii=False,indent=2))
     print('Read-only diagnostic saved privately. Frozen plan, metrics and timers unchanged.')
 
 if __name__=='__main__':
