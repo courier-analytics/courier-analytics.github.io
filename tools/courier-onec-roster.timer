@@ -1,0 +1,11 @@
+[Unit]
+Description=Hourly DS 7745 1C roster refresh
+
+[Timer]
+OnCalendar=*-*-* *:37:00 Europe/Moscow
+RandomizedDelaySec=30
+Persistent=true
+Unit=courier-onec-roster.service
+
+[Install]
+WantedBy=timers.target

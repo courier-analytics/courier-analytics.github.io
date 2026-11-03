@@ -15,7 +15,7 @@ REASONS = {'lateness_duration_missing', 'zero_denominator', 'assigned_roster_not
            'planned_booking_missing_from_current_data', 'planned_slot_times_changed',
            'unknown_planned_shift_status', 'unknown_shift_status',
            'shift_end_or_final_status_missing'}
-BASES = {'limited_slot_places', 'all_assigned_unique_couriers', 'direct_shop_scheduled_unique_5d_including_day',
+BASES = {'onec_accessible_nonmobile_unique_couriers', 'limited_slot_places', 'all_assigned_unique_couriers', 'direct_shop_scheduled_unique_5d_including_day',
          'current_limited_bookings_unique_couriers',
          'current_limited_all_shifts_site_10min_tolerance',
          'slot_completion_by_actual_night_end_date',

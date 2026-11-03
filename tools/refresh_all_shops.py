@@ -33,6 +33,15 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
     summaries = []
     for shop in observations['shops']:
         identity = shop['shop_id']
+        native_path = private_dir/'onec-rosters'/'7745.json'
+        use_native = identity == 7745 and day == datetime.now(ZoneInfo('Europe/Moscow')).date().isoformat() and native_path.exists()
+        if use_native:
+            from onec_roster_cache import load as load_native_roster
+            rosters.pop(identity, None)
+            try:
+                rosters[identity] = load_native_roster(native_path, day)
+            except (OSError, ValueError, KeyError, TypeError):
+                roster_errors[identity] = 'native_roster_stale_or_invalid'
         shop['slots'], shop['overnight_completion'] = resolve_overnight(shop['slots'], token, proxy)
         source_plan = next((p for p in (plan or {}).get('shops', []) if p['shop_id'] == identity), None)
         daily_plan = {'verified': True, 'date': day, 'slots': source_plan['slots']} if (
@@ -46,7 +55,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
         except (RuntimeError, ValueError, KeyError, TypeError, OSError, StopIteration):
             metrics['planned_completion'] = metric(reason='completion_history_incomplete', basis=COMPLETION_BASIS)
             shop['completion_reporting'] = {'source_complete': False}
-        if active_base:
+        if active_base and not use_native:
             try:
                 metrics['shift_marked'] = collect_active_base(day, identity, shop['slots'], token, proxy)
             except (RuntimeError, ValueError, KeyError, TypeError):

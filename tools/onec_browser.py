@@ -373,6 +373,12 @@ def capture_interface(page, private, inspect_roster=False):
             if os.path.exists(name):
                 os.unlink(name)
     print('1C interface saved privately: onec-interface.zip. No records edited.', flush=True)
+    native = structure.get('native_roster', {})
+    if native.get('verified') is True and structure.get('roster_filters', {}).get('filters_verified') is True:
+        from onec_roster_cache import save
+        count = save(native, structure['roster_filters'], private/'onec-rosters')
+        print(f'1C verified roster saved privately: DS 7745, {count} couriers.', flush=True)
+    return structure
 
 
 def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False, inspect_roster=False):
@@ -471,8 +477,10 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
             if result['authenticated']:
                 result['login_failures'] = []
                 if inspect_ui:
-                    capture_interface(page, private, inspect_roster=inspect_roster)
+                    interface = capture_interface(page, private, inspect_roster=inspect_roster)
                     result['interface_saved'] = True
+                    if inspect_roster:
+                        result['roster_verified'] = interface.get('native_roster', {}).get('verified') is True and interface.get('roster_filters', {}).get('filters_verified') is True
                 # Only known navigation labels; never courier rows, account name,
                 # full DOM, screenshots, response bodies or authentication tokens.
                 labels = ('Курьеры', 'Справочники', 'Сотрудники', 'Отчеты', 'Отчёты', 'Доставка')
@@ -490,7 +498,7 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
     if sync_vps and result['authenticated']:
         print('Ручной вход завершён. Теперь SSH запросит пароль сервера VPS для переноса подтверждённых реквизитов и проверки серверного входа.', flush=True)
         sync_verified_credentials(captured, result['authenticated'])
-    return result['authenticated'] and (not inspect_ui or result['interface_saved'])
+    return result['authenticated'] and (not inspect_ui or result['interface_saved']) and (not inspect_roster or result.get('roster_verified') is True)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,11 @@
+[Unit]
+Description=Read verified DS 7745 courier roster from 1C over temporary corporate VPN
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+UMask=0077
+TimeoutStartSec=300
+ExecStart=/usr/bin/flock -n /opt/courier-analytics/onec-roster.lock /opt/courier-analytics/onec-venv/bin/python /opt/courier-analytics/dashboard-code/tools/probe_powerbi_vpn.py --address 10.210.254.19 --onec-login --onec-inspect-roster
