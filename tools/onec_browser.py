@@ -243,6 +243,23 @@ def open_roster_navigation(page):
     return None
 
 
+def ensure_roster_filters(page):
+    """Restore the user's confirmed list filters, regardless of saved UI state."""
+    prefix='form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент'
+    for number,required in ((4,True),(5,True),(6,False),(7,True),(8,False)):
+        identity=prefix+str(number)+'Использование'
+        control=page.locator('[id="'+identity+'"]')
+        control.wait_for(state='visible',timeout=10000)
+        selected=control.evaluate('(e)=>e.classList.contains("select")')
+        if selected != required:
+            control.click(timeout=5000)
+            page.wait_for_function('''([id,required]) => {
+                const e=document.getElementById(id);
+                return e && e.classList.contains('select') === required;
+            }''',arg=[identity,required],timeout=10000)
+            page.wait_for_timeout(500)
+
+
 def select_roster_shop(page):
     """Change only the list's point filter; no courier record is edited."""
     field = page.locator('[id="form0_НомерТочки_i0"]')
@@ -306,7 +323,9 @@ def capture_interface(page, private, inspect_roster=False):
     page.wait_for_timeout(3000)
     navigation_stopped_at = open_roster_navigation(page) if inspect_roster else None
     if inspect_roster and navigation_stopped_at is None:
+        ensure_roster_filters(page)
         select_roster_shop(page)
+        ensure_roster_filters(page)
         more = page.locator('[id="form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент5Значение_multipleValues_more"]')
         if more.is_visible():
             more.click()
@@ -342,7 +361,8 @@ def capture_interface(page, private, inspect_roster=False):
         structure['navigation_stopped_at'] = navigation_stopped_at
         if navigation_stopped_at is None:
             structure['roster_filters'] = roster_filter_structure(page)
-            page.keyboard.press('Escape')
+            page.locator('[id="captionbarTitle"]').click(timeout=5000)
+            ensure_roster_filters(page)
             from onec_roster import scan_grid, inspect_export_dialog, export_id_list, verify_id_export
             structure['roster_candidate'] = scan_grid(page)
             structure['roster_candidate']['filters_verified'] = structure['roster_filters']['filters_verified']
@@ -481,6 +501,11 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
                     result['interface_saved'] = True
                     if inspect_roster:
                         result['roster_verified'] = interface.get('native_roster', {}).get('verified') is True and interface.get('roster_filters', {}).get('filters_verified') is True
+                        result['roster_check'] = {
+                            'filters_verified':interface.get('roster_filters',{}).get('filters_verified',False),
+                            'export_reason':interface.get('id_export',{}).get('reason'),
+                            'verification_reason':interface.get('native_roster',{}).get('reason'),
+                            'count':interface.get('native_roster',{}).get('count')}
                 # Only known navigation labels; never courier rows, account name,
                 # full DOM, screenshots, response bodies or authentication tokens.
                 labels = ('Курьеры', 'Справочники', 'Сотрудники', 'Отчеты', 'Отчёты', 'Доставка')
@@ -494,7 +519,9 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
             browser.close()
     private_write(private/'onec-browser-status.json', json.dumps(result, ensure_ascii=False))
     print('1C browser login: '+json.dumps(result, ensure_ascii=False), flush=True)
-    print('Full courier roster not collected; dashboard unchanged.', flush=True)
+    print('Verified 1C roster refreshed; metrics update in courier-refresh.service.' if result.get('roster_verified') else
+          '1C roster not verified; previous private snapshot preserved.' if inspect_roster else
+          'Login check only; public dashboard unchanged.', flush=True)
     if sync_vps and result['authenticated']:
         print('Ручной вход завершён. Теперь SSH запросит пароль сервера VPS для переноса подтверждённых реквизитов и проверки серверного входа.', flush=True)
         sync_verified_credentials(captured, result['authenticated'])

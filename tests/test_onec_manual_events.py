@@ -4,12 +4,28 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface, open_roster_navigation, select_roster_shop, roster_filter_structure
+from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface, open_roster_navigation, select_roster_shop, roster_filter_structure, ensure_roster_filters
 
 
 @unittest.skipUnless(importlib.util.find_spec('playwright') and Path('/usr/lib/chromium/chromium').exists(),
                      'Optional local Chromium integration check')
 class ManualLoginEventsTests(unittest.TestCase):
+    def test_required_filter_checkbox_is_restored_and_second_pass_does_not_toggle_it_off(self):
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as playwright:
+            browser=playwright.chromium.launch(executable_path='/usr/lib/chromium/chromium',headless=True,args=['--no-sandbox'])
+            try:
+                page=browser.new_page();prefix='form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент'
+                controls=''.join(f'<div id="{prefix}{n}Использование" class="checkbox {"select" if n in (4,6,7,8) else ""}" onclick="window.toggles++;setTimeout(()=>this.classList.toggle(\'select\'),50)"></div>' for n in (4,5,6,7,8))
+                page.set_content('<style>.checkbox{width:20px;height:20px}</style><script>window.toggles=0</script>'+controls)
+                ensure_roster_filters(page)
+                selected=page.locator('.checkbox.select').evaluate_all('(es)=>es.map(e=>e.id)')
+                self.assertEqual(set(selected),{prefix+str(n)+'Использование' for n in (4,5,7)})
+                self.assertEqual(page.evaluate('window.toggles'),3)
+                ensure_roster_filters(page)
+                self.assertEqual(page.evaluate('window.toggles'),3)
+            finally:browser.close()
+
     def test_point_filter_changes_only_list_and_snapshot_excludes_other_values(self):
         from playwright.sync_api import sync_playwright
         with sync_playwright() as playwright:
