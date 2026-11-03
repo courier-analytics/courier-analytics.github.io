@@ -133,6 +133,11 @@
       if ((!row.metrics || row.metrics.slot_fill) && !hasManualValue(2, row.date)) {
         cells[i].title = row.capacity ? "Лимитированные слоты: занято " + row.booked_places + " из " + row.capacity + " мест. Один курьер может занимать несколько слотов." : "Нет данных о потребности: вместимость лимитированных слотов равна нулю.";
         cells[i].dataset.source = "slots_export";
+        if (!row.metrics && window.metricDetails) window.metricDetails.attach(cells[i], {
+          key: "slot_fill", name: metrics[2].name, shop, day: row.date,
+          metric: {value: row.fill_percent, numerator: row.booked_places, denominator: row.capacity},
+          explanation: cells[i].title, source: "API «Выходы курьеров»", reportedAt: row.reported_at
+        });
       }
       Object.entries(row.metrics || {}).forEach(([key, metric]) => {
         const cell = rowsInTable[metricIndexes[key]].querySelectorAll("td")[i];
@@ -172,6 +177,12 @@
         cell.title = metric.value === null ? reasons[metric.reason] :
           "По данным сайта: " + metric.numerator + " из " + metric.denominator + basis[key];
         cell.dataset.source = "slots_export";
+        if (window.metricDetails) window.metricDetails.attach(cell, {
+          key, name: metrics[metricIndexes[key]].name, shop, day: row.date,
+          metric, explanation: metric.value === null ? reasons[metric.reason] + " " + basis[key] : cell.title,
+          source: key === "shift_marked" && metric.basis === "onec_accessible_nonmobile_unique_couriers" ? "База 1С и API «Выходы курьеров»" : "API «Выходы курьеров»",
+          reportedAt: row.reported_at
+        });
       });
     });
     medical.forEach(row => {
@@ -182,6 +193,11 @@
         "По данным Power BI: действующая ЛМК у " + row.numerator + " из " + row.denominator +
         " курьеров. Просроченные исключены. Получено " + new Date(row.reported_at).toLocaleString("ru-RU", {timeZone: "Europe/Moscow"}) +
         " МСК. Дата обновления модели источником не подтверждена.";
+      if (!manual && window.metricDetails) window.metricDetails.attach(cell, {
+        key: "medical", name: metrics[9].name, shop, day: row.date,
+        metric: row, explanation: cell.title, source: "Power BI · медицинские книжки",
+        reportedAt: row.reported_at
+      });
     });
     const latest = own.slice().sort((a, b) => a.date.localeCompare(b.date)).pop() || medical.slice().sort((a, b) => a.date.localeCompare(b.date)).pop();
     const time = new Intl.DateTimeFormat("ru-RU", {timeZone: "Europe/Moscow", dateStyle: "short", timeStyle: "short"}).format(new Date(latest.reported_at));
