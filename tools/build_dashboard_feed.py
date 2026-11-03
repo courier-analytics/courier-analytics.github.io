@@ -48,6 +48,12 @@ def validate_metrics(metrics):
             raise ValueError('Missing metric requires an explicit reason')
         clean[key] = {'value': value, 'numerator': n, 'denominator': d,
                       'reason': reason, 'basis': basis}
+        if item.get('stale_reason') is not None:
+            if item['stale_reason'] not in REASONS or value is None:
+                raise ValueError('Invalid last-confirmed metric')
+            observed=datetime.fromisoformat(item['last_success_at'].replace('Z','+00:00'))
+            if observed.tzinfo is None:raise ValueError('Missing last-confirmed timezone')
+            clean[key].update(stale_reason=item['stale_reason'],last_success_at=item['last_success_at'])
     return clean
 
 

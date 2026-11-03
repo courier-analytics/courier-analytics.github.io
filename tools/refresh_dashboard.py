@@ -59,6 +59,20 @@ def rows_from_api(day, shop, scope_kind, identity, payload):
 
 
 def merge_feed(previous, incoming):
+    import copy
+    incoming=copy.deepcopy(incoming)
+    recoverable={'assigned_roster_not_verified','active_base_incomplete','frozen_plan_missing',
+        'planned_booking_missing_from_current_data','planned_slot_times_changed',
+        'unknown_planned_shift_status','unknown_shift_status','lateness_duration_missing',
+        'completion_history_incomplete','shift_end_or_final_status_missing'}
+    old_rows={(r['date'],r['shop_id']):r for r in (previous or {}).get('records',[])}
+    for row in incoming['records']:
+        old=old_rows.get((row['date'],row['shop_id']),{})
+        for key,current in row.get('metrics',{}).items():
+            saved=old.get('metrics',{}).get(key,{})
+            if key!='slot_fill' and current.get('value') is None and current.get('reason') in recoverable and saved.get('value') is not None:
+                row['metrics'][key]={**saved,'stale_reason':current['reason'],
+                    'last_success_at':saved.get('last_success_at',old['reported_at'])}
     # Revalidate the old public feed and copy only allowlisted fields.
     reports = []
     if previous:

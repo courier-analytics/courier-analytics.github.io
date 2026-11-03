@@ -50,4 +50,4 @@ class NativeRosterCacheTests(unittest.TestCase):
         data=json.loads(self.path.read_text());data['observed_at']=(self.now-timedelta(hours=3)).isoformat();atomic_json(self.path,data)
         run()
         metric=json.loads((self.folder/'public.json').read_text())['records'][0]['metrics']['shift_marked']
-        self.assertIsNone(metric['value']);self.assertEqual(metric['reason'],'assigned_roster_not_verified')
+        self.assertEqual(metric['value'],50.0);self.assertEqual(metric['stale_reason'],'assigned_roster_not_verified')

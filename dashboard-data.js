@@ -176,12 +176,17 @@
         }
         cell.title = metric.value === null ? reasons[metric.reason] :
           "По данным сайта: " + metric.numerator + " из " + metric.denominator + basis[key];
+        if (metric.stale_reason) {
+          cell.title = "Последний подтверждённый расчёт от " + new Date(metric.last_success_at).toLocaleString("ru-RU", {timeZone:"Europe/Moscow"}) + " МСК. Сейчас обновление недоступно: " + reasons[metric.stale_reason] + " " + cell.title;
+          const value=cell.querySelector('.cell');
+          if(value){value.textContent+=' ⟳';value.style.outline='2px dashed #c58a17';value.style.outlineOffset='2px';}
+        }
         cell.dataset.source = "slots_export";
         if (window.metricDetails) window.metricDetails.attach(cell, {
           key, name: metrics[metricIndexes[key]].name, shop, day: row.date,
           metric, explanation: metric.value === null ? reasons[metric.reason] + " " + basis[key] : cell.title,
           source: key === "shift_marked" && metric.basis === "onec_accessible_nonmobile_unique_couriers" ? "База 1С и API «Выходы курьеров»" : "API «Выходы курьеров»",
-          reportedAt: row.reported_at
+          reportedAt: metric.last_success_at || row.reported_at
         });
       });
     });
@@ -203,6 +208,8 @@
     const time = new Intl.DateTimeFormat("ru-RU", {timeZone: "Europe/Moscow", dateStyle: "short", timeStyle: "short"}).format(new Date(latest.reported_at));
     const ready = latest.metrics ? Object.values(latest.metrics).filter(metric => metric.value !== null).length : (latest.fill_percent === null ? 0 : 1);
     lastSuccess = "Выгрузка за " + latest.date.slice(8) + "." + latest.date.slice(5, 7) + "." + latest.date.slice(0, 4) + " · Сформирована " + time + " МСК. Рассчитано автоматических показателей: " + ready + " из 6. Причины прочерков — в подсказках ячеек.";
+    const staleCount=Object.values(latest.metrics || {}).filter(metric=>metric.stale_reason).length;
+    if(staleCount)lastSuccess+=" Последние подтверждённые значения отмечены ⟳: "+staleCount+". Время и причина задержки — по нажатию на показатель.";
     if (medical.length) {
       const latestMedical = medical.slice().sort((a, b) => a.date.localeCompare(b.date)).pop();
       lastSuccess += " ЛМК: " + latestMedical.value.toLocaleString("ru-RU") + "% за " + latestMedical.date.slice(8) + "." + latestMedical.date.slice(5, 7) + ".";
