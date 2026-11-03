@@ -107,3 +107,96 @@ def inspect_export_dialog(page):
                     title:e.getAttribute('title'),type:e.type || null,
                     text:e.tagName === 'INPUT' ? null : (e.innerText || '').trim().slice(0,200)}))};
     }''')
+
+
+def export_id_list(page, filters_verified):
+    """Output all filtered IDs through the native read-only list command."""
+    if not filters_verified:
+        return {'confirmed': False, 'reason': 'filters_not_verified'}
+    from playwright.sync_api import TimeoutError as BrowserTimeout
+    page.locator('[id="form1_UnckeckAll"]').click(timeout=5000)
+    page.wait_for_timeout(500)
+    rows = page.locator('[id="form1_AvailableColumnsElement"] .gridBody > .gridLine')
+    identity = rows.filter(has=page.get_by_text('Id', exact=True))
+    if identity.count() != 1:
+        return {'confirmed': False, 'reason': 'id_column_not_unique'}
+    checkbox = identity.locator('.checkbox')
+    if checkbox.count() != 1:
+        return {'confirmed': False, 'reason': 'id_checkbox_not_unique'}
+    if 'select' not in (checkbox.get_attribute('class') or '').split():
+        checkbox.click(timeout=5000)
+        page.wait_for_timeout(500)
+    selected = rows.filter(has=page.locator('.checkbox.select'))
+    if selected.count() != 1 or selected.first.inner_text().strip() != 'Id':
+        return {'confirmed': False, 'reason': 'id_only_selection_not_confirmed'}
+    only_selected = page.locator('[id="form1_OnlySelectedElement"]')
+    if 'select' in (only_selected.get_attribute('class') or '').split():
+        only_selected.click(timeout=5000)
+        page.wait_for_timeout(500)
+    if 'select' in (only_selected.get_attribute('class') or '').split():
+        return {'confirmed': False, 'reason': 'selected_rows_only_still_enabled'}
+    output = page.locator('[id="form1_DocumentTypeElement_i0"]')
+    if output.input_value().strip() not in ('Text document', 'Текстовый документ'):
+        page.locator('[id="form1_DocumentTypeElement_DLB"]').click(timeout=5000)
+        options = page.get_by_text('Text document', exact=True).or_(
+            page.get_by_text('Текстовый документ', exact=True)).and_(page.locator(':visible'))
+        try:
+            options.first.wait_for(state='visible', timeout=5000)
+        except BrowserTimeout:
+            return {'confirmed': False, 'reason': 'text_output_option_not_visible'}
+        if options.count() != 1:
+            return {'confirmed': False, 'reason': 'text_output_option_ambiguous'}
+        options.click(timeout=5000)
+        page.wait_for_timeout(300)
+    if output.input_value().strip() not in ('Text document', 'Текстовый документ'):
+        return {'confirmed': False, 'reason': 'text_output_not_retained'}
+    page.locator('[id="form1_Ok"]').click(timeout=5000)
+    output.wait_for(state='hidden', timeout=30000)
+    page.wait_for_timeout(4000)
+    documents = page.evaluate('''() => {
+        const visible=e=>e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden';
+        return {
+            text_fields:Array.from(document.querySelectorAll('textarea,pre')).filter(visible)
+                .slice(0,10).map(e=>({id:e.id,text:(e.value ?? e.innerText ?? '').slice(0,1000000)})),
+            forms:Array.from(document.querySelectorAll('[id]'))
+                .filter(e=>/^form[1-9][0-9]*_container$/.test(e.id) && visible(e))
+                .slice(0,5).map(e=>({id:e.id,text:(e.innerText || '').slice(0,1000000)})),
+            structure:Array.from(document.querySelectorAll('[id]'))
+                .filter(e=>/^form[1-9][0-9]*_/.test(e.id) && visible(e))
+                .slice(0,150).map(e=>({id:e.id,tag:e.tagName,class:e.className}))
+        };
+    }''')
+    return {'confirmed': True, 'columns': ['Id'], 'only_selected': False,
+            'format': 'text', 'documents': documents, 'complete_roster': False}
+
+
+def parse_id_document(text):
+    """Accept only a complete one-column native text output, not arbitrary UI text."""
+    import re
+    lines = [line.strip().strip('\ufeff') for line in text.splitlines() if line.strip()]
+    if not lines or lines[0] != 'Id':
+        raise ValueError('Native output must contain the Id header only')
+    identities = lines[1:]
+    if not identities or any(not re.fullmatch(r'[0-9]{6,12}', item) for item in identities):
+        raise ValueError('Native Id output contains unknown rows')
+    if len(set(identities)) != len(identities):
+        raise ValueError('Duplicate identities in native output')
+    return identities
+
+
+def verify_id_export(export, observed):
+    if not export.get('confirmed') or export.get('columns') != ['Id'] or export.get('only_selected') is not False:
+        return {'verified': False, 'reason': 'native_export_not_confirmed'}
+    parsed = []
+    for doc in export.get('documents', {}).get('text_fields', []):
+        try:
+            identities = parse_id_document(doc['text'])
+        except (ValueError, KeyError, TypeError):
+            continue
+        if not set(observed).issubset(identities):
+            continue
+        parsed.append(identities)
+    if not parsed or any(set(ids) != set(parsed[0]) for ids in parsed[1:]):
+        return {'verified': False, 'reason': 'complete_plain_text_output_not_verified'}
+    return {'verified': True, 'courier_ids': parsed[0], 'count': len(parsed[0]),
+            'basis': 'native_all_filtered_rows_id_only_text_output'}

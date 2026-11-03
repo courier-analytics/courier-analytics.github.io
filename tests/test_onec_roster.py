@@ -53,3 +53,39 @@ class RosterGridTests(unittest.TestCase):
         self.assertTrue(result['opened'])
         self.assertFalse(result['confirmed'])
         self.assertIsNone(self.page.evaluate('window.confirmed'))
+
+    def test_native_export_selects_only_ids_and_all_rows(self):
+        from onec_roster import export_id_list, verify_id_export
+        self.page.set_content('''<style>.checkbox{display:inline-block;width:18px;height:18px}</style><a id="form1_UnckeckAll" onclick="document.querySelectorAll('.checkbox').forEach(e=>e.classList.remove('select'))">Clear</a>
+            <div id="form1_AvailableColumnsElement"><div class="gridBody">
+             <div class="gridLine"><span class="checkbox select" onclick="this.classList.toggle('select')"></span><span>Id</span></div>
+             <div class="gridLine"><span class="checkbox select"></span><span>Phone</span></div></div></div>
+            <div id="form1_OnlySelectedElement" class="checkbox" onclick="this.classList.toggle('select')"></div>
+            <input id="form1_DocumentTypeElement_i0" value="Text document">
+            <a id="form1_Ok" onclick="window.exported=true;document.querySelector('textarea').hidden=false;document.querySelector('#form1_DocumentTypeElement_i0').hidden=true">OK</a>
+            <textarea hidden>Id
+1800115894
+1800128719</textarea>''')
+        self.assertFalse(export_id_list(self.page,False)['confirmed'])
+        self.assertIsNone(self.page.evaluate('window.exported'))
+        result=export_id_list(self.page,True)
+        self.assertTrue(result['confirmed'])
+        self.assertEqual(result['columns'],['Id'])
+        self.assertFalse(result['only_selected'])
+        verified=verify_id_export(result,['1800115894'])
+        self.assertTrue(verified['verified'])
+        self.assertEqual(verified['count'],2)
+
+
+class NativeIdOutputTests(unittest.TestCase):
+    def test_only_strict_unique_id_column_is_accepted(self):
+        from onec_roster import parse_id_document,verify_id_export
+        self.assertEqual(parse_id_document('Id\n1800115894\n1800128719\n'), ['1800115894','1800128719'])
+        for text in ('Name\n1800115894', 'Id\n1800115894\n1800115894', 'Id\n1800115894\tPRIVATE_PHONE', 'Id\n', 'Id\n123'):
+            with self.assertRaises(ValueError):parse_id_document(text)
+        export={'confirmed':True,'columns':['Id'],'only_selected':False,
+                'documents':{'text_fields':[{'text':'Id\n1800115894\n1800128719\n'}]}}
+        self.assertTrue(verify_id_export(export,['1800115894'])['verified'])
+        self.assertFalse(verify_id_export(export,['9999999999'])['verified'])
+        export['only_selected']=True
+        self.assertFalse(verify_id_export(export,[])['verified'])

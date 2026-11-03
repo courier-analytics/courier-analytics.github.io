@@ -343,10 +343,18 @@ def capture_interface(page, private, inspect_roster=False):
         if navigation_stopped_at is None:
             structure['roster_filters'] = roster_filter_structure(page)
             page.keyboard.press('Escape')
-            from onec_roster import scan_grid, inspect_export_dialog
+            from onec_roster import scan_grid, inspect_export_dialog, export_id_list, verify_id_export
             structure['roster_candidate'] = scan_grid(page)
             structure['roster_candidate']['filters_verified'] = structure['roster_filters']['filters_verified']
             structure['export_dialog'] = inspect_export_dialog(page)
+            if structure['export_dialog']['opened']:
+                from playwright.sync_api import Error as BrowserError
+                try:
+                    structure['id_export'] = export_id_list(page, structure['roster_filters']['filters_verified'])
+                except BrowserError:
+                    structure['id_export'] = {'confirmed': False, 'reason': 'native_export_ui_operation_failed'}
+                structure['native_roster'] = verify_id_export(structure['id_export'],
+                    [row['courier_id'] for row in structure['roster_candidate']['couriers']])
     # The bundle is private: it can include account/navigation labels. No
     # input values, whole DOM, HTTP bodies, headers, cookies or storage export.
     with tempfile.TemporaryDirectory(prefix='.onec-ui-', dir=private) as directory:
