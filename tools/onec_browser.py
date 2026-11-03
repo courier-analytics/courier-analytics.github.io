@@ -243,12 +243,50 @@ def open_roster_navigation(page):
     return None
 
 
+def select_roster_shop(page):
+    """Change only the list's point filter; no courier record is edited."""
+    field = page.locator('[id="form0_НомерТочки_i0"]')
+    field.wait_for(state='visible', timeout=20000)
+    field.click()
+    page.wait_for_timeout(100)
+    field.fill('7745')
+    field.press('Tab')
+    page.wait_for_timeout(4000)
+    if field.input_value().strip() != '7745':
+        raise ValueError('1C list point filter was not retained')
+
+
+def roster_filter_structure(page):
+    # Only known list-filter values, never search text or courier form fields.
+    return page.evaluate('''() => {
+        const root = 'form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент';
+        const ids = ['form0_НомерТочки_i0', ...[
+            '4Значение_i0','5ВидСравненияЭлементаОтбора_i0',
+            '7ВидСравненияЭлементаОтбора_i0','7Значение_i0'
+        ].map(x => root+x)];
+        const values = Object.fromEntries(ids.map(id => [id, document.getElementById(id)?.value ?? null]));
+        const settings = Array.from(document.querySelectorAll('[id]'))
+            .filter(e => [4,5,6,7,8].some(n => e.id.startsWith(root+n)))
+            .slice(0,160).map(e => ({id:e.id, tag:e.tagName, class:e.className,
+                role:e.getAttribute('role'), checked:e.getAttribute('aria-checked'),
+                title:e.getAttribute('title'),
+                text:e.tagName === 'INPUT' ? null : (e.textContent || '').trim().slice(0,500)}));
+        const grid = Array.from(document.querySelectorAll('[id]'))
+            .filter(e => e.id.startsWith('form0_') &&
+                /Список|list|grid|scroll|pager/i.test(e.id)).slice(0,100)
+            .map(e => ({id:e.id,tag:e.tagName,class:e.className,role:e.getAttribute('role')}));
+        return {values,settings,grid,filters_verified:false,complete_roster:false};
+    }''')
+
+
 def capture_interface(page, private, inspect_roster=False):
     if page.locator('#userPassword').is_visible():
         raise ValueError('Cannot inspect interface while the password form is visible')
     page.locator('#mainSurface').wait_for(state='visible', timeout=30000)
     page.wait_for_timeout(3000)
     navigation_stopped_at = open_roster_navigation(page) if inspect_roster else None
+    if inspect_roster and navigation_stopped_at is None:
+        select_roster_shop(page)
     structure = page.evaluate('''() => {
         const visible = e => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden';
         return {
@@ -278,6 +316,8 @@ def capture_interface(page, private, inspect_roster=False):
     }''')
     if inspect_roster:
         structure['navigation_stopped_at'] = navigation_stopped_at
+        if navigation_stopped_at is None:
+            structure['roster_filters'] = roster_filter_structure(page)
     # The bundle is private: it can include account/navigation labels. No
     # input values, whole DOM, HTTP bodies, headers, cookies or storage export.
     with tempfile.TemporaryDirectory(prefix='.onec-ui-', dir=private) as directory:

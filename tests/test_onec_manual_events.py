@@ -4,12 +4,38 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface, open_roster_navigation
+from onec_browser import wait_manual_login, compare_manual_inputs, capture_interface, open_roster_navigation, select_roster_shop, roster_filter_structure
 
 
 @unittest.skipUnless(importlib.util.find_spec('playwright') and Path('/usr/lib/chromium/chromium').exists(),
                      'Optional local Chromium integration check')
 class ManualLoginEventsTests(unittest.TestCase):
+    def test_point_filter_changes_only_list_and_snapshot_excludes_other_values(self):
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(executable_path='/usr/lib/chromium/chromium',
+                                                 headless=True, args=['--no-sandbox'])
+            try:
+                page = browser.new_page()
+                prefix = 'form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент'
+                page.set_content(f'''<input id="form0_НомерТочки_i0" onblur="window.point=this.value">
+                    <input id="{prefix}4Значение_i0" value="Да">
+                    <div id="{prefix}5Значение"><span>Мобильный Вело Курьер</span><span>Мобильный Авто Курьер</span></div>
+                    <input id="search" value="PRIVATE_SEARCH"><input type="password" value="PRIVATE_SECRET">
+                    <button onclick="window.edited=true">Записать</button>''')
+                select_roster_shop(page)
+                self.assertEqual(page.evaluate('window.point'), '7745')
+                self.assertIsNone(page.evaluate('window.edited'))
+                metadata = roster_filter_structure(page)
+                self.assertEqual(metadata['values']['form0_НомерТочки_i0'], '7745')
+                self.assertFalse(metadata['filters_verified'])
+                self.assertFalse(metadata['complete_roster'])
+                self.assertIn('Мобильный Авто Курьер', str(metadata))
+                self.assertNotIn('PRIVATE_SEARCH', str(metadata))
+                self.assertNotIn('PRIVATE_SECRET', str(metadata))
+            finally:
+                browser.close()
+
     def test_roster_navigation_opens_only_reference_and_list(self):
         from playwright.sync_api import sync_playwright
         with sync_playwright() as playwright:
