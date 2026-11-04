@@ -206,3 +206,43 @@ class SavedFilterValuesTests(unittest.TestCase):
   self.page.set_content('<div id="wrapper"> <span>Настроить&nbsp;список...</span> </div><script>window.clicked=0;document.querySelector("span").onclick=()=>window.clicked++;</script>')
   _choose(self.page,('Настроить список...',))
   self.assertEqual(self.page.evaluate('window.clicked'),1)
+
+ def main_settings_fixture(self,label='ТипКурьера:',duplicate=False):
+  self.page.evaluate('''([p,label,duplicate])=>{
+    window.savedControls=[p+'5ВидСравненияЭлементаОтбора_i0',p+'5ВидСравненияЭлементаОтбора_DLB'].map(id=>document.getElementById(id));window.savedControls.forEach(e=>e.remove());window.settingsApplied=0;window.wrongApply=0;window.tabClicks=0;
+    const more=document.createElement('button');more.id='form0_allActionsФормаКоманднаяПанель';more.textContent='Ещё';document.body.append(more);
+    const configure=document.createElement('div');configure.id='form0_popup_ФормаНастройкаСписка';configure.textContent='Настроить\\u00a0список...';configure.hidden=true;document.body.append(configure);more.onclick=()=>configure.hidden=false;
+    configure.onclick=()=>{
+      configure.hidden=true;
+      // Real snapshot: tabs are outside form1_container, the fields are on Main.
+      const tab=document.createElement('button');tab.textContent='Отбор';tab.onclick=()=>window.tabClicks++;document.body.append(tab);
+      const dialog=document.createElement('div');dialog.id='form1_container';document.body.append(dialog);
+      const base=p.replace('form0_','form1_')+'5';
+      const caption=document.createElement('span');caption.id=base+'Использование#title_text';caption.textContent=label;dialog.append(caption);
+      const field=document.createElement('input');field.id=base+'ВидСравненияЭлементаОтбора_i0';field.value='Равно';field.readOnly=true;dialog.append(field);
+      if(duplicate){const extra=field.cloneNode();extra.id='other_'+field.id;dialog.append(extra)}
+      const choices=document.createElement('div');choices.hidden=true;dialog.append(choices);
+      const option=document.createElement('div');option.textContent='Не\\u00a0в\\u00a0списке';option.onclick=()=>{field.value=option.textContent;choices.hidden=true};choices.append(option);
+      const select=document.createElement('button');select.id=base+'ВидСравненияЭлементаОтбора_DLB';select.textContent='Select';select.onclick=()=>choices.hidden=false;dialog.append(select);
+      const apply=document.createElement('button');apply.id='form1_ФормаЗакончитьРедактирование';apply.textContent='Завершить\\u00a0редактирование';apply.onclick=()=>{window.settingsApplied++;window.savedControls[0].value=field.value;window.savedControls.forEach(e=>document.body.append(e));dialog.remove();tab.remove()};dialog.append(apply);
+      const wrong=document.createElement('button');wrong.textContent='Завершить\\u00a0редактирование';wrong.onclick=()=>window.wrongApply++;dialog.append(wrong);
+    };
+  }''',[PREFIX,label,duplicate])
+
+ def test_captured_main_settings_comparison_is_changed_without_filter_tab(self):
+  self.main_settings_fixture()
+  restore_values(self.page)
+  self.assertTrue(roster_filter_structure(self.page)['filters_verified'])
+  self.assertEqual(self.page.evaluate('window.settingsApplied'),1)
+  self.assertEqual(self.page.evaluate('window.wrongApply'),0)
+  self.assertEqual(self.page.evaluate('window.tabClicks'),0)
+
+ def test_main_settings_field_label_must_identify_courier_type(self):
+  self.main_settings_fixture(label='Другой отбор:')
+  with self.assertRaises(ValueError):restore_values(self.page)
+  self.assertEqual(self.page.evaluate('window.settingsApplied'),0)
+
+ def test_duplicate_main_settings_comparisons_are_not_applied(self):
+  self.main_settings_fixture(duplicate=True)
+  with self.assertRaises(ValueError):restore_values(self.page)
+  self.assertEqual(self.page.evaluate('window.settingsApplied'),0)

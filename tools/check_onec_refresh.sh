@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -uo pipefail
 systemctl reset-failed courier-onec-roster.service
-if systemctl start courier-onec-roster.service; then
+# An explicit check must run the updated collector, not attach to an old automatic retry.
+if systemctl restart courier-onec-roster.service; then
   systemctl start courier-refresh.service
   systemctl start courier-web-data.service
 fi

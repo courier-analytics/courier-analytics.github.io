@@ -34,12 +34,19 @@ def _choose(page,labels,timeout=5000):
     _option(page,labels,timeout).click(timeout=5000)
 
 
-def _choice(page,base,accepted):
+def _choice(page,base,accepted,progress=None):
+    def mark(stage):
+        if progress:progress(stage)
+    mark('read')
     field=_control(page,base+'_i0')
     if _ui_text(field.input_value()) in accepted:return
+    mark('dropdown')
     _control(page,base+'_DLB').click(timeout=5000)
+    mark('option')
     _choose(page,tuple(value for value in accepted if value))
+    mark('commit')
     field.press('Tab')
+    mark('value')
     page.wait_for_function(r"([id,values])=>values.includes(document.getElementById(id)?.value?.trim().replace(/\s+/g,' '))",
                            arg=[base+'_i0',list(accepted)],timeout=5000)
 
@@ -97,39 +104,58 @@ def restore_type_comparison_in_settings(page,progress=None):
         /^form[1-9][0-9]*_container$/.test(e.id) && e.getClientRects().length && getComputedStyle(e).visibility!=='hidden').map(e=>e.id)''')
     if len(ids)!=1:raise ValueError('1C list settings form ambiguous')
     modal=_control(page,ids[0])
-    # Official 1C list settings may show a compact Presentation tree rather
-    # than separate Field/Comparison headers. Require the field AND comparator
-    # in the same native grid row; the available-field tree alone is not a filter.
-    comparison_labels=('Равно','Не равно','В списке','Не в списке',
-                       'Equal to','Not equal to','Equal','Not equal','In list','Not in list')
-    rows=modal.locator('.gridBody > .gridLine:visible').filter(
-        has=page.get_by_text(re.compile(r'^Тип\s*Курьера:?$',re.I))).filter(
-        has=page.get_by_text(_label_pattern(comparison_labels)))
-    mark('settings_filter_tab')
-    if not rows.count():
-        tabs=modal.get_by_role('tab',name=re.compile(r'^(Отбор|Filter)$'))
-        if tabs.count()==1:tabs.click(timeout=5000)
-        else:_choose(modal,('Отбор','Filter'))
-    rows.first.wait_for(state='visible',timeout=10000)
-    if rows.count()!=1:raise ValueError('1C courier type filter row not uniquely identified')
-    row=rows.first
-    mark('settings_type_comparison')
-    current=_option(row,comparison_labels)
-    if _ui_text(current.inner_text()) not in ('Не в списке','Not in list'):
-        current.dblclick(timeout=5000)
-        choices=page.get_by_text(_label_pattern(('Не в списке','Not in list'))).and_(page.locator(':visible'))
-        if not choices.count():
-            focused=modal.locator('input:focus')
-            if focused.count()!=1:raise ValueError('1C comparison editor not identified')
-            identity=focused.get_attribute('id') or ''
-            button=_control(page,identity[:-3]+'_DLB') if identity.endswith('_i0') else None
-            if button is not None and button.is_visible():button.click(timeout=5000)
-            else:focused.press('F4')
-        _choose(page,('Не в списке','Not in list'))
-        page.keyboard.press('Tab')
-        _option(row,('Не в списке','Not in list')).wait_for(state='visible',timeout=5000)
+    # The captured installation exposes the comparison directly on Main.
+    # Its tab headers live outside the form container; no tab click is needed.
+    suffix='КомпоновщикНастроекПользовательскиеНастройкиЭлемент5ВидСравненияЭлементаОтбора_i0'
+    direct=modal.locator('input[id$="'+suffix+'"]').and_(page.locator(':visible'))
+    if direct.count():
+        if direct.count()!=1:raise ValueError('1C settings comparison input ambiguous')
+        identity=direct.get_attribute('id')
+        condition=identity[:-len('ВидСравненияЭлементаОтбора_i0')]
+        label=_control(page,condition+'Использование#title_text')
+        if label.count()!=1 or _ui_text(label.inner_text()).rstrip(':').replace(' ','').casefold()!='типкурьера':
+            raise ValueError('1C settings courier-type label not verified')
+        mark('settings_type_comparison')
+        _choice(page,identity[:-3],('Не в списке','Not in list'),lambda phase:mark('settings_type_comparison.'+phase))
+    else:
+        # Official 1C list settings may show a compact Presentation tree rather
+        # than separate Field/Comparison headers. Require the field AND comparator
+        # in the same native grid row; the available-field tree alone is not a filter.
+        comparison_labels=('Равно','Не равно','В списке','Не в списке',
+                           'Equal to','Not equal to','Equal','Not equal','In list','Not in list')
+        rows=modal.locator('.gridBody > .gridLine:visible').filter(
+            has=page.get_by_text(re.compile(r'^Тип\s*Курьера:?$',re.I))).filter(
+            has=page.get_by_text(_label_pattern(comparison_labels)))
+        mark('settings_filter_tab')
+        if not rows.count():
+            tabs=page.get_by_role('tab',name=_label_pattern(('Отбор','Filter')))
+            if tabs.count()==1:tabs.click(timeout=5000)
+            else:_choose(page,('Отбор','Filter'))
+        rows.first.wait_for(state='visible',timeout=10000)
+        if rows.count()!=1:raise ValueError('1C courier type filter row not uniquely identified')
+        row=rows.first
+        mark('settings_type_comparison')
+        current=_option(row,comparison_labels)
+        if _ui_text(current.inner_text()) not in ('Не в списке','Not in list'):
+            current.dblclick(timeout=5000)
+            choices=page.get_by_text(_label_pattern(('Не в списке','Not in list'))).and_(page.locator(':visible'))
+            if not choices.count():
+                focused=modal.locator('input:focus')
+                if focused.count()!=1:raise ValueError('1C comparison editor not identified')
+                identity=focused.get_attribute('id') or ''
+                button=_control(page,identity[:-3]+'_DLB') if identity.endswith('_i0') else None
+                if button is not None and button.is_visible():button.click(timeout=5000)
+                else:focused.press('F4')
+            _choose(page,('Не в списке','Not in list'))
+            page.keyboard.press('Tab')
+            _option(row,('Не в списке','Not in list')).wait_for(state='visible',timeout=5000)
     mark('settings_apply')
-    _choose(modal,('Завершить редактирование','Закончить редактирование','Finish editing','ОК','OK'))
+    finish=modal.locator('[id$="_ФормаЗакончитьРедактирование"]').and_(page.locator(':visible'))
+    if finish.count():
+        if finish.count()!=1:raise ValueError('1C settings finish command ambiguous')
+        finish.click(timeout=5000)
+    else:
+        _choose(modal,('Завершить редактирование','Закончить редактирование','Finish editing','ОК','OK'))
     modal.wait_for(state='hidden',timeout=10000)
     use=_control(page,PREFIX+'5Использование')
     use.wait_for(state='visible',timeout=10000)

@@ -1169,3 +1169,17 @@ matching. Normalize whitespace in known UI filter values and output-format
 captions only. Credentials, courier IDs, names and native exported-row parsers
 retain their existing strict handling. This prevents a visually identical menu
 caption from timing out because of U+00A0 instead of ASCII space.
+
+The captured live settings form also exposes the courier-type comparison on
+**Main/Основные**, directly as a modal `…Элемент5ВидСравненияЭлементаОтбора_i0`
+input with a matching `_DLB`. Prefer this evidenced control over navigating to
+Filter: the live tab captions are outside `form1_container`. Derive the actual
+input ID, require a unique visible match, verify its field label is
+`ТипКурьера`, set Not in list through native selection, and apply the evidenced
+`…_ФормаЗакончитьРедактирование` command. The compact-tree route remains a
+fallback for other layouts. Main-form policy validation still gates the export.
+
+The explicit `check_onec_refresh.sh` restarts the read-only roster service so an
+in-flight automatic retry cannot return the previous imported code after a
+repository update. Successful verification then refreshes recent-day metrics
+and the protected data copy. It does not reset saved credentials or snapshots.
