@@ -110,3 +110,66 @@ class SavedFilterValuesTests(unittest.TestCase):
    result=capture_interface(self.page,Path(directory),inspect_roster=True)
    restore_call.assert_called_once()
    self.assertTrue(result['roster_filters']['filters_verified']);self.assertTrue(result['native_roster']['verified'])
+
+ def settings_fixture(self,editor=False,duplicate=False):
+  self.page.evaluate('''([p,editor,duplicate])=>{
+    window.savedControls=[p+'5ВидСравненияЭлементаОтбора_i0',p+'5ВидСравненияЭлементаОтбора_DLB'].map(id=>document.getElementById(id));window.savedControls.forEach(e=>e.remove());window.settingsApplied=0;
+    const more=document.createElement('button');more.id='form0_allActionsФормаКоманднаяПанель';more.textContent='Ещё';document.body.append(more);
+    const configure=document.createElement('button');configure.textContent='Настроить список...';configure.hidden=true;document.body.append(configure);more.onclick=()=>configure.hidden=false;
+    configure.onclick=()=>{
+      configure.hidden=true;const dialog=document.createElement('div');dialog.id='form7_container';document.body.append(dialog);
+      const tab=document.createElement('button');tab.textContent='Отбор';dialog.append(tab);
+      const body=document.createElement('div');body.hidden=true;dialog.append(body);tab.onclick=()=>body.hidden=false;
+      body.innerHTML='<div class="gridBody"><div class="gridLine"><span>ТипКурьера</span></div></div><div class="gridBody" id="filterRows"><div class="gridLine"><span>ТипКурьера</span><span id="comparisonCell">Равно</span></div></div>';
+      if(duplicate){const row=document.createElement('div');row.className='gridLine';row.innerHTML='<span>ТипКурьера</span><span>Равно</span>';body.querySelector('#filterRows').append(row)}
+      const cell=body.querySelector('#comparisonCell');
+      const popup=document.createElement('div');popup.hidden=true;dialog.append(popup);const item=document.createElement('button');item.textContent='Не в списке';popup.append(item);
+      item.onclick=()=>{popup.hidden=true;cell.textContent='Не в списке'};
+      cell.ondblclick=()=>{
+        if(!editor){popup.hidden=false;return}
+        cell.innerHTML='';const input=document.createElement('input');input.id='form7_ActualComparison_i0';input.value='Равно';cell.append(input);
+        const select=document.createElement('button');select.id='form7_ActualComparison_DLB';select.textContent='Select';select.onclick=()=>popup.hidden=false;cell.append(select);input.focus();
+      };
+      const finish=document.createElement('button');finish.textContent='Завершить редактирование';dialog.append(finish);finish.onclick=()=>{window.settingsApplied++;window.savedControls[0].value=cell.textContent;window.savedControls.forEach(e=>document.body.append(e));dialog.remove()};
+    };
+  }''',[PREFIX,editor,duplicate])
+
+ def test_scalar_filter_uses_user_confirmed_configure_list_route(self):
+  self.settings_fixture()
+  restore_values(self.page)
+  self.assertTrue(roster_filter_structure(self.page)['filters_verified'])
+  self.assertEqual(self.page.evaluate('window.settingsApplied'),1)
+  actions=self.page.evaluate('window.actions');restore_values(self.page)
+  self.assertEqual(self.page.evaluate('window.actions'),actions)
+  self.assertEqual(self.page.evaluate('window.settingsApplied'),1)
+
+ def test_native_comparison_editor_uses_its_actual_dropdown(self):
+  self.settings_fixture(editor=True)
+  self.page.evaluate("()=>{const stale=document.createElement('div');stale.id='form9_container';stale.style.cssText='height:20px;visibility:hidden';document.body.append(stale)}")
+  restore_values(self.page)
+  self.assertTrue(roster_filter_structure(self.page)['filters_verified'])
+
+ def test_ambiguous_settings_filter_rows_are_not_applied(self):
+  self.settings_fixture(duplicate=True)
+  with self.assertRaises(ValueError):restore_values(self.page)
+  self.assertEqual(self.page.evaluate('window.settingsApplied'),0)
+
+ def test_settings_already_on_filter_tab_does_not_click_ambiguous_filter_caption(self):
+  self.settings_fixture()
+  self.page.evaluate('''()=>{
+    const configure=Array.from(document.querySelectorAll('button')).find(e=>e.textContent==='Настроить список...');
+    const open=configure.onclick;configure.onclick=()=>{open();document.querySelector('#form7_container button').click();const title=document.createElement('span');title.textContent='Отбор';document.querySelector('#form7_container').append(title)};
+  }''')
+  restore_values(self.page)
+  self.assertTrue(roster_filter_structure(self.page)['filters_verified'])
+
+ def test_comparison_change_can_reset_list_and_hide_clear_button(self):
+  self.settings_fixture()
+  self.page.evaluate('''(p)=>{
+    const configure=Array.from(document.querySelectorAll('button')).find(e=>e.textContent==='Настроить список...');
+    const open=configure.onclick;configure.onclick=()=>{open();const finish=Array.from(document.querySelectorAll('#form7_container button')).find(e=>e.textContent==='Завершить редактирование');const apply=finish.onclick;
+      finish.onclick=()=>{apply();window.types=[];window.renderTypes();document.getElementById(p+'5Значение_CLR').remove();const use=document.getElementById(p+'5Использование');use.classList.remove('select');document.getElementById(p+'5Значение_i0').disabled=true;use.addEventListener('click',()=>document.getElementById(p+'5Значение_i0').disabled=!use.classList.contains('select'))};
+    };
+  }''',PREFIX)
+  restore_values(self.page)
+  self.assertTrue(roster_filter_structure(self.page)['filters_verified'])

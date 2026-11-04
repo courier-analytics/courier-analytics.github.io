@@ -9,7 +9,7 @@ def _control(page,identity):
     return page.locator('[id="'+identity+'"]')
 
 
-def _choose(page,labels,timeout=5000):
+def _option(page,labels,timeout=5000):
     pattern=re.compile(r'^(?:'+ '|'.join(re.escape(label) for label in labels)+r')$')
     options=page.get_by_text(pattern).and_(page.locator(':visible'))
     options.first.wait_for(state='visible',timeout=timeout)
@@ -19,7 +19,11 @@ def _choose(page,labels,timeout=5000):
         if option.evaluate('(e)=> !Array.from(e.children).some(c=>c.innerText?.trim()===e.innerText.trim())'):
             leaves.append(option)
     if len(leaves)!=1:raise ValueError('1C filter option ambiguous')
-    leaves[0].click(timeout=5000)
+    return leaves[0]
+
+
+def _choose(page,labels,timeout=5000):
+    _option(page,labels,timeout).click(timeout=5000)
 
 
 def _choice(page,base,accepted):
@@ -64,6 +68,64 @@ def type_selection_valid(page):
             and type_codes(page)==set(TYPES))
 
 
+def restore_type_comparison_in_settings(page,progress=None):
+    """Use the user's confirmed Configure list / Filter route for a scalar quick filter."""
+    def mark(stage):
+        if progress:progress(stage)
+    mark('settings_open')
+    _control(page,'form0_allActionsФормаКоманднаяПанель').click(timeout=5000)
+    _choose(page,('Настроить список','Настроить список...','Настроить список…',
+                  'Configure list','Configure list...','Configure list…'))
+    # Derive the actual new form ID from the UI, never assume form1 or a data-row ID.
+    page.wait_for_function(r'''()=>Array.from(document.querySelectorAll('[id]')).some(e=>
+        /^form[1-9][0-9]*_container$/.test(e.id) && e.getClientRects().length && getComputedStyle(e).visibility!=='hidden')''',timeout=10000)
+    ids=page.evaluate(r'''()=>Array.from(document.querySelectorAll('[id]')).filter(e=>
+        /^form[1-9][0-9]*_container$/.test(e.id) && e.getClientRects().length && getComputedStyle(e).visibility!=='hidden').map(e=>e.id)''')
+    if len(ids)!=1:raise ValueError('1C list settings form ambiguous')
+    modal=_control(page,ids[0])
+    # Official 1C list settings may show a compact Presentation tree rather
+    # than separate Field/Comparison headers. Require the field AND comparator
+    # in the same native grid row; the available-field tree alone is not a filter.
+    comparison_labels=('Равно','Не равно','В списке','Не в списке',
+                       'Equal to','Not equal to','Equal','Not equal','In list','Not in list')
+    rows=modal.locator('.gridBody > .gridLine:visible').filter(
+        has=page.get_by_text(re.compile(r'^Тип\s*Курьера:?$',re.I))).filter(
+        has=page.get_by_text(re.compile('^(?:'+'|'.join(re.escape(v) for v in comparison_labels)+')$')))
+    mark('settings_filter_tab')
+    if not rows.count():
+        tabs=modal.get_by_role('tab',name=re.compile(r'^(Отбор|Filter)$'))
+        if tabs.count()==1:tabs.click(timeout=5000)
+        else:_choose(modal,('Отбор','Filter'))
+    rows.first.wait_for(state='visible',timeout=10000)
+    if rows.count()!=1:raise ValueError('1C courier type filter row not uniquely identified')
+    row=rows.first
+    mark('settings_type_comparison')
+    current=_option(row,comparison_labels)
+    if current.inner_text().strip() not in ('Не в списке','Not in list'):
+        current.dblclick(timeout=5000)
+        choices=page.get_by_text(re.compile(r'^(Не в списке|Not in list)$')).and_(page.locator(':visible'))
+        if not choices.count():
+            focused=modal.locator('input:focus')
+            if focused.count()!=1:raise ValueError('1C comparison editor not identified')
+            identity=focused.get_attribute('id') or ''
+            button=_control(page,identity[:-3]+'_DLB') if identity.endswith('_i0') else None
+            if button is not None and button.is_visible():button.click(timeout=5000)
+            else:focused.press('F4')
+        _choose(page,('Не в списке','Not in list'))
+        page.keyboard.press('Tab')
+        _option(row,('Не в списке','Not in list')).wait_for(state='visible',timeout=5000)
+    mark('settings_apply')
+    _choose(modal,('Завершить редактирование','Закончить редактирование','Finish editing','ОК','OK'))
+    modal.wait_for(state='hidden',timeout=10000)
+    use=_control(page,PREFIX+'5Использование')
+    use.wait_for(state='visible',timeout=10000)
+    if not use.evaluate('(e)=>e.classList.contains("select")'):
+        use.click(timeout=5000)
+        page.wait_for_function('(id)=>document.getElementById(id)?.classList.contains("select")',
+                               arg=PREFIX+'5Использование',timeout=10000)
+    _control(page,PREFIX+'5ВидСравненияЭлементаОтбора_i0').wait_for(state='visible',timeout=10000)
+
+
 def restore_values(page,progress=None):
     def mark(value):
         if progress:progress(value)
@@ -87,19 +149,26 @@ def restore_values(page,progress=None):
         page.wait_for_function('(id)=>document.getElementById(id)?.value?.trim()==="1"',
                                arg=PREFIX+'7Значение_i0',timeout=5000)
     mark('type_comparison')
+    comparison=_control(page,PREFIX+'5ВидСравненияЭлементаОтбора_i0')
+    if not comparison.is_visible():restore_type_comparison_in_settings(page,progress)
     _choice(page,PREFIX+'5ВидСравненияЭлементаОтбора',('Не в списке','Not in list'))
     if type_selection_valid(page):return
-    mark('types_clear')
     base=PREFIX+'5Значение'
-    _control(page,base+'_CLR').click(timeout=5000)
-    page.wait_for_function("""(base)=>!Array.from(document.querySelectorAll('[id]')).some(e=>
-        e.id.startsWith(base+'_multipleValues_') && e.classList.contains('chipsItem') && Number.isInteger(parseInt(e.title,10)))
-        && !Number(document.getElementById(base+'_multipleValues_more')?.textContent?.trim().replace('+','')||0)""",arg=base,timeout=5000)
-    if _type_shape(page)['count']:raise ValueError('1C courier type list was not cleared')
+    if _type_shape(page)['count']:
+        mark('types_clear')
+        label=_control(page,base)
+        if label.is_visible():label.hover(timeout=5000)
+        _control(page,base+'_CLR').click(timeout=5000)
+        page.wait_for_function("""(base)=>!Array.from(document.querySelectorAll('[id]')).some(e=>
+            e.id.startsWith(base+'_multipleValues_') && e.classList.contains('chipsItem') && Number.isInteger(parseInt(e.title,10)))
+            && !Number(document.getElementById(base+'_multipleValues_more')?.textContent?.trim().replace('+','')||0)""",arg=base,timeout=5000)
+        if _type_shape(page)['count']:raise ValueError('1C courier type list was not cleared')
     for number,(code,label) in enumerate(TYPES.items(),start=1):
         mark('type_'+str(code)+'_select')
         field=_control(page,base+'_i0')
         field.click(timeout=5000)
+        if field.input_value():
+            field.press('Control+A');field.press('Backspace')
         field.press_sequentially(label,delay=40)
         # A native reference-field autocomplete must supply the selected value;
         # assigning .value or guessing modal row IDs cannot commit a 1C filter.

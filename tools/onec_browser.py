@@ -458,10 +458,19 @@ def save_failure_interface(page, private, stage):
           'roster_filters':roster_filter_structure(page),'screenshot_available':False}
     data['filter_selection_ui']=page.evaluate('''() => {
         const visible=e=>e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden';
-        return Array.from(document.querySelectorAll('[id]'))
-            .filter(e=>/^form[1-9][0-9]*_/.test(e.id) && visible(e)).slice(0,150)
+        return Array.from(document.querySelectorAll('[id],[role=menuitem],[role=option],.submenuBlock'))
+            .filter(e=>(/^form[1-9][0-9]*_/.test(e.id) || e.matches('[role=menuitem],[role=option],.submenuBlock')) && visible(e)).slice(0,200)
             .map(e=>({id:e.id,tag:e.tagName,class:e.className,title:e.getAttribute('title'),
                 text:['INPUT','TEXTAREA'].includes(e.tagName)?null:(e.innerText||'').trim().slice(0,1000)}));
+    }''')
+    data['filter_settings_grids']=page.evaluate(r'''() => {
+        return Array.from(document.querySelectorAll('[id]')).filter(e=>
+            /^grid_form[1-9][0-9]*_/.test(e.id) && e.getClientRects().length).slice(0,8)
+            .map(e=>({id:e.id,
+                headers:Array.from(e.querySelectorAll('.gridHead .gridBox')).map(c=>(c.innerText||'').trim().slice(0,160)),
+                rows:Array.from(e.querySelectorAll('.gridBody > .gridLine')).slice(0,80)
+                    .map(r=>Array.from(r.children).filter(c=>c.classList.contains('gridBox'))
+                        .map(c=>(c.innerText||'').trim().slice(0,300)))}));
     }''')
     with tempfile.TemporaryDirectory(prefix='.onec-failure-',dir=private) as folder:
         picture=Path(folder)/'interface.png'

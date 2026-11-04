@@ -1144,3 +1144,20 @@ form can show only a scalar courier-type field, without comparison or list
 controls. Reading its nonexistent comparison input would time out before point
 selection. Checkbox enablement is restored first; selecting point 7745 then
 materializes the comparison/list controls used by the confirmed filter workflow.
+
+If the quick courier-type comparison does not exist even after selecting the
+point, restore it through the user-confirmed **Ещё → Настроить список → Отбор**
+route. The settings form ID and comparison editor are read from the current UI.
+The collector requires exactly one native condition row containing both
+`ТипКурьера` and its comparison, changes only that comparison to Not in list,
+then applies Finish editing and restores the two mobile-type exclusions on the
+main form. The available-fields tree alone cannot satisfy this condition.
+Ambiguous/missing settings rows are never applied. Existing Filter-tab state
+and an empty value list after changing comparison are supported. Private failure
+snapshots include visible settings-grid structure for diagnosing UI differences.
+
+Official route references: [Customizing lists](https://1c-dn.com/library/user_manual_customizing_lists/)
+and [Filtering lists](https://1c-dn.com/library/user_manual_filtering_lists/).
+Those pages document Configure list, the Filter tab, comparison selection and
+Finish editing. Actual successful execution still requires verification on the
+installed 1C configuration; local fixtures are not a live source verification.
