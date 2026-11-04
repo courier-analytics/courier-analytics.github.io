@@ -244,7 +244,7 @@ def open_roster_navigation(page):
 
 
 def ensure_roster_filters(page, progress=None):
-    """Restore the user's confirmed list filters, regardless of saved UI state."""
+    """Restore only filter enablement; restore_values sets the actual comparisons and values."""
     prefix='form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент'
     for number,required in ((4,True),(5,True),(6,False),(7,True),(8,False)):
         identity=prefix+str(number)+'Использование'
@@ -315,14 +315,21 @@ def roster_filter_structure(page):
             .map(e => e.getAttribute('title')).filter(t => /^\s*[0-9]+\s*-/.test(t));
         const enabled = n => document.getElementById(root+n+'Использование')?.classList.contains('select') === true;
         const excludedCodes = new Set(excluded_types.map(t => t.trim().split(/\s*-/)[0]));
-        const verified = values['form0_НомерТочки_i0'] === '7745' &&
+        const typeBase=root+'5Значение';
+        const typeChips=Array.from(document.querySelectorAll('[id]')).filter(e=>
+            e.id.startsWith(typeBase+'_multipleValues_') && e.classList.contains('chipsItem') && Number.isInteger(parseInt(e.title,10)));
+        const typeExtra=Number(document.getElementById(typeBase+'_multipleValues_more')?.textContent?.trim().replace('+','')||0);
+        const type_count=typeChips.length+typeExtra;
+        const type_scope_verified=type_count===2 && typeChips.length>0 && typeChips.every(e=>[6,9].includes(parseInt(e.title,10)));
+        const search_empty = !(document.getElementById('form0_ФормаКоманднаяПанельСписокСтрокаПоиска_i0')?.value || '').trim();
+        const verified = search_empty && type_scope_verified && values['form0_НомерТочки_i0'] === '7745' &&
             ['', 'Без отбора', 'No filter', 'Without filter'].includes(values['form0_Служба_i0']) &&
             ['Да','Yes'].includes(values[root+'4Значение_i0']) &&
             ['Не в списке','Not in list'].includes(values[root+'5ВидСравненияЭлементаОтбора_i0']) &&
             ['Не равно','Not equal'].includes(values[root+'7ВидСравненияЭлементаОтбора_i0']) &&
             values[root+'7Значение_i0'] === '1' && enabled(4) && enabled(5) && enabled(7) &&
             !enabled(6) && !enabled(8) && excludedCodes.size === 2 && excludedCodes.has('6') && excludedCodes.has('9');
-        return {values,settings,grid,grid_structure,excluded_types,filters_verified:verified,complete_roster:false};
+        return {values,settings,grid,grid_structure,excluded_types,search_empty,type_count,filters_verified:verified,complete_roster:false};
     }''')
 
 
@@ -342,9 +349,12 @@ def capture_interface(page, private, inspect_roster=False, status=None):
         page.locator('[id="grid_form0_Список"] .gridBody').wait_for(state='visible',timeout=30000)
         page.wait_for_timeout(500)
         ensure_roster_filters(page,lambda stage:mark('before_point.'+stage))
+        from onec_filters import restore_values
+        restore_values(page,lambda stage:mark('before_point.'+stage))
         mark('point_filter')
         select_roster_shop(page)
         ensure_roster_filters(page,lambda stage:mark('after_point.'+stage))
+        restore_values(page,lambda stage:mark('after_point.'+stage))
         mark('excluded_types_popup')
         more = page.locator('[id="form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент5Значение_multipleValues_more"]')
         if more.is_visible():
@@ -384,6 +394,10 @@ def capture_interface(page, private, inspect_roster=False, status=None):
             mark('close_excluded_types_popup')
             close_roster_popup(page)
             ensure_roster_filters(page,lambda stage:mark('after_popup.'+stage))
+            mark('roster_filters_validation')
+            structure['roster_filters']=roster_filter_structure(page)
+            if structure['roster_filters']['filters_verified'] is not True:
+                raise ValueError('1C roster filters not verified')
             from onec_roster import sample_grid, inspect_export_dialog, export_id_list, verify_id_export
             mark('grid_sample')
             structure['roster_candidate'] = sample_grid(page)
@@ -441,6 +455,13 @@ def save_failure_interface(page, private, stage):
         raise ValueError('Cannot capture failure while login form is visible')
     data={'failure_stage':stage,'observed_at':datetime.now(timezone.utc).isoformat(),
           'roster_filters':roster_filter_structure(page),'screenshot_available':False}
+    data['filter_selection_ui']=page.evaluate('''() => {
+        const visible=e=>e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden';
+        return Array.from(document.querySelectorAll('[id]'))
+            .filter(e=>/^form[1-9][0-9]*_/.test(e.id) && visible(e)).slice(0,150)
+            .map(e=>({id:e.id,tag:e.tagName,class:e.className,title:e.getAttribute('title'),
+                text:['INPUT','TEXTAREA'].includes(e.tagName)?null:(e.innerText||'').trim().slice(0,1000)}));
+    }''')
     with tempfile.TemporaryDirectory(prefix='.onec-failure-',dir=private) as folder:
         picture=Path(folder)/'interface.png'
         private_write(picture,'')
@@ -571,8 +592,9 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
                 result['navigation_labels'] = [text for text in labels if page.get_by_text(text, exact=True).count()]
             if local_mac:
                 result['manual_authenticated'] = result['authenticated']
-        except BrowserTimeout:
-            result['stage_timeout'] = True
+        except (BrowserTimeout,ValueError) as error:
+            result['stage_timeout'] = isinstance(error,BrowserTimeout)
+            if isinstance(error,ValueError):result['stage_validation_failed']=True
             if result['authenticated']:
                 try:
                     save_failure_interface(page, private, result.get('stage','unknown'))

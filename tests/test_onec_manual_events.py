@@ -98,8 +98,8 @@ class ManualLoginEventsTests(unittest.TestCase):
                     for(const n of [4,5,7]){
                         const e=document.createElement('div');e.id=root+n+'Использование';e.className='checkbox select';document.body.append(e);
                     }
-                    for(const title of ['6 - Мобильный Авто Курьер','9 - Мобильный Вело Курьер']){
-                        const e=document.createElement('div');e.className='chipsItem';e.title=title;document.body.append(e);
+                    for(const [index,title] of ['6 - Мобильный Авто Курьер','9 - Мобильный Вело Курьер'].entries()){
+                        const e=document.createElement('div');e.id=root+'5Значение_multipleValues_'+index;e.className='chipsItem';e.title=title;document.body.append(e);
                     }
                 }''', prefix)
                 self.assertTrue(roster_filter_structure(page)['filters_verified'])
@@ -200,7 +200,7 @@ class ManualLoginEventsTests(unittest.TestCase):
                     # A validated cache already exists even if the screenshot now fails.
                     self.assertEqual(load(folder/'onec-rosters/7745.json',datetime.now(MOSCOW).date().isoformat())['count'],2)
                     raise TimeoutError('PRIVATE_BROWSER_DETAIL')
-                with patch('onec_browser.open_roster_navigation',return_value=None),patch('onec_browser.ensure_roster_filters'),patch('onec_browser.select_roster_shop'),patch('onec_browser.roster_filter_structure',return_value={'filters_verified':True}),patch('onec_roster.scan_grid',side_effect=TimeoutError('must not scroll')) as scan,patch('onec_roster.inspect_export_dialog',return_value={'opened':True}),patch('onec_roster.export_id_list',return_value=export),patch.object(page,'screenshot',side_effect=screenshot):
+                with patch('onec_filters.restore_values'),patch('onec_browser.open_roster_navigation',return_value=None),patch('onec_browser.ensure_roster_filters'),patch('onec_browser.select_roster_shop'),patch('onec_browser.roster_filter_structure',return_value={'filters_verified':True}),patch('onec_roster.scan_grid',side_effect=TimeoutError('must not scroll')) as scan,patch('onec_roster.inspect_export_dialog',return_value={'opened':True}),patch('onec_roster.export_id_list',return_value=export),patch.object(page,'screenshot',side_effect=screenshot):
                     result=capture_interface(page,folder,inspect_roster=True)
                 scan.assert_not_called()
                 self.assertTrue(result['native_roster']['verified']);self.assertFalse(result['screenshot_available'])

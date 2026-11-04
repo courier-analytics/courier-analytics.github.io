@@ -1118,3 +1118,23 @@ Use `bash tools/check_onec_refresh.sh` after updating the code to recollect 1C,
 then refresh recent-day metrics and synchronize the protected site. Existing
 bounded automatic retries remain active; filter or export verification failures
 still preserve the prior snapshot and keep its stale marker visible.
+
+#### Restore saved 1C filter values, not just enablement
+
+`onec_filters.restore_values` sets the confirmed filter values through native
+controls before and after selecting point 7745: access Yes, employment Not
+equal 1, courier type Not in list with exactly codes 6 and 9, and no top-level
+service filter or saved list-search text. It changes list filtering only, never
+courier records. Comparison dropdowns and reference autocomplete choices must be
+exact and unambiguous. Incorrect type values are cleared through the evidenced
+native clear control and reselected; the type field's own chip count is checked
+as well as the expanded overflow values, preventing unrelated chips from
+establishing the type filter.
+
+The entire filter predicate is checked again before a grid sample or full
+export. Invalid or unsupported UI selections fail closed with a stage-specific
+private diagnostic, rather than timing out on an empty filtered grid or
+publishing an incorrect roster. Both browser timeout and validation failures
+retain a fresh diagnostic bundle. A wrong saved night-only `In list` selection
+was the cause of the November 4 empty-grid failure; previous versions restored
+checkboxes but left those values unchanged.
