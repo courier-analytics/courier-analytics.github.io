@@ -115,7 +115,7 @@ class SavedFilterValuesTests(unittest.TestCase):
   self.page.evaluate('''([p,editor,duplicate])=>{
     window.savedControls=[p+'5ВидСравненияЭлементаОтбора_i0',p+'5ВидСравненияЭлементаОтбора_DLB'].map(id=>document.getElementById(id));window.savedControls.forEach(e=>e.remove());window.settingsApplied=0;
     const more=document.createElement('button');more.id='form0_allActionsФормаКоманднаяПанель';more.textContent='Ещё';document.body.append(more);
-    const configure=document.createElement('button');configure.textContent='Настроить список...';configure.hidden=true;document.body.append(configure);more.onclick=()=>configure.hidden=false;
+    const configure=document.createElement('button');configure.id='form0_popup_ФормаНастройкаСписка';configure.textContent='Настроить список...';configure.hidden=true;document.body.append(configure);more.onclick=()=>configure.hidden=false;
     configure.onclick=()=>{
       configure.hidden=true;const dialog=document.createElement('div');dialog.id='form7_container';document.body.append(dialog);
       const tab=document.createElement('button');tab.textContent='Отбор';dialog.append(tab);
@@ -173,3 +173,36 @@ class SavedFilterValuesTests(unittest.TestCase):
   }''',PREFIX)
   restore_values(self.page)
   self.assertTrue(roster_filter_structure(self.page)['filters_verified'])
+
+ def test_evidenced_settings_menu_id_opens_command_with_nbsp_caption(self):
+  self.settings_fixture()
+  self.page.evaluate("()=>document.getElementById('form0_popup_ФормаНастройкаСписка').textContent='Настроить\\u00a0список...'")
+  restore_values(self.page)
+  self.assertEqual(self.page.evaluate('window.settingsApplied'),1)
+  self.assertTrue(roster_filter_structure(self.page)['filters_verified'])
+
+ def test_nbsp_comparison_option_is_selected_and_its_value_is_verified(self):
+  self.page.evaluate('''(p)=>{
+    const field=document.getElementById(p+'5ВидСравненияЭлементаОтбора_i0');field.value='В\\u00a0списке';
+    const item=Array.from(document.querySelectorAll('div')).find(e=>e.textContent==='Не в списке');
+    item.textContent='Не\\u00a0в\\u00a0списке';item.onclick=()=>{window.actions++;field.value=item.textContent;item.parentElement.hidden=true};
+  }''',PREFIX)
+  restore_values(self.page)
+  self.assertTrue(roster_filter_structure(self.page)['filters_verified'])
+
+ def test_valid_nbsp_filter_values_do_not_trigger_unneeded_changes(self):
+  self.page.evaluate('''(p)=>{
+    document.getElementById(p+'5ВидСравненияЭлементаОтбора_i0').value='Не\\u00a0в\\u00a0списке';
+    document.getElementById(p+'7ВидСравненияЭлементаОтбора_i0').value='Не\\u00a0равно';
+    document.getElementById('form0_Служба_i0').value='Без\\u00a0отбора';
+    window.types=['6 - Мобильный Авто Курьер','9 - Мобильный Вело Курьер'];window.renderTypes();
+  }''',PREFIX)
+  restore_values(self.page)
+  self.assertEqual(self.page.evaluate('window.actions'),0)
+  self.assertTrue(roster_filter_structure(self.page)['filters_verified'])
+
+ def test_text_fallback_accepts_nbsp_and_normalized_wrapper_captions(self):
+  from onec_filters import _choose
+  self.page.set_content('<div id="wrapper"> <span>Настроить&nbsp;список...</span> </div><script>window.clicked=0;document.querySelector("span").onclick=()=>window.clicked++;</script>')
+  _choose(self.page,('Настроить список...',))
+  self.assertEqual(self.page.evaluate('window.clicked'),1)

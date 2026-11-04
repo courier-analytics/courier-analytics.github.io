@@ -9,14 +9,22 @@ def _control(page,identity):
     return page.locator('[id="'+identity+'"]')
 
 
+def _ui_text(value):
+    return ' '.join(value.split())
+
+
+def _label_pattern(labels):
+    return re.compile(r'^\s*(?:'+'|'.join(r'\s+'.join(re.escape(part) for part in label.split()) for label in labels)+r')\s*$')
+
+
 def _option(page,labels,timeout=5000):
-    pattern=re.compile(r'^(?:'+ '|'.join(re.escape(label) for label in labels)+r')$')
+    pattern=_label_pattern(labels)
     options=page.get_by_text(pattern).and_(page.locator(':visible'))
     options.first.wait_for(state='visible',timeout=timeout)
     leaves=[]
     for i in range(options.count()):
         option=options.nth(i)
-        if option.evaluate('(e)=> !Array.from(e.children).some(c=>c.innerText?.trim()===e.innerText.trim())'):
+        if option.evaluate(r'''(e)=> {const norm=s=>(s||'').trim().replace(/\s+/g,' ');return !Array.from(e.children).some(c=>norm(c.innerText)===norm(e.innerText));}'''):
             leaves.append(option)
     if len(leaves)!=1:raise ValueError('1C filter option ambiguous')
     return leaves[0]
@@ -28,11 +36,11 @@ def _choose(page,labels,timeout=5000):
 
 def _choice(page,base,accepted):
     field=_control(page,base+'_i0')
-    if field.input_value().strip() in accepted:return
+    if _ui_text(field.input_value()) in accepted:return
     _control(page,base+'_DLB').click(timeout=5000)
     _choose(page,tuple(value for value in accepted if value))
     field.press('Tab')
-    page.wait_for_function('([id,values])=>values.includes(document.getElementById(id)?.value?.trim())',
+    page.wait_for_function(r"([id,values])=>values.includes(document.getElementById(id)?.value?.trim().replace(/\s+/g,' '))",
                            arg=[base+'_i0',list(accepted)],timeout=5000)
 
 
@@ -74,8 +82,14 @@ def restore_type_comparison_in_settings(page,progress=None):
         if progress:progress(stage)
     mark('settings_open')
     _control(page,'form0_allActionsФормаКоманднаяПанель').click(timeout=5000)
-    _choose(page,('Настроить список','Настроить список...','Настроить список…',
-                  'Configure list','Configure list...','Configure list…'))
+    command=_control(page,'form0_popup_ФормаНастройкаСписка').and_(page.locator(':visible'))
+    if _control(page,'form0_popup_ФормаНастройкаСписка').count():
+        command.first.wait_for(state='visible',timeout=5000)
+        if command.count()!=1:raise ValueError('1C list settings command ambiguous')
+        command.click(timeout=5000)
+    else:
+        _choose(page,('Настроить список','Настроить список...','Настроить список…',
+                      'Configure list','Configure list...','Configure list…'))
     # Derive the actual new form ID from the UI, never assume form1 or a data-row ID.
     page.wait_for_function(r'''()=>Array.from(document.querySelectorAll('[id]')).some(e=>
         /^form[1-9][0-9]*_container$/.test(e.id) && e.getClientRects().length && getComputedStyle(e).visibility!=='hidden')''',timeout=10000)
@@ -90,7 +104,7 @@ def restore_type_comparison_in_settings(page,progress=None):
                        'Equal to','Not equal to','Equal','Not equal','In list','Not in list')
     rows=modal.locator('.gridBody > .gridLine:visible').filter(
         has=page.get_by_text(re.compile(r'^Тип\s*Курьера:?$',re.I))).filter(
-        has=page.get_by_text(re.compile('^(?:'+'|'.join(re.escape(v) for v in comparison_labels)+')$')))
+        has=page.get_by_text(_label_pattern(comparison_labels)))
     mark('settings_filter_tab')
     if not rows.count():
         tabs=modal.get_by_role('tab',name=re.compile(r'^(Отбор|Filter)$'))
@@ -101,9 +115,9 @@ def restore_type_comparison_in_settings(page,progress=None):
     row=rows.first
     mark('settings_type_comparison')
     current=_option(row,comparison_labels)
-    if current.inner_text().strip() not in ('Не в списке','Not in list'):
+    if _ui_text(current.inner_text()) not in ('Не в списке','Not in list'):
         current.dblclick(timeout=5000)
-        choices=page.get_by_text(re.compile(r'^(Не в списке|Not in list)$')).and_(page.locator(':visible'))
+        choices=page.get_by_text(_label_pattern(('Не в списке','Not in list'))).and_(page.locator(':visible'))
         if not choices.count():
             focused=modal.locator('input:focus')
             if focused.count()!=1:raise ValueError('1C comparison editor not identified')

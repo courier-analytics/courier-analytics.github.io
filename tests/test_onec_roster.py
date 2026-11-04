@@ -72,7 +72,7 @@ class RosterGridTests(unittest.TestCase):
              <div class="gridLine"><span class="checkbox select" onclick="this.classList.toggle('select')"></span><span>Name</span></div>
              <div class="gridLine"><span class="checkbox select"></span><span>Phone</span></div></div></div>
             <div id="form1_OnlySelectedElement" class="checkbox" onclick="this.classList.toggle('select')"></div>
-            <input id="form1_DocumentTypeElement_i0" value="Text document">
+            <input id="form1_DocumentTypeElement_i0" value="Text&#160;document">
             <a id="form1_Ok" onclick="window.exported=true;document.querySelector('textarea').hidden=false;document.querySelector('#form1_DocumentTypeElement_i0').hidden=true">OK</a>
             <textarea hidden>Id	Name
 1800115894	TEST_ONE

@@ -296,7 +296,8 @@ def roster_filter_structure(page):
             '4Значение_i0','5ВидСравненияЭлементаОтбора_i0',
             '7ВидСравненияЭлементаОтбора_i0','7Значение_i0'
         ].map(x => root+x)];
-        const values = Object.fromEntries(ids.map(id => [id, document.getElementById(id)?.value ?? null]));
+        const values = Object.fromEntries(ids.map(id => {const value=document.getElementById(id)?.value;
+            return [id,typeof value==='string'?value.trim().replace(/\s+/g,' '):null];}));
         const settings = Array.from(document.querySelectorAll('[id]'))
             .filter(e => [4,5,6,7,8].some(n => e.id.startsWith(root+n)))
             .slice(0,160).map(e => ({id:e.id, tag:e.tagName, class:e.className,

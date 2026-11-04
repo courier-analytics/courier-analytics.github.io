@@ -1161,3 +1161,11 @@ and [Filtering lists](https://1c-dn.com/library/user_manual_filtering_lists/).
 Those pages document Configure list, the Filter tab, comparison selection and
 Finish editing. Actual successful execution still requires verification on the
 installed 1C configuration; local fixtures are not a live source verification.
+
+The captured 1C menu uses NBSP in captions such as `Настроить список...`.
+Open list settings with the evidenced `form0_popup_ФормаНастройкаСписка` ID when
+available; caption fallback and comparison choices use whitespace-tolerant exact
+matching. Normalize whitespace in known UI filter values and output-format
+captions only. Credentials, courier IDs, names and native exported-row parsers
+retain their existing strict handling. This prevents a visually identical menu
+caption from timing out because of U+00A0 instead of ASCII space.

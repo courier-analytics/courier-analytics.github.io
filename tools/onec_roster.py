@@ -156,7 +156,7 @@ def export_id_list(page, filters_verified):
     if 'select' in (only_selected.get_attribute('class') or '').split():
         return {'confirmed': False, 'reason': 'selected_rows_only_still_enabled'}
     output = page.locator('[id="form1_DocumentTypeElement_i0"]')
-    if output.input_value().strip() not in ('Text document', 'Текстовый документ'):
+    if ' '.join(output.input_value().split()) not in ('Text document', 'Текстовый документ'):
         page.locator('[id="form1_DocumentTypeElement_DLB"]').click(timeout=5000)
         options = page.get_by_text('Text document', exact=True).or_(
             page.get_by_text('Текстовый документ', exact=True)).and_(page.locator(':visible'))
@@ -168,7 +168,7 @@ def export_id_list(page, filters_verified):
             return {'confirmed': False, 'reason': 'text_output_option_ambiguous'}
         options.click(timeout=5000)
         page.wait_for_timeout(300)
-    if output.input_value().strip() not in ('Text document', 'Текстовый документ'):
+    if ' '.join(output.input_value().split()) not in ('Text document', 'Текстовый документ'):
         return {'confirmed': False, 'reason': 'text_output_not_retained'}
     page.locator('[id="form1_Ok"]').click(timeout=5000)
     output.wait_for(state='hidden', timeout=30000)
