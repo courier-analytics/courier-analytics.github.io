@@ -73,3 +73,24 @@ class PrivateDashboardTests(unittest.TestCase):
         self.assertTrue(response.json['available']);self.assertIn('TEST_NAME',response.text)
         self.assertEqual(self.get('/data/2026-11-03-7745.json').status_code,404)
         self.assertEqual(self.get('/api/details/7745/not-a-date/planned_late').status_code,400)
+
+    def test_edge_hostname_keeps_host_only_cookie_login_and_private_data_protected(self):
+        # Browser stays on the new host; the HTTPS edge forwards to the origin's allowlisted Host.
+        origin=self.app.wsgi_app
+        def edge(environ,start_response):
+            environ=dict(environ,HTTP_HOST='test.example',HTTP_X_FORWARDED_PROTO='https')
+            return origin(environ,start_response)
+        self.app.wsgi_app=edge
+        client=self.app.test_client();base='https://entry.example'
+        self.assertEqual(client.get('/data/dashboard.json',base_url=base).status_code,401)
+        page=client.get('/login',base_url=base)
+        token=re.search('name="csrf" value="([^\"]+)"',page.text).group(1)
+        response=client.post('/login',base_url=base,data={'csrf':token,'username':'max','password':self.password,'next':'/'})
+        self.assertEqual(response.status_code,302);self.assertEqual(response.headers['Location'],'/')
+        self.assertNotIn('Domain=',response.headers['Set-Cookie'])
+        self.assertIsNotNone(client.get_cookie('__Host-courier_session',domain='entry.example'))
+        with client.get('/data/dashboard.json',base_url=base) as data:
+            self.assertEqual(data.status_code,200)
+        csrf=client.get('/api/session',base_url=base).json['csrf']
+        self.assertEqual(client.post('/logout',base_url=base,headers={'X-CSRF-Token':csrf}).status_code,302)
+        self.assertEqual(client.get('/data/dashboard.json',base_url=base).status_code,401)

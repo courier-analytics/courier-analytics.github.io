@@ -1016,3 +1016,32 @@ bookings remain unresolved. This does not modify source slots, the frozen plan,
 slot-fill counts, or the separate metric-seven completion population. Private
 attendance details retain the original planned times and identify the source
 slot for the no-show evidence.
+
+#### Separate public entry for networks unable to reach the dashboard VPS
+
+`install_dashboard_edge.sh HOST NEW_PUBLIC_IPV4` runs **on a separate, clean
+Ubuntu/Debian entry VPS**. First verify that its IP is reachable from the user's
+actual fixed and mobile networks with Happ disabled, and point a DNS A record
+for HOST at that IP. Remove conflicting AAAA records unless working IPv6 is
+configured. Allow inbound TCP 80/443 in the hosting firewall. Choose a server
+whose outbound HTTPS route to the current origin works as well.
+
+The installer preserves the origin, its collectors and its account store. Caddy
+terminates browser HTTPS and proxies over certificate-verified HTTPS to the
+existing authenticated app. It rewrites the upstream Host to the app's existing
+allowlisted hostname. It does not copy private files or passwords and does not
+cache authenticated content. Relative login/logout/API URLs stay on the new
+browser hostname; Secure host-only cookies bind there. The origin's no-store
+and authentication responses pass through unchanged. Its current rate limiter
+will see the edge IP, so failed-login limits are shared by users of this entry.
+
+The installer refuses an occupied listener instead of changing an existing web
+server, and validates origin authentication before configuring the proxy.
+After certificate issuance, verify `/login` returns 200, `/api/session` and
+`/data/dashboard.json` return 401 without a login, then test login, details and
+logout in a browser **without Happ from both user networks**. A test from the
+coding environment alone cannot establish user-network reachability. No DNS or
+hosting account is supplied by this script; server provisioning and hostname
+ownership must exist before installation. Keep the old address until these
+checks pass. Remove the edge's individual site config and reload Caddy to
+withdraw this additional entry; the origin remains available at its old URL.
