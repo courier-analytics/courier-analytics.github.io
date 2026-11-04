@@ -407,11 +407,17 @@ def capture_interface(page, private, inspect_roster=False, status=None):
             mark('export_dialog')
             structure['export_dialog'] = inspect_export_dialog(page)
             if structure['export_dialog']['opened']:
+                export_stage='start'
+                def export_progress(stage):
+                    nonlocal export_stage
+                    export_stage=stage
+                    mark('native_export.'+stage)
                 try:
                     mark('native_export')
-                    structure['id_export'] = export_id_list(page, structure['roster_filters']['filters_verified'])
+                    structure['id_export'] = export_id_list(page, structure['roster_filters']['filters_verified'], export_progress)
                 except BrowserError:
                     structure['id_export'] = {'confirmed': False, 'reason': 'native_export_ui_operation_failed'}
+                structure['id_export']['stage']=export_stage
                 structure['native_roster'] = verify_id_export(structure['id_export'],
                     [row['courier_id'] for row in structure['roster_candidate']['couriers']])
     # Verified source data must not depend on an optional diagnostic screenshot.
@@ -595,6 +601,7 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
                         result['roster_check'] = {
                             'filters_verified':interface.get('roster_filters',{}).get('filters_verified',False),
                             'export_reason':interface.get('id_export',{}).get('reason'),
+                            'export_stage':interface.get('id_export',{}).get('stage'),
                             'verification_reason':interface.get('native_roster',{}).get('reason'),
                             'count':interface.get('native_roster',{}).get('count')}
                 # Only known navigation labels; never courier rows, account name,

@@ -64,19 +64,32 @@ class RosterGridTests(unittest.TestCase):
         self.assertFalse(result['confirmed'])
         self.assertIsNone(self.page.evaluate('window.confirmed'))
 
-    def test_native_export_selects_ids_and_names_without_phones(self):
-        from onec_roster import export_id_list, verify_id_export
-        self.page.set_content('''<style>.checkbox{display:inline-block;width:18px;height:18px}</style><a id="form1_UnckeckAll" onclick="document.querySelectorAll('.checkbox').forEach(e=>e.classList.remove('select'))">Clear</a>
+    def export_fixture(self, prefix='form1_', stale=False):
+        self.page.set_content('''<script>window.exported=window.staleClicked=window.allRowsToggled=undefined</script><style>.checkbox{display:inline-block;width:18px;height:18px}</style><div id="form1_dialog"><a id="form1_UnckeckAll" onclick="document.querySelector('#form1_AvailableColumnsElement').querySelectorAll('.checkbox').forEach(e=>e.classList.remove('select'))">Clear</a>
             <div id="form1_AvailableColumnsElement"><div class="gridBody">
              <div class="gridLine"><span class="checkbox select" onclick="this.classList.toggle('select')"></span><span>Id</span></div>
              <div class="gridLine"><span class="checkbox select" onclick="this.classList.toggle('select')"></span><span>Name</span></div>
              <div class="gridLine"><span class="checkbox select"></span><span>Phone</span></div></div></div>
-            <div id="form1_OnlySelectedElement" class="checkbox" onclick="this.classList.toggle('select')"></div>
+            <div id="form1_OnlySelectedElement" class="checkbox select" onclick="window.allRowsToggled=true;this.classList.toggle('select')"></div>
             <input id="form1_DocumentTypeElement_i0" value="Text&#160;document">
+            <button id="form1_DocumentTypeElement_DLB" onclick="document.querySelector('#form1_formatOption').hidden=false">Format</button>
+            <span id="form1_formatOption" hidden onclick="document.querySelector('#form1_DocumentTypeElement_i0').value=this.textContent;this.hidden=true">Text&#160;document</span>
             <a id="form1_Ok" onclick="window.exported=true;document.querySelector('textarea').hidden=false;document.querySelector('#form1_DocumentTypeElement_i0').hidden=true">OK</a>
-            <textarea hidden>Id	Name
+            </div><textarea hidden>Id	Name
 1800115894	TEST_ONE
-1800128719	TEST_TWO</textarea>''')
+1800128719	TEST_TWO</textarea>'''.replace('form1_',prefix))
+        if stale:
+            self.page.evaluate('''prefix=>{
+                const old=document.getElementById(prefix+'dialog').cloneNode(true);
+                old.querySelectorAll('[id]').forEach(e=>e.id=e.id.replace(prefix,'form1_'));
+                old.id='form1_dialog';old.hidden=true;
+                old.querySelector('[id="form1_UnckeckAll"]').onclick=()=>window.staleClicked=true;
+                document.body.prepend(old);
+            }''',prefix)
+
+    def test_native_export_selects_ids_and_names_without_phones(self):
+        from onec_roster import export_id_list, verify_id_export
+        self.export_fixture()
         self.assertFalse(export_id_list(self.page,False)['confirmed'])
         self.assertIsNone(self.page.evaluate('window.exported'))
         result=export_id_list(self.page,True)
@@ -86,6 +99,39 @@ class RosterGridTests(unittest.TestCase):
         verified=verify_id_export(result,['1800115894'])
         self.assertTrue(verified['verified'])
         self.assertEqual(verified['count'],2)
+        self.assertTrue(self.page.evaluate('window.allRowsToggled'))
+
+    def test_export_uses_current_dialog_after_settings_and_ignores_hidden_old_form(self):
+        from onec_roster import export_id_list, verify_id_export
+        for prefix in ('form2_','form17_'):
+            with self.subTest(prefix=prefix):
+                self.export_fixture(prefix,stale=True)
+                stages=[]
+                result=export_id_list(self.page,True,stages.append)
+                self.assertTrue(verify_id_export(result,['1800115894'])['verified'])
+                self.assertFalse(verify_id_export(result,['9999999999'])['verified'])
+                self.assertIsNone(self.page.evaluate('window.staleClicked'))
+                self.assertTrue(self.page.evaluate('window.allRowsToggled'))
+                self.assertEqual(stages[-1],'document')
+
+    def test_ambiguous_or_unknown_export_dialog_never_changes_columns(self):
+        from onec_roster import export_id_list
+        self.export_fixture('form2_',stale=True)
+        self.page.locator('#form1_dialog').evaluate('e=>e.hidden=false')
+        result=export_id_list(self.page,True)
+        self.assertEqual(result['reason'],'export_dialog_ambiguous')
+        self.assertIsNone(self.page.evaluate('window.staleClicked'))
+        self.assertIsNone(self.page.evaluate('window.exported'))
+        self.page.set_content('<a id="unknown_UnckeckAll" onclick="window.clicked=true">Clear</a>')
+        self.assertEqual(export_id_list(self.page,True)['reason'],'export_dialog_id_not_recognized')
+        self.assertIsNone(self.page.evaluate('window.clicked'))
+
+    def test_text_document_format_can_be_selected_with_native_nbsp_caption(self):
+        from onec_roster import export_id_list, verify_id_export
+        self.export_fixture('form2_',stale=True)
+        self.page.locator('#form2_DocumentTypeElement_i0').fill('Spreadsheet document')
+        result=export_id_list(self.page,True)
+        self.assertTrue(verify_id_export(result,['1800115894'])['verified'])
 
 
 class NativeIdOutputTests(unittest.TestCase):

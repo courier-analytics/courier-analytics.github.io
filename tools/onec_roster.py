@@ -121,14 +121,32 @@ def inspect_export_dialog(page):
     }''')
 
 
-def export_id_list(page, filters_verified):
+def export_id_list(page, filters_verified, progress=None):
     """Output all filtered IDs through the native read-only list command."""
     if not filters_verified:
         return {'confirmed': False, 'reason': 'filters_not_verified'}
+    import re
     from playwright.sync_api import TimeoutError as BrowserTimeout
-    page.locator('[id="form1_UnckeckAll"]').click(timeout=5000)
+    def mark(stage):
+        if progress is not None:progress(stage)
+    mark('dialog')
+    clear = page.locator('[id$="_UnckeckAll"]').and_(page.locator(':visible'))
+    try:
+        clear.first.wait_for(state='visible', timeout=5000)
+    except BrowserTimeout:
+        return {'confirmed': False, 'reason': 'export_dialog_not_visible'}
+    if clear.count() != 1:
+        return {'confirmed': False, 'reason': 'export_dialog_ambiguous'}
+    match = re.fullmatch(r'(form[1-9][0-9]*_)UnckeckAll', clear.get_attribute('id') or '')
+    if not match:
+        return {'confirmed': False, 'reason': 'export_dialog_id_not_recognized'}
+    prefix = match.group(1)
+    def control(suffix):
+        return page.locator('[id="'+prefix+suffix+'"]')
+    mark('columns')
+    clear.click(timeout=5000)
     page.wait_for_timeout(500)
-    rows = page.locator('[id="form1_AvailableColumnsElement"] .gridBody > .gridLine')
+    rows = control('AvailableColumnsElement').locator('.gridBody > .gridLine')
     identity = rows.filter(has=page.get_by_text('Id', exact=True))
     if identity.count() != 1:
         return {'confirmed': False, 'reason': 'id_column_not_unique'}
@@ -149,17 +167,18 @@ def export_id_list(page, filters_verified):
     selected = rows.filter(has=page.locator('.checkbox.select'))
     if sorted(text.strip() for text in selected.all_inner_texts()) != sorted(columns):
         return {'confirmed': False, 'reason': 'id_only_selection_not_confirmed'}
-    only_selected = page.locator('[id="form1_OnlySelectedElement"]')
+    mark('all_rows')
+    only_selected = control('OnlySelectedElement')
     if 'select' in (only_selected.get_attribute('class') or '').split():
         only_selected.click(timeout=5000)
         page.wait_for_timeout(500)
     if 'select' in (only_selected.get_attribute('class') or '').split():
         return {'confirmed': False, 'reason': 'selected_rows_only_still_enabled'}
-    output = page.locator('[id="form1_DocumentTypeElement_i0"]')
+    mark('format')
+    output = control('DocumentTypeElement_i0')
     if ' '.join(output.input_value().split()) not in ('Text document', 'Текстовый документ'):
-        page.locator('[id="form1_DocumentTypeElement_DLB"]').click(timeout=5000)
-        options = page.get_by_text('Text document', exact=True).or_(
-            page.get_by_text('Текстовый документ', exact=True)).and_(page.locator(':visible'))
+        control('DocumentTypeElement_DLB').click(timeout=5000)
+        options = page.get_by_text(re.compile(r'^\s*(?:Text\s+document|Текстовый\s+документ)\s*$')).and_(page.locator(':visible'))
         try:
             options.first.wait_for(state='visible', timeout=5000)
         except BrowserTimeout:
@@ -170,7 +189,9 @@ def export_id_list(page, filters_verified):
         page.wait_for_timeout(300)
     if ' '.join(output.input_value().split()) not in ('Text document', 'Текстовый документ'):
         return {'confirmed': False, 'reason': 'text_output_not_retained'}
-    page.locator('[id="form1_Ok"]').click(timeout=5000)
+    mark('confirm')
+    control('Ok').click(timeout=5000)
+    mark('document')
     output.wait_for(state='hidden', timeout=30000)
     page.wait_for_timeout(4000)
     documents = page.evaluate('''() => {

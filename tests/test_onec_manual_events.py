@@ -200,8 +200,16 @@ class ManualLoginEventsTests(unittest.TestCase):
                     # A validated cache already exists even if the screenshot now fails.
                     self.assertEqual(load(folder/'onec-rosters/7745.json',datetime.now(MOSCOW).date().isoformat())['count'],2)
                     raise TimeoutError('PRIVATE_BROWSER_DETAIL')
-                with patch('onec_filters.restore_values'),patch('onec_browser.open_roster_navigation',return_value=None),patch('onec_browser.ensure_roster_filters'),patch('onec_browser.select_roster_shop'),patch('onec_browser.roster_filter_structure',return_value={'filters_verified':True}),patch('onec_roster.scan_grid',side_effect=TimeoutError('must not scroll')) as scan,patch('onec_roster.inspect_export_dialog',return_value={'opened':True}),patch('onec_roster.export_id_list',return_value=export),patch.object(page,'screenshot',side_effect=screenshot):
+                with patch('onec_filters.restore_values'),patch('onec_browser.open_roster_navigation',return_value=None),patch('onec_browser.ensure_roster_filters'),patch('onec_browser.select_roster_shop'),patch('onec_browser.roster_filter_structure',return_value={'filters_verified':True}),patch('onec_roster.scan_grid',side_effect=TimeoutError('must not scroll')) as scan,patch('onec_roster.inspect_export_dialog',return_value={'opened':True}),patch('onec_roster.export_id_list',return_value=export) as export_call,patch.object(page,'screenshot',side_effect=screenshot):
                     result=capture_interface(page,folder,inspect_roster=True)
+                    def fail_export(page,filters_verified,progress):
+                        progress('columns')
+                        raise TimeoutError('PRIVATE_BROWSER_DETAIL')
+                    export_call.side_effect=fail_export
+                    failed=capture_interface(page,folder,inspect_roster=True)
+                    self.assertEqual(failed['id_export']['stage'],'columns')
+                    self.assertEqual(failed['id_export']['reason'],'native_export_ui_operation_failed')
+                    self.assertFalse(failed['native_roster']['verified'])
                 scan.assert_not_called()
                 self.assertTrue(result['native_roster']['verified']);self.assertFalse(result['screenshot_available'])
                 with zipfile.ZipFile(folder/'onec-interface.zip') as bundle:

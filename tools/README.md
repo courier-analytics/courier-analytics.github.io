@@ -1190,3 +1190,11 @@ previous buffer while the selection callback is pending. Applying settings is
 performed only after the expected value is observed. Typed numeric/reference
 entry retains its separate native commit flow. An asynchronous picker regression
 covers cancellation of a pending choice by premature focus/Tab.
+
+Native list export derives its form prefix from the single visible
+`formN_UnckeckAll` control. It does not assume `form1`: opening list settings
+earlier in the session can allocate another form number. Hidden old forms are
+ignored, ambiguous or unrecognized dialogs are rejected before selecting
+columns. The all-row, Id/Name-only and sampled-ID completeness checks remain in
+place. The safe `roster_check.export_stage` status identifies the failing export
+step without printing native error text or courier data.
