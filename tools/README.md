@@ -1076,3 +1076,28 @@ new hostname from the actual user networks with Happ disabled; successful DNS
 or a response from a different network does not establish accessibility there.
 If it still times out, compare a bare-IP HTTP request and local server checks
 before concluding a hostname change can repair transport filtering.
+
+#### Automatic retries and two-day reconciliation
+
+Run `bash tools/enable_reliable_refresh.sh` on the existing VPS to install bounded
+1C retries and the two-day collector. The hourly 1C service restarts after a
+failure with a 120-second delay, capped at three starts in a 30-minute window.
+The existing slot timer collects yesterday and today separately every 15
+minutes using `refresh_recent_days.py`; this refreshes prior-day completion
+facts without applying today's roster to a historical report. A failed date is
+recorded privately and does not prevent attempting the other date. Current-day
+collection failure returns nonzero, so systemd does not publish a failed run.
+The normal refresh/publication locks and confirmed-value preservation still
+apply. `/opt/courier-analytics/private/refresh-health.json` stores date-level
+success/error classes without tokens or personal data.
+
+A courier with one frozen booking can also be matched to an actual arrival in a
+rebooked slot if all reported starts identify exactly one unambiguous same-day
+shift and the source has an explicit arrived status. Midnight placeholders,
+missing times, conflicting starts and multiple original bookings remain
+unresolved. The original frozen slot/time/population are preserved; lateness
+is measured from that original start, with provenance shown in private details.
+Explicit no-show reconciliation remains available. No courier is silently
+excluded for cancelling or moving a booking. These safeguards cannot invent
+missing facts or guarantee source availability; retained values remain visibly
+marked when a source cannot support a fresh result.

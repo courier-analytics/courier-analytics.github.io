@@ -4,6 +4,7 @@ from enrich_slots import source_status
 
 
 def index(slots,plan_slots):
+    from calculate_metrics import timestamp,MOSCOW
     current={(s['slot_type'],s['slot_id'],p['courier_id']):(s,p)
              for s in slots for p in s['couriers']}
     by_person=defaultdict(list)
@@ -15,6 +16,21 @@ def index(slots,plan_slots):
             identity=p['courier_id'];key=planned['slot_type'],planned['slot_id'],identity
             if key in current or count[identity]!=1:continue
             candidates=by_person[identity]
+            arrivals=[(s,person) for s,person in candidates
+                if s['date']==planned['date'] and source_status(person.get('shift_status')) in {'on_time','early','late'}
+                and timestamp(person.get('shift_start')) is not None]
+            starts={timestamp(person['shift_start']) for s,person in arrivals}
+            # One original booking and exactly one actual shift start identify a
+            # rebooked courier. Evaluate lateness against the unchanged frozen time.
+            all_starts={timestamp(person.get('shift_start')) for s,person in candidates if person.get('shift_start')}
+            if len(starts)==1 and all_starts==starts:
+                start=next(iter(starts)).astimezone(MOSCOW)
+                if start.date().isoformat()==planned['date'] and start.time().isoformat()!='00:00:00':
+                    source,person=arrivals[0]
+                    current[key]=(planned,{**person,'plan_fact_source_slot_id':source['slot_id'],
+                        'plan_fact_source_slot_type':source['slot_type'],
+                        'plan_fact_note':'Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.'})
+                    continue
             # A removed booking alone never proves a no-show. Require explicit
             # same-day no-show in every surviving record, with no start/end facts.
             if (candidates and all(s['date']==planned['date'] and

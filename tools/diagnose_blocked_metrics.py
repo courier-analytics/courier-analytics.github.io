@@ -56,7 +56,7 @@ def explain(private,day,shop):
     unresolved=[m for m in missing if (m['slot_type'],m['slot_id'],m['courier_id']) not in facts]
     return {'date':day,'shop_id':shop,'excluded_count':len(ids),
         'missing_plan_bookings':missing,'unresolved_plan_bookings':unresolved,
-        'matched_current_no_shows':len(missing)-len(unresolved),
+        'matched_rebooked_facts':len(missing)-len(unresolved),
         'completion_metric':current_slot_completion(selected),
         'completion_blockers':completion_blockers(selected),
         'unresolved_nights_not_assigned_to_report_day':[
@@ -76,5 +76,5 @@ if __name__=='__main__':
     path=private/f'blocked-metrics-{args.date}-{args.shop}.json';atomic_json(path,result)
     print(json.dumps({'date':args.date,'shop_id':args.shop,'missing_plan_bookings':len(result['missing_plan_bookings']),
         'unresolved_plan_bookings':len(result['unresolved_plan_bookings']),
-        'matched_current_no_shows':result['matched_current_no_shows'],
+        'matched_rebooked_facts':result['matched_rebooked_facts'],
         'completion_blockers':len(result['completion_blockers']),'file':str(path)},ensure_ascii=False))

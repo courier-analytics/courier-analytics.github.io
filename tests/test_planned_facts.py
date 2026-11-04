@@ -38,3 +38,23 @@ class RebookedNoShowTests(unittest.TestCase):
   plan,slots=self.inputs();extra=copy.deepcopy(slots[1]);extra['slot_id']=4
   extra['couriers'][0]['shift_status']='Ожидается';slots.append(extra)
   self.assertIsNone(calculate(slots,plan['date'],plan=plan)['planned_attendance']['value'])
+
+ def test_rebooked_arrival_uses_original_plan_time_and_keeps_plan_population(self):
+  plan,slots=self.inputs();person=slots[1]['couriers'][0]
+  person.update(shift_status='Вышел',shift_start='2026-11-04T09:00:00+03:00')
+  original=copy.deepcopy((plan,slots));m=calculate(slots,plan['date'],plan=plan)
+  self.assertEqual((m['planned_attendance']['numerator'],m['planned_attendance']['denominator']),(2,2))
+  self.assertEqual((m['planned_late']['numerator'],m['planned_late']['denominator']),(1,2))
+  d=build(plan['date'],{'shop_id':7745,'slots':slots},m,plan=plan)
+  self.assertTrue(d['metrics']['planned_late']['reconciled'])
+  late=next(g for g in d['metrics']['planned_late']['groups'] if g['title']=='Опоздали от 15 минут')
+  self.assertEqual(late['couriers'][0]['slots'][0]['late_seconds'],7200)
+  self.assertEqual((plan,slots),original)
+
+ def test_conflicting_actual_starts_and_midnight_placeholder_do_not_match(self):
+  plan,slots=self.inputs();person=slots[1]['couriers'][0]
+  person.update(shift_status='Вышел',shift_start='2026-11-04T09:00:00+03:00')
+  extra=copy.deepcopy(slots[1]);extra['slot_id']=3;extra['couriers'][0]['shift_start']='2026-11-04T10:00:00+03:00';slots.append(extra)
+  self.assertIsNone(calculate(slots,plan['date'],plan=plan)['planned_attendance']['value'])
+  slots.pop();person['shift_start']='2026-11-04T00:00:00+03:00'
+  self.assertIsNone(calculate(slots,plan['date'],plan=plan)['planned_attendance']['value'])
