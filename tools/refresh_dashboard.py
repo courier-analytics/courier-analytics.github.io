@@ -70,7 +70,9 @@ def merge_feed(previous, incoming):
         old=old_rows.get((row['date'],row['shop_id']),{})
         for key,current in row.get('metrics',{}).items():
             saved=old.get('metrics',{}).get(key,{})
-            if key!='slot_fill' and current.get('value') is None and current.get('reason') in recoverable and saved.get('value') is not None:
+            unreliable_zero = (key == 'planned_attendance' and saved.get('value') == 0 and
+                current.get('reason') in {'planned_booking_missing_from_current_data', 'planned_slot_times_changed', 'unknown_planned_shift_status'})
+            if not unreliable_zero and key!='slot_fill' and current.get('value') is None and current.get('reason') in recoverable and saved.get('value') is not None:
                 row['metrics'][key]={**saved,'stale_reason':current['reason'],
                     'last_success_at':saved.get('last_success_at',old['reported_at'])}
     # Revalidate the old public feed and copy only allowlisted fields.

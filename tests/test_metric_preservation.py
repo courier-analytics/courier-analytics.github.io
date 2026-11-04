@@ -19,3 +19,8 @@ class LastGoodMetricTests(unittest.TestCase):
   self.assertEqual(merge_feed(old,new)['records'][0]['metrics']['planned_attendance']['value'],0)
   new['records'][0]['date']='2026-11-04';m.update(value=None,numerator=None,denominator=None,reason='frozen_plan_missing')
   result=merge_feed(old,new);self.assertIsNone(result['records'][1]['metrics']['planned_attendance']['value'])
+
+ def test_failed_plan_refresh_does_not_present_early_zero_as_current_attendance(self):
+  old={'schema_version':1,'records':[self.row()]};old['records'][0]['metrics']['planned_attendance'].update(value=0,numerator=0)
+  new=copy.deepcopy(old);new['records'][0]['metrics']['planned_attendance'].update(value=None,numerator=None,denominator=None,reason='planned_booking_missing_from_current_data')
+  self.assertIsNone(merge_feed(old,new)['records'][0]['metrics']['planned_attendance']['value'])
