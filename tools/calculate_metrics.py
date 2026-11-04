@@ -76,8 +76,8 @@ def calculate(slots, day, roster=None, plan=None):
         output.update(current_slot_attendance(limited))
         output['planned_completion'] = current_slot_completion(limited)
         return output
-    current = {(s['slot_type'], s['slot_id'], c['courier_id']): (s, c)
-               for s in slots for c in s['couriers']}
+    from planned_facts import index as index_planned_facts
+    current = index_planned_facts(slots, plan['slots'])
     expected = {}
     for slot in plan['slots']:
         if slot['date'] != day:

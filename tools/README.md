@@ -1003,3 +1003,16 @@ ID не зашивается в исходный код/публичный JSON:
 state_dir также при историческом пересчёте. Устаревшая/неподходящая по дате
 база 1С не заменяется пятидневной базой при наличии native-cache: сохраняется
 последний подтверждённый результат с соответствующей отметкой.
+
+#### Removed planned booking with an explicit current no-show
+
+Frozen-plan attendance retains the original courier population. If a courier has
+exactly one frozen booking and that booking is absent from the current slots,
+`planned_facts.index` can use explicit same-day `Не вышел` facts from their
+surviving bookings only when every surviving record agrees and none contains an
+actual start or end. A cancellation by itself is insufficient. Arrivals in a
+different slot, unknown statuses, contradictory facts, or multiple frozen
+bookings remain unresolved. This does not modify source slots, the frozen plan,
+slot-fill counts, or the separate metric-seven completion population. Private
+attendance details retain the original planned times and identify the source
+slot for the no-show evidence.

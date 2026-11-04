@@ -49,8 +49,14 @@ def explain(private,day,shop):
     slots=filter_slots(slots,ids)
     history=[s for origin,saved in state['days'].items() if origin<day for s in saved['slots']]
     selected=filter_slots(choose(history+[s for s in slots if s['slot_type']=='limited'],day),ids)
+    from planned_facts import index as index_planned_facts
+    plan_slots=filter_slots(planned,ids)
+    facts=index_planned_facts(slots,plan_slots)
+    missing=differences(plan_slots,slots)
+    unresolved=[m for m in missing if (m['slot_type'],m['slot_id'],m['courier_id']) not in facts]
     return {'date':day,'shop_id':shop,'excluded_count':len(ids),
-        'missing_plan_bookings':differences(filter_slots(planned,ids),slots),
+        'missing_plan_bookings':missing,'unresolved_plan_bookings':unresolved,
+        'matched_current_no_shows':len(missing)-len(unresolved),
         'completion_metric':current_slot_completion(selected),
         'completion_blockers':completion_blockers(selected),
         'unresolved_nights_not_assigned_to_report_day':[
@@ -69,4 +75,6 @@ if __name__=='__main__':
     result=explain(private,args.date,args.shop)
     path=private/f'blocked-metrics-{args.date}-{args.shop}.json';atomic_json(path,result)
     print(json.dumps({'date':args.date,'shop_id':args.shop,'missing_plan_bookings':len(result['missing_plan_bookings']),
+        'unresolved_plan_bookings':len(result['unresolved_plan_bookings']),
+        'matched_current_no_shows':result['matched_current_no_shows'],
         'completion_blockers':len(result['completion_blockers']),'file':str(path)},ensure_ascii=False))

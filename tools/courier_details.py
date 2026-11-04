@@ -19,7 +19,8 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
             'planned_start':start.isoformat(),'planned_end':end.isoformat(),'actual_start':actual.isoformat() if actual else None,
             'actual_end':finish.isoformat() if finish else None,'status':person.get('shift_status') or 'Статус не передан',
             'late_seconds':max(0,int((actual-start).total_seconds())) if actual and not midnight else None,
-            'note':'Проверить начало 00:00' if midnight else ''}
+            'note':person.get('plan_fact_note') or ('Проверить начало 00:00' if midnight else ''),
+            **({'fact_source_slot_id':str(person['plan_fact_source_slot_id'])} if 'plan_fact_source_slot_id' in person else {})}
     for slot in slots:
         for person in slot['couriers']:
             key=(slot['slot_type'],slot['slot_id'],person['courier_id']);current[key]=(slot,person)
@@ -48,6 +49,9 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
     result['slot_fill']={'aggregate':metrics['slot_fill'],'slots':fill,'groups':[], 'reconciled':True,
                          'note':'В процент входят только лимитированные слоты. Ручные показаны отдельно.'}
     frozen=bool(plan and plan.get('verified') is True)
+    if frozen:
+        from planned_facts import index as index_planned_facts
+        current=index_planned_facts(slots,plan['slots'])
     expected={};planned_events=defaultdict(list)
     source_plan=plan['slots'] if frozen else [s for s in slots if s['slot_type']=='limited']
     for slot in source_plan:
