@@ -1062,3 +1062,17 @@ session/data 401. Compare these server results with the Mac output before
 choosing a DNS, TLS, firewall, browser-proxy or routing repair. A browser timeout
 on a bare IP alone does not establish IP blocking (HTTPS upgrading and host
 routing can differ). No new hosting purchase is required for these diagnostics.
+
+For a user-network trace where DNS and TCP succeed but application HTTP/TLS
+requests time out, `bash tools/enable_dashboard_alternate_address.sh` adds
+`https://courier-7745.147.90.10.158.nip.io/7745.html` on the existing VPS.
+This tests hostname-dependent filtering without purchasing or moving hosting.
+DNS must resolve to the current IPv4, local unauthenticated APIs must return
+401, and staged Caddy configuration must validate before reload. The alias
+proxies to the existing loopback app with its original allowlisted Host, so the
+account store, authentication and private HTML remain unchanged. It preserves
+the old hostname and does not change collectors or firewall rules. Check the
+new hostname from the actual user networks with Happ disabled; successful DNS
+or a response from a different network does not establish accessibility there.
+If it still times out, compare a bare-IP HTTP request and local server checks
+before concluding a hostname change can repair transport filtering.
