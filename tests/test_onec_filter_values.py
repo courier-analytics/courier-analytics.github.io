@@ -87,3 +87,26 @@ class SavedFilterValuesTests(unittest.TestCase):
   }''',PREFIX)
   restore_values(self.page);self.assertTrue(roster_filter_structure(self.page)['filters_verified'])
   self.assertEqual(type_codes(self.page),{6,9})
+
+ def test_blank_point_scalar_form_selects_shop_before_restoring_values(self):
+  import tempfile
+  from onec_filters import restore_values as real_restore
+  self.page.evaluate('''(p)=>{
+    document.getElementById('form0_НомерТочки_i0').value='';
+    window.savedControls=[p+'5ВидСравненияЭлементаОтбора_i0',p+'5ВидСравненияЭлементаОтбора_DLB'].map(id=>document.getElementById(id));
+    window.savedControls.forEach(e=>e.remove());
+  }''',PREFIX)
+  def select(page):
+   page.evaluate("()=>{document.getElementById('form0_НомерТочки_i0').value='7745';window.savedControls.forEach(e=>document.body.append(e));}")
+   page.evaluate('''()=>{
+    const grid=document.getElementById('grid_form0_Список');
+    grid.innerHTML='<div class="gridHead"><div class="gridLine"><div class="gridBox">Id</div><div class="gridBox">Name</div><div class="gridBox">Active</div><div class="gridBox">Т.З.</div></div></div><div class="gridBody"><div class="gridLine"><div class="gridBox">111111</div><div class="gridBox">Test A</div><div class="gridBox"><i class="checkbox select"></i></div><div class="gridBox">5</div></div></div>';
+   }''')
+  def restore(page,progress=None):
+   self.assertEqual(page.locator('[id="form0_НомерТочки_i0"]').input_value(),'7745')
+   return real_restore(page,progress)
+  export={'confirmed':True,'columns':['Id'],'only_selected':False,'documents':{'text_fields':[{'text':'Id\n111111\n222222'}]}}
+  with tempfile.TemporaryDirectory() as directory,patch('onec_browser.open_roster_navigation',return_value=None),patch('onec_browser.select_roster_shop',side_effect=select),patch('onec_filters.restore_values',side_effect=restore) as restore_call,patch('onec_roster.inspect_export_dialog',return_value={'opened':True}),patch('onec_roster.export_id_list',return_value=export):
+   result=capture_interface(self.page,Path(directory),inspect_roster=True)
+   restore_call.assert_called_once()
+   self.assertTrue(result['roster_filters']['filters_verified']);self.assertTrue(result['native_roster']['verified'])

@@ -1122,7 +1122,7 @@ still preserve the prior snapshot and keep its stale marker visible.
 #### Restore saved 1C filter values, not just enablement
 
 `onec_filters.restore_values` sets the confirmed filter values through native
-controls before and after selecting point 7745: access Yes, employment Not
+controls after selecting point 7745: access Yes, employment Not
 equal 1, courier type Not in list with exactly codes 6 and 9, and no top-level
 service filter or saved list-search text. It changes list filtering only, never
 courier records. Comparison dropdowns and reference autocomplete choices must be
@@ -1138,3 +1138,9 @@ publishing an incorrect roster. Both browser timeout and validation failures
 retain a fresh diagnostic bundle. A wrong saved night-only `In list` selection
 was the cause of the November 4 empty-grid failure; previous versions restored
 checkboxes but left those values unchanged.
+
+The point must be committed before value restoration: the blank-point initial
+form can show only a scalar courier-type field, without comparison or list
+controls. Reading its nonexistent comparison input would time out before point
+selection. Checkbox enablement is restored first; selecting point 7745 then
+materializes the comparison/list controls used by the confirmed filter workflow.

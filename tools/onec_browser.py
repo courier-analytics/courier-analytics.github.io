@@ -349,8 +349,9 @@ def capture_interface(page, private, inspect_roster=False, status=None):
         page.locator('[id="grid_form0_Список"] .gridBody').wait_for(state='visible',timeout=30000)
         page.wait_for_timeout(500)
         ensure_roster_filters(page,lambda stage:mark('before_point.'+stage))
+        # The point change materializes the full comparison/list controls.
+        # In the initial blank-point form type5 can be a scalar-only field.
         from onec_filters import restore_values
-        restore_values(page,lambda stage:mark('before_point.'+stage))
         mark('point_filter')
         select_roster_shop(page)
         ensure_roster_filters(page,lambda stage:mark('after_point.'+stage))
