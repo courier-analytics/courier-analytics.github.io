@@ -44,8 +44,8 @@ def _choice(page,base,accepted,progress=None):
     _control(page,base+'_DLB').click(timeout=5000)
     mark('option')
     _choose(page,tuple(value for value in accepted if value))
-    mark('commit')
-    field.press('Tab')
+    # Native option selection commits the enum. Do not focus/blur the old
+    # editor while the 1C callback is still applying the selected value.
     mark('value')
     page.wait_for_function(r"([id,values])=>values.includes(document.getElementById(id)?.value?.trim().replace(/\s+/g,' '))",
                            arg=[base+'_i0',list(accepted)],timeout=5000)

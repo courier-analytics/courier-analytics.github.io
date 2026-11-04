@@ -246,3 +246,21 @@ class SavedFilterValuesTests(unittest.TestCase):
   self.main_settings_fixture(duplicate=True)
   with self.assertRaises(ValueError):restore_values(self.page)
   self.assertEqual(self.page.evaluate('window.settingsApplied'),0)
+
+ def test_native_choice_waits_for_async_commit_without_refocusing_old_editor(self):
+  from onec_filters import _choice
+  self.page.set_content('''<input id="comparison_i0" value="Equal to" readonly>
+    <button id="comparison_DLB" onclick="document.querySelector('#option').hidden=false">Select</button>
+    <div id="option" hidden>Not in list</div><script>
+      window.pending=false;window.cancelled=false;window.tabs=0;
+      const field=document.querySelector('input');
+      field.addEventListener('focus',()=>{if(window.pending)window.cancelled=true});
+      field.addEventListener('keydown',e=>{if(e.key==='Tab'){window.tabs++;if(window.pending)window.cancelled=true}});
+      document.querySelector('#option').onclick=()=>{
+        document.querySelector('#option').hidden=true;window.pending=true;
+        setTimeout(()=>{field.value=window.cancelled?'Equal to':'Not in list';window.pending=false},300);
+      };
+    </script>''')
+  _choice(self.page,'comparison',('Не в списке','Not in list'))
+  self.assertEqual(self.page.locator('input').input_value(),'Not in list')
+  self.assertFalse(self.page.evaluate('window.cancelled'));self.assertEqual(self.page.evaluate('window.tabs'),0)

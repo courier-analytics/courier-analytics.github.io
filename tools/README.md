@@ -1183,3 +1183,10 @@ The explicit `check_onec_refresh.sh` restarts the read-only roster service so an
 in-flight automatic retry cannot return the previous imported code after a
 repository update. Successful verification then refreshes recent-day metrics
 and the protected data copy. It does not reset saved credentials or snapshots.
+
+For native enum dropdowns, `_choice` waits for the selected value without
+refocusing the input or pressing Tab. 1C's blur path can dispatch the editor's
+previous buffer while the selection callback is pending. Applying settings is
+performed only after the expected value is observed. Typed numeric/reference
+entry retains its separate native commit flow. An asynchronous picker regression
+covers cancellation of a pending choice by premature focus/Tab.
