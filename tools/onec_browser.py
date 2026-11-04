@@ -327,6 +327,7 @@ def roster_filter_structure(page):
 
 
 def capture_interface(page, private, inspect_roster=False, status=None):
+    from playwright.sync_api import Error as BrowserError
     def mark(stage):
         if status is not None:status['stage']=stage
     mark('interface_main_surface')
@@ -383,14 +384,13 @@ def capture_interface(page, private, inspect_roster=False, status=None):
             mark('close_excluded_types_popup')
             close_roster_popup(page)
             ensure_roster_filters(page,lambda stage:mark('after_popup.'+stage))
-            from onec_roster import scan_grid, inspect_export_dialog, export_id_list, verify_id_export
-            mark('grid_scan')
-            structure['roster_candidate'] = scan_grid(page)
+            from onec_roster import sample_grid, inspect_export_dialog, export_id_list, verify_id_export
+            mark('grid_sample')
+            structure['roster_candidate'] = sample_grid(page)
             structure['roster_candidate']['filters_verified'] = structure['roster_filters']['filters_verified']
             mark('export_dialog')
             structure['export_dialog'] = inspect_export_dialog(page)
             if structure['export_dialog']['opened']:
-                from playwright.sync_api import Error as BrowserError
                 try:
                     mark('native_export')
                     structure['id_export'] = export_id_list(page, structure['roster_filters']['filters_verified'])
@@ -398,30 +398,39 @@ def capture_interface(page, private, inspect_roster=False, status=None):
                     structure['id_export'] = {'confirmed': False, 'reason': 'native_export_ui_operation_failed'}
                 structure['native_roster'] = verify_id_export(structure['id_export'],
                     [row['courier_id'] for row in structure['roster_candidate']['couriers']])
+    # Verified source data must not depend on an optional diagnostic screenshot.
+    native = structure.get('native_roster', {})
+    if native.get('verified') is True and structure.get('roster_filters', {}).get('filters_verified') is True:
+        from onec_roster_cache import save
+        count = save(native, structure['roster_filters'], private/'onec-rosters')
+        mark('roster_cache_saved')
+        print(f'1C verified roster saved privately: DS 7745, {count} couriers.', flush=True)
     # The bundle is private: it can include account/navigation labels. No
     # input values, whole DOM, HTTP bodies, headers, cookies or storage export.
     with tempfile.TemporaryDirectory(prefix='.onec-ui-', dir=private) as directory:
         folder = Path(directory)
         picture = folder/'interface.png'
         private_write(picture, '')
-        page.screenshot(path=str(picture))
+        mark('interface_screenshot')
+        structure['screenshot_available']=False
+        try:
+            page.screenshot(path=str(picture),timeout=5000)
+            structure['screenshot_available']=True
+        except BrowserError:
+            pass
+        mark('interface_archive')
         fd, name = tempfile.mkstemp(prefix='.onec-ui-', dir=private)
         try:
             with os.fdopen(fd, 'wb') as output:
                 with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED) as bundle:
                     bundle.writestr('ui-structure.json', json.dumps(structure, ensure_ascii=False))
-                    bundle.write(picture, 'interface.png')
+                    if structure['screenshot_available']:bundle.write(picture, 'interface.png')
             os.replace(name, private/'onec-interface.zip')
         finally:
             if os.path.exists(name):
                 os.unlink(name)
     mark('interface_bundle_saved')
     print('1C interface saved privately: onec-interface.zip. No records edited.', flush=True)
-    native = structure.get('native_roster', {})
-    if native.get('verified') is True and structure.get('roster_filters', {}).get('filters_verified') is True:
-        from onec_roster_cache import save
-        count = save(native, structure['roster_filters'], private/'onec-rosters')
-        print(f'1C verified roster saved privately: DS 7745, {count} couriers.', flush=True)
     return structure
 
 

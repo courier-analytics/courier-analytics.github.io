@@ -35,6 +35,18 @@ def grid_rows(page):
     return rows
 
 
+def sample_grid(page):
+    """Passive cross-check only; native all-row export establishes completeness."""
+    page.locator('[id="grid_form0_Список"] .gridBody > .gridLine').first.wait_for(
+        state='visible',timeout=10000)
+    rows=grid_rows(page)
+    if not rows:
+        raise ValueError('1C courier grid sample empty')
+    return {'shop_id':7745,'couriers':rows,'count_observed':len(rows),
+            'complete_roster':False,'stop_reason':'passive_visible_sample',
+            'note':'Visible sample is only a cross-check; completeness requires native all-row export.'}
+
+
 def scan_grid(page, max_pages=60, max_seconds=90):
     """Bounded keyboard traversal. A stationary viewport alone never proves completeness."""
     grid = page.locator('[id="grid_form0_Список"]')
@@ -193,6 +205,8 @@ def parse_id_document(text):
 
 
 def verify_id_export(export, observed):
+    if not observed:
+        return {'verified':False,'reason':'visible_sample_not_verified'}
     if not export.get('confirmed') or export.get('columns') not in (['Id'],['Id','Name']) or export.get('only_selected') is not False:
         return {'verified': False, 'reason': 'native_export_not_confirmed'}
     parsed = []

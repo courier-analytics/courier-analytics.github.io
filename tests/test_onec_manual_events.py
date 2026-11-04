@@ -180,6 +180,35 @@ class ManualLoginEventsTests(unittest.TestCase):
             finally:
                 browser.close()
 
+    def test_verified_all_row_export_is_saved_without_scanning_or_a_screenshot(self):
+        import tempfile,json,zipfile
+        from unittest.mock import patch
+        from playwright.sync_api import sync_playwright,TimeoutError
+        from onec_roster_cache import load,MOSCOW
+        from datetime import datetime
+        with sync_playwright() as playwright,tempfile.TemporaryDirectory() as directory:
+            browser=playwright.chromium.launch(executable_path='/usr/lib/chromium/chromium',headless=True,args=['--no-sandbox'])
+            try:
+                page=browser.new_page()
+                page.set_content('''<div id="mainSurface"><div id="grid_form0_Список" style="pointer-events:none">
+                  <div class="gridHead"><div class="gridLine"><div class="gridBox">Id</div><div class="gridBox">Name</div><div class="gridBox">Active</div><div class="gridBox">Т.З.</div></div></div>
+                  <div class="gridBody"><div class="gridLine"><div class="gridBox">111111</div><div class="gridBox">Test A</div><div class="gridBox"><i class="checkbox select"></i></div><div class="gridBox">5</div></div></div>
+                </div></div>''')
+                export={'confirmed':True,'columns':['Id'],'only_selected':False,'documents':{'text_fields':[{'text':'Id\n111111\n222222'}]}}
+                folder=Path(directory)
+                def screenshot(**kwargs):
+                    # A validated cache already exists even if the screenshot now fails.
+                    self.assertEqual(load(folder/'onec-rosters/7745.json',datetime.now(MOSCOW).date().isoformat())['count'],2)
+                    raise TimeoutError('PRIVATE_BROWSER_DETAIL')
+                with patch('onec_browser.open_roster_navigation',return_value=None),patch('onec_browser.ensure_roster_filters'),patch('onec_browser.select_roster_shop'),patch('onec_browser.roster_filter_structure',return_value={'filters_verified':True}),patch('onec_roster.scan_grid',side_effect=TimeoutError('must not scroll')) as scan,patch('onec_roster.inspect_export_dialog',return_value={'opened':True}),patch('onec_roster.export_id_list',return_value=export),patch.object(page,'screenshot',side_effect=screenshot):
+                    result=capture_interface(page,folder,inspect_roster=True)
+                scan.assert_not_called()
+                self.assertTrue(result['native_roster']['verified']);self.assertFalse(result['screenshot_available'])
+                with zipfile.ZipFile(folder/'onec-interface.zip') as bundle:
+                    self.assertEqual(bundle.namelist(),['ui-structure.json'])
+                    self.assertNotIn('PRIVATE_BROWSER_DETAIL',bundle.read('ui-structure.json').decode())
+            finally:browser.close()
+
     def test_hidden_login_form_does_not_end_wait_before_final_server_response(self):
         from playwright.sync_api import sync_playwright
         with sync_playwright() as playwright:

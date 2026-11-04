@@ -1101,3 +1101,20 @@ Explicit no-show reconciliation remains available. No courier is silently
 excluded for cancelling or moving a booking. These safeguards cannot invent
 missing facts or guarantee source availability; retained values remain visibly
 marked when a source cannot support a fresh result.
+
+#### 1C grid-scan timeout after a successful login
+
+The automatic collector takes a passive, nonempty sample of the current grid
+rather than clicking and paging through it before export. The sample validates
+required columns, active access and non-tester employment, but is never accepted
+as a full roster. Completeness still requires the native all-filtered-row text
+export (`OnlySelected=False`, unique Id/Name columns) and inclusion of every
+sampled ID. The keyboard scanner remains available for separate diagnostics.
+
+Verified data is saved before the optional diagnostic screenshot; a screenshot
+failure records `screenshot_available=False`, omits the PNG and retains the JSON
+archive. This prevents a rendering timeout from discarding verified source data.
+Use `bash tools/check_onec_refresh.sh` after updating the code to recollect 1C,
+then refresh recent-day metrics and synchronize the protected site. Existing
+bounded automatic retries remain active; filter or export verification failures
+still preserve the prior snapshot and keep its stale marker visible.

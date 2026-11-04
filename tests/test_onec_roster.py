@@ -3,7 +3,7 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_roster import grid_rows,scan_grid,inspect_export_dialog
+from onec_roster import grid_rows,sample_grid,scan_grid,inspect_export_dialog
 
 @unittest.skipUnless(importlib.util.find_spec('playwright') and Path('/usr/lib/chromium/chromium').exists(), 'Optional Chromium integration')
 class RosterGridTests(unittest.TestCase):
@@ -32,6 +32,16 @@ class RosterGridTests(unittest.TestCase):
         self.assertEqual(result['unseen_tail_ids'],[])
         self.assertFalse(result['complete_roster'])
         self.assertNotIn('PRIVATE_PHONE',str(result));self.assertNotIn('PRIVATE_TAX_ID',str(result))
+    def test_passive_sample_never_needs_click_or_keyboard_paging(self):
+        self.page.evaluate("() => {document.querySelector('#grid_form0_Список').style.pointerEvents='none'; window.keys=0; document.addEventListener('keydown',()=>window.keys++);}")
+        result=sample_grid(self.page)
+        self.assertEqual({r['courier_id'] for r in result['couriers']},{'101','102'})
+        self.assertFalse(result['complete_roster'])
+        self.assertEqual(self.page.evaluate('window.keys'),0)
+        self.assertNotIn('PRIVATE_PHONE',str(result))
+        self.page.locator('.gridBody').evaluate("e=>e.innerHTML='<div class=gridLine><div class=gridBox>INVALID</div></div>'")
+        with self.assertRaises(ValueError):sample_grid(self.page)
+
     def test_truncated_traversal_reports_unseen_tail_and_never_claims_complete(self):
         result=scan_grid(self.page,max_pages=1)
         self.assertEqual(result['stop_reason'],'page_limit')
@@ -87,6 +97,7 @@ class NativeIdOutputTests(unittest.TestCase):
         export={'confirmed':True,'columns':['Id'],'only_selected':False,
                 'documents':{'text_fields':[{'text':'Id\n1800115894\n1800128719\n'}]}}
         self.assertTrue(verify_id_export(export,['1800115894'])['verified'])
+        self.assertFalse(verify_id_export(export,[])['verified'])
         self.assertFalse(verify_id_export(export,['9999999999'])['verified'])
         export['only_selected']=True
         self.assertFalse(verify_id_export(export,[])['verified'])
