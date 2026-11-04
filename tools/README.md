@@ -1045,3 +1045,20 @@ hosting account is supplied by this script; server provisioning and hostname
 ownership must exist before installation. Keep the old address until these
 checks pass. Remove the edge's individual site config and reload Caddy to
 withdraw this additional entry; the origin remains available at its old URL.
+
+#### Diagnose direct browser reachability before changing hosting
+
+Run `tools/check_dashboard_access.py` on the user's Mac with Happ disabled. It
+uses only Python's standard library, requests no credentials, changes no proxy
+or DNS settings, and prints DNS, TCP 80/443, HTTP and certificate-verified HTTPS
+checks. The fixed-IPv4 HTTPS check retains the original TLS SNI and Host, so it
+separates DNS failure from transport/TLS failure. A successful probe in the coding
+environment is not a substitute for this user-network check.
+
+On the existing VPS, `bash tools/check_dashboard_server.sh` reports service
+state, web listeners, local authentication responses, TLS validation, and web
+firewall rules without changing them. Expect login 200 and unauthenticated
+session/data 401. Compare these server results with the Mac output before
+choosing a DNS, TLS, firewall, browser-proxy or routing repair. A browser timeout
+on a bare IP alone does not establish IP blocking (HTTPS upgrading and host
+routing can differ). No new hosting purchase is required for these diagnostics.
