@@ -23,5 +23,5 @@ for name in sorted(FILES):
     finally:
         if os.path.exists(tmp):os.unlink(tmp)
 print('Closed dashboard interface updated; authentication and accounts preserved.')
-print('DS 7745: metric 1 on November 3 = 50%; metric 8 on November 1 = 64.29%.')
+print('Manual metric values copied from the current dashboard HTML.')
 PY
