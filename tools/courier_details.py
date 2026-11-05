@@ -12,6 +12,9 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
         for person in slot['couriers']:
             identity=person['courier_id']
             if person.get('name'):names[identity]=person['name']
+    cancellations=(plan or {}).get('cancellations',[])
+    for item in cancellations:
+        if item.get('name'):names[item['courier_id']]=item['name']
     def event(slot,person):
         start,end=period(slot);actual=timestamp(person.get('shift_start'));finish=timestamp(person.get('shift_end'))
         midnight=actual is not None and actual.astimezone(MOSCOW).time().isoformat()=='00:00:00'
@@ -19,6 +22,8 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
             'planned_start':start.isoformat(),'planned_end':end.isoformat(),'actual_start':actual.isoformat() if actual else None,
             'actual_end':finish.isoformat() if finish else None,'status':person.get('shift_status') or 'Статус не передан',
             'late_seconds':max(0,int((actual-start).total_seconds())) if actual and not midnight else None,
+            'removed_at':person.get('plan_cancellation',{}).get('removed_at'),
+            'removed_by':person.get('plan_cancellation',{}).get('removed_by'),
             'note':person.get('plan_fact_note') or ('Проверить начало 00:00' if midnight else ''),
             **({'fact_source_slot_id':str(person['plan_fact_source_slot_id'])} if 'plan_fact_source_slot_id' in person else {})}
     for slot in slots:
@@ -51,7 +56,7 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
     frozen=bool(plan and plan.get('verified') is True)
     if frozen:
         from planned_facts import index as index_planned_facts
-        current=index_planned_facts(slots,plan['slots'])
+        current=index_planned_facts(slots,plan['slots'],cancellations)
     expected={};planned_events=defaultdict(list)
     source_plan=plan['slots'] if frozen else [s for s in slots if s['slot_type']=='limited']
     for slot in source_plan:
@@ -62,7 +67,7 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
     planned={key[2] for key in expected};arrived=set();no_show=set();waiting=set();unknown=set();late=set();late_unknown=set()
     states=defaultdict(list)
     for key,value in expected.items():
-        state=source_status(value[1].get('shift_status')) if value else 'unknown';states[key[2]].append(state)
+        state=('cancelled' if value[1].get('plan_cancellation') else source_status(value[1].get('shift_status'))) if value else 'unknown';states[key[2]].append(state)
         if state in ARRIVED:
             arrived.add(key[2]);qualifies=late_15_minutes(*value)
             if qualifies is True:late.add(key[2])
@@ -70,9 +75,18 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
     for i in planned-arrived:
         if 'unknown' in states[i]:unknown.add(i)
         elif all(s=='no_show' for s in states[i]):no_show.add(i)
-        else:waiting.add(i)
+        elif not all(s=='cancelled' for s in states[i]):waiting.add(i)
+    cancelled_events=defaultdict(list)
+    for slot in source_plan:
+        for person in slot['couriers']:
+            for item in cancellations:
+                if (item['slot_type'],item['slot_id'],item['courier_id'])==(slot['slot_type'],slot['slot_id'],person['courier_id']):
+                    cancelled_events[person['courier_id']].append(event(slot,{'shift_status':'Снятая смена',
+                        'plan_cancellation':item,'plan_fact_note':'Снятие подтверждено историей бронирования.'}))
+    cancelled=set(cancelled_events)
     note='' if frozen else 'Фиксированного плана нет: показаны записи текущих лимитированных слотов.'
-    put('planned_attendance',[('Вышли',arrived,planned_events),('Не вышли по статусу источника',no_show,planned_events),('Ожидаются',waiting,planned_events),('Нет подтверждённых данных',unknown,planned_events)],len(planned),len(arrived),note)
+    if cancelled:note=(note+' Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи.').strip()
+    put('planned_attendance',[('Вышли',arrived,planned_events),('Не вышли по статусу источника',no_show,planned_events),('Ожидаются',waiting,planned_events),('Нет подтверждённых данных',unknown,planned_events),('Снятые смены — история',cancelled,cancelled_events)],len(planned),len(arrived),note)
     put('planned_late',[('Опоздали от 15 минут',late,planned_events),('Без опоздания от 15 минут',arrived-late-late_unknown,planned_events),('Длительность не определена',late_unknown-late,planned_events)],len(arrived),len(late),note)
     worked={i for i,events in by_person.items() if any(source_status(e['status']) in ARRIVED for e in events)}
     if frozen:put('unplanned_work',[('Вышли вне плана',worked-planned,None),('Вышли по плану',worked&planned,None)],len(worked),len(worked-planned))

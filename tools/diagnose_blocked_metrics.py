@@ -51,12 +51,14 @@ def explain(private,day,shop):
     selected=filter_slots(choose(history+[s for s in slots if s['slot_type']=='limited'],day),ids)
     from planned_facts import index as index_planned_facts
     plan_slots=filter_slots(planned,ids)
-    facts=index_planned_facts(slots,plan_slots)
+    facts=index_planned_facts(slots,plan_slots,[c for c in source.get('plan_cancellations',[]) if c.get('date')==day and c.get('courier_id') not in ids])
     missing=differences(plan_slots,slots)
     unresolved=[m for m in missing if (m['slot_type'],m['slot_id'],m['courier_id']) not in facts]
+    cancelled=sum(bool(facts.get((m['slot_type'],m['slot_id'],m['courier_id']),(None,{}))[1].get('plan_cancellation')) for m in missing)
     return {'date':day,'shop_id':shop,'excluded_count':len(ids),
         'missing_plan_bookings':missing,'unresolved_plan_bookings':unresolved,
-        'matched_rebooked_facts':len(missing)-len(unresolved),
+        'matched_rebooked_facts':len(missing)-len(unresolved)-cancelled,
+        'confirmed_cancelled_bookings':cancelled,
         'completion_metric':current_slot_completion(selected),
         'completion_blockers':completion_blockers(selected),
         'unresolved_nights_not_assigned_to_report_day':[
@@ -77,4 +79,5 @@ if __name__=='__main__':
     print(json.dumps({'date':args.date,'shop_id':args.shop,'missing_plan_bookings':len(result['missing_plan_bookings']),
         'unresolved_plan_bookings':len(result['unresolved_plan_bookings']),
         'matched_rebooked_facts':result['matched_rebooked_facts'],
+        'confirmed_cancelled_bookings':result['confirmed_cancelled_bookings'],
         'completion_blockers':len(result['completion_blockers']),'file':str(path)},ensure_ascii=False))

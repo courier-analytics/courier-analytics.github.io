@@ -77,7 +77,7 @@ def calculate(slots, day, roster=None, plan=None):
         output['planned_completion'] = current_slot_completion(limited)
         return output
     from planned_facts import index as index_planned_facts
-    current = index_planned_facts(slots, plan['slots'])
+    current = index_planned_facts(slots, plan['slots'], plan.get('cancellations', ()))
     expected = {}
     for slot in plan['slots']:
         if slot['date'] != day:
@@ -106,7 +106,7 @@ def calculate(slots, day, roster=None, plan=None):
            current[key][0]['time_to'] != slot['time_to'] for key, slot in expected.items()):
         output.update({key: metric(reason='planned_slot_times_changed') for key in slot_plan_metrics})
         return output
-    states = {key: source_status(current[key][1]['shift_status']) for key in expected}
+    states = {key: ('cancelled' if current[key][1].get('plan_cancellation') else source_status(current[key][1]['shift_status'])) for key in expected}
     if 'unknown' in states.values():
         output.update({key: metric(reason='unknown_planned_shift_status') for key in slot_plan_metrics})
         return output
@@ -123,7 +123,7 @@ def calculate(slots, day, roster=None, plan=None):
     completion, unfinished_facts = {}, False
     for key, slot in expected.items():
         identity = key[2]
-        if states[key] == 'no_show':
+        if states[key] in ('no_show', 'cancelled'):
             completion[identity] = False
             continue
         end = timestamp(current[key][1]['shift_end'])

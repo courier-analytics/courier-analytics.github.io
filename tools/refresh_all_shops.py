@@ -46,7 +46,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
                 roster_errors[identity] = 'native_roster_stale_or_invalid'
         shop['slots'], shop['overnight_completion'] = resolve_overnight(shop['slots'], token, proxy)
         source_plan = next((p for p in (plan or {}).get('shops', []) if p['shop_id'] == identity), None)
-        daily_plan = {'verified': True, 'date': day, 'slots': source_plan['slots']} if (
+        daily_plan = {'verified': True, 'date': day, 'captured_at':plan.get('completed_at'), 'slots': source_plan['slots']} if (
             source_plan and plan.get('verified') is True and plan.get('date') == day) else None
         from metric_exclusions import load as load_exclusions,views,filter_slots
         excluded=load_exclusions(state_dir,day,identity)
@@ -55,6 +55,10 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
             shop['slots'],daily_plan,adjusted_roster=views(shop['slots'],daily_plan,rosters.get(identity),excluded)
             if adjusted_roster:rosters[identity]=adjusted_roster
             shop['excluded_courier_ids']=sorted(excluded)
+        from plan_cancellations import collect as collect_cancellations
+        if daily_plan:
+            daily_plan['cancellations']=collect_cancellations(day,identity,daily_plan,shop['slots'],token,proxy)
+            shop['plan_cancellations']=daily_plan['cancellations']
         metrics = calculate(shop['slots'], day, roster=rosters.get(identity), plan=daily_plan)
         try:
             scope_config = next(s for s in observations['scope_config']['shops'] if s['shop_id'] == identity)

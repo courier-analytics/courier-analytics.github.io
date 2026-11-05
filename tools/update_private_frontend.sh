@@ -9,8 +9,8 @@ source=Path('/opt/courier-analytics/dashboard-code')
 target=Path('/opt/courier-dashboard/site')
 old=(target/'index.html').read_text()
 private_details='/private-details.js' in old
-for name in sorted(FILES):
-    text=(source/name).read_text()
+for name in sorted(FILES | ({'private-details.js'} if private_details else set())):
+    text=(source/'tools/private_web'/name if name=='private-details.js' else source/name).read_text()
     if name.endswith('.html'):
         if private_details:text=text.replace('</head>','<script>window.courierPrivate=true;</script></head>')
         scripts='<script src="/private-session.js"></script>'

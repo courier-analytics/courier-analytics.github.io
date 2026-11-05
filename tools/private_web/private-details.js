@@ -45,8 +45,8 @@
           const people=group.couriers.filter(p=>!query||(p.name+' '+p.courier_id).toLocaleLowerCase('ru').includes(query));
           if(!people.length)return;found+=people.length;
           content.append(node('h3',`${group.title} · ${query?people.length:group.count} курьеров`));
-          const rows=people.flatMap(p=>(p.slots.length?p.slots:[{}]).map(s=>[p.name,p.courier_id,s.slot_id||'—',s.slot_type==='limited'?'Лимитированный':s.slot_type==='manual'?'Ручной':'—',when(s.planned_start)+' — '+when(s.planned_end),when(s.actual_start)+' — '+when(s.actual_end),s.slot_id?late(s.late_seconds):'—',s.status||'Нет записи на выбранный день',s.note||'']));
-          content.append(table(['ФИО','ID курьера','Слот','Тип','План, МСК','Факт, МСК','Опоздание','Статус','Примечание'],rows));
+          const rows=people.flatMap(p=>(p.slots.length?p.slots:[{}]).map(s=>[p.name,p.courier_id,s.slot_id||'—',s.slot_type==='limited'?'Лимитированный':s.slot_type==='manual'?'Ручной':'—',when(s.planned_start)+' — '+when(s.planned_end),when(s.actual_start)+' — '+when(s.actual_end),s.slot_id&&!(s.removed_at&&!s.actual_start)?late(s.late_seconds):'—',s.status||'Нет записи на выбранный день',when(s.removed_at),s.removed_by||'—',s.note||'']));
+          content.append(table(['ФИО','ID курьера','Слот','Тип','План, МСК','Факт, МСК','Опоздание','Статус','Снято, МСК','Кто снял','Примечание'],rows));
         });
         if(!found)content.append(node('p',query?'Совпадений не найдено.':'Нет записей в этой группе.'));
       }

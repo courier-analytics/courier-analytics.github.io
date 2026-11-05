@@ -3,7 +3,7 @@ from collections import Counter,defaultdict
 from enrich_slots import source_status
 
 
-def index(slots,plan_slots):
+def index(slots,plan_slots,cancellations=()):
     from calculate_metrics import timestamp,MOSCOW
     current={(s['slot_type'],s['slot_id'],p['courier_id']):(s,p)
              for s in slots for p in s['couriers']}
@@ -41,4 +41,21 @@ def index(slots,plan_slots):
                 current[key]=(planned,{**person,'plan_fact_source_slot_id':source['slot_id'],
                     'plan_fact_source_slot_type':source['slot_type'],
                     'plan_fact_note':'Запись из плана снята; в текущих записях этого курьера источник подтверждает «Не вышел». Исходный план сохранён.'})
+    for planned in plan_slots:
+        for person in planned['couriers']:
+            identity=person['courier_id'];key=planned['slot_type'],planned['slot_id'],identity
+            if key in current:continue
+            # Conflicting actual work must still be investigated, even if the
+            # original reservation was cancelled. History is not a work fact.
+            if any(p.get('shift_start') or p.get('shift_end') for s,p in by_person[identity]):continue
+            matches=[c for c in cancellations if c.get('verified') is True and
+                (c.get('slot_type'),c.get('slot_id'),c.get('courier_id'))==key and
+                c.get('date')==planned['date'] and c.get('planned_from')==planned['time_from'] and
+                c.get('planned_to')==planned['time_to'] and c.get('source')=='native_booking_history']
+            if len(matches)!=1:continue
+            cancelled=matches[0]
+            current[key]=(planned,{'courier_id':identity,'name':cancelled.get('name'),
+                'shift_status':'Снятая смена','shift_start':None,'shift_end':None,
+                'plan_cancellation':cancelled,
+                'plan_fact_note':'Снятие подтверждено историей бронирования. Запись остаётся в исходном плане.'})
     return current
