@@ -2892,7 +2892,7 @@
       "capacity": 0,
       "fill_percent": null,
       "source": "slots_export",
-      "reported_at": "2026-11-05T21:31:05.832012+00:00",
+      "reported_at": "2026-11-05T21:46:52.092526+00:00",
       "metrics": {
         "slot_fill": {
           "value": null,
@@ -2945,7 +2945,7 @@
       "capacity": 88,
       "fill_percent": 75.0,
       "source": "slots_export",
-      "reported_at": "2026-11-05T21:31:05.832012+00:00",
+      "reported_at": "2026-11-05T21:46:52.092526+00:00",
       "metrics": {
         "slot_fill": {
           "value": 75.0,
@@ -3002,7 +3002,7 @@
       "capacity": 31,
       "fill_percent": 100.0,
       "source": "slots_export",
-      "reported_at": "2026-11-05T21:31:05.832012+00:00",
+      "reported_at": "2026-11-05T21:46:52.092526+00:00",
       "metrics": {
         "slot_fill": {
           "value": 100.0,
@@ -3062,7 +3062,7 @@
       "capacity": 129,
       "fill_percent": 41.86,
       "source": "slots_export",
-      "reported_at": "2026-11-05T21:31:05.832012+00:00",
+      "reported_at": "2026-11-05T21:46:52.092526+00:00",
       "metrics": {
         "slot_fill": {
           "value": 41.86,
@@ -3119,7 +3119,7 @@
       "capacity": 0,
       "fill_percent": null,
       "source": "slots_export",
-      "reported_at": "2026-11-05T21:31:29.469664+00:00",
+      "reported_at": "2026-11-05T21:47:25.465462+00:00",
       "metrics": {
         "slot_fill": {
           "value": null,
@@ -3172,7 +3172,7 @@
       "capacity": 92,
       "fill_percent": 66.3,
       "source": "slots_export",
-      "reported_at": "2026-11-05T21:31:29.469664+00:00",
+      "reported_at": "2026-11-05T21:47:25.465462+00:00",
       "metrics": {
         "slot_fill": {
           "value": 66.3,
@@ -3225,7 +3225,7 @@
       "capacity": 31,
       "fill_percent": 74.19,
       "source": "slots_export",
-      "reported_at": "2026-11-05T21:31:29.469664+00:00",
+      "reported_at": "2026-11-05T21:47:25.465462+00:00",
       "metrics": {
         "slot_fill": {
           "value": 74.19,
@@ -3235,11 +3235,11 @@
           "basis": "limited_slot_places"
         },
         "shift_marked": {
-          "value": null,
-          "numerator": null,
-          "denominator": null,
-          "reason": "assigned_roster_not_verified",
-          "basis": null
+          "value": 44.19,
+          "numerator": 19,
+          "denominator": 43,
+          "reason": null,
+          "basis": "onec_accessible_nonmobile_unique_couriers"
         },
         "unplanned_work": {
           "value": null,
@@ -3270,10 +3270,10 @@
           "basis": "slot_completion_by_actual_night_end_date"
         },
         "training": {
-          "value": null,
-          "numerator": null,
-          "denominator": null,
-          "reason": "assigned_roster_not_verified",
+          "value": 44.19,
+          "numerator": 19,
+          "denominator": 43,
+          "reason": null,
           "basis": "onec_training_named_intersection"
         }
       }
@@ -3281,15 +3281,15 @@
     {
       "date": "2026-11-06",
       "shop_id": 8092,
-      "booked_places": 43,
+      "booked_places": 44,
       "capacity": 129,
-      "fill_percent": 33.33,
+      "fill_percent": 34.11,
       "source": "slots_export",
-      "reported_at": "2026-11-05T21:31:29.469664+00:00",
+      "reported_at": "2026-11-05T21:47:25.465462+00:00",
       "metrics": {
         "slot_fill": {
-          "value": 33.33,
-          "numerator": 43,
+          "value": 34.11,
+          "numerator": 44,
           "denominator": 129,
           "reason": null,
           "basis": "limited_slot_places"
@@ -3326,7 +3326,7 @@
           "value": null,
           "numerator": null,
           "denominator": null,
-          "reason": "shift_end_or_final_status_missing",
+          "reason": "completion_history_incomplete",
           "basis": "slot_completion_by_actual_night_end_date"
         }
       }
