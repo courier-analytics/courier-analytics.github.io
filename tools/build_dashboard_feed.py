@@ -9,13 +9,13 @@ from enrich_slots import atomic_json
 from dashboard_shops import TARGETS, TOOL_START
 
 METRIC_KEYS = {'slot_fill', 'shift_marked', 'planned_attendance', 'planned_late',
-               'unplanned_work', 'planned_completion'}
-REASONS = {'lateness_duration_missing', 'zero_denominator', 'assigned_roster_not_verified', 'active_base_incomplete', 'completion_history_incomplete',
+               'unplanned_work', 'planned_completion', 'training'}
+REASONS = {'training_source_unavailable','training_roster_names_missing','lateness_duration_missing', 'zero_denominator', 'assigned_roster_not_verified', 'active_base_incomplete', 'completion_history_incomplete',
            'bookings_outside_verified_roster', 'frozen_plan_missing',
            'planned_booking_missing_from_current_data', 'planned_slot_times_changed',
            'unknown_planned_shift_status', 'unknown_shift_status',
            'shift_end_or_final_status_missing'}
-BASES = {'onec_accessible_nonmobile_unique_couriers', 'limited_slot_places', 'all_assigned_unique_couriers', 'direct_shop_scheduled_unique_5d_including_day',
+BASES = {'onec_training_named_intersection','onec_accessible_nonmobile_unique_couriers', 'limited_slot_places', 'all_assigned_unique_couriers', 'direct_shop_scheduled_unique_5d_including_day',
          'current_limited_bookings_unique_couriers',
          'current_limited_all_shifts_site_10min_tolerance',
          'slot_completion_by_actual_night_end_date',

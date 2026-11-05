@@ -82,6 +82,9 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
                 metrics['shift_marked'] = collect_active_base(day, identity, shop['slots'], token, proxy)
             except (RuntimeError, ValueError, KeyError, TypeError):
                 metrics['shift_marked'] = metric(reason='active_base_incomplete', basis=ACTIVE_BASIS)
+        from training import configured as collect_training
+        training=collect_training(day,rosters.get(identity),state_dir) if identity==7745 else None
+        if training:metrics['training']=training['metric']
         fill = metrics['slot_fill']
         from courier_details import build as build_details
         from completion_reporting import choose as choose_completion
@@ -95,6 +98,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
             completion_slots=choose_completion(history+[s for s in shop['slots'] if s['slot_type']=='limited'],day)
             completion_slots=filter_slots(completion_slots,excluded)
             detail=build_details(day,shop,metrics,rosters.get(identity),daily_plan,completion_slots)
+            if training:detail['metrics']['training']=training['detail']
             if excluded:
                 for item in detail['metrics'].values():
                     item['note']=(item.get('note','')+' Из расчёта исключено отключённых курьеров по подтверждению пользователя: '+str(len(excluded))+'.').strip()

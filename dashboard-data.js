@@ -15,8 +15,10 @@
   let lastSuccess = "";
   let cachedSlots = [], cachedMedical = [];
   const metricIndexes = {slot_fill: 2, shift_marked: 1, planned_attendance: 3,
-    planned_late: 4, unplanned_work: 5, planned_completion: 6};
+    planned_late: 4, unplanned_work: 5, planned_completion: 6, training: 8};
   const reasons = {
+    training_source_unavailable: "Таблица обучения недоступна или не прошла проверку.",
+    training_roster_names_missing: "В базе 1С не для всех курьеров получены ФИО для сверки обучения.",
     lateness_duration_missing: "Не удалось определить длительность опоздания для порога 15 минут.",
     zero_denominator: "Нет данных для знаменателя; это не 0%.",
     assigned_roster_not_verified: "Полный список закреплённых курьеров ещё не подтверждён.",
@@ -109,7 +111,7 @@
         next[2][indexes.get(row.date)] = row.fill_percent === null ? null : String(row.fill_percent);
       }
       Object.entries(row.metrics || {}).forEach(([key, metric]) => {
-        if (hasManualValue(metricIndexes[key], row.date)) return;
+        if (key !== "training" && hasManualValue(metricIndexes[key], row.date)) return;
         if (key === "shift_marked" && row.date < (toolStart[shop] || row.date)) {
           next[1][indexes.get(row.date)] = null;
           return;
@@ -141,7 +143,7 @@
       }
       Object.entries(row.metrics || {}).forEach(([key, metric]) => {
         const cell = rowsInTable[metricIndexes[key]].querySelectorAll("td")[i];
-        if (hasManualValue(metricIndexes[key], row.date)) {
+        if (key !== "training" && hasManualValue(metricIndexes[key], row.date)) {
           cell.title = "Сохранено ранее внесённое вручную значение.";
           cell.dataset.source = "manual";
           return;
@@ -152,6 +154,7 @@
           return;
         }
         const basis = {
+          training: " курьеров активной базы 1С с подтверждённой записью об обучении к выбранной дате. Сверка по полному ФИО; повторные записи учитываются один раз.",
           slot_fill: " мест. Один курьер может занимать несколько слотов.",
           shift_marked: metric.basis === "onec_accessible_nonmobile_unique_couriers" ?
             " курьеров базы 1С с доступом к ДС, без мобильных авто-/велокурьеров и тестировщиков, имеющих запись в слоте ДС или его кластера. Запись не подтверждает самостоятельное проставление смены или фактический выход." : metric.basis === "direct_shop_scheduled_unique_5d_including_day" ?
@@ -175,17 +178,17 @@
           basis.planned_completion = " уникальных курьеров, завершивших все учитываемые лимитированные слоты. Ночная смена относится к дате фактического ухода по Москве; открытая ночная смена пока не включается. Дневная — к дате слота. Допуск окончания — 10 минут. Даты других метрик не меняются.";
         }
         cell.title = metric.value === null ? reasons[metric.reason] :
-          "По данным сайта: " + metric.numerator + " из " + metric.denominator + basis[key];
+          (key === "training" ? "По таблице обучения и базе 1С: " : "По данным сайта: ") + metric.numerator + " из " + metric.denominator + basis[key];
         if (metric.stale_reason) {
           cell.title = "Последний подтверждённый расчёт от " + new Date(metric.last_success_at).toLocaleString("ru-RU", {timeZone:"Europe/Moscow"}) + " МСК. Сейчас обновление недоступно: " + reasons[metric.stale_reason] + " " + cell.title;
           const value=cell.querySelector('.cell');
           if(value){value.textContent+=' ⟳';value.style.outline='2px dashed #c58a17';value.style.outlineOffset='2px';}
         }
-        cell.dataset.source = "slots_export";
+        cell.dataset.source = key === "training" ? "training_sheet" : "slots_export";
         if (window.metricDetails) window.metricDetails.attach(cell, {
           key, name: metrics[metricIndexes[key]].name, shop, day: row.date,
           metric, explanation: metric.value === null ? reasons[metric.reason] + " " + basis[key] : cell.title,
-          source: key === "shift_marked" && metric.basis === "onec_accessible_nonmobile_unique_couriers" ? "База 1С и API «Выходы курьеров»" : "API «Выходы курьеров»",
+          source: key === "training" ? "Таблица обучения и база 1С" : key === "shift_marked" && metric.basis === "onec_accessible_nonmobile_unique_couriers" ? "База 1С и API «Выходы курьеров»" : "API «Выходы курьеров»",
           reportedAt: metric.last_success_at || row.reported_at
         });
       });
@@ -207,7 +210,7 @@
     const latest = own.slice().sort((a, b) => a.date.localeCompare(b.date)).pop() || medical.slice().sort((a, b) => a.date.localeCompare(b.date)).pop();
     const time = new Intl.DateTimeFormat("ru-RU", {timeZone: "Europe/Moscow", dateStyle: "short", timeStyle: "short"}).format(new Date(latest.reported_at));
     const ready = latest.metrics ? Object.values(latest.metrics).filter(metric => metric.value !== null).length : (latest.fill_percent === null ? 0 : 1);
-    lastSuccess = "Выгрузка за " + latest.date.slice(8) + "." + latest.date.slice(5, 7) + "." + latest.date.slice(0, 4) + " · Сформирована " + time + " МСК. Рассчитано автоматических показателей: " + ready + " из 6. Причины прочерков — в подсказках ячеек.";
+    lastSuccess = "Выгрузка за " + latest.date.slice(8) + "." + latest.date.slice(5, 7) + "." + latest.date.slice(0, 4) + " · Сформирована " + time + " МСК. Рассчитано автоматических показателей: " + ready + " из " + (latest.metrics ? Object.keys(latest.metrics).length : 6) + ". Причины прочерков — в подсказках ячеек.";
     const staleCount=Object.values(latest.metrics || {}).filter(metric=>metric.stale_reason).length;
     if(staleCount)lastSuccess+=" Последние подтверждённые значения отмечены ⟳: "+staleCount+". Время и причина задержки — по нажатию на показатель.";
     if (medical.length) {

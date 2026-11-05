@@ -151,7 +151,7 @@ def create_app(config=None):
         try:
             if date.fromisoformat(day).isoformat()!=day:abort(400)
         except ValueError:abort(400)
-        if shop not in (7745,5818,4747,8092) or key not in ('shift_marked','slot_fill','planned_attendance','planned_late','unplanned_work','planned_completion','medical'):abort(404)
+        if shop not in (7745,5818,4747,8092) or key not in ('shift_marked','slot_fill','planned_attendance','planned_late','unplanned_work','planned_completion','medical','training'):abort(404)
         if key=='medical':return jsonify(available=False,note='Персональная выгрузка медицинских книжек пока не подключена. Доступны только общие количества.')
         path=Path(values.get('details_root','/opt/courier-dashboard/details'))/f'{day}-{shop}.json'
         if not path.is_file():return jsonify(available=False,note='Персональная детализация за эту дату ещё не сохранена.'),404

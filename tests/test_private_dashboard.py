@@ -66,10 +66,15 @@ class PrivateDashboardTests(unittest.TestCase):
     def test_named_details_require_login_and_are_not_static_files(self):
         payload={'kind':'courier_metric_details','date':'2026-11-03','shop_id':7745,'generated_at':'2026-11-03T09:00:00Z',
                  'metrics':{'planned_late':{'groups':[{'couriers':[{'name':'TEST_NAME','courier_id':'111111'}]}]}}}
+        payload['metrics']['training']={'groups':[{'couriers':[{'name':'TEST_TRAINED','courier_id':'222222','training_date':'2026-10-16T13:00:00+03:00'}]}]}
         (self.root/'details/2026-11-03-7745.json').write_text(json.dumps(payload))
         url='/api/details/7745/2026-11-03/planned_late'
         self.assertEqual(self.get(url).status_code,401)
+        training_url='/api/details/7745/2026-11-03/training'
+        self.assertEqual(self.get(training_url).status_code,401)
         self.login();response=self.get(url)
+        self.assertEqual(self.get(training_url).status_code,200)
+        self.assertIn('TEST_TRAINED',self.get(training_url).text)
         self.assertTrue(response.json['available']);self.assertIn('TEST_NAME',response.text)
         self.assertEqual(self.get('/data/2026-11-03-7745.json').status_code,404)
         self.assertEqual(self.get('/api/details/7745/not-a-date/planned_late').status_code,400)
