@@ -1,5 +1,5 @@
 """Run on the user's Mac with Happ disabled. No credentials or local configuration changes."""
-import json,socket,ssl,time
+import argparse,ipaddress,json,re,socket,ssl,time
 from datetime import datetime,timezone
 
 HOST='courier-7745.147.90.10.158.sslip.io'
@@ -44,12 +44,27 @@ def http(tls=False,fixed_ip=True,tls12=False):
                 response+=chunk
             status=response.split(b'\r\n')[0].decode('ascii','replace')
             if not status.startswith('HTTP/'):raise ValueError('No HTTP response')
-            return {'status':status,'tls':connection.version() if tls else None,'fixed_ipv4':fixed_ip}
+            code=int(status.split()[1])
+            return {'status':status,'http_status':code,'login_available':code==200,
+                    'tls':connection.version() if tls else None,'fixed_ipv4':fixed_ip}
         finally:
             if connection is not raw:connection.close()
 
 
 def main():
+    global HOST,IP
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--host',default=HOST,help='Dashboard hostname without scheme or path')
+    parser.add_argument('--ip',help='Explicit public IPv4; if omitted, resolve the supplied hostname')
+    args=parser.parse_args()
+    if not re.fullmatch(r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}',args.host) or len(args.host)>253:
+        parser.error('Pass a lowercase DNS hostname without scheme, path or port.')
+    HOST=args.host
+    try:
+        IP=str(ipaddress.IPv4Address(args.ip or (IP if HOST=='courier-7745.147.90.10.158.sslip.io' else socket.gethostbyname(HOST))))
+        if not ipaddress.IPv4Address(IP).is_global:raise ValueError('Public IPv4 required')
+    except (OSError,ValueError) as error:
+        parser.error('Could not select a public IPv4: '+str(error))
     print('Проверка доступа к дашборду. Happ должен быть выключен. Пароли не нужны.',flush=True)
     print(json.dumps({'observed_at':datetime.now(timezone.utc).isoformat(),'host':HOST,'ip':IP}),flush=True)
     results={}
@@ -66,6 +81,8 @@ def main():
         print('Итог: TCP-соединение с IP не установлено. Нужна проверка маршрута и фильтрации на сервере/у провайдера.')
     elif results['tcp443']['ok'] and not results['https']['ok']:
         print('Итог: TCP 443 доступен, но HTTPS не завершается. Проверьте результат TLS и настройки сервера.')
+    elif results['hostname']['ok'] and not results['hostname'].get('login_available'):
+        print('Итог: HTTPS-соединение установлено, но страница входа вернула '+results['hostname']['status']+'. Нужно проверить конфигурацию сайта.')
     elif results['hostname']['ok']:
         print('Итог: HTTPS работает из Терминала; нужно проверить настройки браузера и системного прокси.')
     else:print('Итог: передайте строки проверки для разбора; причина пока не определена.')

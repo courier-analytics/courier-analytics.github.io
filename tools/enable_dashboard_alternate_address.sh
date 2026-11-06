@@ -1,15 +1,29 @@
 #!/usr/bin/env bash
-# Add an authenticated hostname on the existing VPS; preserve the original entry.
+# Add an authenticated hostname on an already assigned IPv4; preserve the original entry.
 set -euo pipefail
 umask 077
 [[ $(id -u) == 0 ]] || { echo 'Run on the existing dashboard VPS as root.'; exit 1; }
-host=courier-7745.147.90.10.158.nip.io
+[[ $# -le 1 ]] || { echo 'Usage: bash enable_dashboard_alternate_address.sh [ASSIGNED_PUBLIC_IPV4]'; exit 1; }
+public_ip=${1:-147.90.10.158}
+python3 - "$public_ip" <<'PY'
+import ipaddress,json,subprocess,sys
+address=ipaddress.IPv4Address(sys.argv[1])
+if not address.is_global:raise SystemExit('Pass a public IPv4 assigned to this VPS.')
+interfaces=json.loads(subprocess.check_output(['ip','-j','-4','addr','show'],text=True))
+assigned={a.get('local') for interface in interfaces for a in interface.get('addr_info',[])}
+if str(address) not in assigned:
+    raise SystemExit('IPv4 is not assigned inside this VPS. Obtain provider network settings first; no network or website changes made.')
+PY
+host=courier-7745.$public_ip.nip.io
 origin=courier-7745.147.90.10.158.sslip.io
 site=/etc/caddy/sites-enabled/courier-dashboard-alternate.caddy
+if [[ "$public_ip" != 147.90.10.158 ]]; then
+  site=/etc/caddy/sites-enabled/courier-dashboard-secondary-${public_ip//./-}.caddy
+fi
 systemctl is-active --quiet courier-web.service
 systemctl is-active --quiet caddy
 resolved=$(getent ahostsv4 "$host" | awk '{print $1}' | sort -u)
-[[ "$resolved" == 147.90.10.158 ]] || { echo 'Alternate hostname DNS is not as expected; no changes made.'; exit 1; }
+[[ "$resolved" == "$public_ip" ]] || { echo 'Alternate hostname DNS is not as expected; no changes made.'; exit 1; }
 grep -Fq 'import /etc/caddy/sites-enabled/*.caddy' /etc/caddy/Caddyfile || {
   echo 'Expected Caddy include is absent; no changes made.'; exit 1;
 }
