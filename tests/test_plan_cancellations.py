@@ -86,7 +86,7 @@ class CancellationTests(unittest.TestCase):
    def audit(day,token,proxy,folder,**kwargs):
     atomic_json(folder/'all-shops-observations.json',{'shops':[{'shop_id':7745,'slots':self.current}]})
     return {}
-   with patch('refresh_all_shops.audit',side_effect=audit),patch('refresh_all_shops.resolve_overnight',side_effect=lambda slots,*_: (slots,{})),patch('plan_cancellations.api_get',return_value=self.history):
+   with patch('refresh_all_shops.audit',side_effect=audit),patch('refresh_all_shops.resolve_overnight',side_effect=lambda slots,*_,**kw: (slots,{})),patch('plan_cancellations.api_get',return_value=self.history):
     refresh(self.day,'secret',None,private,feed)
    public=json.loads(feed.read_text());metric=public['records'][0]['metrics']['planned_attendance']
    self.assertEqual((metric['numerator'],metric['denominator']),(1,2))

@@ -18,6 +18,14 @@ def timestamp(value):
         return None
 
 
+def cutoff_end(person):
+    """A23:59:59 daily cut is a lower bound, not a confirmed physical finish."""
+    end=timestamp(person.get('shift_end'))
+    if end is None:return timestamp(person.get('shift_end_lower_bound'))
+    local=end.astimezone(MOSCOW)
+    return end if (local.hour,local.minute,local.second)==(23,59,59) else None
+
+
 def metric(numerator=None, denominator=None, reason=None, basis=None):
     return {'value': round(numerator/denominator*100, 2)
             if reason is None and denominator else None,
@@ -125,8 +133,8 @@ def calculate(slots, day, roster=None, plan=None):
         identity = key[2]
         if states[key] not in arrived_states:
             continue
-        end = timestamp(current[key][1]['shift_end'])
-        if end is None:
+        end = timestamp(current[key][1]['shift_end']) or cutoff_end(current[key][1])
+        if end is None or (cutoff_end(current[key][1]) is not None and end < period(slot)[1]-timedelta(minutes=10)):
             unfinished_facts = True
             continue
         _, planned_end = period(slot)
@@ -172,7 +180,9 @@ def current_slot_completion(limited, now=None):
                 return metric(reason='unknown_shift_status', basis=SLOT_COMPLETION_BASIS)
             if state == 'no_show':continue
             if state == 'expected' and not person.get('shift_start') and not person.get('shift_end'):continue
-            end = timestamp(person.get('shift_end'))
+            end = timestamp(person.get('shift_end')) or cutoff_end(person)
+            if cutoff_end(person) is not None and end is not None and end < planned_end-timedelta(minutes=10):
+                return metric(reason='shift_end_or_final_status_missing',basis=SLOT_COMPLETION_BASIS)
             if state == 'expected' or end is None or end > now or end < start-timedelta(days=1):
                 return metric(reason='shift_end_or_final_status_missing', basis=SLOT_COMPLETION_BASIS)
             completed = end >= planned_end-timedelta(minutes=10)

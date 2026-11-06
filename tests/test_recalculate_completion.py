@@ -21,7 +21,7 @@ class RecalculationTests(unittest.TestCase):
       'couriers':[{'courier_id':'111111','name':'TEST','shift_status':'Вышел','shift_start':day+'T08:00:00+03:00','shift_end':day+'T20:00:00+03:00'},
                   {'courier_id':'222222','shift_status':'Не вышел','shift_start':None,'shift_end':None}]}
    atomic_json(private/'completion-night-state/7745.json',{'days':{}})
-   with patch('recalculate_completion.collect_slots',return_value=[{'available':True,'slots':[slot],'cluster_ids':[]}]),patch('recalculate_completion.resolve',side_effect=lambda slots,*_: (slots,{})),patch('recalculate_completion.completion'):
+   with patch('recalculate_completion.collect_slots',return_value=[{'available':True,'slots':[slot],'cluster_ids':[]}]),patch('recalculate_completion.resolve',side_effect=lambda slots,*_,**kw: (slots,{})),patch('recalculate_completion.completion'):
     result=run(feed,private,'secret',None)
    self.assertEqual(len(result),1)
    payload=json.loads(feed.read_text());updated=next(r for r in payload['records'] if r['shop_id']==7745)

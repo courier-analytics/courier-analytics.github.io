@@ -32,6 +32,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
             roster_errors = {s['shop_id']: str(error) for s in observations['shops']}
     summaries = []
     private_details = []
+    stitch_cache={}
     for shop in observations['shops']:
         identity = shop['shop_id']
         state_dir=completion_state_dir or private_dir
@@ -44,7 +45,9 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
                 rosters[identity] = load_native_roster(native_path.parent, day)
             except (OSError, ValueError, KeyError, TypeError):
                 roster_errors[identity] = 'native_roster_stale_or_invalid'
-        shop['slots'], shop['overnight_completion'] = resolve_overnight(shop['slots'], token, proxy)
+        scope_config=next((s for s in observations.get('scope_config',{}).get('shops',[]) if s['shop_id']==identity),None)
+        scopes=([('shopno',identity)]+[('cluster_id',int(c)) for c in scope_config['cluster_ids']]) if scope_config else None
+        shop['slots'], shop['overnight_completion'] = resolve_overnight(shop['slots'], token, proxy, source_cache=stitch_cache,scopes=scopes)
         source_plan = next((p for p in (plan or {}).get('shops', []) if p['shop_id'] == identity), None)
         daily_plan = {'verified': True, 'date': day, 'captured_at':plan.get('completed_at'), 'slots': source_plan['slots']} if (
             source_plan and plan.get('verified') is True and plan.get('date') == day) else None
@@ -64,7 +67,7 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
             scope_config = next(s for s in observations['scope_config']['shops'] if s['shop_id'] == identity)
             metrics['planned_completion'], shop['completion_reporting'] = collect_completion(
                 day, identity, scope_config, shop['slots'], token, proxy,
-                completion_state_dir or private_dir)
+                completion_state_dir or private_dir,source_cache=stitch_cache)
             if excluded:
                 state_path=(completion_state_dir or private_dir)/'completion-night-state'/f'{identity}.json'
                 state=json.loads(state_path.read_text())

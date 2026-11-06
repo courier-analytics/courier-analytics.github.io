@@ -44,7 +44,8 @@ class CompletionReportingTests(unittest.TestCase):
             root = Path(folder)
             with patch.dict('completion_reporting.FIRST_DAYS', {5818: '2026-10-26'}):
                 # 25th: still working, tracked privately but not counted yet.
-                first, _ = collect('2026-10-25', 5818, {'cluster_ids': []}, [night()], '', '', root, NOW)
+                with patch('overnight_completion.fetch',return_value={'items':[]}):
+                    first, _ = collect('2026-10-25', 5818, {'cluster_ids': []}, [night()], '', '', root, NOW)
                 self.assertEqual(first['reason'], 'zero_denominator')
                 # 27th: refresh older pending origin, not just the immediately previous day.
                 with patch('completion_reporting.fetch', side_effect=response) as request:

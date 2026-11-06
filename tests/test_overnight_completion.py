@@ -35,6 +35,8 @@ class OvernightTests(unittest.TestCase):
         self.assertEqual(report['recovered_records'], 1)
         self.assertIsNone(slot['couriers'][0]['shift_end'])
         self.assertEqual(result[0]['couriers'][0]['shift_end_source_date'], '2026-10-26')
-        with patch('overnight_completion.fetch') as request:
-            resolve([slot], '', '', datetime.fromisoformat('2026-10-26T06:00:00+03:00'))
-            request.assert_not_called()
+        with patch('overnight_completion.fetch',return_value=response) as request:
+            early,report=resolve([slot], '', '', datetime.fromisoformat('2026-10-26T06:00:00+03:00'))
+            request.assert_called_once()
+            self.assertIsNone(early[0]['couriers'][0]['shift_end'])
+            self.assertEqual(report['recovered_records'],0)

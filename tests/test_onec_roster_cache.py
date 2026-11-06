@@ -52,7 +52,7 @@ class NativeRosterCacheTests(unittest.TestCase):
                             for i in ['111111','333333']]}]}]})
             return {'shops':[{'shop_id':7745}]}
         def run():
-            with patch('onec_roster_cache.datetime') as clock, patch('refresh_all_shops.audit',side_effect=audit), patch('refresh_all_shops.resolve_overnight',side_effect=lambda slots,*a:(slots,{})), patch('refresh_all_shops.collect_active_base') as old:
+            with patch('onec_roster_cache.datetime') as clock, patch('refresh_all_shops.audit',side_effect=audit), patch('refresh_all_shops.resolve_overnight',side_effect=lambda slots,*a,**kw:(slots,{})), patch('refresh_all_shops.collect_active_base') as old:
                 clock.now.return_value=self.now
                 clock.fromisoformat.side_effect=datetime.fromisoformat
                 result=refresh(self.day,'secret','',self.folder,self.folder/'public.json',active_base=True)

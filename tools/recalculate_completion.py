@@ -14,7 +14,7 @@ from courier_details import build
 
 
 def run(feed,private,token,proxy,shop=7745):
-    payload=merge_feed(None,json.loads(feed.read_text()));results=[]
+    payload=merge_feed(None,json.loads(feed.read_text()));results=[];stitch_cache={}
     today=datetime.now(MOSCOW).date().isoformat()
     for row in sorted(payload['records'],key=lambda r:r['date']):
         if row['shop_id']!=shop or row['date']>today:continue
@@ -22,9 +22,10 @@ def run(feed,private,token,proxy,shop=7745):
         try:
             source=collect_slots(day,[shop],token,proxy)[0]
             if not source['available']:raise ValueError('Source unavailable')
-            slots,_=resolve(source['slots'],token,proxy)
+            scopes=[('shopno',shop)]+[('cluster_id',int(c)) for c in source['cluster_ids']]
+            slots,_=resolve(source['slots'],token,proxy,source_cache=stitch_cache,scopes=scopes)
             excluded=load(private,day,shop);slots=filter_slots(slots,excluded)
-            completion(day,shop,{'cluster_ids':source['cluster_ids']},slots,token,proxy,private)
+            completion(day,shop,{'cluster_ids':source['cluster_ids']},slots,token,proxy,private,source_cache=stitch_cache)
             state=json.loads((private/'completion-night-state'/f'{shop}.json').read_text())
             history=[s for origin,saved in state['days'].items() if origin<day for s in saved['slots']]
             selected=filter_slots(choose(history+[s for s in slots if s['slot_type']=='limited'],day),excluded)
@@ -44,7 +45,9 @@ def run(feed,private,token,proxy,shop=7745):
         if detail.get('date')!=day or detail.get('shop_id')!=shop:raise ValueError('Private detail identity changed')
         detail['metrics']['planned_completion']=named;detail['generated_at']=generated;atomic_json(path,detail)
         atomic_json(feed,payload);feed.chmod(0o644)
-        result={'date':day,'shop_id':shop,'status':outcome,'planned_completion':value}
+        result={'date':day,'shop_id':shop,'status':outcome,'planned_completion':value,
+            'stitched_end_records':sum(bool(p.get('shift_end_source_date')) for s in selected or [] for p in s['couriers']),
+            'stitched_start_records':sum(bool(p.get('shift_start_source_date')) for s in selected or [] for p in s['couriers'])}
         results.append(result);print(json.dumps(result,ensure_ascii=False),flush=True)
     return results
 

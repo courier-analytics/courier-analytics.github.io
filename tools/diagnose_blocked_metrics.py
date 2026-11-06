@@ -2,7 +2,7 @@
 import argparse,json
 from datetime import datetime,timedelta
 from pathlib import Path
-from calculate_metrics import MOSCOW,period,timestamp,current_slot_completion
+from calculate_metrics import MOSCOW,period,timestamp,current_slot_completion,cutoff_end
 from completion_reporting import choose,is_night
 from diagnose_missing_plan import differences
 from enrich_slots import atomic_json,source_status
@@ -16,13 +16,15 @@ def completion_blockers(slots,now=None):
         start,end=period(slot)
         for person in slot['couriers']:
             state=source_status(person.get('shift_status'))
-            actual=timestamp(person.get('shift_end'))
+            boundary=cutoff_end(person)
+            actual=timestamp(person.get('shift_end')) or boundary
             reason=None
             if state=='unknown':reason='unknown_shift_status'
             elif state=='no_show':continue
             elif state=='expected':
                 if person.get('shift_start') or person.get('shift_end'):reason='still_expected'
                 else:continue
+            elif boundary is not None and boundary<end-timedelta(minutes=10):reason='calendar_boundary_end_unconfirmed'
             elif actual is None:reason='actual_end_missing'
             elif actual>now:reason='actual_end_in_future'
             elif actual<start-timedelta(days=1):reason='actual_end_invalid'
@@ -31,7 +33,7 @@ def completion_blockers(slots,now=None):
                     'date':slot['date'],'planned_from':slot['time_from'],'planned_to':slot['time_to'],
                     'courier_id':person['courier_id'],'name':person.get('name'),
                     'shift_status':person.get('shift_status'),'shift_start':person.get('shift_start'),
-                    'shift_end':person.get('shift_end'),'reason':reason})
+                    'shift_end':person.get('shift_end'),'worked_through':boundary.isoformat() if boundary else None,'reason':reason})
     return result
 
 
@@ -66,7 +68,7 @@ def explain(private,day,shop):
             {'date':s['date'],'slot_id':s['slot_id'],'courier_id':p['courier_id'],
              'name':p.get('name'),'shift_start':p.get('shift_start'),'shift_status':p.get('shift_status')}
             for s in filter_slots(history+slots,ids) if is_night(s)
-            for p in s['couriers'] if timestamp(p.get('shift_end')) is None],
+            for p in s['couriers'] if timestamp(p.get('shift_end')) is None or cutoff_end(p) is not None],
         'source_slots':slots}
 
 

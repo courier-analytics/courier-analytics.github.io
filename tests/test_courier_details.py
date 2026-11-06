@@ -4,6 +4,22 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from courier_details import build
 from calculate_metrics import calculate
 class NamedDetailTests(unittest.TestCase):
+    def test_calendar_cut_is_shown_as_lower_bound_and_stitch_has_source_dates(self):
+        day='2026-11-03'
+        person={'courier_id':'111111','name':'TEST','shift_status':'Вышел',
+                'shift_start':day+'T20:00:00+03:00','shift_end':None,
+                'shift_end_lower_bound':day+'T23:59:59+03:00'}
+        slot={'date':day,'slot_id':1,'slot_type':'limited','time_from':'20:00','time_to':'08:00','capacity':1,'couriers':[person],'scope_id':7745}
+        details=build(day,{'shop_id':7745,'slots':[slot]},calculate([slot],day))
+        event=details['metrics']['planned_completion']['groups'][2]['couriers'][0]['slots'][0]
+        self.assertIsNone(event['actual_end'])
+        self.assertEqual(event['worked_through'],person['shift_end_lower_bound'])
+        person.update(shift_end='2026-11-04T08:00:00+03:00',shift_end_source_date='2026-11-04')
+        details=build(day,{'shop_id':7745,'slots':[slot]},calculate([slot],day))
+        event=details['metrics']['planned_completion']['groups'][0]['couriers'][0]['slots'][0]
+        self.assertEqual(event['actual_end'],person['shift_end'])
+        self.assertIsNone(event['worked_through'])
+        self.assertIn('2026-11-04',event['note'])
     def test_groups_match_aggregates_and_exclude_unneeded_personal_fields(self):
         day='2026-11-03'
         people=[{'courier_id':'111111','name':'TEST_ONE','shift_status':'Опоздал на 18 минут','shift_start':day+'T07:18:00+03:00','shift_end':day+'T19:00:00+03:00','phone':'PRIVATE_PHONE'},

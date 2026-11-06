@@ -1,7 +1,7 @@
 """Private named metric groups, built from the same slots and plan as aggregate metrics."""
 from collections import defaultdict
 from datetime import datetime,timedelta
-from calculate_metrics import period,timestamp,late_15_minutes,MOSCOW
+from calculate_metrics import period,timestamp,late_15_minutes,MOSCOW,cutoff_end
 from enrich_slots import source_status
 ARRIVED={'early','on_time','late'}
 
@@ -17,6 +17,12 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
         if item.get('name'):names[item['courier_id']]=item['name']
     def event(slot,person):
         start,end=period(slot);actual=timestamp(person.get('shift_start'));finish=timestamp(person.get('shift_end'))
+        boundary=cutoff_end(person)
+        if boundary is not None:finish=None
+        notes=[person.get('plan_fact_note')]
+        if person.get('shift_start_source_date'):notes.append('Начало восстановлено из выгрузки за '+person['shift_start_source_date']+'. Исходное начало: '+str(person.get('shift_start_raw'))+'.')
+        if person.get('shift_end_source_date'):notes.append('Окончание сшито с выгрузкой за '+person['shift_end_source_date']+'.')
+        if boundary is not None:notes.append('23:59:59 — граница выгрузки. Продолжение проверяется автоматически по соседним дням; окончательный уход пока не подтверждён.')
         midnight=actual is not None and actual.astimezone(MOSCOW).time().isoformat()=='00:00:00'
         return {'slot_id':str(slot['slot_id']),'slot_type':slot['slot_type'],'scope':str(slot.get('name') or slot.get('scope_id','')),
             'planned_start':start.isoformat(),'planned_end':end.isoformat(),'actual_start':actual.isoformat() if actual else None,
@@ -24,7 +30,10 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
             'late_seconds':max(0,int((actual-start).total_seconds())) if actual and not midnight else None,
             'removed_at':person.get('plan_cancellation',{}).get('removed_at'),
             'removed_by':person.get('plan_cancellation',{}).get('removed_by'),
-            'note':person.get('plan_fact_note') or ('Проверить начало 00:00' if midnight else ''),
+            'note':' '.join(n for n in notes if n) or ('Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.' if midnight else ''),
+            'worked_through':boundary.isoformat() if boundary else None,
+            'shift_start_source_date':person.get('shift_start_source_date'),
+            'shift_end_source_date':person.get('shift_end_source_date'),
             **({'fact_source_slot_id':str(person['plan_fact_source_slot_id'])} if 'plan_fact_source_slot_id' in person else {})}
     for slot in slots:
         for person in slot['couriers']:
@@ -95,9 +104,9 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
     for slot in completion_slots if completion_slots is not None else [s for s in slots if s['slot_type']=='limited']:
         start,end=period(slot)
         for person in slot['couriers']:
-            i=person['courier_id'];state=source_status(person.get('shift_status'));finish=timestamp(person.get('shift_end'))
+            i=person['courier_id'];state=source_status(person.get('shift_status'));finish=timestamp(person.get('shift_end')) or cutoff_end(person)
             if state in {'no_show','expected'}:continue
-            if state=='unknown' or finish is None or finish>now or finish<start-timedelta(days=1):answer=None
+            if state=='unknown' or finish is None or finish>now or (cutoff_end(person) is not None and finish<end-timedelta(minutes=10)) or finish<start-timedelta(days=1):answer=None
             else:answer=finish>=end-timedelta(minutes=10)
             completion[i].append(answer);completion_events[i].append(event(slot,person))
     done={i for i,v in completion.items() if all(x is True for x in v)}
