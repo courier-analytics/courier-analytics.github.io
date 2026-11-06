@@ -12,9 +12,9 @@ cat > /etc/systemd/system/courier-refresh.service.d/zzz-recent-days.conf <<'UNIT
 EnvironmentFile=-/etc/courier-analytics/proxy.env
 TimeoutStartSec=1200
 ExecStart=
-ExecStart=/usr/bin/flock -n /opt/courier-analytics/refresh.lock /opt/courier-analytics/import-venv/bin/python /opt/courier-analytics/dashboard-code/tools/refresh_recent_days.py --feed /opt/courier-analytics/current-site/data/dashboard.json
+ExecStart=/usr/bin/flock -w 180 /opt/courier-analytics/refresh.lock /opt/courier-analytics/import-venv/bin/python /opt/courier-analytics/dashboard-code/tools/refresh_recent_days.py --feed /opt/courier-analytics/current-site/data/dashboard.json
 ExecStartPost=
-ExecStartPost=/usr/bin/flock -n /opt/courier-analytics/publish.lock /opt/courier-analytics/import-venv/bin/python /opt/courier-analytics/dashboard-code/tools/publish_dashboard.py --feed /opt/courier-analytics/current-site/data/dashboard.json
+ExecStartPost=/usr/bin/flock -w 120 /opt/courier-analytics/publish.lock /opt/courier-analytics/import-venv/bin/python /opt/courier-analytics/dashboard-code/tools/publish_dashboard.py --feed /opt/courier-analytics/current-site/data/dashboard.json
 UNIT
 systemctl daemon-reload
 systemctl reset-failed courier-onec-roster.service courier-refresh.service
