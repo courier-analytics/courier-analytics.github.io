@@ -15,7 +15,7 @@ REASONS = {'training_source_unavailable','training_roster_names_missing','latene
            'planned_booking_missing_from_current_data', 'planned_slot_times_changed',
            'unknown_planned_shift_status', 'unknown_shift_status',
            'shift_end_or_final_status_missing'}
-BASES = {'onec_training_named_intersection','onec_accessible_nonmobile_unique_couriers', 'limited_slot_places', 'all_assigned_unique_couriers', 'direct_shop_scheduled_unique_5d_including_day',
+BASES = {'slot_completion_arrived_by_actual_night_end_date','current_limited_arrived_site_10min_tolerance','frozen_plan_arrived_site_10min_tolerance','onec_training_named_intersection','onec_accessible_nonmobile_unique_couriers', 'limited_slot_places', 'all_assigned_unique_couriers', 'direct_shop_scheduled_unique_5d_including_day',
          'current_limited_bookings_unique_couriers',
          'current_limited_all_shifts_site_10min_tolerance',
          'slot_completion_by_actual_night_end_date',

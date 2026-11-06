@@ -7,7 +7,7 @@ from enrich_slots import source_status
 
 MOSCOW = ZoneInfo('Europe/Moscow')
 SLOT_ATTENDANCE_BASIS = 'current_limited_bookings_unique_couriers'
-SLOT_COMPLETION_BASIS = 'current_limited_all_shifts_site_10min_tolerance'
+SLOT_COMPLETION_BASIS = 'current_limited_arrived_site_10min_tolerance'
 
 
 def timestamp(value):
@@ -123,19 +123,18 @@ def calculate(slots, day, roster=None, plan=None):
     completion, unfinished_facts = {}, False
     for key, slot in expected.items():
         identity = key[2]
-        if states[key] in ('no_show', 'cancelled'):
-            completion[identity] = False
+        if states[key] not in arrived_states:
             continue
         end = timestamp(current[key][1]['shift_end'])
-        if states[key] == 'expected' or end is None:
+        if end is None:
             unfinished_facts = True
             continue
         _, planned_end = period(slot)
         completed = end >= planned_end-timedelta(minutes=10)
         completion[identity] = completion.get(identity, True) and completed
-    output['planned_completion'] = metric(reason='shift_end_or_final_status_missing') if unfinished_facts else metric(
-        sum(completion.get(identity, False) for identity in planned), len(planned),
-        basis='frozen_plan_all_shifts_site_10min_tolerance')
+    output['planned_completion'] = metric(reason='shift_end_or_final_status_missing',basis='frozen_plan_arrived_site_10min_tolerance') if unfinished_facts else metric(
+        sum(completion.get(identity, False) for identity in arrived), len(arrived),
+        basis='frozen_plan_arrived_site_10min_tolerance')
     return output
 
 
@@ -171,11 +170,8 @@ def current_slot_completion(limited, now=None):
             state = source_status(person.get('shift_status'))
             if state == 'unknown':
                 return metric(reason='unknown_shift_status', basis=SLOT_COMPLETION_BASIS)
-            if state == 'no_show':
-                if planned_end > now:
-                    return metric(reason='shift_end_or_final_status_missing', basis=SLOT_COMPLETION_BASIS)
-                completion[identity] = False
-                continue
+            if state == 'no_show':continue
+            if state == 'expected' and not person.get('shift_start') and not person.get('shift_end'):continue
             end = timestamp(person.get('shift_end'))
             if state == 'expected' or end is None or end > now or end < start-timedelta(days=1):
                 return metric(reason='shift_end_or_final_status_missing', basis=SLOT_COMPLETION_BASIS)

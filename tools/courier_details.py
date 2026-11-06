@@ -96,12 +96,12 @@ def build(day,shop,metrics,roster=None,plan=None,completion_slots=None):
         start,end=period(slot)
         for person in slot['couriers']:
             i=person['courier_id'];state=source_status(person.get('shift_status'));finish=timestamp(person.get('shift_end'))
-            if state=='no_show':answer=False if end<=now else None
-            elif state=='unknown' or state=='expected' or finish is None or finish>now or finish<start-timedelta(days=1):answer=None
+            if state in {'no_show','expected'}:continue
+            if state=='unknown' or finish is None or finish>now or finish<start-timedelta(days=1):answer=None
             else:answer=finish>=end-timedelta(minutes=10)
             completion[i].append(answer);completion_events[i].append(event(slot,person))
     done={i for i,v in completion.items() if all(x is True for x in v)}
     failed={i for i,v in completion.items() if any(x is False for x in v)}
     pending=set(completion)-done-failed
-    put('planned_completion',[('Завершили учитываемые смены',done,completion_events),('Не завершили или ушли раньше',failed,completion_events),('Нет окончательных данных',pending,completion_events)],len(completion),len(done),'Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут.')
+    put('planned_completion',[('Завершили учитываемые смены',done,completion_events),('Не завершили или ушли раньше',failed,completion_events),('Нет окончательных данных',pending,completion_events)],len(completion),len(done),'В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут.')
     return {'kind':'courier_metric_details','schema_version':1,'date':day,'shop_id':shop['shop_id'],'metrics':result}

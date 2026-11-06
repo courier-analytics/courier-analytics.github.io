@@ -111,7 +111,7 @@
         next[2][indexes.get(row.date)] = row.fill_percent === null ? null : String(row.fill_percent);
       }
       Object.entries(row.metrics || {}).forEach(([key, metric]) => {
-        if (key !== "training" && hasManualValue(metricIndexes[key], row.date)) return;
+        if (key !== "training" && !(key === "planned_completion" && ["slot_completion_arrived_by_actual_night_end_date","current_limited_arrived_site_10min_tolerance","frozen_plan_arrived_site_10min_tolerance"].includes(metric.basis)) && hasManualValue(metricIndexes[key], row.date)) return;
         if (key === "shift_marked" && row.date < (toolStart[shop] || row.date)) {
           next[1][indexes.get(row.date)] = null;
           return;
@@ -143,7 +143,7 @@
       }
       Object.entries(row.metrics || {}).forEach(([key, metric]) => {
         const cell = rowsInTable[metricIndexes[key]].querySelectorAll("td")[i];
-        if (key !== "training" && hasManualValue(metricIndexes[key], row.date)) {
+        if (key !== "training" && !(key === "planned_completion" && ["slot_completion_arrived_by_actual_night_end_date","current_limited_arrived_site_10min_tolerance","frozen_plan_arrived_site_10min_tolerance"].includes(metric.basis)) && hasManualValue(metricIndexes[key], row.date)) {
           cell.title = "Сохранено ранее внесённое вручную значение.";
           cell.dataset.source = "manual";
           return;
@@ -176,6 +176,9 @@
         }
         if (metric.basis === "slot_completion_by_actual_night_end_date") {
           basis.planned_completion = " уникальных курьеров, завершивших все учитываемые лимитированные слоты. Ночная смена относится к дате фактического ухода по Москве; открытая ночная смена пока не включается. Дневная — к дате слота. Допуск окончания — 10 минут. Даты других метрик не меняются.";
+        }
+        if (["slot_completion_arrived_by_actual_night_end_date","current_limited_arrived_site_10min_tolerance","frozen_plan_arrived_site_10min_tolerance"].includes(metric.basis)) {
+          basis.planned_completion = " фактически вышедших курьеров, завершивших все учитываемые смены. Невышедшие и ожидающиеся не входят в знаменатель. Допуск окончания — 10 минут. Ночные смены относятся к дате фактического ухода по Москве.";
         }
         cell.title = metric.value === null ? reasons[metric.reason] :
           (key === "training" ? "По таблице обучения и базе 1С: " : "По данным сайта: ") + metric.numerator + " из " + metric.denominator + basis[key];

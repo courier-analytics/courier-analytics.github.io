@@ -9,7 +9,7 @@ from shift_reporting_day import reporting_day
 from overnight_completion import resolve as resolve_overnight
 from dashboard_shops import SHOPS
 
-BASIS = 'slot_completion_by_actual_night_end_date'
+BASIS = 'slot_completion_arrived_by_actual_night_end_date'
 FIRST_DAYS = {shop: config['first_day'] for shop, config in SHOPS.items()}
 
 

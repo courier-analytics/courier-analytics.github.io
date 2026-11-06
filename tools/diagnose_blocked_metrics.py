@@ -19,9 +19,10 @@ def completion_blockers(slots,now=None):
             actual=timestamp(person.get('shift_end'))
             reason=None
             if state=='unknown':reason='unknown_shift_status'
-            elif state=='no_show':
-                if end>now:reason='planned_end_not_reached'
-            elif state=='expected':reason='still_expected'
+            elif state=='no_show':continue
+            elif state=='expected':
+                if person.get('shift_start') or person.get('shift_end'):reason='still_expected'
+                else:continue
             elif actual is None:reason='actual_end_missing'
             elif actual>now:reason='actual_end_in_future'
             elif actual<start-timedelta(days=1):reason='actual_end_invalid'

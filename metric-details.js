@@ -44,6 +44,7 @@
       if (detail.key === "planned_attendance") terms = ["Вышли из записавшихся", "Записались в лимитированные слоты", "Остальные записавшиеся"];
       if (detail.key === "planned_late") terms = ["Опоздали от 15 минут", "Вышли в лимитированные слоты", "Без опоздания от 15 минут"];
     }
+    if (["slot_completion_arrived_by_actual_night_end_date","current_limited_arrived_site_10min_tolerance","frozen_plan_arrived_site_10min_tolerance"].includes(metric.basis)) terms = ["Доработали смены до конца", "Фактически вышли на смену", "Ушли раньше или нет окончательных данных"];
     const list = document.createElement("dl");
     [metric.numerator, metric.denominator].forEach((value, index) => list.append(element("dt", terms[index]), element("dd", value === null ? "Нет данных" : String(value))));
     if (Number.isSafeInteger(metric.numerator) && Number.isSafeInteger(metric.denominator) && metric.denominator >= metric.numerator) {

@@ -3,7 +3,7 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from backfill_dashboard import manual_history, needed, select_rows, work_for_date, safe_failure, BASE, REFRESHABLE
+from backfill_dashboard import manual_history, needed, select_rows, work_for_date, safe_failure, BASE, REFRESHABLE, COMPLETION_BASIS
 from calculate_metrics import metric
 
 
@@ -39,10 +39,12 @@ class BackfillTests(unittest.TestCase):
             'shift_marked': metric(0, 0, basis=BASE)}}
         row['metrics'].update(planned_attendance=metric(0, 0, basis='current_limited_bookings_unique_couriers'),
                               planned_late=metric(0, 0, basis='current_limited_bookings_unique_couriers'))
-        row['metrics']['planned_completion'] = metric(0, 0, basis='slot_completion_by_actual_night_end_date')
+        row['metrics']['planned_completion'] = metric(0, 0, basis=COMPLETION_BASIS)
         work = needed({'records': [row]}, {(5818, '2026-10-26'): set(),
             (7745, '2026-10-26'): set(), (4747, '2026-10-26'): set()}, '2026-10-26')
         self.assertNotIn((5818, '2026-10-26'), work)
+        row['metrics']['planned_completion']['basis']='slot_completion_by_actual_night_end_date'
+        self.assertIn('planned_completion',needed({'records':[row]},{(5818,'2026-10-26'):set()},'2026-10-26')[5818,'2026-10-26'])
 
     def test_select_preserves_manual_plan_and_prior_slot_fill(self):
         old = {'shop_id': 5818, 'date': '2026-10-25', 'booked_places': 5,
