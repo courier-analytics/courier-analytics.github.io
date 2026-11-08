@@ -3377,7 +3377,7 @@
       "capacity": 0,
       "fill_percent": null,
       "source": "slots_export",
-      "reported_at": "2026-11-08T03:44:21.837815+00:00",
+      "reported_at": "2026-11-08T03:59:59.001966+00:00",
       "metrics": {
         "slot_fill": {
           "value": null,
@@ -3430,7 +3430,7 @@
       "capacity": 101,
       "fill_percent": 69.31,
       "source": "slots_export",
-      "reported_at": "2026-11-08T03:44:21.837815+00:00",
+      "reported_at": "2026-11-08T03:59:59.001966+00:00",
       "metrics": {
         "slot_fill": {
           "value": 69.31,
@@ -3483,7 +3483,7 @@
       "capacity": 36,
       "fill_percent": 88.89,
       "source": "slots_export",
-      "reported_at": "2026-11-08T03:44:21.837815+00:00",
+      "reported_at": "2026-11-08T03:59:59.001966+00:00",
       "metrics": {
         "slot_fill": {
           "value": 88.89,
@@ -3543,7 +3543,7 @@
       "capacity": 169,
       "fill_percent": 28.4,
       "source": "slots_export",
-      "reported_at": "2026-11-08T03:44:21.837815+00:00",
+      "reported_at": "2026-11-08T03:59:59.001966+00:00",
       "metrics": {
         "slot_fill": {
           "value": 28.4,
@@ -3596,7 +3596,7 @@
       "capacity": 0,
       "fill_percent": null,
       "source": "slots_export",
-      "reported_at": "2026-11-08T03:44:38.676848+00:00",
+      "reported_at": "2026-11-08T04:00:15.930518+00:00",
       "metrics": {
         "slot_fill": {
           "value": null,
@@ -3645,52 +3645,52 @@
     {
       "date": "2026-11-08",
       "shop_id": 5818,
-      "booked_places": 54,
+      "booked_places": 55,
       "capacity": 93,
-      "fill_percent": 58.06,
+      "fill_percent": 59.14,
       "source": "slots_export",
-      "reported_at": "2026-11-08T03:44:38.676848+00:00",
+      "reported_at": "2026-11-08T04:00:15.930518+00:00",
       "metrics": {
         "slot_fill": {
-          "value": 58.06,
-          "numerator": 54,
+          "value": 59.14,
+          "numerator": 55,
           "denominator": 93,
           "reason": null,
           "basis": "limited_slot_places"
         },
         "shift_marked": {
-          "value": 53.92,
-          "numerator": 55,
+          "value": 54.9,
+          "numerator": 56,
           "denominator": 102,
           "reason": null,
           "basis": "direct_shop_scheduled_unique_5d_including_day"
         },
         "unplanned_work": {
-          "value": null,
+          "value": 0.0,
           "numerator": 0,
-          "denominator": 0,
-          "reason": "zero_denominator",
+          "denominator": 3,
+          "reason": null,
           "basis": "worked_without_frozen_plan_unique_couriers"
         },
         "planned_attendance": {
-          "value": 0.0,
-          "numerator": 0,
+          "value": 5.45,
+          "numerator": 3,
           "denominator": 55,
           "reason": null,
           "basis": "frozen_plan_unique_couriers"
         },
         "planned_late": {
-          "value": null,
+          "value": 0.0,
           "numerator": 0,
-          "denominator": 0,
-          "reason": "zero_denominator",
+          "denominator": 3,
+          "reason": null,
           "basis": "frozen_plan_unique_couriers"
         },
         "planned_completion": {
           "value": null,
-          "numerator": 0,
-          "denominator": 0,
-          "reason": "zero_denominator",
+          "numerator": null,
+          "denominator": null,
+          "reason": "shift_end_or_final_status_missing",
           "basis": "slot_completion_arrived_by_actual_night_end_date"
         }
       }
@@ -3698,22 +3698,22 @@
     {
       "date": "2026-11-08",
       "shop_id": 7745,
-      "booked_places": 26,
+      "booked_places": 28,
       "capacity": 30,
-      "fill_percent": 86.67,
+      "fill_percent": 93.33,
       "source": "slots_export",
-      "reported_at": "2026-11-08T03:44:38.676848+00:00",
+      "reported_at": "2026-11-08T04:00:15.930518+00:00",
       "metrics": {
         "slot_fill": {
-          "value": 86.67,
-          "numerator": 26,
+          "value": 93.33,
+          "numerator": 28,
           "denominator": 30,
           "reason": null,
           "basis": "limited_slot_places"
         },
         "shift_marked": {
-          "value": 50.0,
-          "numerator": 21,
+          "value": 52.38,
+          "numerator": 22,
           "denominator": 42,
           "reason": null,
           "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -3762,7 +3762,7 @@
       "capacity": 169,
       "fill_percent": 17.16,
       "source": "slots_export",
-      "reported_at": "2026-11-08T03:44:38.676848+00:00",
+      "reported_at": "2026-11-08T04:00:15.930518+00:00",
       "metrics": {
         "slot_fill": {
           "value": 17.16,
@@ -3779,31 +3779,31 @@
           "basis": "direct_shop_scheduled_unique_5d_including_day"
         },
         "unplanned_work": {
-          "value": null,
+          "value": 0.0,
           "numerator": 0,
-          "denominator": 0,
-          "reason": "zero_denominator",
+          "denominator": 2,
+          "reason": null,
           "basis": "worked_without_frozen_plan_unique_couriers"
         },
         "planned_attendance": {
-          "value": 0.0,
-          "numerator": 0,
+          "value": 5.56,
+          "numerator": 2,
           "denominator": 36,
           "reason": null,
           "basis": "frozen_plan_unique_couriers"
         },
         "planned_late": {
-          "value": null,
+          "value": 0.0,
           "numerator": 0,
-          "denominator": 0,
-          "reason": "zero_denominator",
+          "denominator": 2,
+          "reason": null,
           "basis": "frozen_plan_unique_couriers"
         },
         "planned_completion": {
           "value": null,
-          "numerator": 0,
-          "denominator": 0,
-          "reason": "zero_denominator",
+          "numerator": null,
+          "denominator": null,
+          "reason": "shift_end_or_final_status_missing",
           "basis": "slot_completion_arrived_by_actual_night_end_date"
         }
       }
