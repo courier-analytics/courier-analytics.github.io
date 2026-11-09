@@ -58,4 +58,14 @@ def index(slots,plan_slots,cancellations=()):
                 'shift_status':'Снятая смена','shift_start':None,'shift_end':None,
                 'plan_cancellation':cancelled,
                 'plan_fact_note':'Снятие подтверждено историей бронирования. Запись остаётся в исходном плане.'})
+    # Evaluate matched work against the immutable plan, even after slot edits.
+    for planned in plan_slots:
+        for person in planned['couriers']:
+            key=planned['slot_type'],planned['slot_id'],person['courier_id']
+            if key not in current:continue
+            source,fact=current[key]
+            if (source['time_from'],source['time_to'])!=(planned['time_from'],planned['time_to']):
+                fact={**fact,'plan_fact_note':'Время слота изменено после фиксации. Расчёт выполнен от исходного плана.',
+                      'planned_time_changed':True}
+                current[key]=(planned,fact)
     return current

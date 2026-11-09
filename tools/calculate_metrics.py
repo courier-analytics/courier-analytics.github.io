@@ -52,6 +52,7 @@ def late_15_minutes(slot, person):
     if start is not None:
         scheduled, _ = period(slot)
         return start - scheduled >= timedelta(minutes=15)
+    if person.get('planned_time_changed'):return None
     if source_status(person.get('shift_status')) != 'late':
         return False
     text = person.get('shift_status', '').lower()
