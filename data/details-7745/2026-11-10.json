@@ -2,20 +2,20 @@
   "shop_id": 7745,
   "records": {
     "2026-11-10": {
-      "generated_at": "2026-11-10T13:22:40.114428+00:00",
+      "generated_at": "2026-11-10T13:44:38.832955+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 56.82,
-            "numerator": 25,
-            "denominator": 44,
+            "value": 58.7,
+            "numerator": 27,
+            "denominator": 46,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 25,
+              "count": 27,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -41,6 +41,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1799948166",
+                  "name": "Ализаде Алигулу Тарверди Оглы",
+                  "slots": [
+                    {
+                      "slot_id": "1793477",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T07:00:00+03:00",
+                      "planned_end": "2026-11-10T21:00:00+03:00",
+                      "actual_start": "2026-11-10T06:57:37+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1120965906",
                   "name": "Васильев Александр Михайлович",
                   "slots": [
@@ -51,6 +74,29 @@
                       "planned_start": "2026-11-10T08:30:00+03:00",
                       "planned_end": "2026-11-10T20:00:00+03:00",
                       "actual_start": "2026-11-10T08:21:13+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "53048",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T16:00:00+03:00",
+                      "planned_end": "2026-11-10T22:00:00+03:00",
+                      "actual_start": "2026-11-10T15:44:57+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -714,54 +760,8 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 4,
+              "count": 2,
               "couriers": [
-                {
-                  "courier_id": "1799948166",
-                  "name": "Ализаде Алигулу Тарверди Оглы",
-                  "slots": [
-                    {
-                      "slot_id": "1793477",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-10T07:00:00+03:00",
-                      "planned_end": "2026-11-10T21:00:00+03:00",
-                      "actual_start": "2026-11-10T06:57:37+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800009953",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [
-                    {
-                      "slot_id": "53048",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-10T16:00:00+03:00",
-                      "planned_end": "2026-11-10T22:00:00+03:00",
-                      "actual_start": "2026-11-10T15:44:57+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1799880477",
                   "name": "Корнеев Александр Евгеньевич",
@@ -3687,22 +3687,29 @@
         },
         "training": {
           "aggregate": {
-            "value": 43.18,
-            "numerator": 19,
-            "denominator": 44,
+            "value": 45.65,
+            "numerator": 21,
+            "denominator": 46,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 19,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800128719",
                   "name": "Алиев Магомед Саид-Мухамедович",
                   "slots": [],
                   "training_date": "2026-10-29T11:54:50+03:00",
+                  "match_status": "Обучение подтверждено"
+                },
+                {
+                  "courier_id": "1799948166",
+                  "name": "Ализаде Алигулу Тарверди Оглы",
+                  "slots": [],
+                  "training_date": "2026-10-16T17:04:38+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -3717,6 +3724,13 @@
                   "name": "Васильев Александр Михайлович",
                   "slots": [],
                   "training_date": "2026-10-30T17:22:16+03:00",
+                  "match_status": "Обучение подтверждено"
+                },
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [],
+                  "training_date": "2026-10-16T16:33:50+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -4016,7 +4030,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 10,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -4037,20 +4051,6 @@
                   "name": "Тагоев Лочин Хакимович",
                   "slots": [],
                   "training_date": "2026-10-16T15:37:43+03:00",
-                  "match_status": "Нет точного совпадения в активной базе 1С"
-                },
-                {
-                  "courier_id": "—",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [],
-                  "training_date": "2026-10-16T16:33:50+03:00",
-                  "match_status": "Нет точного совпадения в активной базе 1С"
-                },
-                {
-                  "courier_id": "—",
-                  "name": "АЛИЗАДЕ АЛИГУЛУ ТАРВЕРДИ Оглы",
-                  "slots": [],
-                  "training_date": "2026-10-16T17:04:38+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
