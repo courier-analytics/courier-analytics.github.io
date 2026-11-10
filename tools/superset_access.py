@@ -61,6 +61,23 @@ def dataset_structure(identity, result):
 
 
 def inspect_metadata(opener, token, schedule=None):
+    status, dashboard = api(opener, '/api/v1/dashboard/services_lite', token=token)
+    result = dashboard.get('result') if isinstance(dashboard, dict) else None
+    print('services_lite dashboard HTTP: ' + str(status), flush=True)
+    if status == 200 and isinstance(result, dict):
+        identity = result.get('id')
+        if isinstance(identity, int):
+            chart_status, charts = api(opener, '/api/v1/dashboard/' + str(identity) + '/charts', token=token)
+            items = charts.get('result') if isinstance(charts, dict) else None
+            print('services_lite charts HTTP: ' + str(chart_status), flush=True)
+            if chart_status == 200 and isinstance(items, list):
+                target = Path('/opt/courier-analytics/private/services-lite-metadata.json')
+                target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+                safe = {'dashboard': {key: result.get(key) for key in ('id', 'dashboard_title', 'json_metadata', 'position_json')},
+                    'charts': [{key: item.get(key) for key in ('id', 'slice_name', 'viz_type', 'params', 'query_context', 'datasource_id', 'datasource_type')} for item in items if isinstance(item, dict)]}
+                private_write(target, json.dumps(safe, ensure_ascii=False, indent=2))
+                print('services_lite chart count: ' + str(len(items)), flush=True)
+                print('Private services_lite metadata saved: ' + str(target), flush=True)
     structures = []
     for identity in (6856, 6802, 4778):
         if identity == 6856 and schedule is not None:
