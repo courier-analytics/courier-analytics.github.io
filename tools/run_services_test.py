@@ -1,5 +1,5 @@
 """Fetch, render and explicitly send the dated DS9107 pilot entirely on the VPS."""
-import argparse,json,subprocess,sys,time,os
+import argparse,json,subprocess,sys,time,os,math
 from pathlib import Path
 from services_report_render import render
 from send_services_photo import send
@@ -13,6 +13,11 @@ def run(refresh=True,send_report=False):
         if not source.exists() or source.stat().st_mtime<started:raise ValueError('Fresh source was not saved')
     payload=json.loads(source.read_text())
     if payload.get('shop_id')!=9107 or payload.get('date')!='2026-11-09':raise ValueError('Unexpected pilot scope')
+    if payload.get('source_dataset')!=3035:raise ValueError('C2E source must be refreshed')
+    for sample in payload['samples']:
+        for row in sample['rows']:
+            value=row.get('avg_order_time')
+            if not isinstance(value,(int,float)) or not math.isfinite(value) or value<0:raise ValueError('C2E not confirmed')
     html=render(payload)
     from playwright.sync_api import sync_playwright
     target=folder/'services-test-9107-2026-11-09.png'

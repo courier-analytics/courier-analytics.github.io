@@ -20,7 +20,7 @@ def chart_data(opener,token,payload):
     return code,data
 
 def collect(opener,token):
-    result={'date':'2026-11-09','shop_id':9107,'datasets':[],'samples':[]}
+    result={'date':'2026-11-09','shop_id':9107,'source_dataset':3035,'datasets':[],'samples':[]}
     for identity in (3035,5438):
         code,data=api(opener,'/api/v1/dataset/'+str(identity),token=token)
         source=data.get('result') if isinstance(data,dict) else None
@@ -29,12 +29,12 @@ def collect(opener,token):
         result['datasets'].append({'id':identity,
           'columns':[{k:c.get(k) for k in ('column_name','type','expression')} for c in source.get('columns',[])],
           'metrics':[{k:m.get(k) for k in ('metric_name','verbose_name','expression','d3format')} for m in source.get('metrics',[])]})
-    source=next((s for s in result['datasets'] if s['id']==5438),None)
+    source=next((s for s in result['datasets'] if s['id']==3035),None)
     names={m['metric_name'] for m in source['metrics']} if source else set()
-    metrics=['qty_orders_delivered','qty_couriers','share_collection_delay_all','share_all_0_sla_offline']
+    metrics=['qty_orders_delivered','qty_couriers','share_collection_delay_all','share_all_0_sla_offline','avg_order_time']
     if set(metrics)<=names and {'shopno','date_supply','delivery_type_group'}<={c['column_name'] for c in source['columns']}:
         for start,end in [('2026-11-08','2026-11-09'),('2026-11-09','2026-11-10')]:
-            payload={'datasource':{'id':5438,'type':'table'},'force':False,'result_format':'json','result_type':'full','queries':[{
+            payload={'datasource':{'id':3035,'type':'table'},'force':False,'result_format':'json','result_type':'full','queries':[{
                 'columns':['shopno'],'metrics':metrics,'row_limit':20,'is_timeseries':False,
                 'filters':[{'col':'shopno','op':'IN','val':[9107]},
                     {'col':'delivery_type_group','op':'IN','val':['Курьеры','Такси']},

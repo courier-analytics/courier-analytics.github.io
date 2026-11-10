@@ -12,7 +12,7 @@ def send(photo):
     if not image.startswith(b'\x89PNG\r\n\x1a\n') or len(image)>9_000_000:raise ValueError('Invalid PNG')
     boundary='report'+secrets.token_hex(16)
     parts=[]
-    for key,value in {'chat_id':str(chat),'caption':'Тестовый отчёт · ДС 9107 · 09.11.2026, полные сутки. Четыре подтверждённых показателя; прочерки — данные ещё не подключены.'}.items():
+    for key,value in {'chat_id':str(chat),'caption':'Тестовый отчёт · ДС 9107 · 09.11.2026, полные сутки. Пять показателей, включая C2E — среднее время заказа по формуле Superset; прочерки — данные ещё не подключены.'}.items():
         parts.append(('--'+boundary+'\r\nContent-Disposition: form-data; name="'+key+'"\r\n\r\n'+value+'\r\n').encode())
     parts.append(('--'+boundary+'\r\nContent-Disposition: form-data; name="photo"; filename="report.png"\r\nContent-Type: image/png\r\n\r\n').encode()+image+b'\r\n')
     parts.append(('--'+boundary+'--\r\n').encode())
