@@ -18,8 +18,9 @@
     section.append(node('h3','Курьеры и разбивка'),node('p','Загружаем персональные данные…'));
     dialog.addEventListener('close',()=>{if(dialog.contains(section)&&pending)pending.abort();},{once:true});
     try{
-      const url=window.courierOpenDetails?'data/details-7745.json':`/api/details/${encodeURIComponent(shop)}/${encodeURIComponent(day)}/${encodeURIComponent(key)}`;
-      const response=await fetch(url,{cache:'no-store',signal});
+      const url=window.courierOpenDetails?`data/details-7745/${encodeURIComponent(day)}.json`:`/api/details/${encodeURIComponent(shop)}/${encodeURIComponent(day)}/${encodeURIComponent(key)}`;
+      const timeout=setTimeout(()=>pending.abort(),20000);
+      let response;try{response=await fetch(url,{cache:'no-cache',signal});}finally{clearTimeout(timeout);}
       if(!window.courierOpenDetails&&response.status===401){location.replace('/login');return;}
       let payload=await response.json();if(window.courierOpenDetails){const record=payload.shop_id===Number(shop)&&payload.records?.[day];payload={available:!!record?.metrics?.[key],generated_at:record?.generated_at,detail:record?.metrics?.[key]};}if(signal.aborted||!dialog.open||!dialog.contains(section))return;
       section.replaceChildren(node('h3','Курьеры и разбивка'));
@@ -56,6 +57,6 @@
         if(!found)content.append(node('p',query?'Совпадений не найдено.':'Нет записей в этой группе.'));
       }
       search.addEventListener('input',render);select.addEventListener('change',render);render();
-    }catch(error){if(error.name!=='AbortError'&&dialog.contains(section))section.replaceChildren(node('h3','Курьеры и разбивка'),node('p','Не удалось загрузить детализацию. Закройте окно и попробуйте снова.'));}
+    }catch(error){if(dialog.open&&dialog.contains(section))section.replaceChildren(node('h3','Курьеры и разбивка'),node('p','Не удалось загрузить детализацию. Закройте окно и попробуйте снова.'));}
   });
 }());

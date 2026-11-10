@@ -56,6 +56,11 @@ def publish(feed, checkout, repository=REPOSITORY, environment=None, medical=Fal
         details_file=checkout/'data/details-7745.json'
         atomic_json(details_file,detail_payload);details_file.chmod(0o644)
         allowed.append('data/details-7745.json')
+        for day,record in detail_payload['records'].items():
+            name='data/details-7745/'+day+'.json'
+            atomic_json(checkout/name,{'shop_id':7745,'records':{day:record}})
+            (checkout/name).chmod(0o644)
+            allowed.append(name)
     git('add', '--', *allowed)
     staged = git('diff', '--cached', '--name-only').stdout.splitlines()
     if not staged:
