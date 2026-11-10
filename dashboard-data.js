@@ -127,7 +127,7 @@
     metrics.forEach((metric, i) => { metric.values = next[i]; });
     render();
     document.querySelector("col.day-col").span = days.length;
-    document.querySelector(".panel-note").textContent = metrics.length + " метрик · Дней: " + days.length + " · Цель";
+    document.querySelector(".panel-note").textContent = (metrics.length-1) + " метрик · Дней: " + days.length + " · Цель";
     document.querySelector(".description").textContent = "Ежедневные показатели · " + dates[0] + "–" + dates[dates.length - 1] + ".2026";
     const rowsInTable = document.querySelectorAll("#metricsBody tr");
     const cells = rowsInTable[2].querySelectorAll("td");

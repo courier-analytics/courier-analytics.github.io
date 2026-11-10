@@ -97,7 +97,7 @@
     <button id="refreshData" type="button">Обновить данные</button>
   </section>
   <section class="panel" aria-labelledby="tableTitle">
-    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">10 метрик · 1 день · Цель</span></div>
+    <div class="panel-heading"><h2 id="tableTitle">Таблица показателей</h2><span class="panel-note">9 метрик · 1 день · Цель</span></div>
     <div class="table-scroll" tabindex="0" aria-label="Таблица показателей, прокручивается горизонтально">
       <table id="metricsTable">
         <colgroup><col class="metric-col"><col class="day-col" span="1"><col class="goal-col"></colgroup>
@@ -161,11 +161,13 @@ function render() {
   body.replaceChildren();
   metrics.forEach(function(metric,index){
     const tr=document.createElement("tr");
+    // Keep source indexes stable for historical imports; omit forecast from display.
+    tr.hidden=index===0;
     const th=document.createElement("th");
     th.scope="row";
     const wrap=document.createElement("span");
     wrap.className="metric-title";
-    wrap.appendChild(textCell("span",String(index+1),"metric-index"));
+    wrap.appendChild(textCell("span",String(index),"metric-index"));
     wrap.appendChild(textCell("span",metric.name));
     th.appendChild(wrap);
     tr.appendChild(th);
@@ -184,7 +186,7 @@ function csvQuote(value) {
 }
 function downloadCsv() {
   const rows=[["Показатель"].concat(dates).concat(["Цель"])];
-  metrics.forEach(function(m){rows.push([m.name].concat(m.values.map(function(v){return v===null?"":formatPercent(v);})).concat([formatPercent(m.goal)]));});
+  metrics.slice(1).forEach(function(m){rows.push([m.name].concat(m.values.map(function(v){return v===null?"":formatPercent(v);})).concat([formatPercent(m.goal)]));});
   const csv="\ufeff"+rows.map(function(row){return row.map(csvQuote).join(";");}).join("\r\n");
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
   const link=document.createElement("a");
@@ -228,6 +230,6 @@ document.getElementById("copyLink").addEventListener("click",copyLink);
 document.getElementById("printReport").addEventListener("click",function(){window.print();});
 </script>
 <script src="metric-details.js?v=arrived-completion-20261106"></script>
-<script src="dashboard-data.js?v=arrived-completion-20261106"></script>
+<script src="dashboard-data.js?v=9metrics-arrived-completion-20261106"></script>
 </body>
 </html>
