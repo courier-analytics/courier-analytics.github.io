@@ -71,6 +71,19 @@ def inspect_metadata(opener, token, schedule=None):
             items = charts.get('result') if isinstance(charts, dict) else None
             print('services_lite charts HTTP: ' + str(chart_status), flush=True)
             if chart_status == 200 and isinstance(items, list):
+                selected = {20161, 20480, 20481, 23266, 23267, 23268}
+                expanded = []
+                for item in items:
+                    if not isinstance(item, dict):continue
+                    identity = item.get('id')
+                    if identity in selected:
+                        chart_code, definition = api(opener, '/api/v1/chart/' + str(identity), token=token)
+                        detail = definition.get('result') if isinstance(definition, dict) else None
+                        print('Chart definition ' + str(identity) + ' HTTP: ' + str(chart_code), flush=True)
+                        if chart_code == 200 and isinstance(detail, dict):
+                            item = {**item, **detail}
+                    expanded.append(item)
+                items = expanded
                 target = Path('/opt/courier-analytics/private/services-lite-metadata.json')
                 target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
                 safe = {'dashboard': {key: result.get(key) for key in ('id', 'dashboard_title', 'json_metadata', 'position_json')},
