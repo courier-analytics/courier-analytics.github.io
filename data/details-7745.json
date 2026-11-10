@@ -51804,7 +51804,7 @@
       }
     },
     "2026-11-09": {
-      "generated_at": "2026-11-10T18:16:53.207846+00:00",
+      "generated_at": "2026-11-10T18:40:42.927227+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -56191,20 +56191,20 @@
       }
     },
     "2026-11-10": {
-      "generated_at": "2026-11-10T18:20:38.534431+00:00",
+      "generated_at": "2026-11-10T18:45:12.827655+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 62.5,
-            "numerator": 30,
-            "denominator": 48,
+            "value": 63.27,
+            "numerator": 31,
+            "denominator": 49,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 30,
+              "count": 31,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -56263,7 +56263,7 @@
                       "planned_start": "2026-11-10T08:30:00+03:00",
                       "planned_end": "2026-11-10T20:00:00+03:00",
                       "actual_start": "2026-11-10T08:21:13+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-10T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -56486,10 +56486,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-10T21:30:00+03:00",
                       "planned_end": "2026-11-11T08:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-10T09:23:42+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 12 часов 6 мин",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -56720,6 +56720,46 @@
                       "actual_end": null,
                       "status": "Опоздал на 44 минуты",
                       "late_seconds": 2680,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "1803190",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T08:00:00+03:00",
+                      "planned_end": "2026-11-10T21:00:00+03:00",
+                      "actual_start": "2026-11-10T00:00:00+03:00",
+                      "actual_end": "2026-11-10T10:00:00+03:00",
+                      "status": "Вышел раньше на 8 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "53866",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T22:00:00+03:00",
+                      "planned_end": "2026-11-11T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -57030,7 +57070,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 3,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1799880477",
@@ -57077,29 +57117,6 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
-                {
-                  "courier_id": "1799950967",
-                  "name": "Тагоев Лочин Хакимович",
-                  "slots": [
-                    {
-                      "slot_id": "1803190",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-10T08:00:00+03:00",
-                      "planned_end": "2026-11-10T21:00:00+03:00",
-                      "actual_start": "2026-11-10T00:00:00+03:00",
-                      "actual_end": "2026-11-10T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
                 }
               ]
             }
@@ -57110,8 +57127,8 @@
         "slot_fill": {
           "aggregate": {
             "value": 100.0,
-            "numerator": 14,
-            "denominator": 14,
+            "numerator": 15,
+            "denominator": 15,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -57547,6 +57564,23 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "53866",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T22:00:00+03:00",
+                      "planned_end": "2026-11-11T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
                     }
                   ]
                 }
@@ -57573,7 +57607,7 @@
                       "planned_start": "2026-11-10T08:30:00+03:00",
                       "planned_end": "2026-11-10T20:00:00+03:00",
                       "actual_start": "2026-11-10T08:21:13+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-10T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -57822,10 +57856,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-10T21:30:00+03:00",
                       "planned_end": "2026-11-11T08:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-10T09:23:42+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 12 часов 6 мин",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -58334,6 +58368,58 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-10T21:30:00+03:00",
                       "planned_end": "2026-11-11T08:30:00+03:00",
+                      "actual_start": "2026-11-10T09:23:42+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 12 часов 6 мин",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "53866",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "limited",
+              "planned_start": "2026-11-10T22:00:00+03:00",
+              "planned_end": "2026-11-11T10:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "1803190",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T08:00:00+03:00",
+                      "planned_end": "2026-11-10T21:00:00+03:00",
+                      "actual_start": "2026-11-10T00:00:00+03:00",
+                      "actual_end": "2026-11-10T10:00:00+03:00",
+                      "status": "Вышел раньше на 8 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "53866",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T22:00:00+03:00",
+                      "planned_end": "2026-11-11T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -58424,7 +58510,7 @@
                       "planned_start": "2026-11-10T08:30:00+03:00",
                       "planned_end": "2026-11-10T20:00:00+03:00",
                       "actual_start": "2026-11-10T08:21:13+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-10T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -59137,7 +59223,7 @@
                       "planned_start": "2026-11-10T08:30:00+03:00",
                       "planned_end": "2026-11-10T20:00:00+03:00",
                       "actual_start": "2026-11-10T08:21:13+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-10T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -59430,10 +59516,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-10T21:30:00+03:00",
                       "planned_end": "2026-11-11T08:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-10T09:23:42+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 12 часов 6 мин",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -59552,6 +59638,23 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "53866",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T22:00:00+03:00",
+                      "planned_end": "2026-11-11T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -59690,7 +59793,7 @@
                       "planned_start": "2026-11-10T08:30:00+03:00",
                       "planned_end": "2026-11-10T20:00:00+03:00",
                       "actual_start": "2026-11-10T08:21:13+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-10T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -60309,16 +60412,16 @@
         },
         "training": {
           "aggregate": {
-            "value": 43.75,
-            "numerator": 21,
-            "denominator": 48,
+            "value": 44.9,
+            "numerator": 22,
+            "denominator": 49,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 21,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -60416,6 +60519,13 @@
                   "name": "Сулаймонов Абдукиром Акобирович",
                   "slots": [],
                   "training_date": "2026-10-30T16:16:11+03:00",
+                  "match_status": "Обучение подтверждено"
+                },
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [],
+                  "training_date": "2026-10-16T15:37:43+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -60666,7 +60776,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 8,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -60680,13 +60790,6 @@
                   "name": "Икромов Сиротулло Хакимбекоаич",
                   "slots": [],
                   "training_date": "2026-10-16T15:35:56+03:00",
-                  "match_status": "Нет точного совпадения в активной базе 1С"
-                },
-                {
-                  "courier_id": "—",
-                  "name": "Тагоев Лочин Хакимович",
-                  "slots": [],
-                  "training_date": "2026-10-16T15:37:43+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
