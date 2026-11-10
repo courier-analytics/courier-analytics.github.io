@@ -41,17 +41,26 @@ def publish(feed, checkout, repository=REPOSITORY, environment=None, medical=Fal
         raise ValueError('Publisher checkout has local changes; preserved')
     git('fetch', 'origin', 'main')
     git('checkout', '--detach', 'FETCH_HEAD')
+    detail_payload=None
+    if not medical and Path("/etc/courier-analytics/open-details-7745.enabled").is_file():
+        from open_details import export
+        detail_payload=export("/opt/courier-analytics/private/details")
     destination = checkout/relative
     # Preserve history that another refresh may have published since our last run.
     if destination.exists():
         public = merge(json.loads(destination.read_text()), public)
     atomic_json(destination, public)
     destination.chmod(0o644)
-    git('add', '--', relative)
+    allowed=[relative]
+    if detail_payload is not None:
+        details_file=checkout/'data/details-7745.json'
+        atomic_json(details_file,detail_payload);details_file.chmod(0o644)
+        allowed.append('data/details-7745.json')
+    git('add', '--', *allowed)
     staged = git('diff', '--cached', '--name-only').stdout.splitlines()
     if not staged:
         return 'Public aggregates already up to date'
-    if staged != [relative]:
+    if not set(staged)<=set(allowed):
         raise ValueError('Unexpected staged files; publication stopped')
     git('-c', 'user.name=Courier data updater', '-c', 'user.email=courier-data@users.noreply.github.com',
         'commit', '-m', 'Update valid LMK aggregates' if medical else 'Update courier slot aggregates')
