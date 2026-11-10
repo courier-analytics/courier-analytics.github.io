@@ -56191,7 +56191,7 @@
       }
     },
     "2026-11-10": {
-      "generated_at": "2026-11-10T22:07:24.215393+00:00",
+      "generated_at": "2026-11-10T22:29:17.932824+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -60883,12 +60883,12 @@
       }
     },
     "2026-11-11": {
-      "generated_at": "2026-11-10T22:10:45.150592+00:00",
+      "generated_at": "2026-11-10T22:32:38.314686+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 42.86,
-            "numerator": 21,
+            "value": 44.9,
+            "numerator": 22,
             "denominator": 49,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -60896,7 +60896,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 21,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -60977,6 +60977,29 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T08:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699932352",
+                  "name": "Гусейнов Рауль Илгарович",
+                  "slots": [
+                    {
+                      "slot_id": "53852",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T21:00:00+03:00",
+                      "planned_end": "2026-11-12T08:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -61385,7 +61408,7 @@
             },
             {
               "title": "Не записались",
-              "count": 28,
+              "count": 27,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -61410,11 +61433,6 @@
                 {
                   "courier_id": "1800104382",
                   "name": "Володичев Иван Сергеевич",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1699932352",
-                  "name": "Гусейнов Рауль Илгарович",
                   "slots": []
                 },
                 {
@@ -61633,8 +61651,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 80.0,
-            "numerator": 8,
+            "value": 90.0,
+            "numerator": 9,
             "denominator": 10,
             "reason": null,
             "basis": "limited_slot_places"
@@ -62486,9 +62504,33 @@
               "planned_start": "2026-11-11T21:00:00+03:00",
               "planned_end": "2026-11-12T08:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1699932352",
+                  "name": "Гусейнов Рауль Илгарович",
+                  "slots": [
+                    {
+                      "slot_id": "53852",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T21:00:00+03:00",
+                      "planned_end": "2026-11-12T08:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "53867",
