@@ -23907,7 +23907,7 @@
       }
     },
     "2026-11-03": {
-      "generated_at": "2026-11-10T12:00:57.498221+00:00",
+      "generated_at": "2026-11-10T13:02:54.335777+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -51804,7 +51804,7 @@
       }
     },
     "2026-11-09": {
-      "generated_at": "2026-11-10T12:57:13.404638+00:00",
+      "generated_at": "2026-11-10T13:19:14.663501+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -56191,7 +56191,7 @@
       }
     },
     "2026-11-10": {
-      "generated_at": "2026-11-10T13:00:36.646062+00:00",
+      "generated_at": "2026-11-10T13:22:40.114428+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -56938,10 +56938,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-10T16:00:00+03:00",
                       "planned_end": "2026-11-10T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-10T15:44:57+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -57946,10 +57946,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-10T16:00:00+03:00",
                       "planned_end": "2026-11-10T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-10T15:44:57+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -59069,17 +59069,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 21.74,
-            "numerator": 5,
-            "denominator": 23,
+            "value": 25.0,
+            "numerator": 6,
+            "denominator": 24,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 5,
+              "count": 6,
               "couriers": [
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "53048",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T16:00:00+03:00",
+                      "planned_end": "2026-11-10T22:00:00+03:00",
+                      "actual_start": "2026-11-10T15:44:57+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128912",
                   "name": "Кучаров Самаридин Атаулоевич",
@@ -59659,8 +59682,31 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 7,
+              "count": 8,
               "couriers": [
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "53048",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T16:00:00+03:00",
+                      "planned_end": "2026-11-10T22:00:00+03:00",
+                      "actual_start": "2026-11-10T15:44:57+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799880477",
                   "name": "Корнеев Александр Евгеньевич",
