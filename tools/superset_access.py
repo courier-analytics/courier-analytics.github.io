@@ -91,6 +91,8 @@ def inspect_metadata(opener, token, schedule=None):
                 private_write(target, json.dumps(safe, ensure_ascii=False, indent=2))
                 print('services_lite chart count: ' + str(len(items)), flush=True)
                 print('Private services_lite metadata saved: ' + str(target), flush=True)
+    from services_pilot import collect as collect_services_pilot
+    collect_services_pilot(opener, token)
     structures = []
     for identity in (6856, 6802, 4778):
         if identity == 6856 and schedule is not None:
