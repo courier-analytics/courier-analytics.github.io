@@ -2,13 +2,13 @@
   "shop_id": 7745,
   "records": {
     "2026-11-11": {
-      "generated_at": "2026-11-11T07:22:12.045422+00:00",
+      "generated_at": "2026-11-11T07:43:42.804120+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 51.02,
+            "value": 52.08,
             "numerator": 25,
-            "denominator": 49,
+            "denominator": 48,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
@@ -579,10 +579,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T10:30:00+03:00",
                       "planned_end": "2026-11-11T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T10:15:13+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -596,7 +596,7 @@
             },
             {
               "title": "Не записались",
-              "count": 24,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -611,11 +611,6 @@
                 {
                   "courier_id": "1800114061",
                   "name": "Ахмедов Магомед Гусенович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800104382",
-                  "name": "Володичев Иван Сергеевич",
                   "slots": []
                 },
                 {
@@ -1539,10 +1534,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T10:30:00+03:00",
                       "planned_end": "2026-11-11T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T10:15:13+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1861,7 +1856,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -2205,6 +2200,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "53831",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-11T19:00:00+03:00",
+                      "planned_end": "2026-11-12T08:30:00+03:00",
+                      "actual_start": "2026-11-11T10:15:13+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "54115"
                     }
                   ]
                 }
@@ -2600,7 +2619,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -2854,6 +2873,30 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "53831",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-11T19:00:00+03:00",
+                      "planned_end": "2026-11-12T08:30:00+03:00",
+                      "actual_start": "2026-11-11T10:15:13+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "54115"
+                    }
+                  ]
                 }
               ]
             },
@@ -2868,9 +2911,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 6.25,
+            "value": 5.88,
             "numerator": 1,
-            "denominator": 16,
+            "denominator": 17,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2906,7 +2949,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -3252,6 +3295,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "54115",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T10:30:00+03:00",
+                      "planned_end": "2026-11-11T23:00:00+03:00",
+                      "actual_start": "2026-11-11T10:15:13+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             }
@@ -3280,7 +3346,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 7,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -3442,6 +3508,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "54115",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T10:30:00+03:00",
+                      "planned_end": "2026-11-11T23:00:00+03:00",
+                      "actual_start": "2026-11-11T10:15:13+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             }
@@ -3451,9 +3540,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 44.9,
+            "value": 45.83,
             "numerator": 22,
-            "denominator": 49,
+            "denominator": 48,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -3620,7 +3709,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 27,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -3639,13 +3728,6 @@
                 {
                   "courier_id": "1800114061",
                   "name": "Ахмедов Магомед Гусенович",
-                  "slots": [],
-                  "training_date": null,
-                  "match_status": "Нет подтверждённой записи об обучении"
-                },
-                {
-                  "courier_id": "1800104382",
-                  "name": "Володичев Иван Сергеевич",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
