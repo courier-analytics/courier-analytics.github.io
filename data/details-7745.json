@@ -56191,7 +56191,7 @@
       }
     },
     "2026-11-10": {
-      "generated_at": "2026-11-11T10:46:41.918224+00:00",
+      "generated_at": "2026-11-11T10:59:21.633521+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -60882,13 +60882,13 @@
       }
     },
     "2026-11-11": {
-      "generated_at": "2026-11-11T10:40:22.900627+00:00",
+      "generated_at": "2026-11-11T11:02:39.133212+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 56.25,
+            "value": 57.45,
             "numerator": 27,
-            "denominator": 48,
+            "denominator": 47,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
@@ -61137,10 +61137,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T09:00:00+03:00",
                       "planned_end": "2026-11-11T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T13:56:05+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 4 часа 56 мин",
+                      "late_seconds": 17765,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -61522,7 +61522,7 @@
             },
             {
               "title": "Не записались",
-              "count": 21,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -61615,11 +61615,6 @@
                   "slots": []
                 },
                 {
-                  "courier_id": "1800103814",
-                  "name": "Ханакаев Лом-Али Исмаилович",
-                  "slots": []
-                },
-                {
                   "courier_id": "1799887295",
                   "name": "Щербаков Александр Александрович",
                   "slots": []
@@ -61683,18 +61678,18 @@
                 },
                 {
                   "courier_id": "1800108301",
-                  "name": "Котиев Микаил Алиханович",
+                  "name": "Котиев Микаил Алиханович ",
                   "slots": [
                     {
-                      "slot_id": "53867",
+                      "slot_id": "54219",
                       "slot_type": "limited",
                       "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T22:00:00+03:00",
-                      "planned_end": "2026-11-12T10:00:00+03:00",
-                      "actual_start": null,
+                      "planned_start": "2026-11-11T14:00:00+03:00",
+                      "planned_end": "2026-11-12T00:00:00+03:00",
+                      "actual_start": "2026-11-11T13:45:12+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -61735,9 +61730,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 100.0,
+            "value": 93.33,
             "numerator": 14,
-            "denominator": 14,
+            "denominator": 15,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -62240,10 +62235,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T09:00:00+03:00",
                       "planned_end": "2026-11-11T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T13:56:05+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 4 часа 56 мин",
+                      "late_seconds": 17765,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -62571,6 +62566,41 @@
               ]
             },
             {
+              "slot_id": "54219",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "limited",
+              "planned_start": "2026-11-11T14:00:00+03:00",
+              "planned_end": "2026-11-12T00:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800108301",
+                  "name": "Котиев Микаил Алиханович ",
+                  "slots": [
+                    {
+                      "slot_id": "54219",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T14:00:00+03:00",
+                      "planned_end": "2026-11-12T00:00:00+03:00",
+                      "actual_start": "2026-11-11T13:45:12+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "slot_id": "1805312",
               "scope": "7745ДС_Мосфильмовская74",
               "slot_type": "manual",
@@ -62787,33 +62817,9 @@
               "planned_start": "2026-11-11T22:00:00+03:00",
               "planned_end": "2026-11-12T10:00:00+03:00",
               "capacity": 1,
-              "occupied": 1,
-              "free": 0,
-              "couriers": [
-                {
-                  "courier_id": "1800108301",
-                  "name": "Котиев Микаил Алиханович",
-                  "slots": [
-                    {
-                      "slot_id": "53867",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T22:00:00+03:00",
-                      "planned_end": "2026-11-12T10:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 1,
+              "couriers": []
             }
           ],
           "groups": [],
@@ -62831,7 +62837,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 20,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -62985,6 +62991,53 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 151,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108301",
+                  "name": "Котиев Микаил Алиханович ",
+                  "slots": [
+                    {
+                      "slot_id": "53867",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-11T22:00:00+03:00",
+                      "planned_end": "2026-11-12T10:00:00+03:00",
+                      "actual_start": "2026-11-11T13:45:12+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "54219"
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800107246",
+                  "name": "Котиев Руслан Алиханович",
+                  "slots": [
+                    {
+                      "slot_id": "1764728",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T09:00:00+03:00",
+                      "planned_end": "2026-11-11T20:00:00+03:00",
+                      "actual_start": "2026-11-11T13:56:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 56 мин",
+                      "late_seconds": 17765,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -63299,31 +63352,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 3,
+              "count": 2,
               "couriers": [
-                {
-                  "courier_id": "1800107246",
-                  "name": "Котиев Руслан Алиханович",
-                  "slots": [
-                    {
-                      "slot_id": "1764728",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T09:00:00+03:00",
-                      "planned_end": "2026-11-11T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800080844",
                   "name": "Рахимов Хафиз Абдурасулович",
@@ -63374,7 +63404,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 2,
+              "count": 1,
               "couriers": [
                 {
                   "courier_id": "1800091474",
@@ -63386,29 +63416,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T20:00:00+03:00",
                       "planned_end": "2026-11-12T08:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800108301",
-                  "name": "Котиев Микаил Алиханович",
-                  "slots": [
-                    {
-                      "slot_id": "53867",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T22:00:00+03:00",
-                      "planned_end": "2026-11-12T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -63455,8 +63462,31 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800108301",
+                  "name": "Котиев Микаил Алиханович ",
+                  "slots": [
+                    {
+                      "slot_id": "53867",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-11T22:00:00+03:00",
+                      "planned_end": "2026-11-12T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-11T13:42:42+03:00",
+                      "removed_by": "Котиев Микаил Алиханович ",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800132511",
                   "name": "Нематжонов Искандар Умаржон Угли",
@@ -63520,7 +63550,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1799997420",
@@ -63536,6 +63566,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 15 минут",
                       "late_seconds": 918,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800107246",
+                  "name": "Котиев Руслан Алиханович",
+                  "slots": [
+                    {
+                      "slot_id": "1764728",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T09:00:00+03:00",
+                      "planned_end": "2026-11-11T20:00:00+03:00",
+                      "actual_start": "2026-11-11T13:56:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 56 мин",
+                      "late_seconds": 17765,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -63664,7 +63717,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -63801,6 +63854,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108301",
+                  "name": "Котиев Микаил Алиханович ",
+                  "slots": [
+                    {
+                      "slot_id": "53867",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-11T22:00:00+03:00",
+                      "planned_end": "2026-11-12T10:00:00+03:00",
+                      "actual_start": "2026-11-11T13:45:12+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "54219"
                     }
                   ]
                 },
@@ -64003,9 +64080,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 4.76,
+            "value": 4.35,
             "numerator": 1,
-            "denominator": 21,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -64041,7 +64118,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 20,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -64195,6 +64272,52 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 151,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108301",
+                  "name": "Котиев Микаил Алиханович ",
+                  "slots": [
+                    {
+                      "slot_id": "54219",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T14:00:00+03:00",
+                      "planned_end": "2026-11-12T00:00:00+03:00",
+                      "actual_start": "2026-11-11T13:45:12+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800107246",
+                  "name": "Котиев Руслан Алиханович",
+                  "slots": [
+                    {
+                      "slot_id": "1764728",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T09:00:00+03:00",
+                      "planned_end": "2026-11-11T20:00:00+03:00",
+                      "actual_start": "2026-11-11T13:56:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 56 мин",
+                      "late_seconds": 17765,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -64724,16 +64847,16 @@
         },
         "training": {
           "aggregate": {
-            "value": 45.83,
-            "numerator": 22,
-            "denominator": 48,
+            "value": 44.68,
+            "numerator": 21,
+            "denominator": 47,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 22,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -64859,13 +64982,6 @@
                   "name": "Улхаев Юнус Ханпашаевич",
                   "slots": [],
                   "training_date": "2026-10-16T15:32:27+03:00",
-                  "match_status": "Обучение подтверждено"
-                },
-                {
-                  "courier_id": "1800103814",
-                  "name": "Ханакаев Лом-Али Исмаилович",
-                  "slots": [],
-                  "training_date": "2026-10-26T15:23:35+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -65081,7 +65197,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 7,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -65102,6 +65218,13 @@
                   "name": "Курбанбоев Аббос",
                   "slots": [],
                   "training_date": "2026-10-26T15:17:15+03:00",
+                  "match_status": "Нет точного совпадения в активной базе 1С"
+                },
+                {
+                  "courier_id": "—",
+                  "name": "Ханакаев Лом-Али Исмаилович",
+                  "slots": [],
+                  "training_date": "2026-10-26T15:23:35+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
