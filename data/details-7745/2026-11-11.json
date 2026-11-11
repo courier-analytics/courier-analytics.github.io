@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-11": {
-      "generated_at": "2026-11-11T12:54:00.433525+00:00",
+      "generated_at": "2026-11-11T13:16:45.655625+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 57.45,
-            "numerator": 27,
+            "value": 59.57,
+            "numerator": 28,
             "denominator": 47,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 27,
+              "count": 28,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -165,6 +165,29 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T21:00:00+03:00",
                       "planned_end": "2026-11-12T08:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130726",
+                  "name": "ДЖУМАЕВ АДАМ СУЛТАНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "54441",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T17:00:00+03:00",
+                      "planned_end": "2026-11-11T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -642,7 +665,7 @@
             },
             {
               "title": "Не записались",
-              "count": 20,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -657,11 +680,6 @@
                 {
                   "courier_id": "1800109776",
                   "name": "Джамалдаев Мохьмад-Салах Бесланович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800130726",
-                  "name": "ДЖУМАЕВ АДАМ СУЛТАНОВИЧ",
                   "slots": []
                 },
                 {
@@ -850,9 +868,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 93.33,
-            "numerator": 14,
-            "denominator": 15,
+            "value": 93.75,
+            "numerator": 15,
+            "denominator": 16,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1778,6 +1796,41 @@
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "54441",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "limited",
+              "planned_start": "2026-11-11T17:00:00+03:00",
+              "planned_end": "2026-11-11T21:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800130726",
+                  "name": "ДЖУМАЕВ АДАМ СУЛТАНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "54441",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T17:00:00+03:00",
+                      "planned_end": "2026-11-11T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
