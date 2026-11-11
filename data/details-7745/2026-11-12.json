@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-11T22:57:20.680353+00:00",
+      "generated_at": "2026-11-11T23:19:48.254936+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -2549,17 +2549,64 @@
         },
         "planned_completion": {
           "aggregate": {
-            "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "value": 100.0,
+            "numerator": 2,
+            "denominator": 2,
+            "reason": null,
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 0,
-              "couriers": []
+              "count": 2,
+              "couriers": [
+                {
+                  "courier_id": "1800108301",
+                  "name": "Котиев Микаил Алиханович",
+                  "slots": [
+                    {
+                      "slot_id": "54219",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T14:00:00+03:00",
+                      "planned_end": "2026-11-12T00:00:00+03:00",
+                      "actual_start": "2026-11-11T13:45:12+03:00",
+                      "actual_end": "2026-11-12T00:00:00+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "53866",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-10T22:00:00+03:00",
+                      "planned_end": "2026-11-11T10:00:00+03:00",
+                      "actual_start": "2026-11-11T06:53:23+03:00",
+                      "actual_end": "2026-11-12T00:00:00+03:00",
+                      "status": "Опоздал на 8 часов 53 мин",
+                      "late_seconds": 32003,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Не завершили или ушли раньше",
@@ -2572,7 +2619,7 @@
               "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         },
         "training": {
