@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-11": {
-      "generated_at": "2026-11-11T00:48:13.794489+00:00",
+      "generated_at": "2026-11-11T01:09:34.594329+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 44.9,
-            "numerator": 22,
+            "value": 46.94,
+            "numerator": 23,
             "denominator": 49,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 22,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -455,6 +455,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "53833",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T19:00:00+03:00",
+                      "planned_end": "2026-11-12T01:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800109182",
                   "name": "Ходжаев Жасурбек",
                   "slots": [
@@ -527,7 +550,7 @@
             },
             {
               "title": "Не записались",
-              "count": 27,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -632,11 +655,6 @@
                 {
                   "courier_id": "1800044072",
                   "name": "Тарамов Хасан Вадудович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800125641",
-                  "name": "Тургунов Нурилло Иномжон Угли",
                   "slots": []
                 },
                 {
@@ -770,8 +788,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 90.0,
-            "numerator": 9,
+            "value": 100.0,
+            "numerator": 10,
             "denominator": 10,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1577,9 +1595,33 @@
               "planned_start": "2026-11-11T19:00:00+03:00",
               "planned_end": "2026-11-12T01:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "53833",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T19:00:00+03:00",
+                      "planned_end": "2026-11-12T01:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "1802213",
