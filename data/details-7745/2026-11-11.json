@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-11": {
-      "generated_at": "2026-11-11T14:01:15.757249+00:00",
+      "generated_at": "2026-11-11T14:19:53.747380+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -188,10 +188,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T17:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T16:07:22+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 52 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1828,10 +1828,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T17:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T16:07:22+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 52 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3253,16 +3253,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 8.33,
-            "numerator": 2,
-            "denominator": 24,
+            "value": 12.0,
+            "numerator": 3,
+            "denominator": 25,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -3278,6 +3278,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час",
                       "late_seconds": 3635,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130726",
+                  "name": "ДЖУМАЕВ АДАМ СУЛТАНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "54441",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T17:00:00+03:00",
+                      "planned_end": "2026-11-11T21:00:00+03:00",
+                      "actual_start": "2026-11-11T16:07:22+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 52 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3849,7 +3872,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -3888,6 +3911,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час",
                       "late_seconds": 3635,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130726",
+                  "name": "ДЖУМАЕВ АДАМ СУЛТАНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "54441",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T17:00:00+03:00",
+                      "planned_end": "2026-11-11T21:00:00+03:00",
+                      "actual_start": "2026-11-11T16:07:22+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 52 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
