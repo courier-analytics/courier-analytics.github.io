@@ -56191,7 +56191,7 @@
       }
     },
     "2026-11-10": {
-      "generated_at": "2026-11-11T18:18:06.600800+00:00",
+      "generated_at": "2026-11-11T18:40:35.398164+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -60882,12 +60882,12 @@
       }
     },
     "2026-11-11": {
-      "generated_at": "2026-11-11T18:21:58.788913+00:00",
+      "generated_at": "2026-11-11T18:44:16.376897+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 64.58,
-            "numerator": 31,
+            "value": 66.67,
+            "numerator": 32,
             "denominator": 48,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -60895,7 +60895,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 31,
+              "count": 32,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -60907,10 +60907,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T19:00:00+03:00",
                       "planned_end": "2026-11-12T08:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T21:32:11+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9131,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -61519,6 +61519,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800044072",
+                  "name": "Тарамов Хасан Вадудович",
+                  "slots": [
+                    {
+                      "slot_id": "53867",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T22:00:00+03:00",
+                      "planned_end": "2026-11-12T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800125641",
                   "name": "Тургунов Нурилло Иномжон Угли",
                   "slots": [
@@ -61614,7 +61637,7 @@
             },
             {
               "title": "Не записались",
-              "count": 17,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -61674,11 +61697,6 @@
                 {
                   "courier_id": "1799950967",
                   "name": "Тагоев Лочин Хакимович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800044072",
-                  "name": "Тарамов Хасан Вадудович",
                   "slots": []
                 },
                 {
@@ -61807,8 +61825,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 94.74,
-            "numerator": 18,
+            "value": 100.0,
+            "numerator": 19,
             "denominator": 19,
             "reason": null,
             "basis": "limited_slot_places"
@@ -62907,10 +62925,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T19:00:00+03:00",
                       "planned_end": "2026-11-12T08:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T21:32:11+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9131,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -63034,9 +63052,33 @@
               "planned_start": "2026-11-11T22:00:00+03:00",
               "planned_end": "2026-11-12T10:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800044072",
+                  "name": "Тарамов Хасан Вадудович",
+                  "slots": [
+                    {
+                      "slot_id": "53867",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T22:00:00+03:00",
+                      "planned_end": "2026-11-12T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "groups": [],
@@ -64319,17 +64361,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 23.33,
-            "numerator": 7,
-            "denominator": 30,
+            "value": 25.81,
+            "numerator": 8,
+            "denominator": 31,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 7,
+              "count": 8,
               "couriers": [
+                {
+                  "courier_id": "1800115894",
+                  "name": "Абдулкасимов Сайгидомар Сайгидалиевич",
+                  "slots": [
+                    {
+                      "slot_id": "53831",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T19:00:00+03:00",
+                      "planned_end": "2026-11-12T08:30:00+03:00",
+                      "actual_start": "2026-11-11T21:32:11+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9131,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800104389",
                   "name": "Анисимов Арсений Антонович",
