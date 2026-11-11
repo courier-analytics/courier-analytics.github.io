@@ -56191,7 +56191,7 @@
       }
     },
     "2026-11-10": {
-      "generated_at": "2026-11-11T05:06:20.068045+00:00",
+      "generated_at": "2026-11-11T05:27:55.053838+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -60882,12 +60882,12 @@
       }
     },
     "2026-11-11": {
-      "generated_at": "2026-11-11T05:09:37.171547+00:00",
+      "generated_at": "2026-11-11T05:31:10.870642+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 48.98,
-            "numerator": 24,
+            "value": 46.94,
+            "numerator": 23,
             "denominator": 49,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -60895,7 +60895,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 24,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -61220,29 +61220,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800085741",
-                  "name": "Прокофьев Алексей Денисович",
-                  "slots": [
-                    {
-                      "slot_id": "1793359",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T08:00:00+03:00",
-                      "planned_end": "2026-11-11T16:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800080844",
                   "name": "Рахимов Хафиз Абдурасулович",
                   "slots": [
@@ -61453,7 +61430,7 @@
             },
             {
               "title": "Не записались",
-              "count": 25,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -61533,6 +61510,11 @@
                 {
                   "courier_id": "1800132511",
                   "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": []
+                },
+                {
+                  "courier_id": "1800085741",
+                  "name": "Прокофьев Алексей Денисович",
                   "slots": []
                 },
                 {
@@ -61857,41 +61839,6 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 40 минут",
                       "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "slot_id": "1793359",
-              "scope": "7745ДС_Мосфильмовская74",
-              "slot_type": "manual",
-              "planned_start": "2026-11-11T08:00:00+03:00",
-              "planned_end": "2026-11-11T16:00:00+03:00",
-              "capacity": null,
-              "occupied": 1,
-              "free": null,
-              "couriers": [
-                {
-                  "courier_id": "1800085741",
-                  "name": "Прокофьев Алексей Денисович",
-                  "slots": [
-                    {
-                      "slot_id": "1793359",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T08:00:00+03:00",
-                      "planned_end": "2026-11-11T16:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -62668,11 +62615,11 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 23.08,
-            "numerator": 6,
-            "denominator": 26,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -62821,31 +62768,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 3,
+              "count": 2,
               "couriers": [
-                {
-                  "courier_id": "1800085741",
-                  "name": "Прокофьев Алексей Денисович",
-                  "slots": [
-                    {
-                      "slot_id": "1793359",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T08:00:00+03:00",
-                      "planned_end": "2026-11-11T16:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800080844",
                   "name": "Рахимов Хафиз Абдурасулович",
@@ -63270,8 +63194,32 @@
             },
             {
               "title": "Нет подтверждённых данных",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800085741",
+                  "name": "Прокофьев Алексей Денисович",
+                  "slots": [
+                    {
+                      "slot_id": "1793359",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-11T08:00:00+03:00",
+                      "planned_end": "2026-11-11T16:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Запись из плана отсутствует в текущих данных",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Снятые смены — история",
@@ -63303,16 +63251,16 @@
               ]
             }
           ],
-          "reconciled": true,
+          "reconciled": false,
           "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "planned_late": {
           "aggregate": {
-            "value": 16.67,
-            "numerator": 1,
-            "denominator": 6,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -63471,7 +63419,7 @@
               "couriers": []
             }
           ],
-          "reconciled": true,
+          "reconciled": false,
           "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "unplanned_work": {
