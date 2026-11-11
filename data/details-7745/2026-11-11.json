@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-11": {
-      "generated_at": "2026-11-11T11:46:22.998358+00:00",
+      "generated_at": "2026-11-11T12:08:32.339086+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -142,15 +142,15 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T08:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": "2026-11-10T15:44:57+03:00",
-                      "actual_end": "2026-11-11T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "actual_start": "2026-11-11T14:54:49+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 54 мин",
+                      "late_seconds": 24889,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-10. Исходное начало: 2026-11-11T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-10",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -190,7 +190,7 @@
                       "planned_end": "2026-11-11T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1087,15 +1087,15 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T08:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": "2026-11-10T15:44:57+03:00",
-                      "actual_end": "2026-11-11T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "actual_start": "2026-11-11T14:54:49+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 54 мин",
+                      "late_seconds": 24889,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-10. Исходное начало: 2026-11-11T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-10",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1742,7 +1742,7 @@
                       "planned_end": "2026-11-11T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -2038,15 +2038,15 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T08:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": "2026-11-10T15:44:57+03:00",
-                      "actual_end": "2026-11-11T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "actual_start": "2026-11-11T14:54:49+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 54 мин",
+                      "late_seconds": 24889,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-10. Исходное начало: 2026-11-11T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-10",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -2670,8 +2670,31 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 7,
+              "count": 8,
               "couriers": [
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "1801471",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T08:00:00+03:00",
+                      "planned_end": "2026-11-11T21:00:00+03:00",
+                      "actual_start": "2026-11-11T14:54:49+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 54 мин",
+                      "late_seconds": 24889,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799997420",
                   "name": "Имомкулов Иззат Имомович",
@@ -2837,7 +2860,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 15,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -2904,29 +2927,6 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800009953",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [
-                    {
-                      "slot_id": "1801471",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T08:00:00+03:00",
-                      "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": "2026-11-10T15:44:57+03:00",
-                      "actual_end": "2026-11-11T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-10. Исходное начало: 2026-11-11T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-10",
                       "shift_end_source_date": null
                     }
                   ]
@@ -3319,15 +3319,15 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T08:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": "2026-11-10T15:44:57+03:00",
-                      "actual_end": "2026-11-11T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "actual_start": "2026-11-11T14:54:49+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 54 мин",
+                      "late_seconds": 24889,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-10. Исходное начало: 2026-11-11T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-10",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
