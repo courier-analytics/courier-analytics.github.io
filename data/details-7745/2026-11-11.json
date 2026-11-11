@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-11": {
-      "generated_at": "2026-11-11T07:43:42.804120+00:00",
+      "generated_at": "2026-11-11T08:05:20.726424+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 52.08,
-            "numerator": 25,
+            "value": 54.17,
+            "numerator": 26,
             "denominator": 48,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 25,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -257,10 +257,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T11:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T10:11:05+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 48 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -386,6 +386,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "54130",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-12T00:00:00+03:00",
+                      "actual_start": "2026-11-11T10:58:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1699912869",
                   "name": "Постников Алексей Сергеевич",
                   "slots": [
@@ -397,7 +420,7 @@
                       "planned_end": "2026-11-11T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -596,7 +619,7 @@
             },
             {
               "title": "Не записались",
-              "count": 23,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -651,11 +674,6 @@
                 {
                   "courier_id": "1800132243",
                   "name": "Насонов Владимир Константинович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800132511",
-                  "name": "Нематжонов Искандар Умаржон Угли",
                   "slots": []
                 },
                 {
@@ -819,9 +837,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 92.31,
-            "numerator": 12,
-            "denominator": 13,
+            "value": 92.86,
+            "numerator": 13,
+            "denominator": 14,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1550,6 +1568,41 @@
               ]
             },
             {
+              "slot_id": "54130",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "limited",
+              "planned_start": "2026-11-11T11:00:00+03:00",
+              "planned_end": "2026-11-12T00:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "54130",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-12T00:00:00+03:00",
+                      "actual_start": "2026-11-11T10:58:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "slot_id": "1753931",
               "scope": "7745ДС_Мосфильмовская74",
               "slot_type": "manual",
@@ -1569,10 +1622,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T11:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T10:11:05+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 48 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1606,7 +1659,7 @@
                       "planned_end": "2026-11-11T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1856,7 +1909,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 16,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -2020,6 +2073,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1753931",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-11T21:00:00+03:00",
+                      "actual_start": "2026-11-11T10:11:05+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 48 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799937140",
                   "name": "Курбанбоев Аббос Кобилович",
                   "slots": [
@@ -2062,6 +2138,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "53833",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-11T19:00:00+03:00",
+                      "planned_end": "2026-11-12T01:00:00+03:00",
+                      "actual_start": "2026-11-11T10:58:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "54130"
                     }
                   ]
                 },
@@ -2231,7 +2331,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800107246",
@@ -2266,6 +2366,29 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T09:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699912869",
+                  "name": "Постников Алексей Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "1771200",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-11T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -2329,7 +2452,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 4,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800091474",
@@ -2364,52 +2487,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T22:00:00+03:00",
                       "planned_end": "2026-11-12T10:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799946181",
-                  "name": "Кубатбеков Максатбек",
-                  "slots": [
-                    {
-                      "slot_id": "1753931",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T11:00:00+03:00",
-                      "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699912869",
-                  "name": "Постников Алексей Сергеевич",
-                  "slots": [
-                    {
-                      "slot_id": "1771200",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T11:00:00+03:00",
-                      "planned_end": "2026-11-11T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2619,7 +2696,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 12,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -2756,6 +2833,53 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1753931",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-11T21:00:00+03:00",
+                      "actual_start": "2026-11-11T10:11:05+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 48 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "53833",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-11T19:00:00+03:00",
+                      "planned_end": "2026-11-12T01:00:00+03:00",
+                      "actual_start": "2026-11-11T10:58:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "54130"
                     }
                   ]
                 },
@@ -2911,9 +3035,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 5.88,
+            "value": 5.26,
             "numerator": 1,
-            "denominator": 17,
+            "denominator": 19,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2949,7 +3073,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 16,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -3113,6 +3237,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1753931",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-11T21:00:00+03:00",
+                      "actual_start": "2026-11-11T10:11:05+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 48 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799937140",
                   "name": "Курбанбоев Аббос Кобилович",
                   "slots": [
@@ -3149,6 +3296,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 19 минут",
                       "late_seconds": 1166,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "54130",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-12T00:00:00+03:00",
+                      "actual_start": "2026-11-11T10:58:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
