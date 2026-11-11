@@ -56191,7 +56191,7 @@
       }
     },
     "2026-11-10": {
-      "generated_at": "2026-11-11T08:02:02.347385+00:00",
+      "generated_at": "2026-11-11T08:23:52.075660+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -60882,12 +60882,12 @@
       }
     },
     "2026-11-11": {
-      "generated_at": "2026-11-11T08:05:20.726424+00:00",
+      "generated_at": "2026-11-11T08:27:15.263469+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 54.17,
-            "numerator": 26,
+            "value": 56.25,
+            "numerator": 27,
             "denominator": 48,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -60895,8 +60895,31 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 26,
+              "count": 27,
               "couriers": [
+                {
+                  "courier_id": "1800115894",
+                  "name": "Абдулкасимов Сайгидомар Сайгидалиевич",
+                  "slots": [
+                    {
+                      "slot_id": "53831",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T19:00:00+03:00",
+                      "planned_end": "2026-11-12T08:30:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799948166",
                   "name": "Ализаде Алигулу Тарверди Оглы",
@@ -61298,10 +61321,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T11:00:00+03:00",
                       "planned_end": "2026-11-11T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T11:16:00+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 16 минут",
+                      "late_seconds": 960,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -61499,13 +61522,8 @@
             },
             {
               "title": "Не записались",
-              "count": 22,
+              "count": 21,
               "couriers": [
-                {
-                  "courier_id": "1800115894",
-                  "name": "Абдулкасимов Сайгидомар Сайгидалиевич",
-                  "slots": []
-                },
                 {
                   "courier_id": "1800128719",
                   "name": "Алиев Магомед Саид-Мухамедович",
@@ -61717,8 +61735,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 92.86,
-            "numerator": 13,
+            "value": 100.0,
+            "numerator": 14,
             "denominator": 14,
             "reason": null,
             "basis": "limited_slot_places"
@@ -62537,10 +62555,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T11:00:00+03:00",
                       "planned_end": "2026-11-11T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-11T11:16:00+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 16 минут",
+                      "late_seconds": 960,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -62629,9 +62647,33 @@
               "planned_start": "2026-11-11T19:00:00+03:00",
               "planned_end": "2026-11-12T08:30:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800115894",
+                  "name": "Абдулкасимов Сайгидомар Сайгидалиевич",
+                  "slots": [
+                    {
+                      "slot_id": "53831",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T19:00:00+03:00",
+                      "planned_end": "2026-11-12T08:30:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "53833",
@@ -62789,7 +62831,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 18,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -63046,6 +63088,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1699912869",
+                  "name": "Постников Алексей Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "1771200",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-11T23:00:00+03:00",
+                      "actual_start": "2026-11-11T11:16:00+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 16 минут",
+                      "late_seconds": 960,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799996946",
                   "name": "Рахмонбердиев Фарух Махмаджонович",
                   "slots": [
@@ -63211,7 +63276,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800107246",
@@ -63246,29 +63311,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-11T09:00:00+03:00",
                       "planned_end": "2026-11-11T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699912869",
-                  "name": "Постников Алексей Сергеевич",
-                  "slots": [
-                    {
-                      "slot_id": "1771200",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-11T11:00:00+03:00",
-                      "planned_end": "2026-11-11T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -63478,7 +63520,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1799997420",
@@ -63540,6 +63582,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 19 минут",
                       "late_seconds": 1166,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699912869",
+                  "name": "Постников Алексей Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "1771200",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-11T23:00:00+03:00",
+                      "actual_start": "2026-11-11T11:16:00+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 16 минут",
+                      "late_seconds": 960,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -63915,9 +63980,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 5.26,
+            "value": 5.0,
             "numerator": 1,
-            "denominator": 19,
+            "denominator": 20,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -63953,7 +64018,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 18,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -64199,6 +64264,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699912869",
+                  "name": "Постников Алексей Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "1771200",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T11:00:00+03:00",
+                      "planned_end": "2026-11-11T23:00:00+03:00",
+                      "actual_start": "2026-11-11T11:16:00+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 16 минут",
+                      "late_seconds": 960,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
