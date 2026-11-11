@@ -85,6 +85,9 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
                 metrics['shift_marked'] = collect_active_base(day, identity, shop['slots'], token, proxy)
             except (RuntimeError, ValueError, KeyError, TypeError):
                 metrics['shift_marked'] = metric(reason='active_base_incomplete', basis=ACTIVE_BASIS)
+        if identity == 8889:
+            # Do not substitute schedule participants for the requested typed 1C base.
+            metrics['shift_marked'] = metric(reason='assigned_roster_not_verified')
         from training import configured as collect_training
         training=collect_training(day,rosters.get(identity),state_dir) if identity==7745 else None
         if training:metrics['training']=training['metric']
