@@ -2,20 +2,20 @@
   "shop_id": 7745,
   "records": {
     "2026-11-11": {
-      "generated_at": "2026-11-11T14:40:01.951777+00:00",
+      "generated_at": "2026-11-11T15:20:43.607443+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 61.7,
-            "numerator": 29,
-            "denominator": 47,
+            "value": 62.5,
+            "numerator": 30,
+            "denominator": 48,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 29,
+              "count": 30,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -261,6 +261,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 15 минут",
                       "late_seconds": 918,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "55967",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T18:00:00+03:00",
+                      "planned_end": "2026-11-12T02:00:00+03:00",
+                      "actual_start": "2026-11-11T18:02:16+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 136,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -886,9 +909,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 94.12,
-            "numerator": 16,
-            "denominator": 17,
+            "value": 94.44,
+            "numerator": 17,
+            "denominator": 18,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1885,6 +1908,41 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 33,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "55967",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "limited",
+              "planned_start": "2026-11-11T18:00:00+03:00",
+              "planned_end": "2026-11-12T02:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "55967",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T18:00:00+03:00",
+                      "planned_end": "2026-11-12T02:00:00+03:00",
+                      "actual_start": "2026-11-11T18:02:16+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 136,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3306,16 +3364,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 15.38,
-            "numerator": 4,
-            "denominator": 26,
+            "value": 18.52,
+            "numerator": 5,
+            "denominator": 27,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -3354,6 +3412,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 52 минуты",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "55967",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T18:00:00+03:00",
+                      "planned_end": "2026-11-12T02:00:00+03:00",
+                      "actual_start": "2026-11-11T18:02:16+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 136,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -4188,9 +4269,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 44.68,
+            "value": 43.75,
             "numerator": 21,
-            "denominator": 47,
+            "denominator": 48,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -4350,7 +4431,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 26,
+              "count": 27,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -4397,6 +4478,13 @@
                 {
                   "courier_id": "1800076252",
                   "name": "Каськович Максим Михайлович",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
