@@ -74,7 +74,7 @@
     if (!payload || payload.schema_version !== 1 || !Array.isArray(payload.records)) throw Error("medical format");
     const seen = new Set();
     return payload.records.map(row => {
-      if (!row || ![5818, 7745].includes(row.shop_id) ||
+      if (!row || ![5818, 7745, 8889].includes(row.shop_id) ||
           !/^2026-\d{2}-\d{2}$/.test(row.date) || !Number.isFinite(Date.parse(row.date)) ||
           new Date(row.date).toISOString().slice(0, 10) !== row.date ||
           row.source !== "powerbi_lmk" || row.basis !== "present_and_not_expired_lmk" ||

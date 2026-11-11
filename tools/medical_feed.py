@@ -15,7 +15,7 @@ def validate(payload):
         timestamp = datetime.fromisoformat(row['reported_at'])
         if timestamp.tzinfo is None or timestamp.astimezone(ZoneInfo('Europe/Moscow')).date() != day:
             raise ValueError('Medical observation date mismatch')
-        if row['shop_id'] not in (5818, 7745) or isinstance(row['shop_id'], bool):
+        if row['shop_id'] not in (5818, 7745, 8889) or isinstance(row['shop_id'], bool):
             raise ValueError('Invalid medical shop')
         if row['source'] != 'powerbi_lmk' or row['basis'] != 'present_and_not_expired_lmk':
             raise ValueError('Invalid medical provenance')

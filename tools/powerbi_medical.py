@@ -16,7 +16,7 @@ from prepare_openvpn import private_write
 PROPERTIES = ('name_TT', 'Всего курьеров', 'Курьеров с ЛМК',
               'Курьеров, ЛМК просрочена', '% курьеров нет ЛМК или просроченные')
 WINDOW = 5000
-SHOPS = (5818, 7745)
+SHOPS = (5818, 7745, 8889)
 
 
 def normalized(value):
@@ -453,7 +453,9 @@ def decode_rows(payload, select_names):
     return decoded
 
 
-def candidate_records(rows, observed_at, shops=SHOPS):
+def candidate_records(rows, observed_at, shops=None):
+    if shops is None:
+        shops=(5818,7745)+((8889,) if any(isinstance(r[0],str) and re.search(r'(?<!\d)8889(?!\d)',r[0]) for r in rows) else ())
     if observed_at.tzinfo is None:
         raise ValueError('Observation time must have a timezone')
     if not shops or len(set(shops)) != len(shops) or set(shops) - set(SHOPS):
@@ -513,7 +515,7 @@ def response_shape(payload):
     return result
 
 
-def collect_candidate(address, credentials, folder, private_folder, shops=SHOPS):
+def collect_candidate(address, credentials, folder, private_folder, shops=None):
     definition = json.loads((private_folder / 'powerbi-report-definition.json').read_text())
     diagnostic = {}
     try:
