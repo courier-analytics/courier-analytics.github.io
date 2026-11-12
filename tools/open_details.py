@@ -9,13 +9,14 @@ def clean(value):
     if isinstance(value,list):return [clean(v) for v in value]
     if value is None or isinstance(value,(str,int,float,bool)):return value
     raise ValueError('Invalid detail value')
-def export(directory):
+def export(directory, shop=7745):
+    if shop not in (7745,8889):raise ValueError("Unsupported detail shop")
     records={}
-    for path in sorted(Path(directory).glob('*-7745.json')):
+    for path in sorted(Path(directory).glob('*-'+str(shop)+'.json')):
         data=json.loads(path.read_text());day=data['date']
-        if date.fromisoformat(day).isoformat()!=day or path.name!=day+'-7745.json':raise ValueError('Invalid detail date')
-        if data.get('kind')!='courier_metric_details' or data.get('shop_id')!=7745:raise ValueError('Invalid detail identity')
+        if date.fromisoformat(day).isoformat()!=day or path.name!=day+'-'+str(shop)+'.json':raise ValueError('Invalid detail date')
+        if data.get('kind')!='courier_metric_details' or data.get('shop_id')!=shop:raise ValueError('Invalid detail identity')
         metrics={k:clean(v) for k,v in data['metrics'].items() if k in METRICS}
         records[day]={'generated_at':data['generated_at'],'metrics':metrics}
     if not records:raise ValueError('No DS7745 details to publish')
-    return {'schema_version':1,'shop_id':7745,'records':records}
+    return {'schema_version':1,'shop_id':shop,'records':records}

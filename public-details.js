@@ -18,7 +18,7 @@
     section.append(node('h3','Курьеры и разбивка'),node('p','Загружаем персональные данные…'));
     dialog.addEventListener('close',()=>{if(dialog.contains(section)&&pending)pending.abort();},{once:true});
     try{
-      const url=window.courierOpenDetails?`data/details-7745/${encodeURIComponent(day)}.json`:`/api/details/${encodeURIComponent(shop)}/${encodeURIComponent(day)}/${encodeURIComponent(key)}`;
+      const url=window.courierOpenDetails?`data/details-${encodeURIComponent(shop)}/${encodeURIComponent(day)}.json`:`/api/details/${encodeURIComponent(shop)}/${encodeURIComponent(day)}/${encodeURIComponent(key)}`;
       const timeout=setTimeout(()=>pending.abort(),20000);
       let response;try{response=await fetch(url,{cache:'no-cache',signal});}finally{clearTimeout(timeout);}
       if(!window.courierOpenDetails&&response.status===401){location.replace('/login');return;}

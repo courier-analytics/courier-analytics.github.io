@@ -41,10 +41,12 @@ def publish(feed, checkout, repository=REPOSITORY, environment=None, medical=Fal
         raise ValueError('Publisher checkout has local changes; preserved')
     git('fetch', 'origin', 'main')
     git('checkout', '--detach', 'FETCH_HEAD')
-    detail_payload=None
-    if not medical and Path("/etc/courier-analytics/open-details-7745.enabled").is_file():
+    detail_payloads=[]
+    if not medical:
         from open_details import export
-        detail_payload=export("/opt/courier-analytics/private/details")
+        for shop in (7745,8889):
+            if Path('/etc/courier-analytics/open-details-'+str(shop)+'.enabled').is_file():
+                detail_payloads.append(export('/opt/courier-analytics/private/details',shop))
     destination = checkout/relative
     # Preserve history that another refresh may have published since our last run.
     if destination.exists():
@@ -52,13 +54,14 @@ def publish(feed, checkout, repository=REPOSITORY, environment=None, medical=Fal
     atomic_json(destination, public)
     destination.chmod(0o644)
     allowed=[relative]
-    if detail_payload is not None:
-        details_file=checkout/'data/details-7745.json'
+    for detail_payload in detail_payloads:
+        shop=detail_payload['shop_id']
+        details_file=checkout/('data/details-'+str(shop)+'.json')
         atomic_json(details_file,detail_payload);details_file.chmod(0o644)
-        allowed.append('data/details-7745.json')
+        allowed.append('data/details-'+str(shop)+'.json')
         for day,record in detail_payload['records'].items():
-            name='data/details-7745/'+day+'.json'
-            atomic_json(checkout/name,{'shop_id':7745,'records':{day:record}})
+            name='data/details-'+str(shop)+'/'+day+'.json'
+            atomic_json(checkout/name,{'shop_id':shop,'records':{day:record}})
             (checkout/name).chmod(0o644)
             allowed.append(name)
     git('add', '--', *allowed)
