@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T06:22:18.199511+00:00",
+      "generated_at": "2026-11-12T06:44:09.958020+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -326,10 +326,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T09:00:00+03:00",
                       "planned_end": "2026-11-12T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-12T09:36:50+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 36 минут",
+                      "late_seconds": 2210,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -895,9 +895,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 100.0,
+            "value": 95.65,
             "numerator": 22,
-            "denominator": 22,
+            "denominator": 23,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1439,10 +1439,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T09:00:00+03:00",
                       "planned_end": "2026-11-12T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-12T09:36:50+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 36 минут",
+                      "late_seconds": 2210,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1634,9 +1634,9 @@
               "slot_type": "limited",
               "planned_start": "2026-11-12T10:00:00+03:00",
               "planned_end": "2026-11-12T23:00:00+03:00",
-              "capacity": 1,
+              "capacity": 2,
               "occupied": 1,
-              "free": 0,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -3004,16 +3004,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 20.0,
-            "numerator": 3,
-            "denominator": 15,
+            "value": 25.0,
+            "numerator": 4,
+            "denominator": 16,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 3,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1799997420",
@@ -3029,6 +3029,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699918514",
+                  "name": "Махмудов Элвар Сардар Оглы",
+                  "slots": [
+                    {
+                      "slot_id": "54241",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T09:00:00+03:00",
+                      "planned_end": "2026-11-12T20:00:00+03:00",
+                      "actual_start": "2026-11-12T09:36:50+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 36 минут",
+                      "late_seconds": 2210,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3457,7 +3480,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -3565,6 +3588,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 36 минут",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699918514",
+                  "name": "Махмудов Элвар Сардар Оглы",
+                  "slots": [
+                    {
+                      "slot_id": "54241",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T09:00:00+03:00",
+                      "planned_end": "2026-11-12T20:00:00+03:00",
+                      "actual_start": "2026-11-12T09:36:50+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 36 минут",
+                      "late_seconds": 2210,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
