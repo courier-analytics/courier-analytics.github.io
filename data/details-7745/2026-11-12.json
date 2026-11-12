@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T21:16:15.876868+00:00",
+      "generated_at": "2026-11-12T21:38:33.052610+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -97,7 +97,7 @@
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
                       "actual_start": "2026-11-12T10:36:03+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T22:30:00+03:00",
                       "status": "Опоздал на 36 минут",
                       "late_seconds": 2163,
                       "removed_at": null,
@@ -499,7 +499,7 @@
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T23:00:00+03:00",
                       "actual_start": "2026-11-12T09:44:25+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T22:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1771,7 +1771,7 @@
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T23:00:00+03:00",
                       "actual_start": "2026-11-12T09:44:25+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T22:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1876,7 +1876,7 @@
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
                       "actual_start": "2026-11-12T10:36:03+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T22:30:00+03:00",
                       "status": "Опоздал на 36 минут",
                       "late_seconds": 2163,
                       "removed_at": null,
@@ -2365,7 +2365,7 @@
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
                       "actual_start": "2026-11-12T10:36:03+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T22:30:00+03:00",
                       "status": "Опоздал на 36 минут",
                       "late_seconds": 2163,
                       "removed_at": null,
@@ -2997,7 +2997,7 @@
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
                       "actual_start": "2026-11-12T10:36:03+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T22:30:00+03:00",
                       "status": "Опоздал на 36 минут",
                       "late_seconds": 2163,
                       "removed_at": null,
@@ -3682,7 +3682,7 @@
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T23:00:00+03:00",
                       "actual_start": "2026-11-12T09:44:25+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T22:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3826,7 +3826,7 @@
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
                       "actual_start": "2026-11-12T10:36:03+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T22:30:00+03:00",
                       "status": "Опоздал на 36 минут",
                       "late_seconds": 2163,
                       "removed_at": null,
@@ -4493,7 +4493,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 12,
+              "count": 13,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -4771,6 +4771,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800111023",
+                  "name": "Саидов Мухамад Амиршоевич",
+                  "slots": [
+                    {
+                      "slot_id": "56032",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T10:00:00+03:00",
+                      "planned_end": "2026-11-12T23:00:00+03:00",
+                      "actual_start": "2026-11-12T09:44:25+03:00",
+                      "actual_end": "2026-11-12T22:15:00+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800125641",
                   "name": "Тургунов Нурилло Иномжон Угли",
                   "slots": [
@@ -4860,7 +4883,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800101978",
@@ -4938,29 +4961,6 @@
                       "actual_start": "2026-11-12T16:22:46+03:00",
                       "actual_end": null,
                       "status": "Вышел раньше на 37 минут",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800111023",
-                  "name": "Саидов Мухамад Амиршоевич",
-                  "slots": [
-                    {
-                      "slot_id": "56032",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T10:00:00+03:00",
-                      "planned_end": "2026-11-12T23:00:00+03:00",
-                      "actual_start": "2026-11-12T09:44:25+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,

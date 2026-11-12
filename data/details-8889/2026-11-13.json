@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-12T21:19:51.422177+00:00",
+      "generated_at": "2026-11-12T21:42:10.969106+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -45,10 +45,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-13T00:00:00+03:00",
                       "planned_end": "2026-11-13T11:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T00:17:43+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 17 минут",
+                      "late_seconds": 1063,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1203,17 +1203,41 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "value": 100.0,
+            "numerator": 1,
+            "denominator": 1,
+            "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800093198",
+                  "name": "Осмиев Ибрагим Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "62378",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T00:00:00+03:00",
+                      "planned_end": "2026-11-13T11:00:00+03:00",
+                      "actual_start": "2026-11-13T00:17:43+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 17 минут",
+                      "late_seconds": 1063,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Вышли по плану",
@@ -1221,15 +1245,15 @@
               "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": ""
         },
         "planned_completion": {
           "aggregate": {
             "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "numerator": null,
+            "denominator": null,
+            "reason": "shift_end_or_final_status_missing",
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
@@ -1245,8 +1269,32 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800093198",
+                  "name": "Осмиев Ибрагим Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "62378",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T00:00:00+03:00",
+                      "planned_end": "2026-11-13T11:00:00+03:00",
+                      "actual_start": "2026-11-13T00:17:43+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 17 минут",
+                      "late_seconds": 1063,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "reconciled": false,
