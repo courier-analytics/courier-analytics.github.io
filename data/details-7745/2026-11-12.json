@@ -2,20 +2,20 @@
   "shop_id": 7745,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T15:35:18.838901+00:00",
+      "generated_at": "2026-11-12T15:58:05.377409+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 58.14,
-            "numerator": 25,
-            "denominator": 43,
+            "value": 60.0,
+            "numerator": 27,
+            "denominator": 45,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 25,
+              "count": 27,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -110,6 +110,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "1801473",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T08:00:00+03:00",
+                      "planned_end": "2026-11-12T21:00:00+03:00",
+                      "actual_start": "2026-11-11T14:54:49+03:00",
+                      "actual_end": "2026-11-12T15:15:00+03:00",
+                      "status": "Вышел раньше на 8 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-11",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799997420",
                   "name": "Имомкулов Иззат Имомович",
                   "slots": [
@@ -169,6 +192,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 2 мин",
                       "late_seconds": 3779,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799937140",
+                  "name": "Курбанбоев Аббос Кобилович",
+                  "slots": [
+                    {
+                      "slot_id": "56034",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T10:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T09:21:49+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 38 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -709,31 +755,8 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 8,
+              "count": 6,
               "couriers": [
-                {
-                  "courier_id": "1800009953",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [
-                    {
-                      "slot_id": "1801473",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T08:00:00+03:00",
-                      "planned_end": "2026-11-12T21:00:00+03:00",
-                      "actual_start": "2026-11-11T14:54:49+03:00",
-                      "actual_end": "2026-11-12T15:15:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-11",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800101978",
                   "name": "Досхоев Адам Мусаевич",
@@ -817,29 +840,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 9 мин",
                       "late_seconds": 7761,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799937140",
-                  "name": "Курбанбоев Аббос Кобилович",
-                  "slots": [
-                    {
-                      "slot_id": "56034",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T10:00:00+03:00",
-                      "planned_end": "2026-11-12T22:00:00+03:00",
-                      "actual_start": "2026-11-12T09:21:49+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 38 минут",
-                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -4452,16 +4452,16 @@
         },
         "training": {
           "aggregate": {
-            "value": 44.19,
-            "numerator": 19,
-            "denominator": 43,
+            "value": 44.44,
+            "numerator": 20,
+            "denominator": 45,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -4489,6 +4489,13 @@
                   "name": "Васильев Александр Михайлович",
                   "slots": [],
                   "training_date": "2026-10-30T17:22:16+03:00",
+                  "match_status": "Обучение подтверждено"
+                },
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [],
+                  "training_date": "2026-10-16T16:33:50+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -4600,7 +4607,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 24,
+              "count": 25,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -4654,6 +4661,13 @@
                 {
                   "courier_id": "1800132813",
                   "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1799937140",
+                  "name": "Курбанбоев Аббос Кобилович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
@@ -4774,7 +4788,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 10,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -4788,13 +4802,6 @@
                   "name": "Икромов Сиротулло Хакимбекоаич",
                   "slots": [],
                   "training_date": "2026-10-16T15:35:56+03:00",
-                  "match_status": "Нет точного совпадения в активной базе 1С"
-                },
-                {
-                  "courier_id": "—",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [],
-                  "training_date": "2026-10-16T16:33:50+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
