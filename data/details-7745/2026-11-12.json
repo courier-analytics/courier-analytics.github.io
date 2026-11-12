@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T07:29:07.141969+00:00",
+      "generated_at": "2026-11-12T07:53:52.845354+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -96,10 +96,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-12T10:36:03+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 36 минут",
+                      "late_seconds": 2163,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1794,10 +1794,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T10:00:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-12T10:36:03+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 36 минут",
+                      "late_seconds": 2163,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2043,8 +2043,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 59.26,
-            "numerator": 16,
+            "value": 62.96,
+            "numerator": 17,
             "denominator": 27,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -2052,7 +2052,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -2091,6 +2091,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699895572",
+                  "name": "Багавудинов Исмаил Абдулаевич",
+                  "slots": [
+                    {
+                      "slot_id": "1802037",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T10:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T10:36:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 36 минут",
+                      "late_seconds": 2163,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2443,7 +2466,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 8,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2455,29 +2478,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T07:00:00+03:00",
                       "planned_end": "2026-11-12T19:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699895572",
-                  "name": "Багавудинов Исмаил Абдулаевич",
-                  "slots": [
-                    {
-                      "slot_id": "1802037",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T10:00:00+03:00",
-                      "planned_end": "2026-11-12T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -2722,17 +2722,40 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 18.75,
-            "numerator": 3,
-            "denominator": 16,
+            "value": 23.53,
+            "numerator": 4,
+            "denominator": 17,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 3,
+              "count": 4,
               "couriers": [
+                {
+                  "courier_id": "1699895572",
+                  "name": "Багавудинов Исмаил Абдулаевич",
+                  "slots": [
+                    {
+                      "slot_id": "1802037",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T10:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T10:36:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 36 минут",
+                      "late_seconds": 2163,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800107246",
                   "name": "Котиев Руслан Алиханович",
@@ -3137,9 +3160,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 23.81,
+            "value": 22.73,
             "numerator": 5,
-            "denominator": 21,
+            "denominator": 22,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -3267,7 +3290,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -3306,6 +3329,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699895572",
+                  "name": "Багавудинов Исмаил Абдулаевич",
+                  "slots": [
+                    {
+                      "slot_id": "1802037",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T10:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T10:36:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 36 минут",
+                      "late_seconds": 2163,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
