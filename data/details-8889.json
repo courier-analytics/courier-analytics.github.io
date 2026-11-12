@@ -16910,7 +16910,7 @@
       }
     },
     "2026-11-11": {
-      "generated_at": "2026-11-12T14:01:09.989245+00:00",
+      "generated_at": "2026-11-12T14:23:31.851831+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -19462,7 +19462,7 @@
       }
     },
     "2026-11-12": {
-      "generated_at": "2026-11-12T14:04:47.416865+00:00",
+      "generated_at": "2026-11-12T14:27:11.933153+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -19890,10 +19890,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-12T11:00:00+03:00",
                       "planned_end": "2026-11-12T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-12T17:03:20+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 6 часов 3 мин",
+                      "late_seconds": 21800,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -20384,11 +20384,11 @@
                       "planned_end": "2026-11-13T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Снятая смена",
+                      "status": "Запись из плана отсутствует в текущих данных",
                       "late_seconds": null,
-                      "removed_at": "2026-11-12T10:32:23+03:00",
-                      "removed_by": "Киёмов Бахром Суфижонович",
-                      "note": "Снятие подтверждено историей бронирования. Запись остаётся в исходном плане.",
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -20646,9 +20646,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 50.0,
+            "value": 46.15,
             "numerator": 6,
-            "denominator": 12,
+            "denominator": 13,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -20799,7 +20799,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -20894,6 +20894,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132085",
+                  "name": "Киёмов Бахром Суфижонович",
+                  "slots": [
+                    {
+                      "slot_id": "56226",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T11:00:00+03:00",
+                      "planned_end": "2026-11-12T20:00:00+03:00",
+                      "actual_start": "2026-11-12T17:03:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 3 мин",
+                      "late_seconds": 21800,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800122176",
                   "name": "Нефедов Даниил Сергеевич",
                   "slots": [
@@ -20966,7 +20989,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -21074,6 +21097,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132085",
+                  "name": "Киёмов Бахром Суфижонович",
+                  "slots": [
+                    {
+                      "slot_id": "56226",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T11:00:00+03:00",
+                      "planned_end": "2026-11-12T20:00:00+03:00",
+                      "actual_start": "2026-11-12T17:03:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 3 мин",
+                      "late_seconds": 21800,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
