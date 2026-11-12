@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T03:02:21.357701+00:00",
+      "generated_at": "2026-11-12T03:23:57.694874+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -443,7 +443,7 @@
                       "planned_end": "2026-11-12T18:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -847,7 +847,7 @@
                       "planned_end": "2026-11-12T18:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1835,12 +1835,36 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800026006",
+                  "name": "Тарамов Казбек Хусейнович",
+                  "slots": [
+                    {
+                      "slot_id": "56024",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T06:00:00+03:00",
+                      "planned_end": "2026-11-12T18:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Ожидаются",
-              "count": 27,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -2312,29 +2336,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T08:00:00+03:00",
                       "planned_end": "2026-11-12T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800026006",
-                  "name": "Тарамов Казбек Хусейнович",
-                  "slots": [
-                    {
-                      "slot_id": "56024",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T06:00:00+03:00",
-                      "planned_end": "2026-11-12T18:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
