@@ -65829,7 +65829,7 @@
       }
     },
     "2026-11-12": {
-      "generated_at": "2026-11-12T22:26:02.911124+00:00",
+      "generated_at": "2026-11-12T22:51:01.709585+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -71246,12 +71246,12 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-12T22:29:36.079123+00:00",
+      "generated_at": "2026-11-12T22:54:33.111996+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 41.3,
-            "numerator": 19,
+            "value": 43.48,
+            "numerator": 20,
             "denominator": 46,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -71259,7 +71259,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -71409,6 +71409,46 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799937140",
+                  "name": "Курбанбоев Аббос Кобилович",
+                  "slots": [
+                    {
+                      "slot_id": "54240",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T09:00:00+03:00",
+                      "planned_end": "2026-11-13T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "64333",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T23:30:00+03:00",
+                      "planned_end": "2026-11-14T08:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -71702,7 +71742,7 @@
             },
             {
               "title": "Не записались",
-              "count": 27,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -71757,11 +71797,6 @@
                 {
                   "courier_id": "1799946181",
                   "name": "Кубатбеков Максатбек",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1799937140",
-                  "name": "Курбанбоев Аббос Кобилович",
                   "slots": []
                 },
                 {
@@ -71922,8 +71957,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 80.0,
-            "numerator": 8,
+            "value": 100.0,
+            "numerator": 10,
             "denominator": 10,
             "reason": null,
             "basis": "limited_slot_places"
@@ -72402,9 +72437,50 @@
               "planned_start": "2026-11-13T09:00:00+03:00",
               "planned_end": "2026-11-13T20:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1799937140",
+                  "name": "Курбанбоев Аббос Кобилович",
+                  "slots": [
+                    {
+                      "slot_id": "54240",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T09:00:00+03:00",
+                      "planned_end": "2026-11-13T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "64333",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T23:30:00+03:00",
+                      "planned_end": "2026-11-14T08:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "64330",
@@ -72693,9 +72769,50 @@
               "planned_start": "2026-11-13T23:30:00+03:00",
               "planned_end": "2026-11-14T08:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1799937140",
+                  "name": "Курбанбоев Аббос Кобилович",
+                  "slots": [
+                    {
+                      "slot_id": "54240",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T09:00:00+03:00",
+                      "planned_end": "2026-11-13T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "64333",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T23:30:00+03:00",
+                      "planned_end": "2026-11-14T08:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "groups": [],
