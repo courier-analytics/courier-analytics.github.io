@@ -2,20 +2,20 @@
   "shop_id": 7745,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T12:31:38.543729+00:00",
+      "generated_at": "2026-11-12T12:54:55.080673+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 55.56,
-            "numerator": 25,
-            "denominator": 45,
+            "value": 57.14,
+            "numerator": 24,
+            "denominator": 42,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 25,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -64,6 +64,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1799948166",
+                  "name": "Ализаде Алигулу Тарверди Оглы",
+                  "slots": [
+                    {
+                      "slot_id": "56031",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T09:00:00+03:00",
+                      "planned_end": "2026-11-12T21:01:00+03:00",
+                      "actual_start": "2026-11-12T08:32:41+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1699895572",
                   "name": "Багавудинов Исмаил Абдулаевич",
                   "slots": [
@@ -77,52 +100,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 36 минут",
                       "late_seconds": 2163,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800009953",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [
-                    {
-                      "slot_id": "1801473",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T08:00:00+03:00",
-                      "planned_end": "2026-11-12T21:00:00+03:00",
-                      "actual_start": "2026-11-11T14:54:49+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-11",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800091474",
-                  "name": "Зокиров Иззатуллох",
-                  "slots": [
-                    {
-                      "slot_id": "1802219",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T20:00:00+03:00",
-                      "planned_end": "2026-11-13T08:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -574,7 +551,7 @@
                       "planned_start": "2026-11-12T08:00:00+03:00",
                       "planned_end": "2026-11-12T21:00:00+03:00",
                       "actual_start": "2026-11-12T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:30:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": null,
                       "removed_at": null,
@@ -613,7 +590,7 @@
             },
             {
               "title": "Не записались",
-              "count": 20,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -661,11 +638,6 @@
                   "slots": []
                 },
                 {
-                  "courier_id": "1800115892",
-                  "name": "Логинов Даниил Вячеславович",
-                  "slots": []
-                },
-                {
                   "courier_id": "1799882751",
                   "name": "Маматкулов Зияитдин Кимсанбаевич",
                   "slots": []
@@ -683,11 +655,6 @@
                 {
                   "courier_id": "1800132317",
                   "name": "Пылаев Павел Максимович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800080844",
-                  "name": "Рахимов Хафиз Абдурасулович",
                   "slots": []
                 },
                 {
@@ -719,27 +686,27 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
-                  "courier_id": "1799948166",
-                  "name": "Ализаде Алигулу Тарверди Оглы",
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
                   "slots": [
                     {
-                      "slot_id": "56031",
-                      "slot_type": "limited",
+                      "slot_id": "1801473",
+                      "slot_type": "manual",
                       "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T09:00:00+03:00",
-                      "planned_end": "2026-11-12T21:01:00+03:00",
-                      "actual_start": "2026-11-12T08:32:41+03:00",
+                      "planned_start": "2026-11-12T08:00:00+03:00",
+                      "planned_end": "2026-11-12T21:00:00+03:00",
+                      "actual_start": "2026-11-11T14:54:49+03:00",
                       "actual_end": null,
-                      "status": "Вышел",
+                      "status": "Вышел раньше на 8 часов",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "",
+                      "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
                       "worked_through": null,
-                      "shift_start_source_date": null,
+                      "shift_start_source_date": "2026-11-11",
                       "shift_end_source_date": null
                     }
                   ]
@@ -757,6 +724,29 @@
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800091474",
+                  "name": "Зокиров Иззатуллох",
+                  "slots": [
+                    {
+                      "slot_id": "1802219",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T20:00:00+03:00",
+                      "planned_end": "2026-11-13T08:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -847,7 +837,7 @@
                       "planned_start": "2026-11-12T07:00:00+03:00",
                       "planned_end": "2026-11-12T19:00:00+03:00",
                       "actual_start": "2026-11-11T17:30:33+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:45:00+03:00",
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1022,7 +1012,7 @@
                       "planned_start": "2026-11-12T07:00:00+03:00",
                       "planned_end": "2026-11-12T19:00:00+03:00",
                       "actual_start": "2026-11-11T17:30:33+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:45:00+03:00",
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1080,7 +1070,7 @@
                       "planned_start": "2026-11-12T08:00:00+03:00",
                       "planned_end": "2026-11-12T21:00:00+03:00",
                       "actual_start": "2026-11-12T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:30:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": null,
                       "removed_at": null,
@@ -2352,7 +2342,7 @@
                       "planned_start": "2026-11-12T07:00:00+03:00",
                       "planned_end": "2026-11-12T19:00:00+03:00",
                       "actual_start": "2026-11-11T17:30:33+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:45:00+03:00",
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2507,7 +2497,7 @@
                       "planned_start": "2026-11-12T08:00:00+03:00",
                       "planned_end": "2026-11-12T21:00:00+03:00",
                       "actual_start": "2026-11-12T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:30:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": null,
                       "removed_at": null,
@@ -3123,7 +3113,7 @@
                       "planned_start": "2026-11-12T07:00:00+03:00",
                       "planned_end": "2026-11-12T19:00:00+03:00",
                       "actual_start": "2026-11-11T17:30:33+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:45:00+03:00",
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3192,7 +3182,7 @@
                       "planned_start": "2026-11-12T08:00:00+03:00",
                       "planned_end": "2026-11-12T21:00:00+03:00",
                       "actual_start": "2026-11-12T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:30:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": null,
                       "removed_at": null,
@@ -3659,7 +3649,7 @@
                       "planned_start": "2026-11-12T07:00:00+03:00",
                       "planned_end": "2026-11-12T19:00:00+03:00",
                       "actual_start": "2026-11-11T17:30:33+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:45:00+03:00",
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3814,7 +3804,7 @@
                       "planned_start": "2026-11-12T08:00:00+03:00",
                       "planned_end": "2026-11-12T21:00:00+03:00",
                       "actual_start": "2026-11-12T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-12T13:30:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": null,
                       "removed_at": null,
@@ -3895,7 +3885,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 1,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -3936,12 +3926,75 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799946954",
+                  "name": "Муминов Хушвахт Толибович",
+                  "slots": [
+                    {
+                      "slot_id": "55962",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-11T17:30:00+03:00",
+                      "planned_end": "2026-11-12T01:00:00+03:00",
+                      "actual_start": "2026-11-11T17:30:33+03:00",
+                      "actual_end": "2026-11-12T13:45:00+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 33,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Окончание сшито с выгрузкой за 2026-11-12.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": "2026-11-12"
+                    },
+                    {
+                      "slot_id": "55963",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T07:00:00+03:00",
+                      "planned_end": "2026-11-12T19:00:00+03:00",
+                      "actual_start": "2026-11-11T17:30:33+03:00",
+                      "actual_end": "2026-11-12T13:45:00+03:00",
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-11",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800040197",
+                  "name": "Холмирзаев Саидбек Уткирбек Угли",
+                  "slots": [
+                    {
+                      "slot_id": "56037",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T08:00:00+03:00",
+                      "planned_end": "2026-11-12T21:00:00+03:00",
+                      "actual_start": "2026-11-12T00:00:00+03:00",
+                      "actual_end": "2026-11-12T13:30:00+03:00",
+                      "status": "Вышел раньше на 8 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 18,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -4191,29 +4244,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1799946954",
-                  "name": "Муминов Хушвахт Толибович",
-                  "slots": [
-                    {
-                      "slot_id": "55963",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T07:00:00+03:00",
-                      "planned_end": "2026-11-12T19:00:00+03:00",
-                      "actual_start": "2026-11-11T17:30:33+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-11",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800015035",
                   "name": "Муцагов Алихан Мухтануевич",
                   "slots": [
@@ -4350,29 +4380,6 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
-                {
-                  "courier_id": "1800040197",
-                  "name": "Холмирзаев Саидбек Уткирбек Угли",
-                  "slots": [
-                    {
-                      "slot_id": "56037",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T08:00:00+03:00",
-                      "planned_end": "2026-11-12T21:00:00+03:00",
-                      "actual_start": "2026-11-12T00:00:00+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
                 }
               ]
             }
@@ -4382,22 +4389,29 @@
         },
         "training": {
           "aggregate": {
-            "value": 44.44,
-            "numerator": 20,
-            "denominator": 45,
+            "value": 45.24,
+            "numerator": 19,
+            "denominator": 42,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 20,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1800128719",
                   "name": "Алиев Магомед Саид-Мухамедович",
                   "slots": [],
                   "training_date": "2026-10-29T11:54:50+03:00",
+                  "match_status": "Обучение подтверждено"
+                },
+                {
+                  "courier_id": "1799948166",
+                  "name": "Ализаде Алигулу Тарверди Оглы",
+                  "slots": [],
+                  "training_date": "2026-10-16T17:04:38+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -4415,24 +4429,10 @@
                   "match_status": "Обучение подтверждено"
                 },
                 {
-                  "courier_id": "1800009953",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [],
-                  "training_date": "2026-10-16T16:33:50+03:00",
-                  "match_status": "Обучение подтверждено"
-                },
-                {
                   "courier_id": "1800124254",
                   "name": "Джумаев Алишер Исмоилович",
                   "slots": [],
                   "training_date": "2026-10-30T15:26:41+03:00",
-                  "match_status": "Обучение подтверждено"
-                },
-                {
-                  "courier_id": "1800091474",
-                  "name": "Зокиров Иззатуллох",
-                  "slots": [],
-                  "training_date": "2026-10-28T17:29:36+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -4537,7 +4537,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 25,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -4603,13 +4603,6 @@
                   "match_status": "Нет подтверждённой записи об обучении"
                 },
                 {
-                  "courier_id": "1800115892",
-                  "name": "Логинов Даниил Вячеславович",
-                  "slots": [],
-                  "training_date": null,
-                  "match_status": "Нет подтверждённой записи об обучении"
-                },
-                {
                   "courier_id": "1799882751",
                   "name": "Маматкулов Зияитдин Кимсанбаевич",
                   "slots": [],
@@ -4666,13 +4659,6 @@
                   "match_status": "Нет подтверждённой записи об обучении"
                 },
                 {
-                  "courier_id": "1800080844",
-                  "name": "Рахимов Хафиз Абдурасулович",
-                  "slots": [],
-                  "training_date": null,
-                  "match_status": "Нет подтверждённой записи об обучении"
-                },
-                {
                   "courier_id": "1800089856",
                   "name": "Ремесков Матвей Дмитриевич",
                   "slots": [],
@@ -4718,7 +4704,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -4736,9 +4722,9 @@
                 },
                 {
                   "courier_id": "—",
-                  "name": "АЛИЗАДЕ АЛИГУЛУ ТАРВЕРДИ Оглы",
+                  "name": "Ганиев Журабек Равшанович",
                   "slots": [],
-                  "training_date": "2026-10-16T17:04:38+03:00",
+                  "training_date": "2026-10-16T16:33:50+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
@@ -4753,6 +4739,13 @@
                   "name": "Ханакаев Лом-Али Исмаилович",
                   "slots": [],
                   "training_date": "2026-10-26T15:23:35+03:00",
+                  "match_status": "Нет точного совпадения в активной базе 1С"
+                },
+                {
+                  "courier_id": "—",
+                  "name": "Зокиров Иззатуллох",
+                  "slots": [],
+                  "training_date": "2026-10-28T17:29:36+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
