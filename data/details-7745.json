@@ -60882,7 +60882,7 @@
       }
     },
     "2026-11-11": {
-      "generated_at": "2026-11-12T08:12:47.812265+00:00",
+      "generated_at": "2026-11-12T08:35:15.921056+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -65829,7 +65829,7 @@
       }
     },
     "2026-11-12": {
-      "generated_at": "2026-11-12T08:16:23.834430+00:00",
+      "generated_at": "2026-11-12T08:39:12.771864+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -65877,10 +65877,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T07:00:00+03:00",
                       "planned_end": "2026-11-12T19:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-12T11:24:09+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 4 часа 24 мин",
+                      "late_seconds": 15849,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -66802,10 +66802,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T07:00:00+03:00",
                       "planned_end": "2026-11-12T19:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-12T11:24:09+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 4 часа 24 мин",
+                      "late_seconds": 15849,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -67870,8 +67870,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 66.67,
-            "numerator": 18,
+            "value": 70.37,
+            "numerator": 19,
             "denominator": 27,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -67879,7 +67879,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 18,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -67900,6 +67900,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-11",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800128719",
+                  "name": "Алиев Магомед Саид-Мухамедович",
+                  "slots": [
+                    {
+                      "slot_id": "55963",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T07:00:00+03:00",
+                      "planned_end": "2026-11-12T19:00:00+03:00",
+                      "actual_start": "2026-11-12T11:24:09+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 24 мин",
+                      "late_seconds": 15849,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -68316,31 +68339,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 5,
               "couriers": [
-                {
-                  "courier_id": "1800128719",
-                  "name": "Алиев Магомед Саид-Мухамедович",
-                  "slots": [
-                    {
-                      "slot_id": "55963",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T07:00:00+03:00",
-                      "planned_end": "2026-11-12T19:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800085741",
                   "name": "Прокофьев Алексей Денисович",
@@ -68549,17 +68549,40 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 27.78,
-            "numerator": 5,
-            "denominator": 18,
+            "value": 31.58,
+            "numerator": 6,
+            "denominator": 19,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 5,
+              "count": 6,
               "couriers": [
+                {
+                  "courier_id": "1800128719",
+                  "name": "Алиев Магомед Саид-Мухамедович",
+                  "slots": [
+                    {
+                      "slot_id": "55963",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T07:00:00+03:00",
+                      "planned_end": "2026-11-12T19:00:00+03:00",
+                      "actual_start": "2026-11-12T11:24:09+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 24 мин",
+                      "late_seconds": 15849,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1699895572",
                   "name": "Багавудинов Исмаил Абдулаевич",
@@ -69010,9 +69033,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 21.74,
+            "value": 20.83,
             "numerator": 5,
-            "denominator": 23,
+            "denominator": 24,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -69140,7 +69163,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 18,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -69161,6 +69184,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-11",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800128719",
+                  "name": "Алиев Магомед Саид-Мухамедович",
+                  "slots": [
+                    {
+                      "slot_id": "55963",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T07:00:00+03:00",
+                      "planned_end": "2026-11-12T19:00:00+03:00",
+                      "actual_start": "2026-11-12T11:24:09+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 24 мин",
+                      "late_seconds": 15849,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -69624,7 +69670,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -69645,6 +69691,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-11",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800128719",
+                  "name": "Алиев Магомед Саид-Мухамедович",
+                  "slots": [
+                    {
+                      "slot_id": "55963",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T07:00:00+03:00",
+                      "planned_end": "2026-11-12T19:00:00+03:00",
+                      "actual_start": "2026-11-12T11:24:09+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 24 мин",
+                      "late_seconds": 15849,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
