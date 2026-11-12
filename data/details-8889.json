@@ -12107,7 +12107,7 @@
       }
     },
     "2026-11-08": {
-      "generated_at": "2026-11-12T11:54:59.428393+00:00",
+      "generated_at": "2026-11-12T13:57:35.902627+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -14926,7 +14926,7 @@
       }
     },
     "2026-11-09": {
-      "generated_at": "2026-11-12T11:51:50.378581+00:00",
+      "generated_at": "2026-11-12T13:54:16.147571+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -16910,7 +16910,7 @@
       }
     },
     "2026-11-11": {
-      "generated_at": "2026-11-12T13:47:21.829106+00:00",
+      "generated_at": "2026-11-12T14:01:09.989245+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -19462,7 +19462,7 @@
       }
     },
     "2026-11-12": {
-      "generated_at": "2026-11-12T13:39:36.688959+00:00",
+      "generated_at": "2026-11-12T14:04:47.416865+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -19479,8 +19479,8 @@
         "slot_fill": {
           "aggregate": {
             "value": 100.0,
-            "numerator": 13,
-            "denominator": 13,
+            "numerator": 14,
+            "denominator": 14,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -19926,6 +19926,41 @@
                       "planned_start": "2026-11-12T13:20:00+03:00",
                       "planned_end": "2026-11-12T22:22:00+03:00",
                       "actual_start": "2026-11-12T13:16:10+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "64144",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-12T17:00:00+03:00",
+              "planned_end": "2026-11-12T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "64144",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T17:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T16:51:09+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -20611,16 +20646,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 45.45,
-            "numerator": 5,
-            "denominator": 11,
+            "value": 50.0,
+            "numerator": 6,
+            "denominator": 12,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1799899246",
@@ -20633,6 +20668,29 @@
                       "planned_start": "2026-11-12T09:15:00+03:00",
                       "planned_end": "2026-11-12T21:00:00+03:00",
                       "actual_start": "2026-11-12T09:11:54+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "64144",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T17:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T16:51:09+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -20908,7 +20966,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -21013,6 +21071,29 @@
                       "planned_start": "2026-11-12T09:15:00+03:00",
                       "planned_end": "2026-11-12T21:00:00+03:00",
                       "actual_start": "2026-11-12T09:11:54+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "64144",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T17:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T16:51:09+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,

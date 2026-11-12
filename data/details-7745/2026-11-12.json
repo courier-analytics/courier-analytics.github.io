@@ -2,20 +2,20 @@
   "shop_id": 7745,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T13:39:36.688959+00:00",
+      "generated_at": "2026-11-12T14:04:47.416865+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 57.14,
-            "numerator": 24,
-            "denominator": 42,
+            "value": 58.14,
+            "numerator": 25,
+            "denominator": 43,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 24,
+              "count": 25,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -271,6 +271,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1799946954",
+                  "name": "Муминов Хушвахт Толибович",
+                  "slots": [
+                    {
+                      "slot_id": "55963",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T07:00:00+03:00",
+                      "planned_end": "2026-11-12T19:00:00+03:00",
+                      "actual_start": "2026-11-11T17:30:33+03:00",
+                      "actual_end": "2026-11-12T13:45:00+03:00",
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-11",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800015035",
                   "name": "Муцагов Алихан Мухтануевич",
                   "slots": [
@@ -349,10 +372,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T17:00:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-12T16:22:46+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 37 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -686,7 +709,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 9,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1800009953",
@@ -822,29 +845,6 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799946954",
-                  "name": "Муминов Хушвахт Толибович",
-                  "slots": [
-                    {
-                      "slot_id": "55963",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-12T07:00:00+03:00",
-                      "planned_end": "2026-11-12T19:00:00+03:00",
-                      "actual_start": "2026-11-11T17:30:33+03:00",
-                      "actual_end": "2026-11-12T13:45:00+03:00",
-                      "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-11. Исходное начало: 2026-11-12T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-11",
                       "shift_end_source_date": null
                     }
                   ]
@@ -1900,10 +1900,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-12T17:00:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-12T16:22:46+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 37 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3230,16 +3230,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 20.0,
-            "numerator": 5,
-            "denominator": 25,
+            "value": 23.08,
+            "numerator": 6,
+            "denominator": 26,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1799997420",
@@ -3300,6 +3300,29 @@
                       "actual_start": "2026-11-12T08:09:19+03:00",
                       "actual_end": null,
                       "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799996946",
+                  "name": "Рахмонбердиев Фарух Махмаджонович",
+                  "slots": [
+                    {
+                      "slot_id": "56033",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T17:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T16:22:46+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 37 минут",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
@@ -3994,7 +4017,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -4290,6 +4313,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1799996946",
+                  "name": "Рахмонбердиев Фарух Махмаджонович",
+                  "slots": [
+                    {
+                      "slot_id": "56033",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-12T17:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T16:22:46+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 37 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800111023",
                   "name": "Саидов Мухамад Амиршоевич",
                   "slots": [
@@ -4389,9 +4435,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 45.24,
+            "value": 44.19,
             "numerator": 19,
-            "denominator": 42,
+            "denominator": 43,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -4537,7 +4583,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -4619,6 +4665,13 @@
                 {
                   "courier_id": "1699918514",
                   "name": "Махмудов Элвар Сардар Оглы",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1799946954",
+                  "name": "Муминов Хушвахт Толибович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
