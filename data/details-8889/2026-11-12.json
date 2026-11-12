@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T14:27:11.933153+00:00",
+      "generated_at": "2026-11-12T14:49:57.566608+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -19,8 +19,8 @@
         "slot_fill": {
           "aggregate": {
             "value": 100.0,
-            "numerator": 14,
-            "denominator": 14,
+            "numerator": 16,
+            "denominator": 16,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -504,6 +504,76 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "64179",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-12T17:40:00+03:00",
+              "planned_end": "2026-11-12T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800038028",
+                  "name": "Османи Араш",
+                  "slots": [
+                    {
+                      "slot_id": "64179",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T17:40:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T17:34:48+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "64191",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-12T17:45:00+03:00",
+              "planned_end": "2026-11-12T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800098544",
+                  "name": "Волков Тимур Ельвинович",
+                  "slots": [
+                    {
+                      "slot_id": "64191",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T17:45:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T17:46:24+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 84,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1186,17 +1256,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 46.15,
-            "numerator": 6,
-            "denominator": 13,
+            "value": 53.33,
+            "numerator": 8,
+            "denominator": 15,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 6,
+              "count": 8,
               "couriers": [
+                {
+                  "courier_id": "1800098544",
+                  "name": "Волков Тимур Ельвинович",
+                  "slots": [
+                    {
+                      "slot_id": "64191",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T17:45:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T17:46:24+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 84,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799899246",
                   "name": "Ибрагимов Фахриддин Салимович",
@@ -1254,6 +1347,29 @@
                       "planned_start": "2026-11-12T13:20:00+03:00",
                       "planned_end": "2026-11-12T22:22:00+03:00",
                       "actual_start": "2026-11-12T13:16:10+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800038028",
+                  "name": "Османи Араш",
+                  "slots": [
+                    {
+                      "slot_id": "64179",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T17:40:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T17:34:48+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -1529,7 +1645,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 12,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1545,6 +1661,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 3 часа 17 мин",
                       "late_seconds": 11867,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800098544",
+                  "name": "Волков Тимур Ельвинович",
+                  "slots": [
+                    {
+                      "slot_id": "64191",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T17:45:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T17:46:24+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 84,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1729,6 +1868,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 254,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800038028",
+                  "name": "Османи Араш",
+                  "slots": [
+                    {
+                      "slot_id": "64179",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T17:40:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T17:34:48+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
