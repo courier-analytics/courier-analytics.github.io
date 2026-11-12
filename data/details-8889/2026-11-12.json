@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T14:49:57.566608+00:00",
+      "generated_at": "2026-11-12T15:12:36.843574+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -19,8 +19,8 @@
         "slot_fill": {
           "aggregate": {
             "value": 100.0,
-            "numerator": 16,
-            "denominator": 16,
+            "numerator": 18,
+            "denominator": 18,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -584,6 +584,76 @@
                   ]
                 }
               ]
+            },
+            {
+              "slot_id": "64222",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-12T18:05:00+03:00",
+              "planned_end": "2026-11-12T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "64222",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T18:05:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:01:25+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "64229",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-12T18:10:00+03:00",
+              "planned_end": "2026-11-12T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800094697",
+                  "name": "Ерохин Илья Эдуардович",
+                  "slots": [
+                    {
+                      "slot_id": "64229",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T18:10:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "groups": [],
@@ -601,7 +671,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -719,6 +789,30 @@
                   ]
                 },
                 {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "1751183",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-12T18:00:00+03:00",
+                      "planned_end": "2026-11-13T00:30:00+03:00",
+                      "actual_start": "2026-11-12T18:01:25+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 85,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "64222"
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800131972",
                   "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
                   "slots": [
@@ -779,7 +873,7 @@
             },
             {
               "title": "Нет подтверждённых данных",
-              "count": 9,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1800063653",
@@ -929,29 +1023,6 @@
                       "scope": "",
                       "planned_start": "2026-11-12T09:00:00+03:00",
                       "planned_end": "2026-11-12T18:30:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Запись из плана отсутствует в текущих данных",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130881",
-                  "name": "ФИО не передано источником",
-                  "slots": [
-                    {
-                      "slot_id": "1751183",
-                      "slot_type": "manual",
-                      "scope": "",
-                      "planned_start": "2026-11-12T18:00:00+03:00",
-                      "planned_end": "2026-11-13T00:30:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Запись из плана отсутствует в текущих данных",
@@ -1218,7 +1289,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800122176",
@@ -1242,6 +1313,30 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "1751183",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-12T18:00:00+03:00",
+                      "planned_end": "2026-11-13T00:30:00+03:00",
+                      "actual_start": "2026-11-12T18:01:25+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 85,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "64222"
+                    }
+                  ]
                 }
               ]
             },
@@ -1256,9 +1351,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 53.33,
+            "value": 50.0,
             "numerator": 8,
-            "denominator": 15,
+            "denominator": 16,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -1455,7 +1550,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 7,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1596,6 +1691,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "64222",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T18:05:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:01:25+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800131972",
                   "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
                   "slots": [
@@ -1645,7 +1763,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1868,6 +1986,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 254,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "64222",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T18:05:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:01:25+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
