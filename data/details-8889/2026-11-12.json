@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-12": {
-      "generated_at": "2026-11-12T15:12:36.843574+00:00",
+      "generated_at": "2026-11-12T15:35:18.838901+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -19,8 +19,8 @@
         "slot_fill": {
           "aggregate": {
             "value": 100.0,
-            "numerator": 18,
-            "denominator": 18,
+            "numerator": 20,
+            "denominator": 20,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -640,6 +640,76 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-12T18:10:00+03:00",
                       "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:04:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "64236",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-12T18:15:00+03:00",
+              "planned_end": "2026-11-12T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800095608",
+                  "name": "Осмиев Тимерлан Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "64236",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T18:15:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:19:43+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 283,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "64245",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-12T19:00:00+03:00",
+              "planned_end": "2026-11-13T09:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1699900182",
+                  "name": "Идирисов Исмаил Бадурудинович",
+                  "slots": [
+                    {
+                      "slot_id": "64245",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T19:00:00+03:00",
+                      "planned_end": "2026-11-13T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -671,7 +741,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 7,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -766,6 +836,30 @@
                   ]
                 },
                 {
+                  "courier_id": "1800094697",
+                  "name": "Ерохин Илья Эдуардович",
+                  "slots": [
+                    {
+                      "slot_id": "49769",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-12T18:00:00+03:00",
+                      "planned_end": "2026-11-12T23:00:00+03:00",
+                      "actual_start": "2026-11-12T18:04:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 268,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "64229"
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800122176",
                   "name": "Нефедов Даниил Сергеевич",
                   "slots": [
@@ -809,6 +903,30 @@
                       "shift_start_source_date": null,
                       "shift_end_source_date": null,
                       "fact_source_slot_id": "64222"
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095608",
+                  "name": "Осмиев Тимерлан Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "55971",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-12T17:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:19:43+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 4783,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "64236"
                     }
                   ]
                 },
@@ -1168,7 +1286,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1263,6 +1381,30 @@
                   ]
                 },
                 {
+                  "courier_id": "1800095608",
+                  "name": "Осмиев Тимерлан Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "55971",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-12T17:00:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:19:43+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 4783,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "64236"
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800131972",
                   "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
                   "slots": [
@@ -1289,8 +1431,32 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800094697",
+                  "name": "Ерохин Илья Эдуардович",
+                  "slots": [
+                    {
+                      "slot_id": "49769",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-12T18:00:00+03:00",
+                      "planned_end": "2026-11-12T23:00:00+03:00",
+                      "actual_start": "2026-11-12T18:04:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 268,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "64229"
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800122176",
                   "name": "Нефедов Даниил Сергеевич",
@@ -1351,9 +1517,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 50.0,
+            "value": 44.44,
             "numerator": 8,
-            "denominator": 16,
+            "denominator": 18,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -1550,7 +1716,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 8,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1645,6 +1811,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800094697",
+                  "name": "Ерохин Илья Эдуардович",
+                  "slots": [
+                    {
+                      "slot_id": "64229",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T18:10:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:04:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800132085",
                   "name": "Киёмов Бахром Суфижонович",
                   "slots": [
@@ -1714,6 +1903,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800095608",
+                  "name": "Осмиев Тимерлан Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "64236",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T18:15:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:19:43+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 283,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800131972",
                   "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
                   "slots": [
@@ -1763,7 +1975,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 15,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1871,6 +2083,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 35 мин",
                       "late_seconds": 5749,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094697",
+                  "name": "Ерохин Илья Эдуардович",
+                  "slots": [
+                    {
+                      "slot_id": "64229",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T18:10:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:04:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2032,6 +2267,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095608",
+                  "name": "Осмиев Тимерлан Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "64236",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-12T18:15:00+03:00",
+                      "planned_end": "2026-11-12T22:00:00+03:00",
+                      "actual_start": "2026-11-12T18:19:43+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 283,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
