@@ -73,7 +73,7 @@ def main():
     parser.add_argument('--replace-login', action='store_true', help='Replace saved Windows credentials; requires --save-login')
     parser.add_argument('--inspect-model', action='store_true', help='Read report field references using saved Windows credentials; no data query')
     parser.add_argument('--collect-medical', action='store_true', help='Read shop aggregates and prepare a private validated LMK candidate; no publication')
-    parser.add_argument('--shops', type=int, nargs='+', choices=(5818, 7745), default=[5818, 7745])
+    parser.add_argument('--shops', type=int, nargs='+', choices=(5818, 7745, 8889), default=None)
     parser.add_argument('--preflight', action='store_true', help='Check saved report structure locally before connecting; requires --collect-medical')
     parser.add_argument('--onec-probe', action='store_true', help='Inspect only the supplied 1C web login page; no authentication or courier queries')
     parser.add_argument('--onec-assets', action='store_true', help='Collect static login form resources; requires --onec-probe')
@@ -181,7 +181,7 @@ def main():
             if args.check_login or args.save_login or args.inspect_model or args.collect_medical:
                 from powerbi_access import check_login
                 return 0 if check_login(address, folder, inspect_model=args.inspect_model,
-                    collect_medical=args.collect_medical, medical_shops=tuple(args.shops)) else 1
+                    collect_medical=args.collect_medical, medical_shops=tuple(args.shops) if args.shops else None) else 1
             print('This test does not authenticate, export medical data, or update metric 10.', flush=True)
             return 0 if any(r['curl_exit'] == 0 and r['http_status'] for r in results) else 1
         finally:

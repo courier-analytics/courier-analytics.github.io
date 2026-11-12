@@ -455,6 +455,8 @@ def decode_rows(payload, select_names):
 
 def candidate_records(rows, observed_at, shops=None):
     if shops is None:
+        if not any(isinstance(r[0],str) and re.search(r'(?<!\d)8889(?!\d)',r[0]) for r in rows):
+            print('DS8889 medical source row absent; no percentage published for this shop.',flush=True)
         shops=(5818,7745)+((8889,) if any(isinstance(r[0],str) and re.search(r'(?<!\d)8889(?!\d)',r[0]) for r in rows) else ())
     if observed_at.tzinfo is None:
         raise ValueError('Observation time must have a timezone')

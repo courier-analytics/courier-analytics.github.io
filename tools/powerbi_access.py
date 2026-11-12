@@ -190,7 +190,7 @@ def report_metadata(data):
 
 def check_login(address, folder, credentials_path=CREDENTIALS,
                 metadata_path=Path('/opt/courier-analytics/private/powerbi-report-metadata.json'),
-                inspect_model=False, collect_medical=False, medical_shops=(5818, 7745)):
+                inspect_model=False, collect_medical=False, medical_shops=None):
     saved = load_credentials(credentials_path)
     result, data = catalog_request(address, saved, folder)
     metadata = report_metadata(data) if result['curl_exit'] == 0 and result['http_status'] == 200 else None
