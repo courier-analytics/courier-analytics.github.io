@@ -19462,7 +19462,7 @@
       }
     },
     "2026-11-12": {
-      "generated_at": "2026-11-13T10:13:26.326298+00:00",
+      "generated_at": "2026-11-13T10:35:52.858072+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -22013,7 +22013,7 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-13T10:17:07.366534+00:00",
+      "generated_at": "2026-11-13T10:39:33.679537+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -22029,8 +22029,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 53.06,
-            "numerator": 26,
+            "value": 55.1,
+            "numerator": 27,
             "denominator": 49,
             "reason": null,
             "basis": "limited_slot_places"
@@ -22078,9 +22078,33 @@
               "planned_start": "2026-11-13T06:00:00+03:00",
               "planned_end": "2026-11-13T14:00:00+03:00",
               "capacity": 2,
-              "occupied": 0,
-              "free": 2,
-              "couriers": []
+              "occupied": 1,
+              "free": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62379",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T06:00:00+03:00",
+                      "planned_end": "2026-11-13T14:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62380",
