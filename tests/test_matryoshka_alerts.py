@@ -8,7 +8,7 @@ def snapshot(count=100,current=24):
  return {'verified':True,'observed_at':NOW.isoformat(),'participants':[{'courier_id':'111111','enrollment_id':'pilot-A','name':'TEST','enrolled_at':'2026-11-01T00:00:00+03:00','count_scope':'delivered_since_enrollment','current_type_verified':True,'current_type':current,'delivered_orders':count}]}
 class MatryoshkaTests(unittest.TestCase):
  def test_boundaries(self):
-  for n,s in [(0,1),(99,1),(100,2),(299,2),(300,3),(599,3),(600,4),(1000,4),(1001,None)]:self.assertEqual(stage(n),s)
+  for n,s in [(0,1),(99,1),(100,2),(299,2),(300,3),(599,3),(600,4),(999,4),(1000,None),(1001,None)]:self.assertEqual(stage(n),s)
   for n in [-1,True,1.5,'100']:
    with self.assertRaises(ValueError):stage(n)
  def test_transport_and_skipped_stages(self):
@@ -28,4 +28,6 @@ class MatryoshkaTests(unittest.TestCase):
   s=snapshot();s['participants'][0]['count_scope']='current_type_only'
   self.assertFalse(plan(s,NOW)['alerts'])
  def test_no_assumed_type_after_program(self):
-  self.assertEqual(plan(snapshot(1001,27),NOW)['blocked'][0]['reason'],'completion_policy_not_configured')
+  result=plan(snapshot(1000,27),NOW)['alerts'][0]
+  self.assertEqual(result['kind'],'completed');self.assertIsNone(result['to_type'])
+  self.assertFalse(plan(snapshot(1001,27),NOW,[result['event_id']])['alerts'])

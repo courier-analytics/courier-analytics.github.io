@@ -14,7 +14,7 @@ def stage(orders):
     if orders<100:return 1
     if orders<300:return 2
     if orders<600:return 3
-    if orders<=1000:return 4
+    if orders<1000:return 4
     return None
 
 def timestamp(value):
@@ -43,7 +43,13 @@ def plan(snapshot,now,acknowledged=(),max_age_seconds=300):
             blocked.append({'courier_id':identity,'reason':'not_a_matryoshka_type'});continue
         transport,current_stage=TYPE_INDEX[current]
         if target is None:
-            blocked.append({'courier_id':identity,'reason':'completion_policy_not_configured'});continue
+            event=hashlib.sha256(json.dumps([identity,enrollment,'completed']).encode()).hexdigest()
+            if event not in acknowledged:
+                alerts.append({'event_id':event,'kind':'completed','courier_id':identity,
+                    'name':person.get('name') or identity,'orders':count,'from_type':current,
+                    'to_type':None,'transport':transport,'observed_at':snapshot['observed_at'],
+                    'text':f"Матрёшка завершена\n{person.get('name') or identity} · ID {identity}\nДоставлено с подключения: {count}\nНужно перевести курьера на обычный тип ({'Вело' if transport=='bike' else 'Авто'})."})
+            continue
         if target<current_stage:
             blocked.append({'courier_id':identity,'reason':'count_below_current_stage_no_automatic_downgrade'});continue
         if target==current_stage:continue

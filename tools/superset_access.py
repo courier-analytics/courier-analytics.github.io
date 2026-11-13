@@ -138,7 +138,7 @@ def check_protected_endpoints(opener, token, inspect_datasets=False):
     return identity_ok or csrf_ok or dataset_ok
 
 
-def check_login(provider_override=None, inspect_datasets=False):
+def check_login(provider_override=None, inspect_datasets=False, inspect_matryoshka=False):
     try:
         if CREDENTIALS.stat().st_mode & 0o077:
             raise ValueError('Credential permissions must be 600')
@@ -157,7 +157,11 @@ def check_login(provider_override=None, inspect_datasets=False):
         if status != 200 or not isinstance(data, dict) or not isinstance(data.get('access_token'), str) or not data['access_token']:
             return False
         token = data['access_token']
-        return check_protected_endpoints(opener, token, inspect_datasets)
+        confirmed=check_protected_endpoints(opener, token, inspect_datasets)
+        if confirmed and inspect_matryoshka:
+            from matryoshka_source import inspect
+            inspect(opener,token)
+        return confirmed
     except (OSError, ValueError, KeyError, TypeError):
         print('Superset check failed: file, network, TLS or response format; details hidden.', flush=True)
         return False
