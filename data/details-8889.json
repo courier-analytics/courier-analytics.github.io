@@ -6508,7 +6508,7 @@
       }
     },
     "2026-11-06": {
-      "generated_at": "2026-11-13T09:05:54.373341+00:00",
+      "generated_at": "2026-11-13T10:05:50.218264+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -19462,7 +19462,7 @@
       }
     },
     "2026-11-12": {
-      "generated_at": "2026-11-13T09:47:26.143551+00:00",
+      "generated_at": "2026-11-13T10:13:26.326298+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -22013,7 +22013,7 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-13T09:36:09.643320+00:00",
+      "generated_at": "2026-11-13T10:17:07.366534+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -22029,9 +22029,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 52.08,
-            "numerator": 25,
-            "denominator": 48,
+            "value": 53.06,
+            "numerator": 26,
+            "denominator": 49,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -22287,10 +22287,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T12:59:29+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 4 часа 59 мин",
+                      "late_seconds": 17969,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -22732,6 +22732,41 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "64652",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-13T13:00:00+03:00",
+              "planned_end": "2026-11-13T23:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1799990068",
+                  "name": "Джобирзода Хошимджони Музафар",
+                  "slots": [
+                    {
+                      "slot_id": "64652",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T13:00:00+03:00",
+                      "planned_end": "2026-11-13T23:00:00+03:00",
+                      "actual_start": "2026-11-13T13:00:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 39,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -23706,17 +23741,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 36.84,
-            "numerator": 7,
-            "denominator": 19,
+            "value": 42.86,
+            "numerator": 9,
+            "denominator": 21,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 7,
+              "count": 9,
               "couriers": [
+                {
+                  "courier_id": "1799990068",
+                  "name": "Джобирзода Хошимджони Музафар",
+                  "slots": [
+                    {
+                      "slot_id": "64652",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T13:00:00+03:00",
+                      "planned_end": "2026-11-13T23:00:00+03:00",
+                      "actual_start": "2026-11-13T13:00:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 39,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800017327",
                   "name": "Джобиров Оятулло Музаффарович",
@@ -23846,6 +23904,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 17 минут",
                       "late_seconds": 1063,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800030975",
+                  "name": "Рузалиев Хайрулло Фатхуллоевич",
+                  "slots": [
+                    {
+                      "slot_id": "62383",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T08:00:00+03:00",
+                      "planned_end": "2026-11-13T21:00:00+03:00",
+                      "actual_start": "2026-11-13T12:59:29+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 59 мин",
+                      "late_seconds": 17969,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -24187,7 +24268,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 18,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -24203,6 +24284,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 45 мин",
                       "late_seconds": 9907,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799990068",
+                  "name": "Джобирзода Хошимджони Музафар",
+                  "slots": [
+                    {
+                      "slot_id": "64652",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T13:00:00+03:00",
+                      "planned_end": "2026-11-13T23:00:00+03:00",
+                      "actual_start": "2026-11-13T13:00:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 39,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -24502,6 +24606,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 3 часа 1 мин",
                       "late_seconds": 10915,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800030975",
+                  "name": "Рузалиев Хайрулло Фатхуллоевич",
+                  "slots": [
+                    {
+                      "slot_id": "62383",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T08:00:00+03:00",
+                      "planned_end": "2026-11-13T21:00:00+03:00",
+                      "actual_start": "2026-11-13T12:59:29+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 59 мин",
+                      "late_seconds": 17969,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",

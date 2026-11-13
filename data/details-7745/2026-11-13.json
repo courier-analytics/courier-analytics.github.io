@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-13T09:36:09.643320+00:00",
+      "generated_at": "2026-11-13T10:17:07.366534+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -688,10 +688,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-13T12:00:00+03:00",
                       "planned_end": "2026-11-14T00:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T12:44:02+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2642,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1632,10 +1632,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-13T12:00:00+03:00",
                       "planned_end": "2026-11-14T00:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T12:44:02+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2642,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1700,8 +1700,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 72.73,
-            "numerator": 16,
+            "value": 77.27,
+            "numerator": 17,
             "denominator": 22,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1709,7 +1709,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -1797,6 +1797,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800101978",
+                  "name": "Досхоев Адам Мусаевич",
+                  "slots": [
+                    {
+                      "slot_id": "1804177",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-13T08:00:00+03:00",
+                      "planned_end": "2026-11-13T21:00:00+03:00",
+                      "actual_start": "2026-11-13T12:44:02+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 17042,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Время слота изменено после фиксации. Расчёт выполнен от исходного плана.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -2083,7 +2106,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1699932352",
@@ -2102,29 +2125,6 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800101978",
-                  "name": "Досхоев Адам Мусаевич",
-                  "slots": [
-                    {
-                      "slot_id": "1804177",
-                      "slot_type": "manual",
-                      "scope": "",
-                      "planned_start": "2026-11-13T08:00:00+03:00",
-                      "planned_end": "2026-11-13T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Время слота изменено после фиксации. Расчёт выполнен от исходного плана.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -2248,17 +2248,40 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 12.5,
-            "numerator": 2,
-            "denominator": 16,
+            "value": 17.65,
+            "numerator": 3,
+            "denominator": 17,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800101978",
+                  "name": "Досхоев Адам Мусаевич",
+                  "slots": [
+                    {
+                      "slot_id": "1804177",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-13T08:00:00+03:00",
+                      "planned_end": "2026-11-13T21:00:00+03:00",
+                      "actual_start": "2026-11-13T12:44:02+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 17042,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Время слота изменено после фиксации. Расчёт выполнен от исходного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800123730",
                   "name": "Кучаров Сироджиддин Атауллоевич",
@@ -2646,9 +2669,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 27.27,
+            "value": 26.09,
             "numerator": 6,
-            "denominator": 22,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2799,7 +2822,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2887,6 +2910,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800101978",
+                  "name": "Досхоев Адам Мусаевич",
+                  "slots": [
+                    {
+                      "slot_id": "1804177",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T12:00:00+03:00",
+                      "planned_end": "2026-11-14T00:00:00+03:00",
+                      "actual_start": "2026-11-13T12:44:02+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2642,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -3749,7 +3795,7 @@
                 },
                 {
                   "courier_id": "1800132979",
-                  "name": "Сайфуллоев Мухаммаалжон Исомидинович",
+                  "name": "Сайфуллоев Мухаммаджон Исомидинович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
