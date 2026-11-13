@@ -65829,7 +65829,7 @@
       }
     },
     "2026-11-12": {
-      "generated_at": "2026-11-13T18:23:58.041187+00:00",
+      "generated_at": "2026-11-13T18:47:43.619190+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -71245,7 +71245,7 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-13T18:28:01.712309+00:00",
+      "generated_at": "2026-11-13T18:51:46.761948+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -71363,7 +71363,7 @@
                       "planned_start": "2026-11-13T08:30:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
                       "actual_start": "2026-11-13T08:21:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T19:45:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -71471,10 +71471,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-13T20:00:00+03:00",
                       "planned_end": "2026-11-14T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T21:33:53+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 33 мин",
+                      "late_seconds": 5633,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -71794,7 +71794,7 @@
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T21:00:00+03:00",
                       "actual_start": "2026-11-13T09:29:18+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T19:30:00+03:00",
                       "status": "Опоздал на 1 час 29 мин",
                       "late_seconds": 5358,
                       "removed_at": null,
@@ -72580,7 +72580,7 @@
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T21:00:00+03:00",
                       "actual_start": "2026-11-13T09:29:18+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T19:30:00+03:00",
                       "status": "Опоздал на 1 час 29 мин",
                       "late_seconds": 5358,
                       "removed_at": null,
@@ -72685,7 +72685,7 @@
                       "planned_start": "2026-11-13T08:30:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
                       "actual_start": "2026-11-13T08:21:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T19:45:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -73209,10 +73209,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-13T20:00:00+03:00",
                       "planned_end": "2026-11-14T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T21:33:53+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 33 мин",
+                      "late_seconds": 5633,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -73374,7 +73374,7 @@
                       "planned_start": "2026-11-13T08:30:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
                       "actual_start": "2026-11-13T08:21:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T19:45:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -73996,7 +73996,7 @@
                       "planned_start": "2026-11-13T08:30:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
                       "actual_start": "2026-11-13T08:21:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T19:45:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -74274,16 +74274,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 35.71,
-            "numerator": 10,
-            "denominator": 28,
+            "value": 37.93,
+            "numerator": 11,
+            "denominator": 29,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -74322,6 +74322,29 @@
                       "actual_end": "2026-11-13T21:23:47+03:00",
                       "status": "Вышел раньше на 54 минуты",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800091474",
+                  "name": "Зокиров Иззатуллох",
+                  "slots": [
+                    {
+                      "slot_id": "56036",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T20:00:00+03:00",
+                      "planned_end": "2026-11-14T09:00:00+03:00",
+                      "actual_start": "2026-11-13T21:33:53+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 33 мин",
+                      "late_seconds": 5633,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -74434,7 +74457,7 @@
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T21:00:00+03:00",
                       "actual_start": "2026-11-13T09:29:18+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T19:30:00+03:00",
                       "status": "Опоздал на 1 час 29 мин",
                       "late_seconds": 5358,
                       "removed_at": null,
@@ -74601,7 +74624,7 @@
                       "planned_start": "2026-11-13T08:30:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
                       "actual_start": "2026-11-13T08:21:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T19:45:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
