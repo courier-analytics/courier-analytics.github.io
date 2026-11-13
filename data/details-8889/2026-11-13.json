@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-13T14:32:41.164978+00:00",
+      "generated_at": "2026-11-13T14:58:39.156247+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 55.1,
-            "numerator": 27,
+            "value": 61.22,
+            "numerator": 30,
             "denominator": 49,
             "reason": null,
             "basis": "limited_slot_places"
@@ -637,7 +637,7 @@
                       "planned_start": "2026-11-13T09:00:00+03:00",
                       "planned_end": "2026-11-13T18:00:00+03:00",
                       "actual_start": "2026-11-13T09:01:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T17:54:45+03:00",
                       "status": "Вышел",
                       "late_seconds": 71,
                       "removed_at": null,
@@ -890,9 +890,33 @@
               "planned_start": "2026-11-13T18:00:00+03:00",
               "planned_end": "2026-11-14T06:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800101118",
+                  "name": "Осмиев Ислам Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "62388",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T18:00:00+03:00",
+                      "planned_end": "2026-11-14T06:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "64146",
@@ -901,9 +925,50 @@
               "planned_start": "2026-11-13T18:00:00+03:00",
               "planned_end": "2026-11-13T22:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "64146",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T18:00:00+03:00",
+                      "planned_end": "2026-11-13T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "62390",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T22:00:00+03:00",
+                      "planned_end": "2026-11-14T11:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "64234",
@@ -1063,9 +1128,50 @@
               "planned_start": "2026-11-13T22:00:00+03:00",
               "planned_end": "2026-11-14T11:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "64146",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T18:00:00+03:00",
+                      "planned_end": "2026-11-13T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "62390",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T22:00:00+03:00",
+                      "planned_end": "2026-11-14T11:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "groups": [],
@@ -1188,7 +1294,7 @@
                       "planned_start": "2026-11-13T09:00:00+03:00",
                       "planned_end": "2026-11-13T18:00:00+03:00",
                       "actual_start": "2026-11-13T09:01:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T17:54:45+03:00",
                       "status": "Вышел",
                       "late_seconds": 71,
                       "removed_at": null,
@@ -1718,7 +1824,7 @@
                       "planned_start": "2026-11-13T09:00:00+03:00",
                       "planned_end": "2026-11-13T18:00:00+03:00",
                       "actual_start": "2026-11-13T09:01:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T17:54:45+03:00",
                       "status": "Вышел",
                       "late_seconds": 71,
                       "removed_at": null,
@@ -2139,7 +2245,7 @@
                       "planned_start": "2026-11-13T09:00:00+03:00",
                       "planned_end": "2026-11-13T18:00:00+03:00",
                       "actual_start": "2026-11-13T09:01:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T17:54:45+03:00",
                       "status": "Вышел",
                       "late_seconds": 71,
                       "removed_at": null,
