@@ -8,6 +8,20 @@ from services_pilot import chart_data
 from prepare_openvpn import private_write
 SHOPS=(8889,7745,9107)
 
+def employment(row):
+    """User-confirmed rule: a missing partner denotes self-employment.
+
+    Missing columns or a contradictory partner ID are not proof of this status.
+    This describes the historical row, not necessarily the current courier card.
+    """
+    if not {'courier_kontr','id_courier_kontr'} <= row.keys():
+        return 'unknown'
+    def blank(value):
+        return value is None or (isinstance(value,str) and value.strip() in ('','-','—','–'))
+    if not blank(row['courier_kontr']):
+        return 'partner'
+    return 'self_employed' if blank(row['id_courier_kontr']) else 'unknown'
+
 def inspect(opener,token):
     code,data=api(opener,'/api/v1/dataset/3035',token=token)
     source=data.get('result') if isinstance(data,dict) else None
@@ -33,7 +47,10 @@ def inspect(opener,token):
         if block.get('error') or block.get('status') not in ('success',None):raise ValueError('Matryoshka query failed')
         rows.extend({key:r.get(key) for key in fields+['qty_orders_delivered','first_delivery_in_window','last_delivery_in_window']} for r in block.get('data',[]))
     if len(rows)>=5000:raise ValueError('Matryoshka discovery may be truncated')
+    for row in rows:
+        row['employment_classification']=employment(row)
     output={'observed_at':now.isoformat(),'shops':list(SHOPS),'employment_type':None,
+        'employment_rule':'User confirmed: blank partner means self-employed; conflicting partner ID remains unknown.',
         'window_start':start,'window_end':end,'rows':rows,
         'note':'Discovery only; employment filter intentionally disabled to verify source code mapping. Window counts are not enrollment counts; historical order types are not confirmed current types.'}
     codes=sorted({str(r.get('id_courier_kontr')) for r in rows})
