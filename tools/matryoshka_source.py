@@ -22,7 +22,7 @@ def employment(row):
         return 'partner'
     return 'self_employed' if blank(row['id_courier_kontr']) else 'unknown'
 
-def inspect(opener,token):
+def inspect(opener,token,history=False):
     code,data=api(opener,'/api/v1/dataset/3035',token=token)
     source=data.get('result') if isinstance(data,dict) else None
     if code!=200 or not isinstance(source,dict):raise ValueError('Matryoshka dataset unavailable')
@@ -60,3 +60,7 @@ def inspect(opener,token):
     target=Path('/opt/courier-analytics/private/matryoshka-discovery.json')
     private_write(target,json.dumps(output,ensure_ascii=False,indent=2))
     print('Matryoshka discovery saved privately; rows='+str(len(rows))+'. No messages sent.',flush=True)
+
+    if history:
+        from matryoshka_history import collect
+        collect(opener,token,output,source)
