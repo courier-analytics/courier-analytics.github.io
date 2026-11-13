@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-13T18:51:46.761948+00:00",
+      "generated_at": "2026-11-13T19:15:04.461367+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 59.57,
-            "numerator": 28,
+            "value": 61.7,
+            "numerator": 29,
             "denominator": 47,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 28,
+              "count": 29,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -380,6 +380,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800056742",
+                  "name": "Маматкулов Хумоюдин Фарходович",
+                  "slots": [
+                    {
+                      "slot_id": "1830778",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T22:30:00+03:00",
+                      "planned_end": "2026-11-14T07:30:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800015035",
                   "name": "Муцагов Алихан Мухтануевич",
                   "slots": [
@@ -682,7 +705,7 @@
             },
             {
               "title": "Не записались",
-              "count": 19,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -717,11 +740,6 @@
                 {
                   "courier_id": "1799946181",
                   "name": "Кубатбеков Максатбек",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800056742",
-                  "name": "Маматкулов Хумоюдин Фарходович",
                   "slots": []
                 },
                 {
@@ -2022,6 +2040,41 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "1830778",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "manual",
+              "planned_start": "2026-11-13T22:30:00+03:00",
+              "planned_end": "2026-11-14T07:30:00+03:00",
+              "capacity": null,
+              "occupied": 1,
+              "free": null,
+              "couriers": [
+                {
+                  "courier_id": "1800056742",
+                  "name": "Маматкулов Хумоюдин Фарходович",
+                  "slots": [
+                    {
+                      "slot_id": "1830778",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T22:30:00+03:00",
+                      "planned_end": "2026-11-14T07:30:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
