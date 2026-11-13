@@ -29,13 +29,19 @@ class HistoryTests(unittest.TestCase):
             chart.return_value = (200, {'result': blocks})
             with self.assertRaises(ValueError):
                 collect(None, None, {'rows': ROWS}, {})
-        write.assert_not_called()
+        self.assertTrue(all('history-error.json' in str(call.args[0]) for call in write.call_args_list))
 
     def test_explicit_window_overrides_dataset_one_day_default(self):
         queries = history_payload(ROWS, '2026-11-13T17:03:31+03:00')['queries']
         for q in queries:
-            self.assertEqual(q['time_range'], '2024-11-06T17:03:31+03:00 : 2026-11-13T17:03:31+03:00')
+            self.assertEqual(q['time_range'], '2024-11-06T17:03:31 : 2026-11-13T17:03:31')
 
     def test_leap_day_window(self):
         q = history_payload(ROWS, '2024-02-29T12:00:00+03:00')['queries'][0]
-        self.assertTrue(q['time_range'].startswith('2022-02-21T12:00:00+03:00'))
+        self.assertTrue(q['time_range'].startswith('2022-02-21T12:00:00'))
+
+    def test_diagnostic_does_not_expose_server_message(self):
+        from matryoshka_history import response_diagnostic
+        result = response_diagnostic(400, {'message': 'SECRET SQL syntax error'})
+        self.assertTrue(result['sql_error_reported'])
+        self.assertNotIn('SECRET', str(result))
