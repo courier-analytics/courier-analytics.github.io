@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-13T06:19:28.837844+00:00",
+      "generated_at": "2026-11-13T06:42:02.569387+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -473,10 +473,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-13T09:00:00+03:00",
                       "planned_end": "2026-11-13T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T09:33:05+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 33 минуты",
+                      "late_seconds": 1985,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1507,17 +1507,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 33.33,
-            "numerator": 4,
-            "denominator": 12,
+            "value": 38.46,
+            "numerator": 5,
+            "denominator": 13,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 4,
+              "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1800017327",
+                  "name": "Джобиров Оятулло Музаффарович",
+                  "slots": [
+                    {
+                      "slot_id": "62384",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T09:00:00+03:00",
+                      "planned_end": "2026-11-13T22:00:00+03:00",
+                      "actual_start": "2026-11-13T09:33:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 33 минуты",
+                      "late_seconds": 1985,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800109682",
                   "name": "Замай Сергей Константинович",
@@ -1827,8 +1850,31 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 11,
+              "count": 12,
               "couriers": [
+                {
+                  "courier_id": "1800017327",
+                  "name": "Джобиров Оятулло Музаффарович",
+                  "slots": [
+                    {
+                      "slot_id": "62384",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T09:00:00+03:00",
+                      "planned_end": "2026-11-13T22:00:00+03:00",
+                      "actual_start": "2026-11-13T09:33:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 33 минуты",
+                      "late_seconds": 1985,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800131005",
                   "name": "Достизода Мухамади Сухроб",
