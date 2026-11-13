@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-13T04:25:12.417564+00:00",
+      "generated_at": "2026-11-13T04:47:12.326426+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -139,7 +139,7 @@
                       "planned_end": "2026-11-13T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -805,8 +805,31 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1800063653",
+                  "name": "Нуров Джавхан Амрдинович",
+                  "slots": [
+                    {
+                      "slot_id": "64221",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T07:30:00+03:00",
+                      "planned_end": "2026-11-13T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800121394",
                   "name": "Шокаримов Шохрух Шохсалимович",
@@ -834,7 +857,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 15,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1053,29 +1076,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800063653",
-                  "name": "Нуров Джавхан Амрдинович",
-                  "slots": [
-                    {
-                      "slot_id": "64221",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-13T07:30:00+03:00",
-                      "planned_end": "2026-11-13T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
