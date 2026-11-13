@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-13T16:33:01.991233+00:00",
+      "generated_at": "2026-11-13T17:17:17.009970+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 61.22,
-            "numerator": 30,
-            "denominator": 49,
+            "value": 62.0,
+            "numerator": 31,
+            "denominator": 50,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1088,10 +1088,45 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-13T19:00:00+03:00",
                       "planned_end": "2026-11-14T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T19:49:36+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 49 минут",
+                      "late_seconds": 2976,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "65409",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-13T20:00:00+03:00",
+              "planned_end": "2026-11-14T08:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800038028",
+                  "name": "Османи Араш",
+                  "slots": [
+                    {
+                      "slot_id": "65409",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T20:00:00+03:00",
+                      "planned_end": "2026-11-14T08:00:00+03:00",
+                      "actual_start": "2026-11-13T19:31:30+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1214,8 +1249,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 81.25,
-            "numerator": 13,
+            "value": 87.5,
+            "numerator": 14,
             "denominator": 16,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1223,7 +1258,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 13,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1308,6 +1343,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 17 минут",
                       "late_seconds": 1021,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699900182",
+                  "name": "Идирисов Исмаил Бадурудинович",
+                  "slots": [
+                    {
+                      "slot_id": "64244",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T19:00:00+03:00",
+                      "planned_end": "2026-11-14T09:00:00+03:00",
+                      "actual_start": "2026-11-13T19:49:36+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 49 минут",
+                      "late_seconds": 2976,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1528,31 +1586,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 2,
+              "count": 1,
               "couriers": [
-                {
-                  "courier_id": "1699900182",
-                  "name": "Идирисов Исмаил Бадурудинович",
-                  "slots": [
-                    {
-                      "slot_id": "64244",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-13T19:00:00+03:00",
-                      "planned_end": "2026-11-14T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800063653",
                   "name": "Нуров Джавхан Амрдинович",
@@ -1623,16 +1658,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 69.23,
-            "numerator": 9,
-            "denominator": 13,
+            "value": 71.43,
+            "numerator": 10,
+            "denominator": 14,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1694,6 +1729,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 17 минут",
                       "late_seconds": 1021,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699900182",
+                  "name": "Идирисов Исмаил Бадурудинович",
+                  "slots": [
+                    {
+                      "slot_id": "64244",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T19:00:00+03:00",
+                      "planned_end": "2026-11-14T09:00:00+03:00",
+                      "actual_start": "2026-11-13T19:49:36+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 49 минут",
+                      "late_seconds": 2976,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1952,16 +2010,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 51.85,
-            "numerator": 14,
-            "denominator": 27,
+            "value": 51.72,
+            "numerator": 15,
+            "denominator": 29,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800106928",
@@ -2188,6 +2246,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800038028",
+                  "name": "Османи Араш",
+                  "slots": [
+                    {
+                      "slot_id": "65409",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T20:00:00+03:00",
+                      "planned_end": "2026-11-14T08:00:00+03:00",
+                      "actual_start": "2026-11-13T19:31:30+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800093198",
                   "name": "Осмиев Ибрагим Магомедович",
                   "slots": [
@@ -2306,7 +2387,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 13,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2391,6 +2472,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 17 минут",
                       "late_seconds": 1021,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699900182",
+                  "name": "Идирисов Исмаил Бадурудинович",
+                  "slots": [
+                    {
+                      "slot_id": "64244",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T19:00:00+03:00",
+                      "planned_end": "2026-11-14T09:00:00+03:00",
+                      "actual_start": "2026-11-13T19:49:36+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 49 минут",
+                      "late_seconds": 2976,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
