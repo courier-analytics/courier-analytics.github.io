@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-13T13:22:17.998169+00:00",
+      "generated_at": "2026-11-13T13:45:12.833009+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -349,10 +349,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-13T16:00:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T16:20:49+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 20 минут",
+                      "late_seconds": 1249,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1791,10 +1791,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-13T16:00:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-13T16:20:49+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 20 минут",
+                      "late_seconds": 1249,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2828,16 +2828,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 32.0,
-            "numerator": 8,
-            "denominator": 25,
+            "value": 34.62,
+            "numerator": 9,
+            "denominator": 26,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -2922,6 +2922,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132243",
+                  "name": "Насонов Владимир Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "1828330",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-13T16:00:00+03:00",
+                      "planned_end": "2026-11-13T20:00:00+03:00",
+                      "actual_start": "2026-11-13T16:20:49+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 20 минут",
+                      "late_seconds": 1249,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
