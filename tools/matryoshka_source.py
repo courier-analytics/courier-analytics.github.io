@@ -36,6 +36,7 @@ def inspect(opener,token,history=False):
         for func,label in [('min','first_delivery_in_window'),('max','last_delivery_in_window')]]
     query={'datasource':{'id':3035,'type':'table'},'force':False,'result_format':'json','result_type':'full','queries':[{
         'columns':fields,'metrics':metrics,'row_limit':5000,'is_timeseries':False,'orderby':[],
+        'granularity':'date_supply','time_range':start+'T00:00:00 : '+end+'T00:00:00',
         'filters':[{'col':'shopno','op':'IN','val':list(SHOPS)},
             {'col':'date_delivered','op':'TEMPORAL_RANGE','val':start+'T00:00:00 : '+end+'T00:00:00'}],
         'extras':{'where':'','having':''},'post_processing':[]}]}
