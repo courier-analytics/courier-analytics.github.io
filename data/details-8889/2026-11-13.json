@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-13T19:15:04.461367+00:00",
+      "generated_at": "2026-11-13T19:38:06.328832+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -237,7 +237,7 @@
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
                       "actual_start": "2026-11-13T08:01:12+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T20:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 72,
                       "removed_at": null,
@@ -1008,7 +1008,7 @@
                       "planned_start": "2026-11-13T18:00:00+03:00",
                       "planned_end": "2026-11-13T23:00:00+03:00",
                       "actual_start": "2026-11-13T19:06:47+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T22:19:04+03:00",
                       "status": "Опоздал на 1 час 6 мин",
                       "late_seconds": 4007,
                       "removed_at": null,
@@ -2171,7 +2171,7 @@
                       "planned_start": "2026-11-13T18:00:00+03:00",
                       "planned_end": "2026-11-13T23:00:00+03:00",
                       "actual_start": "2026-11-13T19:06:47+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T22:19:04+03:00",
                       "status": "Опоздал на 1 час 6 мин",
                       "late_seconds": 4007,
                       "removed_at": null,
@@ -2458,7 +2458,7 @@
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T20:00:00+03:00",
                       "actual_start": "2026-11-13T08:01:12+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T20:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 72,
                       "removed_at": null,
@@ -2815,7 +2815,7 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800109682",
@@ -2933,6 +2933,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800119813",
+                  "name": "Шокаримов Жахонгир Шохсалимович",
+                  "slots": [
+                    {
+                      "slot_id": "62382",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T08:00:00+03:00",
+                      "planned_end": "2026-11-13T20:00:00+03:00",
+                      "actual_start": "2026-11-13T08:01:12+03:00",
+                      "actual_end": "2026-11-13T20:15:00+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 72,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800121394",
                   "name": "Шокаримов Шохрух Шохсалимович",
                   "slots": [
@@ -2959,7 +2982,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800106928",
@@ -3006,12 +3029,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "64234",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T18:00:00+03:00",
+                      "planned_end": "2026-11-13T23:00:00+03:00",
+                      "actual_start": "2026-11-13T19:06:47+03:00",
+                      "actual_end": "2026-11-13T22:19:04+03:00",
+                      "status": "Опоздал на 1 час 6 мин",
+                      "late_seconds": 4007,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 15,
+              "count": 13,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3142,29 +3188,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 37 минут",
                       "late_seconds": 2233,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800122842",
-                  "name": "Магомедов Абдула Шамилевич",
-                  "slots": [
-                    {
-                      "slot_id": "64234",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-13T18:00:00+03:00",
-                      "planned_end": "2026-11-13T23:00:00+03:00",
-                      "actual_start": "2026-11-13T19:06:47+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 6 мин",
-                      "late_seconds": 4007,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3326,29 +3349,6 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 34 минуты",
                       "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800119813",
-                  "name": "Шокаримов Жахонгир Шохсалимович",
-                  "slots": [
-                    {
-                      "slot_id": "62382",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-13T08:00:00+03:00",
-                      "planned_end": "2026-11-13T20:00:00+03:00",
-                      "actual_start": "2026-11-13T08:01:12+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 72,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
