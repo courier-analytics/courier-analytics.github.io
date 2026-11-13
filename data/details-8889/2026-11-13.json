@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-13": {
-      "generated_at": "2026-11-13T15:21:54.273650+00:00",
+      "generated_at": "2026-11-13T15:45:01.136910+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -388,7 +388,7 @@
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T18:00:00+03:00",
                       "actual_start": "2026-11-13T08:01:56+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T18:30:03+03:00",
                       "status": "Вышел",
                       "late_seconds": 116,
                       "removed_at": null,
@@ -826,33 +826,9 @@
               "planned_start": "2026-11-13T16:00:00+03:00",
               "planned_end": "2026-11-14T00:00:00+03:00",
               "capacity": 3,
-              "occupied": 1,
-              "free": 2,
-              "couriers": [
-                {
-                  "courier_id": "1800129523",
-                  "name": "Карапетян Димо Маратович",
-                  "slots": [
-                    {
-                      "slot_id": "62387",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-13T16:00:00+03:00",
-                      "planned_end": "2026-11-14T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 3,
+              "couriers": []
             },
             {
               "slot_id": "64238",
@@ -994,9 +970,33 @@
               "planned_start": "2026-11-13T18:00:00+03:00",
               "planned_end": "2026-11-13T23:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "64234",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T18:00:00+03:00",
+                      "planned_end": "2026-11-13T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "64253",
@@ -1505,31 +1505,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 3,
+              "count": 2,
               "couriers": [
-                {
-                  "courier_id": "1800129523",
-                  "name": "Карапетян Димо Маратович",
-                  "slots": [
-                    {
-                      "slot_id": "62387",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-13T16:00:00+03:00",
-                      "planned_end": "2026-11-14T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800063653",
                   "name": "Нуров Джавхан Амрдинович",
@@ -1614,12 +1591,36 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800129523",
+                  "name": "Карапетян Димо Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "62387",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-13T16:00:00+03:00",
+                      "planned_end": "2026-11-14T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-13T18:18:44+03:00",
+                      "removed_by": "Семенютина Анастасия Сергеевна",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "reconciled": true,
-          "note": ""
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "planned_late": {
           "aggregate": {
@@ -1925,7 +1926,7 @@
             }
           ],
           "reconciled": true,
-          "note": ""
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "unplanned_work": {
           "aggregate": {
@@ -2020,7 +2021,7 @@
                       "planned_start": "2026-11-13T08:00:00+03:00",
                       "planned_end": "2026-11-13T18:00:00+03:00",
                       "actual_start": "2026-11-13T08:01:56+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-13T18:30:03+03:00",
                       "status": "Вышел",
                       "late_seconds": 116,
                       "removed_at": null,
@@ -2555,8 +2556,31 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1800109682",
+                  "name": "Замай Сергей Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "64233",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T08:00:00+03:00",
+                      "planned_end": "2026-11-13T18:00:00+03:00",
+                      "actual_start": "2026-11-13T08:01:56+03:00",
+                      "actual_end": "2026-11-13T18:30:03+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 116,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800093198",
                   "name": "Осмиев Ибрагим Магомедович",
@@ -2589,7 +2613,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 21,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2720,29 +2744,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 11 минут",
                       "late_seconds": 705,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800109682",
-                  "name": "Замай Сергей Константинович",
-                  "slots": [
-                    {
-                      "slot_id": "64233",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-13T08:00:00+03:00",
-                      "planned_end": "2026-11-13T18:00:00+03:00",
-                      "actual_start": "2026-11-13T08:01:56+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 116,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
