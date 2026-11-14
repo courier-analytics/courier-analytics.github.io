@@ -14926,7 +14926,7 @@
       }
     },
     "2026-11-09": {
-      "generated_at": "2026-11-14T12:00:25.652455+00:00",
+      "generated_at": "2026-11-14T14:01:27.051301+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -22013,7 +22013,7 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-14T13:48:10.280569+00:00",
+      "generated_at": "2026-11-14T14:05:18.213892+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-14T13:44:16.860314+00:00",
+      "generated_at": "2026-11-14T14:09:10.005325+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -25979,7 +25979,7 @@
                       "planned_end": "2026-11-15T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -26012,10 +26012,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-14T17:00:00+03:00",
                       "planned_end": "2026-11-14T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T16:51:54+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -26668,16 +26668,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 31.25,
-            "numerator": 5,
-            "denominator": 16,
+            "value": 35.29,
+            "numerator": 6,
+            "denominator": 17,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800108759",
@@ -26762,6 +26762,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 39 мин",
                       "late_seconds": 9587,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799988587",
+                  "name": "Самедов Саид Тамерланович",
+                  "slots": [
+                    {
+                      "slot_id": "67125",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T17:00:00+03:00",
+                      "planned_end": "2026-11-14T23:00:00+03:00",
+                      "actual_start": "2026-11-14T16:51:54+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -27104,7 +27127,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -27373,6 +27396,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 55 мин",
                       "late_seconds": 6906,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799988587",
+                  "name": "Самедов Саид Тамерланович",
+                  "slots": [
+                    {
+                      "slot_id": "67125",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T17:00:00+03:00",
+                      "planned_end": "2026-11-14T23:00:00+03:00",
+                      "actual_start": "2026-11-14T16:51:54+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
