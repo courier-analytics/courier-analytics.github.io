@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-14": {
-      "generated_at": "2026-11-14T11:46:14.499040+00:00",
+      "generated_at": "2026-11-14T12:10:58.786063+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -75,7 +75,7 @@
                       "planned_end": "2026-11-14T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -257,10 +257,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T15:00:00+03:00",
                       "planned_end": "2026-11-14T23:59:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T14:34:52+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1965,7 +1965,7 @@
                       "planned_end": "2026-11-14T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1998,10 +1998,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T15:00:00+03:00",
                       "planned_end": "2026-11-14T23:59:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T14:34:52+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2530,8 +2530,31 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1800104389",
+                  "name": "Анисимов Арсений Антонович",
+                  "slots": [
+                    {
+                      "slot_id": "1807235",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T15:00:00+03:00",
+                      "planned_end": "2026-11-14T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799882751",
                   "name": "Маматкулов Зияитдин Кимсанбаевич",
@@ -2628,31 +2651,8 @@
             },
             {
               "title": "Ожидаются",
-              "count": 2,
+              "count": 1,
               "couriers": [
-                {
-                  "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович",
-                  "slots": [
-                    {
-                      "slot_id": "1807235",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T15:00:00+03:00",
-                      "planned_end": "2026-11-14T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800091474",
                   "name": "Зокиров Иззатуллох",
@@ -3254,16 +3254,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 16.67,
-            "numerator": 4,
-            "denominator": 24,
+            "value": 20.0,
+            "numerator": 5,
+            "denominator": 25,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -3302,6 +3302,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 251,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800107246",
+                  "name": "Котиев Руслан Алиханович",
+                  "slots": [
+                    {
+                      "slot_id": "1837357",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T15:00:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T14:34:52+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",

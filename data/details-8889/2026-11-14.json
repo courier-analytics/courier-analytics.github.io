@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-14": {
-      "generated_at": "2026-11-14T11:46:14.499040+00:00",
+      "generated_at": "2026-11-14T12:10:58.786063+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80,10 +80,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-14T07:00:00+03:00",
                       "planned_end": "2026-11-14T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T14:48:54+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 7 часов 48 мин",
+                      "late_seconds": 28134,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -624,8 +624,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 83.33,
-            "numerator": 10,
+            "value": 91.67,
+            "numerator": 11,
             "denominator": 12,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -633,8 +633,31 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 10,
+              "count": 11,
               "couriers": [
+                {
+                  "courier_id": "1800108273",
+                  "name": "Александров Александр Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "64464",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T07:00:00+03:00",
+                      "planned_end": "2026-11-14T20:00:00+03:00",
+                      "actual_start": "2026-11-14T14:48:54+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 7 часов 48 мин",
+                      "late_seconds": 28134,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128516",
                   "name": "Варданян Виген Тигранович",
@@ -869,31 +892,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 2,
+              "count": 1,
               "couriers": [
-                {
-                  "courier_id": "1800108273",
-                  "name": "Александров Александр Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "64464",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-14T07:00:00+03:00",
-                      "planned_end": "2026-11-14T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800131593",
                   "name": "ТАГАЙАЛИЕВ АСЛИДДИН ХАСАНДЖОНОВИЧ",
@@ -940,17 +940,40 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 90.0,
-            "numerator": 9,
-            "denominator": 10,
+            "value": 90.91,
+            "numerator": 10,
+            "denominator": 11,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 9,
+              "count": 10,
               "couriers": [
+                {
+                  "courier_id": "1800108273",
+                  "name": "Александров Александр Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "64464",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T07:00:00+03:00",
+                      "planned_end": "2026-11-14T20:00:00+03:00",
+                      "actual_start": "2026-11-14T14:48:54+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 7 часов 48 мин",
+                      "late_seconds": 28134,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128516",
                   "name": "Варданян Виген Тигранович",
@@ -1200,9 +1223,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 33.33,
+            "value": 31.25,
             "numerator": 5,
-            "denominator": 15,
+            "denominator": 16,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -1330,8 +1353,31 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 10,
+              "count": 11,
               "couriers": [
+                {
+                  "courier_id": "1800108273",
+                  "name": "Александров Александр Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "64464",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T07:00:00+03:00",
+                      "planned_end": "2026-11-14T20:00:00+03:00",
+                      "actual_start": "2026-11-14T14:48:54+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 7 часов 48 мин",
+                      "late_seconds": 28134,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128516",
                   "name": "Варданян Виген Тигранович",
@@ -1613,8 +1659,31 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 13,
+              "count": 14,
               "couriers": [
+                {
+                  "courier_id": "1800108273",
+                  "name": "Александров Александр Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "64464",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T07:00:00+03:00",
+                      "planned_end": "2026-11-14T20:00:00+03:00",
+                      "actual_start": "2026-11-14T14:48:54+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 7 часов 48 мин",
+                      "late_seconds": 28134,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800108759",
                   "name": "Белкин Дмитрий Алексеевич",
