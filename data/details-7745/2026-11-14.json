@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-14": {
-      "generated_at": "2026-11-14T08:10:46.777464+00:00",
+      "generated_at": "2026-11-14T08:33:38.665957+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 55.32,
-            "numerator": 26,
+            "value": 57.45,
+            "numerator": 27,
             "denominator": 47,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 26,
+              "count": 27,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -524,6 +524,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800026006",
+                  "name": "Тарамов Казбек Хусейнович",
+                  "slots": [
+                    {
+                      "slot_id": "1835948",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T08:00:00+03:00",
+                      "planned_end": "2026-11-14T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800125641",
                   "name": "Тургунов Нурилло Иномжон Угли",
                   "slots": [
@@ -619,7 +642,7 @@
             },
             {
               "title": "Не записались",
-              "count": 21,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -694,11 +717,6 @@
                 {
                   "courier_id": "1800089856",
                   "name": "Ремесков Матвей Дмитриевич",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800026006",
-                  "name": "Тарамов Казбек Хусейнович",
                   "slots": []
                 },
                 {
@@ -1330,6 +1348,41 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "1835948",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "manual",
+              "planned_start": "2026-11-14T08:00:00+03:00",
+              "planned_end": "2026-11-14T21:00:00+03:00",
+              "capacity": null,
+              "occupied": 1,
+              "free": null,
+              "couriers": [
+                {
+                  "courier_id": "1800026006",
+                  "name": "Тарамов Казбек Хусейнович",
+                  "slots": [
+                    {
+                      "slot_id": "1835948",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T08:00:00+03:00",
+                      "planned_end": "2026-11-14T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
