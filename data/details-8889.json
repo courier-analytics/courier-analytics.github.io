@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-14T22:48:03.860244+00:00",
+      "generated_at": "2026-11-14T23:05:44.166961+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27679,7 +27679,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-14T22:44:19.379118+00:00",
+      "generated_at": "2026-11-14T23:09:23.073688+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27695,8 +27695,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 65.62,
-            "numerator": 21,
+            "value": 68.75,
+            "numerator": 22,
             "denominator": 32,
             "reason": null,
             "basis": "limited_slot_places"
@@ -28306,9 +28306,33 @@
               "planned_start": "2026-11-15T16:00:00+03:00",
               "planned_end": "2026-11-16T00:00:00+03:00",
               "capacity": 2,
-              "occupied": 0,
-              "free": 2,
-              "couriers": []
+              "occupied": 1,
+              "free": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800122176",
+                  "name": "Нефедов Даниил Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62397",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T16:00:00+03:00",
+                      "planned_end": "2026-11-16T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "64260",
