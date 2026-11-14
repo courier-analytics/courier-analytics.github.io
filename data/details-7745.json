@@ -71245,7 +71245,7 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-14T05:06:17.893435+00:00",
+      "generated_at": "2026-11-14T05:28:19.161645+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -75925,7 +75925,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-14T05:09:41.946840+00:00",
+      "generated_at": "2026-11-14T05:31:42.409612+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -76134,10 +76134,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T06:00:00+03:00",
                       "planned_end": "2026-11-14T18:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T08:15:30+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 2 часа 15 мин",
+                      "late_seconds": 8130,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -76776,10 +76776,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T06:00:00+03:00",
                       "planned_end": "2026-11-14T18:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T08:15:30+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 2 часа 15 мин",
+                      "late_seconds": 8130,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -77717,7 +77717,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800009953",
@@ -77756,6 +77756,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "1828863",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T06:00:00+03:00",
+                      "planned_end": "2026-11-14T18:00:00+03:00",
+                      "actual_start": "2026-11-14T08:15:30+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 15 мин",
+                      "late_seconds": 8130,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -77907,7 +77930,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -77919,29 +77942,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T08:00:00+03:00",
                       "planned_end": "2026-11-14T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799997420",
-                  "name": "Имомкулов Иззат Имомович",
-                  "slots": [
-                    {
-                      "slot_id": "1828863",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T06:00:00+03:00",
-                      "planned_end": "2026-11-14T18:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -78426,8 +78426,31 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "1828863",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T06:00:00+03:00",
+                      "planned_end": "2026-11-14T18:00:00+03:00",
+                      "actual_start": "2026-11-14T08:15:30+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 15 мин",
+                      "late_seconds": 8130,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799937140",
                   "name": "Курбанбоев Аббос Кобилович",
@@ -78631,9 +78654,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 20.0,
+            "value": 18.18,
             "numerator": 2,
-            "denominator": 10,
+            "denominator": 11,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -78692,7 +78715,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800009953",
@@ -78731,6 +78754,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "1828863",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T06:00:00+03:00",
+                      "planned_end": "2026-11-14T18:00:00+03:00",
+                      "actual_start": "2026-11-14T08:15:30+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 15 мин",
+                      "late_seconds": 8130,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
