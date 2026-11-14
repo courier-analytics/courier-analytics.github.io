@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-14": {
-      "generated_at": "2026-11-14T06:16:57.752187+00:00",
+      "generated_at": "2026-11-14T06:39:09.152751+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -372,10 +372,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T09:00:00+03:00",
                       "planned_end": "2026-11-14T23:59:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T09:27:33+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 27 минут",
+                      "late_seconds": 1653,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -441,10 +441,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T09:30:00+03:00",
                       "planned_end": "2026-11-14T19:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T09:23:51+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -533,13 +533,13 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T09:30:00+03:00",
                       "planned_end": "2026-11-14T23:59:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T00:00:00+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Вышел раньше на 9 часов 30 мин",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -1431,10 +1431,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T09:00:00+03:00",
                       "planned_end": "2026-11-14T23:59:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T09:27:33+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 27 минут",
+                      "late_seconds": 1653,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1571,13 +1571,13 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T09:30:00+03:00",
                       "planned_end": "2026-11-14T23:59:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T00:00:00+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Вышел раньше на 9 часов 30 мин",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -1606,10 +1606,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T09:30:00+03:00",
                       "planned_end": "2026-11-14T19:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T09:23:51+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1847,7 +1847,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 13,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1120965906",
@@ -2057,6 +2057,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1807553",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T09:00:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T09:27:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 27 минут",
+                      "late_seconds": 1653,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800085741",
                   "name": "Прокофьев Алексей Денисович",
                   "slots": [
@@ -2073,6 +2096,52 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800111023",
+                  "name": "Саидов Мухамад Амиршоевич",
+                  "slots": [
+                    {
+                      "slot_id": "1815222",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T09:30:00+03:00",
+                      "planned_end": "2026-11-14T19:30:00+03:00",
+                      "actual_start": "2026-11-14T09:23:51+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1804790",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T09:30:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T00:00:00+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 9 часов 30 мин",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -2152,7 +2221,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2187,29 +2256,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T08:00:00+03:00",
                       "planned_end": "2026-11-14T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800132511",
-                  "name": "Нематжонов Искандар Умаржон Угли",
-                  "slots": [
-                    {
-                      "slot_id": "1807553",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T09:00:00+03:00",
-                      "planned_end": "2026-11-14T23:59:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -2273,7 +2319,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 8,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -2368,29 +2414,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800111023",
-                  "name": "Саидов Мухамад Амиршоевич",
-                  "slots": [
-                    {
-                      "slot_id": "1815222",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T09:30:00+03:00",
-                      "planned_end": "2026-11-14T19:30:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1799939451",
                   "name": "Сулаймонов Абдукиром Акобирович",
                   "slots": [
@@ -2400,29 +2423,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T10:00:00+03:00",
                       "planned_end": "2026-11-14T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800125641",
-                  "name": "Тургунов Нурилло Иномжон Угли",
-                  "slots": [
-                    {
-                      "slot_id": "1804790",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T09:30:00+03:00",
-                      "planned_end": "2026-11-14T23:59:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2556,7 +2556,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1799997420",
@@ -2603,12 +2603,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1807553",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T09:00:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T09:27:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 27 минут",
+                      "late_seconds": 1653,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 11,
+              "count": 13,
               "couriers": [
                 {
                   "courier_id": "1120965906",
@@ -2788,6 +2811,52 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800111023",
+                  "name": "Саидов Мухамад Амиршоевич",
+                  "slots": [
+                    {
+                      "slot_id": "1815222",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T09:30:00+03:00",
+                      "planned_end": "2026-11-14T19:30:00+03:00",
+                      "actual_start": "2026-11-14T09:23:51+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1804790",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T09:30:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T00:00:00+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 9 часов 30 мин",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -2876,9 +2945,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 13.33,
+            "value": 11.11,
             "numerator": 2,
-            "denominator": 15,
+            "denominator": 18,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2937,7 +3006,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 13,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1120965906",
@@ -3147,6 +3216,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1807553",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T09:00:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T09:27:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 27 минут",
+                      "late_seconds": 1653,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800085741",
                   "name": "Прокофьев Алексей Денисович",
                   "slots": [
@@ -3163,6 +3255,52 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800111023",
+                  "name": "Саидов Мухамад Амиршоевич",
+                  "slots": [
+                    {
+                      "slot_id": "1815222",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T09:30:00+03:00",
+                      "planned_end": "2026-11-14T19:30:00+03:00",
+                      "actual_start": "2026-11-14T09:23:51+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1804790",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T09:30:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T00:00:00+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 9 часов 30 мин",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
