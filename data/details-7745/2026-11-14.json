@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-14": {
-      "generated_at": "2026-11-14T07:47:10.909603+00:00",
+      "generated_at": "2026-11-14T08:10:46.777464+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -395,10 +395,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T11:00:00+03:00",
                       "planned_end": "2026-11-14T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T11:00:34+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 34,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -602,10 +602,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T10:00:00+03:00",
                       "planned_end": "2026-11-14T23:59:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T10:44:40+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2680,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1711,10 +1711,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T10:00:00+03:00",
                       "planned_end": "2026-11-14T23:59:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T10:44:40+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2680,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1746,10 +1746,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T11:00:00+03:00",
                       "planned_end": "2026-11-14T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T11:00:34+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 34,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1847,7 +1847,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 18,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2116,6 +2116,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 27 минут",
                       "late_seconds": 1653,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699912869",
+                  "name": "Постников Алексей Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "1808228",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T11:00:00+03:00",
+                      "planned_end": "2026-11-14T23:00:00+03:00",
+                      "actual_start": "2026-11-14T11:00:34+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 34,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2262,12 +2285,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1828858",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T10:00:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T10:44:40+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2680,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1799882751",
@@ -2360,35 +2406,12 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
-                {
-                  "courier_id": "1799984087",
-                  "name": "Худоёров Уткир Усмонкул Угли",
-                  "slots": [
-                    {
-                      "slot_id": "1828858",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T10:00:00+03:00",
-                      "planned_end": "2026-11-14T23:59:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
                 }
               ]
             },
             {
               "title": "Ожидаются",
-              "count": 3,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -2423,29 +2446,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T20:00:00+03:00",
                       "planned_end": "2026-11-15T08:30:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699912869",
-                  "name": "Постников Алексей Сергеевич",
-                  "slots": [
-                    {
-                      "slot_id": "1808228",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T11:00:00+03:00",
-                      "planned_end": "2026-11-14T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2556,7 +2556,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2649,12 +2649,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1828858",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T10:00:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T10:44:40+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2680,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1699895572",
@@ -2831,6 +2854,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 13 минут",
                       "late_seconds": 831,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699912869",
+                  "name": "Постников Алексей Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "1808228",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T11:00:00+03:00",
+                      "planned_end": "2026-11-14T23:00:00+03:00",
+                      "actual_start": "2026-11-14T11:00:34+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 34,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2991,9 +3037,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 10.0,
+            "value": 9.09,
             "numerator": 2,
-            "denominator": 20,
+            "denominator": 22,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -3052,7 +3098,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 18,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -3331,6 +3377,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1699912869",
+                  "name": "Постников Алексей Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "1808228",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T11:00:00+03:00",
+                      "planned_end": "2026-11-14T23:00:00+03:00",
+                      "actual_start": "2026-11-14T11:00:34+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 34,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800085741",
                   "name": "Прокофьев Алексей Денисович",
                   "slots": [
@@ -3462,6 +3531,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1828858",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T10:00:00+03:00",
+                      "planned_end": "2026-11-14T23:59:00+03:00",
+                      "actual_start": "2026-11-14T10:44:40+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2680,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
