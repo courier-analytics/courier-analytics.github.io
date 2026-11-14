@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-14": {
-      "generated_at": "2026-11-14T03:41:23.790531+00:00",
+      "generated_at": "2026-11-14T04:03:30.136415+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -259,7 +259,7 @@
                       "planned_end": "2026-11-14T19:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -712,31 +712,8 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 4,
+              "count": 3,
               "couriers": [
-                {
-                  "courier_id": "1800101978",
-                  "name": "Досхоев Адам Мусаевич",
-                  "slots": [
-                    {
-                      "slot_id": "1804179",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T12:00:00+03:00",
-                      "planned_end": "2026-11-15T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1799880477",
                   "name": "Корнеев Александр Евгеньевич",
@@ -983,7 +960,7 @@
                       "planned_end": "2026-11-14T19:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1697,41 +1674,6 @@
               ]
             },
             {
-              "slot_id": "1804179",
-              "scope": "7745ДС_Мосфильмовская74",
-              "slot_type": "manual",
-              "planned_start": "2026-11-14T12:00:00+03:00",
-              "planned_end": "2026-11-15T00:00:00+03:00",
-              "capacity": null,
-              "occupied": 1,
-              "free": null,
-              "couriers": [
-                {
-                  "courier_id": "1800101978",
-                  "name": "Досхоев Адам Мусаевич",
-                  "slots": [
-                    {
-                      "slot_id": "1804179",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T12:00:00+03:00",
-                      "planned_end": "2026-11-15T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "slot_id": "1807235",
               "scope": "7745ДС_Мосфильмовская74",
               "slot_type": "manual",
@@ -1904,7 +1846,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1799997420",
@@ -1928,12 +1870,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799937140",
+                  "name": "Курбанбоев Аббос Кобилович",
+                  "slots": [
+                    {
+                      "slot_id": "1831068",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T07:00:00+03:00",
+                      "planned_end": "2026-11-14T19:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Ожидаются",
-              "count": 25,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2051,29 +2016,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800101978",
-                  "name": "Досхоев Адам Мусаевич",
-                  "slots": [
-                    {
-                      "slot_id": "1804179",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T12:00:00+03:00",
-                      "planned_end": "2026-11-15T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800091474",
                   "name": "Зокиров Иззатуллох",
                   "slots": [
@@ -2129,29 +2071,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-14T09:00:00+03:00",
                       "planned_end": "2026-11-14T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799937140",
-                  "name": "Курбанбоев Аббос Кобилович",
-                  "slots": [
-                    {
-                      "slot_id": "1831068",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-14T07:00:00+03:00",
-                      "planned_end": "2026-11-14T19:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2514,8 +2433,31 @@
             },
             {
               "title": "Нет подтверждённых данных",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1800101978",
+                  "name": "ФИО не передано источником",
+                  "slots": [
+                    {
+                      "slot_id": "1804179",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-14T12:00:00+03:00",
+                      "planned_end": "2026-11-15T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Запись из плана отсутствует в текущих данных",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799946181",
                   "name": "Кубатбеков Максатбек",
