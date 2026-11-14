@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-14": {
-      "generated_at": "2026-11-14T13:21:23.555523+00:00",
+      "generated_at": "2026-11-14T13:44:16.860314+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 100.0,
-            "numerator": 18,
-            "denominator": 18,
+            "value": 90.91,
+            "numerator": 20,
+            "denominator": 22,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -571,6 +571,76 @@
                       "actual_end": null,
                       "status": "Опоздал на 53 минуты",
                       "late_seconds": 3209,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "67124",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-14T17:00:00+03:00",
+              "planned_end": "2026-11-15T10:00:00+03:00",
+              "capacity": 3,
+              "occupied": 1,
+              "free": 2,
+              "couriers": [
+                {
+                  "courier_id": "1699908049",
+                  "name": "Магомедов Ибрагим Рагидинович",
+                  "slots": [
+                    {
+                      "slot_id": "67124",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T17:00:00+03:00",
+                      "planned_end": "2026-11-15T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "67125",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-14T17:00:00+03:00",
+              "planned_end": "2026-11-14T23:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1799988587",
+                  "name": "Самедов Саид Тамерланович",
+                  "slots": [
+                    {
+                      "slot_id": "67125",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T17:00:00+03:00",
+                      "planned_end": "2026-11-14T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
