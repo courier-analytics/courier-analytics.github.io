@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-14": {
-      "generated_at": "2026-11-14T21:54:55.041032+00:00",
+      "generated_at": "2026-11-14T22:17:52.832287+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -498,7 +498,7 @@
                       "planned_start": "2026-11-14T08:05:00+03:00",
                       "planned_end": "2026-11-14T20:00:00+03:00",
                       "actual_start": "2026-11-14T10:00:06+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-14T23:15:00+03:00",
                       "status": "Опоздал на 1 час 55 мин",
                       "late_seconds": 6906,
                       "removed_at": null,
@@ -981,7 +981,7 @@
                       "planned_start": "2026-11-14T08:05:00+03:00",
                       "planned_end": "2026-11-14T20:00:00+03:00",
                       "actual_start": "2026-11-14T10:00:06+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-14T23:15:00+03:00",
                       "status": "Опоздал на 1 час 55 мин",
                       "late_seconds": 6906,
                       "removed_at": null,
@@ -1274,7 +1274,7 @@
                       "planned_start": "2026-11-14T08:05:00+03:00",
                       "planned_end": "2026-11-14T20:00:00+03:00",
                       "actual_start": "2026-11-14T10:00:06+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-14T23:15:00+03:00",
                       "status": "Опоздал на 1 час 55 мин",
                       "late_seconds": 6906,
                       "removed_at": null,
@@ -1816,7 +1816,7 @@
                       "planned_start": "2026-11-14T08:05:00+03:00",
                       "planned_end": "2026-11-14T20:00:00+03:00",
                       "actual_start": "2026-11-14T10:00:06+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-14T23:15:00+03:00",
                       "status": "Опоздал на 1 час 55 мин",
                       "late_seconds": 6906,
                       "removed_at": null,
@@ -1882,16 +1882,16 @@
         },
         "planned_completion": {
           "aggregate": {
-            "value": null,
-            "numerator": null,
-            "denominator": null,
-            "reason": "shift_end_or_final_status_missing",
+            "value": 64.71,
+            "numerator": 11,
+            "denominator": 17,
+            "reason": null,
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800108759",
@@ -2101,6 +2101,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800063653",
+                  "name": "Нуров Джавхан Амрдинович",
+                  "slots": [
+                    {
+                      "slot_id": "64787",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T08:05:00+03:00",
+                      "planned_end": "2026-11-14T20:00:00+03:00",
+                      "actual_start": "2026-11-14T10:00:06+03:00",
+                      "actual_end": "2026-11-14T23:15:00+03:00",
+                      "status": "Опоздал на 1 час 55 мин",
+                      "late_seconds": 6906,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800130000",
                   "name": "Чориев Аскарбек Аброр Угли",
                   "slots": [
@@ -2271,35 +2294,11 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 1,
-              "couriers": [
-                {
-                  "courier_id": "1800063653",
-                  "name": "Нуров Джавхан Амрдинович",
-                  "slots": [
-                    {
-                      "slot_id": "64787",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-14T08:05:00+03:00",
-                      "planned_end": "2026-11-14T20:00:00+03:00",
-                      "actual_start": "2026-11-14T10:00:06+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 55 мин",
-                      "late_seconds": 6906,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "count": 0,
+              "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         }
       }
