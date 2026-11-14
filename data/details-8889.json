@@ -22013,7 +22013,7 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-14T08:54:56.097033+00:00",
+      "generated_at": "2026-11-14T09:17:44.460316+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -22109,7 +22109,7 @@
                       "planned_start": "2026-11-13T21:00:00+03:00",
                       "planned_end": "2026-11-14T10:00:00+03:00",
                       "actual_start": "2026-11-14T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-14T10:00:00+03:00",
                       "status": "Опоздал на 3 часа",
                       "late_seconds": null,
                       "removed_at": null,
@@ -23211,7 +23211,7 @@
                       "planned_start": "2026-11-13T21:00:00+03:00",
                       "planned_end": "2026-11-14T10:00:00+03:00",
                       "actual_start": "2026-11-14T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-14T10:00:00+03:00",
                       "status": "Опоздал на 3 часа",
                       "late_seconds": null,
                       "removed_at": null,
@@ -24423,7 +24423,7 @@
                       "planned_start": "2026-11-13T21:00:00+03:00",
                       "planned_end": "2026-11-14T10:00:00+03:00",
                       "actual_start": "2026-11-14T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-14T10:00:00+03:00",
                       "status": "Опоздал на 3 часа",
                       "late_seconds": null,
                       "removed_at": null,
@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-14T08:58:40.883585+00:00",
+      "generated_at": "2026-11-14T09:21:37.903477+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -26908,8 +26908,32 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62389",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-13T21:00:00+03:00",
+                      "planned_end": "2026-11-14T10:00:00+03:00",
+                      "actual_start": "2026-11-14T00:00:00+03:00",
+                      "actual_end": "2026-11-14T10:00:00+03:00",
+                      "status": "Опоздал на 3 часа",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Не завершили или ушли раньше",

@@ -71245,7 +71245,7 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-14T08:54:56.097033+00:00",
+      "generated_at": "2026-11-14T09:17:44.460316+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -75925,12 +75925,12 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-14T08:58:40.883585+00:00",
+      "generated_at": "2026-11-14T09:21:37.903477+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 57.45,
-            "numerator": 27,
+            "value": 59.57,
+            "numerator": 28,
             "denominator": 47,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -75938,7 +75938,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 27,
+              "count": 28,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -76286,6 +76286,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132243",
+                  "name": "Насонов Владимир Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "65895",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T12:00:00+03:00",
+                      "planned_end": "2026-11-14T20:00:00+03:00",
+                      "actual_start": "2026-11-14T12:01:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 88,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800132511",
                   "name": "Нематжонов Искандар Умаржон Угли",
                   "slots": [
@@ -76565,7 +76588,7 @@
             },
             {
               "title": "Не записались",
-              "count": 20,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -76620,11 +76643,6 @@
                 {
                   "courier_id": "1800015035",
                   "name": "Муцагов Алихан Мухтануевич",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800132243",
-                  "name": "Насонов Владимир Константинович",
                   "slots": []
                 },
                 {
@@ -76751,8 +76769,8 @@
         "slot_fill": {
           "aggregate": {
             "value": 100.0,
-            "numerator": 2,
-            "denominator": 2,
+            "numerator": 3,
+            "denominator": 3,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -77726,6 +77744,41 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 34,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "65895",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "limited",
+              "planned_start": "2026-11-14T12:00:00+03:00",
+              "planned_end": "2026-11-14T20:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800132243",
+                  "name": "Насонов Владимир Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "65895",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T12:00:00+03:00",
+                      "planned_end": "2026-11-14T20:00:00+03:00",
+                      "actual_start": "2026-11-14T12:01:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 88,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -79013,16 +79066,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 9.09,
-            "numerator": 2,
-            "denominator": 22,
+            "value": 13.04,
+            "numerator": 3,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -79061,6 +79114,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132243",
+                  "name": "Насонов Владимир Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "65895",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T12:00:00+03:00",
+                      "planned_end": "2026-11-14T20:00:00+03:00",
+                      "actual_start": "2026-11-14T12:01:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 88,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -79563,7 +79639,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -79579,6 +79655,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 15 мин",
                       "late_seconds": 8112,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132243",
+                  "name": "Насонов Владимир Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "65895",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-14T12:00:00+03:00",
+                      "planned_end": "2026-11-14T20:00:00+03:00",
+                      "actual_start": "2026-11-14T12:01:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 88,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
