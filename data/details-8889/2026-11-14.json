@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-14": {
-      "generated_at": "2026-11-14T07:23:58.986048+00:00",
+      "generated_at": "2026-11-14T07:47:10.909603+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -462,10 +462,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-14T08:05:00+03:00",
                       "planned_end": "2026-11-14T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-14T10:44:20+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 2 часа 39 мин",
+                      "late_seconds": 9560,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -600,8 +600,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 58.33,
-            "numerator": 7,
+            "value": 66.67,
+            "numerator": 8,
             "denominator": 12,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -609,8 +609,31 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 7,
+              "count": 8,
               "couriers": [
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "64250",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T08:05:00+03:00",
+                      "planned_end": "2026-11-14T22:00:00+03:00",
+                      "actual_start": "2026-11-14T10:44:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 39 мин",
+                      "late_seconds": 9560,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800106928",
                   "name": "Голенищенко Максим Константинович",
@@ -776,7 +799,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -788,29 +811,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-14T07:00:00+03:00",
                       "planned_end": "2026-11-14T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800128516",
-                  "name": "Варданян Виген Тигранович",
-                  "slots": [
-                    {
-                      "slot_id": "64250",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-14T08:05:00+03:00",
-                      "planned_end": "2026-11-14T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -916,17 +916,40 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 85.71,
-            "numerator": 6,
-            "denominator": 7,
+            "value": 87.5,
+            "numerator": 7,
+            "denominator": 8,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 6,
+              "count": 7,
               "couriers": [
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "64250",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T08:05:00+03:00",
+                      "planned_end": "2026-11-14T22:00:00+03:00",
+                      "actual_start": "2026-11-14T10:44:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 39 мин",
+                      "late_seconds": 9560,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800106928",
                   "name": "Голенищенко Максим Константинович",
@@ -1107,9 +1130,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 41.67,
+            "value": 38.46,
             "numerator": 5,
-            "denominator": 12,
+            "denominator": 13,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -1237,8 +1260,31 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 7,
+              "count": 8,
               "couriers": [
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "64250",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T08:05:00+03:00",
+                      "planned_end": "2026-11-14T22:00:00+03:00",
+                      "actual_start": "2026-11-14T10:44:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 39 мин",
+                      "late_seconds": 9560,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800106928",
                   "name": "Голенищенко Максим Константинович",
@@ -1427,7 +1473,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1800108759",
@@ -1443,6 +1489,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 3 часа",
                       "late_seconds": 10844,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "64250",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-14T08:05:00+03:00",
+                      "planned_end": "2026-11-14T22:00:00+03:00",
+                      "actual_start": "2026-11-14T10:44:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 39 мин",
+                      "late_seconds": 9560,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
