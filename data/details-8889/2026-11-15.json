@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-15": {
-      "generated_at": "2026-11-15T16:44:34.882558+00:00",
+      "generated_at": "2026-11-15T17:25:27.267134+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -64,7 +64,7 @@
                       "planned_end": "2026-11-16T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -945,7 +945,7 @@
                       "planned_end": "2026-11-16T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -966,10 +966,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-15T20:00:00+03:00",
                       "planned_end": "2026-11-16T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T19:04:16+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1859,16 +1859,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 45.83,
-            "numerator": 11,
-            "denominator": 24,
+            "value": 48.0,
+            "numerator": 12,
+            "denominator": 25,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1799970585",
@@ -1953,6 +1953,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 8 мин",
                       "late_seconds": 4096,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699908049",
+                  "name": "Магомедов Ибрагим Рагидинович",
+                  "slots": [
+                    {
+                      "slot_id": "62398",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T20:00:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": "2026-11-15T19:04:16+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",

@@ -46674,7 +46674,7 @@
       }
     },
     "2026-11-08": {
-      "generated_at": "2026-11-15T16:04:32.645995+00:00",
+      "generated_at": "2026-11-15T17:08:24.128486+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -51804,7 +51804,7 @@
       }
     },
     "2026-11-09": {
-      "generated_at": "2026-11-15T16:01:49.023915+00:00",
+      "generated_at": "2026-11-15T17:05:39.074423+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -75925,7 +75925,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-15T16:48:28.034798+00:00",
+      "generated_at": "2026-11-15T17:21:33.304286+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80752,12 +80752,12 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-15T16:44:34.882558+00:00",
+      "generated_at": "2026-11-15T17:25:27.267134+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 61.22,
-            "numerator": 30,
+            "value": 63.27,
+            "numerator": 31,
             "denominator": 49,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -80765,7 +80765,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 30,
+              "count": 31,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -80963,7 +80963,7 @@
                       "planned_end": "2026-11-16T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -81149,6 +81149,29 @@
                       "actual_end": null,
                       "status": "Не вышел",
                       "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800056742",
+                  "name": "Маматкулов Хумоюдин Фарходович",
+                  "slots": [
+                    {
+                      "slot_id": "66835",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T20:00:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": "2026-11-15T20:02:01+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 121,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -81461,7 +81484,7 @@
             },
             {
               "title": "Не записались",
-              "count": 19,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800114061",
@@ -81496,11 +81519,6 @@
                 {
                   "courier_id": "1800115892",
                   "name": "Логинов Даниил Вячеславович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800056742",
-                  "name": "Маматкулов Хумоюдин Фарходович",
                   "slots": []
                 },
                 {
@@ -81733,9 +81751,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 68.97,
-            "numerator": 20,
-            "denominator": 29,
+            "value": 65.62,
+            "numerator": 21,
+            "denominator": 32,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -82919,9 +82937,9 @@
               "slot_type": "limited",
               "planned_start": "2026-11-15T20:00:00+03:00",
               "planned_end": "2026-11-16T09:00:00+03:00",
-              "capacity": 1,
-              "occupied": 1,
-              "free": 0,
+              "capacity": 4,
+              "occupied": 2,
+              "free": 2,
               "couriers": [
                 {
                   "courier_id": "1800091474",
@@ -82935,8 +82953,31 @@
                       "planned_end": "2026-11-16T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800056742",
+                  "name": "Маматкулов Хумоюдин Фарходович",
+                  "slots": [
+                    {
+                      "slot_id": "66835",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T20:00:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": "2026-11-15T20:02:01+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 121,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -83478,7 +83519,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -83513,6 +83554,29 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-15T10:00:00+03:00",
                       "planned_end": "2026-11-15T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800091474",
+                  "name": "Зокиров Иззатуллох",
+                  "slots": [
+                    {
+                      "slot_id": "66835",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T20:00:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -83599,32 +83663,8 @@
             },
             {
               "title": "Ожидаются",
-              "count": 1,
-              "couriers": [
-                {
-                  "courier_id": "1800091474",
-                  "name": "Зокиров Иззатуллох",
-                  "slots": [
-                    {
-                      "slot_id": "66835",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-15T20:00:00+03:00",
-                      "planned_end": "2026-11-16T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "count": 0,
+              "couriers": []
             },
             {
               "title": "Нет подтверждённых данных",
@@ -84228,16 +84268,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 24.14,
-            "numerator": 7,
-            "denominator": 29,
+            "value": 26.67,
+            "numerator": 8,
+            "denominator": 30,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 7,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1800097223",
@@ -84299,6 +84339,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 4 часа 1 мин",
                       "late_seconds": 14518,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800056742",
+                  "name": "Маматкулов Хумоюдин Фарходович",
+                  "slots": [
+                    {
+                      "slot_id": "66835",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T20:00:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": "2026-11-15T20:02:01+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 121,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
