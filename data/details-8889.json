@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-15T09:18:24.224649+00:00",
+      "generated_at": "2026-11-15T09:41:37.717872+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27679,7 +27679,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-15T09:22:34.661188+00:00",
+      "generated_at": "2026-11-15T09:45:43.682427+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27695,9 +27695,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 78.12,
-            "numerator": 25,
-            "denominator": 32,
+            "value": 78.79,
+            "numerator": 26,
+            "denominator": 33,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -28272,10 +28272,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-15T10:00:00+03:00",
                       "planned_end": "2026-11-15T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T12:32:57+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -28356,6 +28356,41 @@
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "67659",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-15T13:00:00+03:00",
+              "planned_end": "2026-11-15T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "67659",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T13:00:00+03:00",
+                      "planned_end": "2026-11-15T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -28484,8 +28519,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 61.11,
-            "numerator": 11,
+            "value": 66.67,
+            "numerator": 12,
             "denominator": 18,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -28493,8 +28528,31 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 11,
+              "count": 12,
               "couriers": [
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62396",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T10:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": "2026-11-15T12:32:57+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128516",
                   "name": "Варданян Виген Тигранович",
@@ -28752,31 +28810,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 5,
               "couriers": [
-                {
-                  "courier_id": "1800100778",
-                  "name": "Бычков Никита Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62396",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-15T10:00:00+03:00",
-                      "planned_end": "2026-11-15T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800132085",
                   "name": "Киёмов Бахром Суфижонович",
@@ -28939,17 +28974,40 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 81.82,
-            "numerator": 9,
-            "denominator": 11,
+            "value": 83.33,
+            "numerator": 10,
+            "denominator": 12,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 9,
+              "count": 10,
               "couriers": [
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62396",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T10:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": "2026-11-15T12:32:57+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128516",
                   "name": "Варданян Виген Тигранович",
@@ -29222,9 +29280,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 26.67,
+            "value": 25.0,
             "numerator": 4,
-            "denominator": 15,
+            "denominator": 16,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -29329,8 +29387,31 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 11,
+              "count": 12,
               "couriers": [
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62396",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T10:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": "2026-11-15T12:32:57+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128516",
                   "name": "Варданян Виген Тигранович",
@@ -29611,8 +29692,31 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 15,
+              "count": 16,
               "couriers": [
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62396",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T10:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": "2026-11-15T12:32:57+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128516",
                   "name": "Варданян Виген Тигранович",
