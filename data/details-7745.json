@@ -75925,7 +75925,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-15T07:22:49.624286+00:00",
+      "generated_at": "2026-11-15T07:45:19.780295+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80851,13 +80851,13 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-15T07:26:29.094496+00:00",
+      "generated_at": "2026-11-15T07:48:59.667453+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 51.02,
+            "value": 50.0,
             "numerator": 25,
-            "denominator": 49,
+            "denominator": 50,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
@@ -80969,7 +80969,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T16:00:00+03:00",
                       "actual_start": "2026-11-15T09:13:39+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T10:27:20+03:00",
                       "status": "Опоздал на 1 час 13 мин",
                       "late_seconds": 4419,
                       "removed_at": null,
@@ -81445,11 +81445,16 @@
             },
             {
               "title": "Не записались",
-              "count": 24,
+              "count": 25,
               "couriers": [
                 {
                   "courier_id": "1800114061",
                   "name": "Ахмедов Магомед Гусенович",
+                  "slots": []
+                },
+                {
+                  "courier_id": "1800108230",
+                  "name": "Берлинец Вениамин Максимович",
                   "slots": []
                 },
                 {
@@ -81966,7 +81971,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T16:00:00+03:00",
                       "actual_start": "2026-11-15T09:13:39+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T10:27:20+03:00",
                       "status": "Опоздал на 1 час 13 мин",
                       "late_seconds": 4419,
                       "removed_at": null,
@@ -83998,7 +84003,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T16:00:00+03:00",
                       "actual_start": "2026-11-15T09:13:39+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T10:27:20+03:00",
                       "status": "Опоздал на 1 час 13 мин",
                       "late_seconds": 4419,
                       "removed_at": null,
@@ -84498,12 +84503,36 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800097223",
+                  "name": "Асхабов Сурхо Арсанович",
+                  "slots": [
+                    {
+                      "slot_id": "66828",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T08:00:00+03:00",
+                      "planned_end": "2026-11-15T16:00:00+03:00",
+                      "actual_start": "2026-11-15T09:13:39+03:00",
+                      "actual_end": "2026-11-15T10:27:20+03:00",
+                      "status": "Опоздал на 1 час 13 мин",
+                      "late_seconds": 4419,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 10,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -84542,29 +84571,6 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800097223",
-                  "name": "Асхабов Сурхо Арсанович",
-                  "slots": [
-                    {
-                      "slot_id": "66828",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-15T08:00:00+03:00",
-                      "planned_end": "2026-11-15T16:00:00+03:00",
-                      "actual_start": "2026-11-15T09:13:39+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 13 мин",
-                      "late_seconds": 4419,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -84743,9 +84749,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 40.82,
+            "value": 40.0,
             "numerator": 20,
-            "denominator": 49,
+            "denominator": 50,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -84898,7 +84904,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 29,
+              "count": 30,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -84924,6 +84930,13 @@
                 {
                   "courier_id": "1800114061",
                   "name": "Ахмедов Магомед Гусенович",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1800108230",
+                  "name": "Берлинец Вениамин Максимович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
