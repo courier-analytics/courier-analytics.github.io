@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-15": {
-      "generated_at": "2026-11-15T12:03:42.913391+00:00",
+      "generated_at": "2026-11-15T12:26:53.001845+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -514,10 +514,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-15T09:00:00+03:00",
                       "planned_end": "2026-11-15T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T15:02:55+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 6 часов 2 мин",
+                      "late_seconds": 21775,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -866,8 +866,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 66.67,
-            "numerator": 12,
+            "value": 72.22,
+            "numerator": 13,
             "denominator": 18,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -875,7 +875,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 12,
+              "count": 13,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -1085,6 +1085,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800094666",
+                  "name": "Петросян Геворг Гарегинович",
+                  "slots": [
+                    {
+                      "slot_id": "62395",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T09:00:00+03:00",
+                      "planned_end": "2026-11-15T22:00:00+03:00",
+                      "actual_start": "2026-11-15T15:02:55+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 2 мин",
+                      "late_seconds": 21775,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800030975",
                   "name": "Рузалиев Хайрулло Фатхуллоевич",
                   "slots": [
@@ -1157,7 +1180,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800132085",
@@ -1214,29 +1237,6 @@
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-15T10:05:00+03:00",
-                      "planned_end": "2026-11-15T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800094666",
-                  "name": "Петросян Геворг Гарегинович",
-                  "slots": [
-                    {
-                      "slot_id": "62395",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-15T09:00:00+03:00",
                       "planned_end": "2026-11-15T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
@@ -1321,16 +1321,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 83.33,
-            "numerator": 10,
-            "denominator": 12,
+            "value": 84.62,
+            "numerator": 11,
+            "denominator": 13,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -1484,6 +1484,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 52 минуты",
                       "late_seconds": 3171,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094666",
+                  "name": "Петросян Геворг Гарегинович",
+                  "slots": [
+                    {
+                      "slot_id": "62395",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T09:00:00+03:00",
+                      "planned_end": "2026-11-15T22:00:00+03:00",
+                      "actual_start": "2026-11-15T15:02:55+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 2 мин",
+                      "late_seconds": 21775,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1627,9 +1650,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 33.33,
+            "value": 31.58,
             "numerator": 6,
-            "denominator": 18,
+            "denominator": 19,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -1780,7 +1803,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 12,
+              "count": 13,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -1990,6 +2013,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800094666",
+                  "name": "Петросян Геворг Гарегинович",
+                  "slots": [
+                    {
+                      "slot_id": "62395",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T09:00:00+03:00",
+                      "planned_end": "2026-11-15T22:00:00+03:00",
+                      "actual_start": "2026-11-15T15:02:55+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 2 мин",
+                      "late_seconds": 21775,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800030975",
                   "name": "Рузалиев Хайрулло Фатхуллоевич",
                   "slots": [
@@ -2085,7 +2131,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 18,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -2331,6 +2377,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 7 мин",
                       "late_seconds": 4049,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094666",
+                  "name": "Петросян Геворг Гарегинович",
+                  "slots": [
+                    {
+                      "slot_id": "62395",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T09:00:00+03:00",
+                      "planned_end": "2026-11-15T22:00:00+03:00",
+                      "actual_start": "2026-11-15T15:02:55+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 2 мин",
+                      "late_seconds": 21775,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
