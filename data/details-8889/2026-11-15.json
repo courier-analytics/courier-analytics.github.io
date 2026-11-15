@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-15": {
-      "generated_at": "2026-11-15T15:58:57.090461+00:00",
+      "generated_at": "2026-11-15T16:21:49.148353+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -821,10 +821,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-15T18:00:00+03:00",
                       "planned_end": "2026-11-16T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T19:07:10+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 7 мин",
+                      "late_seconds": 4030,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -844,10 +844,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-15T18:00:00+03:00",
                       "planned_end": "2026-11-16T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T19:08:16+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 8 мин",
+                      "late_seconds": 4096,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -879,10 +879,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-15T19:00:00+03:00",
                       "planned_end": "2026-11-16T10:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T19:02:20+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 140,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1847,17 +1847,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 35.0,
-            "numerator": 7,
-            "denominator": 20,
+            "value": 43.48,
+            "numerator": 10,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 7,
+              "count": 10,
               "couriers": [
+                {
+                  "courier_id": "1799970585",
+                  "name": "ДЖУМАЕВ ДАНИЁЛ НАСРУЛЛОЕВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "64260",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T18:00:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": "2026-11-15T19:07:10+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 7 мин",
+                      "late_seconds": 4030,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800133631",
                   "name": "Камолов Саидмурод Меликмуродович",
@@ -1872,6 +1895,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800131551",
+                  "name": "Мавлонов Алишер Рашидович",
+                  "slots": [
+                    {
+                      "slot_id": "64260",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T18:00:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": "2026-11-15T19:08:16+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 8 мин",
+                      "late_seconds": 4096,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1918,6 +1964,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 7 мин",
                       "late_seconds": 4049,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094891",
+                  "name": "Тухлиев Достон Зоир Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1849312",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T19:00:00+03:00",
+                      "planned_end": "2026-11-16T10:00:00+03:00",
+                      "actual_start": "2026-11-15T19:02:20+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 140,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
