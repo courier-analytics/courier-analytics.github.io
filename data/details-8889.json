@@ -22013,7 +22013,7 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-15T14:51:57.318241+00:00",
+      "generated_at": "2026-11-15T15:51:04.395652+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-15T15:29:33.468345+00:00",
+      "generated_at": "2026-11-15T15:54:49.493057+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27679,7 +27679,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-15T15:33:21.753799+00:00",
+      "generated_at": "2026-11-15T15:58:57.090461+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27695,8 +27695,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 85.71,
-            "numerator": 30,
+            "value": 91.43,
+            "numerator": 32,
             "denominator": 35,
             "reason": null,
             "basis": "limited_slot_places"
@@ -28427,8 +28427,8 @@
               "planned_start": "2026-11-15T16:00:00+03:00",
               "planned_end": "2026-11-16T00:00:00+03:00",
               "capacity": 2,
-              "occupied": 1,
-              "free": 1,
+              "occupied": 2,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1800122176",
@@ -28444,6 +28444,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800080693",
+                  "name": "Шарифов Хуршед Пулодович",
+                  "slots": [
+                    {
+                      "slot_id": "62397",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T16:00:00+03:00",
+                      "planned_end": "2026-11-16T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -28514,15 +28537,74 @@
               ]
             },
             {
+              "slot_id": "1849312",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "manual",
+              "planned_start": "2026-11-15T19:00:00+03:00",
+              "planned_end": "2026-11-16T10:00:00+03:00",
+              "capacity": null,
+              "occupied": 1,
+              "free": null,
+              "couriers": [
+                {
+                  "courier_id": "1800094891",
+                  "name": "Тухлиев Достон Зоир Угли",
+                  "slots": [
+                    {
+                      "slot_id": "1849312",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T19:00:00+03:00",
+                      "planned_end": "2026-11-16T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "slot_id": "69205",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "limited",
               "planned_start": "2026-11-15T19:30:00+03:00",
               "planned_end": "2026-11-16T09:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1699900182",
+                  "name": "Идирисов Исмаил Бадурудинович",
+                  "slots": [
+                    {
+                      "slot_id": "69205",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T19:30:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62398",
