@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-15": {
-      "generated_at": "2026-11-15T15:10:35.937882+00:00",
+      "generated_at": "2026-11-15T15:33:21.753799+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 82.35,
-            "numerator": 28,
-            "denominator": 34,
+            "value": 85.71,
+            "numerator": 30,
+            "denominator": 35,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -121,9 +121,26 @@
                       "planned_start": "2026-11-15T07:00:00+03:00",
                       "planned_end": "2026-11-15T20:00:00+03:00",
                       "actual_start": "2026-11-15T09:58:59+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T18:28:32+03:00",
                       "status": "Опоздал на 2 часа 58 мин",
                       "late_seconds": 10739,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "62399",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T21:00:00+03:00",
+                      "planned_end": "2026-11-16T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -820,14 +837,25 @@
               ]
             },
             {
+              "slot_id": "69205",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-15T19:30:00+03:00",
+              "planned_end": "2026-11-16T09:00:00+03:00",
+              "capacity": 1,
+              "occupied": 0,
+              "free": 1,
+              "couriers": []
+            },
+            {
               "slot_id": "62398",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "limited",
               "planned_start": "2026-11-15T20:00:00+03:00",
               "planned_end": "2026-11-16T09:00:00+03:00",
               "capacity": 2,
-              "occupied": 1,
-              "free": 1,
+              "occupied": 2,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -868,6 +896,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1699908049",
+                  "name": "Магомедов Ибрагим Рагидинович",
+                  "slots": [
+                    {
+                      "slot_id": "62398",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T20:00:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
@@ -878,9 +929,50 @@
               "planned_start": "2026-11-15T21:00:00+03:00",
               "planned_end": "2026-11-16T10:00:00+03:00",
               "capacity": 2,
-              "occupied": 0,
-              "free": 2,
-              "couriers": []
+              "occupied": 1,
+              "free": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62392",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T07:00:00+03:00",
+                      "planned_end": "2026-11-15T20:00:00+03:00",
+                      "actual_start": "2026-11-15T09:58:59+03:00",
+                      "actual_end": "2026-11-15T18:28:32+03:00",
+                      "status": "Опоздал на 2 часа 58 мин",
+                      "late_seconds": 10739,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "62399",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T21:00:00+03:00",
+                      "planned_end": "2026-11-16T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "groups": [],
@@ -1764,9 +1856,26 @@
                       "planned_start": "2026-11-15T07:00:00+03:00",
                       "planned_end": "2026-11-15T20:00:00+03:00",
                       "actual_start": "2026-11-15T09:58:59+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T18:28:32+03:00",
                       "status": "Опоздал на 2 часа 58 мин",
                       "late_seconds": 10739,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "62399",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T21:00:00+03:00",
+                      "planned_end": "2026-11-16T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2172,12 +2281,36 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62392",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T07:00:00+03:00",
+                      "planned_end": "2026-11-15T20:00:00+03:00",
+                      "actual_start": "2026-11-15T09:58:59+03:00",
+                      "actual_end": "2026-11-15T18:28:32+03:00",
+                      "status": "Опоздал на 2 часа 58 мин",
+                      "late_seconds": 10739,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 19,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -2515,29 +2648,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 9 мин",
                       "late_seconds": 4197,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130000",
-                  "name": "Чориев Аскарбек Аброр Угли",
-                  "slots": [
-                    {
-                      "slot_id": "62392",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-15T07:00:00+03:00",
-                      "planned_end": "2026-11-15T20:00:00+03:00",
-                      "actual_start": "2026-11-15T09:58:59+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 2 часа 58 мин",
-                      "late_seconds": 10739,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
