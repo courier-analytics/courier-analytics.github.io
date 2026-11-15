@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-15": {
-      "generated_at": "2026-11-15T09:45:43.682427+00:00",
+      "generated_at": "2026-11-15T10:09:08.467753+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -511,7 +511,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T21:00:00+03:00",
                       "actual_start": "2026-11-14T21:26:02+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T11:00:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -722,7 +722,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1699919412",
@@ -817,6 +817,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800015035",
+                  "name": "Муцагов Алихан Мухтануевич",
+                  "slots": [
+                    {
+                      "slot_id": "66831",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T10:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": "2026-11-15T00:00:00+03:00",
+                      "actual_end": "2026-11-15T11:00:00+03:00",
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800076229",
                   "name": "Саидов Саиджаффар Эркинжонович",
                   "slots": [
@@ -870,8 +893,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 41.18,
-            "numerator": 14,
+            "value": 44.12,
+            "numerator": 15,
             "denominator": 34,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1268,7 +1291,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T21:00:00+03:00",
                       "actual_start": "2026-11-14T21:26:02+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T11:00:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1650,8 +1673,8 @@
               "planned_start": "2026-11-15T10:00:00+03:00",
               "planned_end": "2026-11-15T23:00:00+03:00",
               "capacity": 4,
-              "occupied": 2,
-              "free": 2,
+              "occupied": 3,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1699919412",
@@ -1693,6 +1716,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800015035",
+                  "name": "Муцагов Алихан Мухтануевич",
+                  "slots": [
+                    {
+                      "slot_id": "66831",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T10:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": "2026-11-15T00:00:00+03:00",
+                      "actual_end": "2026-11-15T11:00:00+03:00",
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -2341,7 +2387,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T21:00:00+03:00",
                       "actual_start": "2026-11-14T21:26:02+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T11:00:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3081,7 +3127,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T21:00:00+03:00",
                       "actual_start": "2026-11-14T21:26:02+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T11:00:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3152,16 +3198,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 13.64,
-            "numerator": 3,
-            "denominator": 22,
+            "value": 17.39,
+            "numerator": 4,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 3,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800097223",
@@ -3226,6 +3272,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800015035",
+                  "name": "Муцагов Алихан Мухтануевич",
+                  "slots": [
+                    {
+                      "slot_id": "66831",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T10:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": "2026-11-15T00:00:00+03:00",
+                      "actual_end": "2026-11-15T11:00:00+03:00",
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -3594,7 +3663,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T21:00:00+03:00",
                       "actual_start": "2026-11-14T21:26:02+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T11:00:00+03:00",
                       "status": "Вышел раньше на 8 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3697,7 +3766,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800097223",
@@ -3741,6 +3810,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-14. Исходное начало: 2026-11-15T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-14",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800015035",
+                  "name": "Муцагов Алихан Мухтануевич",
+                  "slots": [
+                    {
+                      "slot_id": "66831",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T10:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": "2026-11-15T00:00:00+03:00",
+                      "actual_end": "2026-11-15T11:00:00+03:00",
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
