@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-15T17:21:33.304286+00:00",
+      "generated_at": "2026-11-15T17:44:22.255108+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27679,7 +27679,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-15T17:25:27.267134+00:00",
+      "generated_at": "2026-11-15T17:48:11.884623+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -28023,7 +28023,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T21:00:00+03:00",
                       "actual_start": "2026-11-15T13:14:32+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T20:43:15+03:00",
                       "status": "Опоздал на 5 часов 14 мин",
                       "late_seconds": 18872,
                       "removed_at": null,
@@ -28678,10 +28678,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-15T20:30:00+03:00",
                       "planned_end": "2026-11-16T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T19:34:08+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -29536,16 +29536,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 48.0,
-            "numerator": 12,
-            "denominator": 25,
+            "value": 50.0,
+            "numerator": 13,
+            "denominator": 26,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 12,
+              "count": 13,
               "couriers": [
                 {
                   "courier_id": "1799970585",
@@ -29772,6 +29772,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800080693",
+                  "name": "Шарифов Хуршед Пулодович",
+                  "slots": [
+                    {
+                      "slot_id": "69244",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T20:30:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": "2026-11-15T19:34:08+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800133468",
                   "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
                   "slots": [
@@ -29782,7 +29805,7 @@
                       "planned_start": "2026-11-15T08:00:00+03:00",
                       "planned_end": "2026-11-15T21:00:00+03:00",
                       "actual_start": "2026-11-15T13:14:32+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T20:43:15+03:00",
                       "status": "Опоздал на 5 часов 14 мин",
                       "late_seconds": 18872,
                       "removed_at": null,
@@ -30167,7 +30190,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800130000",
@@ -30191,12 +30214,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800133468",
+                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "62394",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T08:00:00+03:00",
+                      "planned_end": "2026-11-15T21:00:00+03:00",
+                      "actual_start": "2026-11-15T13:14:32+03:00",
+                      "actual_end": "2026-11-15T20:43:15+03:00",
+                      "status": "Опоздал на 5 часов 14 мин",
+                      "late_seconds": 18872,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 18,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -30534,29 +30580,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 9 мин",
                       "late_seconds": 4197,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800133468",
-                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
-                  "slots": [
-                    {
-                      "slot_id": "62394",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-15T08:00:00+03:00",
-                      "planned_end": "2026-11-15T21:00:00+03:00",
-                      "actual_start": "2026-11-15T13:14:32+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 5 часов 14 мин",
-                      "late_seconds": 18872,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
