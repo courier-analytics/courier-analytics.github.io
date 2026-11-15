@@ -75925,7 +75925,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-15T01:19:52.609171+00:00",
+      "generated_at": "2026-11-15T01:41:50.399062+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80851,7 +80851,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-15T01:23:19.350135+00:00",
+      "generated_at": "2026-11-15T01:45:20.143792+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -81537,7 +81537,7 @@
                   "name": "Досхоев Адам Мусаевич",
                   "slots": [
                     {
-                      "slot_id": "1804304",
+                      "slot_id": "1841155",
                       "slot_type": "manual",
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-15T12:00:00+03:00",
@@ -82568,7 +82568,7 @@
               ]
             },
             {
-              "slot_id": "1804304",
+              "slot_id": "1841155",
               "scope": "7745ДС_Мосфильмовская74",
               "slot_type": "manual",
               "planned_start": "2026-11-15T12:00:00+03:00",
@@ -82582,7 +82582,7 @@
                   "name": "Досхоев Адам Мусаевич",
                   "slots": [
                     {
-                      "slot_id": "1804304",
+                      "slot_id": "1841155",
                       "slot_type": "manual",
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-15T12:00:00+03:00",
@@ -82734,11 +82734,11 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
-            "denominator": 29,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -82753,7 +82753,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 29,
+              "count": 28,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -82903,29 +82903,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-15T10:00:00+03:00",
                       "planned_end": "2026-11-15T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800101978",
-                  "name": "Досхоев Адам Мусаевич",
-                  "slots": [
-                    {
-                      "slot_id": "1804304",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-15T12:00:00+03:00",
-                      "planned_end": "2026-11-16T00:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -83426,8 +83403,32 @@
             },
             {
               "title": "Нет подтверждённых данных",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800101978",
+                  "name": "Досхоев Адам Мусаевич",
+                  "slots": [
+                    {
+                      "slot_id": "1804304",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-15T12:00:00+03:00",
+                      "planned_end": "2026-11-16T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Запись из плана отсутствует в текущих данных",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Снятые смены — история",
@@ -83435,16 +83436,16 @@
               "couriers": []
             }
           ],
-          "reconciled": true,
+          "reconciled": false,
           "note": ""
         },
         "planned_late": {
           "aggregate": {
             "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
-            "basis": "frozen_plan_unique_couriers"
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
