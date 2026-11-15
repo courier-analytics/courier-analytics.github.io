@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-15": {
-      "generated_at": "2026-11-15T03:38:25.674583+00:00",
+      "generated_at": "2026-11-15T04:00:29.913146+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -188,10 +188,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-15T06:00:00+03:00",
                       "planned_end": "2026-11-15T18:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T06:53:31+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 53 минуты",
+                      "late_seconds": 3211,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -890,10 +890,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-15T06:00:00+03:00",
                       "planned_end": "2026-11-15T18:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T06:53:31+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 53 минуты",
+                      "late_seconds": 3211,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1836,7 +1836,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -1860,13 +1860,7 @@
                       "shift_end_source_date": null
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "title": "Не вышли по статусу источника",
-              "count": 1,
-              "couriers": [
+                },
                 {
                   "courier_id": "1799997420",
                   "name": "Имомкулов Иззат Имомович",
@@ -1877,10 +1871,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-15T06:00:00+03:00",
                       "planned_end": "2026-11-15T18:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T06:53:31+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 53 минуты",
+                      "late_seconds": 3211,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1891,6 +1885,11 @@
                   ]
                 }
               ]
+            },
+            {
+              "title": "Не вышли по статусу источника",
+              "count": 0,
+              "couriers": []
             },
             {
               "title": "Ожидаются",
@@ -2545,8 +2544,32 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "1828867",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T06:00:00+03:00",
+                      "planned_end": "2026-11-15T18:00:00+03:00",
+                      "actual_start": "2026-11-15T06:53:31+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 53 минуты",
+                      "late_seconds": 3211,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Без опоздания от 15 минут",
@@ -2590,7 +2613,7 @@
           "aggregate": {
             "value": 0.0,
             "numerator": 0,
-            "denominator": 1,
+            "denominator": 2,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2602,7 +2625,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -2623,6 +2646,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-14. Исходное начало: 2026-11-15T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-14",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "1828867",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T06:00:00+03:00",
+                      "planned_end": "2026-11-15T18:00:00+03:00",
+                      "actual_start": "2026-11-15T06:53:31+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 53 минуты",
+                      "late_seconds": 3211,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
