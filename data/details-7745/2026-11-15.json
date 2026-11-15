@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-15": {
-      "generated_at": "2026-11-15T11:39:41.132699+00:00",
+      "generated_at": "2026-11-15T12:03:42.913391+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 54.0,
-            "numerator": 27,
+            "value": 56.0,
+            "numerator": 28,
             "denominator": 50,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 27,
+              "count": 28,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -97,7 +97,7 @@
                       "planned_start": "2026-11-15T06:00:00+03:00",
                       "planned_end": "2026-11-15T22:00:00+03:00",
                       "actual_start": "2026-11-14T23:02:58+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T13:00:00+03:00",
                       "status": "Вышел раньше на 6 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -524,6 +524,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132317",
+                  "name": "Пылаев Павел Максимович",
+                  "slots": [
+                    {
+                      "slot_id": "66832",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T15:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799939451",
                   "name": "Сулаймонов Абдукиром Акобирович",
                   "slots": [
@@ -642,7 +665,7 @@
             },
             {
               "title": "Не записались",
-              "count": 23,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800114061",
@@ -692,11 +715,6 @@
                 {
                   "courier_id": "1799946954",
                   "name": "Муминов Хушвахт Толибович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800132317",
-                  "name": "Пылаев Павел Максимович",
                   "slots": []
                 },
                 {
@@ -934,8 +952,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 60.71,
-            "numerator": 17,
+            "value": 64.29,
+            "numerator": 18,
             "denominator": 28,
             "reason": null,
             "basis": "limited_slot_places"
@@ -984,7 +1002,7 @@
                       "planned_start": "2026-11-15T06:00:00+03:00",
                       "planned_end": "2026-11-15T22:00:00+03:00",
                       "actual_start": "2026-11-14T23:02:58+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T13:00:00+03:00",
                       "status": "Вышел раньше на 6 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2028,9 +2046,33 @@
               "planned_start": "2026-11-15T15:00:00+03:00",
               "planned_end": "2026-11-15T23:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800132317",
+                  "name": "Пылаев Павел Максимович",
+                  "slots": [
+                    {
+                      "slot_id": "66832",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T15:00:00+03:00",
+                      "planned_end": "2026-11-15T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "66835",
@@ -2142,7 +2184,7 @@
                       "planned_start": "2026-11-15T06:00:00+03:00",
                       "planned_end": "2026-11-15T22:00:00+03:00",
                       "actual_start": "2026-11-14T23:02:58+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T13:00:00+03:00",
                       "status": "Вышел раньше на 6 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3067,7 +3109,7 @@
                       "planned_start": "2026-11-15T06:00:00+03:00",
                       "planned_end": "2026-11-15T22:00:00+03:00",
                       "actual_start": "2026-11-14T23:02:58+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T13:00:00+03:00",
                       "status": "Вышел раньше на 6 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3488,7 +3530,7 @@
                       "planned_start": "2026-11-15T06:00:00+03:00",
                       "planned_end": "2026-11-15T22:00:00+03:00",
                       "actual_start": "2026-11-14T23:02:58+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-15T13:00:00+03:00",
                       "status": "Вышел раньше на 6 часов",
                       "late_seconds": 0,
                       "removed_at": null,
