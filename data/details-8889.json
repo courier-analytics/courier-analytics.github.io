@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-15T16:17:53.210261+00:00",
+      "generated_at": "2026-11-15T16:40:46.253152+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27679,7 +27679,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-15T16:21:49.148353+00:00",
+      "generated_at": "2026-11-15T16:44:34.882558+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27695,9 +27695,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 91.43,
+            "value": 74.42,
             "numerator": 32,
-            "denominator": 35,
+            "denominator": 43,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -28427,8 +28427,8 @@
               "planned_start": "2026-11-15T16:00:00+03:00",
               "planned_end": "2026-11-16T00:00:00+03:00",
               "capacity": 2,
-              "occupied": 2,
-              "free": 0,
+              "occupied": 1,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1800122176",
@@ -28444,29 +28444,6 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800080693",
-                  "name": "Шарифов Хуршед Пулодович",
-                  "slots": [
-                    {
-                      "slot_id": "62397",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-15T16:00:00+03:00",
-                      "planned_end": "2026-11-16T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -28591,10 +28568,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-15T19:30:00+03:00",
                       "planned_end": "2026-11-16T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-15T18:39:06+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 50 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -28682,14 +28659,49 @@
               ]
             },
             {
+              "slot_id": "69244",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-15T20:30:00+03:00",
+              "planned_end": "2026-11-16T09:00:00+03:00",
+              "capacity": 6,
+              "occupied": 1,
+              "free": 5,
+              "couriers": [
+                {
+                  "courier_id": "1800080693",
+                  "name": "Шарифов Хуршед Пулодович",
+                  "slots": [
+                    {
+                      "slot_id": "69244",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T20:30:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "slot_id": "62399",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "limited",
               "planned_start": "2026-11-15T21:00:00+03:00",
               "planned_end": "2026-11-16T10:00:00+03:00",
-              "capacity": 2,
+              "capacity": 4,
               "occupied": 1,
-              "free": 1,
+              "free": 3,
               "couriers": [
                 {
                   "courier_id": "1800130000",
@@ -29524,16 +29536,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 43.48,
-            "numerator": 10,
-            "denominator": 23,
+            "value": 45.83,
+            "numerator": 11,
+            "denominator": 24,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1799970585",
@@ -29549,6 +29561,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 7 мин",
                       "late_seconds": 4030,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699900182",
+                  "name": "Идирисов Исмаил Бадурудинович",
+                  "slots": [
+                    {
+                      "slot_id": "69205",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-15T19:30:00+03:00",
+                      "planned_end": "2026-11-16T09:00:00+03:00",
+                      "actual_start": "2026-11-15T18:39:06+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 50 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",

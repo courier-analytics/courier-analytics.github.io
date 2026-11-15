@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-15": {
-      "generated_at": "2026-11-15T16:21:49.148353+00:00",
+      "generated_at": "2026-11-15T16:44:34.882558+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 59.18,
-            "numerator": 29,
+            "value": 61.22,
+            "numerator": 30,
             "denominator": 49,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 29,
+              "count": 30,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -683,12 +683,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800040185",
+                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66829",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T08:00:00+03:00",
+                      "planned_end": "2026-11-15T21:00:00+03:00",
+                      "actual_start": "2026-11-14T20:06:32+03:00",
+                      "actual_end": "2026-11-15T10:00:00+03:00",
+                      "status": "Вышел раньше на 8 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-14. Исходное начало: 2026-11-15T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-14",
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Не записались",
-              "count": 20,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1800114061",
@@ -778,11 +801,6 @@
                 {
                   "courier_id": "1799887295",
                   "name": "Щербаков Александр Александрович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800040185",
-                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
                   "slots": []
                 },
                 {
@@ -965,8 +983,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 65.52,
-            "numerator": 19,
+            "value": 68.97,
+            "numerator": 20,
             "denominator": 29,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1256,8 +1274,8 @@
               "planned_start": "2026-11-15T08:00:00+03:00",
               "planned_end": "2026-11-15T21:00:00+03:00",
               "capacity": 5,
-              "occupied": 2,
-              "free": 3,
+              "occupied": 3,
+              "free": 2,
               "couriers": [
                 {
                   "courier_id": "1799882751",
@@ -1301,6 +1319,29 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800040185",
+                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66829",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T08:00:00+03:00",
+                      "planned_end": "2026-11-15T21:00:00+03:00",
+                      "actual_start": "2026-11-14T20:06:32+03:00",
+                      "actual_end": "2026-11-15T10:00:00+03:00",
+                      "status": "Вышел раньше на 8 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-14. Исходное начало: 2026-11-15T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-14",
                       "shift_end_source_date": null
                     }
                   ]
@@ -3437,16 +3478,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 21.43,
-            "numerator": 6,
-            "denominator": 28,
+            "value": 24.14,
+            "numerator": 7,
+            "denominator": 29,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800097223",
@@ -3582,6 +3623,29 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800040185",
+                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66829",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T08:00:00+03:00",
+                      "planned_end": "2026-11-15T21:00:00+03:00",
+                      "actual_start": "2026-11-14T20:06:32+03:00",
+                      "actual_end": "2026-11-15T10:00:00+03:00",
+                      "status": "Вышел раньше на 8 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-14. Исходное начало: 2026-11-15T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-14",
                       "shift_end_source_date": null
                     }
                   ]
@@ -4144,7 +4208,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800097223",
@@ -4165,6 +4229,29 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800040185",
+                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66829",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-15T08:00:00+03:00",
+                      "planned_end": "2026-11-15T21:00:00+03:00",
+                      "actual_start": "2026-11-14T20:06:32+03:00",
+                      "actual_end": "2026-11-15T10:00:00+03:00",
+                      "status": "Вышел раньше на 8 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-14. Исходное начало: 2026-11-15T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-14",
                       "shift_end_source_date": null
                     }
                   ]
