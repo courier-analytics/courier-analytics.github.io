@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T09:12:42.643759+00:00",
+      "generated_at": "2026-11-16T09:38:21.161488+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 31.48,
-            "numerator": 17,
+            "value": 33.33,
+            "numerator": 18,
             "denominator": 54,
             "reason": null,
             "basis": "limited_slot_places"
@@ -576,9 +576,33 @@
               "planned_start": "2026-11-16T14:00:00+03:00",
               "planned_end": "2026-11-16T22:00:00+03:00",
               "capacity": 5,
-              "occupied": 0,
-              "free": 5,
-              "couriers": []
+              "occupied": 1,
+              "free": 4,
+              "couriers": [
+                {
+                  "courier_id": "1800132233",
+                  "name": "Насыров Данил Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62407",
