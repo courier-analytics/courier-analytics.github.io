@@ -77,7 +77,7 @@ def collect(opener,token):
         'period':'2026-10-12..2026-11-15','query_range':bounds,'source_dataset':3035,
         'charts':definitions,'source_definition':{k:source.get(k) for k in ('sql','main_dttm_col')},
         'date_column_types':{c['column_name']:c.get('type') for c in source.get('columns',[]) if c['column_name'] in DATES},'complete':True,'checks':checks,'rows':all_rows,
-        'datetime_basis':'source wall-clock strings; interpreted as Moscow for this report'}
+        'datetime_basis':'source wall-clock strings; interpreted as Moscow; main temporal column may be re-encoded by Superset as epoch milliseconds'}
     ROOT.mkdir(mode=0o700,parents=True,exist_ok=True)
     fd,temp=tempfile.mkstemp(dir=ROOT)
     try:

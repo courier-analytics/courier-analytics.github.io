@@ -1,7 +1,7 @@
 """Courier staffing methodology, corporate weeks 910–914. Standard library only."""
 from collections import Counter, defaultdict
-from datetime import datetime, date, timedelta
-from math import ceil
+from datetime import datetime, date, timedelta, timezone
+from math import ceil, isfinite
 import re
 import unicodedata
 
@@ -17,7 +17,12 @@ def name(value):
 
 def timestamp(value):
     if not value: return None
-    if not isinstance(value, str): raise ValueError('Dates must be exported as local ISO strings')
+    if type(value) in (int,float):
+        if not isfinite(value): raise ValueError('Nonfinite timestamp')
+        # Superset re-encodes its main temporal column as epoch milliseconds
+        # even when the exported SQL value is a timezone-free local string.
+        return datetime.fromtimestamp(value/1000,timezone.utc).replace(tzinfo=None)
+    if not isinstance(value, str): raise ValueError('Unsupported timestamp encoding')
     d = datetime.fromisoformat(value.replace('Z', '+00:00'))
     if d.tzinfo is not None: raise ValueError('Expected source wall-clock timestamps')
     return d
@@ -82,18 +87,21 @@ def weighted(weeks):
                  orders_per_shift=safe_ratio(g['orders'],g['shifts']),
                  orders_per_hour=safe_ratio(g['orders'],g['seconds']/3600))
         result['groups'][label]=g
+    result['core_shift_deviation_pp']=None if not shifts else result['groups']['core']['shift_percent']-70
     return result
 
 
 def analyse(rows):
-    exclusions = Counter(); dedup = {}; missing_mobile = 0
+    exclusions = Counter(); by_shop = {shop:Counter() for shop in SHOPS}; dedup = {}
+    def exclude(key, shop):
+        exclusions[key]+=1;by_shop[shop][key]+=1
     for row in rows:
         if int(row['shopno']) not in SHOPS: raise ValueError('Unexpected shop')
         identity = str(row.get('id_order') or '')
         if not identity: raise ValueError('Missing order ID')
         key=(int(row['shopno']),identity)
         if key in dedup:
-            if row == dedup[key]: exclusions['identical_duplicate_rows']+=1; continue
+            if row == dedup[key]: exclude('identical_duplicate_rows',key[0]); continue
             # An order changing version inside a paginated export would make
             # totals unverifiable. Do not silently select a convenient version.
             raise ValueError('Conflicting versions of an order; repeat export')
@@ -103,34 +111,39 @@ def analyse(rows):
         supply=timestamp(r.get('date_supply'))
         if supply and START<=supply.date()<END: loads[shop,week(supply.date())]+=1
         if r.get('status_name') != SUCCESS: continue
-        if r.get('delivery_type_group') != 'Курьеры': exclusions['non_courier_service']+=1; continue
+        try:
+            start=timestamp(r.get('date_delivery_start'))
+        except ValueError:
+            if supply and START<=supply.date()<END:exclude('invalid_delivery_date',shop)
+            continue
+        reference=start or supply
+        if not reference or not START<=reference.date()<END:continue
+        if r.get('delivery_type_group') != 'Курьеры': exclude('non_courier_service',shop); continue
         kind = str(r.get('id_courier_type') or '')
         label = name(r.get('courier_type'))
         if kind in ('6','9','15','16') or 'мобильн' in label:
-            exclusions['mobile_successful_orders']+=1; continue
-        if not kind and not label: missing_mobile+=1
+            exclude('mobile_successful_orders',shop); continue
         who=name(r.get('courier'))
-        if not who: exclusions['missing_courier_name']+=1; continue
+        if not who: exclude('missing_courier_name',shop); continue
+        if start is None: exclude('missing_delivery_start',shop); continue
+        if not kind and not label:
+            exclude('unknown_mobile_status_orders_excluded',shop)
+            continue
         try:
-            start=timestamp(r.get('date_delivery_start'))
             regular=timestamp(r.get('date_delivered'))
             offline=timestamp(r.get('order_closed_offline_dttm'))
         except ValueError:
-            exclusions['invalid_delivery_date']+=1; continue
-        if start is None: exclusions['missing_delivery_start']+=1; continue
-        if not START<=start.date()<END: continue
+            exclude('invalid_delivery_date',shop);continue
         person=people[shop,week(start.date()),who]
         person['days'].add(start.date());person['orders']+=1
         # Prefer a valid offline close. Invalid closes never overwrite a valid end.
         end=offline if offline and offline>=start else regular
-        if offline and offline<start: exclusions['offline_close_before_start']+=1
+        if offline and offline<start: exclude('offline_close_before_start',shop)
         if end is None or end<start:
-            exclusions['missing_or_negative_interval_hours_excluded']+=1;continue
+            exclude('missing_or_negative_interval_hours_excluded',shop);continue
         if end-start>timedelta(hours=12):
-            exclusions['over_12h_quarantined_hours_excluded']+=1;continue
+            exclude('over_12h_quarantined_hours_excluded',shop);continue
         person['intervals'].append((start,end))
-    if missing_mobile:
-        raise ValueError('Mobile/stationary classification missing on '+str(missing_mobile)+' successful orders')
     weekly={}
     for shop in SHOPS:
         items=[]
@@ -153,12 +166,13 @@ def analyse(rows):
             'shift_core_deviation_pp':None if latest['core_shift_percent'] is None else latest['core_shift_percent']-70}
     return {'period_start':START.isoformat(),'period_end_inclusive':(END-timedelta(days=1)).isoformat(),
             'shops':weekly,'combined':weighted([w for s in weekly.values() for w in s['weeks']]),
-            'provisional':any(exclusions[k] for k in ('invalid_delivery_date','missing_delivery_start','missing_or_negative_interval_hours_excluded','over_12h_quarantined_hours_excluded')),
-            'exclusions':dict(exclusions),'input_rows':len(rows),'unique_shop_orders':len(dedup),
+            'provisional':any(exclusions[k] for k in ('unknown_mobile_status_orders_excluded','invalid_delivery_date','missing_delivery_start','missing_or_negative_interval_hours_excluded','over_12h_quarantined_hours_excluded')),
+            'exclusions':dict(exclusions),'exclusions_by_shop':{str(k):dict(v) for k,v in by_shop.items()},'input_rows':len(rows),'unique_shop_orders':len(dedup),
             'assumptions':[
               'Workload counts unique order IDs in all statuses by date_supply (delivery reporting date).',
               'Successful courier orders, shifts and whole intervals belong to delivery-start day/week; offline closing preferred when valid.',
               'Core >50h per shop-week; side <=50h. Names normalized by case/whitespace; namesakes may merge.',
               'Mobile types 6/9/15/16 and names containing мобильн excluded from workforce, not workload.',
+              'Orders with unknown courier type excluded from individual metrics and counted explicitly; no inferred stationary status.',
               'Intervals >12h quarantined from hours pending manual confirmation; successful orders and attendance retained.',
               'Missing/invalid ends excluded only from hours; resulting hours/classification are incomplete if such exceptions exist.']}

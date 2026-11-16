@@ -50,13 +50,14 @@ def performance(parts,data,y):
             txt(xs[3],yy,n(groups['core']['orders_per_shift'])+' / '+n(groups['side']['orders_per_shift']),25),
             txt(xs[4],yy,n(groups['core']['orders_per_hour'])+' / '+n(groups['side']['orders_per_hour']),25)])
 
-def footer(parts,report):
+def footer(parts,report,shop=None):
+    e=report["exclusions_by_shop"][str(shop)] if shop else report["exclusions"]
     notes=[
       'Методика: объединение пересечений; перерывы ≤60 мин включены, >60 мин исключены целиком. Ядро >50 ч за склад-неделю; ровно 50 ч — подработка.',
       'Нагрузка: уникальные «Заказ» всех статусов по date_supply. Часы и выходы: успешные заказы службы «Курьеры», по дню начала доставки; мобильные исключены.',
       'Потребность: ceil(заказов в день / 44 / 0,6). Плохая погода: тот же штат ×0,8. Норма 44 = 50×70% + 30×30%. ¹ 70/30 — состав смен, а не недельного штата.',
       'Пустые ФИО исключены из индивидуального расчёта; одноимённые курьеры объединены. Интервалы >12 ч изолированы из часов до ручной проверки.',
-      'Исключения: '+', '.join(k+'='+str(v) for k,v in report['exclusions'].items()) if report['exclusions'] else 'Исключения: не обнаружены.',
+      f"Исключения (успешные заказы): мобильные — {e.get('mobile_successful_orders',0)}; другие службы — {e.get('non_courier_service',0)}; без ФИО — {e.get('missing_courier_name',0)}; без типа курьера — {e.get('unknown_mobile_status_orders_excluded',0)}; интервал >12 ч — {e.get('over_12h_quarantined_hours_excluded',0)}.",
       'Источники и все допущения: расчётный JSON. Промежуточные значения не округлялись; проценты и средние — взвешенные.'
     ]
     for i,line in enumerate(notes):
@@ -69,19 +70,19 @@ def individual(report,shop):
     data=report['shops'][str(shop)];place='Липовый Парк, 1' if shop==8889 else 'Николо-Хованская, 7'
     p=base(f'ДС {shop} · {place} · ядро и потребность в курьерах','12 октября — 15 ноября 2026 · недели 910–914 · последняя полная неделя: 914')
     g=data['weighted']['groups'];p.append(txt(42,192,f"За 5 недель: ядро в штате {n(g['core']['staff_percent'])}% · в сменах {n(g['core']['shift_percent'])}% · дефицит штата к неделе 914: {data['staff_deficit']} чел.",29,True))
-    if report.get('provisional'):p.append(txt(42,218,'ПРЕДВАРИТЕЛЬНО: есть неполные или аномальные интервалы; см. calculation.json',19,True,'#b52525'))
-    weather_block(p,data,220,'good');weather_block(p,data,730,'bad');performance(p,data,1300);footer(p,report)
+    if report.get('provisional'):p.append(txt(42,218,'Расчёт с исключениями по качеству данных; подробности — в audit.md',19,True,'#b52525'))
+    weather_block(p,data,220,'good');weather_block(p,data,730,'bad');performance(p,data,1300);footer(p,report,shop)
     return ''.join(p)
 
 def comparison(report):
     p=base('ДС 8889 и ДС 9107 · сравнительный отчёт','12 октября — 15 ноября 2026 · недели 910–914 · взвешенные итоги по связке «склад — курьер — неделя»')
-    labels=['Курьеро-недель','Доля ядра в недельном штате','Доля ядра в сменах','Смена ядра / подработки','Заказов за смену: ядро / подработка','Заказов в час: ядро / подработка']
+    labels=['Сумма недельной численности','Ядро / подработка в недельном штате','Ядро / подработка в сменах','Смена ядра / подработки','Заказов за смену: ядро / подработка','Заказов в час: ядро / подработка','Отклонение ядра в сменах от 70%']
     for i,label in enumerate(labels):p.append(txt(45,310+i*80,label,28))
     for i,(title,data) in enumerate([(f'ДС {s}',report['shops'][str(s)]['weighted']) for s in (8889,9107)]+[('Итого по двум ДС',report['combined'])]):
         x=1080+i*690;p.append(rect(x,205,660,620,['#fbe7e5','#d9eafa','#d8f2df'][i]));p.append(txt(x+22,260,title,34,True));g=data['groups']
-        values=[str(data['staff_weeks']),n(g['core']['staff_percent'])+'%',n(g['core']['shift_percent'])+'%',
+        values=[str(data['staff_weeks']),n(g['core']['staff_percent'])+'% / '+n(g['side']['staff_percent'])+'%',n(g['core']['shift_percent'])+'% / '+n(g['side']['shift_percent'])+'%',
                 duration(g['core']['hours_per_shift'])+' / '+duration(g['side']['hours_per_shift']),
-                n(g['core']['orders_per_shift'])+' / '+n(g['side']['orders_per_shift']),n(g['core']['orders_per_hour'])+' / '+n(g['side']['orders_per_hour'])]
+                n(g['core']['orders_per_shift'])+' / '+n(g['side']['orders_per_shift']),n(g['core']['orders_per_hour'])+' / '+n(g['side']['orders_per_hour']),n(data['core_shift_deviation_pp'])+' п.п.']
         for j,value in enumerate(values):p.append(txt(x+22,310+j*80,value,30,True))
     p.append(txt(45,915,'Динамика по неделям · 8889 / 9107',34,True))
     heads=['Неделя','Штат','Ядро, чел.','Выход / день','Ядро в сменах','Заказов / день']
@@ -99,6 +100,7 @@ def comparison(report):
         p.append(txt(x+20,1575,f"Штат сейчас / +10%: {d['need']['staff']} / {d['growth']['staff']} · дефицит сейчас: {d['staff_deficit']}",29))
         p.append(txt(x+20,1625,f"Выход 60% / 80%: {n(d['need']['good']['shifts'])} / {n(d['need']['bad']['shifts'])}",29))
         p.append(txt(x+20,1675,f"Отклонение доли ядра в смене от 70%: {n(d['shift_core_deviation_pp'])} п.п.",27))
+    if report.get('provisional'):p.append(txt(45,180,'Есть исключения по качеству данных; подробности и чувствительность — в audit.md',24,True,'#a62c26'))
     footer(p,report);return ''.join(p)
 
 

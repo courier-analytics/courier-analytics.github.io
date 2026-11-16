@@ -38,10 +38,12 @@ No output is a real report until a complete source export has been loaded.
 
 - Workload: unique `id_order`, all statuses, delivery reporting date `date_supply`.
 - Workforce: successful courier-service orders only; mobile types 6,9,15,16
-  and type names containing `мобильн` excluded. Missing mobility data stops analysis.
+  and type names containing `мобильн` excluded. Orders with unknown mobility
+  status are excluded from individual metrics and explicitly reported.
 - Courier identity: normalized name, per shop-week, as requested. Namesakes may merge.
 - Export dates are formatted at source as wall-clock strings, interpreted as
-  Moscow. No JavaScript epoch timezone conversion is used.
+  Moscow. Superset may re-encode the main temporal column as epoch milliseconds;
+  decode to its original wall-clock value without adding a second Moscow offset.
 - Attendance and whole delivery intervals use the start day/week, including
   overnight intervals. Gaps <=60 minutes count; larger gaps count zero;
   overlapping intervals are never added twice.

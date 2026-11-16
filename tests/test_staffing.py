@@ -86,3 +86,18 @@ class StaffingTests(unittest.TestCase):
     def test_same_courier_is_classified_per_shop_and_week(self):
         report=analyse([row(1),row(2,shopno=9107),row(3,date_supply='2026-10-19T10:00:00',date_delivery_start='2026-10-19T10:00:00',date_delivered='2026-10-19T11:00:00')])
         self.assertEqual(report['combined']['staff_weeks'],3)
+
+    def test_superset_main_temporal_column_milliseconds(self):
+        from staffing.core import timestamp
+        self.assertEqual(timestamp(1791622800000.0),datetime(2026,10,10,9))
+
+    def test_unknown_mobile_type_is_explicitly_excluded_not_invented(self):
+        r=analyse([row(id_courier_type=None,courier_type=None)])
+        self.assertEqual(r['shops']['8889']['weeks'][0]['load_orders'],1)
+        self.assertEqual(r['shops']['8889']['weeks'][0]['staff'],0)
+        self.assertEqual(r['exclusions']['unknown_mobile_status_orders_excluded'],1)
+        self.assertTrue(r['provisional'])
+
+    def test_buffer_does_not_inflate_report_exclusion_counts(self):
+        r=analyse([row(id_courier_type='9',date_supply='2026-10-11T10:00:00',date_delivery_start='2026-10-11T10:00:00')])
+        self.assertNotIn('mobile_successful_orders',r['exclusions'])
