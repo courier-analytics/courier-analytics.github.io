@@ -25,11 +25,13 @@ def figure(report, shop=None, compact=False):
         max_y=0
         for identity in shops:
             weeks=report['shops'][str(identity)]['weeks'];values=[value(w) for w in weeks]
-            max_y=max(max_y,max(values))
+            max_y=max(max_y,max((v for v in values if v is not None),default=0))
             axis.plot(range(5),values,marker='o',markersize=9,linewidth=3,color=COLORS[identity],label=f'ДС {identity}',zorder=3)
             for x,y in enumerate(values):
+                if y is None:continue
                 # Keep labels apart where the comparison lines nearly meet.
-                shift=(16 if y >= value(report['shops'][str(next(s for s in shops if s!=identity))]['weeks'][x]) else -24) if len(shops)>1 else 12
+                other=value(report['shops'][str(next(s for s in shops if s!=identity))]['weeks'][x]) if len(shops)>1 else None
+                shift=(16 if other is None or y>=other else -24) if len(shops)>1 else 12
                 label=str(int(y)) if not percent else f'{y:.1f}'.replace('.',',')+'%'
                 axis.annotate(label,(x,y),xytext=(0,shift),textcoords='offset points',ha='center',fontsize=17 if compact else 19,color=COLORS[identity],fontweight='bold')
         if index==2:
