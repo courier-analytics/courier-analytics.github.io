@@ -51804,7 +51804,7 @@
       }
     },
     "2026-11-09": {
-      "generated_at": "2026-11-16T10:04:25.972116+00:00",
+      "generated_at": "2026-11-16T12:02:38.147635+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80752,7 +80752,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-16T11:53:46.211262+00:00",
+      "generated_at": "2026-11-16T12:16:22.250946+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -85845,7 +85845,7 @@
       }
     },
     "2026-11-16": {
-      "generated_at": "2026-11-16T11:57:28.874879+00:00",
+      "generated_at": "2026-11-16T12:20:03.647391+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -85939,10 +85939,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-16T15:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T15:10:20+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Опоздал на 10 минут",
+                      "late_seconds": 620,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -87623,10 +87623,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-16T15:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T15:10:20+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Опоздал на 10 минут",
+                      "late_seconds": 620,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -87746,7 +87746,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -87765,6 +87765,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800104389",
+                  "name": "Анисимов Арсений Антонович",
+                  "slots": [
+                    {
+                      "slot_id": "1807256",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-16T17:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T15:10:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Время слота изменено после фиксации. Расчёт выполнен от исходного плана.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -88243,31 +88266,8 @@
             },
             {
               "title": "Ожидаются",
-              "count": 4,
+              "count": 3,
               "couriers": [
-                {
-                  "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович",
-                  "slots": [
-                    {
-                      "slot_id": "1807256",
-                      "slot_type": "manual",
-                      "scope": "",
-                      "planned_start": "2026-11-16T17:00:00+03:00",
-                      "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Время слота изменено после фиксации. Расчёт выполнен от исходного плана.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800091474",
                   "name": "Зокиров Иззатуллох",
@@ -88694,8 +88694,31 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 9,
+              "count": 10,
               "couriers": [
+                {
+                  "courier_id": "1800104389",
+                  "name": "Анисимов Арсений Антонович",
+                  "slots": [
+                    {
+                      "slot_id": "1807256",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-16T17:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T15:10:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Время слота изменено после фиксации. Расчёт выполнен от исходного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1699895572",
                   "name": "Багавудинов Исмаил Абдулаевич",
@@ -88918,9 +88941,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 23.08,
+            "value": 22.22,
             "numerator": 6,
-            "denominator": 26,
+            "denominator": 27,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -89071,7 +89094,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -89087,6 +89110,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 55 минут",
                       "late_seconds": 3332,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800104389",
+                  "name": "Анисимов Арсений Антонович",
+                  "slots": [
+                    {
+                      "slot_id": "1807256",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T15:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T15:10:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 минут",
+                      "late_seconds": 620,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
