@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T19:38:00.631193+00:00",
+      "generated_at": "2026-11-16T20:02:10.505237+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -242,7 +242,7 @@
                       "planned_start": "2026-11-16T08:00:00+03:00",
                       "planned_end": "2026-11-16T21:00:00+03:00",
                       "actual_start": "2026-11-16T10:44:04+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T20:45:00+03:00",
                       "status": "Опоздал на 2 часа 44 мин",
                       "late_seconds": 9844,
                       "removed_at": null,
@@ -1877,7 +1877,7 @@
                       "planned_start": "2026-11-16T08:00:00+03:00",
                       "planned_end": "2026-11-16T21:00:00+03:00",
                       "actual_start": "2026-11-16T10:44:04+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T20:45:00+03:00",
                       "status": "Опоздал на 2 часа 44 мин",
                       "late_seconds": 9844,
                       "removed_at": null,
@@ -2539,8 +2539,31 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 3,
+              "count": 4,
               "couriers": [
+                {
+                  "courier_id": "1799892159",
+                  "name": "Исмайлов Илхам Айдын Оглы",
+                  "slots": [
+                    {
+                      "slot_id": "62403",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T08:00:00+03:00",
+                      "planned_end": "2026-11-16T21:00:00+03:00",
+                      "actual_start": "2026-11-16T10:44:04+03:00",
+                      "actual_end": "2026-11-16T20:45:00+03:00",
+                      "status": "Опоздал на 2 часа 44 мин",
+                      "late_seconds": 9844,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799883267",
                   "name": "Ткаченко Иван Владимирович",
@@ -2614,7 +2637,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 13,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -2699,29 +2722,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 54 мин",
                       "late_seconds": 6857,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799892159",
-                  "name": "Исмайлов Илхам Айдын Оглы",
-                  "slots": [
-                    {
-                      "slot_id": "62403",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T08:00:00+03:00",
-                      "planned_end": "2026-11-16T21:00:00+03:00",
-                      "actual_start": "2026-11-16T10:44:04+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 2 часа 44 мин",
-                      "late_seconds": 9844,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
