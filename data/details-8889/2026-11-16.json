@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T05:56:52.699074+00:00",
+      "generated_at": "2026-11-16T06:18:54.241204+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 27.78,
-            "numerator": 15,
+            "value": 29.63,
+            "numerator": 16,
             "denominator": 54,
             "reason": null,
             "basis": "limited_slot_places"
@@ -356,8 +356,8 @@
               "planned_start": "2026-11-16T09:00:00+03:00",
               "planned_end": "2026-11-16T22:00:00+03:00",
               "capacity": 6,
-              "occupied": 3,
-              "free": 3,
+              "occupied": 4,
+              "free": 2,
               "couriers": [
                 {
                   "courier_id": "1800017327",
@@ -371,7 +371,30 @@
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -394,7 +417,7 @@
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -417,7 +440,7 @@
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -452,7 +475,7 @@
                       "planned_end": "2026-11-16T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -856,7 +879,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800109682",
@@ -972,12 +995,58 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800130679",
+                  "name": "Табатадзе Тимофей Леванович",
+                  "slots": [
+                    {
+                      "slot_id": "1809522",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799883267",
+                  "name": "Ткаченко Иван Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Ожидаются",
-              "count": 9,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800122838",
@@ -1081,52 +1150,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T18:00:00+03:00",
                       "planned_end": "2026-11-17T01:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130679",
-                  "name": "Табатадзе Тимофей Леванович",
-                  "slots": [
-                    {
-                      "slot_id": "1809522",
-                      "slot_type": "manual",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T09:00:00+03:00",
-                      "planned_end": "2026-11-16T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799883267",
-                  "name": "Ткаченко Иван Владимирович",
-                  "slots": [
-                    {
-                      "slot_id": "62404",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T09:00:00+03:00",
-                      "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
