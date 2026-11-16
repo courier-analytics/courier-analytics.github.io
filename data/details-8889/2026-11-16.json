@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T10:46:43.797007+00:00",
+      "generated_at": "2026-11-16T11:09:51.338945+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 35.19,
-            "numerator": 19,
+            "value": 38.89,
+            "numerator": 21,
             "denominator": 54,
             "reason": null,
             "basis": "limited_slot_places"
@@ -576,9 +576,32 @@
               "planned_start": "2026-11-16T14:00:00+03:00",
               "planned_end": "2026-11-16T22:00:00+03:00",
               "capacity": 5,
-              "occupied": 2,
-              "free": 3,
+              "occupied": 3,
+              "free": 2,
               "couriers": [
+                {
+                  "courier_id": "1800050823",
+                  "name": "Мирзоев Зубайдулло Рахмидинович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T14:07:02+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 7 минут",
+                      "late_seconds": 422,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800132233",
                   "name": "Насыров Данил Маратович",
@@ -589,10 +612,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T14:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T13:23:28+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 36 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -612,10 +635,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T14:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T13:12:27+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 47 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -634,12 +657,35 @@
               "planned_start": "2026-11-16T16:00:00+03:00",
               "planned_end": "2026-11-17T00:00:00+03:00",
               "capacity": 4,
-              "occupied": 1,
-              "free": 3,
+              "occupied": 2,
+              "free": 2,
               "couriers": [
                 {
                   "courier_id": "1800122838",
                   "name": "Воропаев Александр Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62407",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T16:00:00+03:00",
+                      "planned_end": "2026-11-17T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
                   "slots": [
                     {
                       "slot_id": "62407",
@@ -1557,16 +1603,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 37.5,
-            "numerator": 6,
-            "denominator": 16,
+            "value": 47.37,
+            "numerator": 9,
+            "denominator": 19,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 6,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800017327",
@@ -1638,6 +1684,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800050823",
+                  "name": "Мирзоев Зубайдулло Рахмидинович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T14:07:02+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 7 минут",
+                      "late_seconds": 422,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800095811",
                   "name": "Миронов Илья Сергеевич",
                   "slots": [
@@ -1650,6 +1719,29 @@
                       "actual_start": "2026-11-16T09:44:45+03:00",
                       "actual_end": null,
                       "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132233",
+                  "name": "Насыров Данил Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T13:23:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 36 минут",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
@@ -1697,6 +1789,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 27 мин",
                       "late_seconds": 5270,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094666",
+                  "name": "Петросян Геворг Гарегинович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T13:12:27+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 47 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1969,7 +2084,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 12,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800017327",
@@ -2087,6 +2202,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800050823",
+                  "name": "Мирзоев Зубайдулло Рахмидинович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T14:07:02+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 7 минут",
+                      "late_seconds": 422,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800095811",
                   "name": "Миронов Илья Сергеевич",
                   "slots": [
@@ -2099,6 +2237,29 @@
                       "actual_start": "2026-11-16T09:44:45+03:00",
                       "actual_end": null,
                       "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132233",
+                  "name": "Насыров Данил Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T13:23:28+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 36 минут",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
@@ -2186,6 +2347,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 27 мин",
                       "late_seconds": 5270,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094666",
+                  "name": "Петросян Геворг Гарегинович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T13:12:27+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 47 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
