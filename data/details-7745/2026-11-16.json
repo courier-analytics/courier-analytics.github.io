@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T14:57:04.863691+00:00",
+      "generated_at": "2026-11-16T15:28:57.382466+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -709,7 +709,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 7,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1699919412",
@@ -804,6 +804,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800080844",
+                  "name": "Рахимов Хафиз Абдурасулович",
+                  "slots": [
+                    {
+                      "slot_id": "68886",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T18:00:00+03:00",
+                      "planned_end": "2026-11-17T02:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800076229",
                   "name": "Саидов Саиджаффар Эркинжонович",
                   "slots": [
@@ -880,8 +903,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 91.3,
-            "numerator": 21,
+            "value": 95.65,
+            "numerator": 22,
             "denominator": 23,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1802,9 +1825,33 @@
               "planned_start": "2026-11-16T18:00:00+03:00",
               "planned_end": "2026-11-17T02:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800080844",
+                  "name": "Рахимов Хафиз Абдурасулович",
+                  "slots": [
+                    {
+                      "slot_id": "68886",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T18:00:00+03:00",
+                      "planned_end": "2026-11-17T02:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "66851",
