@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T22:30:31.207347+00:00",
+      "generated_at": "2026-11-16T22:54:12.355837+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -393,7 +393,7 @@
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T13:38:49+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T23:45:00+03:00",
                       "status": "Опоздал на 4 часа 38 мин",
                       "late_seconds": 16729,
                       "removed_at": null,
@@ -682,7 +682,7 @@
                       "planned_start": "2026-11-16T14:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T13:12:27+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T23:30:00+03:00",
                       "status": "Вышел раньше на 47 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1854,7 +1854,7 @@
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T13:38:49+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T23:45:00+03:00",
                       "status": "Опоздал на 4 часа 38 мин",
                       "late_seconds": 16729,
                       "removed_at": null,
@@ -2130,7 +2130,7 @@
                       "planned_start": "2026-11-16T14:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T13:12:27+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T23:30:00+03:00",
                       "status": "Вышел раньше на 47 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2510,8 +2510,31 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 4,
+              "count": 6,
               "couriers": [
+                {
+                  "courier_id": "1800017327",
+                  "name": "Джобиров Оятулло Музаффарович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T13:38:49+03:00",
+                      "actual_end": "2026-11-16T23:45:00+03:00",
+                      "status": "Опоздал на 4 часа 38 мин",
+                      "late_seconds": 16729,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800131005",
                   "name": "Достизода Мухамади Сухроб",
@@ -2594,6 +2617,29 @@
                       "actual_start": "2026-11-16T09:03:12+03:00",
                       "actual_end": "2026-11-16T23:15:00+03:00",
                       "status": "Вышел раньше на 56 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094666",
+                  "name": "Петросян Геворг Гарегинович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T13:12:27+03:00",
+                      "actual_end": "2026-11-16T23:30:00+03:00",
+                      "status": "Вышел раньше на 47 минут",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
@@ -2792,7 +2838,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 6,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -2808,29 +2854,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 39 минут",
                       "late_seconds": 2394,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800017327",
-                  "name": "Джобиров Оятулло Музаффарович",
-                  "slots": [
-                    {
-                      "slot_id": "62404",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T09:00:00+03:00",
-                      "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": "2026-11-16T13:38:49+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 4 часа 38 мин",
-                      "late_seconds": 16729,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2900,29 +2923,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 27 мин",
                       "late_seconds": 5270,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800094666",
-                  "name": "Петросян Геворг Гарегинович",
-                  "slots": [
-                    {
-                      "slot_id": "62406",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T14:00:00+03:00",
-                      "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": "2026-11-16T13:12:27+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 47 минут",
-                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
