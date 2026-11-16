@@ -30,8 +30,10 @@ On the VPS use its existing Playwright environment:
 ```
 
 Alternatively run locally with `--input PATH --output DIRECTORY` and Playwright
-Chromium, or `--svg-only` for vector artifacts without a browser. The script
-writes three 3200×2000 PNGs and SVGs plus `calculation.json`.
+Chromium, or `--svg-only` for vector artifacts without a browser. The script requires Matplotlib and writes three 3200×2000 PNGs and SVGs,
+a separate 3200×1620 core-trend chart, and `calculation.json`.
+The current presentation includes only the 60% attendance scenario; the
+former bad-weather panel is replaced with observed core trends.
 No output is a real report until a complete source export has been loaded.
 
 ## Explicit interpretation and limits

@@ -50,6 +50,8 @@ def main():
     args.output.mkdir(mode=0o700,parents=True,exist_ok=True)
     (args.output/'calculation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
     paths=write_svgs(report,args.output)
+    from staffing.trend import write_comparison
+    write_comparison(report,args.output,svg_only=args.svg_only)
     if not args.svg_only:rasterize(paths)
     print('Reports written: '+str(args.output),flush=True)
     print('Exceptions: '+json.dumps(report['exclusions']),flush=True)

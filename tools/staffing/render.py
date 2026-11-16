@@ -1,5 +1,6 @@
 """Programmatic, aligned SVG reports. No fabricated report values."""
 from html import escape
+import base64
 from pathlib import Path
 
 W,H=3200,2000
@@ -19,7 +20,7 @@ def base(title,sub):
 
 def weather_block(parts, data, y, weather):
     good=weather=='good';parts.append(rect(28,y,3144,482,'#e5f1e9' if good else '#e5eef8'))
-    parts.append(txt(50,y+38,('Хорошая погода · 60% выхода' if good else 'Плохая погода · 80% выхода')+' · фактические недели одинаковы в обоих сценариях',28,True))
+    parts.append(txt(50,y+38,('Хорошая погода · 60% выхода' if good else 'Плохая погода · 80% выхода')+' · факт и расчётная потребность',28,True))
     labels=['Заказов в день, все статусы','Общий штат, человек','Ядро / подработчики, человек','Доля ядра / подработки в штате','Выход в день, человек','Ядро / подработчики в смене','Доля ядра / подработки в смене','Выход от общего штата']
     for i,label in enumerate(labels):parts.append(txt(50,y+123+i*43,label,23))
     x0=670;cw=345;gap=8
@@ -55,7 +56,7 @@ def footer(parts,report,shop=None):
     notes=[
       'Методика: объединение пересечений; перерывы ≤60 мин включены, >60 мин исключены целиком. Ядро >50 ч за склад-неделю; ровно 50 ч — подработка.',
       'Нагрузка: уникальные «Заказ» всех статусов по date_supply. Часы и выходы: успешные заказы службы «Курьеры», по дню начала доставки; мобильные исключены.',
-      'Потребность: ceil(заказов в день / 44 / 0,6). Плохая погода: тот же штат ×0,8. Норма 44 = 50×70% + 30×30%. ¹ 70/30 — состав смен, а не недельного штата.',
+      'Потребность: ceil(заказов в день / 44 / 0,6). Выход — 60% штата. Норма 44 = 50×70% + 30×30%. ¹ 70/30 — состав смен, а не недельного штата.',
       'Пустые ФИО исключены из индивидуального расчёта; одноимённые курьеры объединены. Интервалы >12 ч изолированы из часов до ручной проверки.',
       f"Исключения (успешные заказы): мобильные — {e.get('mobile_successful_orders',0)}; другие службы — {e.get('non_courier_service',0)}; без ФИО — {e.get('missing_courier_name',0)}; без типа курьера — {e.get('unknown_mobile_status_orders_excluded',0)}; интервал >12 ч — {e.get('over_12h_quarantined_hours_excluded',0)}.",
       'Источники и все допущения: расчётный JSON. Промежуточные значения не округлялись; проценты и средние — взвешенные.'
@@ -71,7 +72,12 @@ def individual(report,shop):
     p=base(f'ДС {shop} · {place} · ядро и потребность в курьерах','12 октября — 15 ноября 2026 · недели 910–914 · последняя полная неделя: 914')
     g=data['weighted']['groups'];p.append(txt(42,192,f"За 5 недель: ядро в штате {n(g['core']['staff_percent'])}% · в сменах {n(g['core']['shift_percent'])}% · дефицит штата к неделе 914: {data['staff_deficit']} чел.",29,True))
     if report.get('provisional'):p.append(txt(42,218,'Расчёт с исключениями по качеству данных; подробности — в audit.md',19,True,'#b52525'))
-    weather_block(p,data,220,'good');weather_block(p,data,730,'bad');performance(p,data,1300);footer(p,report,shop)
+    weather_block(p,data,220,'good')
+    p.append(txt(42,758,'Динамика ядра по неделям',30,True))
+    from staffing.trend import svg_panel
+    panel=base64.b64encode(svg_panel(report,shop).encode()).decode()
+    p.append(f'<image x="40" y="780" width="3080" height="515" href="data:image/svg+xml;base64,{panel}"/>')
+    performance(p,data,1340);footer(p,report,shop)
     return ''.join(p)
 
 def comparison(report):
@@ -98,7 +104,7 @@ def comparison(report):
         d=report['shops'][str(shop)];x=50+i*1560;p.append(rect(x,1480,1510,230,'#d8f2df'))
         p.append(txt(x+20,1525,f'ДС {shop} · потребность по неделе 914',31,True))
         p.append(txt(x+20,1575,f"Штат сейчас / +10%: {d['need']['staff']} / {d['growth']['staff']} · дефицит сейчас: {d['staff_deficit']}",29))
-        p.append(txt(x+20,1625,f"Выход 60% / 80%: {n(d['need']['good']['shifts'])} / {n(d['need']['bad']['shifts'])}",29))
+        p.append(txt(x+20,1625,f"Выход 60% сейчас / +10%: {n(d['need']['good']['shifts'])} / {n(d['growth']['good']['shifts'])}",29))
         p.append(txt(x+20,1675,f"Отклонение доли ядра в смене от 70%: {n(d['shift_core_deviation_pp'])} п.п.",27))
     if report.get('provisional'):p.append(txt(45,180,'Есть исключения по качеству данных; подробности и чувствительность — в audit.md',24,True,'#a62c26'))
     footer(p,report);return ''.join(p)
