@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T03:41:39.120972+00:00",
+      "generated_at": "2026-11-16T04:03:50.649550+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -142,10 +142,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-16T06:00:00+03:00",
                       "planned_end": "2026-11-16T18:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T06:44:45+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2685,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -165,13 +165,13 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-16T07:00:00+03:00",
                       "planned_end": "2026-11-16T19:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T00:00:00+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Вышел раньше на 7 часов",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -862,10 +862,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-16T06:00:00+03:00",
                       "planned_end": "2026-11-16T18:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T06:44:45+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2685,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -897,13 +897,13 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-16T07:00:00+03:00",
                       "planned_end": "2026-11-16T19:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T00:00:00+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Вышел раньше на 7 часов",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -1637,8 +1637,54 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 1,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "1828868",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T06:00:00+03:00",
+                      "planned_end": "2026-11-16T18:00:00+03:00",
+                      "actual_start": "2026-11-16T06:44:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2685,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "69261",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T07:00:00+03:00",
+                      "planned_end": "2026-11-16T19:00:00+03:00",
+                      "actual_start": "2026-11-16T00:00:00+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800044072",
                   "name": "Тарамов Хасан Вадудович",
@@ -1666,36 +1712,12 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 1,
-              "couriers": [
-                {
-                  "courier_id": "1799997420",
-                  "name": "Имомкулов Иззат Имомович",
-                  "slots": [
-                    {
-                      "slot_id": "1828868",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-16T06:00:00+03:00",
-                      "planned_end": "2026-11-16T18:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "count": 0,
+              "couriers": []
             },
             {
               "title": "Ожидаются",
-              "count": 23,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -1799,29 +1821,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-16T20:00:00+03:00",
                       "planned_end": "2026-11-17T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800132813",
-                  "name": "Киргизов Илёсбек Нуриддин Угли",
-                  "slots": [
-                    {
-                      "slot_id": "69261",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-16T07:00:00+03:00",
-                      "planned_end": "2026-11-16T19:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2277,13 +2276,60 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "1828868",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T06:00:00+03:00",
+                      "planned_end": "2026-11-16T18:00:00+03:00",
+                      "actual_start": "2026-11-16T06:44:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2685,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "69261",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T07:00:00+03:00",
+                      "planned_end": "2026-11-16T19:00:00+03:00",
+                      "actual_start": "2026-11-16T00:00:00+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800044072",
                   "name": "Тарамов Хасан Вадудович",
@@ -2322,7 +2368,7 @@
           "aggregate": {
             "value": 0.0,
             "numerator": 0,
-            "denominator": 1,
+            "denominator": 3,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2334,8 +2380,54 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 1,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "1828868",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T06:00:00+03:00",
+                      "planned_end": "2026-11-16T18:00:00+03:00",
+                      "actual_start": "2026-11-16T06:44:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 44 минуты",
+                      "late_seconds": 2685,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "69261",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T07:00:00+03:00",
+                      "planned_end": "2026-11-16T19:00:00+03:00",
+                      "actual_start": "2026-11-16T00:00:00+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800044072",
                   "name": "Тарамов Хасан Вадудович",
@@ -2386,8 +2478,31 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "69261",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T07:00:00+03:00",
+                      "planned_end": "2026-11-16T19:00:00+03:00",
+                      "actual_start": "2026-11-16T00:00:00+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800044072",
                   "name": "Тарамов Хасан Вадудович",
