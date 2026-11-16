@@ -58,7 +58,7 @@ def footer(parts,report,shop=None):
       'Нагрузка: уникальные «Заказ» всех статусов по date_supply. Часы и выходы: успешные заказы службы «Курьеры», по дню начала доставки; мобильные исключены.',
       'Потребность: ceil(заказов в день / 44 / 0,6). Выход — 60% штата. Норма 44 = 50×70% + 30×30%. ¹ 70/30 — состав смен, а не недельного штата.',
       'Пустые ФИО исключены из индивидуального расчёта; одноимённые курьеры объединены. Интервалы >12 ч изолированы из часов до ручной проверки.',
-      f"Исключения (успешные заказы): мобильные — {e.get('mobile_successful_orders',0)}; другие службы — {e.get('non_courier_service',0)}; без ФИО — {e.get('missing_courier_name',0)}; без типа курьера — {e.get('unknown_mobile_status_orders_excluded',0)}; интервал >12 ч — {e.get('over_12h_quarantined_hours_excluded',0)}.",
+      f"Исключения (успешные заказы): мобильные — {e.get('mobile_successful_orders',0)}; другие службы — {e.get('non_courier_service',0)}; без ФИО — {e.get('missing_courier_name',0)}; без типа — {e.get('unknown_mobile_status_orders_excluded',0)}; без старта — {e.get('missing_delivery_start',0)}; >12 ч — {e.get('over_12h_quarantined_hours_excluded',0)}.",
       'Источники и все допущения: расчётный JSON. Промежуточные значения не округлялись; проценты и средние — взвешенные.'
     ]
     for i,line in enumerate(notes):
