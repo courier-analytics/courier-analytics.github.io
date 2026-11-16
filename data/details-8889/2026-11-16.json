@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T19:14:48.854018+00:00",
+      "generated_at": "2026-11-16T19:38:00.631193+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -358,7 +358,7 @@
                       "planned_start": "2026-11-16T08:30:00+03:00",
                       "planned_end": "2026-11-16T23:00:00+03:00",
                       "actual_start": "2026-11-16T10:22:05+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T20:30:00+03:00",
                       "status": "Опоздал на 1 час 52 мин",
                       "late_seconds": 6725,
                       "removed_at": null,
@@ -636,7 +636,7 @@
                       "planned_start": "2026-11-16T14:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T13:23:28+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T22:12:19+03:00",
                       "status": "Вышел раньше на 36 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1094,7 +1094,7 @@
                       "planned_start": "2026-11-16T08:30:00+03:00",
                       "planned_end": "2026-11-16T23:00:00+03:00",
                       "actual_start": "2026-11-16T10:22:05+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T20:30:00+03:00",
                       "status": "Опоздал на 1 час 52 мин",
                       "late_seconds": 6725,
                       "removed_at": null,
@@ -1525,7 +1525,7 @@
                       "planned_start": "2026-11-16T08:30:00+03:00",
                       "planned_end": "2026-11-16T23:00:00+03:00",
                       "actual_start": "2026-11-16T10:22:05+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T20:30:00+03:00",
                       "status": "Опоздал на 1 час 52 мин",
                       "late_seconds": 6725,
                       "removed_at": null,
@@ -2015,7 +2015,7 @@
                       "planned_start": "2026-11-16T14:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T13:23:28+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T22:12:19+03:00",
                       "status": "Вышел раньше на 36 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2251,7 +2251,7 @@
                       "planned_start": "2026-11-16T08:30:00+03:00",
                       "planned_end": "2026-11-16T23:00:00+03:00",
                       "actual_start": "2026-11-16T10:22:05+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T20:30:00+03:00",
                       "status": "Опоздал на 1 час 52 мин",
                       "late_seconds": 6725,
                       "removed_at": null,
@@ -2510,8 +2510,32 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800132233",
+                  "name": "Насыров Данил Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T13:23:28+03:00",
+                      "actual_end": "2026-11-16T22:12:19+03:00",
+                      "status": "Вышел раньше на 36 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Не завершили или ушли раньше",
@@ -2590,7 +2614,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 14,
+              "count": 13,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -2766,29 +2790,6 @@
                       "actual_start": "2026-11-16T09:44:45+03:00",
                       "actual_end": null,
                       "status": "Вышел",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800132233",
-                  "name": "Насыров Данил Маратович",
-                  "slots": [
-                    {
-                      "slot_id": "62406",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T14:00:00+03:00",
-                      "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": "2026-11-16T13:23:28+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 36 минут",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
