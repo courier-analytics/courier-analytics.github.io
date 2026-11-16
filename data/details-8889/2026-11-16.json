@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T06:18:54.241204+00:00",
+      "generated_at": "2026-11-16T06:41:10.582359+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -392,10 +392,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T09:19:28+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1168,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -438,10 +438,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T09:33:45+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 33 минуты",
+                      "late_seconds": 2025,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -772,8 +772,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 22.22,
-            "numerator": 4,
+            "value": 27.78,
+            "numerator": 5,
             "denominator": 18,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -781,7 +781,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800131005",
@@ -820,6 +820,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 7 мин",
                       "late_seconds": 4029,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799883267",
+                  "name": "Ткаченко Иван Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T09:33:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 33 минуты",
+                      "late_seconds": 2025,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -879,7 +902,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 7,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800109682",
@@ -1006,29 +1029,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799883267",
-                  "name": "Ткаченко Иван Владимирович",
-                  "slots": [
-                    {
-                      "slot_id": "62404",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T09:00:00+03:00",
-                      "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -1228,15 +1228,15 @@
         "planned_late": {
           "aggregate": {
             "value": 100.0,
-            "numerator": 4,
-            "denominator": 4,
+            "numerator": 5,
+            "denominator": 5,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800131005",
@@ -1275,6 +1275,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 7 мин",
                       "late_seconds": 4029,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799883267",
+                  "name": "Ткаченко Иван Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T09:33:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 33 минуты",
+                      "late_seconds": 2025,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1348,17 +1371,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 20.0,
-            "numerator": 1,
-            "denominator": 5,
+            "value": 28.57,
+            "numerator": 2,
+            "denominator": 7,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T09:19:28+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1168,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800093198",
                   "name": "Осмиев Ибрагим Магомедович",
@@ -1386,7 +1432,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800131005",
@@ -1425,6 +1471,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 7 мин",
                       "late_seconds": 4029,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799883267",
+                  "name": "Ткаченко Иван Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T09:33:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 33 минуты",
+                      "late_seconds": 2025,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1531,7 +1600,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 4,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800131005",
@@ -1557,6 +1626,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T09:19:28+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1168,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800093198",
                   "name": "Осмиев Ибрагим Магомедович",
                   "slots": [
@@ -1570,6 +1662,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 27 мин",
                       "late_seconds": 5270,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799883267",
+                  "name": "Ткаченко Иван Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T09:33:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 33 минуты",
+                      "late_seconds": 2025,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
