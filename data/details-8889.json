@@ -27679,7 +27679,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-16T04:22:21.450843+00:00",
+      "generated_at": "2026-11-16T04:44:26.735740+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -30661,7 +30661,7 @@
       }
     },
     "2026-11-16": {
-      "generated_at": "2026-11-16T04:25:52.980027+00:00",
+      "generated_at": "2026-11-16T04:47:57.768335+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -30677,8 +30677,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 24.07,
-            "numerator": 13,
+            "value": 25.93,
+            "numerator": 14,
             "denominator": 54,
             "reason": null,
             "basis": "limited_slot_places"
@@ -30737,9 +30737,33 @@
               "planned_start": "2026-11-16T06:00:00+03:00",
               "planned_end": "2026-11-16T19:00:00+03:00",
               "capacity": 5,
-              "occupied": 0,
-              "free": 5,
-              "couriers": []
+              "occupied": 1,
+              "free": 4,
+              "couriers": [
+                {
+                  "courier_id": "1800093198",
+                  "name": "Осмиев Ибрагим Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "62401",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T06:00:00+03:00",
+                      "planned_end": "2026-11-16T19:00:00+03:00",
+                      "actual_start": "2026-11-16T07:27:50+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 27 мин",
+                      "late_seconds": 5270,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62402",
@@ -31843,17 +31867,41 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "value": 100.0,
+            "numerator": 1,
+            "denominator": 1,
+            "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800093198",
+                  "name": "Осмиев Ибрагим Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "62401",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T06:00:00+03:00",
+                      "planned_end": "2026-11-16T19:00:00+03:00",
+                      "actual_start": "2026-11-16T07:27:50+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 27 мин",
+                      "late_seconds": 5270,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Вышли по плану",
@@ -31861,15 +31909,15 @@
               "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": ""
         },
         "planned_completion": {
           "aggregate": {
-            "value": 100.0,
-            "numerator": 1,
-            "denominator": 1,
-            "reason": null,
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "shift_end_or_final_status_missing",
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
@@ -31909,11 +31957,35 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800093198",
+                  "name": "Осмиев Ибрагим Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "62401",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T06:00:00+03:00",
+                      "planned_end": "2026-11-16T19:00:00+03:00",
+                      "actual_start": "2026-11-16T07:27:50+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 27 мин",
+                      "late_seconds": 5270,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "reconciled": true,
+          "reconciled": false,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         }
       }

@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T04:25:52.980027+00:00",
+      "generated_at": "2026-11-16T04:47:57.768335+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -689,7 +689,7 @@
                       "planned_end": "2026-11-16T20:30:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -934,7 +934,7 @@
                       "planned_end": "2026-11-16T20:30:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1712,12 +1712,36 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1699879496",
+                  "name": "Морозов Алексей Геннадьевич",
+                  "slots": [
+                    {
+                      "slot_id": "1833353",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-16T07:30:00+03:00",
+                      "planned_end": "2026-11-16T20:30:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Ожидаются",
-              "count": 22,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -1890,29 +1914,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699879496",
-                  "name": "Морозов Алексей Геннадьевич",
-                  "slots": [
-                    {
-                      "slot_id": "1833353",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-16T07:30:00+03:00",
-                      "planned_end": "2026-11-16T20:30:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
