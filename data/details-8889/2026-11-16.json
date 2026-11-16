@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T12:42:33.683831+00:00",
+      "generated_at": "2026-11-16T13:06:00.315748+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -718,7 +718,7 @@
                       "planned_end": "2026-11-17T00:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -739,10 +739,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T16:00:00+03:00",
                       "planned_end": "2026-11-17T00:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T15:04:06+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1179,8 +1179,31 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800122838",
+                  "name": "Воропаев Александр Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62407",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T16:00:00+03:00",
+                      "planned_end": "2026-11-17T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800109682",
                   "name": "Замай Сергей Константинович",
@@ -1231,31 +1254,8 @@
             },
             {
               "title": "Ожидаются",
-              "count": 6,
+              "count": 5,
               "couriers": [
-                {
-                  "courier_id": "1800122838",
-                  "name": "Воропаев Александр Сергеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62407",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T16:00:00+03:00",
-                      "planned_end": "2026-11-17T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1799970585",
                   "name": "ДЖУМАЕВ ДАНИЁЛ НАСРУЛЛОЕВИЧ",
@@ -1649,16 +1649,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 52.38,
-            "numerator": 11,
-            "denominator": 21,
+            "value": 54.55,
+            "numerator": 12,
+            "denominator": 22,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -1743,6 +1743,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 19 минут",
                       "late_seconds": 1168,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
+                  "slots": [
+                    {
+                      "slot_id": "62407",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T16:00:00+03:00",
+                      "planned_end": "2026-11-17T00:00:00+03:00",
+                      "actual_start": "2026-11-16T15:04:06+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
