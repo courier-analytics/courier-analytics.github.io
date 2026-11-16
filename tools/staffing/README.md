@@ -62,3 +62,11 @@ No output is a real report until a complete source export has been loaded.
 - Pagination row totals check truncation, but cannot establish that the upstream
   mart itself contains every historical order; the retained source definition and
   order dates should also be reviewed when source data is received.
+
+## Separate DS 7745 report
+
+Use `--collect-staffing --staffing-shop 7745` in the Superset probe. It writes
+`staffing-orders-7745-910-914.json.gz` without replacing the paired-shop export.
+Pass that file to `run_staffing_report.py --input PATH --output DIRECTORY`.
+The same period, interval, core and quality rules apply. Rendering emits only
+DS 7745 plus its trend chart; no placeholder results for other shops are produced.

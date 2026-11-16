@@ -6,16 +6,16 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-COLORS={8889:'#2964b5',9107:'#db792b'}
+COLORS={7745:'#23815d',8889:'#2964b5',9107:'#db792b'}
 
 
 def figure(report, shop=None, compact=False):
     plt.rcParams.update({'font.family':'DejaVu Sans','svg.fonttype':'none'})
-    shops=[shop] if shop else [8889,9107]
+    shops=[shop] if shop else [int(s) for s in report['shops']]
     fig,axes=plt.subplots(1,3,figsize=(30.8,5.15) if compact else (32,16.2),dpi=100)
     fig.patch.set_facecolor('#f7f9fc')
     if not compact:
-        fig.suptitle('Растёт ли ядро курьеров? ДС 8889 и 9107',fontsize=33,fontweight='bold',x=.035,ha='left',y=.96)
+        fig.suptitle('Растёт ли ядро курьеров? '+ ' и '.join('ДС '+str(s) for s in shops),fontsize=33,fontweight='bold',x=.035,ha='left',y=.96)
         fig.text(.035,.86,'12 октября — 15 ноября 2026 · недели 910–914 · ядро: более 50 рабочих часов за склад-неделю',fontsize=20,color='#65748b')
     fields=[('Численность ядра, человек',lambda w:w['groups']['core']['staff'],False),
             ('Ядро в недельном штате, %',lambda w:w['core_staff_percent'],True),

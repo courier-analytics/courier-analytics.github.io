@@ -29,7 +29,10 @@ def response(opener,token,payload):
     return rows
 
 
-def collect(opener,token):
+def collect(opener,token,shops=SHOPS):
+    shops=tuple(shops)
+    if not shops or not set(shops)<={7745,8889,9107}:raise ValueError("Unsupported staffing shops")
+    filename="staffing-orders-"+(str(shops[0])+"-" if len(shops)==1 else "")+"910-914.json.gz"
     definitions=[]; matched=False
     for identity in (20281,20445,20450):
         code,data=api(opener,'/api/v1/chart/'+str(identity),token=token)
@@ -57,7 +60,7 @@ def collect(opener,token):
     count_metric={'expressionType':'SQL','sqlExpression':'count()','label':'source_rows','hasCustomLabel':True}
     columns=FIELDS+[{'expressionType':'SQL','sqlExpression':"formatDateTime("+field+", '%Y-%m-%dT%H:%i:%S.%f')",'label':field} for field in DATES]
     all_rows=[];checks=[]
-    for shop in SHOPS:
+    for shop in shops:
         expected=response(opener,token,payload([], [count_metric],shop,limit=1))[0]['source_rows']
         if type(expected) is not int or expected<0 or expected>1000000:raise ValueError('Unexpected export size')
         offset=0;previous=None
@@ -74,7 +77,7 @@ def collect(opener,token):
         if after!=expected:raise ValueError('Source count changed during export; retry')
         checks.append({'shop':shop,'expected':expected,'received':offset,'after':after})
     output={'schema_version':1,'observed_at':datetime.now(ZoneInfo('Europe/Moscow')).isoformat(),
-        'period':'2026-10-12..2026-11-15','query_range':bounds,'source_dataset':3035,
+        'period':'2026-10-12..2026-11-15','query_range':bounds,'source_dataset':3035,'shops':list(shops),
         'charts':definitions,'source_definition':{k:source.get(k) for k in ('sql','main_dttm_col')},
         'date_column_types':{c['column_name']:c.get('type') for c in source.get('columns',[]) if c['column_name'] in DATES},'complete':True,'checks':checks,'rows':all_rows,
         'datetime_basis':'source wall-clock strings; interpreted as Moscow; main temporal column may be re-encoded by Superset as epoch milliseconds'}
@@ -84,7 +87,7 @@ def collect(opener,token):
         with os.fdopen(fd,'wb') as raw:
             with gzip.GzipFile(fileobj=raw,mode='wb') as packed:
                 packed.write(json.dumps(output,ensure_ascii=False).encode())
-        os.replace(temp,ROOT/'staffing-orders-910-914.json.gz')
+        os.replace(temp,ROOT/filename)
     finally:
         if os.path.exists(temp):os.unlink(temp)
-    print('Staffing export verified and saved privately: staffing-orders-910-914.json.gz',flush=True)
+    print('Staffing export verified and saved privately: '+filename,flush=True)

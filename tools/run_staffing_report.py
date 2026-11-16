@@ -15,7 +15,10 @@ def load(path):
     with gzip.open(path,'rt',encoding='utf-8') as f:data=json.load(f)
     if data.get('schema_version')!=1 or data.get('complete') is not True or data.get('period')!='2026-10-12..2026-11-15':
         raise ValueError('Unverified export or incorrect period')
-    if {c['shop'] for c in data['checks']}!=set(SHOPS):raise ValueError('Missing shop coverage')
+    shops=[c['shop'] for c in data['checks']]
+    if not shops or len(shops)!=len(set(shops)) or not set(shops)<={7745,8889,9107}:raise ValueError('Invalid shop coverage')
+    if data.get('shops',shops)!=shops:raise ValueError('Requested shop coverage mismatch')
+    if any(int(r['shopno']) not in shops for r in data['rows']):raise ValueError('Unexpected row scope')
     for c in data['checks']:
         actual=sum(int(r['shopno'])==c['shop'] for r in data['rows'])
         if not c['expected']==c['received']==c['after']==actual:raise ValueError('Export completeness check failed')
@@ -46,7 +49,7 @@ def main():
         subprocess.run(['/usr/bin/python3',str(Path(__file__).with_name('probe_superset_vpn.py')),
                         '--check-login','--collect-staffing'],check=True,timeout=640)
     data=load(args.input)
-    report=analyse(data['rows']);report['source_audit']={k:v for k,v in data.items() if k!='rows'}
+    report=analyse(data['rows'],shops=[c['shop'] for c in data['checks']]);report['source_audit']={k:v for k,v in data.items() if k!='rows'}
     args.output.mkdir(mode=0o700,parents=True,exist_ok=True)
     (args.output/'calculation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
     paths=write_svgs(report,args.output)

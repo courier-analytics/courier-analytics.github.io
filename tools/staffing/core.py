@@ -91,12 +91,14 @@ def weighted(weeks):
     return result
 
 
-def analyse(rows):
-    exclusions = Counter(); by_shop = {shop:Counter() for shop in SHOPS}; dedup = {}
+def analyse(rows, shops=SHOPS):
+    shops=tuple(shops)
+    if not shops or not set(shops)<={7745,8889,9107}:raise ValueError("Unsupported shop scope")
+    exclusions = Counter(); by_shop = {shop:Counter() for shop in shops}; dedup = {}
     def exclude(key, shop):
         exclusions[key]+=1;by_shop[shop][key]+=1
     for row in rows:
-        if int(row['shopno']) not in SHOPS: raise ValueError('Unexpected shop')
+        if int(row['shopno']) not in shops: raise ValueError('Unexpected shop')
         identity = str(row.get('id_order') or '')
         if not identity: raise ValueError('Missing order ID')
         key=(int(row['shopno']),identity)
@@ -145,7 +147,7 @@ def analyse(rows):
             exclude('over_12h_quarantined_hours_excluded',shop);continue
         person['intervals'].append((start,end))
     weekly={}
-    for shop in SHOPS:
+    for shop in shops:
         items=[]
         for number in range(910,915):
             roster=[]

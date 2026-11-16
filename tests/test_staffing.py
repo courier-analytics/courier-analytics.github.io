@@ -101,3 +101,10 @@ class StaffingTests(unittest.TestCase):
     def test_buffer_does_not_inflate_report_exclusion_counts(self):
         r=analyse([row(id_courier_type='9',date_supply='2026-10-11T10:00:00',date_delivery_start='2026-10-11T10:00:00')])
         self.assertNotIn('mobile_successful_orders',r['exclusions'])
+
+    def test_separate_7745_scope(self):
+        result=analyse([row(shopno=7745)],shops=(7745,))
+        self.assertEqual(set(result['shops']),{'7745'})
+        self.assertEqual(result['shops']['7745']['weeks'][0]['staff'],1)
+        self.assertEqual(result['shops']['7745']['weeks'][0]['load_orders'],1)
+        with self.assertRaises(ValueError):analyse([row(shopno=8889)],shops=(7745,))

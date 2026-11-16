@@ -68,7 +68,7 @@ def footer(parts,report,shop=None):
     parts.append('</svg>')
 
 def individual(report,shop):
-    data=report['shops'][str(shop)];place='Липовый Парк, 1' if shop==8889 else 'Николо-Хованская, 7'
+    data=report['shops'][str(shop)];place={7745:'Мосфильмовская, 74',8889:'Липовый Парк, 1',9107:'Николо-Хованская, 7'}[shop]
     p=base(f'ДС {shop} · {place} · ядро и потребность в курьерах','12 октября — 15 ноября 2026 · недели 910–914 · последняя полная неделя: 914')
     g=data['weighted']['groups'];p.append(txt(42,192,f"За 5 недель: ядро в штате {n(g['core']['staff_percent'])}% · в сменах {n(g['core']['shift_percent'])}% · дефицит штата к неделе 914: {data['staff_deficit']} чел.",29,True))
     if report.get('provisional'):p.append(txt(42,218,'Расчёт с исключениями по качеству данных; подробности — в audit.md',19,True,'#b52525'))
@@ -113,7 +113,8 @@ def comparison(report):
 def write_svgs(report,directory):
     directory=Path(directory);directory.mkdir(parents=True,exist_ok=True)
     paths=[]
-    for shop in (8889,9107):
+    for shop in map(int,report['shops']):
         path=directory/f'staffing-{shop}-910-914.svg';path.write_text(individual(report,shop));paths.append(path)
-    path=directory/'staffing-comparison-910-914.svg';path.write_text(comparison(report));paths.append(path)
+    if set(report['shops'])=={'8889','9107'}:
+        path=directory/'staffing-comparison-910-914.svg';path.write_text(comparison(report));paths.append(path)
     return paths
