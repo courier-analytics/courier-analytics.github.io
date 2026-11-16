@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-16T10:50:13.331745+00:00",
+      "generated_at": "2026-11-16T11:50:12.504304+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27679,7 +27679,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-16T11:28:40.683552+00:00",
+      "generated_at": "2026-11-16T11:53:46.211262+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -30661,7 +30661,7 @@
       }
     },
     "2026-11-16": {
-      "generated_at": "2026-11-16T11:32:23.702476+00:00",
+      "generated_at": "2026-11-16T11:57:28.874879+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -30677,8 +30677,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 40.74,
-            "numerator": 22,
+            "value": 42.59,
+            "numerator": 23,
             "denominator": 54,
             "reason": null,
             "basis": "limited_slot_places"
@@ -31235,8 +31235,8 @@
               "planned_start": "2026-11-16T14:00:00+03:00",
               "planned_end": "2026-11-16T22:00:00+03:00",
               "capacity": 5,
-              "occupied": 4,
-              "free": 1,
+              "occupied": 5,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -31248,10 +31248,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T14:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T14:39:54+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 39 минут",
+                      "late_seconds": 2394,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -31298,6 +31298,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 36 минут",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800116355",
+                  "name": "Нестеренко Михаил Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T14:50:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 50 минут",
+                      "late_seconds": 3005,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -32285,17 +32308,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 47.37,
-            "numerator": 9,
-            "denominator": 19,
+            "value": 52.38,
+            "numerator": 11,
+            "denominator": 21,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 9,
+              "count": 11,
               "couriers": [
+                {
+                  "courier_id": "1799990068",
+                  "name": "Джобирзода Хошимджони Музафар",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T14:39:54+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 39 минут",
+                      "late_seconds": 2394,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800017327",
                   "name": "Джобиров Оятулло Музаффарович",
@@ -32425,6 +32471,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 36 минут",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800116355",
+                  "name": "Нестеренко Михаил Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T14:50:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 50 минут",
+                      "late_seconds": 3005,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -32766,8 +32835,31 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 15,
+              "count": 17,
               "couriers": [
+                {
+                  "courier_id": "1799990068",
+                  "name": "Джобирзода Хошимджони Музафар",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T14:39:54+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 39 минут",
+                      "late_seconds": 2394,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800017327",
                   "name": "Джобиров Оятулло Музаффарович",
@@ -32966,6 +33058,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 56 минут",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800116355",
+                  "name": "Нестеренко Михаил Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62406",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T14:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T14:50:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 50 минут",
+                      "late_seconds": 3005,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
