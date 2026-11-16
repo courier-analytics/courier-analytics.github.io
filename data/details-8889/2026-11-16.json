@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T08:11:11.136893+00:00",
+      "generated_at": "2026-11-16T08:41:41.310704+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -322,10 +322,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T08:00:00+03:00",
                       "planned_end": "2026-11-16T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-16T11:15:48+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 3 часа 15 мин",
+                      "late_seconds": 11748,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -795,8 +795,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 50.0,
-            "numerator": 9,
+            "value": 55.56,
+            "numerator": 10,
             "denominator": 18,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -804,7 +804,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1800131005",
@@ -922,6 +922,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800131972",
+                  "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
+                  "slots": [
+                    {
+                      "slot_id": "1801789",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T08:00:00+03:00",
+                      "planned_end": "2026-11-16T23:00:00+03:00",
+                      "actual_start": "2026-11-16T11:15:48+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 3 часа 15 мин",
+                      "late_seconds": 11748,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800130679",
                   "name": "Табатадзе Тимофей Леванович",
                   "slots": [
@@ -1017,7 +1040,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 3,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800109682",
@@ -1052,29 +1075,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-16T00:30:00+03:00",
                       "planned_end": "2026-11-17T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800131972",
-                  "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
-                  "slots": [
-                    {
-                      "slot_id": "1801789",
-                      "slot_type": "manual",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T08:00:00+03:00",
-                      "planned_end": "2026-11-16T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -1250,16 +1250,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 88.89,
-            "numerator": 8,
-            "denominator": 9,
+            "value": 90.0,
+            "numerator": 9,
+            "denominator": 10,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800131005",
@@ -1344,6 +1344,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 7 мин",
                       "late_seconds": 4029,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800131972",
+                  "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
+                  "slots": [
+                    {
+                      "slot_id": "1801789",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T08:00:00+03:00",
+                      "planned_end": "2026-11-16T23:00:00+03:00",
+                      "actual_start": "2026-11-16T11:15:48+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 3 часа 15 мин",
+                      "late_seconds": 11748,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1487,9 +1510,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 35.71,
+            "value": 33.33,
             "numerator": 5,
-            "denominator": 14,
+            "denominator": 15,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -1617,7 +1640,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1800131005",
@@ -1725,6 +1748,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 7 мин",
                       "late_seconds": 4029,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800131972",
+                  "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
+                  "slots": [
+                    {
+                      "slot_id": "1801789",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T08:00:00+03:00",
+                      "planned_end": "2026-11-16T23:00:00+03:00",
+                      "actual_start": "2026-11-16T11:15:48+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 3 часа 15 мин",
+                      "late_seconds": 11748,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
