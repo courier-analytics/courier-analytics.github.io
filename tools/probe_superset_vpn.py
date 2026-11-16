@@ -33,6 +33,7 @@ def health_probe(address):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--collect-staffing',action='store_true',help='Private paginated workforce export for weeks 910-914')
     parser.add_argument('--reconcile-matryoshka',action='store_true',help='Compare native delivered counts by date and courier type; no sends')
     parser.add_argument('--collect-matryoshka',action='store_true',help='Collect explicitly assigned Matryoshka participants; no sends')
     parser.add_argument('--matryoshka-history',action='store_true',help='Private all-company history diagnostic; no alerts')
@@ -62,11 +63,11 @@ def main():
         path, log = folder/'candidate.conf', folder/'private.log'
         private_write(path, config)
         private_write(log, '')
-        worker = subprocess.Popen(['timeout', '--signal=TERM', '--kill-after=5s', '120s',
+        worker = subprocess.Popen(['timeout', '--signal=TERM', '--kill-after=5s', ('600s' if args.collect_staffing else '120s'),
             'openvpn', '--config', str(path), '--log', str(log), '--verb', '3'],
             stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         try:
-            print('Temporary VPN test, maximum 125 seconds. Profile and log remain private.', flush=True)
+            print('Temporary VPN test, maximum '+('605' if args.collect_staffing else '125')+' seconds. Profile and log remain private.', flush=True)
             deadline = time.monotonic() + 60
             connected = False
             while time.monotonic() < deadline:
@@ -90,7 +91,7 @@ def main():
             print('Superset health: ' + ('PASSED' if success else 'not confirmed'))
             if success and args.check_login:
                 from superset_access import check_login
-                success = check_login(args.provider, args.inspect_datasets, args.inspect_matryoshka, args.matryoshka_history, args.collect_matryoshka, args.reconcile_matryoshka)
+                success = check_login(args.provider, args.inspect_datasets, args.inspect_matryoshka, args.matryoshka_history, args.collect_matryoshka, args.reconcile_matryoshka, args.collect_staffing)
                 print('Superset authentication: ' + ('PASSED' if success else 'not confirmed'))
             return 0 if success else 1
         finally:
