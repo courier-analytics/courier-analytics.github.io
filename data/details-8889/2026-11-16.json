@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-16": {
-      "generated_at": "2026-11-16T18:30:27.531981+00:00",
+      "generated_at": "2026-11-16T19:14:48.854018+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -462,7 +462,7 @@
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T09:33:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T19:45:00+03:00",
                       "status": "Опоздал на 33 минуты",
                       "late_seconds": 2025,
                       "removed_at": null,
@@ -1232,7 +1232,7 @@
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T09:33:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T19:45:00+03:00",
                       "status": "Опоздал на 33 минуты",
                       "late_seconds": 2025,
                       "removed_at": null,
@@ -1640,7 +1640,7 @@
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T09:33:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T19:45:00+03:00",
                       "status": "Опоздал на 33 минуты",
                       "late_seconds": 2025,
                       "removed_at": null,
@@ -2389,7 +2389,7 @@
                       "planned_start": "2026-11-16T09:00:00+03:00",
                       "planned_end": "2026-11-16T22:00:00+03:00",
                       "actual_start": "2026-11-16T09:33:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-16T19:45:00+03:00",
                       "status": "Опоздал на 33 минуты",
                       "late_seconds": 2025,
                       "removed_at": null,
@@ -2515,8 +2515,31 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1799883267",
+                  "name": "Ткаченко Иван Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "62404",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-16T09:00:00+03:00",
+                      "planned_end": "2026-11-16T22:00:00+03:00",
+                      "actual_start": "2026-11-16T09:33:45+03:00",
+                      "actual_end": "2026-11-16T19:45:00+03:00",
+                      "status": "Опоздал на 33 минуты",
+                      "late_seconds": 2025,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800119813",
                   "name": "Шокаримов Жахонгир Шохсалимович",
@@ -2567,7 +2590,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 15,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -2899,29 +2922,6 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 47 минут",
                       "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799883267",
-                  "name": "Ткаченко Иван Владимирович",
-                  "slots": [
-                    {
-                      "slot_id": "62404",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-16T09:00:00+03:00",
-                      "planned_end": "2026-11-16T22:00:00+03:00",
-                      "actual_start": "2026-11-16T09:33:45+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 33 минуты",
-                      "late_seconds": 2025,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
