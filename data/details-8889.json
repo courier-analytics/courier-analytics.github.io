@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-17T14:55:25.854411+00:00",
+      "generated_at": "2026-11-17T16:56:40.641023+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -27679,7 +27679,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-17T14:51:29.055094+00:00",
+      "generated_at": "2026-11-17T16:52:35.189942+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -30661,7 +30661,7 @@
       }
     },
     "2026-11-16": {
-      "generated_at": "2026-11-17T16:35:17.302028+00:00",
+      "generated_at": "2026-11-17T17:02:00.023123+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -33599,7 +33599,7 @@
       }
     },
     "2026-11-17": {
-      "generated_at": "2026-11-17T16:39:36.252034+00:00",
+      "generated_at": "2026-11-17T17:07:55.277402+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -33615,8 +33615,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 80.56,
-            "numerator": 29,
+            "value": 83.33,
+            "numerator": 30,
             "denominator": 36,
             "reason": null,
             "basis": "limited_slot_places"
@@ -33794,7 +33794,7 @@
                       "planned_start": "2026-11-17T07:00:00+03:00",
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": "2026-11-17T07:54:54+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-17T18:00:00+03:00",
                       "status": "Опоздал на 54 минуты",
                       "late_seconds": 3294,
                       "removed_at": null,
@@ -34674,9 +34674,33 @@
               "planned_start": "2026-11-17T19:40:00+03:00",
               "planned_end": "2026-11-18T09:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800080693",
+                  "name": "Шарифов Хуршед Пулодович",
+                  "slots": [
+                    {
+                      "slot_id": "75881",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-17T19:40:00+03:00",
+                      "planned_end": "2026-11-18T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62421",
@@ -35063,7 +35087,7 @@
                       "planned_start": "2026-11-17T07:00:00+03:00",
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": "2026-11-17T07:54:54+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-17T18:00:00+03:00",
                       "status": "Опоздал на 54 минуты",
                       "late_seconds": 3294,
                       "removed_at": null,
@@ -35495,7 +35519,7 @@
                       "planned_start": "2026-11-17T07:00:00+03:00",
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": "2026-11-17T07:54:54+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-17T18:00:00+03:00",
                       "status": "Опоздал на 54 минуты",
                       "late_seconds": 3294,
                       "removed_at": null,
@@ -36405,7 +36429,7 @@
                       "planned_start": "2026-11-17T07:00:00+03:00",
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": "2026-11-17T07:54:54+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-17T18:00:00+03:00",
                       "status": "Опоздал на 54 минуты",
                       "late_seconds": 3294,
                       "removed_at": null,
@@ -36532,7 +36556,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800131005",
@@ -36579,12 +36603,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800012132",
+                  "name": "Шеров Абдумалик Сайвалиевич",
+                  "slots": [
+                    {
+                      "slot_id": "62413",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-17T07:00:00+03:00",
+                      "planned_end": "2026-11-17T20:00:00+03:00",
+                      "actual_start": "2026-11-17T07:54:54+03:00",
+                      "actual_end": "2026-11-17T18:00:00+03:00",
+                      "status": "Опоздал на 54 минуты",
+                      "late_seconds": 3294,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 19,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -36945,29 +36992,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 5 минут",
                       "late_seconds": 308,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800012132",
-                  "name": "Шеров Абдумалик Сайвалиевич",
-                  "slots": [
-                    {
-                      "slot_id": "62413",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-17T07:00:00+03:00",
-                      "planned_end": "2026-11-17T20:00:00+03:00",
-                      "actual_start": "2026-11-17T07:54:54+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 54 минуты",
-                      "late_seconds": 3294,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
