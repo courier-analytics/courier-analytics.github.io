@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-17": {
-      "generated_at": "2026-11-17T14:41:28.565443+00:00",
+      "generated_at": "2026-11-17T15:27:12.168990+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -859,11 +859,11 @@
                   "name": "Рахимов Хафиз Абдурасулович",
                   "slots": [
                     {
-                      "slot_id": "66866",
+                      "slot_id": "75460",
                       "slot_type": "limited",
                       "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-17T21:00:00+03:00",
-                      "planned_end": "2026-11-18T10:00:00+03:00",
+                      "planned_start": "2026-11-17T18:30:00+03:00",
+                      "planned_end": "2026-11-18T08:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -954,9 +954,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 76.92,
+            "value": 73.17,
             "numerator": 30,
-            "denominator": 39,
+            "denominator": 41,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1917,6 +1917,41 @@
               ]
             },
             {
+              "slot_id": "75460",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "limited",
+              "planned_start": "2026-11-17T18:30:00+03:00",
+              "planned_end": "2026-11-18T08:00:00+03:00",
+              "capacity": 2,
+              "occupied": 1,
+              "free": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800080844",
+                  "name": "Рахимов Хафиз Абдурасулович",
+                  "slots": [
+                    {
+                      "slot_id": "75460",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-17T18:30:00+03:00",
+                      "planned_end": "2026-11-18T08:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "slot_id": "1835397",
               "scope": "7745ДС_Мосфильмовская74",
               "slot_type": "manual",
@@ -2068,33 +2103,9 @@
               "planned_start": "2026-11-17T21:00:00+03:00",
               "planned_end": "2026-11-18T10:00:00+03:00",
               "capacity": 2,
-              "occupied": 1,
-              "free": 1,
-              "couriers": [
-                {
-                  "courier_id": "1800080844",
-                  "name": "Рахимов Хафиз Абдурасулович",
-                  "slots": [
-                    {
-                      "slot_id": "66866",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-17T21:00:00+03:00",
-                      "planned_end": "2026-11-18T10:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 2,
+              "couriers": []
             },
             {
               "slot_id": "69469",
