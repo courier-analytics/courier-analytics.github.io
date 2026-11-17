@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-17": {
-      "generated_at": "2026-11-17T10:45:34.062873+00:00",
+      "generated_at": "2026-11-17T11:11:10.983279+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -813,7 +813,7 @@
                       "planned_end": "2026-11-17T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -836,7 +836,7 @@
                       "planned_end": "2026-11-17T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1378,8 +1378,31 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62418",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-17T14:00:00+03:00",
+                      "planned_end": "2026-11-17T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800094612",
                   "name": "Маматкулов Асадбек Низомиддин Угли",
@@ -1430,31 +1453,8 @@
             },
             {
               "title": "Ожидаются",
-              "count": 4,
+              "count": 3,
               "couriers": [
-                {
-                  "courier_id": "1800100778",
-                  "name": "Бычков Никита Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62418",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-17T14:00:00+03:00",
-                      "planned_end": "2026-11-17T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1799970585",
                   "name": "ДЖУМАЕВ ДАНИЁЛ НАСРУЛЛОЕВИЧ",
