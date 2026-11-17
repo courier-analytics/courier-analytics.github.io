@@ -31,8 +31,28 @@ def health_probe(address):
         return {'address': address, 'curl_exit': 28, 'http_status': None}
 
 
+def wait_for_idle_vpn(seconds=0):
+    """Wait for other jobs; never terminate or attach to their VPN process."""
+    if type(seconds) is not int or not 0<=seconds<=600:
+        raise ValueError('VPN wait must be between 0 and 600 seconds')
+    deadline=time.monotonic()+seconds
+    announced=False
+    while True:
+        existing=subprocess.run(['pgrep','-x','openvpn'],capture_output=True)
+        if existing.returncode==1:return
+        if existing.returncode!=0:raise ValueError('Could not check existing VPN process')
+        remaining=deadline-time.monotonic()
+        if remaining<=0:
+            raise ValueError('VPN is busy; export not started. No existing process was stopped.')
+        if not announced:
+            print('VPN is busy; waiting up to '+str(seconds)+' seconds for the current job to finish.',flush=True)
+            announced=True
+        time.sleep(min(5,remaining))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--wait-vpn',type=int,default=0,help='Wait up to 600 seconds for an existing VPN job, without stopping it')
     parser.add_argument('--pay-couriers',type=int,nargs='+',help='Private payroll type export for specified courier IDs')
     parser.add_argument('--staffing-shop',type=int,choices=(7745,8889,9107),help='Export one staffing shop instead of the default pair')
     parser.add_argument('--collect-staffing',action='store_true',help='Private paginated workforce export for weeks 910-914')
@@ -57,9 +77,7 @@ def main():
     if needs_auth and (not args.auth.is_file() or args.auth.stat().st_mode & 0o077):
         raise ValueError('VPN auth file missing or permissions too broad; require 600')
     # Refuse overlapping tests instead of mistaking an existing tunnel for success.
-    existing = subprocess.run(['pgrep', '-x', 'openvpn'], capture_output=True)
-    if existing.returncode != 1:
-        raise ValueError('Another OpenVPN process exists; stop/review it before testing')
+    wait_for_idle_vpn(args.wait_vpn)
     with tempfile.TemporaryDirectory(prefix='courier-superset-', dir='/root') as folder:
         folder = Path(folder)
         path, log = folder/'candidate.conf', folder/'private.log'
