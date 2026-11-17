@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-17": {
-      "generated_at": "2026-11-17T22:13:37.453303+00:00",
+      "generated_at": "2026-11-17T22:36:27.251327+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -151,7 +151,7 @@
                       "planned_start": "2026-11-17T07:00:00+03:00",
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": "2026-11-17T11:09:51+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-17T23:15:00+03:00",
                       "status": "Опоздал на 4 часа 9 мин",
                       "late_seconds": 14991,
                       "removed_at": null,
@@ -1169,7 +1169,7 @@
                       "planned_start": "2026-11-17T07:00:00+03:00",
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": "2026-11-17T11:09:51+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-17T23:15:00+03:00",
                       "status": "Опоздал на 4 часа 9 мин",
                       "late_seconds": 14991,
                       "removed_at": null,
@@ -1739,7 +1739,7 @@
                       "planned_start": "2026-11-17T07:00:00+03:00",
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": "2026-11-17T11:09:51+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-17T23:15:00+03:00",
                       "status": "Опоздал на 4 часа 9 мин",
                       "late_seconds": 14991,
                       "removed_at": null,
@@ -2557,7 +2557,7 @@
                       "planned_start": "2026-11-17T07:00:00+03:00",
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": "2026-11-17T11:09:51+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-17T23:15:00+03:00",
                       "status": "Опоздал на 4 часа 9 мин",
                       "late_seconds": 14991,
                       "removed_at": null,
@@ -2968,17 +2968,40 @@
         },
         "planned_completion": {
           "aggregate": {
-            "value": null,
-            "numerator": null,
-            "denominator": null,
-            "reason": "shift_end_or_final_status_missing",
+            "value": 58.33,
+            "numerator": 14,
+            "denominator": 24,
+            "reason": null,
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 13,
+              "count": 14,
               "couriers": [
+                {
+                  "courier_id": "1800108273",
+                  "name": "Александров Александр Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62413",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-17T07:00:00+03:00",
+                      "planned_end": "2026-11-17T20:00:00+03:00",
+                      "actual_start": "2026-11-17T11:09:51+03:00",
+                      "actual_end": "2026-11-17T23:15:00+03:00",
+                      "status": "Опоздал на 4 часа 9 мин",
+                      "late_seconds": 14991,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1699938129",
                   "name": "Алимагомедов Валентин Гаджикурбанович",
@@ -3518,35 +3541,11 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 1,
-              "couriers": [
-                {
-                  "courier_id": "1800108273",
-                  "name": "Александров Александр Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62413",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-17T07:00:00+03:00",
-                      "planned_end": "2026-11-17T20:00:00+03:00",
-                      "actual_start": "2026-11-17T11:09:51+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 4 часа 9 мин",
-                      "late_seconds": 14991,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "count": 0,
+              "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         }
       }
