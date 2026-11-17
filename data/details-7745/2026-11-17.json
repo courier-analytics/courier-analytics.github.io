@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-17": {
-      "generated_at": "2026-11-17T11:11:10.983279+00:00",
+      "generated_at": "2026-11-17T11:34:52.205788+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -722,8 +722,31 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 4,
+              "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1800134096",
+                  "name": "Гончаренко Александр Валерьевич",
+                  "slots": [
+                    {
+                      "slot_id": "66863",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-17T16:00:00+03:00",
+                      "planned_end": "2026-11-18T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799937997",
                   "name": "Джабраилов Имам Дуквахович",
@@ -824,8 +847,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 60.53,
-            "numerator": 23,
+            "value": 63.16,
+            "numerator": 24,
             "denominator": 38,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1543,9 +1566,33 @@
               "planned_start": "2026-11-17T16:00:00+03:00",
               "planned_end": "2026-11-18T00:00:00+03:00",
               "capacity": 3,
-              "occupied": 0,
-              "free": 3,
-              "couriers": []
+              "occupied": 1,
+              "free": 2,
+              "couriers": [
+                {
+                  "courier_id": "1800134096",
+                  "name": "Гончаренко Александр Валерьевич",
+                  "slots": [
+                    {
+                      "slot_id": "66863",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-17T16:00:00+03:00",
+                      "planned_end": "2026-11-18T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "66864",
