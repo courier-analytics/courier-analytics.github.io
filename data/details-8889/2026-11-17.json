@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-17": {
-      "generated_at": "2026-11-17T17:07:55.277402+00:00",
+      "generated_at": "2026-11-17T17:36:19.940403+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -1090,10 +1090,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-17T19:40:00+03:00",
                       "planned_end": "2026-11-18T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-17T20:05:08+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 25 минут",
+                      "late_seconds": 1508,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2137,16 +2137,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 43.75,
-            "numerator": 14,
-            "denominator": 32,
+            "value": 45.45,
+            "numerator": 15,
+            "denominator": 33,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1699938129",
@@ -2461,6 +2461,29 @@
                       "actual_end": "2026-11-17T17:30:00+03:00",
                       "status": "Опоздал на 32 минуты",
                       "late_seconds": 1958,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800080693",
+                  "name": "Шарифов Хуршед Пулодович",
+                  "slots": [
+                    {
+                      "slot_id": "75881",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-17T19:40:00+03:00",
+                      "planned_end": "2026-11-18T09:00:00+03:00",
+                      "actual_start": "2026-11-17T20:05:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 25 минут",
+                      "late_seconds": 1508,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
