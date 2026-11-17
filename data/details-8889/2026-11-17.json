@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-17": {
-      "generated_at": "2026-11-17T03:54:15.096479+00:00",
+      "generated_at": "2026-11-17T04:16:42.332057+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -128,7 +128,7 @@
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -151,7 +151,7 @@
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -186,7 +186,7 @@
                       "planned_end": "2026-11-17T22:30:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -892,12 +892,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 0,
-              "couriers": []
-            },
-            {
-              "title": "Ожидаются",
-              "count": 23,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -911,7 +906,7 @@
                       "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -922,6 +917,58 @@
                     }
                   ]
                 },
+                {
+                  "courier_id": "1800063653",
+                  "name": "Нуров Джавхан Амрдинович",
+                  "slots": [
+                    {
+                      "slot_id": "1737109",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-17T07:00:00+03:00",
+                      "planned_end": "2026-11-17T22:30:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800012132",
+                  "name": "Шеров Абдумалик Сайвалиевич",
+                  "slots": [
+                    {
+                      "slot_id": "62413",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-17T07:00:00+03:00",
+                      "planned_end": "2026-11-17T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Ожидаются",
+              "count": 20,
+              "couriers": [
                 {
                   "courier_id": "1800100778",
                   "name": "Бычков Никита Алексеевич",
@@ -1199,29 +1246,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800063653",
-                  "name": "Нуров Джавхан Амрдинович",
-                  "slots": [
-                    {
-                      "slot_id": "1737109",
-                      "slot_type": "manual",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-17T07:00:00+03:00",
-                      "planned_end": "2026-11-17T22:30:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800094666",
                   "name": "Петросян Геворг Гарегинович",
                   "slots": [
@@ -1346,29 +1370,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-17T18:30:00+03:00",
                       "planned_end": "2026-11-18T10:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800012132",
-                  "name": "Шеров Абдумалик Сайвалиевич",
-                  "slots": [
-                    {
-                      "slot_id": "62413",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-17T07:00:00+03:00",
-                      "planned_end": "2026-11-17T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
