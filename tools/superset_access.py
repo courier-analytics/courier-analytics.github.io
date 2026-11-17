@@ -138,7 +138,7 @@ def check_protected_endpoints(opener, token, inspect_datasets=False):
     return identity_ok or csrf_ok or dataset_ok
 
 
-def check_login(provider_override=None, inspect_datasets=False, inspect_matryoshka=False, matryoshka_history=False, collect_matryoshka=False, reconcile_matryoshka=False, collect_staffing=False, staffing_shop=None):
+def check_login(provider_override=None, inspect_datasets=False, inspect_matryoshka=False, matryoshka_history=False, collect_matryoshka=False, reconcile_matryoshka=False, collect_staffing=False, staffing_shop=None, pay_couriers=None):
     try:
         if CREDENTIALS.stat().st_mode & 0o077:
             raise ValueError('Credential permissions must be 600')
@@ -161,6 +161,9 @@ def check_login(provider_override=None, inspect_datasets=False, inspect_matryosh
         if confirmed and (inspect_matryoshka or matryoshka_history):
             from matryoshka_source import inspect
             inspect(opener,token,history=matryoshka_history)
+        if confirmed and pay_couriers:
+            from pay_type_export import collect
+            collect(opener,token,pay_couriers)
         if confirmed and collect_staffing:
             from staffing.collect import collect
             if staffing_shop is None:collect(opener,token)
