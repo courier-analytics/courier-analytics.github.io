@@ -85845,7 +85845,7 @@
       }
     },
     "2026-11-16": {
-      "generated_at": "2026-11-17T15:23:03.679800+00:00",
+      "generated_at": "2026-11-17T15:46:40.576793+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -90960,20 +90960,20 @@
       }
     },
     "2026-11-17": {
-      "generated_at": "2026-11-17T15:27:12.168990+00:00",
+      "generated_at": "2026-11-17T15:51:00.995059+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 59.57,
-            "numerator": 28,
-            "denominator": 47,
+            "value": 60.42,
+            "numerator": 29,
+            "denominator": 48,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 28,
+              "count": 29,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -91436,6 +91436,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800080844",
+                  "name": "Рахимов Хафиз Абдурасулович",
+                  "slots": [
+                    {
+                      "slot_id": "75460",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-17T18:30:00+03:00",
+                      "planned_end": "2026-11-18T08:00:00+03:00",
+                      "actual_start": "2026-11-17T18:03:58+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800111023",
                   "name": "Саидов Мухамад Амиршоевич",
                   "slots": [
@@ -91813,15 +91836,15 @@
                   ]
                 },
                 {
-                  "courier_id": "1800080844",
-                  "name": "Рахимов Хафиз Абдурасулович",
+                  "courier_id": "1800015035",
+                  "name": "Муцагов Алихан Мухтануевич",
                   "slots": [
                     {
-                      "slot_id": "75460",
+                      "slot_id": "66866",
                       "slot_type": "limited",
                       "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-17T18:30:00+03:00",
-                      "planned_end": "2026-11-18T08:00:00+03:00",
+                      "planned_start": "2026-11-17T21:00:00+03:00",
+                      "planned_end": "2026-11-18T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -91912,8 +91935,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 73.17,
-            "numerator": 30,
+            "value": 75.61,
+            "numerator": 31,
             "denominator": 41,
             "reason": null,
             "basis": "limited_slot_places"
@@ -92894,10 +92917,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-17T18:30:00+03:00",
                       "planned_end": "2026-11-18T08:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-17T18:03:58+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -93061,9 +93084,33 @@
               "planned_start": "2026-11-17T21:00:00+03:00",
               "planned_end": "2026-11-18T10:00:00+03:00",
               "capacity": 2,
-              "occupied": 0,
-              "free": 2,
-              "couriers": []
+              "occupied": 1,
+              "free": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800015035",
+                  "name": "Муцагов Алихан Мухтануевич",
+                  "slots": [
+                    {
+                      "slot_id": "66866",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-17T21:00:00+03:00",
+                      "planned_end": "2026-11-18T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "69469",
@@ -94145,16 +94192,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 30.77,
-            "numerator": 8,
-            "denominator": 26,
+            "value": 33.33,
+            "numerator": 9,
+            "denominator": 27,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800134096",
@@ -94285,6 +94332,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 18 минут",
                       "late_seconds": 1139,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800080844",
+                  "name": "Рахимов Хафиз Абдурасулович",
+                  "slots": [
+                    {
+                      "slot_id": "75460",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-17T18:30:00+03:00",
+                      "planned_end": "2026-11-18T08:00:00+03:00",
+                      "actual_start": "2026-11-17T18:03:58+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -95229,9 +95299,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 34.04,
+            "value": 33.33,
             "numerator": 16,
-            "denominator": 47,
+            "denominator": 48,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -95356,7 +95426,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 31,
+              "count": 32,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -95522,6 +95592,13 @@
                 {
                   "courier_id": "1800132317",
                   "name": "Пылаев Павел Максимович",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1800080844",
+                  "name": "Рахимов Хафиз Абдурасулович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
