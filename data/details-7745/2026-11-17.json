@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-17": {
-      "generated_at": "2026-11-17T08:03:37.190086+00:00",
+      "generated_at": "2026-11-17T08:27:48.393676+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 48.0,
-            "numerator": 24,
+            "value": 46.0,
+            "numerator": 23,
             "denominator": 50,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 24,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -432,29 +432,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1799939451",
-                  "name": "Сулаймонов Абдукиром Акобирович",
-                  "slots": [
-                    {
-                      "slot_id": "1755880",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-17T10:00:00+03:00",
-                      "planned_end": "2026-11-17T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1799950967",
                   "name": "Тагоев Лочин Хакимович",
                   "slots": [
@@ -573,7 +550,7 @@
             },
             {
               "title": "Не записались",
-              "count": 26,
+              "count": 27,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -678,6 +655,11 @@
                 {
                   "courier_id": "1800089856",
                   "name": "Ремесков Матвей Дмитриевич",
+                  "slots": []
+                },
+                {
+                  "courier_id": "1799939451",
+                  "name": "Сулаймонов Абдукиром Акобирович",
                   "slots": []
                 },
                 {
@@ -1419,41 +1401,6 @@
               ]
             },
             {
-              "slot_id": "1755880",
-              "scope": "7745ДС_Мосфильмовская74",
-              "slot_type": "manual",
-              "planned_start": "2026-11-17T10:00:00+03:00",
-              "planned_end": "2026-11-17T21:00:00+03:00",
-              "capacity": null,
-              "occupied": 1,
-              "free": null,
-              "couriers": [
-                {
-                  "courier_id": "1799939451",
-                  "name": "Сулаймонов Абдукиром Акобирович",
-                  "slots": [
-                    {
-                      "slot_id": "1755880",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-17T10:00:00+03:00",
-                      "planned_end": "2026-11-17T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "slot_id": "1783411",
               "scope": "7745ДС_Мосфильмовская74",
               "slot_type": "manual",
@@ -1737,11 +1684,11 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 50.0,
-            "numerator": 13,
-            "denominator": 26,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -2051,7 +1998,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 7,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1699895572",
@@ -2177,29 +2124,6 @@
                       "slot_type": "manual",
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-17T08:00:00+03:00",
-                      "planned_end": "2026-11-17T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799939451",
-                  "name": "Сулаймонов Абдукиром Акобирович",
-                  "slots": [
-                    {
-                      "slot_id": "1755880",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-17T10:00:00+03:00",
                       "planned_end": "2026-11-17T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
@@ -2362,8 +2286,32 @@
             },
             {
               "title": "Нет подтверждённых данных",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1799939451",
+                  "name": "Сулаймонов Абдукиром Акобирович",
+                  "slots": [
+                    {
+                      "slot_id": "1755880",
+                      "slot_type": "manual",
+                      "scope": "",
+                      "planned_start": "2026-11-17T10:00:00+03:00",
+                      "planned_end": "2026-11-17T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Запись из плана отсутствует в текущих данных",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Снятые смены — история",
@@ -2371,16 +2319,16 @@
               "couriers": []
             }
           ],
-          "reconciled": true,
+          "reconciled": false,
           "note": ""
         },
         "planned_late": {
           "aggregate": {
-            "value": 76.92,
-            "numerator": 10,
-            "denominator": 13,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -2700,7 +2648,7 @@
               "couriers": []
             }
           ],
-          "reconciled": true,
+          "reconciled": false,
           "note": ""
         },
         "unplanned_work": {
