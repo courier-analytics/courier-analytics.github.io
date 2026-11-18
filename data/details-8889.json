@@ -27679,7 +27679,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-18T12:58:47.493153+00:00",
+      "generated_at": "2026-11-18T14:55:27.495077+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -30661,7 +30661,7 @@
       }
     },
     "2026-11-16": {
-      "generated_at": "2026-11-18T13:54:11.781235+00:00",
+      "generated_at": "2026-11-18T14:51:38.192557+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -33599,7 +33599,7 @@
       }
     },
     "2026-11-17": {
-      "generated_at": "2026-11-18T13:59:49.333586+00:00",
+      "generated_at": "2026-11-18T14:59:53.420135+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37148,7 +37148,7 @@
       }
     },
     "2026-11-18": {
-      "generated_at": "2026-11-18T14:05:02.460651+00:00",
+      "generated_at": "2026-11-18T15:04:12.526385+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37164,9 +37164,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 74.29,
-            "numerator": 26,
-            "denominator": 35,
+            "value": 75.0,
+            "numerator": 27,
+            "denominator": 36,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -37191,6 +37191,23 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-18T06:00:00+03:00",
                       "planned_end": "2026-11-18T14:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "76124",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T18:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -37958,7 +37975,59 @@
                       "planned_end": "2026-11-19T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "76124",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-18T18:00:00+03:00",
+              "planned_end": "2026-11-18T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1799990068",
+                  "name": "Джобирзода Хошимджони Музафар",
+                  "slots": [
+                    {
+                      "slot_id": "62422",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T06:00:00+03:00",
+                      "planned_end": "2026-11-18T14:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "76124",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T18:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -37993,7 +38062,7 @@
                       "planned_end": "2026-11-19T01:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -38373,8 +38442,31 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 3,
+              "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1799970585",
+                  "name": "ДЖУМАЕВ ДАНИЁЛ НАСРУЛЛОЕВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "64255",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T18:00:00+03:00",
+                      "planned_end": "2026-11-19T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800122842",
                   "name": "Магомедов Абдула Шамилевич",
@@ -38443,35 +38535,6 @@
                       "shift_end_source_date": null
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "title": "Ожидаются",
-              "count": 3,
-              "couriers": [
-                {
-                  "courier_id": "1799970585",
-                  "name": "ДЖУМАЕВ ДАНИЁЛ НАСРУЛЛОЕВИЧ",
-                  "slots": [
-                    {
-                      "slot_id": "64255",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-18T18:00:00+03:00",
-                      "planned_end": "2026-11-19T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
                 },
                 {
                   "courier_id": "1800130881",
@@ -38485,7 +38548,7 @@
                       "planned_end": "2026-11-19T01:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -38495,7 +38558,13 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "title": "Ожидаются",
+              "count": 1,
+              "couriers": [
                 {
                   "courier_id": "1800094891",
                   "name": "Тухлиев Достон Зоир Угли",
