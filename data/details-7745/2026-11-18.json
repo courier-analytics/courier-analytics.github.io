@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-18": {
-      "generated_at": "2026-11-18T11:51:04.114758+00:00",
+      "generated_at": "2026-11-18T12:17:10.751208+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -75,7 +75,7 @@
                       "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1575,7 +1575,7 @@
                       "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -2059,12 +2059,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 0,
-              "couriers": []
-            },
-            {
-              "title": "Ожидаются",
-              "count": 3,
+              "count": 1,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -2078,7 +2073,7 @@
                       "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -2088,7 +2083,13 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "title": "Ожидаются",
+              "count": 2,
+              "couriers": [
                 {
                   "courier_id": "1800091474",
                   "name": "Зокиров Иззатуллох",
