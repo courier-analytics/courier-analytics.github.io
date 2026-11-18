@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-18": {
-      "generated_at": "2026-11-18T20:08:18.551284+00:00",
+      "generated_at": "2026-11-18T20:31:17.715510+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -556,10 +556,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-18T17:00:00+03:00",
                       "planned_end": "2026-11-19T01:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-18T23:07:22+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 6 часов 7 мин",
+                      "late_seconds": 22042,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1732,10 +1732,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-18T17:00:00+03:00",
                       "planned_end": "2026-11-19T01:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-18T23:07:22+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 6 часов 7 мин",
+                      "late_seconds": 22042,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1890,7 +1890,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -2238,6 +2238,30 @@
                   ]
                 },
                 {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66871",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T23:07:22+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 7 мин",
+                      "late_seconds": 50842,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "66876"
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800109182",
                   "name": "Ходжаев Жасурбек",
                   "slots": [
@@ -2287,7 +2311,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 2,
+              "count": 1,
               "couriers": [
                 {
                   "courier_id": "1800080844",
@@ -2309,30 +2333,6 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800125641",
-                  "name": "Тургунов Нурилло Иномжон Угли",
-                  "slots": [
-                    {
-                      "slot_id": "66871",
-                      "slot_type": "limited",
-                      "scope": "",
-                      "planned_start": "2026-11-18T09:00:00+03:00",
-                      "planned_end": "2026-11-18T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Запись из плана снята; в текущих записях этого курьера источник подтверждает «Не вышел». Исходный план сохранён.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null,
-                      "fact_source_slot_id": "66876"
                     }
                   ]
                 }
@@ -2439,7 +2439,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -2668,6 +2668,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66871",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T23:07:22+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 7 мин",
+                      "late_seconds": 50842,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "66876"
                     }
                   ]
                 },
@@ -2851,9 +2875,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 41.38,
+            "value": 40.0,
             "numerator": 12,
-            "denominator": 29,
+            "denominator": 30,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -3142,7 +3166,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -3480,6 +3504,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 3 часа 42 мин",
                       "late_seconds": 13342,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66876",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-18T17:00:00+03:00",
+                      "planned_end": "2026-11-19T01:00:00+03:00",
+                      "actual_start": "2026-11-18T23:07:22+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 7 мин",
+                      "late_seconds": 22042,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
