@@ -16910,7 +16910,7 @@
       }
     },
     "2026-11-11": {
-      "generated_at": "2026-11-18T06:58:42.843661+00:00",
+      "generated_at": "2026-11-18T08:02:53.421514+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -19462,7 +19462,7 @@
       }
     },
     "2026-11-12": {
-      "generated_at": "2026-11-18T06:56:19.024854+00:00",
+      "generated_at": "2026-11-18T08:00:21.962857+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -22013,7 +22013,7 @@
       }
     },
     "2026-11-13": {
-      "generated_at": "2026-11-18T06:53:29.204607+00:00",
+      "generated_at": "2026-11-18T07:57:30.230185+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -33599,7 +33599,7 @@
       }
     },
     "2026-11-17": {
-      "generated_at": "2026-11-18T07:50:37.247638+00:00",
+      "generated_at": "2026-11-18T08:13:23.104228+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37148,7 +37148,7 @@
       }
     },
     "2026-11-18": {
-      "generated_at": "2026-11-18T07:54:24.086146+00:00",
+      "generated_at": "2026-11-18T08:17:26.868556+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37164,9 +37164,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 57.58,
-            "numerator": 19,
-            "denominator": 33,
+            "value": 64.71,
+            "numerator": 22,
+            "denominator": 34,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -37178,9 +37178,33 @@
               "planned_start": "2026-11-18T06:00:00+03:00",
               "planned_end": "2026-11-18T14:00:00+03:00",
               "capacity": 2,
-              "occupied": 0,
-              "free": 2,
-              "couriers": []
+              "occupied": 1,
+              "free": 1,
+              "couriers": [
+                {
+                  "courier_id": "1799990068",
+                  "name": "Джобирзода Хошимджони Музафар",
+                  "slots": [
+                    {
+                      "slot_id": "62422",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T06:00:00+03:00",
+                      "planned_end": "2026-11-18T14:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62423",
@@ -37721,9 +37745,68 @@
               "planned_start": "2026-11-18T11:00:00+03:00",
               "planned_end": "2026-11-19T00:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800131005",
+                  "name": "Достизода Мухамади Сухроб",
+                  "slots": [
+                    {
+                      "slot_id": "75973",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T11:00:00+03:00",
+                      "planned_end": "2026-11-19T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "75974",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-18T12:00:00+03:00",
+              "planned_end": "2026-11-18T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800098576",
+                  "name": "Погор Степан Александрович",
+                  "slots": [
+                    {
+                      "slot_id": "75974",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T12:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62428",
