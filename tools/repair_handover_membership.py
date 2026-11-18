@@ -1,0 +1,68 @@
+"""Repair the separately deployed DS8889 handover worker without copying credentials.
+
+Checks exact reviewed source hashes, tests the candidate in isolation, obtains
+its existing lock, and backs up both source files before replacing them.
+"""
+import fcntl,hashlib,os,shutil,subprocess,sys,tempfile
+from pathlib import Path
+from datetime import datetime
+PATCHES={'runner.py': {'before': 'ea39e2ecf648bdb7bad22c90a25116402b9cd2d29940e02a68bdd14f6b07cd2a', 'after': '68a2143f310ea8a5735c7ecc147ec4bec9d558b1793a1c766fad169530a39eda', 'edits': [["  r=self.session.request(method,BASE+path,json=body,timeout=60)\n  if not r.ok:raise RuntimeError('sheets_http_'+str(r.status_code))\n  return r.json()\n", "  # Pace requests within this process; other shop jobs can share the quota.\n  for attempt in range(4):\n   clock.sleep(max(0,getattr(self,'_next_request',0)-clock.monotonic()))\n   r=self.session.request(method,BASE+path,json=body,timeout=60)\n   self._next_request=clock.monotonic()+2.1\n   if r.status_code!=429:\n    if not r.ok:raise RuntimeError('sheets_http_'+str(r.status_code))\n    return r.json()\n   if attempt==3:raise RuntimeError('sheets_http_429')\n   # Only explicit quota rejections are retried, never ambiguous write failures.\n   try:delay=max(65,int(r.headers.get('Retry-After','65')))\n   except (TypeError,ValueError):delay=65\n   if delay>180:raise RuntimeError('sheets_retry_after_too_long')\n   print('Sheets quota reached; retry in',delay,'seconds',flush=True)\n   clock.sleep(delay)\n"], ['  cache[day]=records(day,all_slots,contacts);return cache[day]\n', "  cache[day]=records(day,all_slots,contacts)\n  audit=ROOT/'audit';audit.mkdir(mode=0o700,exist_ok=True)\n  atomic_json(audit/(day+'.json'),{'day':day,'observed_at':datetime.now(TZ).isoformat(),'scope':cfg,'slots':all_slots,'records':cache[day]})\n  print('LIVE SOURCE:',day,'slots:',len(all_slots),'records:',len(cache[day]),'unique couriers:',len({r['courier_id'] for r in cache[day]}),flush=True)\n  return cache[day]\n"]]}, 'live_card_sync.py': {'before': '331429e487dffe89d895a153b17e7b1f7cc511bc2b327b63beab51fc31a05aab', 'after': 'dfbb9be6c87597b518b7dfbabf55589dc5b36caf3db6a990f0457e8e95624ada', 'edits': [["KEY='courier_live_card_sync_v1'\n", "KEY='courier_live_card_sync_v2'\n"], ["    ordered=list(existing_keys);seen=set(ordered)\n    for row in [r for r in plan['rows'] if r.get('day')==day]+sorted([r for r in window if r.get('day')==day],key=lambda r:(r['start'],r['name'],r['key'])):\n", "    # A frozen plan is evidence for attendance, not current booking membership.\n    # Keep surviving keys stable, and archive removed rows with their notes below.\n    ordered=[key for key in existing_keys if key in by_live];seen=set(ordered)\n    for row in sorted(by_live.values(),key=lambda r:(r['start'],r['name'],r['key'])):\n"], ['def _backup_once(sheets,title,sid):\n', 'def _backup_once(sheets,title,sid,force=False):\n'], ["    if any(m['developerMetadata'].get('location',{}).get('sheetId')==sid for m in meta.get('matchedDeveloperMetadata',[])):return\n", "    if not force and any(m['developerMetadata'].get('location',{}).get('sheetId')==sid for m in meta.get('matchedDeveloperMetadata',[])):return\n"], ["    name='_backup_live_'+str(sid)\n", "    name='_backup_live_'+str(sid)+(('_'+datetime.now(TZ).strftime('%Y%m%d_%H%M%S_%f')) if force else '_v2')\n"], ["    atomic_json(state,{'day':day,'captured_at':plan['captured_at'],'rows':display})\n", "    lookup={r['key']:r for r in saved['rows']+plan['rows']+display}\n    atomic_json(state,{'day':day,'captured_at':plan['captured_at'],'rows':list(lookup.values())})\n"], ["        sid=sheet['sheetId'];_backup_once(sheets,title,sid)\n", "        sid=sheet['sheetId'];_backup_once(sheets,title,sid,force=existing!=[r['key'] for r in display])\n"], ['        # Do not attach new couriers to stray manual notes in formerly empty rows.\n        first=3+len(existing);last=min(3+len(display),footer)\n        if last>first:\n            rng="\'"+title.replace("\'","\'\'")+"\'!A"+str(first+1)+\':G\'+str(last)\n            occupied=sheets.call(\'GET\',\'/values/\'+quote(rng,safe=\'\')).get(\'values\',[])\n            if any(any(str(v) for v in row) for row in occupied):raise RuntimeError(\'new_rows_would_overlap_manual_cells\')\n', '        # Read manual cells before remapping rows. Notes follow the stable slot key,\n        # never a row number or a name (one person can have several real slots).\n        notes={}\n        if existing:\n            rng="\'"+title.replace("\'","\'\'")+"\'!F4:G"+str(3+len(existing))\n            values=sheets.call(\'GET\',\'/values/\'+quote(rng,safe=\'\')).get(\'values\',[])\n            notes={key:(values[i] if i<len(values) else []) for i,key in enumerate(existing)}\n        if 3+len(existing)>footer:raise RuntimeError(\'existing_rows_overlap_footer\')\n'], ["        if len(display)>len(existing):\n            start=3+len(existing);end=3+len(display)\n            req.append({'updateCells':{'start':{'sheetId':sid,'rowIndex':start,'columnIndex':12},'rows':[{'values':[{'userEnteredValue':{'stringValue':r['key']}}]} for r in display[len(existing):]],'fields':'userEnteredValue'}})\n            req.append({'repeatCell':{'range':{'sheetId':sid,'startRowIndex':start,'endRowIndex':end,'startColumnIndex':0,'endColumnIndex':7},'cell':{'userEnteredFormat':{'backgroundColor':{'red':.80,'green':.87,'blue':.96},'wrapStrategy':'WRAP','verticalAlignment':'MIDDLE'}},'fields':'userEnteredFormat'}})\n            req.append({'updateDimensionProperties':{'range':{'sheetId':sid,'dimension':'ROWS','startIndex':start,'endIndex':end},'properties':{'pixelSize':38},'fields':'pixelSize'}})\n", "        # Rewrite membership and notes in one batch, clearing removed row values.\n        # Whole-sheet backup above retains notes belonging to cancelled records.\n        total=max(len(display),len(existing))\n        if total:\n            body=[];keys=[]\n            for i in range(total):\n                if i<len(display):\n                    row=display[i]\n                    values=[i+1,row['slot'],row['name'],str(contacts.get(row['courier_id'],{}).get('phone') or row.get('phone','')),'']+(notes.get(row['key'],[])+['',''])[:2]\n                    key=row['key']\n                else:values=['']*7;key=''\n                def cell(v):return {'userEnteredValue':{'numberValue':v} if type(v) in (int,float) else {'stringValue':str(v)}}\n                body.append({'values':[cell(v) for v in values]})\n                keys.append({'values':[cell(key)]})\n            req.append({'updateCells':{'start':{'sheetId':sid,'rowIndex':3,'columnIndex':0},'rows':body,'fields':'userEnteredValue'}})\n            req.append({'updateCells':{'start':{'sheetId':sid,'rowIndex':3,'columnIndex':12},'rows':keys,'fields':'userEnteredValue'}})\n        # The older card had next-day hours; remove stale values below new 24h table.\n        if footer>3+len(hours):\n            req.append({'repeatCell':{'range':{'sheetId':sid,'startRowIndex':3+len(hours),'endRowIndex':footer,'startColumnIndex':8,'endColumnIndex':12},'cell':{},'fields':'userEnteredValue'}})\n"], ["    note+=' В списке только смены, начинающиеся в дату карточки. Почасовая обеспеченность также учитывает ночные смены с предыдущего дня.'\n", "    note+=' Список и «Записано» — текущие записи API, без удалённых записей из плана. В списке только смены, начинающиеся в дату карточки. Почасовая обеспеченность также учитывает ночные смены с предыдущего дня.'\n"], ["    else:note+=' План на 22:00 сохранён.'\n", "    else:note+=' План на 22:00 сохранён отдельно; не добавляется к текущей записи.'\n"]]}}
+DEPENDENCIES={'core.py': 'ac9d30e99f2f0b9d184356c72f46af85e064f130fe40eaadf7baa522328e8460', 'day_split.py': '456ef1d365e5e1600a9448f5f991f8ca5338cf10276c1d0296ae07f3fb8d394e'}
+
+def digest(data):return hashlib.sha256(data).hexdigest()
+
+def prepare(root):
+    candidate={}
+    for name,expected in DEPENDENCIES.items():
+        if digest((root/name).read_bytes())!=expected:
+            raise RuntimeError('dependency_changed_'+name)
+    for name,patch in PATCHES.items():
+        raw=(root/name).read_bytes()
+        if digest(raw)==patch['after']:
+            candidate[name]=raw
+            continue
+        if digest(raw)!=patch['before']:
+            raise RuntimeError('source_changed_'+name)
+        text=raw.decode()
+        for before,after in patch['edits']:
+            if text.count(before)!=1:raise RuntimeError('patch_context_mismatch_'+name)
+            text=text.replace(before,after,1)
+        result=text.encode()
+        if digest(result)!=patch['after']:raise RuntimeError('candidate_hash_mismatch_'+name)
+        compile(text,name,'exec')
+        candidate[name]=result
+    return candidate
+
+def install(root):
+    root=Path(root)
+    with (root/'handover.lock').open('a') as lock:
+        try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        except BlockingIOError:raise RuntimeError('handover_running_retry_later')
+        candidate=prepare(root)
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp=Path(tmp)
+            for name in DEPENDENCIES:shutil.copy2(root/name,tmp/name)
+            for name,data in candidate.items():(tmp/name).write_bytes(data)
+            shutil.copy2(Path(__file__).with_name('handover_membership_checks.py'),tmp/'test_live_membership.py')
+            subprocess.run([sys.executable,'-m','unittest','-v','test_live_membership'],cwd=tmp,check=True)
+        if all((root/name).read_bytes()==data for name,data in candidate.items()):
+            print('Fix already installed; checks passed')
+            return
+        backup=root/('backup-live-membership-'+datetime.now().strftime('%Y%m%d-%H%M%S-%f'))
+        backup.mkdir(mode=0o700)
+        for name in candidate:shutil.copy2(root/name,backup/name)
+        try:
+            for name,data in candidate.items():
+                tmp=root/(name+'.repair-new')
+                tmp.write_bytes(data);shutil.copymode(root/name,tmp);os.replace(tmp,root/name)
+        except Exception:
+            for name in candidate:shutil.copy2(backup/name,root/name)
+            raise
+        print('DS8889 handover fix installed. Code backup:',backup)
+        print('Frozen plans and credential files were not changed.')
+
+if __name__=='__main__':
+    if os.geteuid()!=0:raise SystemExit('Run on the server as root')
+    try:install('/opt/courier-handover')
+    except Exception as error:
+        raise SystemExit('Installation failed: '+str(error))
