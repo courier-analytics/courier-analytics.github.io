@@ -33599,7 +33599,7 @@
       }
     },
     "2026-11-17": {
-      "generated_at": "2026-11-18T12:11:56.287102+00:00",
+      "generated_at": "2026-11-18T12:37:29.891291+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37148,7 +37148,7 @@
       }
     },
     "2026-11-18": {
-      "generated_at": "2026-11-18T12:17:10.751208+00:00",
+      "generated_at": "2026-11-18T12:42:46.205820+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37164,8 +37164,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 76.47,
-            "numerator": 26,
+            "value": 73.53,
+            "numerator": 25,
             "denominator": 34,
             "reason": null,
             "basis": "limited_slot_places"
@@ -37585,10 +37585,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-18T09:00:00+03:00",
                       "planned_end": "2026-11-18T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-18T15:18:42+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 6 часов 18 мин",
+                      "late_seconds": 22722,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -37932,33 +37932,9 @@
               "planned_start": "2026-11-18T16:00:00+03:00",
               "planned_end": "2026-11-19T00:00:00+03:00",
               "capacity": 5,
-              "occupied": 1,
-              "free": 4,
-              "couriers": [
-                {
-                  "courier_id": "1800129523",
-                  "name": "Карапетян Димо Маратович",
-                  "slots": [
-                    {
-                      "slot_id": "62430",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-18T16:00:00+03:00",
-                      "planned_end": "2026-11-19T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 5,
+              "couriers": []
             },
             {
               "slot_id": "64255",
@@ -38094,8 +38070,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 58.82,
-            "numerator": 10,
+            "value": 64.71,
+            "numerator": 11,
             "denominator": 17,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -38103,7 +38079,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -38211,6 +38187,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 47 минут",
                       "late_seconds": 2838,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
+                  "slots": [
+                    {
+                      "slot_id": "62427",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T15:18:42+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 18 мин",
+                      "late_seconds": 22722,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -38339,7 +38338,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800122842",
@@ -38351,29 +38350,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-18T15:00:00+03:00",
                       "planned_end": "2026-11-18T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800093276",
-                  "name": "Мирзаагаев Ахмед Демирович",
-                  "slots": [
-                    {
-                      "slot_id": "62427",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-18T09:00:00+03:00",
-                      "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -38526,16 +38502,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 80.0,
-            "numerator": 8,
-            "denominator": 10,
+            "value": 81.82,
+            "numerator": 9,
+            "denominator": 11,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -38597,6 +38573,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 47 минут",
                       "late_seconds": 2838,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
+                  "slots": [
+                    {
+                      "slot_id": "62427",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T15:18:42+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 18 мин",
+                      "late_seconds": 22722,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -38786,9 +38785,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 52.38,
+            "value": 50.0,
             "numerator": 11,
-            "denominator": 21,
+            "denominator": 22,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -39054,7 +39053,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -39162,6 +39161,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 47 минут",
                       "late_seconds": 2838,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
+                  "slots": [
+                    {
+                      "slot_id": "62427",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T15:18:42+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 18 мин",
+                      "late_seconds": 22722,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -39337,7 +39359,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -39491,6 +39513,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 37 мин",
                       "late_seconds": 5845,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
+                  "slots": [
+                    {
+                      "slot_id": "62427",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T15:18:42+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов 18 мин",
+                      "late_seconds": 22722,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
