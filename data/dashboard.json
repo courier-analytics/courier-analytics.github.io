@@ -6246,7 +6246,7 @@
       "capacity": 0,
       "fill_percent": null,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:31:25.899125+00:00",
+      "reported_at": "2026-11-18T23:55:26.848321+00:00",
       "metrics": {
         "slot_fill": {
           "value": null,
@@ -6303,7 +6303,7 @@
       "capacity": 98,
       "fill_percent": 75.51,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:31:25.899125+00:00",
+      "reported_at": "2026-11-18T23:55:26.848321+00:00",
       "metrics": {
         "slot_fill": {
           "value": 75.51,
@@ -6356,7 +6356,7 @@
       "capacity": 40,
       "fill_percent": 62.5,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:31:25.899125+00:00",
+      "reported_at": "2026-11-18T23:55:26.848321+00:00",
       "metrics": {
         "slot_fill": {
           "value": 62.5,
@@ -6420,7 +6420,7 @@
       "capacity": 89,
       "fill_percent": 52.81,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:31:25.899125+00:00",
+      "reported_at": "2026-11-18T23:55:26.848321+00:00",
       "metrics": {
         "slot_fill": {
           "value": 52.81,
@@ -6473,7 +6473,7 @@
       "capacity": 38,
       "fill_percent": 89.47,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:31:25.899125+00:00",
+      "reported_at": "2026-11-18T23:55:26.848321+00:00",
       "metrics": {
         "slot_fill": {
           "value": 89.47,
@@ -6526,7 +6526,7 @@
       "capacity": 0,
       "fill_percent": null,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:35:23.024480+00:00",
+      "reported_at": "2026-11-18T23:59:21.772197+00:00",
       "metrics": {
         "slot_fill": {
           "value": null,
@@ -6579,7 +6579,7 @@
       "capacity": 98,
       "fill_percent": 67.35,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:35:23.024480+00:00",
+      "reported_at": "2026-11-18T23:59:21.772197+00:00",
       "metrics": {
         "slot_fill": {
           "value": 67.35,
@@ -6632,7 +6632,7 @@
       "capacity": 27,
       "fill_percent": 88.89,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:35:23.024480+00:00",
+      "reported_at": "2026-11-18T23:59:21.772197+00:00",
       "metrics": {
         "slot_fill": {
           "value": 88.89,
@@ -6692,7 +6692,7 @@
       "capacity": 83,
       "fill_percent": 45.78,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:35:23.024480+00:00",
+      "reported_at": "2026-11-18T23:59:21.772197+00:00",
       "metrics": {
         "slot_fill": {
           "value": 45.78,
@@ -6741,15 +6741,15 @@
     {
       "date": "2026-11-19",
       "shop_id": 8889,
-      "booked_places": 25,
+      "booked_places": 27,
       "capacity": 38,
-      "fill_percent": 65.79,
+      "fill_percent": 71.05,
       "source": "slots_export",
-      "reported_at": "2026-11-18T23:35:23.024480+00:00",
+      "reported_at": "2026-11-18T23:59:21.772197+00:00",
       "metrics": {
         "slot_fill": {
-          "value": 65.79,
-          "numerator": 25,
+          "value": 71.05,
+          "numerator": 27,
           "denominator": 38,
           "reason": null,
           "basis": "limited_slot_places"
@@ -6762,10 +6762,10 @@
           "basis": null
         },
         "unplanned_work": {
-          "value": null,
-          "numerator": 0,
-          "denominator": 0,
-          "reason": "zero_denominator",
+          "value": 100.0,
+          "numerator": 1,
+          "denominator": 1,
+          "reason": null,
           "basis": "worked_without_frozen_plan_unique_couriers"
         },
         "planned_attendance": {
@@ -6784,9 +6784,9 @@
         },
         "planned_completion": {
           "value": null,
-          "numerator": 0,
-          "denominator": 0,
-          "reason": "zero_denominator",
+          "numerator": null,
+          "denominator": null,
+          "reason": "shift_end_or_final_status_missing",
           "basis": "slot_completion_arrived_by_actual_night_end_date"
         }
       }
