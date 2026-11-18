@@ -33599,7 +33599,7 @@
       }
     },
     "2026-11-17": {
-      "generated_at": "2026-11-18T07:03:28.388013+00:00",
+      "generated_at": "2026-11-18T07:26:01.769438+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37148,7 +37148,7 @@
       }
     },
     "2026-11-18": {
-      "generated_at": "2026-11-18T07:07:13.652799+00:00",
+      "generated_at": "2026-11-18T07:29:53.254492+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37560,10 +37560,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-18T09:00:00+03:00",
                       "planned_end": "2026-11-18T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-18T10:20:03+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 20 мин",
+                      "late_seconds": 4803,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -37905,8 +37905,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 29.41,
-            "numerator": 5,
+            "value": 35.29,
+            "numerator": 6,
             "denominator": 17,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -37914,7 +37914,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1699938129",
@@ -38009,6 +38009,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62427",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T10:20:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 20 мин",
+                      "late_seconds": 4803,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800012132",
                   "name": "Шеров Абдумалик Сайвалиевич",
                   "slots": [
@@ -38035,7 +38058,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 8,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -38086,29 +38109,6 @@
                 {
                   "courier_id": "1800050823",
                   "name": "Мирзоев Зубайдулло Рахмидинович",
-                  "slots": [
-                    {
-                      "slot_id": "62427",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-18T09:00:00+03:00",
-                      "planned_end": "2026-11-18T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800095811",
-                  "name": "Миронов Илья Сергеевич",
                   "slots": [
                     {
                       "slot_id": "62427",
@@ -38337,16 +38337,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 60.0,
-            "numerator": 3,
-            "denominator": 5,
+            "value": 66.67,
+            "numerator": 4,
+            "denominator": 6,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 3,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -38385,6 +38385,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 47 минут",
                       "late_seconds": 2838,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62427",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T10:20:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 20 мин",
+                      "late_seconds": 4803,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -38482,9 +38505,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 50.0,
+            "value": 45.45,
             "numerator": 5,
-            "denominator": 10,
+            "denominator": 11,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -38612,7 +38635,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1699938129",
@@ -38707,6 +38730,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62427",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T10:20:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 20 мин",
+                      "late_seconds": 4803,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800012132",
                   "name": "Шеров Абдумалик Сайвалиевич",
                   "slots": [
@@ -38756,7 +38802,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1699938129",
@@ -38864,6 +38910,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 37 мин",
                       "late_seconds": 5845,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62427",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T10:20:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 20 мин",
+                      "late_seconds": 4803,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
