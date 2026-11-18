@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-19": {
-      "generated_at": "2026-11-18T21:18:52.659520+00:00",
+      "generated_at": "2026-11-18T21:41:52.207509+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -65,12 +65,35 @@
               "planned_start": "2026-11-19T07:00:00+03:00",
               "planned_end": "2026-11-19T20:00:00+03:00",
               "capacity": 3,
-              "occupied": 1,
-              "free": 2,
+              "occupied": 2,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1800095411",
                   "name": "Некрасов Алексей Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "62436",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T07:00:00+03:00",
+                      "planned_end": "2026-11-19T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094666",
+                  "name": "Петросян Геворг Гарегинович",
                   "slots": [
                     {
                       "slot_id": "62436",
@@ -100,8 +123,8 @@
               "planned_start": "2026-11-19T08:00:00+03:00",
               "planned_end": "2026-11-19T21:00:00+03:00",
               "capacity": 7,
-              "occupied": 7,
-              "free": 0,
+              "occupied": 6,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1799899246",
@@ -129,29 +152,6 @@
                 {
                   "courier_id": "1800063653",
                   "name": "Нуров Джавхан Амрдинович",
-                  "slots": [
-                    {
-                      "slot_id": "62437",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-19T08:00:00+03:00",
-                      "planned_end": "2026-11-19T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800094666",
-                  "name": "Петросян Геворг Гарегинович",
                   "slots": [
                     {
                       "slot_id": "62437",
@@ -847,7 +847,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 27,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1287,29 +1287,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800094666",
-                  "name": "Петросян Геворг Гарегинович",
-                  "slots": [
-                    {
-                      "slot_id": "62437",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-19T08:00:00+03:00",
-                      "planned_end": "2026-11-19T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800098576",
                   "name": "Погор Степан Александрович",
                   "slots": [
@@ -1479,12 +1456,36 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800094666",
+                  "name": "Петросян Геворг Гарегинович",
+                  "slots": [
+                    {
+                      "slot_id": "62437",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-19T08:00:00+03:00",
+                      "planned_end": "2026-11-19T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-19T00:33:03+03:00",
+                      "removed_by": "Петросян Геворг Гарегинович",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "reconciled": true,
-          "note": ""
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "planned_late": {
           "aggregate": {
@@ -1512,7 +1513,7 @@
             }
           ],
           "reconciled": false,
-          "note": ""
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "unplanned_work": {
           "aggregate": {
