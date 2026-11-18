@@ -28,10 +28,15 @@ class TestMembership(unittest.TestCase):
   prev=row('prev',start='23:00',end='23:59',day='2026-11-17');prev['end']=DAY+'T09:00:00+03:00'
   display,window=sync.visible_records({'day':DAY,'rows':[]},[prev],[],[],24)
   self.assertEqual(display,[]);self.assertEqual(hourly(DAY,window,{})[8][2],1)
- def test_unchanged_order_preserved(self):
+ def test_entire_list_sorted_even_if_existing_order_differs(self):
   live=[row('a','1'),row('b','2')]
   display,_=sync.visible_records({'day':DAY,'rows':[]},live,live,['b','a'],24)
-  self.assertEqual([r['key'] for r in display],['b','a'])
+  self.assertEqual([r['key'] for r in display],['a','b'])
+ def test_order_uses_time_before_name_and_keeps_overnight_last(self):
+  live=[row('late','1','18:00','23:00'),row('early','2','06:00','14:00'),row('middle','3','08:00','20:00')]
+  live[0]['end']='2026-11-19T09:00:00+03:00'
+  display,_=sync.visible_records({'day':DAY,'rows':[]},live,live,['late','middle','early'],24)
+  self.assertEqual([r['key'] for r in display],['early','middle','late'])
  def test_rewrite_notes_follow_keys_and_removed_values_cleared(self):
   from unittest.mock import patch
   old=[row('a','1'),row('b','2'),row('c','3')];live=[old[1],row('d','4')]
@@ -87,4 +92,29 @@ class TestSheetsQuota(unittest.TestCase):
   obj.session.request.return_value=types.SimpleNamespace(status_code=500,ok=False)
   with self.assertRaisesRegex(RuntimeError,'sheets_http_500'):call(obj,'POST',':batchUpdate',{})
   self.assertEqual(obj.session.request.call_count,1)
+
+class TestUniformStyle(unittest.TestCase):
+ def test_existing_card_body_is_reformatted(self):
+  import ast
+  from unittest.mock import Mock
+  tree=ast.parse(Path(__file__).with_name('runner.py').read_text())
+  cls=next(n for n in tree.body if isinstance(n,ast.ClassDef) and n.name=='Sheets')
+  method=next(n for n in cls.body if isinstance(n,ast.FunctionDef) and n.name=='put')
+  from urllib.parse import quote
+  from core import planned_rows
+  ns={'quote':quote,'planned_rows':planned_rows}
+  exec(compile(ast.fix_missing_locations(ast.Module(body=[method],type_ignores=[])),'put','exec'),ns)
+  obj=Mock()
+  obj.call.side_effect=[{'sheets':[{'properties':{'title':'card','sheetId':1}}]},{'values':[['a'],['b']]}]
+  live=[row('a','1'),row('b','2')]
+  ns['put'](obj,'card',live,live,{},[], 'note')
+  requests=obj.batch.call_args.args[0]
+  styles=[r['repeatCell'] for r in requests if 'repeatCell' in r]
+  body=next(r for r in styles if r['range']['startColumnIndex']==0 and r['range']['endColumnIndex']==7)
+  self.assertEqual(body['range']['startRowIndex'],3)
+  self.assertEqual(body['range']['endRowIndex'],5)
+  self.assertEqual(body['cell']['userEnteredFormat']['textFormat']['fontSize'],10)
+  heights=[r['updateDimensionProperties'] for r in requests if 'updateDimensionProperties' in r and r['updateDimensionProperties']['range']['dimension']=='ROWS']
+  self.assertEqual(heights[-1]['properties']['pixelSize'],38)
+
 if __name__=='__main__':unittest.main()
