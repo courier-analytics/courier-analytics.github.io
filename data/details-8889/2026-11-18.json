@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-18": {
-      "generated_at": "2026-11-18T17:51:12.441809+00:00",
+      "generated_at": "2026-11-18T18:14:23.926788+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -191,7 +191,7 @@
                       "planned_start": "2026-11-18T07:00:00+03:00",
                       "planned_end": "2026-11-18T20:00:00+03:00",
                       "actual_start": "2026-11-18T08:48:23+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T19:00:00+03:00",
                       "status": "Опоздал на 1 час 48 мин",
                       "late_seconds": 6503,
                       "removed_at": null,
@@ -1171,10 +1171,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-18T21:00:00+03:00",
                       "planned_end": "2026-11-19T10:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-18T20:34:13+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1930,16 +1930,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 57.14,
-            "numerator": 16,
-            "denominator": 28,
+            "value": 58.62,
+            "numerator": 17,
+            "denominator": 29,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800120138",
@@ -2251,9 +2251,32 @@
                       "planned_start": "2026-11-18T07:00:00+03:00",
                       "planned_end": "2026-11-18T20:00:00+03:00",
                       "actual_start": "2026-11-18T08:48:23+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T19:00:00+03:00",
                       "status": "Опоздал на 1 час 48 мин",
                       "late_seconds": 6503,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800080693",
+                  "name": "Шарифов Хуршед Пулодович",
+                  "slots": [
+                    {
+                      "slot_id": "62432",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T21:00:00+03:00",
+                      "planned_end": "2026-11-19T10:00:00+03:00",
+                      "actual_start": "2026-11-18T20:34:13+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2613,7 +2636,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -2660,12 +2683,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62425",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T07:00:00+03:00",
+                      "planned_end": "2026-11-18T20:00:00+03:00",
+                      "actual_start": "2026-11-18T08:48:23+03:00",
+                      "actual_end": "2026-11-18T19:00:00+03:00",
+                      "status": "Опоздал на 1 час 48 мин",
+                      "late_seconds": 6503,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 17,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2957,29 +3003,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 26 минут",
                       "late_seconds": 1572,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130000",
-                  "name": "Чориев Аскарбек Аброр Угли",
-                  "slots": [
-                    {
-                      "slot_id": "62425",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-18T07:00:00+03:00",
-                      "planned_end": "2026-11-18T20:00:00+03:00",
-                      "actual_start": "2026-11-18T08:48:23+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 48 мин",
-                      "late_seconds": 6503,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
