@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-18": {
-      "generated_at": "2026-11-18T16:38:38.375638+00:00",
+      "generated_at": "2026-11-18T17:03:54.049546+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -341,7 +341,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T07:36:28+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T17:45:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1136,10 +1136,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-18T20:00:00+03:00",
                       "planned_end": "2026-11-19T09:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-18T19:03:01+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 56 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1307,7 +1307,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T07:36:28+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T17:45:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1905,7 +1905,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T07:36:28+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T17:45:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1930,16 +1930,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 55.56,
-            "numerator": 15,
-            "denominator": 27,
+            "value": 57.14,
+            "numerator": 16,
+            "denominator": 28,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800120138",
@@ -2024,6 +2024,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 18 мин",
                       "late_seconds": 8303,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699900182",
+                  "name": "Идирисов Исмаил Бадурудинович",
+                  "slots": [
+                    {
+                      "slot_id": "62431",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T20:00:00+03:00",
+                      "planned_end": "2026-11-19T09:00:00+03:00",
+                      "actual_start": "2026-11-18T19:03:01+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 56 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2395,7 +2418,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T07:36:28+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T17:45:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2590,7 +2613,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -2614,12 +2637,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799899246",
+                  "name": "Ибрагимов Фахриддин Салимович",
+                  "slots": [
+                    {
+                      "slot_id": "62426",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T08:00:00+03:00",
+                      "planned_end": "2026-11-18T21:00:00+03:00",
+                      "actual_start": "2026-11-18T07:36:28+03:00",
+                      "actual_end": "2026-11-18T17:45:00+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 18,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2727,29 +2773,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 18 мин",
                       "late_seconds": 8303,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799899246",
-                  "name": "Ибрагимов Фахриддин Салимович",
-                  "slots": [
-                    {
-                      "slot_id": "62426",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-18T08:00:00+03:00",
-                      "planned_end": "2026-11-18T21:00:00+03:00",
-                      "actual_start": "2026-11-18T07:36:28+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
