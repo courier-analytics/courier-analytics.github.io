@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-18": {
-      "generated_at": "2026-11-18T09:55:16.230198+00:00",
+      "generated_at": "2026-11-18T10:19:04.849139+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -694,10 +694,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-18T12:00:00+03:00",
                       "planned_end": "2026-11-18T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-18T13:14:22+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 14 мин",
+                      "late_seconds": 4462,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1640,16 +1640,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 47.37,
-            "numerator": 9,
-            "denominator": 19,
+            "value": 50.0,
+            "numerator": 10,
+            "denominator": 20,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1800017327",
@@ -1757,6 +1757,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 23 мин",
                       "late_seconds": 4981,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800098576",
+                  "name": "Погор Степан Александрович",
+                  "slots": [
+                    {
+                      "slot_id": "75974",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T12:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T13:14:22+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 14 мин",
+                      "late_seconds": 4462,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2121,7 +2144,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2367,6 +2390,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 27 мин",
                       "late_seconds": 5231,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800098576",
+                  "name": "Погор Степан Александрович",
+                  "slots": [
+                    {
+                      "slot_id": "75974",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T12:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T13:14:22+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 14 мин",
+                      "late_seconds": 4462,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
