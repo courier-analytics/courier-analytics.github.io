@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-18": {
-      "generated_at": "2026-11-18T17:03:54.049546+00:00",
+      "generated_at": "2026-11-18T17:27:20.708318+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -327,7 +327,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T08:03:13+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T18:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 193,
                       "removed_at": null,
@@ -868,7 +868,7 @@
                       "planned_start": "2026-11-18T09:00:00+03:00",
                       "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": "2026-11-18T08:07:19+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T18:15:00+03:00",
                       "status": "Вышел раньше на 52 минуты",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1204,7 +1204,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T08:03:13+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T18:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 193,
                       "removed_at": null,
@@ -1424,7 +1424,7 @@
                       "planned_start": "2026-11-18T09:00:00+03:00",
                       "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": "2026-11-18T08:07:19+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T18:15:00+03:00",
                       "status": "Вышел раньше на 52 минуты",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2253,7 +2253,7 @@
                       "planned_start": "2026-11-18T09:00:00+03:00",
                       "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": "2026-11-18T08:07:19+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T18:15:00+03:00",
                       "status": "Вышел раньше на 52 минуты",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2808,7 +2808,7 @@
                       "planned_start": "2026-11-18T09:00:00+03:00",
                       "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": "2026-11-18T08:07:19+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T18:15:00+03:00",
                       "status": "Вышел раньше на 52 минуты",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2924,7 +2924,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T08:03:13+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T18:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 193,
                       "removed_at": null,
@@ -3482,7 +3482,7 @@
                       "planned_start": "2026-11-18T09:00:00+03:00",
                       "planned_end": "2026-11-18T22:00:00+03:00",
                       "actual_start": "2026-11-18T08:07:19+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T18:15:00+03:00",
                       "status": "Вышел раньше на 52 минуты",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3540,7 +3540,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 5,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800128912",
@@ -3579,6 +3579,29 @@
                       "actual_end": "2026-11-18T19:23:49+03:00",
                       "status": "Опоздал на 48 минут",
                       "late_seconds": 2900,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699918514",
+                  "name": "Махмудов Элвар Сардар Оглы",
+                  "slots": [
+                    {
+                      "slot_id": "66870",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-18T08:00:00+03:00",
+                      "planned_end": "2026-11-18T21:00:00+03:00",
+                      "actual_start": "2026-11-18T08:03:13+03:00",
+                      "actual_end": "2026-11-18T18:15:00+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 193,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3656,12 +3679,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799898133",
+                  "name": "Худойдодов Абдурахман Низомович",
+                  "slots": [
+                    {
+                      "slot_id": "66871",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-18T09:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": "2026-11-18T08:07:19+03:00",
+                      "actual_end": "2026-11-18T18:15:00+03:00",
+                      "status": "Вышел раньше на 52 минуты",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 13,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -3848,29 +3894,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1699918514",
-                  "name": "Махмудов Элвар Сардар Оглы",
-                  "slots": [
-                    {
-                      "slot_id": "66870",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-18T08:00:00+03:00",
-                      "planned_end": "2026-11-18T21:00:00+03:00",
-                      "actual_start": "2026-11-18T08:03:13+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 193,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800044072",
                   "name": "Тарамов Хасан Вадудович",
                   "slots": [
@@ -3906,29 +3929,6 @@
                       "actual_start": "2026-11-18T08:51:08+03:00",
                       "actual_end": null,
                       "status": "Вышел",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799898133",
-                  "name": "Худойдодов Абдурахман Низомович",
-                  "slots": [
-                    {
-                      "slot_id": "66871",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-18T09:00:00+03:00",
-                      "planned_end": "2026-11-18T22:00:00+03:00",
-                      "actual_start": "2026-11-18T08:07:19+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 52 минуты",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
