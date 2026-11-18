@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-18": {
-      "generated_at": "2026-11-18T05:33:08.085246+00:00",
+      "generated_at": "2026-11-18T05:57:34.871921+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -303,10 +303,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-18T08:48:20+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 48 минут",
+                      "late_seconds": 2900,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -585,11 +585,6 @@
                   "slots": []
                 },
                 {
-                  "courier_id": "1800123730",
-                  "name": "Кучаров Сироджиддин Атауллоевич",
-                  "slots": []
-                },
-                {
                   "courier_id": "1800115892",
                   "name": "Логинов Даниил Вячеславович",
                   "slots": []
@@ -632,6 +627,11 @@
                 {
                   "courier_id": "1800132979",
                   "name": "Сайфуллоев Мухаммаджон Исомидинович",
+                  "slots": []
+                },
+                {
+                  "courier_id": "1699934392",
+                  "name": "Сапиев Ислам Идрисович",
                   "slots": []
                 },
                 {
@@ -1049,10 +1049,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-18T08:48:20+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 48 минут",
+                      "late_seconds": 2900,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2308,16 +2308,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 33.33,
-            "numerator": 3,
-            "denominator": 9,
+            "value": 40.0,
+            "numerator": 4,
+            "denominator": 10,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 3,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -2333,6 +2333,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799882751",
+                  "name": "Маматкулов Зияитдин Кимсанбаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66870",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-18T08:00:00+03:00",
+                      "planned_end": "2026-11-18T21:00:00+03:00",
+                      "actual_start": "2026-11-18T08:48:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 48 минут",
+                      "late_seconds": 2900,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2559,7 +2582,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -2621,6 +2644,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 44 минуты",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799882751",
+                  "name": "Маматкулов Зияитдин Кимсанбаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66870",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-18T08:00:00+03:00",
+                      "planned_end": "2026-11-18T21:00:00+03:00",
+                      "actual_start": "2026-11-18T08:48:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 48 минут",
+                      "late_seconds": 2900,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2707,8 +2753,8 @@
         },
         "training": {
           "aggregate": {
-            "value": 35.29,
-            "numerator": 18,
+            "value": 33.33,
+            "numerator": 17,
             "denominator": 51,
             "reason": null,
             "basis": "onec_training_named_intersection"
@@ -2716,7 +2762,7 @@
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 18,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2789,13 +2835,6 @@
                   "match_status": "Обучение подтверждено"
                 },
                 {
-                  "courier_id": "1800123730",
-                  "name": "Кучаров Сироджиддин Атауллоевич",
-                  "slots": [],
-                  "training_date": "2026-10-30T15:30:10+03:00",
-                  "match_status": "Обучение подтверждено"
-                },
-                {
                   "courier_id": "1799996946",
                   "name": "Рахмонбердиев Фарух Махмаджонович",
                   "slots": [],
@@ -2848,7 +2887,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 33,
+              "count": 34,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -3040,6 +3079,13 @@
                   "match_status": "Нет подтверждённой записи об обучении"
                 },
                 {
+                  "courier_id": "1699934392",
+                  "name": "Сапиев Ислам Идрисович",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
                   "courier_id": "1800125641",
                   "name": "Тургунов Нурилло Иномжон Угли",
                   "slots": [],
@@ -3085,7 +3131,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -3148,6 +3194,13 @@
                   "name": "Абдулкасимов Сайгиомар",
                   "slots": [],
                   "training_date": "2026-10-29T13:05:00+03:00",
+                  "match_status": "Нет точного совпадения в активной базе 1С"
+                },
+                {
+                  "courier_id": "—",
+                  "name": "Кучаров Сироджиддин Атауллоевич",
+                  "slots": [],
+                  "training_date": "2026-10-30T15:30:10+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
