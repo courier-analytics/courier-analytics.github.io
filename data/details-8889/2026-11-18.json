@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-18": {
-      "generated_at": "2026-11-18T09:06:28.296625+00:00",
+      "generated_at": "2026-11-18T09:29:25.890163+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 70.59,
-            "numerator": 24,
+            "value": 76.47,
+            "numerator": 26,
             "denominator": 34,
             "reason": null,
             "basis": "limited_slot_places"
@@ -716,9 +716,33 @@
               "planned_start": "2026-11-18T14:00:00+03:00",
               "planned_end": "2026-11-18T22:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович",
+                  "slots": [
+                    {
+                      "slot_id": "62428",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T14:00:00+03:00",
+                      "planned_end": "2026-11-18T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62429",
@@ -762,9 +786,33 @@
               "planned_start": "2026-11-18T16:00:00+03:00",
               "planned_end": "2026-11-19T00:00:00+03:00",
               "capacity": 5,
-              "occupied": 0,
-              "free": 5,
-              "couriers": []
+              "occupied": 1,
+              "free": 4,
+              "couriers": [
+                {
+                  "courier_id": "1800129523",
+                  "name": "Карапетян Димо Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "62430",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-18T16:00:00+03:00",
+                      "planned_end": "2026-11-19T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "64255",
