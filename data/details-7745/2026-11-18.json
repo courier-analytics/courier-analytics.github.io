@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-18": {
-      "generated_at": "2026-11-18T19:44:08.206670+00:00",
+      "generated_at": "2026-11-18T20:08:18.551284+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -771,7 +771,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T08:57:31+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T21:00:00+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3451,
                       "removed_at": null,
@@ -1107,7 +1107,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T08:57:31+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T21:00:00+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3451,
                       "removed_at": null,
@@ -1995,7 +1995,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T08:57:31+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T21:00:00+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3451,
                       "removed_at": null,
@@ -2521,7 +2521,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T08:57:31+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T21:00:00+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3451,
                       "removed_at": null,
@@ -3247,7 +3247,7 @@
                       "planned_start": "2026-11-18T08:00:00+03:00",
                       "planned_end": "2026-11-18T21:00:00+03:00",
                       "actual_start": "2026-11-18T08:57:31+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-18T21:00:00+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3451,
                       "removed_at": null,
@@ -3552,8 +3552,31 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1799937997",
+                  "name": "Джабраилов Имам Дуквахович",
+                  "slots": [
+                    {
+                      "slot_id": "66870",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-18T08:00:00+03:00",
+                      "planned_end": "2026-11-18T21:00:00+03:00",
+                      "actual_start": "2026-11-18T08:57:31+03:00",
+                      "actual_end": "2026-11-18T21:00:00+03:00",
+                      "status": "Опоздал на 57 минут",
+                      "late_seconds": 3451,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800015035",
                   "name": "Муцагов Алихан Мухтануевич",
@@ -3863,7 +3886,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 6,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1699895572",
@@ -3879,29 +3902,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 3 часа 17 мин",
                       "late_seconds": 11864,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799937997",
-                  "name": "Джабраилов Имам Дуквахович",
-                  "slots": [
-                    {
-                      "slot_id": "66870",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-18T08:00:00+03:00",
-                      "planned_end": "2026-11-18T21:00:00+03:00",
-                      "actual_start": "2026-11-18T08:57:31+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 57 минут",
-                      "late_seconds": 3451,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
