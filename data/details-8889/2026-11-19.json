@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-19": {
-      "generated_at": "2026-11-19T08:28:57.588653+00:00",
+      "generated_at": "2026-11-19T09:11:49.487114+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 82.05,
-            "numerator": 32,
+            "value": 89.74,
+            "numerator": 35,
             "denominator": 39,
             "reason": null,
             "basis": "limited_slot_places"
@@ -84,9 +84,49 @@
               "planned_start": "2026-11-19T06:00:00+03:00",
               "planned_end": "2026-11-19T14:00:00+03:00",
               "capacity": 2,
-              "occupied": 1,
-              "free": 1,
+              "occupied": 2,
+              "free": 0,
               "couriers": [
+                {
+                  "courier_id": "1800017327",
+                  "name": "Джобиров Оятулло Музаффарович ",
+                  "slots": [
+                    {
+                      "slot_id": "62434",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T06:00:00+03:00",
+                      "planned_end": "2026-11-19T14:00:00+03:00",
+                      "actual_start": "2026-11-19T12:00:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов",
+                      "late_seconds": 21620,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "62443",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T21:00:00+03:00",
+                      "planned_end": "2026-11-20T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800050823",
                   "name": "Мирзоев Зубайдулло Рахмидинович",
@@ -815,10 +855,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-19T12:00:00+03:00",
                       "planned_end": "2026-11-19T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-19T11:04:38+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -889,8 +929,8 @@
               "planned_start": "2026-11-19T18:00:00+03:00",
               "planned_end": "2026-11-20T09:00:00+03:00",
               "capacity": 7,
-              "occupied": 5,
-              "free": 2,
+              "occupied": 6,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1799970585",
@@ -1006,6 +1046,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800080693",
+                  "name": "Шарифов Хуршед Пулодович",
+                  "slots": [
+                    {
+                      "slot_id": "64257",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T18:00:00+03:00",
+                      "planned_end": "2026-11-20T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
@@ -1051,9 +1114,50 @@
               "planned_start": "2026-11-19T21:00:00+03:00",
               "planned_end": "2026-11-20T10:00:00+03:00",
               "capacity": 4,
-              "occupied": 0,
-              "free": 4,
-              "couriers": []
+              "occupied": 1,
+              "free": 3,
+              "couriers": [
+                {
+                  "courier_id": "1800017327",
+                  "name": "Джобиров Оятулло Музаффарович ",
+                  "slots": [
+                    {
+                      "slot_id": "62434",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T06:00:00+03:00",
+                      "planned_end": "2026-11-19T14:00:00+03:00",
+                      "actual_start": "2026-11-19T12:00:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов",
+                      "late_seconds": 21620,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "62443",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T21:00:00+03:00",
+                      "planned_end": "2026-11-20T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "groups": [],
@@ -1071,7 +1175,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 14,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1139,6 +1243,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800017327",
+                  "name": "Джобиров Оятулло Музаффарович ",
+                  "slots": [
+                    {
+                      "slot_id": "62438",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-19T09:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T12:00:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов",
+                      "late_seconds": 10820,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "62434"
                     }
                   ]
                 },
@@ -1254,6 +1382,30 @@
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-18",
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62438",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-19T09:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T11:04:38+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 7478,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "76500"
                     }
                   ]
                 },
@@ -1783,7 +1935,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 9,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1855,6 +2007,30 @@
                   ]
                 },
                 {
+                  "courier_id": "1800017327",
+                  "name": "Джобиров Оятулло Музаффарович ",
+                  "slots": [
+                    {
+                      "slot_id": "62438",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-19T09:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T12:00:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов",
+                      "late_seconds": 10820,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "62434"
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800095811",
                   "name": "Миронов Илья Сергеевич",
                   "slots": [
@@ -1874,6 +2050,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62438",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-19T09:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T11:04:38+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 7478,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "76500"
                     }
                   ]
                 },
@@ -2127,9 +2327,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 41.67,
+            "value": 38.46,
             "numerator": 10,
-            "denominator": 24,
+            "denominator": 26,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2389,7 +2589,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 14,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2451,6 +2651,46 @@
                       "actual_end": "2026-11-19T11:14:52+03:00",
                       "status": "Опоздал на 41 минута",
                       "late_seconds": 2492,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800017327",
+                  "name": "Джобиров Оятулло Музаффарович ",
+                  "slots": [
+                    {
+                      "slot_id": "62434",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T06:00:00+03:00",
+                      "planned_end": "2026-11-19T14:00:00+03:00",
+                      "actual_start": "2026-11-19T12:00:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов",
+                      "late_seconds": 21620,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "62443",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T21:00:00+03:00",
+                      "planned_end": "2026-11-20T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2571,6 +2811,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-18. Исходное начало: 2026-11-19T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-18",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "76500",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T12:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T11:04:38+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -2764,7 +3027,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 22,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2826,6 +3089,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 53 мин",
                       "late_seconds": 10387,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800017327",
+                  "name": "Джобиров Оятулло Музаффарович ",
+                  "slots": [
+                    {
+                      "slot_id": "62434",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T06:00:00+03:00",
+                      "planned_end": "2026-11-19T14:00:00+03:00",
+                      "actual_start": "2026-11-19T12:00:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 6 часов",
+                      "late_seconds": 21620,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3061,6 +3347,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-18. Исходное начало: 2026-11-19T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-18",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "76500",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T12:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T11:04:38+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 55 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
