@@ -16,7 +16,7 @@ from prepare_openvpn import private_write
 PROPERTIES = ('name_TT', 'Всего курьеров', 'Курьеров с ЛМК',
               'Курьеров, ЛМК просрочена', '% курьеров нет ЛМК или просроченные')
 WINDOW = 5000
-SHOPS = (5818, 7745, 8889)
+SHOPS = (5818, 7745, 8889, 9107)
 
 
 def normalized(value):
@@ -455,9 +455,13 @@ def decode_rows(payload, select_names):
 
 def candidate_records(rows, observed_at, shops=None):
     if shops is None:
-        if not any(isinstance(r[0],str) and re.search(r'(?<!\d)8889(?!\d)',r[0]) for r in rows):
-            print('DS8889 medical source row absent; no percentage published for this shop.',flush=True)
-        shops=(5818,7745)+((8889,) if any(isinstance(r[0],str) and re.search(r'(?<!\d)8889(?!\d)',r[0]) for r in rows) else ())
+        extra=[]
+        for shop in (8889,9107):
+            if any(isinstance(r[0],str) and re.search(r'(?<!\d)'+str(shop)+r'(?!\d)',r[0]) for r in rows):
+                extra.append(shop)
+            else:
+                print('DS'+str(shop)+' medical source row absent; no percentage published for this shop.',flush=True)
+        shops=(5818,7745)+tuple(extra)
     if observed_at.tzinfo is None:
         raise ValueError('Observation time must have a timezone')
     if not shops or len(set(shops)) != len(shops) or set(shops) - set(SHOPS):

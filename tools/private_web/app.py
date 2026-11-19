@@ -17,7 +17,7 @@ from flask import Flask, abort, g, jsonify, redirect, render_template_string, re
 from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.security import check_password_hash, generate_password_hash
 
-FILES = {'index.html','7745.html','4747.html','8092.html','dashboard-data.js',
+FILES = {'index.html','7745.html','4747.html','8092.html','8889.html','9107.html','dashboard.html','public-details.js','dashboard-data.js',
          'dashboard-trends.js','dashboard-trends.css','metric-details.js'}
 FEEDS = {'dashboard.json','medical-books.json'}
 EXTRA_FILES = {'private-session.js','private-details.js'}
@@ -151,7 +151,7 @@ def create_app(config=None):
         try:
             if date.fromisoformat(day).isoformat()!=day:abort(400)
         except ValueError:abort(400)
-        if shop not in (7745,5818,4747,8092) or key not in ('shift_marked','slot_fill','planned_attendance','planned_late','unplanned_work','planned_completion','medical','training'):abort(404)
+        if shop not in (7745,5818,4747,8092,8889,9107) or key not in ('shift_marked','slot_fill','planned_attendance','planned_late','unplanned_work','planned_completion','medical','training'):abort(404)
         if key=='medical':return jsonify(available=False,note='Персональная выгрузка медицинских книжек пока не подключена. Доступны только общие количества.')
         path=Path(values.get('details_root','/opt/courier-dashboard/details'))/f'{day}-{shop}.json'
         if not path.is_file():return jsonify(available=False,note='Персональная детализация за эту дату ещё не сохранена.'),404
