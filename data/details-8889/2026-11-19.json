@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-19": {
-      "generated_at": "2026-11-19T20:17:41.445776+00:00",
+      "generated_at": "2026-11-19T20:41:39.999371+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -578,7 +578,7 @@
                       "planned_start": "2026-11-19T09:00:00+03:00",
                       "planned_end": "2026-11-19T22:00:00+03:00",
                       "actual_start": "2026-11-19T08:50:36+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-19T21:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -891,7 +891,7 @@
                       "planned_start": "2026-11-19T12:30:00+03:00",
                       "planned_end": "2026-11-19T21:00:00+03:00",
                       "actual_start": "2026-11-19T12:26:16+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-19T23:21:38+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1442,7 +1442,7 @@
                       "planned_start": "2026-11-19T09:00:00+03:00",
                       "planned_end": "2026-11-19T22:00:00+03:00",
                       "actual_start": "2026-11-19T12:26:16+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-19T23:21:38+03:00",
                       "status": "Вышел",
                       "late_seconds": 12376,
                       "removed_at": null,
@@ -2249,7 +2249,7 @@
                       "planned_start": "2026-11-19T09:00:00+03:00",
                       "planned_end": "2026-11-19T22:00:00+03:00",
                       "actual_start": "2026-11-19T12:26:16+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-19T23:21:38+03:00",
                       "status": "Вышел",
                       "late_seconds": 12376,
                       "removed_at": null,
@@ -2899,7 +2899,7 @@
                       "planned_start": "2026-11-19T09:00:00+03:00",
                       "planned_end": "2026-11-19T22:00:00+03:00",
                       "actual_start": "2026-11-19T08:50:36+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-19T21:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3152,7 +3152,7 @@
                       "planned_start": "2026-11-19T12:30:00+03:00",
                       "planned_end": "2026-11-19T21:00:00+03:00",
                       "actual_start": "2026-11-19T12:26:16+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-19T23:21:38+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3635,8 +3635,31 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 4,
+              "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "76526",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T12:30:00+03:00",
+                      "planned_end": "2026-11-19T21:00:00+03:00",
+                      "actual_start": "2026-11-19T12:26:16+03:00",
+                      "actual_end": "2026-11-19T23:21:38+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799990068",
                   "name": "Джобирзода Хошимджони Музафар",
@@ -3733,7 +3756,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -3841,6 +3864,29 @@
                       "actual_end": "2026-11-19T18:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 143,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "62438",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T09:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T08:50:36+03:00",
+                      "actual_end": "2026-11-19T21:30:00+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -4078,7 +4124,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 11,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -4094,29 +4140,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 16 минут",
                       "late_seconds": 978,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800120138",
-                  "name": "Ахмедов Рустам Эльшанович ",
-                  "slots": [
-                    {
-                      "slot_id": "76526",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-19T12:30:00+03:00",
-                      "planned_end": "2026-11-19T21:00:00+03:00",
-                      "actual_start": "2026-11-19T12:26:16+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -4160,29 +4183,6 @@
                       "planned_start": "2026-11-19T10:15:00+03:00",
                       "planned_end": "2026-11-19T22:00:00+03:00",
                       "actual_start": "2026-11-19T10:11:43+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800133631",
-                  "name": "Камолов Саидмурод Меликмуродович",
-                  "slots": [
-                    {
-                      "slot_id": "62438",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-19T09:00:00+03:00",
-                      "planned_end": "2026-11-19T22:00:00+03:00",
-                      "actual_start": "2026-11-19T08:50:36+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
