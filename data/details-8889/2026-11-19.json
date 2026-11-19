@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-19": {
-      "generated_at": "2026-11-19T09:11:49.487114+00:00",
+      "generated_at": "2026-11-19T09:34:59.296993+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 89.74,
-            "numerator": 35,
-            "denominator": 39,
+            "value": 90.0,
+            "numerator": 36,
+            "denominator": 40,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -871,6 +871,41 @@
               ]
             },
             {
+              "slot_id": "76526",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-19T12:30:00+03:00",
+              "planned_end": "2026-11-19T21:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "76526",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T12:30:00+03:00",
+                      "planned_end": "2026-11-19T21:00:00+03:00",
+                      "actual_start": "2026-11-19T12:26:16+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "slot_id": "62442",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "limited",
@@ -1175,7 +1210,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1197,6 +1232,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "62438",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-19T09:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T12:26:16+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 12376,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "76526"
                     }
                   ]
                 },
@@ -1935,7 +1994,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1957,6 +2016,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "62438",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-19T09:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T12:26:16+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 12376,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "76526"
                     }
                   ]
                 },
@@ -2327,9 +2410,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 38.46,
+            "value": 37.04,
             "numerator": 10,
-            "denominator": 26,
+            "denominator": 27,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2589,7 +2672,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2605,6 +2688,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 16 минут",
                       "late_seconds": 978,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "76526",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T12:30:00+03:00",
+                      "planned_end": "2026-11-19T21:00:00+03:00",
+                      "actual_start": "2026-11-19T12:26:16+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3027,7 +3133,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 24,
+              "count": 25,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3066,6 +3172,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 43 минуты",
                       "late_seconds": 2587,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "76526",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-19T12:30:00+03:00",
+                      "planned_end": "2026-11-19T21:00:00+03:00",
+                      "actual_start": "2026-11-19T12:26:16+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
