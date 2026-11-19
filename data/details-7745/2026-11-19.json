@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-19": {
-      "generated_at": "2026-11-19T14:47:02.943146+00:00",
+      "generated_at": "2026-11-19T15:16:28.315656+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -73,10 +73,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-19T17:00:00+03:00",
                       "planned_end": "2026-11-19T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-19T17:56:23+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 56 минут",
+                      "late_seconds": 3383,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -234,13 +234,13 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-19T12:00:00+03:00",
                       "planned_end": "2026-11-20T00:00:00+03:00",
-                      "actual_start": "2026-11-19T00:00:00+03:00",
+                      "actual_start": "2026-11-19T17:54:13+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 12 часов",
-                      "late_seconds": null,
+                      "status": "Опоздал на 5 часов 54 мин",
+                      "late_seconds": 21253,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -1865,13 +1865,13 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-19T12:00:00+03:00",
                       "planned_end": "2026-11-20T00:00:00+03:00",
-                      "actual_start": "2026-11-19T00:00:00+03:00",
+                      "actual_start": "2026-11-19T17:54:13+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 12 часов",
-                      "late_seconds": null,
+                      "status": "Опоздал на 5 часов 54 мин",
+                      "late_seconds": 21253,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -1981,10 +1981,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-19T17:00:00+03:00",
                       "planned_end": "2026-11-19T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-19T17:56:23+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 56 минут",
+                      "late_seconds": 3383,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2147,8 +2147,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 78.57,
-            "numerator": 22,
+            "value": 82.14,
+            "numerator": 23,
             "denominator": 28,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -2156,7 +2156,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 22,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -2198,6 +2198,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800104389",
+                  "name": "Анисимов Арсений Антонович",
+                  "slots": [
+                    {
+                      "slot_id": "1807293",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T17:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T17:56:23+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 56 минут",
+                      "late_seconds": 3383,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -2668,7 +2691,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 3,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2680,29 +2703,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-19T10:00:00+03:00",
                       "planned_end": "2026-11-19T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович",
-                  "slots": [
-                    {
-                      "slot_id": "1807293",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-19T17:00:00+03:00",
-                      "planned_end": "2026-11-19T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -2832,17 +2832,40 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 54.55,
-            "numerator": 12,
-            "denominator": 22,
+            "value": 56.52,
+            "numerator": 13,
+            "denominator": 23,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 12,
+              "count": 13,
               "couriers": [
+                {
+                  "courier_id": "1800104389",
+                  "name": "Анисимов Арсений Антонович",
+                  "slots": [
+                    {
+                      "slot_id": "1807293",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T17:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T17:56:23+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 56 минут",
+                      "late_seconds": 3383,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800009953",
                   "name": "Ганиев Журабек Равшанович",
@@ -3368,9 +3391,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 26.67,
+            "value": 25.81,
             "numerator": 8,
-            "denominator": 30,
+            "denominator": 31,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -3412,13 +3435,13 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-19T12:00:00+03:00",
                       "planned_end": "2026-11-20T00:00:00+03:00",
-                      "actual_start": "2026-11-19T00:00:00+03:00",
+                      "actual_start": "2026-11-19T17:54:13+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 12 часов",
-                      "late_seconds": null,
+                      "status": "Опоздал на 5 часов 54 мин",
+                      "late_seconds": 21253,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -3584,7 +3607,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 22,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -3626,6 +3649,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800104389",
+                  "name": "Анисимов Арсений Антонович",
+                  "slots": [
+                    {
+                      "slot_id": "1807293",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T17:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T17:56:23+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 56 минут",
+                      "late_seconds": 3383,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
