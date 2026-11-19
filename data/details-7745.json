@@ -96165,7 +96165,7 @@
       }
     },
     "2026-11-18": {
-      "generated_at": "2026-11-19T06:04:19.659275+00:00",
+      "generated_at": "2026-11-19T06:26:59.673652+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -100679,12 +100679,12 @@
       }
     },
     "2026-11-19": {
-      "generated_at": "2026-11-19T06:08:08.170083+00:00",
+      "generated_at": "2026-11-19T06:30:51.828189+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 48.98,
-            "numerator": 24,
+            "value": 51.02,
+            "numerator": 25,
             "denominator": 49,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -100692,7 +100692,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 24,
+              "count": 25,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -101132,6 +101132,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132979",
+                  "name": "Сайфуллоев Мухаммаджон Исомидинович",
+                  "slots": [
+                    {
+                      "slot_id": "76242",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T09:30:00+03:00",
+                      "planned_end": "2026-11-19T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799939451",
                   "name": "Сулаймонов Абдукиром Акобирович",
                   "slots": [
@@ -101267,7 +101290,7 @@
             },
             {
               "title": "Не записались",
-              "count": 25,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800097223",
@@ -101352,11 +101375,6 @@
                 {
                   "courier_id": "1799996946",
                   "name": "Рахмонбердиев Фарух Махмаджонович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800132979",
-                  "name": "Сайфуллоев Мухаммаджон Исомидинович",
                   "slots": []
                 },
                 {
@@ -101479,10 +101497,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-19T07:30:00+03:00",
                       "planned_end": "2026-11-19T20:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-19T09:06:36+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 36 мин",
+                      "late_seconds": 5796,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -101592,8 +101610,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 92.86,
-            "numerator": 26,
+            "value": 96.43,
+            "numerator": 27,
             "denominator": 28,
             "reason": null,
             "basis": "limited_slot_places"
@@ -101775,10 +101793,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-19T07:30:00+03:00",
                       "planned_end": "2026-11-19T20:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-19T09:06:36+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 36 мин",
+                      "late_seconds": 5796,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -102156,9 +102174,33 @@
               "planned_start": "2026-11-19T09:30:00+03:00",
               "planned_end": "2026-11-19T20:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800132979",
+                  "name": "Сайфуллоев Мухаммаджон Исомидинович",
+                  "slots": [
+                    {
+                      "slot_id": "76242",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T09:30:00+03:00",
+                      "planned_end": "2026-11-19T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "66884",
@@ -102590,8 +102632,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 35.71,
-            "numerator": 10,
+            "value": 39.29,
+            "numerator": 11,
             "denominator": 28,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -102599,7 +102641,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -102740,6 +102782,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1699879496",
+                  "name": "Морозов Алексей Геннадьевич",
+                  "slots": [
+                    {
+                      "slot_id": "1833362",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T07:30:00+03:00",
+                      "planned_end": "2026-11-19T20:30:00+03:00",
+                      "actual_start": "2026-11-19T09:06:36+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 36 мин",
+                      "late_seconds": 5796,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800015035",
                   "name": "Муцагов Алихан Мухтануевич",
                   "slots": [
@@ -102835,7 +102900,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800130726",
@@ -102870,29 +102935,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-19T07:00:00+03:00",
                       "planned_end": "2026-11-19T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699879496",
-                  "name": "Морозов Алексей Геннадьевич",
-                  "slots": [
-                    {
-                      "slot_id": "1833362",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-19T07:30:00+03:00",
-                      "planned_end": "2026-11-19T20:30:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -103275,16 +103317,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 20.0,
-            "numerator": 2,
-            "denominator": 10,
+            "value": 27.27,
+            "numerator": 3,
+            "denominator": 11,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800009953",
@@ -103323,6 +103365,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 1 мин",
                       "late_seconds": 3664,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699879496",
+                  "name": "Морозов Алексей Геннадьевич",
+                  "slots": [
+                    {
+                      "slot_id": "1833362",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T07:30:00+03:00",
+                      "planned_end": "2026-11-19T20:30:00+03:00",
+                      "actual_start": "2026-11-19T09:06:36+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 36 мин",
+                      "late_seconds": 5796,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -103535,9 +103600,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 23.08,
+            "value": 21.43,
             "numerator": 3,
-            "denominator": 13,
+            "denominator": 14,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -103636,7 +103701,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -103770,6 +103835,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699879496",
+                  "name": "Морозов Алексей Геннадьевич",
+                  "slots": [
+                    {
+                      "slot_id": "1833362",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T07:30:00+03:00",
+                      "planned_end": "2026-11-19T20:30:00+03:00",
+                      "actual_start": "2026-11-19T09:06:36+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 36 мин",
+                      "late_seconds": 5796,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
