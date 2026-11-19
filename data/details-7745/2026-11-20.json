@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-20": {
-      "generated_at": "2026-11-19T21:56:59.305177+00:00",
+      "generated_at": "2026-11-19T22:20:28.342833+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 45.45,
-            "numerator": 20,
+            "value": 47.73,
+            "numerator": 21,
             "denominator": 44,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -340,6 +340,46 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "75454",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T20:00:00+03:00",
+                      "planned_end": "2026-11-21T08:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800085741",
                   "name": "Прокофьев Алексей Денисович",
                   "slots": [
@@ -481,7 +521,7 @@
             },
             {
               "title": "Не записались",
-              "count": 24,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800097223",
@@ -546,11 +586,6 @@
                 {
                   "courier_id": "1800132243",
                   "name": "Насонов Владимир Константинович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800132511",
-                  "name": "Нематжонов Искандар Умаржон Угли",
                   "slots": []
                 },
                 {
@@ -755,8 +790,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 55.26,
-            "numerator": 21,
+            "value": 60.53,
+            "numerator": 23,
             "denominator": 38,
             "reason": null,
             "basis": "limited_slot_places"
@@ -861,8 +896,8 @@
               "planned_start": "2026-11-20T07:00:00+03:00",
               "planned_end": "2026-11-20T20:00:00+03:00",
               "capacity": 3,
-              "occupied": 1,
-              "free": 2,
+              "occupied": 2,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1800009953",
@@ -874,6 +909,46 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "75454",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T20:00:00+03:00",
+                      "planned_end": "2026-11-21T08:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -1499,9 +1574,49 @@
               "planned_start": "2026-11-20T20:00:00+03:00",
               "planned_end": "2026-11-21T08:00:00+03:00",
               "capacity": 4,
-              "occupied": 3,
-              "free": 1,
+              "occupied": 4,
+              "free": 0,
               "couriers": [
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "75454",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T20:00:00+03:00",
+                      "planned_end": "2026-11-21T08:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800080844",
                   "name": "Рахимов Хафиз Абдурасулович",
