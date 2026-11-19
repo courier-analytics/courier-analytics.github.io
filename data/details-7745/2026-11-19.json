@@ -2,20 +2,20 @@
   "shop_id": 7745,
   "records": {
     "2026-11-19": {
-      "generated_at": "2026-11-19T15:16:28.315656+00:00",
+      "generated_at": "2026-11-19T15:44:51.818948+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 65.85,
-            "numerator": 27,
-            "denominator": 41,
+            "value": 66.67,
+            "numerator": 28,
+            "denominator": 42,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 27,
+              "count": 28,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -57,6 +57,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799948166",
+                  "name": "Ализаде Алигулу Тарверди Оглы",
+                  "slots": [
+                    {
+                      "slot_id": "66883",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T09:00:00+03:00",
+                      "planned_end": "2026-11-19T22:00:00+03:00",
+                      "actual_start": "2026-11-19T00:00:00+03:00",
+                      "actual_end": "2026-11-19T10:00:00+03:00",
+                      "status": "Вышел раньше на 9 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -189,7 +212,7 @@
                       "planned_start": "2026-11-19T07:00:00+03:00",
                       "planned_end": "2026-11-19T20:00:00+03:00",
                       "actual_start": "2026-11-19T06:58:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-19T18:15:17+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -735,31 +758,8 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 11,
+              "count": 10,
               "couriers": [
-                {
-                  "courier_id": "1799948166",
-                  "name": "Ализаде Алигулу Тарверди Оглы",
-                  "slots": [
-                    {
-                      "slot_id": "66883",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-19T09:00:00+03:00",
-                      "planned_end": "2026-11-19T22:00:00+03:00",
-                      "actual_start": "2026-11-19T00:00:00+03:00",
-                      "actual_end": "2026-11-19T10:00:00+03:00",
-                      "status": "Вышел раньше на 9 часов",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1799937997",
                   "name": "Джабраилов Имам Дуквахович",
@@ -1078,7 +1078,7 @@
                       "planned_start": "2026-11-19T07:00:00+03:00",
                       "planned_end": "2026-11-19T20:00:00+03:00",
                       "actual_start": "2026-11-19T06:58:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-19T18:15:17+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3413,7 +3413,7 @@
                       "planned_start": "2026-11-19T07:00:00+03:00",
                       "planned_end": "2026-11-19T20:00:00+03:00",
                       "actual_start": "2026-11-19T06:58:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-19T18:15:17+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -4160,7 +4160,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -4179,6 +4179,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "66881",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-19T07:00:00+03:00",
+                      "planned_end": "2026-11-19T20:00:00+03:00",
+                      "actual_start": "2026-11-19T06:58:55+03:00",
+                      "actual_end": "2026-11-19T18:15:17+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -4275,7 +4298,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 16,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -4383,29 +4406,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 34 мин",
                       "late_seconds": 9284,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799997420",
-                  "name": "Имомкулов Иззат Имомович",
-                  "slots": [
-                    {
-                      "slot_id": "66881",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-19T07:00:00+03:00",
-                      "planned_end": "2026-11-19T20:00:00+03:00",
-                      "actual_start": "2026-11-19T06:58:55+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -4653,22 +4653,29 @@
         },
         "training": {
           "aggregate": {
-            "value": 34.15,
-            "numerator": 14,
-            "denominator": 41,
+            "value": 35.71,
+            "numerator": 15,
+            "denominator": 42,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800128719",
                   "name": "Алиев Магомед Саид-Мухамедович",
                   "slots": [],
                   "training_date": "2026-10-29T11:54:50+03:00",
+                  "match_status": "Обучение подтверждено"
+                },
+                {
+                  "courier_id": "1799948166",
+                  "name": "Ализаде Алигулу Тарверди Оглы",
+                  "slots": [],
+                  "training_date": "2026-10-16T17:04:38+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -4961,7 +4968,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 15,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -4989,13 +4996,6 @@
                   "name": "Холмирзаев Саидбек Уткирбек Угли",
                   "slots": [],
                   "training_date": "2026-10-16T16:59:31+03:00",
-                  "match_status": "Нет точного совпадения в активной базе 1С"
-                },
-                {
-                  "courier_id": "—",
-                  "name": "АЛИЗАДЕ АЛИГУЛУ ТАРВЕРДИ Оглы",
-                  "slots": [],
-                  "training_date": "2026-10-16T17:04:38+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
