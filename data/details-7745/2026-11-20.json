@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-20": {
-      "generated_at": "2026-11-20T18:22:06.380467+00:00",
+      "generated_at": "2026-11-20T18:47:10.056232+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -573,10 +573,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T20:00:00+03:00",
                       "planned_end": "2026-11-21T08:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T21:32:03+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 32 мин",
+                      "late_seconds": 5523,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1715,10 +1715,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T20:00:00+03:00",
                       "planned_end": "2026-11-21T08:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T21:32:03+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 32 мин",
+                      "late_seconds": 5523,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1807,8 +1807,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 65.38,
-            "numerator": 17,
+            "value": 69.23,
+            "numerator": 18,
             "denominator": 26,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1816,7 +1816,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -2209,12 +2209,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800040185",
+                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
+                  "slots": [
+                    {
+                      "slot_id": "75454",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T20:00:00+03:00",
+                      "planned_end": "2026-11-21T08:00:00+03:00",
+                      "actual_start": "2026-11-20T21:32:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 32 мин",
+                      "late_seconds": 5523,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2330,29 +2353,6 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
-                {
-                  "courier_id": "1800040185",
-                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
-                  "slots": [
-                    {
-                      "slot_id": "75454",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-20T20:00:00+03:00",
-                      "planned_end": "2026-11-21T08:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
                 }
               ]
             },
@@ -2447,16 +2447,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 47.06,
-            "numerator": 8,
-            "denominator": 17,
+            "value": 50.0,
+            "numerator": 9,
+            "denominator": 18,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -2633,6 +2633,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 10 мин",
                       "late_seconds": 4210,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800040185",
+                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
+                  "slots": [
+                    {
+                      "slot_id": "75454",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T20:00:00+03:00",
+                      "planned_end": "2026-11-21T08:00:00+03:00",
+                      "actual_start": "2026-11-20T21:32:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 32 мин",
+                      "late_seconds": 5523,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2869,9 +2892,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 29.17,
+            "value": 28.0,
             "numerator": 7,
-            "denominator": 24,
+            "denominator": 25,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -3062,7 +3085,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -3451,6 +3474,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-19. Исходное начало: 2026-11-20T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-19",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800040185",
+                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
+                  "slots": [
+                    {
+                      "slot_id": "75454",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T20:00:00+03:00",
+                      "planned_end": "2026-11-21T08:00:00+03:00",
+                      "actual_start": "2026-11-20T21:32:03+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 32 мин",
+                      "late_seconds": 5523,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
