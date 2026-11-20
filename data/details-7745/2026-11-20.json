@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-20": {
-      "generated_at": "2026-11-20T05:06:57.280176+00:00",
+      "generated_at": "2026-11-20T05:30:06.985504+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -142,10 +142,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T08:11:45+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 11 мин",
+                      "late_seconds": 4305,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -896,10 +896,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T08:11:45+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 11 мин",
+                      "late_seconds": 4305,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1694,8 +1694,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 11.54,
-            "numerator": 3,
+            "value": 15.38,
+            "numerator": 4,
             "denominator": 26,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1703,8 +1703,31 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 3,
+              "count": 4,
               "couriers": [
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": "2026-11-20T08:11:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 11 мин",
+                      "late_seconds": 4305,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799997420",
                   "name": "Имомкулов Иззат Имомович",
@@ -1778,7 +1801,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -1790,29 +1813,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T06:00:00+03:00",
                       "planned_end": "2026-11-20T14:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800009953",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [
-                    {
-                      "slot_id": "66893",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-20T07:00:00+03:00",
-                      "planned_end": "2026-11-20T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -2334,17 +2334,40 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 33.33,
-            "numerator": 1,
-            "denominator": 3,
+            "value": 50.0,
+            "numerator": 2,
+            "denominator": 4,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": "2026-11-20T08:11:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 11 мин",
+                      "late_seconds": 4305,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799997420",
                   "name": "Имомкулов Иззат Имомович",
@@ -2433,9 +2456,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 25.0,
+            "value": 20.0,
             "numerator": 1,
-            "denominator": 4,
+            "denominator": 5,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2488,8 +2511,31 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 3,
+              "count": 4,
               "couriers": [
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": "2026-11-20T08:11:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 11 мин",
+                      "late_seconds": 4305,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799997420",
                   "name": "Имомкулов Иззат Имомович",
@@ -2610,8 +2656,31 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 3,
+              "count": 4,
               "couriers": [
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": "2026-11-20T08:11:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 11 мин",
+                      "late_seconds": 4305,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799997420",
                   "name": "Имомкулов Иззат Имомович",
