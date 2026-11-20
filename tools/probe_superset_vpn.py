@@ -53,6 +53,7 @@ def wait_for_idle_vpn(seconds=0):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--wait-vpn',type=int,default=0,help='Wait up to 600 seconds for an existing VPN job, without stopping it')
+    parser.add_argument('--ziz-services',nargs=2,metavar=('FROM','TO'),help='Distinct DS9107 ZIZ/service pairs for one or two calendar days')
     parser.add_argument('--pay-couriers',type=int,nargs='+',help='Private payroll type export for specified courier IDs')
     parser.add_argument('--staffing-shop',type=int,choices=(7745,8889,9107),help='Export one staffing shop instead of the default pair')
     parser.add_argument('--collect-staffing',action='store_true',help='Private paginated workforce export for weeks 910-914')
@@ -111,7 +112,7 @@ def main():
             print('Superset health: ' + ('PASSED' if success else 'not confirmed'))
             if success and args.check_login:
                 from superset_access import check_login
-                success = check_login(args.provider, args.inspect_datasets, args.inspect_matryoshka, args.matryoshka_history, args.collect_matryoshka, args.reconcile_matryoshka, args.collect_staffing, args.staffing_shop, args.pay_couriers)
+                success = check_login(args.provider, args.inspect_datasets, args.inspect_matryoshka, args.matryoshka_history, args.collect_matryoshka, args.reconcile_matryoshka, args.collect_staffing, args.staffing_shop, args.pay_couriers, args.ziz_services)
                 print('Superset authentication: ' + ('PASSED' if success else 'not confirmed'))
             return 0 if success else 1
         finally:
