@@ -82,9 +82,15 @@ def main():
     parser.add_argument('--onec-replace-login', action='store_true', help='Replace 1C credentials using hidden prompts; requires --onec-login')
     parser.add_argument('--onec-route-check', action='store_true', help='Compare unauthenticated 1C entry, loader and auth-settings responses')
     parser.add_argument('--onec-inspect-ui', action='store_true', help='Save private interface screenshot and control labels after 1C login')
+    parser.add_argument('--onec-courier-name',help='Read-only study of one courier card, without editing')
+    parser.add_argument('--onec-courier-shop',type=int,choices=(9107,),help='Shop for the read-only card study')
     parser.add_argument('--onec-inspect-roster', action='store_true', help='Open References/Couriers for private read-only interface inspection; requires --onec-login')
     args = parser.parse_args()
     address = private_address(args.address)
+    if bool(args.onec_courier_name) != bool(args.onec_courier_shop):
+        raise ValueError('Specify both courier name and shop')
+    if args.onec_courier_name and (not args.onec_login or args.onec_inspect_roster):
+        raise ValueError('Card study requires --onec-login and cannot collect a roster')
     if args.onec_inspect_roster:
         args.onec_inspect_ui = True
     if args.onec_inspect_ui and not args.onec_login:
@@ -167,7 +173,8 @@ def main():
                 from playwright.sync_api import Error as BrowserError
                 try:
                     return 0 if check_login(address, inspect_ui=args.onec_inspect_ui,
-                                           inspect_roster=args.onec_inspect_roster) else 1
+                                           inspect_roster=args.onec_inspect_roster,
+                                           inspect_courier=(args.onec_courier_shop,args.onec_courier_name) if args.onec_courier_name else None) else 1
                 except BrowserError:
                     raise ValueError('1C browser operation failed; private details hidden') from None
             if args.onec_probe:

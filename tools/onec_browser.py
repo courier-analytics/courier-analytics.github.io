@@ -498,7 +498,7 @@ def save_failure_interface(page, private, stage):
             if os.path.exists(name):os.unlink(name)
 
 
-def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False, inspect_roster=False):
+def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False, inspect_roster=False, inspect_courier=None):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     if local_mac and (sys.platform != 'darwin' or address != '10.210.254.19'):
         raise ValueError('Local comparison requires the authorized Mac and fixed 1C address')
@@ -604,6 +604,9 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
                             'export_stage':interface.get('id_export',{}).get('stage'),
                             'verification_reason':interface.get('native_roster',{}).get('reason'),
                             'count':interface.get('native_roster',{}).get('count')}
+                if inspect_courier:
+                    from onec_courier_card import inspect as inspect_card
+                    result['courier_study'] = inspect_card(page,private,*inspect_courier)
                 # Only known navigation labels; never courier rows, account name,
                 # full DOM, screenshots, response bodies or authentication tokens.
                 labels = ('Курьеры', 'Справочники', 'Сотрудники', 'Отчеты', 'Отчёты', 'Доставка')
