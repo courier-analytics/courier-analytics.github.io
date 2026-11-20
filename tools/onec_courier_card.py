@@ -21,6 +21,24 @@ def matching_row(data,name):
     return matches[0]
 
 
+SEARCH_IDS=('form0_ПолеПоиска_i0','form0_ФормаКоманднаяПанельСписокСтрокаПоиска_i0')
+
+
+def search_field_id(fields):
+    found=[f['id'] for f in fields if f.get('id') in SEARCH_IDS and not f.get('disabled') and not f.get('readOnly')]
+    if len(found)!=1:raise ValueError('Courier list search missing or ambiguous')
+    return found[0]
+
+
+def _search_field(page):
+    # Both IDs are evidenced in supplied 1C interface archives. Never use
+    # the global caption bar search or arbitrary text controls as a fallback.
+    page.wait_for_function('(ids)=>ids.some(id=>{const e=document.getElementById(id);return e&&!e.disabled&&!e.readOnly&&e.getBoundingClientRect().width>0&&e.getBoundingClientRect().height>0})',arg=list(SEARCH_IDS),timeout=10000)
+    fields=page.evaluate('''ids=>ids.flatMap(id=>{const e=document.getElementById(id);return e&&e.getBoundingClientRect().width>0&&e.getBoundingClientRect().height>0?[{id,disabled:e.disabled,readOnly:e.readOnly}]:[]})''',list(SEARCH_IDS))
+    identity=search_field_id(fields)
+    return page.locator('[id="'+identity+'"]'),identity
+
+
 def _grid(page):
     return page.evaluate('''() => {
         const root=document.getElementById('grid_form0_Список');
@@ -83,11 +101,13 @@ def inspect(page,private,shop,name):
         point.press('Enter');point.press('Tab');page.wait_for_timeout(3000)
         if point.input_value().strip()!=str(shop):raise ValueError('Courier shop filter not retained')
         status['stage']='exact_name_search'
-        search=page.locator('[id="form0_ФормаКоманднаяПанельСписокСтрокаПоиска_i0"]')
-        search.wait_for(state='visible',timeout=10000)
+        search,identity=_search_field(page)
+        status['search_control']=identity
+        status['stage']='enter_exact_name'
         search.click();search.press('Control+A');search.press('Backspace');search.press_sequentially(name,delay=40);search.press('Enter')
         page.wait_for_timeout(2500)
         if search.input_value().strip()!=name or point.input_value().strip()!=str(shop):raise ValueError('Search scope not retained')
+        status['stage']='verify_search_results'
         first=_grid(page);page.wait_for_timeout(1200);second=_grid(page)
         if first!=second:raise ValueError('Courier search still changing')
         candidate=matching_row(second,name);status['candidate']=candidate
