@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-20": {
-      "generated_at": "2026-11-20T04:18:36.038440+00:00",
+      "generated_at": "2026-11-20T04:41:55.356432+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -326,10 +326,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T07:37:31+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 37 минут",
+                      "late_seconds": 2251,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -689,7 +689,7 @@
                       "planned_end": "2026-11-20T20:30:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -919,10 +919,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T07:37:31+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 37 минут",
+                      "late_seconds": 2251,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -973,7 +973,7 @@
                       "planned_end": "2026-11-20T20:30:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1551,10 +1551,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T07:37:31+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 37 минут",
+                      "late_seconds": 2251,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1732,7 +1732,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -1779,12 +1779,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1699879496",
+                  "name": "Морозов Алексей Геннадьевич",
+                  "slots": [
+                    {
+                      "slot_id": "1833371",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:30:00+03:00",
+                      "planned_end": "2026-11-20T20:30:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Ожидаются",
-              "count": 22,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -2049,29 +2072,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-20T09:00:00+03:00",
                       "planned_end": "2026-11-20T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699879496",
-                  "name": "Морозов Алексей Геннадьевич",
-                  "slots": [
-                    {
-                      "slot_id": "1833371",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-20T07:30:00+03:00",
-                      "planned_end": "2026-11-20T20:30:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2386,17 +2386,58 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
-            "denominator": 1,
+            "value": 50.0,
+            "numerator": 1,
+            "denominator": 2,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": "2026-11-20T07:37:31+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 37 минут",
+                      "late_seconds": 2251,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    },
+                    {
+                      "slot_id": "75454",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T20:00:00+03:00",
+                      "planned_end": "2026-11-21T08:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Вышли по плану",
@@ -2476,7 +2517,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1799997420",
@@ -2492,6 +2533,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 49 минут",
                       "late_seconds": 2997,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": "2026-11-20T07:37:31+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 37 минут",
+                      "late_seconds": 2251,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
