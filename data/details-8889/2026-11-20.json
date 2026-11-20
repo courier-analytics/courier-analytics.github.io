@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-20": {
-      "generated_at": "2026-11-20T10:16:31.351688+00:00",
+      "generated_at": "2026-11-20T10:40:34.388804+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 82.05,
-            "numerator": 32,
+            "value": 84.62,
+            "numerator": 33,
             "denominator": 39,
             "reason": null,
             "basis": "limited_slot_places"
@@ -471,8 +471,8 @@
               "planned_start": "2026-11-20T09:00:00+03:00",
               "planned_end": "2026-11-20T22:00:00+03:00",
               "capacity": 7,
-              "occupied": 6,
-              "free": 1,
+              "occupied": 7,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -557,6 +557,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 283,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800035484",
+                  "name": "Мохамед Карим Мохамед Габер",
+                  "slots": [
+                    {
+                      "slot_id": "62450",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T09:00:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
