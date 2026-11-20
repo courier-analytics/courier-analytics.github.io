@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-20": {
-      "generated_at": "2026-11-20T13:26:04.351506+00:00",
+      "generated_at": "2026-11-20T13:50:38.941268+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 88.1,
-            "numerator": 37,
-            "denominator": 42,
+            "value": 88.37,
+            "numerator": 38,
+            "denominator": 43,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1056,6 +1056,17 @@
               ]
             },
             {
+              "slot_id": "85569",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-20T17:00:00+03:00",
+              "planned_end": "2026-11-20T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 0,
+              "free": 1,
+              "couriers": []
+            },
+            {
               "slot_id": "1774066",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "manual",
@@ -1097,9 +1108,33 @@
               "planned_start": "2026-11-20T18:00:00+03:00",
               "planned_end": "2026-11-21T06:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800063653",
+                  "name": "Нуров Джавхан Амрдинович",
+                  "slots": [
+                    {
+                      "slot_id": "62456",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T18:00:00+03:00",
+                      "planned_end": "2026-11-21T06:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "64254",
