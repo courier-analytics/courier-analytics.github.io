@@ -40351,7 +40351,7 @@
       }
     },
     "2026-11-19": {
-      "generated_at": "2026-11-20T08:15:39.445160+00:00",
+      "generated_at": "2026-11-20T08:40:02.452270+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-20T08:20:12.852463+00:00",
+      "generated_at": "2026-11-20T08:44:50.290905+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -45212,10 +45212,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-20T09:00:00+03:00",
                       "planned_end": "2026-11-20T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T11:32:57+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -45672,8 +45672,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 64.52,
-            "numerator": 20,
+            "value": 67.74,
+            "numerator": 21,
             "denominator": 31,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -45681,7 +45681,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -45812,6 +45812,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800109682",
+                  "name": "Замай Сергей Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "62450",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T09:00:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": "2026-11-20T11:32:57+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -46148,7 +46171,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800106928",
@@ -46160,29 +46183,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-20T08:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800109682",
-                  "name": "Замай Сергей Константинович",
-                  "slots": [
-                    {
-                      "slot_id": "62450",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-20T09:00:00+03:00",
-                      "planned_end": "2026-11-20T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -46451,16 +46451,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 40.0,
-            "numerator": 8,
-            "denominator": 20,
+            "value": 42.86,
+            "numerator": 9,
+            "denominator": 21,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -46499,6 +46499,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 24 минуты",
                       "late_seconds": 1486,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800109682",
+                  "name": "Замай Сергей Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "62450",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T09:00:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": "2026-11-20T11:32:57+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -46942,9 +46965,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 4.76,
+            "value": 4.55,
             "numerator": 1,
-            "denominator": 21,
+            "denominator": 22,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -46980,7 +47003,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -47111,6 +47134,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800109682",
+                  "name": "Замай Сергей Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "62450",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T09:00:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": "2026-11-20T11:32:57+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -47469,7 +47515,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -47600,6 +47646,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800109682",
+                  "name": "Замай Сергей Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "62450",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T09:00:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": "2026-11-20T11:32:57+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 32 мин",
+                      "late_seconds": 9177,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
