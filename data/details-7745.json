@@ -106108,7 +106108,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-20T22:13:44.925637+00:00",
+      "generated_at": "2026-11-20T22:37:30.139098+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -106249,7 +106249,7 @@
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
                       "actual_start": "2026-11-20T08:11:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-20T23:15:00+03:00",
                       "status": "Опоздал на 1 час 11 мин",
                       "late_seconds": 4305,
                       "removed_at": null,
@@ -107025,7 +107025,7 @@
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
                       "actual_start": "2026-11-20T08:11:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-20T23:15:00+03:00",
                       "status": "Опоздал на 1 час 11 мин",
                       "late_seconds": 4305,
                       "removed_at": null,
@@ -108017,7 +108017,7 @@
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
                       "actual_start": "2026-11-20T08:11:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-20T23:15:00+03:00",
                       "status": "Опоздал на 1 час 11 мин",
                       "late_seconds": 4305,
                       "removed_at": null,
@@ -108634,7 +108634,7 @@
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
                       "actual_start": "2026-11-20T08:11:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-20T23:15:00+03:00",
                       "status": "Опоздал на 1 час 11 мин",
                       "late_seconds": 4305,
                       "removed_at": null,
@@ -109286,7 +109286,7 @@
                       "planned_start": "2026-11-20T07:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
                       "actual_start": "2026-11-20T08:11:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-20T23:15:00+03:00",
                       "status": "Опоздал на 1 час 11 мин",
                       "late_seconds": 4305,
                       "removed_at": null,
@@ -109605,17 +109605,40 @@
         },
         "planned_completion": {
           "aggregate": {
-            "value": null,
-            "numerator": null,
-            "denominator": null,
-            "reason": "shift_end_or_final_status_missing",
+            "value": 23.53,
+            "numerator": 4,
+            "denominator": 17,
+            "reason": null,
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 3,
+              "count": 4,
               "couriers": [
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "66893",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T07:00:00+03:00",
+                      "planned_end": "2026-11-20T20:00:00+03:00",
+                      "actual_start": "2026-11-20T08:11:45+03:00",
+                      "actual_end": "2026-11-20T23:15:00+03:00",
+                      "status": "Опоздал на 1 час 11 мин",
+                      "late_seconds": 4305,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799997420",
                   "name": "Имомкулов Иззат Имомович",
@@ -110028,35 +110051,11 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 1,
-              "couriers": [
-                {
-                  "courier_id": "1800009953",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [
-                    {
-                      "slot_id": "66893",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-20T07:00:00+03:00",
-                      "planned_end": "2026-11-20T20:00:00+03:00",
-                      "actual_start": "2026-11-20T08:11:45+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 11 мин",
-                      "late_seconds": 4305,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "count": 0,
+              "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         },
         "training": {
@@ -110436,7 +110435,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-20T22:18:09.215248+00:00",
+      "generated_at": "2026-11-20T22:41:49.264647+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
