@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-20": {
-      "generated_at": "2026-11-20T07:31:12.098756+00:00",
+      "generated_at": "2026-11-20T07:55:45.949453+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -426,10 +426,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-20T08:00:00+03:00",
                       "planned_end": "2026-11-20T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T10:31:25+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 2 часа 31 мин",
+                      "late_seconds": 9085,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -932,8 +932,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 58.06,
-            "numerator": 18,
+            "value": 61.29,
+            "numerator": 19,
             "denominator": 31,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -941,7 +941,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 18,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1243,6 +1243,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800095411",
+                  "name": "Некрасов Алексей Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "1887126",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T08:00:00+03:00",
+                      "planned_end": "2026-11-20T21:00:00+03:00",
+                      "actual_start": "2026-11-20T10:31:25+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 31 мин",
+                      "late_seconds": 9085,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800122176",
                   "name": "Нефедов Даниил Сергеевич",
                   "slots": [
@@ -1362,7 +1385,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800106928",
@@ -1416,29 +1439,6 @@
                   "slots": [
                     {
                       "slot_id": "1800128",
-                      "slot_type": "manual",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-20T08:00:00+03:00",
-                      "planned_end": "2026-11-20T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800095411",
-                  "name": "Некрасов Алексей Владимирович",
-                  "slots": [
-                    {
-                      "slot_id": "1887126",
                       "slot_type": "manual",
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-20T08:00:00+03:00",
@@ -1711,16 +1711,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 33.33,
-            "numerator": 6,
-            "denominator": 18,
+            "value": 36.84,
+            "numerator": 7,
+            "denominator": 19,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -1805,6 +1805,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 30 минут",
                       "late_seconds": 1822,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095411",
+                  "name": "Некрасов Алексей Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "1887126",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T08:00:00+03:00",
+                      "planned_end": "2026-11-20T21:00:00+03:00",
+                      "actual_start": "2026-11-20T10:31:25+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 31 мин",
+                      "late_seconds": 9085,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2156,9 +2179,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 5.26,
+            "value": 5.0,
             "numerator": 1,
-            "denominator": 19,
+            "denominator": 20,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2194,7 +2217,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 18,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2486,6 +2509,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 30 минут",
                       "late_seconds": 1822,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095411",
+                  "name": "Некрасов Алексей Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "1887126",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T08:00:00+03:00",
+                      "planned_end": "2026-11-20T21:00:00+03:00",
+                      "actual_start": "2026-11-20T10:31:25+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 31 мин",
+                      "late_seconds": 9085,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
