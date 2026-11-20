@@ -40351,7 +40351,7 @@
       }
     },
     "2026-11-19": {
-      "generated_at": "2026-11-20T11:00:40.870544+00:00",
+      "generated_at": "2026-11-20T11:24:53.659861+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-20T11:05:15.997874+00:00",
+      "generated_at": "2026-11-20T11:29:35.343862+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -44723,9 +44723,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 87.5,
-            "numerator": 35,
-            "denominator": 40,
+            "value": 87.8,
+            "numerator": 36,
+            "denominator": 41,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -45570,10 +45570,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-20T14:00:00+03:00",
                       "planned_end": "2026-11-20T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T14:03:56+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 236,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -45604,6 +45604,41 @@
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-20T14:10:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": "2026-11-20T13:54:31+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "85306",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-20T14:30:00+03:00",
+              "planned_end": "2026-11-20T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800095608",
+                  "name": "Осмиев Тимерлан Магомедович",
+                  "slots": [
+                    {
+                      "slot_id": "85306",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T14:30:00+03:00",
                       "planned_end": "2026-11-20T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
@@ -45824,8 +45859,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 70.97,
-            "numerator": 22,
+            "value": 74.19,
+            "numerator": 23,
             "denominator": 31,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -45833,7 +45868,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 22,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -45970,6 +46005,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094697",
+                  "name": "Ерохин Илья Эдуардович",
+                  "slots": [
+                    {
+                      "slot_id": "62456",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-20T18:00:00+03:00",
+                      "planned_end": "2026-11-21T06:00:00+03:00",
+                      "actual_start": "2026-11-20T13:54:31+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "85304"
                     }
                   ]
                 },
@@ -46627,9 +46686,9 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 40.91,
+            "value": 39.13,
             "numerator": 9,
-            "denominator": 22,
+            "denominator": 23,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
@@ -46849,7 +46908,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 13,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -46940,6 +46999,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094697",
+                  "name": "Ерохин Илья Эдуардович",
+                  "slots": [
+                    {
+                      "slot_id": "62456",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-20T18:00:00+03:00",
+                      "planned_end": "2026-11-21T06:00:00+03:00",
+                      "actual_start": "2026-11-20T13:54:31+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "85304"
                     }
                   ]
                 },
@@ -47165,16 +47248,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 12.0,
-            "numerator": 3,
-            "denominator": 25,
+            "value": 14.81,
+            "numerator": 4,
+            "denominator": 27,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 3,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -47190,6 +47273,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799990068",
+                  "name": "Джобирзода Хошимджони Музафар",
+                  "slots": [
+                    {
+                      "slot_id": "62452",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T14:00:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": "2026-11-20T14:03:56+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 236,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -47249,7 +47355,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 22,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -47377,6 +47483,29 @@
                       "planned_start": "2026-11-20T08:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
                       "actual_start": "2026-11-20T07:49:38+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094697",
+                  "name": "Ерохин Илья Эдуардович",
+                  "slots": [
+                    {
+                      "slot_id": "85304",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T14:10:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": "2026-11-20T13:54:31+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -47808,7 +47937,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 22,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -47926,6 +48055,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1799990068",
+                  "name": "Джобирзода Хошимджони Музафар",
+                  "slots": [
+                    {
+                      "slot_id": "62452",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T14:00:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": "2026-11-20T14:03:56+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 236,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800017327",
                   "name": "Джобиров Оятулло Музаффарович",
                   "slots": [
@@ -47959,6 +48111,29 @@
                       "planned_start": "2026-11-20T08:00:00+03:00",
                       "planned_end": "2026-11-20T20:00:00+03:00",
                       "actual_start": "2026-11-20T07:49:38+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800094697",
+                  "name": "Ерохин Илья Эдуардович",
+                  "slots": [
+                    {
+                      "slot_id": "85304",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T14:10:00+03:00",
+                      "planned_end": "2026-11-20T22:00:00+03:00",
+                      "actual_start": "2026-11-20T13:54:31+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
