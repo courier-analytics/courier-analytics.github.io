@@ -75925,7 +75925,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-21T07:03:18.202047+00:00",
+      "generated_at": "2026-11-21T09:04:09.650219+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80752,7 +80752,7 @@
       }
     },
     "2026-11-15": {
-      "generated_at": "2026-11-21T08:02:28.012207+00:00",
+      "generated_at": "2026-11-21T09:01:25.883310+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -106108,7 +106108,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T08:54:37.220595+00:00",
+      "generated_at": "2026-11-21T09:17:29.495427+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -110418,7 +110418,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T08:58:28.728314+00:00",
+      "generated_at": "2026-11-21T09:21:24.625805+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -110977,7 +110977,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1799874691",
@@ -111070,6 +111070,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799983329",
+                  "name": "Шихиев Низами Эльдарович",
+                  "slots": [
+                    {
+                      "slot_id": "66912",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T22:00:00+03:00",
+                      "actual_start": "2026-11-21T12:03:23+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 3 мин",
+                      "late_seconds": 14603,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             }
@@ -111079,8 +111102,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 80.0,
-            "numerator": 20,
+            "value": 84.0,
+            "numerator": 21,
             "denominator": 25,
             "reason": null,
             "basis": "limited_slot_places"
@@ -111365,9 +111388,33 @@
               "planned_start": "2026-11-21T08:00:00+03:00",
               "planned_end": "2026-11-21T22:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1799983329",
+                  "name": "Шихиев Низами Эльдарович",
+                  "slots": [
+                    {
+                      "slot_id": "66912",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T22:00:00+03:00",
+                      "actual_start": "2026-11-21T12:03:23+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 3 мин",
+                      "late_seconds": 14603,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "85637",
@@ -112768,16 +112815,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 18.75,
-            "numerator": 3,
-            "denominator": 16,
+            "value": 23.53,
+            "numerator": 4,
+            "denominator": 17,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 3,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1799874691",
@@ -112839,6 +112886,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 33 минуты",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799983329",
+                  "name": "Шихиев Низами Эльдарович",
+                  "slots": [
+                    {
+                      "slot_id": "66912",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T22:00:00+03:00",
+                      "actual_start": "2026-11-21T12:03:23+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 3 мин",
+                      "late_seconds": 14603,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -113197,7 +113267,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 13,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -113506,6 +113576,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 33 минуты",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799983329",
+                  "name": "Шихиев Низами Эльдарович",
+                  "slots": [
+                    {
+                      "slot_id": "66912",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T22:00:00+03:00",
+                      "actual_start": "2026-11-21T12:03:23+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 3 мин",
+                      "late_seconds": 14603,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
