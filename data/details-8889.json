@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T04:07:51.698066+00:00",
+      "generated_at": "2026-11-21T04:31:07.124467+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49297,7 +49297,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T04:11:57.795333+00:00",
+      "generated_at": "2026-11-21T04:35:16.034599+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49548,15 +49548,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:30:00+03:00",
                       "planned_end": "2026-11-22T00:30:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-20T18:27:17+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 7 часов 30 мин",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "",
+                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
                       "worked_through": null,
-                      "shift_start_source_date": null,
+                      "shift_start_source_date": "2026-11-20",
                       "shift_end_source_date": null
                     }
                   ]
@@ -50077,8 +50077,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 9.09,
-            "numerator": 2,
+            "value": 13.64,
+            "numerator": 3,
             "denominator": 22,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -50086,8 +50086,31 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "1774069",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T07:30:00+03:00",
+                      "planned_end": "2026-11-22T00:30:00+03:00",
+                      "actual_start": "2026-11-20T18:27:17+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 7 часов 30 мин",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-20",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800063653",
                   "name": "Нуров Джавхан Амрдинович",
@@ -50236,7 +50259,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 16,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -50469,29 +50492,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800130881",
-                  "name": "Норкобилов Фазлиддин Михлибой",
-                  "slots": [
-                    {
-                      "slot_id": "1774069",
-                      "slot_type": "manual",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:30:00+03:00",
-                      "planned_end": "2026-11-22T00:30:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800133871",
                   "name": "Обиджонов Фаррух Фирдавсович",
                   "slots": [
@@ -50626,7 +50626,7 @@
           "aggregate": {
             "value": 0.0,
             "numerator": 0,
-            "denominator": 2,
+            "denominator": 3,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
@@ -50638,8 +50638,31 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "1774069",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T07:30:00+03:00",
+                      "planned_end": "2026-11-22T00:30:00+03:00",
+                      "actual_start": "2026-11-20T18:27:17+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 7 часов 30 мин",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-20",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800063653",
                   "name": "Нуров Джавхан Амрдинович",
@@ -50701,7 +50724,7 @@
           "aggregate": {
             "value": 0.0,
             "numerator": 0,
-            "denominator": 2,
+            "denominator": 3,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -50713,8 +50736,31 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800130881",
+                  "name": "Норкобилов Фазлиддин Михлибой",
+                  "slots": [
+                    {
+                      "slot_id": "1774069",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T07:30:00+03:00",
+                      "planned_end": "2026-11-22T00:30:00+03:00",
+                      "actual_start": "2026-11-20T18:27:17+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 7 часов 30 мин",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-20",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800063653",
                   "name": "Нуров Джавхан Амрдинович",
