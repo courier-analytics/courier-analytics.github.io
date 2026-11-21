@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-21": {
-      "generated_at": "2026-11-21T11:13:06.284276+00:00",
+      "generated_at": "2026-11-21T11:36:28.191818+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 81.58,
-            "numerator": 31,
-            "denominator": 38,
+            "value": 82.5,
+            "numerator": 33,
+            "denominator": 40,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -256,7 +256,7 @@
                       "planned_start": "2026-11-21T07:30:00+03:00",
                       "planned_end": "2026-11-22T00:30:00+03:00",
                       "actual_start": "2026-11-20T18:27:17+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T12:30:00+03:00",
                       "status": "Вышел раньше на 7 часов 30 мин",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -908,18 +908,76 @@
               ]
             },
             {
-              "slot_id": "62467",
+              "slot_id": "86835",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "limited",
-              "planned_start": "2026-11-21T15:00:00+03:00",
-              "planned_end": "2026-11-22T00:00:00+03:00",
+              "planned_start": "2026-11-21T14:30:00+03:00",
+              "planned_end": "2026-11-21T21:00:00+03:00",
               "capacity": 1,
               "occupied": 1,
               "free": 0,
               "couriers": [
                 {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "86835",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T14:30:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": "2026-11-21T14:17:27+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "62467",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-21T15:00:00+03:00",
+              "planned_end": "2026-11-22T00:00:00+03:00",
+              "capacity": 2,
+              "occupied": 2,
+              "free": 0,
+              "couriers": [
+                {
                   "courier_id": "1800100778",
                   "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62467",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T15:00:00+03:00",
+                      "planned_end": "2026-11-22T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133468",
+                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
                   "slots": [
                     {
                       "slot_id": "62467",
@@ -1041,8 +1099,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 63.64,
-            "numerator": 14,
+            "value": 68.18,
+            "numerator": 15,
             "denominator": 22,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1050,7 +1108,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -1227,7 +1285,7 @@
                       "planned_start": "2026-11-21T07:30:00+03:00",
                       "planned_end": "2026-11-22T00:30:00+03:00",
                       "actual_start": "2026-11-20T18:27:17+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T12:30:00+03:00",
                       "status": "Вышел раньше на 7 часов 30 мин",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1328,6 +1386,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62463",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
+                      "actual_start": "2026-11-21T14:17:27+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 26247,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "86835"
                     }
                   ]
                 },
@@ -1661,16 +1743,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 64.29,
-            "numerator": 9,
-            "denominator": 14,
+            "value": 66.67,
+            "numerator": 10,
+            "denominator": 15,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -1837,6 +1919,30 @@
                   ]
                 },
                 {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62463",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
+                      "actual_start": "2026-11-21T14:17:27+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 26247,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "86835"
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800012132",
                   "name": "Шеров Абдумалик Сайвалиевич",
                   "slots": [
@@ -1945,7 +2051,7 @@
                       "planned_start": "2026-11-21T07:30:00+03:00",
                       "planned_end": "2026-11-22T00:30:00+03:00",
                       "actual_start": "2026-11-20T18:27:17+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T12:30:00+03:00",
                       "status": "Вышел раньше на 7 часов 30 мин",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2016,9 +2122,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 44.0,
+            "value": 42.31,
             "numerator": 11,
-            "denominator": 25,
+            "denominator": 26,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2284,7 +2390,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -2458,7 +2564,7 @@
                       "planned_start": "2026-11-21T07:30:00+03:00",
                       "planned_end": "2026-11-22T00:30:00+03:00",
                       "actual_start": "2026-11-20T18:27:17+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T12:30:00+03:00",
                       "status": "Вышел раньше на 7 часов 30 мин",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2563,6 +2669,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "86835",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T14:30:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": "2026-11-21T14:17:27+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800012132",
                   "name": "Шеров Абдумалик Сайвалиевич",
                   "slots": [
@@ -2635,7 +2764,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -3085,6 +3214,29 @@
                       "planned_start": "2026-11-21T08:00:00+03:00",
                       "planned_end": "2026-11-21T21:00:00+03:00",
                       "actual_start": "2026-11-21T07:56:49+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "86835",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T14:30:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": "2026-11-21T14:17:27+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
