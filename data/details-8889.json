@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T07:19:29.984442+00:00",
+      "generated_at": "2026-11-21T07:42:12.032613+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49297,7 +49297,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T07:23:18.529459+00:00",
+      "generated_at": "2026-11-21T07:46:04.598082+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49313,9 +49313,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 79.31,
-            "numerator": 23,
-            "denominator": 29,
+            "value": 78.12,
+            "numerator": 25,
+            "denominator": 32,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -49941,10 +49941,33 @@
               "slot_type": "limited",
               "planned_start": "2026-11-21T10:30:00+03:00",
               "planned_end": "2026-11-21T19:00:00+03:00",
-              "capacity": 1,
-              "occupied": 1,
+              "capacity": 2,
+              "occupied": 2,
               "free": 0,
               "couriers": [
+                {
+                  "courier_id": "1800098544",
+                  "name": "Волков Тимур Ельвинович",
+                  "slots": [
+                    {
+                      "slot_id": "85657",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T10:30:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T10:25:55+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800109682",
                   "name": "Замай Сергей Константинович",
@@ -49955,6 +49978,76 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T10:30:00+03:00",
                       "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T09:58:33+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 31 минута",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "85972",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-21T11:00:00+03:00",
+              "planned_end": "2026-11-21T20:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800098576",
+                  "name": "Погор Степан Александрович",
+                  "slots": [
+                    {
+                      "slot_id": "85972",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T11:00:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "85975",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-21T11:20:00+03:00",
+              "planned_end": "2026-11-21T20:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800035484",
+                  "name": "Мохамед Карим Мохамед Габер",
+                  "slots": [
+                    {
+                      "slot_id": "85975",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T11:20:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -50012,35 +50105,12 @@
               "planned_start": "2026-11-21T18:00:00+03:00",
               "planned_end": "2026-11-22T09:00:00+03:00",
               "capacity": 5,
-              "occupied": 2,
-              "free": 3,
+              "occupied": 1,
+              "free": 4,
               "couriers": [
                 {
                   "courier_id": "1799970585",
                   "name": "ДЖУМАЕВ ДАНИЁЛ НАСРУЛЛОЕВИЧ",
-                  "slots": [
-                    {
-                      "slot_id": "64256",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T18:00:00+03:00",
-                      "planned_end": "2026-11-22T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800035484",
-                  "name": "Мохамед Карим Мохамед Габер",
                   "slots": [
                     {
                       "slot_id": "64256",
@@ -50925,16 +50995,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 33.33,
-            "numerator": 5,
-            "denominator": 15,
+            "value": 41.18,
+            "numerator": 7,
+            "denominator": 17,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 5,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -50960,6 +51030,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800098544",
+                  "name": "Волков Тимур Ельвинович",
+                  "slots": [
+                    {
+                      "slot_id": "85657",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T10:30:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T10:25:55+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800017327",
                   "name": "Джобиров Оятулло Музаффарович",
                   "slots": [
@@ -50972,6 +51065,29 @@
                       "actual_start": "2026-11-21T09:01:23+03:00",
                       "actual_end": null,
                       "status": "Вышел раньше на 58 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800109682",
+                  "name": "Замай Сергей Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "85657",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T10:30:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T09:58:33+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 31 минута",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
@@ -51314,7 +51430,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 13,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -51340,6 +51456,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800098544",
+                  "name": "Волков Тимур Ельвинович",
+                  "slots": [
+                    {
+                      "slot_id": "85657",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T10:30:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T10:25:55+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800017327",
                   "name": "Джобиров Оятулло Музаффарович",
                   "slots": [
@@ -51352,6 +51491,29 @@
                       "actual_start": "2026-11-21T09:01:23+03:00",
                       "actual_end": null,
                       "status": "Вышел раньше на 58 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800109682",
+                  "name": "Замай Сергей Константинович",
+                  "slots": [
+                    {
+                      "slot_id": "85657",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T10:30:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T09:58:33+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 31 минута",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
