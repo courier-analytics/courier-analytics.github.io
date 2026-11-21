@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T20:23:32.980149+00:00",
+      "generated_at": "2026-11-21T20:47:04.954779+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49297,7 +49297,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T20:27:49.882131+00:00",
+      "generated_at": "2026-11-21T20:51:08.263793+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -50512,10 +50512,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T23:00:00+03:00",
                       "planned_end": "2026-11-22T11:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-21T23:39:29+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 39 минут",
+                      "late_seconds": 2369,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -51627,16 +51627,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 50.0,
-            "numerator": 17,
-            "denominator": 34,
+            "value": 51.43,
+            "numerator": 18,
+            "denominator": 35,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -51928,6 +51928,29 @@
                       "actual_end": "2026-11-21T20:45:00+03:00",
                       "status": "Вышел раньше на 41 минута",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800038028",
+                  "name": "Османи Араш",
+                  "slots": [
+                    {
+                      "slot_id": "62471",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T23:00:00+03:00",
+                      "planned_end": "2026-11-22T11:00:00+03:00",
+                      "actual_start": "2026-11-21T23:39:29+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 39 минут",
+                      "late_seconds": 2369,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
