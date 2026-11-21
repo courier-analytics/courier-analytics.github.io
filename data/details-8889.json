@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T12:19:19.592662+00:00",
+      "generated_at": "2026-11-21T12:42:28.740328+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49297,7 +49297,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T12:23:23.436605+00:00",
+      "generated_at": "2026-11-21T12:46:32.206040+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49313,8 +49313,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 82.5,
-            "numerator": 33,
+            "value": 80.0,
+            "numerator": 32,
             "denominator": 40,
             "reason": null,
             "basis": "limited_slot_places"
@@ -50244,32 +50244,9 @@
               "planned_start": "2026-11-21T15:00:00+03:00",
               "planned_end": "2026-11-22T00:00:00+03:00",
               "capacity": 2,
-              "occupied": 2,
-              "free": 0,
+              "occupied": 1,
+              "free": 1,
               "couriers": [
-                {
-                  "courier_id": "1800100778",
-                  "name": "Бычков Никита Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62467",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T15:00:00+03:00",
-                      "planned_end": "2026-11-22T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800133468",
                   "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
@@ -50758,31 +50735,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 3,
+              "count": 2,
               "couriers": [
-                {
-                  "courier_id": "1800100778",
-                  "name": "Бычков Никита Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62467",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T15:00:00+03:00",
-                      "planned_end": "2026-11-22T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800122842",
                   "name": "Магомедов Абдула Шамилевич",
@@ -50867,8 +50821,31 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 7,
+              "count": 8,
               "couriers": [
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62467",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T15:00:00+03:00",
+                      "planned_end": "2026-11-22T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-21T15:20:29+03:00",
+                      "removed_by": "Федорова Анастасия Александровна",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128516",
                   "name": "Варданян Виген Тигранович",
