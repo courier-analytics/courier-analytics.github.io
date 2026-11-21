@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-21": {
-      "generated_at": "2026-11-21T04:35:16.034599+00:00",
+      "generated_at": "2026-11-21T04:59:19.400139+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -2054,8 +2054,32 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "75454",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-20T20:00:00+03:00",
+                      "planned_end": "2026-11-21T08:00:00+03:00",
+                      "actual_start": "2026-11-21T07:56:05+03:00",
+                      "actual_end": "2026-11-21T07:56:28+03:00",
+                      "status": "Опоздал на 11 часов 56 мин",
+                      "late_seconds": 42965,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Не завершили или ушли раньше",
