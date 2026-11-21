@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-21": {
-      "generated_at": "2026-11-21T05:22:44.726114+00:00",
+      "generated_at": "2026-11-21T05:46:15.584659+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 73.33,
-            "numerator": 22,
-            "denominator": 30,
+            "value": 66.67,
+            "numerator": 18,
+            "denominator": 27,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -42,10 +42,34 @@
               "slot_type": "limited",
               "planned_start": "2026-11-21T06:00:00+03:00",
               "planned_end": "2026-11-21T14:00:00+03:00",
-              "capacity": 2,
-              "occupied": 0,
-              "free": 2,
-              "couriers": []
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "62459",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T06:00:00+03:00",
+                      "planned_end": "2026-11-21T14:00:00+03:00",
+                      "actual_start": "2026-11-21T08:41:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 41 мин",
+                      "late_seconds": 9693,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62460",
@@ -88,57 +112,10 @@
               "slot_type": "limited",
               "planned_start": "2026-11-21T07:00:00+03:00",
               "planned_end": "2026-11-21T15:00:00+03:00",
-              "capacity": 2,
-              "occupied": 2,
-              "free": 0,
-              "couriers": [
-                {
-                  "courier_id": "1800128516",
-                  "name": "Варданян Виген Тигранович",
-                  "slots": [
-                    {
-                      "slot_id": "62461",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T15:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800106928",
-                  "name": "Голенищенко Максим Константинович",
-                  "slots": [
-                    {
-                      "slot_id": "62461",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T15:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "capacity": 1,
+              "occupied": 0,
+              "free": 1,
+              "couriers": []
             },
             {
               "slot_id": "62462",
@@ -160,10 +137,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T19:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-21T08:21:32+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 21 мин",
+                      "late_seconds": 4892,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -181,8 +158,8 @@
               "slot_type": "limited",
               "planned_start": "2026-11-21T07:00:00+03:00",
               "planned_end": "2026-11-21T20:00:00+03:00",
-              "capacity": 2,
-              "occupied": 2,
+              "capacity": 1,
+              "occupied": 1,
               "free": 0,
               "couriers": [
                 {
@@ -196,29 +173,6 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
                       "actual_start": "2026-11-20T17:02:45+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130000",
-                  "name": "Чориев Аскарбек Аброр Угли",
-                  "slots": [
-                    {
-                      "slot_id": "62463",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T15:54:14+03:00",
                       "actual_end": null,
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
@@ -275,58 +229,12 @@
               "planned_start": "2026-11-21T08:00:00+03:00",
               "planned_end": "2026-11-21T21:00:00+03:00",
               "capacity": 6,
-              "occupied": 6,
-              "free": 0,
+              "occupied": 4,
+              "free": 2,
               "couriers": [
-                {
-                  "courier_id": "1799899246",
-                  "name": "Ибрагимов Фахриддин Салимович",
-                  "slots": [
-                    {
-                      "slot_id": "62464",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": "2026-11-20T15:35:15+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800129523",
                   "name": "Карапетян Димо Маратович",
-                  "slots": [
-                    {
-                      "slot_id": "62464",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800095411",
-                  "name": "Некрасов Алексей Владимирович",
                   "slots": [
                     {
                       "slot_id": "62464",
@@ -403,10 +311,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T08:00:00+03:00",
                       "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-21T08:42:15+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 42 минуты",
+                      "late_seconds": 2535,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -794,24 +702,24 @@
               "count": 5,
               "couriers": [
                 {
-                  "courier_id": "1799899246",
-                  "name": "Ибрагимов Фахриддин Салимович",
+                  "courier_id": "1800134544",
+                  "name": "Мамаражабов Уролбек Нуриддин Угли",
                   "slots": [
                     {
-                      "slot_id": "62464",
+                      "slot_id": "62462",
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": "2026-11-20T15:35:15+03:00",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T08:21:32+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 1 час 21 мин",
+                      "late_seconds": 4892,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -886,24 +794,24 @@
                   ]
                 },
                 {
-                  "courier_id": "1800130000",
-                  "name": "Чориев Аскарбек Аброр Угли",
+                  "courier_id": "1800121394",
+                  "name": "Шокаримов Шохрух Шохсалимович",
                   "slots": [
                     {
-                      "slot_id": "62463",
+                      "slot_id": "62464",
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T15:54:14+03:00",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": "2026-11-21T08:42:15+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 42 минуты",
+                      "late_seconds": 2535,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -912,54 +820,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 9,
+              "count": 4,
               "couriers": [
-                {
-                  "courier_id": "1800128516",
-                  "name": "Варданян Виген Тигранович",
-                  "slots": [
-                    {
-                      "slot_id": "62461",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T15:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800106928",
-                  "name": "Голенищенко Максим Константинович",
-                  "slots": [
-                    {
-                      "slot_id": "62461",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T15:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800129523",
                   "name": "Карапетян Димо Маратович",
@@ -984,58 +846,12 @@
                   ]
                 },
                 {
-                  "courier_id": "1800134544",
-                  "name": "Мамаражабов Уролбек Нуриддин Угли",
-                  "slots": [
-                    {
-                      "slot_id": "62462",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T19:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800094612",
                   "name": "Маматкулов Асадбек Низомиддин Угли",
                   "slots": [
                     {
                       "slot_id": "1800129",
                       "slot_type": "manual",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800095411",
-                  "name": "Некрасов Алексей Владимирович",
-                  "slots": [
-                    {
-                      "slot_id": "62464",
-                      "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T08:00:00+03:00",
                       "planned_end": "2026-11-21T21:00:00+03:00",
@@ -1085,29 +901,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T06:00:00+03:00",
                       "planned_end": "2026-11-21T19:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800121394",
-                  "name": "Шокаримов Шохрух Шохсалимович",
-                  "slots": [
-                    {
-                      "slot_id": "62464",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -1320,31 +1113,54 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 0,
-              "couriers": []
-            }
-          ],
-          "reconciled": true,
-          "note": ""
-        },
-        "planned_late": {
-          "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
-            "denominator": 5,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
-          },
-          "groups": [
-            {
-              "title": "Опоздали от 15 минут",
-              "count": 0,
-              "couriers": []
-            },
-            {
-              "title": "Без опоздания от 15 минут",
               "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "62461",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T15:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-21T08:42:13+03:00",
+                      "removed_by": "Баринов Егор Александрович",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800106928",
+                  "name": "Голенищенко Максим Константинович ",
+                  "slots": [
+                    {
+                      "slot_id": "62461",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T15:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-21T08:42:10+03:00",
+                      "removed_by": "Баринов Егор Александрович",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799899246",
                   "name": "Ибрагимов Фахриддин Салимович",
@@ -1352,22 +1168,139 @@
                     {
                       "slot_id": "62464",
                       "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "scope": "",
                       "planned_start": "2026-11-21T08:00:00+03:00",
                       "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": "2026-11-20T15:35:15+03:00",
+                      "actual_start": null,
                       "actual_end": null,
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-21T08:43:04+03:00",
+                      "removed_by": "Баринов Егор Александрович",
+                      "note": "Снятие подтверждено историей бронирования.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
                 },
+                {
+                  "courier_id": "1800095411",
+                  "name": "Некрасов Алексей Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "62464",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-21T08:43:07+03:00",
+                      "removed_by": "Баринов Егор Александрович",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130000",
+                  "name": "Чориев Аскарбек Аброр Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62463",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-21T08:42:48+03:00",
+                      "removed_by": "Баринов Егор Александрович",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "reconciled": true,
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
+        },
+        "planned_late": {
+          "aggregate": {
+            "value": 40.0,
+            "numerator": 2,
+            "denominator": 5,
+            "reason": null,
+            "basis": "frozen_plan_unique_couriers"
+          },
+          "groups": [
+            {
+              "title": "Опоздали от 15 минут",
+              "count": 2,
+              "couriers": [
+                {
+                  "courier_id": "1800134544",
+                  "name": "Мамаражабов Уролбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62462",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T08:21:32+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 21 мин",
+                      "late_seconds": 4892,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800121394",
+                  "name": "Шокаримов Шохрух Шохсалимович",
+                  "slots": [
+                    {
+                      "slot_id": "62464",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": "2026-11-21T08:42:15+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 42 минуты",
+                      "late_seconds": 2535,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Без опоздания от 15 минут",
+              "count": 3,
+              "couriers": [
                 {
                   "courier_id": "1800130881",
                   "name": "Норкобилов Фазлиддин Михлибой",
@@ -1433,29 +1366,6 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130000",
-                  "name": "Чориев Аскарбек Аброр Угли",
-                  "slots": [
-                    {
-                      "slot_id": "62463",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T15:54:14+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
                       "shift_end_source_date": null
                     }
                   ]
@@ -1469,45 +1379,69 @@
             }
           ],
           "reconciled": true,
-          "note": ""
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
-            "denominator": 5,
+            "value": 16.67,
+            "numerator": 1,
+            "denominator": 6,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "62459",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T06:00:00+03:00",
+                      "planned_end": "2026-11-21T14:00:00+03:00",
+                      "actual_start": "2026-11-21T08:41:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 41 мин",
+                      "late_seconds": 9693,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Вышли по плану",
               "count": 5,
               "couriers": [
                 {
-                  "courier_id": "1799899246",
-                  "name": "Ибрагимов Фахриддин Салимович",
+                  "courier_id": "1800134544",
+                  "name": "Мамаражабов Уролбек Нуриддин Угли",
                   "slots": [
                     {
-                      "slot_id": "62464",
+                      "slot_id": "62462",
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": "2026-11-20T15:35:15+03:00",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T08:21:32+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 1 час 21 мин",
+                      "late_seconds": 4892,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1582,24 +1516,24 @@
                   ]
                 },
                 {
-                  "courier_id": "1800130000",
-                  "name": "Чориев Аскарбек Аброр Угли",
+                  "courier_id": "1800121394",
+                  "name": "Шокаримов Шохрух Шохсалимович",
                   "slots": [
                     {
-                      "slot_id": "62463",
+                      "slot_id": "62464",
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T15:54:14+03:00",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": "2026-11-21T08:42:15+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 42 минуты",
+                      "late_seconds": 2535,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1631,27 +1565,50 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
-                  "courier_id": "1799899246",
-                  "name": "Ибрагимов Фахриддин Салимович",
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
                   "slots": [
                     {
-                      "slot_id": "62464",
+                      "slot_id": "62459",
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": "2026-11-20T15:35:15+03:00",
+                      "planned_start": "2026-11-21T06:00:00+03:00",
+                      "planned_end": "2026-11-21T14:00:00+03:00",
+                      "actual_start": "2026-11-21T08:41:33+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 2 часа 41 мин",
+                      "late_seconds": 9693,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134544",
+                  "name": "Мамаражабов Уролбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62462",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T08:21:32+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 21 мин",
+                      "late_seconds": 4892,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1703,24 +1660,24 @@
                   ]
                 },
                 {
-                  "courier_id": "1800130000",
-                  "name": "Чориев Аскарбек Аброр Угли",
+                  "courier_id": "1800121394",
+                  "name": "Шокаримов Шохрух Шохсалимович",
                   "slots": [
                     {
-                      "slot_id": "62463",
+                      "slot_id": "62464",
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T15:54:14+03:00",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": "2026-11-21T08:42:15+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 42 минуты",
+                      "late_seconds": 2535,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
