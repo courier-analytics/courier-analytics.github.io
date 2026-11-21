@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-21": {
-      "generated_at": "2026-11-21T16:28:55.965192+00:00",
+      "generated_at": "2026-11-21T17:11:22.641396+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -46,7 +46,7 @@
                       "planned_start": "2026-11-21T00:00:00+03:00",
                       "planned_end": "2026-11-21T11:00:00+03:00",
                       "actual_start": "2026-11-21T10:02:14+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T19:43:19+03:00",
                       "status": "Опоздал на 10 часов 2 мин",
                       "late_seconds": 36134,
                       "removed_at": null,
@@ -1182,10 +1182,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T19:30:00+03:00",
                       "planned_end": "2026-11-22T10:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-21T19:13:50+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2308,16 +2308,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 48.48,
-            "numerator": 16,
-            "denominator": 33,
+            "value": 50.0,
+            "numerator": 17,
+            "denominator": 34,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -2435,6 +2435,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1699900182",
+                  "name": "Идирисов Исмаил Бадурудинович",
+                  "slots": [
+                    {
+                      "slot_id": "62470",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T19:30:00+03:00",
+                      "planned_end": "2026-11-22T10:00:00+03:00",
+                      "actual_start": "2026-11-21T19:13:50+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800133631",
                   "name": "Камолов Саидмурод Меликмуродович",
                   "slots": [
@@ -2514,7 +2537,7 @@
                       "planned_start": "2026-11-21T00:00:00+03:00",
                       "planned_end": "2026-11-21T11:00:00+03:00",
                       "actual_start": "2026-11-21T10:02:14+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T19:43:19+03:00",
                       "status": "Опоздал на 10 часов 2 мин",
                       "late_seconds": 36134,
                       "removed_at": null,
@@ -3101,8 +3124,31 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1800130340",
+                  "name": "Мазбутов Шахриёр Умеджонович",
+                  "slots": [
+                    {
+                      "slot_id": "62458",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T00:00:00+03:00",
+                      "planned_end": "2026-11-21T11:00:00+03:00",
+                      "actual_start": "2026-11-21T10:02:14+03:00",
+                      "actual_end": "2026-11-21T19:43:19+03:00",
+                      "status": "Опоздал на 10 часов 2 мин",
+                      "late_seconds": 36134,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800119813",
                   "name": "Шокаримов Жахонгир Шохсалимович",
@@ -3199,7 +3245,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 22,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -3353,29 +3399,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 47 минут",
                       "late_seconds": 2828,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130340",
-                  "name": "Мазбутов Шахриёр Умеджонович",
-                  "slots": [
-                    {
-                      "slot_id": "62458",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T00:00:00+03:00",
-                      "planned_end": "2026-11-21T11:00:00+03:00",
-                      "actual_start": "2026-11-21T10:02:14+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 10 часов 2 мин",
-                      "late_seconds": 36134,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",

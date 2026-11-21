@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-21": {
-      "generated_at": "2026-11-21T16:28:55.965192+00:00",
+      "generated_at": "2026-11-21T17:11:22.641396+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 61.76,
-            "numerator": 21,
+            "value": 67.65,
+            "numerator": 23,
             "denominator": 34,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 21,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -189,7 +189,7 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T18:00:00+03:00",
                       "actual_start": "2026-11-21T06:29:50+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T17:45:00+03:00",
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -257,6 +257,29 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-21T10:00:00+03:00",
                       "planned_end": "2026-11-21T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800056742",
+                  "name": "Маматкулов Хумоюдин Фарходович",
+                  "slots": [
+                    {
+                      "slot_id": "66917",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T20:00:00+03:00",
+                      "planned_end": "2026-11-22T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -407,15 +430,15 @@
                   "name": "Тагоев Лочин Хакимович",
                   "slots": [
                     {
-                      "slot_id": "66919",
+                      "slot_id": "66917",
                       "slot_type": "limited",
                       "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-21T23:00:00+03:00",
-                      "planned_end": "2026-11-22T12:00:00+03:00",
-                      "actual_start": null,
+                      "planned_start": "2026-11-21T20:00:00+03:00",
+                      "planned_end": "2026-11-22T09:00:00+03:00",
+                      "actual_start": "2026-11-21T19:57:35+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -454,7 +477,7 @@
                       "planned_end": "2026-11-22T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -533,12 +556,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800040185",
+                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66917",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T20:00:00+03:00",
+                      "planned_end": "2026-11-22T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Не записались",
-              "count": 13,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -563,11 +609,6 @@
                 {
                   "courier_id": "1800121052",
                   "name": "Маковский Иван Дмитриевич",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800056742",
-                  "name": "Маматкулов Хумоюдин Фарходович",
                   "slots": []
                 },
                 {
@@ -598,11 +639,6 @@
                 {
                   "courier_id": "1799984087",
                   "name": "Худоёров Уткир Усмонкул Угли",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800040185",
-                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
                   "slots": []
                 }
               ]
@@ -758,8 +794,8 @@
         "slot_fill": {
           "aggregate": {
             "value": 100.0,
-            "numerator": 25,
-            "denominator": 25,
+            "numerator": 27,
+            "denominator": 27,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -785,7 +821,7 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T18:00:00+03:00",
                       "actual_start": "2026-11-21T06:29:50+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T17:45:00+03:00",
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -826,7 +862,7 @@
                       "planned_end": "2026-11-22T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1587,10 +1623,56 @@
               "slot_type": "limited",
               "planned_start": "2026-11-21T20:00:00+03:00",
               "planned_end": "2026-11-22T09:00:00+03:00",
-              "capacity": 1,
-              "occupied": 1,
+              "capacity": 4,
+              "occupied": 4,
               "free": 0,
               "couriers": [
+                {
+                  "courier_id": "1800056742",
+                  "name": "Маматкулов Хумоюдин Фарходович",
+                  "slots": [
+                    {
+                      "slot_id": "66917",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T20:00:00+03:00",
+                      "planned_end": "2026-11-22T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "66917",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T20:00:00+03:00",
+                      "planned_end": "2026-11-22T09:00:00+03:00",
+                      "actual_start": "2026-11-21T19:57:35+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800026006",
                   "name": "Тарамов Казбек Хусейнович",
@@ -1620,7 +1702,30 @@
                       "planned_end": "2026-11-22T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800040185",
+                  "name": "Эргашев Мухаммадкарим Шермухаммад Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66917",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T20:00:00+03:00",
+                      "planned_end": "2026-11-22T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1653,41 +1758,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-21T21:00:00+03:00",
                       "planned_end": "2026-11-22T10:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "slot_id": "66919",
-              "scope": "7745ДС_Мосфильмовская74",
-              "slot_type": "limited",
-              "planned_start": "2026-11-21T23:00:00+03:00",
-              "planned_end": "2026-11-22T12:00:00+03:00",
-              "capacity": 1,
-              "occupied": 1,
-              "free": 0,
-              "couriers": [
-                {
-                  "courier_id": "1799950967",
-                  "name": "Тагоев Лочин Хакимович",
-                  "slots": [
-                    {
-                      "slot_id": "66919",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-21T23:00:00+03:00",
-                      "planned_end": "2026-11-22T12:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -1893,7 +1963,7 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T18:00:00+03:00",
                       "actual_start": "2026-11-21T06:29:50+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T17:45:00+03:00",
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2510,7 +2580,7 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T18:00:00+03:00",
                       "actual_start": "2026-11-21T06:29:50+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T17:45:00+03:00",
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2690,16 +2760,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 22.73,
-            "numerator": 5,
-            "denominator": 22,
+            "value": 26.09,
+            "numerator": 6,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1799874691",
@@ -2738,6 +2808,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 77,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "66917",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T20:00:00+03:00",
+                      "planned_end": "2026-11-22T09:00:00+03:00",
+                      "actual_start": "2026-11-21T19:57:35+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2994,7 +3087,7 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T18:00:00+03:00",
                       "actual_start": "2026-11-21T06:29:50+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T17:45:00+03:00",
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3252,12 +3345,36 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "66907",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T18:00:00+03:00",
+                      "actual_start": "2026-11-21T06:29:50+03:00",
+                      "actual_end": "2026-11-21T17:45:00+03:00",
+                      "status": "Вышел раньше на 30 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 17,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -3411,29 +3528,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 8 часов 4 мин",
                       "late_seconds": 29085,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799997420",
-                  "name": "Имомкулов Иззат Имомович",
-                  "slots": [
-                    {
-                      "slot_id": "66907",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T18:00:00+03:00",
-                      "actual_start": "2026-11-21T06:29:50+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 30 минут",
-                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
