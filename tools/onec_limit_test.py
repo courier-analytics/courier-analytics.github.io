@@ -18,14 +18,14 @@ def integer(value):
     return int(text)
 
 
-def card(page):
+def card(page, expected_id=ID, expected_name=NAME):
     fields=page.locator('#mainSurface input:visible').evaluate_all('es=>es.map(e=>({id:e.id,value:e.value,disabled:e.disabled,readOnly:e.readOnly}))')
-    names=[f for f in fields if re.fullmatch(r'form\d+_Наименование_i0',f['id']) and normalized(f['value'])==normalized(NAME)]
+    names=[f for f in fields if re.fullmatch(r'form\d+_Наименование_i0',f['id']) and normalized(f['value'])==normalized(expected_name)]
     if len(names)!=1:raise ValueError('Target card name not uniquely verified')
     prefix=names[0]['id'].split('_')[0]+'_'
     by_id={f['id']:f for f in fields}
     identity=by_id.get(prefix+'Идентификатор_i0',{}).get('value','').strip()
-    if identity!=ID:raise ValueError('Target card ID mismatch')
+    if identity!=expected_id:raise ValueError('Target card ID mismatch')
     limit=by_id.get(prefix+'ОграничениеНаКоличествоЗаказов_i0')
     taking=by_id.get(prefix+'ВремяНаЗаказы_i0')
     if not limit or not taking or limit['disabled'] or limit['readOnly']:raise ValueError('Target limit field unavailable')

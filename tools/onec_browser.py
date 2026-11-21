@@ -498,7 +498,7 @@ def save_failure_interface(page, private, stage):
             if os.path.exists(name):os.unlink(name)
 
 
-def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False, inspect_roster=False, inspect_courier=None, decrement_test=False):
+def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False, inspect_roster=False, inspect_courier=None, decrement_test=False, attendance_task=None):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     if local_mac and (sys.platform != 'darwin' or address != '10.210.254.19'):
         raise ValueError('Local comparison requires the authorized Mac and fixed 1C address')
@@ -609,6 +609,9 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
                 if inspect_courier:
                     from onec_courier_card import inspect as inspect_card
                     result['courier_study'] = inspect_card(page,private,*inspect_courier)
+                    if attendance_task:
+                        from onec_approved_measure import execute as execute_approved
+                        result['attendance_task'] = execute_approved(page,private,*attendance_task,result['courier_study'])
                     if decrement_test:
                         from onec_limit_test import execute
                         result['limit_test'] = execute(page,private,result['courier_study'])
@@ -632,7 +635,9 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
             browser.close()
     private_write(private/'onec-browser-status.json', json.dumps(result, ensure_ascii=False))
     print('1C browser login: '+json.dumps(result, ensure_ascii=False), flush=True)
-    if decrement_test:
+    if attendance_task:
+        print('Attendance task result: '+json.dumps(result.get('attendance_task',{'verified':False})),flush=True)
+    elif decrement_test:
         print('Authorized limit test verified by reopened card.' if result.get('limit_test',{}).get('verified') else 'Authorized limit test not verified; inspect private journal before any retry.',flush=True)
     else:print('Verified 1C roster refreshed; metrics update in courier-refresh.service.' if result.get('roster_verified') else
           '1C roster not verified; previous private snapshot preserved.' if inspect_roster else
@@ -640,7 +645,7 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
     if sync_vps and result['authenticated']:
         print('Ручной вход завершён. Теперь SSH запросит пароль сервера VPS для переноса подтверждённых реквизитов и проверки серверного входа.', flush=True)
         sync_verified_credentials(captured, result['authenticated'])
-    return result['authenticated'] and (not decrement_test or result.get('limit_test',{}).get('verified') is True) and (not inspect_ui or result['interface_saved']) and (not inspect_roster or result.get('roster_verified') is True)
+    return result['authenticated'] and (not attendance_task or bool(result.get('attendance_task'))) and (not decrement_test or result.get('limit_test',{}).get('verified') is True) and (not inspect_ui or result['interface_saved']) and (not inspect_roster or result.get('roster_verified') is True)
 
 
 if __name__ == '__main__':

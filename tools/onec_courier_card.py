@@ -75,7 +75,7 @@ def _save(page,folder,status):
 
 
 def inspect(page,private,shop,name):
-    if shop!=9107 or not isinstance(name,str) or len(name)>150 or len(name.split())<2 or any(ord(c)<32 for c in name):
+    if shop not in (8889,7745,9107) or not isinstance(name,str) or len(name)>150 or len(name.split())<2 or any(ord(c)<32 for c in name):
         raise ValueError('Invalid read-only courier study target')
     from onec_browser import open_roster_navigation
     from onec_filters import _choice

@@ -30,7 +30,7 @@ def load_token(root=ROOT):
 
 
 def api(token,method,payload=None):
-    if method not in ('getMe','getChat','getChatMember','getChatAdministrators','getWebhookInfo','sendMessage'):
+    if method not in ('getMe','getChat','getChatMember','getChatAdministrators','getWebhookInfo','sendMessage','getUpdates','answerCallbackQuery','editMessageReplyMarkup','editMessageText'):
         raise ValueError('Unsupported setup method')
     request=urllib.request.Request('https://api.telegram.org/bot'+token+'/'+method,
         data=json.dumps(payload or {}).encode(),headers={'Content-Type':'application/json'},method='POST')
@@ -78,6 +78,7 @@ def configure(link,approvers,root=ROOT,send_test=False):
     if target.exists():
         old=json.loads(target.read_text())
         if old.get('chat_id')!=chat_id:raise ValueError('Different group already bound; previous binding preserved')
+        config['ignored_cases']=old.get('ignored_cases',[])
     private_write(target,json.dumps(config,ensure_ascii=False,indent=2))
     print('Verified group binding saved privately. Existing bot webhook and other groups unchanged.')
     if config['existing_webhook']:print('Existing webhook detected: callback handling must integrate with its owner, not replace it.')

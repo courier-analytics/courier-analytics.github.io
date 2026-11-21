@@ -82,12 +82,20 @@ def main():
     parser.add_argument('--onec-replace-login', action='store_true', help='Replace 1C credentials using hidden prompts; requires --onec-login')
     parser.add_argument('--onec-route-check', action='store_true', help='Compare unauthenticated 1C entry, loader and auth-settings responses')
     parser.add_argument('--onec-inspect-ui', action='store_true', help='Save private interface screenshot and control labels after 1C login')
+    parser.add_argument('--onec-attendance-case')
+    parser.add_argument('--onec-attendance-mode',choices=('read','apply'))
     parser.add_argument('--onec-test-decrement-zhukov',action='store_true',help='Authorized one-time test: ID1799892335, 7394 to7393, Save and close, verify')
     parser.add_argument('--onec-courier-name',help='Read-only study of one courier card, without editing')
-    parser.add_argument('--onec-courier-shop',type=int,choices=(9107,),help='Shop for the read-only card study')
+    parser.add_argument('--onec-courier-shop',type=int,choices=(8889,7745,9107),help='Shop for the read-only card study')
     parser.add_argument('--onec-inspect-roster', action='store_true', help='Open References/Couriers for private read-only interface inspection; requires --onec-login')
     args = parser.parse_args()
     address = private_address(args.address)
+    if bool(args.onec_attendance_case)!=bool(args.onec_attendance_mode):raise ValueError('Specify attendance case and operation')
+    if args.onec_attendance_case:
+        if args.onec_test_decrement_zhukov or args.onec_inspect_roster:raise ValueError('Incompatible task modes')
+        from onec_approved_measure import load_task
+        case=load_task(args.onec_attendance_case,args.onec_attendance_mode)
+        args.onec_login=True;args.onec_courier_shop=case['payload']['shop_id'];args.onec_courier_name=case['payload']['name']
     if args.onec_test_decrement_zhukov and (not args.onec_login or args.onec_courier_shop!=9107 or args.onec_courier_name!='Жуков Максим Сергеевич'):
         raise ValueError('Invalid target for authorized limit test')
     if bool(args.onec_courier_name) != bool(args.onec_courier_shop):
@@ -152,7 +160,7 @@ def main():
             'openvpn', '--config', str(profile), '--log', str(log), '--verb', '3'],
             stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         try:
-            print('Temporary corporate VPN; authorized single-courier write test.' if args.onec_test_decrement_zhukov else 'Temporary corporate VPN test; read-only requests, private data hidden.', flush=True)
+            print('Temporary corporate VPN; authorized single-courier write test.' if args.onec_test_decrement_zhukov or args.onec_attendance_mode=='apply' else 'Temporary corporate VPN test; read-only requests, private data hidden.', flush=True)
             deadline = time.monotonic() + 60
             while time.monotonic() < deadline:
                 text = log.read_text(errors='replace')
@@ -178,7 +186,8 @@ def main():
                     return 0 if check_login(address, inspect_ui=args.onec_inspect_ui,
                                            inspect_roster=args.onec_inspect_roster,
                                            inspect_courier=(args.onec_courier_shop,args.onec_courier_name) if args.onec_courier_name else None,
-                                           decrement_test=args.onec_test_decrement_zhukov) else 1
+                                           decrement_test=args.onec_test_decrement_zhukov,
+                                           attendance_task=(args.onec_attendance_case,args.onec_attendance_mode) if args.onec_attendance_case else None) else 1
                 except BrowserError:
                     raise ValueError('1C browser operation failed; private details hidden') from None
             if args.onec_probe:
