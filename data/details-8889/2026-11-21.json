@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-21": {
-      "generated_at": "2026-11-21T02:11:30.108248+00:00",
+      "generated_at": "2026-11-21T02:34:43.730661+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 70.0,
-            "numerator": 21,
+            "value": 73.33,
+            "numerator": 22,
             "denominator": 30,
             "reason": null,
             "basis": "limited_slot_places"
@@ -460,8 +460,8 @@
               "planned_start": "2026-11-21T09:00:00+03:00",
               "planned_end": "2026-11-21T22:00:00+03:00",
               "capacity": 5,
-              "occupied": 4,
-              "free": 1,
+              "occupied": 5,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1800132233",
@@ -535,6 +535,29 @@
                 {
                   "courier_id": "1800099889",
                   "name": "Олимов Абдуджамил Абдужалолович",
+                  "slots": [
+                    {
+                      "slot_id": "62465",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T09:00:00+03:00",
+                      "planned_end": "2026-11-21T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800131972",
+                  "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
                   "slots": [
                     {
                       "slot_id": "62465",
