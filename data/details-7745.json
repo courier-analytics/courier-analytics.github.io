@@ -106108,7 +106108,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T14:19:27.382821+00:00",
+      "generated_at": "2026-11-21T14:42:51.508836+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -110418,20 +110418,20 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T14:23:37.747945+00:00",
+      "generated_at": "2026-11-21T14:47:19.918935+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 55.88,
-            "numerator": 19,
-            "denominator": 34,
+            "value": 57.14,
+            "numerator": 20,
+            "denominator": 35,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -110882,6 +110882,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66908",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T17:30:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 часов 30 мин",
+                      "late_seconds": 37808,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800109182",
                   "name": "Ходжаев Жасурбек",
                   "slots": [
@@ -110989,7 +111012,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 7,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1799874691",
@@ -111079,29 +111102,6 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-20",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800125641",
-                  "name": "Тургунов Нурилло Иномжон Угли",
-                  "slots": [
-                    {
-                      "slot_id": "66908",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T19:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -111331,10 +111331,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T19:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-21T17:30:08+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 10 часов 30 мин",
+                      "late_seconds": 37808,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -112098,7 +112098,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -112440,6 +112440,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66908",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T17:30:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 часов 30 мин",
+                      "late_seconds": 37808,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800109182",
                   "name": "Ходжаев Жасурбек",
                   "slots": [
@@ -112466,7 +112489,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1120965906",
@@ -112524,29 +112547,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-21T10:00:00+03:00",
                       "planned_end": "2026-11-21T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800125641",
-                  "name": "Тургунов Нурилло Иномжон Угли",
-                  "slots": [
-                    {
-                      "slot_id": "66908",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T19:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -112640,7 +112640,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -112771,6 +112771,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 15 минут",
                       "late_seconds": 918,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66908",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T17:30:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 часов 30 мин",
+                      "late_seconds": 37808,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -113023,9 +113046,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 25.0,
+            "value": 23.81,
             "numerator": 5,
-            "denominator": 20,
+            "denominator": 21,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -113153,7 +113176,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -113495,6 +113518,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66908",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T17:30:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 часов 30 мин",
+                      "late_seconds": 37808,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800109182",
                   "name": "Ходжаев Жасурбек",
                   "slots": [
@@ -113544,7 +113590,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -113863,6 +113909,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66908",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": "2026-11-21T17:30:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 часов 30 мин",
+                      "late_seconds": 37808,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800043710",
                   "name": "Хаджи Зада Ахмад Саэль Абдул Фатаевич",
                   "slots": [
@@ -113916,9 +113985,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 41.18,
+            "value": 40.0,
             "numerator": 14,
-            "denominator": 34,
+            "denominator": 35,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -114029,7 +114098,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -114153,6 +114222,13 @@
                 {
                   "courier_id": "1800132979",
                   "name": "Сайфуллоев Мухаммаджон Исомидинович",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1800125641",
+                  "name": "Тургунов Нурилло Иномжон Угли",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
