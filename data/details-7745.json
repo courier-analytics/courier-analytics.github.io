@@ -100679,7 +100679,7 @@
       }
     },
     "2026-11-19": {
-      "generated_at": "2026-11-21T05:50:21.475921+00:00",
+      "generated_at": "2026-11-21T06:52:00.434996+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -106108,7 +106108,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T06:31:36.757428+00:00",
+      "generated_at": "2026-11-21T06:56:09.922574+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -110418,20 +110418,20 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T06:35:54.238462+00:00",
+      "generated_at": "2026-11-21T07:00:27.513244+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 50.0,
-            "numerator": 17,
-            "denominator": 34,
+            "value": 51.43,
+            "numerator": 18,
+            "denominator": 35,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -110608,6 +110608,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1783415",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T11:00:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -110936,7 +110959,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1799874691",
@@ -111026,29 +111049,6 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-20",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799946181",
-                  "name": "Кубатбеков Максатбек",
-                  "slots": [
-                    {
-                      "slot_id": "1783415",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-21T11:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -113125,16 +113125,16 @@
         },
         "training": {
           "aggregate": {
-            "value": 41.18,
-            "numerator": 14,
-            "denominator": 34,
+            "value": 42.86,
+            "numerator": 15,
+            "denominator": 35,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 14,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -113190,6 +113190,13 @@
                   "name": "Котиев Руслан Алиханович",
                   "slots": [],
                   "training_date": "2026-10-16T13:55:16+03:00",
+                  "match_status": "Обучение подтверждено"
+                },
+                {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [],
+                  "training_date": "2026-10-16T17:14:01+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -113384,7 +113391,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 15,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -113412,13 +113419,6 @@
                   "name": "Холмирзаев Саидбек Уткирбек Угли",
                   "slots": [],
                   "training_date": "2026-10-16T16:59:31+03:00",
-                  "match_status": "Нет точного совпадения в активной базе 1С"
-                },
-                {
-                  "courier_id": "—",
-                  "name": "Кубатбеков Максатбек",
-                  "slots": [],
-                  "training_date": "2026-10-16T17:14:01+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
