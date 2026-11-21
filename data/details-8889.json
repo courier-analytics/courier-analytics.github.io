@@ -25377,7 +25377,7 @@
       }
     },
     "2026-11-14": {
-      "generated_at": "2026-11-21T12:02:35.673846+00:00",
+      "generated_at": "2026-11-21T14:02:58.724372+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T13:55:51.168634+00:00",
+      "generated_at": "2026-11-21T14:19:27.382821+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -45868,15 +45868,15 @@
                       "planned_start": "2026-11-20T18:00:00+03:00",
                       "planned_end": "2026-11-21T06:00:00+03:00",
                       "actual_start": "2026-11-20T17:02:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 57 минут",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "23:59:59 — граница выгрузки. Продолжение проверяется автоматически по соседним дням; окончательный уход пока не подтверждён.",
-                      "worked_through": "2026-11-20T23:59:59+03:00",
+                      "note": "Окончание сшито с выгрузкой за 2026-11-21.",
+                      "worked_through": null,
                       "shift_start_source_date": null,
-                      "shift_end_source_date": null
+                      "shift_end_source_date": "2026-11-21"
                     }
                   ]
                 }
@@ -47791,15 +47791,15 @@
                       "planned_start": "2026-11-20T18:00:00+03:00",
                       "planned_end": "2026-11-21T06:00:00+03:00",
                       "actual_start": "2026-11-20T17:02:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 57 минут",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "23:59:59 — граница выгрузки. Продолжение проверяется автоматически по соседним дням; окончательный уход пока не подтверждён.",
-                      "worked_through": "2026-11-20T23:59:59+03:00",
+                      "note": "Окончание сшито с выгрузкой за 2026-11-21.",
+                      "worked_through": null,
                       "shift_start_source_date": null,
-                      "shift_end_source_date": null
+                      "shift_end_source_date": "2026-11-21"
                     }
                   ]
                 },
@@ -49297,7 +49297,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T14:00:08.093188+00:00",
+      "generated_at": "2026-11-21T14:23:37.747945+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49313,9 +49313,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 80.0,
-            "numerator": 32,
-            "denominator": 40,
+            "value": 76.74,
+            "numerator": 33,
+            "denominator": 43,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -49516,7 +49516,7 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
                       "actual_start": "2026-11-20T17:02:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -50244,9 +50244,32 @@
               "planned_start": "2026-11-21T15:00:00+03:00",
               "planned_end": "2026-11-22T00:00:00+03:00",
               "capacity": 2,
-              "occupied": 1,
-              "free": 1,
+              "occupied": 2,
+              "free": 0,
               "couriers": [
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович",
+                  "slots": [
+                    {
+                      "slot_id": "62467",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T15:00:00+03:00",
+                      "planned_end": "2026-11-22T00:00:00+03:00",
+                      "actual_start": "2026-11-21T17:03:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 3 мин",
+                      "late_seconds": 7385,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800133468",
                   "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
@@ -50292,10 +50315,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T17:00:00+03:00",
                       "planned_end": "2026-11-21T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-21T16:57:54+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -50348,9 +50371,9 @@
               "slot_type": "limited",
               "planned_start": "2026-11-21T21:00:00+03:00",
               "planned_end": "2026-11-22T10:00:00+03:00",
-              "capacity": 2,
+              "capacity": 5,
               "occupied": 0,
-              "free": 2,
+              "free": 5,
               "couriers": []
             },
             {
@@ -50371,8 +50394,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 68.18,
-            "numerator": 15,
+            "value": 72.73,
+            "numerator": 16,
             "denominator": 22,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -50380,7 +50403,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -50403,6 +50426,30 @@
                       "shift_start_source_date": null,
                       "shift_end_source_date": null,
                       "fact_source_slot_id": "85972"
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800106928",
+                  "name": "Голенищенко Максим Константинович ",
+                  "slots": [
+                    {
+                      "slot_id": "62461",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T15:00:00+03:00",
+                      "actual_start": "2026-11-21T16:57:54+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 35874,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "85981"
                     }
                   ]
                 },
@@ -50580,7 +50627,7 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
                       "actual_start": "2026-11-20T17:02:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -51015,16 +51062,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 66.67,
-            "numerator": 10,
-            "denominator": 15,
+            "value": 68.75,
+            "numerator": 11,
+            "denominator": 16,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -51047,6 +51094,30 @@
                       "shift_start_source_date": null,
                       "shift_end_source_date": null,
                       "fact_source_slot_id": "85972"
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800106928",
+                  "name": "Голенищенко Максим Константинович ",
+                  "slots": [
+                    {
+                      "slot_id": "62461",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T15:00:00+03:00",
+                      "actual_start": "2026-11-21T16:57:54+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 35874,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "85981"
                     }
                   ]
                 },
@@ -51346,7 +51417,7 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
                       "actual_start": "2026-11-20T17:02:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -51394,16 +51465,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 42.31,
-            "numerator": 11,
-            "denominator": 26,
+            "value": 42.86,
+            "numerator": 12,
+            "denominator": 28,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -51419,6 +51490,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович",
+                  "slots": [
+                    {
+                      "slot_id": "62467",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T15:00:00+03:00",
+                      "planned_end": "2026-11-22T00:00:00+03:00",
+                      "actual_start": "2026-11-21T17:03:05+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 3 мин",
+                      "late_seconds": 7385,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -51662,7 +51756,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -51678,6 +51772,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 46 минут",
                       "late_seconds": 2805,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800106928",
+                  "name": "Голенищенко Максим Константинович ",
+                  "slots": [
+                    {
+                      "slot_id": "85981",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T17:00:00+03:00",
+                      "planned_end": "2026-11-21T23:00:00+03:00",
+                      "actual_start": "2026-11-21T16:57:54+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -51859,7 +51976,7 @@
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
                       "actual_start": "2026-11-20T17:02:45+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 7 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -52031,8 +52148,49 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800063653",
+                  "name": "Нуров Джавхан Амрдинович",
+                  "slots": [
+                    {
+                      "slot_id": "62456",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-20T18:00:00+03:00",
+                      "planned_end": "2026-11-21T06:00:00+03:00",
+                      "actual_start": "2026-11-20T17:02:45+03:00",
+                      "actual_end": "2026-11-21T15:00:00+03:00",
+                      "status": "Вышел раньше на 57 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Окончание сшито с выгрузкой за 2026-11-21.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": "2026-11-21"
+                    },
+                    {
+                      "slot_id": "62463",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
+                      "actual_start": "2026-11-20T17:02:45+03:00",
+                      "actual_end": "2026-11-21T15:00:00+03:00",
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-20",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Нет окончательных данных",
@@ -52095,6 +52253,29 @@
                       "planned_start": "2026-11-21T10:30:00+03:00",
                       "planned_end": "2026-11-21T19:00:00+03:00",
                       "actual_start": "2026-11-21T10:25:55+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800106928",
+                  "name": "Голенищенко Максим Константинович ",
+                  "slots": [
+                    {
+                      "slot_id": "85981",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T17:00:00+03:00",
+                      "planned_end": "2026-11-21T23:00:00+03:00",
+                      "actual_start": "2026-11-21T16:57:54+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -52379,29 +52560,6 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800063653",
-                  "name": "Нуров Джавхан Амрдинович",
-                  "slots": [
-                    {
-                      "slot_id": "62463",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T17:02:45+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
                       "shift_end_source_date": null
                     }
                   ]
