@@ -40351,7 +40351,7 @@
       }
     },
     "2026-11-19": {
-      "generated_at": "2026-11-21T07:49:47.785041+00:00",
+      "generated_at": "2026-11-21T08:50:48.614281+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T08:29:04.799211+00:00",
+      "generated_at": "2026-11-21T08:54:37.220595+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49297,7 +49297,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T08:33:01.954466+00:00",
+      "generated_at": "2026-11-21T08:58:28.728314+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -50013,10 +50013,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T11:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-21T11:46:45+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 46 минут",
+                      "late_seconds": 2805,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -50036,10 +50036,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T11:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-21T11:47:08+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 47 минут",
+                      "late_seconds": 2828,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -50243,8 +50243,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 54.55,
-            "numerator": 12,
+            "value": 63.64,
+            "numerator": 14,
             "denominator": 22,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -50252,8 +50252,56 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 12,
+              "count": 14,
               "couriers": [
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "62461",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T15:00:00+03:00",
+                      "actual_start": "2026-11-21T11:46:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 46 минут",
+                      "late_seconds": 17205,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "85972"
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800129523",
+                  "name": "Карапетян Димо Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "62464",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": "2026-11-21T11:47:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 47 минут",
+                      "late_seconds": 13628,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "85972"
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800134544",
                   "name": "Мамаражабов Уролбек Нуриддин Угли",
@@ -50535,56 +50583,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 2,
               "couriers": [
-                {
-                  "courier_id": "1800128516",
-                  "name": "Варданян Виген Тигранович",
-                  "slots": [
-                    {
-                      "slot_id": "62461",
-                      "slot_type": "limited",
-                      "scope": "",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T15:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Запись из плана снята; в текущих записях этого курьера источник подтверждает «Не вышел». Исходный план сохранён.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null,
-                      "fact_source_slot_id": "85972"
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800129523",
-                  "name": "Карапетян Димо Маратович",
-                  "slots": [
-                    {
-                      "slot_id": "62464",
-                      "slot_type": "limited",
-                      "scope": "",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Запись из плана снята; в текущих записях этого курьера источник подтверждает «Не вышел». Исходный план сохранён.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null,
-                      "fact_source_slot_id": "85972"
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800122842",
                   "name": "Магомедов Абдула Шамилевич",
@@ -50863,17 +50863,65 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 58.33,
-            "numerator": 7,
-            "denominator": 12,
+            "value": 64.29,
+            "numerator": 9,
+            "denominator": 14,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 7,
+              "count": 9,
               "couriers": [
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "62461",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T15:00:00+03:00",
+                      "actual_start": "2026-11-21T11:46:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 46 минут",
+                      "late_seconds": 17205,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "85972"
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800129523",
+                  "name": "Карапетян Димо Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "62464",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": "2026-11-21T11:47:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 47 минут",
+                      "late_seconds": 13628,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "85972"
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800134544",
                   "name": "Мамаражабов Уролбек Нуриддин Угли",
@@ -51170,9 +51218,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 42.86,
+            "value": 39.13,
             "numerator": 9,
-            "denominator": 21,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -51392,8 +51440,54 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 12,
+              "count": 14,
               "couriers": [
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "85972",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T11:00:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
+                      "actual_start": "2026-11-21T11:46:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 46 минут",
+                      "late_seconds": 2805,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800129523",
+                  "name": "Карапетян Димо Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "85972",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T11:00:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
+                      "actual_start": "2026-11-21T11:47:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 47 минут",
+                      "late_seconds": 2828,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800134544",
                   "name": "Мамаражабов Уролбек Нуриддин Угли",
@@ -51697,7 +51791,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 19,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -51713,6 +51807,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "85972",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T11:00:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
+                      "actual_start": "2026-11-21T11:46:45+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 46 минут",
+                      "late_seconds": 2805,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -51805,6 +51922,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 41 мин",
                       "late_seconds": 9693,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800129523",
+                  "name": "Карапетян Димо Маратович",
+                  "slots": [
+                    {
+                      "slot_id": "85972",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T11:00:00+03:00",
+                      "planned_end": "2026-11-21T20:00:00+03:00",
+                      "actual_start": "2026-11-21T11:47:08+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 47 минут",
+                      "late_seconds": 2828,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
