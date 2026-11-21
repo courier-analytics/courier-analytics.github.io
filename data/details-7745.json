@@ -106108,7 +106108,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-21T09:17:29.495427+00:00",
+      "generated_at": "2026-11-21T09:40:24.221457+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -110418,13 +110418,13 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-21T09:21:24.625805+00:00",
+      "generated_at": "2026-11-21T09:44:24.986052+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 54.29,
+            "value": 57.58,
             "numerator": 19,
-            "denominator": 35,
+            "denominator": 33,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
@@ -110891,7 +110891,7 @@
             },
             {
               "title": "Не записались",
-              "count": 16,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -110911,16 +110911,6 @@
                 {
                   "courier_id": "1800132813",
                   "name": "Киргизов Илёсбек Нуриддин Угли",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800108301",
-                  "name": "Котиев Микаил Алиханович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800107246",
-                  "name": "Котиев Руслан Алиханович",
                   "slots": []
                 },
                 {
@@ -110977,7 +110967,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1799874691",
@@ -111072,6 +111062,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800043710",
+                  "name": "Хаджи Зада Ахмад Саэль Абдул Фатаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66907",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T18:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799983329",
                   "name": "Шихиев Низами Эльдарович",
                   "slots": [
@@ -111102,8 +111115,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 84.0,
-            "numerator": 21,
+            "value": 88.0,
+            "numerator": 22,
             "denominator": 25,
             "reason": null,
             "basis": "limited_slot_places"
@@ -111116,8 +111129,8 @@
               "planned_start": "2026-11-21T07:00:00+03:00",
               "planned_end": "2026-11-21T18:00:00+03:00",
               "capacity": 3,
-              "occupied": 1,
-              "free": 2,
+              "occupied": 2,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1799997420",
@@ -111133,6 +111146,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800043710",
+                  "name": "Хаджи Зада Ахмад Саэль Абдул Фатаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66907",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-21T07:00:00+03:00",
+                      "planned_end": "2026-11-21T18:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -113616,16 +113652,16 @@
         },
         "training": {
           "aggregate": {
-            "value": 40.0,
-            "numerator": 14,
-            "denominator": 35,
+            "value": 39.39,
+            "numerator": 13,
+            "denominator": 33,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 14,
+              "count": 13,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -113677,13 +113713,6 @@
                   "match_status": "Обучение подтверждено"
                 },
                 {
-                  "courier_id": "1800107246",
-                  "name": "Котиев Руслан Алиханович",
-                  "slots": [],
-                  "training_date": "2026-10-16T13:55:16+03:00",
-                  "match_status": "Обучение подтверждено"
-                },
-                {
                   "courier_id": "1799946181",
                   "name": "Кубатбеков Максатбек",
                   "slots": [],
@@ -113729,7 +113758,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 21,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -113762,13 +113791,6 @@
                 {
                   "courier_id": "1800132813",
                   "name": "Киргизов Илёсбек Нуриддин Угли",
-                  "slots": [],
-                  "training_date": null,
-                  "match_status": "Нет подтверждённой записи об обучении"
-                },
-                {
-                  "courier_id": "1800108301",
-                  "name": "Котиев Микаил Алиханович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
@@ -113882,8 +113904,15 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 15,
+              "count": 16,
               "couriers": [
+                {
+                  "courier_id": "—",
+                  "name": "Котиев Руслан Алиханович",
+                  "slots": [],
+                  "training_date": "2026-10-16T13:55:16+03:00",
+                  "match_status": "Нет точного совпадения в активной базе 1С"
+                },
                 {
                   "courier_id": "—",
                   "name": "Магомедов Муслим Манапович",
