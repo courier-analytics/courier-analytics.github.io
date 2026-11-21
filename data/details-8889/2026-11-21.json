@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-21": {
-      "generated_at": "2026-11-21T02:59:46.486236+00:00",
+      "generated_at": "2026-11-21T03:23:11.039491+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -69,7 +69,7 @@
                       "planned_end": "2026-11-21T19:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -796,12 +796,36 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800012132",
+                  "name": "Шеров Абдумалик Сайвалиевич",
+                  "slots": [
+                    {
+                      "slot_id": "62460",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-21T06:00:00+03:00",
+                      "planned_end": "2026-11-21T19:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Ожидаются",
-              "count": 22,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -1250,29 +1274,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800012132",
-                  "name": "Шеров Абдумалик Сайвалиевич",
-                  "slots": [
-                    {
-                      "slot_id": "62460",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-21T06:00:00+03:00",
-                      "planned_end": "2026-11-21T19:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
