@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-22": {
-      "generated_at": "2026-11-22T13:11:13.461686+00:00",
+      "generated_at": "2026-11-22T13:35:33.744981+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 69.44,
-            "numerator": 25,
+            "value": 72.22,
+            "numerator": 26,
             "denominator": 36,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 25,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -501,6 +501,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800044072",
+                  "name": "Тарамов Хасан Вадудович",
+                  "slots": [
+                    {
+                      "slot_id": "89755",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-22T16:00:00+03:00",
+                      "planned_end": "2026-11-23T00:00:00+03:00",
+                      "actual_start": "2026-11-22T16:10:17+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 минут",
+                      "late_seconds": 617,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800125641",
                   "name": "Тургунов Нурилло Иномжон Угли",
                   "slots": [
@@ -596,7 +619,7 @@
             },
             {
               "title": "Не записались",
-              "count": 11,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -636,11 +659,6 @@
                 {
                   "courier_id": "1800111023",
                   "name": "Саидов Мухамад Амиршоевич",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800044072",
-                  "name": "Тарамов Хасан Вадудович",
                   "slots": []
                 },
                 {
@@ -805,8 +823,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 96.3,
-            "numerator": 26,
+            "value": 100.0,
+            "numerator": 27,
             "denominator": 27,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1574,9 +1592,33 @@
               "planned_start": "2026-11-22T16:00:00+03:00",
               "planned_end": "2026-11-23T00:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800044072",
+                  "name": "Тарамов Хасан Вадудович",
+                  "slots": [
+                    {
+                      "slot_id": "89755",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-22T16:00:00+03:00",
+                      "planned_end": "2026-11-23T00:00:00+03:00",
+                      "actual_start": "2026-11-22T16:10:17+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 минут",
+                      "late_seconds": 617,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "66930",
@@ -2681,16 +2723,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 36.36,
-            "numerator": 8,
-            "denominator": 22,
+            "value": 39.13,
+            "numerator": 9,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800128912",
@@ -2798,6 +2840,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800044072",
+                  "name": "Тарамов Хасан Вадудович",
+                  "slots": [
+                    {
+                      "slot_id": "89755",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-22T16:00:00+03:00",
+                      "planned_end": "2026-11-23T00:00:00+03:00",
+                      "actual_start": "2026-11-22T16:10:17+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 10 минут",
+                      "late_seconds": 617,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
