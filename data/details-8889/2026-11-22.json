@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-22": {
-      "generated_at": "2026-11-22T12:02:30.950262+00:00",
+      "generated_at": "2026-11-22T12:26:36.330563+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 82.0,
-            "numerator": 41,
-            "denominator": 50,
+            "value": 82.35,
+            "numerator": 42,
+            "denominator": 51,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1052,6 +1052,41 @@
                       "planned_start": "2026-11-22T13:40:00+03:00",
                       "planned_end": "2026-11-22T22:00:00+03:00",
                       "actual_start": "2026-11-22T13:34:48+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "89693",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-22T15:20:00+03:00",
+              "planned_end": "2026-11-22T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800033763",
+                  "name": "Алиев Ибрагим Эльдарович",
+                  "slots": [
+                    {
+                      "slot_id": "89693",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-22T15:20:00+03:00",
+                      "planned_end": "2026-11-22T22:00:00+03:00",
+                      "actual_start": "2026-11-22T15:09:58+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -2917,17 +2952,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 12.12,
-            "numerator": 4,
-            "denominator": 33,
+            "value": 14.71,
+            "numerator": 5,
+            "denominator": 34,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 4,
+              "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1800033763",
+                  "name": "Алиев Ибрагим Эльдарович",
+                  "slots": [
+                    {
+                      "slot_id": "89693",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-22T15:20:00+03:00",
+                      "planned_end": "2026-11-22T22:00:00+03:00",
+                      "actual_start": "2026-11-22T15:09:58+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800017327",
                   "name": "Джобиров Оятулло Музаффарович",
@@ -3720,7 +3778,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 32,
+              "count": 33,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -3736,6 +3794,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 13 мин",
                       "late_seconds": 4432,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800033763",
+                  "name": "Алиев Ибрагим Эльдарович",
+                  "slots": [
+                    {
+                      "slot_id": "89693",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-22T15:20:00+03:00",
+                      "planned_end": "2026-11-22T22:00:00+03:00",
+                      "actual_start": "2026-11-22T15:09:58+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
