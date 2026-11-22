@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-22": {
-      "generated_at": "2026-11-22T21:32:04.951757+00:00",
+      "generated_at": "2026-11-22T21:55:56.955405+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -139,7 +139,7 @@
                       "planned_start": "2026-11-22T07:00:00+03:00",
                       "planned_end": "2026-11-22T20:00:00+03:00",
                       "actual_start": "2026-11-22T08:13:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-22T22:30:00+03:00",
                       "status": "Опоздал на 1 час 13 мин",
                       "late_seconds": 4391,
                       "removed_at": null,
@@ -1313,7 +1313,7 @@
                       "planned_start": "2026-11-22T07:00:00+03:00",
                       "planned_end": "2026-11-22T20:00:00+03:00",
                       "actual_start": "2026-11-22T08:13:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-22T22:30:00+03:00",
                       "status": "Опоздал на 1 час 13 мин",
                       "late_seconds": 4391,
                       "removed_at": null,
@@ -2298,7 +2298,7 @@
                       "planned_start": "2026-11-22T07:00:00+03:00",
                       "planned_end": "2026-11-22T20:00:00+03:00",
                       "actual_start": "2026-11-22T08:13:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-22T22:30:00+03:00",
                       "status": "Опоздал на 1 час 13 мин",
                       "late_seconds": 4391,
                       "removed_at": null,
@@ -3232,7 +3232,7 @@
                       "planned_start": "2026-11-22T07:00:00+03:00",
                       "planned_end": "2026-11-22T20:00:00+03:00",
                       "actual_start": "2026-11-22T08:13:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-22T22:30:00+03:00",
                       "status": "Опоздал на 1 час 13 мин",
                       "late_seconds": 4391,
                       "removed_at": null,
@@ -3974,8 +3974,31 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 9,
+              "count": 10,
               "couriers": [
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович",
+                  "slots": [
+                    {
+                      "slot_id": "62474",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-22T07:00:00+03:00",
+                      "planned_end": "2026-11-22T20:00:00+03:00",
+                      "actual_start": "2026-11-22T08:13:11+03:00",
+                      "actual_end": "2026-11-22T22:30:00+03:00",
+                      "status": "Опоздал на 1 час 13 мин",
+                      "late_seconds": 4391,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800106928",
                   "name": "Голенищенко Максим Константинович",
@@ -4607,7 +4630,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 6,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -4623,29 +4646,6 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800120138",
-                  "name": "Ахмедов Рустам Эльшанович",
-                  "slots": [
-                    {
-                      "slot_id": "62474",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-22T07:00:00+03:00",
-                      "planned_end": "2026-11-22T20:00:00+03:00",
-                      "actual_start": "2026-11-22T08:13:11+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 13 мин",
-                      "late_seconds": 4391,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
