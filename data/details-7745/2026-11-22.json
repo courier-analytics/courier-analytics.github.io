@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-22": {
-      "generated_at": "2026-11-22T10:52:57.032917+00:00",
+      "generated_at": "2026-11-22T11:36:08.045571+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 63.89,
-            "numerator": 23,
+            "value": 66.67,
+            "numerator": 24,
             "denominator": 36,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -261,6 +261,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 17 минут",
                       "late_seconds": 1051,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800121052",
+                  "name": "Маковский Иван Дмитриевич",
+                  "slots": [
+                    {
+                      "slot_id": "89595",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-22T14:30:00+03:00",
+                      "planned_end": "2026-11-23T00:00:00+03:00",
+                      "actual_start": "2026-11-22T14:20:05+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -550,7 +573,7 @@
             },
             {
               "title": "Не записались",
-              "count": 13,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -565,11 +588,6 @@
                 {
                   "courier_id": "1699932352",
                   "name": "Гусейнов Рауль Илгарович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800121052",
-                  "name": "Маковский Иван Дмитриевич",
                   "slots": []
                 },
                 {
@@ -770,8 +788,8 @@
         "slot_fill": {
           "aggregate": {
             "value": 100.0,
-            "numerator": 24,
-            "denominator": 24,
+            "numerator": 25,
+            "denominator": 25,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1447,6 +1465,41 @@
                       "planned_start": "2026-11-22T12:30:00+03:00",
                       "planned_end": "2026-11-23T00:00:00+03:00",
                       "actual_start": "2026-11-22T12:24:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "89595",
+              "scope": "7745ДС_Мосфильмовская74",
+              "slot_type": "limited",
+              "planned_start": "2026-11-22T14:30:00+03:00",
+              "planned_end": "2026-11-23T00:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800121052",
+                  "name": "Маковский Иван Дмитриевич",
+                  "slots": [
+                    {
+                      "slot_id": "89595",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-22T14:30:00+03:00",
+                      "planned_end": "2026-11-23T00:00:00+03:00",
+                      "actual_start": "2026-11-22T14:20:05+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -2541,16 +2594,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 31.58,
-            "numerator": 6,
-            "denominator": 19,
+            "value": 35.0,
+            "numerator": 7,
+            "denominator": 20,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800128912",
@@ -2566,6 +2619,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 17 минут",
                       "late_seconds": 1051,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800121052",
+                  "name": "Маковский Иван Дмитриевич",
+                  "slots": [
+                    {
+                      "slot_id": "89595",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-22T14:30:00+03:00",
+                      "planned_end": "2026-11-23T00:00:00+03:00",
+                      "actual_start": "2026-11-22T14:20:05+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
