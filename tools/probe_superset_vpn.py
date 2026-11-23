@@ -78,6 +78,8 @@ def main():
     if needs_auth and (not args.auth.is_file() or args.auth.stat().st_mode & 0o077):
         raise ValueError('VPN auth file missing or permissions too broad; require 600')
     # Refuse overlapping tests instead of mistaking an existing tunnel for success.
+    from shared_vpn_resource import acquire
+    vpn_lease=acquire()
     wait_for_idle_vpn(args.wait_vpn)
     with tempfile.TemporaryDirectory(prefix='courier-superset-', dir='/root') as folder:
         folder = Path(folder)

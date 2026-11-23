@@ -137,6 +137,8 @@ def main():
     config, needs_auth = candidate(args.profile.read_text(), [address], args.auth)
     if needs_auth and (not args.auth.is_file() or args.auth.stat().st_mode & 0o077):
         raise ValueError('Saved VPN auth file missing or permissions broader than 600')
+    from shared_vpn_resource import acquire
+    vpn_lease=acquire()
     if subprocess.run(['pgrep', '-x', 'openvpn'], capture_output=True).returncode != 1:
         raise ValueError('An OpenVPN process exists; review it before starting this test')
     if args.replace_login and not args.save_login:
