@@ -67,9 +67,10 @@ def handle_callback(db,update,config,token):
     except (ValueError,KeyError,TypeError):answer='Кнопка устарела, уже обработана или у вас нет права подтверждения.'
     api(token,'answerCallbackQuery',{'callback_query_id':q['id'],'text':answer})
 
-def notify(db,config,token):
+def notify(db,config,token,only_id=None):
     root_config=config
     for row in db.execute("SELECT id FROM cases WHERE state='ready' AND current_limit IS NOT NULL AND target_limit IS NOT NULL AND notified=0").fetchall():
+        if only_id is not None and row['id']!=only_id:continue
         case=get(db,row['id']);config=case_config(root_config,{**case,'message_id':None,'message_chat_id':None})
         if case['state']=='ready' and (not case['observed'] or case['observed']>time.time()+120):
             db.execute("UPDATE cases SET state='need_limit' WHERE id=?",(case['id'],));db.commit();continue
@@ -85,6 +86,7 @@ def notify(db,config,token):
         except RuntimeError:
             db.execute("UPDATE cases SET state='delivery_uncertain',notified=1 WHERE id=?",(case['id'],));db.commit();raise
     for row in db.execute("SELECT id FROM cases WHERE state IN ('applied','skipped','withdrawn','uncertain','held') AND message_id IS NOT NULL AND notified=0").fetchall():
+        if only_id is not None and row['id']!=only_id:continue
         case=get(db,row['id']);config=case_config(root_config,case);p=case['payload']
         labels={'held':'Проверка не завершена; изменение не подтверждено. Требуется разбор, повторного списания не будет.','applied':'Сохранено в 1С и проверено повторным открытием карточки.','skipped':'Пропущено ответственным.','withdrawn':'Случай отозван: факты изменились или дата закончилась.','uncertain':'Результат сохранения не подтверждён. Нужна ручная проверка; повторного уменьшения не будет.'}
         text=message(case)+'\n\n'+labels[case['state']]
