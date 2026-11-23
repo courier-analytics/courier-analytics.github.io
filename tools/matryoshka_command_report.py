@@ -73,7 +73,7 @@ def render(snapshot, number, now, rosters=None, idle_days=None, pools=None):
         transport, stage = TYPES[code]
         name = ' '.join(str(p.get('name') or cid).split())[:200]
         rows.append((ds or 'Не определён', name, cid, tt, transport, stage, count))
-    rows.sort(key=lambda r: (idle_info[r[2]][0] if idle_days is not None else r[0], r[1].casefold(), r[2]))
+    rows.sort(key=lambda r: (r[0], idle_info[r[2]][0] if idle_days is not None else r[1].casefold(), r[1].casefold(), r[2]))
     header = 'Матрёшка' + (' · ' + number if number else ' · все участники') + '\nSuperset: получено ' + observed.astimezone(now.tzinfo).strftime('%d.%m.%Y %H:%M') + ' МСК'
     if idle_days is not None:
         header = header.replace('Матрёшка', 'Матрёшка · без доставок ' + str(idle_days) + ' полных дня', 1)
@@ -84,9 +84,11 @@ def render(snapshot, number, now, rosters=None, idle_days=None, pools=None):
             pass
     if not rows:
         return [header + ('\nУчастники с таким простоем не найдены.\n' if idle_days is not None else '\nУчастники не найдены.\n') + footer]
-    entries = []
+    entries = {}
     for i, (ds, name, cid, tt, transport, stage, count) in enumerate(rows, 1):
-        entry = f'{i}. {name}\nID {cid} · ДС {ds} · ТТ {tt}\n{transport} · этап {stage} · заказов {count}'
+        group=entries.setdefault(ds,[])
+        entry = f'{len(group)+1}. {name}\n{transport} · этап {stage}\nЗаказов за период: {count}\nID {cid}'
+        if tt!=ds:entry += f' · ТТ {tt}'
         participant = next(p for p in snapshot['participants'] if p['courier_id']==cid)
         overdue=participant.get('overdue_orders')
         confirmed=participant.get('overdue_verified') is True and participant.get('overdue_scope')=='delivered_since_enrollment' and type(overdue) is int and overdue>=0
@@ -96,13 +98,15 @@ def render(snapshot, number, now, rosters=None, idle_days=None, pools=None):
         if idle_days is not None:
             last, days = idle_info[cid]
             entry += '\nПоследняя доставка: ' + last.astimezone(now.tzinfo).strftime('%d.%m.%Y %H:%M') + ' МСК · без доставок ' + str(days) + ' полных дн.'
-        entries.append(entry)
+        group.append(entry)
     pages = []
-    body = header + '\nУчастников: ' + str(len(rows)) + '\n\n'
-    for entry in entries:
-        if len(body) + len(entry) + len(footer) + 5 > 3500:
-            pages.append(body + footer)
-            body = header + ' · продолжение\n\n'
-        body += entry + '\n\n'
-    pages.append(body + footer)
+    for ds, group in entries.items():
+        warehouse='🏭 ДС '+ds if ds!='Не определён' else '🏭 Склад не определён'
+        group_header=header+'\n\n'+warehouse+' · курьеров: '+str(len(group))+'\n━━━━━━━━━━━━━━━━\n\n'
+        body=group_header
+        for entry in group:
+            if len(body)+len(entry)+5>3500:
+                pages.append(body.rstrip());body=group_header+'Продолжение\n\n'
+            body+=entry+'\n\n'
+        pages.append(body.rstrip())
     return pages
