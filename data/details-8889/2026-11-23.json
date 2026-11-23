@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-23": {
-      "generated_at": "2026-11-23T20:31:59.544753+00:00",
+      "generated_at": "2026-11-23T20:57:11.425442+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -243,7 +243,7 @@
                       "planned_start": "2026-11-23T08:00:00+03:00",
                       "planned_end": "2026-11-23T21:00:00+03:00",
                       "actual_start": "2026-11-23T07:40:19+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-23T21:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1280,7 +1280,7 @@
                       "planned_start": "2026-11-23T08:00:00+03:00",
                       "planned_end": "2026-11-23T21:00:00+03:00",
                       "actual_start": "2026-11-23T07:40:19+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-23T21:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2343,7 +2343,7 @@
                       "planned_start": "2026-11-23T08:00:00+03:00",
                       "planned_end": "2026-11-23T21:00:00+03:00",
                       "actual_start": "2026-11-23T07:40:19+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-23T21:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2995,7 +2995,7 @@
                       "planned_start": "2026-11-23T08:00:00+03:00",
                       "planned_end": "2026-11-23T21:00:00+03:00",
                       "actual_start": "2026-11-23T07:40:19+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-23T21:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3484,8 +3484,31 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 7,
+              "count": 8,
               "couriers": [
+                {
+                  "courier_id": "1800131005",
+                  "name": "Достизода Мухамади Сухроб",
+                  "slots": [
+                    {
+                      "slot_id": "62488",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T08:00:00+03:00",
+                      "planned_end": "2026-11-23T21:00:00+03:00",
+                      "actual_start": "2026-11-23T07:40:19+03:00",
+                      "actual_end": "2026-11-23T21:30:00+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799899246",
                   "name": "Ибрагимов Фахриддин Салимович",
@@ -3864,7 +3887,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 11,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3929,29 +3952,6 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800131005",
-                  "name": "Достизода Мухамади Сухроб",
-                  "slots": [
-                    {
-                      "slot_id": "62488",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-23T08:00:00+03:00",
-                      "planned_end": "2026-11-23T21:00:00+03:00",
-                      "actual_start": "2026-11-23T07:40:19+03:00",
-                      "actual_end": null,
-                      "status": "Вышел",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
