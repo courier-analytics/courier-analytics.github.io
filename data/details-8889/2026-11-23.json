@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-23": {
-      "generated_at": "2026-11-23T14:12:45.661271+00:00",
+      "generated_at": "2026-11-23T14:37:19.119350+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -740,10 +740,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-23T17:10:00+03:00",
                       "planned_end": "2026-11-23T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-23T16:59:40+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1027,8 +1027,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 60.61,
-            "numerator": 20,
+            "value": 63.64,
+            "numerator": 21,
             "denominator": 33,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1036,7 +1036,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1359,6 +1359,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62495",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-23T21:00:00+03:00",
+                      "planned_end": "2026-11-24T09:00:00+03:00",
+                      "actual_start": "2026-11-23T16:59:40+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "92925"
                     }
                   ]
                 },
@@ -1876,9 +1900,9 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 45.0,
+            "value": 42.86,
             "numerator": 9,
-            "denominator": 20,
+            "denominator": 21,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
@@ -2100,7 +2124,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 11,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2264,6 +2288,30 @@
                   ]
                 },
                 {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62495",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-23T21:00:00+03:00",
+                      "planned_end": "2026-11-24T09:00:00+03:00",
+                      "actual_start": "2026-11-23T16:59:40+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "92925"
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800131972",
                   "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
                   "slots": [
@@ -2368,9 +2416,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 16.67,
+            "value": 16.0,
             "numerator": 4,
-            "denominator": 24,
+            "denominator": 25,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2475,7 +2523,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2800,6 +2848,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
+                  "slots": [
+                    {
+                      "slot_id": "92925",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T17:10:00+03:00",
+                      "planned_end": "2026-11-23T23:00:00+03:00",
+                      "actual_start": "2026-11-23T16:59:40+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800131972",
                   "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
                   "slots": [
@@ -2964,7 +3035,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 22,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3302,6 +3373,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 5 минут",
                       "late_seconds": 306,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
+                  "slots": [
+                    {
+                      "slot_id": "92925",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T17:10:00+03:00",
+                      "planned_end": "2026-11-23T23:00:00+03:00",
+                      "actual_start": "2026-11-23T16:59:40+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
