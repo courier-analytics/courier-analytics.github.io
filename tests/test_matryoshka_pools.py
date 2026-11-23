@@ -8,9 +8,12 @@ class Pools(unittest.TestCase):
   now=datetime.now(timezone.utc)
   self.assertIn('Пул: 0',label('1',now,{'1':{'verified':True,'limit':0,'observed_at':now.isoformat()}}))
   self.assertIn('нет подтверждённых',label('2',now,{}))
- def test_stale_and_unverified_cannot_appear_current(self):
+ def test_check_time_is_shown_without_arbitrary_age_warning(self):
   now=datetime.now(timezone.utc);row={'verified':True,'limit':5,'observed_at':(now-timedelta(hours=1)).isoformat()}
-  self.assertIn('устарело',label('1',now,{'1':row}))
+  text=label('1',now,{'1':row})
+  self.assertNotIn('устарело',text)
+  self.assertIn('проверен в 1С',text)
+  self.assertIn((now-timedelta(hours=1)).astimezone(__import__('zoneinfo').ZoneInfo('Europe/Moscow')).strftime('%d.%m %H:%M'),text)
   row['verified']=False
   self.assertIn('нет подтверждённых',label('1',now,{'1':row}))
 if __name__=='__main__':unittest.main()

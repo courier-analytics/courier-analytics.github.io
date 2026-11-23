@@ -21,8 +21,7 @@ def label(identity,now,pools):
   observed=datetime.fromisoformat(row['observed_at']);value=row['limit']
   if row.get('verified') is not True or type(value) is not int or value<0 or observed.tzinfo is None or observed>now+timedelta(minutes=2):raise ValueError()
  except (KeyError,TypeError,ValueError):return 'Пул: нет подтверждённых данных 1С'
- stale=' · устарело' if now-observed>timedelta(minutes=30) else ''
- return f'Пул: {value} · 1С {observed.astimezone(TZ):%d.%m %H:%M} МСК{stale}'
+ return f'Пул: {value} · проверен в 1С {observed.astimezone(TZ):%d.%m %H:%M} МСК'
 def main():
  snapshot=json.loads((ROOT/'matryoshka-monitor.json').read_text())
  if snapshot.get('verified') is not True:raise ValueError('Unverified participants')

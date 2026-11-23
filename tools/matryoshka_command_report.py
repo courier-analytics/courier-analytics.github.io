@@ -74,11 +74,9 @@ def render(snapshot, number, now, rosters=None, idle_days=None, pools=None):
         name = ' '.join(str(p.get('name') or cid).split())[:200]
         rows.append((ds or 'Не определён', name, cid, tt, transport, stage, count))
     rows.sort(key=lambda r: (idle_info[r[2]][0] if idle_days is not None else r[0], r[1].casefold(), r[2]))
-    header = 'Матрёшка' + (' · ' + number if number else ' · все участники') + '\nДанные на ' + observed.astimezone(now.tzinfo).strftime('%d.%m.%Y %H:%M') + ' МСК'
+    header = 'Матрёшка' + (' · ' + number if number else ' · все участники') + '\nSuperset: получено ' + observed.astimezone(now.tzinfo).strftime('%d.%m.%Y %H:%M') + ' МСК'
     if idle_days is not None:
         header = header.replace('Матрёшка', 'Матрёшка · без доставок ' + str(idle_days) + ' полных дня', 1)
-    if now - observed > timedelta(minutes=30):
-        header += '\n⚠ Данные старше 30 минут.'
     footer = ''
     if idle_days is not None:
         pass
