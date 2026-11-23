@@ -28,3 +28,16 @@ class Notifications(unittest.TestCase):
     self.assertNotIn('Сохранено в 1С и проверено',api.call_args.args[2]['text'])
    db.close()
 if __name__=='__main__':unittest.main()
+
+class ReissuedRouting(unittest.TestCase):
+ def test_reissued_8889_card_uses_new_group_not_old_message_binding(self):
+  with tempfile.TemporaryDirectory() as directory:
+   db=connect(Path(directory)/'cases.db');row=evidence();row['shop_id']=8889;ingest(db,[row],[])
+   db.execute("UPDATE cases SET state='ready',current_limit=8,target_limit=6,observed=?,message_id=7,message_chat_id=?",(time.time(),CONFIG['chat_id']));db.commit()
+   config={**CONFIG,'shop_routes':{'8889':-1003908974924}}
+   with patch('attendance_bot.api',return_value={'message_id':99}) as api:
+    notify(db,config,'test')
+    sends=[call for call in api.call_args_list if call.args[1]=='sendMessage']
+    self.assertEqual(len(sends),1);self.assertEqual(sends[0].args[2]['chat_id'],-1003908974924)
+    self.assertEqual(get(db,'a'*24)['message_chat_id'],-1003908974924)
+   db.close()
