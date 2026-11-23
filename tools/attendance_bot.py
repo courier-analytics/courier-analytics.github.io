@@ -71,7 +71,7 @@ def notify(db,config,token):
     root_config=config
     for row in db.execute("SELECT id FROM cases WHERE state='ready' AND current_limit IS NOT NULL AND target_limit IS NOT NULL AND notified=0").fetchall():
         case=get(db,row['id']);config=case_config(root_config,{**case,'message_id':None,'message_chat_id':None})
-        if case['state']=='ready' and (not case['observed'] or time.time()-case['observed']>300):
+        if case['state']=='ready' and (not case['observed'] or case['observed']>time.time()+120):
             db.execute("UPDATE cases SET state='need_limit' WHERE id=?",(case['id'],));db.commit();continue
         if case.get('message_id'):
             previous=case_config(root_config,case)

@@ -61,8 +61,7 @@ def callback_decision(db,identity,nonce,actor,chat_id,message_id,action,config,n
         if case['state']!='pending_review' or case['nonce']!=nonce or case['message_id']!=message_id:raise ValueError('Stale or already handled button')
         if action=='apply':
             if case['target_limit'] is None:raise ValueError('No verified target limit')
-            if not case['observed'] or not 0<=now-case['observed']<=300:
-                db.execute("UPDATE cases SET state='need_limit',nonce=?,actor=NULL WHERE id=?",(secrets.token_hex(4),identity));db.commit();return 'refresh'
+            if not case['observed'] or case['observed']>now+120:raise ValueError('Limit observation timestamp invalid')
             if proposed_target(case['current_limit'],case['payload']['proposed_measure'])!=case['target_limit']:raise ValueError('Displayed proposal mismatch')
         state='approved' if action=='apply' else 'skipped'
         db.execute('UPDATE cases SET state=?,actor=?,notified=0 WHERE id=?',(state,actor,identity));db.commit();return state

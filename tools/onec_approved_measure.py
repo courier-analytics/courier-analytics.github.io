@@ -49,13 +49,15 @@ def execute(page,private,identity,mode,study):
         config=json.loads(Path('/etc/superset-telegram/late-group.json').read_text())
         from attendance_routes import case_config
         config=case_config(config,case)
-        if case['actor'] not in config['approver_ids'] or not case['observed'] or not 0<=time.time()-case['observed']<=300:raise ValueError('Human approval missing or stale')
+        if case['actor'] not in config['approver_ids'] or not case['observed'] or case['observed']>time.time()+120:raise ValueError('Human approval missing or stale')
         from late_bot_group import load_token,api
         member=api(load_token(),'getChatMember',{'chat_id':config['chat_id'],'user_id':case['actor']})
         if member.get('status') not in ('administrator','creator') or member.get('user',{}).get('is_bot'):raise ValueError('Reviewer authority no longer verified')
         fresh_evidence(case)
         target=proposed_target(current,p['proposed_measure'])
-        if current!=case['current_limit'] or target!=case['target_limit']:raise ValueError('Current limit differs from individually approved values')
+        if current!=case['current_limit'] or target!=case['target_limit']:
+            db.execute("UPDATE cases SET state='need_limit',actor=NULL,target_limit=NULL,read_attempts=0,next_attempt=0 WHERE id=?",(identity,));db.commit()
+            return {'refresh_required':True,'applied':False}
         button=save_button(page);claim_write(db,identity)
         try:
             field=page.locator('[id="'+prefix+'ОграничениеНаКоличествоЗаказов_i0"]')

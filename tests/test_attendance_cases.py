@@ -26,10 +26,13 @@ class CaseApprovalTests(unittest.TestCase):
   for values in [{'actor':77},{'chat':-100999},{'msg':10}]:
    with self.assertRaises(ValueError):self.decide(**values)
   self.assertEqual(get(self.db,self.id)['state'],'pending_review')
- def test_stale_limit_needs_new_human_review(self):
-  self.assertEqual(self.decide(now=401),'refresh')
-  self.assertEqual(get(self.db,self.id)['state'],'need_limit')
-  with self.assertRaises(ValueError):claim_write(self.db,self.id)
+ def test_old_observation_can_approve_exact_displayed_values_for_live_recheck(self):
+  self.assertEqual(self.decide(now=3601),'approved')
+  case=get(self.db,self.id)
+  self.assertEqual((case['current_limit'],case['target_limit']),(5,4))
+ def test_future_observation_cannot_approve(self):
+  self.db.execute('UPDATE cases SET observed=9999 WHERE id=?',(self.id,));self.db.commit()
+  with self.assertRaises(ValueError):self.decide(now=101)
  def test_skip_and_original_exception_do_not_write(self):
   self.assertEqual(self.decide(action='skip'),'skipped')
   ingest(self.db,[evidence()],[])
