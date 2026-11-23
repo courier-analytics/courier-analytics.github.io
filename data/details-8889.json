@@ -53103,7 +53103,7 @@
       }
     },
     "2026-11-22": {
-      "generated_at": "2026-11-23T07:59:06.962390+00:00",
+      "generated_at": "2026-11-23T08:22:27.418322+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -57856,7 +57856,7 @@
       }
     },
     "2026-11-23": {
-      "generated_at": "2026-11-23T08:03:17.092285+00:00",
+      "generated_at": "2026-11-23T08:26:31.206661+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -57872,8 +57872,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 61.54,
-            "numerator": 32,
+            "value": 63.46,
+            "numerator": 33,
             "denominator": 52,
             "reason": null,
             "basis": "limited_slot_places"
@@ -58452,9 +58452,32 @@
               "planned_start": "2026-11-23T10:00:00+03:00",
               "planned_end": "2026-11-23T23:00:00+03:00",
               "capacity": 4,
-              "occupied": 3,
-              "free": 1,
+              "occupied": 4,
+              "free": 0,
               "couriers": [
+                {
+                  "courier_id": "1800134558",
+                  "name": "Абдугаффоров Саламшох Абдусаторович",
+                  "slots": [
+                    {
+                      "slot_id": "62490",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T10:00:00+03:00",
+                      "planned_end": "2026-11-23T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800126140",
                   "name": "Мандрыкин Виталий Артурович",
@@ -59251,8 +59274,32 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 6,
               "couriers": [
+                {
+                  "courier_id": "1800134558",
+                  "name": "Абдугаффоров Саламшох Абдусаторович",
+                  "slots": [
+                    {
+                      "slot_id": "62488",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-23T08:00:00+03:00",
+                      "planned_end": "2026-11-23T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Запись из плана снята; в текущих записях этого курьера источник подтверждает «Не вышел». Исходный план сохранён.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "62490"
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800122842",
                   "name": "Магомедов Абдула Шамилевич",
