@@ -2,20 +2,20 @@
   "shop_id": 7745,
   "records": {
     "2026-11-23": {
-      "generated_at": "2026-11-23T14:37:19.119350+00:00",
+      "generated_at": "2026-11-23T15:01:41.572377+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 70.27,
-            "numerator": 26,
-            "denominator": 37,
+            "value": 71.05,
+            "numerator": 27,
+            "denominator": 38,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 26,
+              "count": 27,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -518,6 +518,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132979",
+                  "name": "Сайфуллоев Мухаммаджон Исомидинович",
+                  "slots": [
+                    {
+                      "slot_id": "66946",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-23T17:00:00+03:00",
+                      "planned_end": "2026-11-24T01:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800026006",
                   "name": "Тарамов Казбек Хусейнович",
                   "slots": [
@@ -845,8 +868,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 76.92,
-            "numerator": 30,
+            "value": 79.49,
+            "numerator": 31,
             "denominator": 39,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1715,9 +1738,33 @@
               "planned_start": "2026-11-23T17:00:00+03:00",
               "planned_end": "2026-11-24T01:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800132979",
+                  "name": "Сайфуллоев Мухаммаджон Исомидинович",
+                  "slots": [
+                    {
+                      "slot_id": "66946",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-23T17:00:00+03:00",
+                      "planned_end": "2026-11-24T01:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "1807346",
@@ -4087,9 +4134,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 37.84,
+            "value": 36.84,
             "numerator": 14,
-            "denominator": 37,
+            "denominator": 38,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -4200,7 +4247,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800115894",
@@ -4310,6 +4357,13 @@
                 {
                   "courier_id": "1800111023",
                   "name": "Саидов Мухамад Амиршоевич",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1800132979",
+                  "name": "Сайфуллоев Мухаммаджон Исомидинович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
