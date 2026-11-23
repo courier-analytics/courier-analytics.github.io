@@ -30661,7 +30661,7 @@
       }
     },
     "2026-11-16": {
-      "generated_at": "2026-11-23T12:03:10.585726+00:00",
+      "generated_at": "2026-11-23T12:58:35.515054+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -33599,7 +33599,7 @@
       }
     },
     "2026-11-17": {
-      "generated_at": "2026-11-23T12:00:13.220388+00:00",
+      "generated_at": "2026-11-23T12:55:40.290502+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37148,7 +37148,7 @@
       }
     },
     "2026-11-18": {
-      "generated_at": "2026-11-23T10:03:10.391487+00:00",
+      "generated_at": "2026-11-23T12:52:29.121683+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -40351,7 +40351,7 @@
       }
     },
     "2026-11-19": {
-      "generated_at": "2026-11-23T10:59:08.509001+00:00",
+      "generated_at": "2026-11-23T12:49:05.614955+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -53103,7 +53103,7 @@
       }
     },
     "2026-11-22": {
-      "generated_at": "2026-11-23T12:40:45.720243+00:00",
+      "generated_at": "2026-11-23T13:04:49.200909+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -57856,7 +57856,7 @@
       }
     },
     "2026-11-23": {
-      "generated_at": "2026-11-23T12:45:13.287982+00:00",
+      "generated_at": "2026-11-23T13:09:30.881657+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -58443,10 +58443,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-23T10:00:00+03:00",
                       "planned_end": "2026-11-23T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-23T15:55:44+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 5 часов 55 мин",
+                      "late_seconds": 21344,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -58870,8 +58870,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 57.58,
-            "numerator": 19,
+            "value": 60.61,
+            "numerator": 20,
             "denominator": 33,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -58879,7 +58879,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -59114,6 +59114,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": [
+                    {
+                      "slot_id": "62490",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T10:00:00+03:00",
+                      "planned_end": "2026-11-23T23:00:00+03:00",
+                      "actual_start": "2026-11-23T15:55:44+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 55 мин",
+                      "late_seconds": 21344,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800095811",
                   "name": "Миронов Илья Сергеевич",
                   "slots": [
@@ -59324,31 +59347,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 2,
+              "count": 1,
               "couriers": [
-                {
-                  "courier_id": "1800126140",
-                  "name": "Мандрыкин Виталий Артурович",
-                  "slots": [
-                    {
-                      "slot_id": "62490",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-23T10:00:00+03:00",
-                      "planned_end": "2026-11-23T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800030975",
                   "name": "Рузалиев Хайрулло Фатхуллоевич",
@@ -59719,16 +59719,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 42.11,
-            "numerator": 8,
-            "denominator": 19,
+            "value": 45.0,
+            "numerator": 9,
+            "denominator": 20,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -59815,6 +59815,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 54 минуты",
                       "late_seconds": 3273,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": [
+                    {
+                      "slot_id": "62490",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T10:00:00+03:00",
+                      "planned_end": "2026-11-23T23:00:00+03:00",
+                      "actual_start": "2026-11-23T15:55:44+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 55 мин",
+                      "late_seconds": 21344,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -60188,9 +60211,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 17.39,
+            "value": 16.67,
             "numerator": 4,
-            "denominator": 23,
+            "denominator": 24,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -60295,7 +60318,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -60518,6 +60541,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 54 минуты",
                       "late_seconds": 3273,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": [
+                    {
+                      "slot_id": "62490",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T10:00:00+03:00",
+                      "planned_end": "2026-11-23T23:00:00+03:00",
+                      "actual_start": "2026-11-23T15:55:44+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 55 мин",
+                      "late_seconds": 21344,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -60761,7 +60807,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 21,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -60961,6 +61007,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 8 часов 55 мин",
                       "late_seconds": 32114,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": [
+                    {
+                      "slot_id": "62490",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T10:00:00+03:00",
+                      "planned_end": "2026-11-23T23:00:00+03:00",
+                      "actual_start": "2026-11-23T15:55:44+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 55 мин",
+                      "late_seconds": 21344,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
