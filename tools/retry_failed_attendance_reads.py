@@ -8,10 +8,10 @@ from prepare_openvpn import private_write
 from pathlib import Path
 
 def eligible(db,day):
- return db.execute("SELECT * FROM cases WHERE state='held' AND result='limit_read_failed' AND json_extract(payload,'$.date')=? AND NOT EXISTS (SELECT 1 FROM ledger WHERE case_id=cases.id OR (day=json_extract(cases.payload,'$.date') AND courier=CAST(json_extract(cases.payload,'$.courier_id') AS TEXT)))",(day,)).fetchall()
+ return db.execute("SELECT * FROM cases WHERE state IN ('held','pending_review') AND target_limit IS NULL AND result='limit_read_failed' AND json_extract(payload,'$.date')=? AND NOT EXISTS (SELECT 1 FROM ledger WHERE case_id=cases.id OR (day=json_extract(cases.payload,'$.date') AND courier=CAST(json_extract(cases.payload,'$.courier_id') AS TEXT)))",(day,)).fetchall()
 
 def reset(db,identity):
- db.execute("UPDATE cases SET state='need_limit',current_limit=NULL,target_limit=NULL,observed=NULL,message_id=NULL,actor=NULL,result=NULL,notified=0,read_attempts=0,next_attempt=0,nonce=? WHERE id=? AND state='held' AND result='limit_read_failed'",(secrets.token_hex(4),identity));db.commit()
+ db.execute("UPDATE cases SET state='need_limit',current_limit=NULL,target_limit=NULL,observed=NULL,message_id=NULL,actor=NULL,result=NULL,notified=0,read_attempts=0,next_attempt=0,nonce=? WHERE id=? AND state IN ('held','pending_review') AND target_limit IS NULL AND result='limit_read_failed'",(secrets.token_hex(4),identity));db.commit()
 
 def main():
  os.umask(0o077)
