@@ -47,6 +47,8 @@ def execute(page,private,identity,mode,study):
             db.execute("UPDATE cases SET state='ready',current_limit=?,target_limit=?,observed=?,notified=0 WHERE id=?",(current,target,time.time(),identity));db.commit()
             return {'read':True,'current_limit':current,'target_limit':target}
         config=json.loads(Path('/etc/superset-telegram/late-group.json').read_text())
+        from attendance_routes import case_config
+        config=case_config(config,case)
         if case['actor'] not in config['approver_ids'] or not case['observed'] or not 0<=time.time()-case['observed']<=300:raise ValueError('Human approval missing or stale')
         from late_bot_group import load_token,api
         member=api(load_token(),'getChatMember',{'chat_id':config['chat_id'],'user_id':case['actor']})

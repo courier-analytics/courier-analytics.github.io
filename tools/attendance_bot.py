@@ -7,6 +7,7 @@ from attendance_review import review_rows,TZ,START
 from late_bot_group import load_token,api
 from audit_sources import audit
 from proxy_config import configured_proxy
+from attendance_routes import case_config
 CONFIG=Path('/etc/superset-telegram/late-group.json')
 
 def message(case):
@@ -52,7 +53,9 @@ def handle_callback(db,update,config,token):
     try:
         match=re.fullmatch(r'att:([as]):([0-9a-f]{24}):([0-9a-f]{8})',data)
         if not match:raise ValueError('Invalid callback')
-        action,identity,nonce=match.groups();actor=q['from']['id'];msg=q['message']
+        action,identity,nonce=match.groups()
+        config=case_config(config,get(db,identity))
+        actor=q['from']['id'];msg=q['message']
         if q['from'].get('is_bot') or actor not in config['approver_ids']:raise ValueError('Not an approver')
         member=api(token,'getChatMember',{'chat_id':config['chat_id'],'user_id':actor})
         if member.get('status') not in ('administrator','creator'):raise ValueError('Admin rights required')
@@ -65,11 +68,12 @@ def handle_callback(db,update,config,token):
     api(token,'answerCallbackQuery',{'callback_query_id':q['id'],'text':answer})
 
 def notify(db,config,token):
+    root_config=config
     for row in db.execute("SELECT id FROM cases WHERE state='ready' AND current_limit IS NOT NULL AND target_limit IS NOT NULL AND notified=0").fetchall():
-        case=get(db,row['id'])
+        case=get(db,row['id']);config=case_config(root_config,case)
         if case['state']=='ready' and (not case['observed'] or time.time()-case['observed']>300):
             db.execute("UPDATE cases SET state='need_limit' WHERE id=?",(case['id'],));db.commit();continue
-        db.execute("UPDATE cases SET state='sending' WHERE id=?",(case['id'],));db.commit()
+        db.execute("UPDATE cases SET state='sending',message_chat_id=? WHERE id=?",(config['chat_id'],case['id']));db.commit()
         try:
             sent=api(token,'sendMessage',{'chat_id':config['chat_id'],'text':message(case),'reply_markup':buttons(case)})
             if type(sent.get('message_id')) is not int:raise RuntimeError('Message unconfirmed')
@@ -77,7 +81,7 @@ def notify(db,config,token):
         except RuntimeError:
             db.execute("UPDATE cases SET state='delivery_uncertain',notified=1 WHERE id=?",(case['id'],));db.commit();raise
     for row in db.execute("SELECT id FROM cases WHERE state IN ('applied','skipped','withdrawn','uncertain','held') AND message_id IS NOT NULL AND notified=0").fetchall():
-        case=get(db,row['id']);p=case['payload']
+        case=get(db,row['id']);config=case_config(root_config,case);p=case['payload']
         labels={'held':'Проверка не завершена; изменение не подтверждено. Требуется разбор, повторного списания не будет.','applied':'Сохранено в 1С и проверено повторным открытием карточки.','skipped':'Пропущено ответственным.','withdrawn':'Случай отозван: факты изменились или дата закончилась.','uncertain':'Результат сохранения не подтверждён. Нужна ручная проверка; повторного уменьшения не будет.'}
         text=message(case)+'\n\n'+labels[case['state']]
         if case.get('actor'):text+='\nРешение принял Telegram ID '+str(case['actor'])
