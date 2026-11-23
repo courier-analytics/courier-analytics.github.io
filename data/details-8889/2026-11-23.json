@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-23": {
-      "generated_at": "2026-11-23T11:07:52.865206+00:00",
+      "generated_at": "2026-11-23T11:31:43.725817+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 67.44,
-            "numerator": 29,
-            "denominator": 43,
+            "value": 72.73,
+            "numerator": 32,
+            "denominator": 44,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -32,9 +32,56 @@
               "planned_start": "2026-11-23T06:00:00+03:00",
               "planned_end": "2026-11-23T19:00:00+03:00",
               "capacity": 3,
-              "occupied": 0,
-              "free": 3,
-              "couriers": []
+              "occupied": 2,
+              "free": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "62486",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T06:00:00+03:00",
+                      "planned_end": "2026-11-23T19:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
+                  "slots": [
+                    {
+                      "slot_id": "62486",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T06:00:00+03:00",
+                      "planned_end": "2026-11-23T19:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "1810928",
@@ -592,6 +639,41 @@
                       "actual_end": null,
                       "status": "Опоздал на 15 минут",
                       "late_seconds": 924,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "91187",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-23T15:00:00+03:00",
+              "planned_end": "2026-11-23T20:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800116355",
+                  "name": "Нестеренко Михаил Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "91187",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T15:00:00+03:00",
+                      "planned_end": "2026-11-23T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1328,8 +1410,32 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "62489",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-23T09:00:00+03:00",
+                      "planned_end": "2026-11-23T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Запись из плана снята; в текущих записях этого курьера источник подтверждает «Не вышел». Исходный план сохранён.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "62486"
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800126140",
                   "name": "Мандрыкин Виталий Артурович",
