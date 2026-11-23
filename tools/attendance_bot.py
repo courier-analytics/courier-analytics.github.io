@@ -95,7 +95,7 @@ def start_job(db):
     if mode=='read':db.execute("UPDATE cases SET state='reading',read_attempts=read_attempts+1 WHERE id=?",(row['id'],));db.commit()
     log=(ROOT/'worker.log').open('a')
     try:
-        process=subprocess.Popen(['flock','-n','/opt/courier-analytics/onec-roster.lock',
+        process=subprocess.Popen(['flock','-n','-E','75','/opt/courier-analytics/onec-roster.lock',
             '/opt/courier-analytics/onec-venv/bin/python',str(Path(__file__).with_name('probe_powerbi_vpn.py')),
             '--address','10.210.254.19','--onec-attendance-case',row['id'],'--onec-attendance-mode',mode],stdout=log,stderr=subprocess.STDOUT,start_new_session=False)
     except Exception:
@@ -107,6 +107,10 @@ def start_job(db):
 def finish_job(db,job,timeout=False):
     process,identity,mode,_=job
     state=get(db,identity)['state']
+    if mode=='read' and state=='reading' and process is not None and process.returncode==75:
+        db.execute("UPDATE cases SET state='need_limit',read_attempts=max(0,read_attempts-1),next_attempt=? WHERE id=?",(time.time()+60,identity));db.commit()
+        print('1C read deferred: shared connection busy; attempt not counted',flush=True)
+        return
     if state=='applying':
         db.execute("UPDATE cases SET state='uncertain',result='Worker interrupted; verify manually',notified=0 WHERE id=?",(identity,))
     elif state in ('approved','reading'):

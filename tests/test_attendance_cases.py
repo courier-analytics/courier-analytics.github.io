@@ -64,6 +64,13 @@ class WorkerFailureTests(CaseApprovalTests):
     self.assertEqual([r['id'] for r in queued],['b'*24])
    else:
     self.assertEqual(case['state'],'held');self.assertEqual(case['result'],'limit_read_failed')
+ def test_busy_shared_connection_does_not_exhaust_read_attempts(self):
+  from types import SimpleNamespace
+  self.db.execute("UPDATE cases SET state='reading',read_attempts=3 WHERE id=?",(self.id,));self.db.commit()
+  finish_job(self.db,(SimpleNamespace(returncode=75),self.id,'read',0))
+  case=get(self.db,self.id)
+  self.assertEqual(case['state'],'need_limit');self.assertEqual(case['read_attempts'],2)
+  self.assertGreater(case['next_attempt'],time.time())
  def test_failed_apply_never_queues_another_write(self):
   self.db.execute("UPDATE cases SET state='applying' WHERE id=?",(self.id,));self.db.commit()
   finish_job(self.db,(None,self.id,'apply',0))
