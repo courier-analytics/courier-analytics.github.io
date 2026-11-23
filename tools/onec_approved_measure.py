@@ -47,12 +47,12 @@ def execute(page,private,identity,mode,study):
             db.execute("UPDATE cases SET state='ready',current_limit=?,target_limit=?,observed=?,notified=0 WHERE id=?",(current,target,time.time(),identity));db.commit()
             return {'read':True,'current_limit':current,'target_limit':target}
         config=json.loads(Path('/etc/superset-telegram/late-group.json').read_text())
-        from attendance_routes import case_config
+        from attendance_routes import case_config,reviewer_allowed
         config=case_config(config,case)
-        if case['actor'] not in config['approver_ids'] or not case['observed'] or case['observed']>time.time()+120:raise ValueError('Human approval missing or stale')
+        if (not config.get('allow_group_members') and case['actor'] not in config['approver_ids']) or not case['observed'] or case['observed']>time.time()+120:raise ValueError('Human approval missing or stale')
         from late_bot_group import load_token,api
         member=api(load_token(),'getChatMember',{'chat_id':config['chat_id'],'user_id':case['actor']})
-        if member.get('status') not in ('administrator','creator') or member.get('user',{}).get('is_bot'):raise ValueError('Reviewer authority no longer verified')
+        if not reviewer_allowed(config,member,case['actor']):raise ValueError('Reviewer authority no longer verified')
         fresh_evidence(case)
         target=proposed_target(current,p['proposed_measure'])
         if current!=case['current_limit'] or target!=case['target_limit']:

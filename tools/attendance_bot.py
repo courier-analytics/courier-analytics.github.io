@@ -7,7 +7,7 @@ from attendance_review import review_rows,TZ,START
 from late_bot_group import load_token,api
 from audit_sources import audit
 from proxy_config import configured_proxy
-from attendance_routes import case_config
+from attendance_routes import case_config,reviewer_allowed
 CONFIG=Path('/etc/superset-telegram/late-group.json')
 
 def message(case):
@@ -56,9 +56,10 @@ def handle_callback(db,update,config,token):
         action,identity,nonce=match.groups()
         config=case_config(config,get(db,identity))
         actor=q['from']['id'];msg=q['message']
-        if q['from'].get('is_bot') or actor not in config['approver_ids']:raise ValueError('Not an approver')
+        if q['from'].get('is_bot'):raise ValueError('Not a human reviewer')
         member=api(token,'getChatMember',{'chat_id':config['chat_id'],'user_id':actor})
-        if member.get('status') not in ('administrator','creator'):raise ValueError('Admin rights required')
+        if not reviewer_allowed(config,member,actor):raise ValueError('Group reviewer rights required')
+        config={**config,'verified_member_id':actor}
         outcome=callback_decision(db,identity,nonce,actor,msg['chat']['id'],msg['message_id'],'apply' if action=='a' else 'skip',config)
         answer='Подтверждение принято; проверяем данные и сохраняем в 1С.' if outcome=='approved' else 'Пропущено.' if outcome=='skipped' else 'Лимит устарел. Перечитаем и запросим подтверждение заново.'
         # Strip buttons immediately; durable database state is the authority.

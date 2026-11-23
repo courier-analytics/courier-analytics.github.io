@@ -13,3 +13,16 @@ class Routes(unittest.TestCase):
   self.assertEqual(case_config(config,{'payload':{'shop_id':8889},'message_id':7})['chat_id'],-1004439978802)
   self.assertEqual(case_config(config,{'payload':{'shop_id':8889},'message_id':7,'message_chat_id':-1003908974924})['chat_id'],-1003908974924)
 if __name__=='__main__':unittest.main()
+
+class MemberReview(unittest.TestCase):
+ def test_only_current_human_members_can_review(self):
+  from attendance_routes import reviewer_allowed
+  config={'allow_group_members':True,'approver_ids':[]}
+  for status,allowed in [('member',True),('administrator',True),('creator',True),('left',False),('kicked',False),('restricted',False)]:
+   self.assertEqual(reviewer_allowed(config,{'user':{'id':7,'is_bot':False},'status':status},7),allowed)
+  self.assertFalse(reviewer_allowed(config,{'user':{'id':7,'is_bot':True},'status':'administrator'},7))
+ def test_policy_only_applies_in_selected_shop_group(self):
+  config={'chat_id':-1,'shop_routes':{'8889':-2},'member_approval_shops':[8889]}
+  self.assertTrue(case_config(config,{'payload':{'shop_id':8889}})['allow_group_members'])
+  self.assertFalse(case_config(config,{'payload':{'shop_id':8889},'message_id':9})['allow_group_members'])
+  self.assertFalse(case_config(config,{'payload':{'shop_id':7745}})['allow_group_members'])
