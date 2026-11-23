@@ -2,7 +2,7 @@ import json,sys,tempfile,time,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from attendance_cases import connect,ingest,get,callback_decision,claim_write,proposed_target
-from attendance_bot import buttons,message
+from attendance_bot import buttons,message,finish_job
 CONFIG={'chat_id':-1001234567890,'approver_ids':[111,222]}
 def evidence():return {'event_id':'a'*64,'date':'2026-11-22','shop_id':9107,'courier_id':'123','slot_id':9,'name':'Fixture Courier',
  'planned_start':'2026-11-22T08:00:00+03:00','actual_start':'2026-11-22T08:40:00+03:00','source_status':'Опоздал на 40 мин',
@@ -49,4 +49,24 @@ class CaseApprovalTests(unittest.TestCase):
   case=get(self.db,self.id);text=message(case)
   self.assertIn('Текущий лимит: 5',text);self.assertIn('Предлагаемый лимит: 4',text)
   for button in buttons(case)['inline_keyboard'][0]:self.assertLessEqual(len(button['callback_data'].encode()),64)
+class WorkerFailureTests(CaseApprovalTests):
+ def test_failed_read_yields_queue_then_stops_after_three_attempts(self):
+  other=evidence();other['event_id']='b'*64;other['courier_id']='456'
+  ingest(self.db,[other],[])
+  for attempt in (1,2,3):
+   self.db.execute("UPDATE cases SET state='reading',read_attempts=? WHERE id=?",(attempt,self.id));self.db.commit()
+   finish_job(self.db,(None,self.id,'read',0))
+   case=get(self.db,self.id)
+   if attempt<3:
+    self.assertEqual(case['state'],'need_limit')
+    self.assertGreater(case['next_attempt'],time.time())
+    queued=self.db.execute("SELECT id FROM cases WHERE state='need_limit' AND next_attempt<=?",(time.time(),)).fetchall()
+    self.assertEqual([r['id'] for r in queued],['b'*24])
+   else:
+    self.assertEqual(case['state'],'held');self.assertEqual(case['result'],'limit_read_failed')
+ def test_failed_apply_never_queues_another_write(self):
+  self.db.execute("UPDATE cases SET state='applying' WHERE id=?",(self.id,));self.db.commit()
+  finish_job(self.db,(None,self.id,'apply',0))
+  self.assertEqual(get(self.db,self.id)['state'],'uncertain')
+  with self.assertRaises(ValueError):claim_write(self.db,self.id)
 if __name__=='__main__':unittest.main()

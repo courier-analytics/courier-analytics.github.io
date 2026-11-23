@@ -15,7 +15,9 @@ def message(case):
     text=f"ДС {p['shop_id']} · {p['date']}\n{p['name']} · ID {p['courier_id']}\nНачало слота: {p['planned_start']}\nСтатус источника: {p['source_status']}"+late
     if case['current_limit'] is not None:text+='\nТекущий лимит: '+str(case['current_limit'])
     if case['target_limit'] is not None:text+='\nПредлагаемый лимит: '+str(case['target_limit'])+'\nПроверьте обстоятельства перед подтверждением.'
-    else:text+='\nФакты или допустимый лимит требуют ручной проверки. Применение недоступно.'
+    else:
+        text+='\nФакты или допустимый лимит требуют ручной проверки. Применение недоступно.'
+        if case.get('result')=='limit_read_failed':text+='\nНе удалось прочитать лимит в 1С после трёх попыток; уменьшение не выполнялось.'
     return text
 
 def buttons(case):
@@ -87,10 +89,10 @@ def notify(db,config,token):
 
 def start_job(db):
     # Approved cases take priority so the reviewed current value remains fresh.
-    row=db.execute("SELECT id,state FROM cases WHERE state IN ('approved','need_limit') ORDER BY CASE state WHEN 'approved' THEN 0 ELSE 1 END,rowid LIMIT 1").fetchone()
+    row=db.execute("SELECT id,state FROM cases WHERE state IN ('approved','need_limit') AND next_attempt<=? ORDER BY CASE state WHEN 'approved' THEN 0 ELSE 1 END,next_attempt,rowid LIMIT 1",(time.time(),)).fetchone()
     if not row:return None
     mode='apply' if row['state']=='approved' else 'read'
-    if mode=='read':db.execute("UPDATE cases SET state='reading' WHERE id=?",(row['id'],));db.commit()
+    if mode=='read':db.execute("UPDATE cases SET state='reading',read_attempts=read_attempts+1 WHERE id=?",(row['id'],));db.commit()
     log=(ROOT/'worker.log').open('a')
     try:
         process=subprocess.Popen(['flock','-n','/opt/courier-analytics/onec-roster.lock',
@@ -110,8 +112,13 @@ def finish_job(db,job,timeout=False):
     elif state in ('approved','reading'):
         # A failed pre-write verification needs another human review, not an
         # automatic retry of an approved financial/work allocation change.
-        target='held' if mode=='apply' else 'need_limit'
-        db.execute('UPDATE cases SET state=?,target_limit=NULL,actor=NULL,result=?,notified=0 WHERE id=?',(target,'Worker did not complete; no verified write',identity))
+        attempts=get(db,identity)['read_attempts']
+        exhausted=mode=='read' and attempts>=3
+        target='held' if mode=='apply' or exhausted else 'need_limit'
+        delay=(120 if attempts<=1 else 600) if mode=='read' and not exhausted else 0
+        reason='limit_read_failed' if exhausted else 'Worker did not complete; no verified write'
+        db.execute('UPDATE cases SET state=?,target_limit=NULL,actor=NULL,result=?,next_attempt=?,notified=0 WHERE id=?',(target,reason,time.time()+delay,identity))
+        print('1C worker did not complete:',mode,'read attempt:',attempts,'next state:',target,flush=True)
     db.commit()
 
 def main():
@@ -135,13 +142,17 @@ def main():
     try:
         while True:
             config=json.loads(CONFIG.read_text())
+            db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('last_loop',?)",(datetime.now(TZ).isoformat(),));db.commit()
             if job and (job[0].poll() is not None or time.monotonic()-job[3]>300):
                 if job[0].poll() is None:job[0].terminate();job[0].wait(timeout=10)
                 finish_job(db,job);job=None;next_job=time.monotonic()+30
             if time.monotonic()>=next_collect:
-                try:collect(db,config)
+                try:
+                    collect(db,config)
+                    db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('last_source_success',?)",(datetime.now(TZ).isoformat(),));db.commit()
                 except (OSError,ValueError,RuntimeError,KeyError,TypeError) as error:
                     print('Evidence refresh failed:',type(error).__name__,flush=True)
+                    db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('last_source_error',?)",(type(error).__name__,));db.commit()
                 next_collect=time.monotonic()+120
             notify(db,config,token)
             if not job and time.monotonic()>=next_job:job=start_job(db)
@@ -161,5 +172,6 @@ def main():
 if __name__=='__main__':
     try:main()
     except Exception as error:
-        print('Attendance bot stopped: '+type(error).__name__+'. No automatic write retries; inspect private state.',flush=True)
+        safe=str(error) if re.fullmatch(r'Telegram HTTP \d{3}|Unsupported setup method',str(error)) else type(error).__name__
+        print('Attendance bot stopped: '+safe+'. No automatic write retries; inspect private state.',flush=True)
         raise SystemExit(78 if isinstance(error,ValueError) or 'Telegram HTTP 409' in str(error) else 1)

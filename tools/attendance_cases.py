@@ -9,6 +9,9 @@ def connect(path=DB):
     path=Path(path);path.parent.mkdir(mode=0o700,parents=True,exist_ok=True)
     db=sqlite3.connect(path,timeout=15);db.row_factory=sqlite3.Row
     db.execute('CREATE TABLE IF NOT EXISTS cases (id TEXT PRIMARY KEY,event TEXT UNIQUE,payload TEXT,state TEXT,current_limit INTEGER,target_limit INTEGER,observed REAL,message_id INTEGER,nonce TEXT,actor INTEGER,result TEXT,notified INTEGER DEFAULT 0)')
+    columns={r[1] for r in db.execute('PRAGMA table_info(cases)')}
+    for name,definition in [('read_attempts','INTEGER NOT NULL DEFAULT 0'),('next_attempt','REAL NOT NULL DEFAULT 0')]:
+        if name not in columns:db.execute('ALTER TABLE cases ADD COLUMN '+name+' '+definition)
     db.execute('CREATE TABLE IF NOT EXISTS ledger (day TEXT,courier TEXT,state TEXT,case_id TEXT,PRIMARY KEY(day,courier))')
     db.execute('CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY,value TEXT)');db.commit()
     return db
@@ -32,7 +35,7 @@ def ingest(db,rows,ignored):
             if existing['state'] in TERMINAL or existing['state']=='applying':continue
             if fingerprint(json.loads(existing['payload']))==fingerprint(row):continue
             # Any factual change invalidates an earlier proposed/approved action.
-            db.execute('UPDATE cases SET payload=?,state=?,current_limit=NULL,target_limit=NULL,observed=NULL,nonce=?,actor=NULL,notified=0 WHERE id=?',
+            db.execute('UPDATE cases SET payload=?,state=?,current_limit=NULL,target_limit=NULL,observed=NULL,nonce=?,actor=NULL,read_attempts=0,next_attempt=0,notified=0 WHERE id=?',
                 (json.dumps(row,ensure_ascii=False),state,secrets.token_hex(4),identity))
         else:
             db.execute('INSERT INTO cases(id,event,payload,state,nonce,notified) VALUES (?,?,?,?,?,?)',

@@ -18,6 +18,8 @@ def local():
             with sqlite3.connect(path.as_uri()+'?mode=ro',uri=True) as db:
                 column='state' if table=='cases' else 'status'
                 print(filename,json.dumps(dict(db.execute(f'SELECT {column},count(*) FROM {table} GROUP BY {column}').fetchall())))
+                if table=='cases':
+                    print('Bot heartbeat:',json.dumps(dict(db.execute("SELECT key,value FROM meta WHERE key IN ('last_loop','last_source_success','last_source_error')").fetchall())))
         except sqlite3.Error as e:print(filename,'read error:',type(e).__name__)
     path=BASE/'matryoshka-monitor.json'
     if path.exists():
