@@ -608,7 +608,14 @@ def check_login(address, private=Path('/opt/courier-analytics/private'), local_m
                             'count':interface.get('native_roster',{}).get('count')}
                 if inspect_courier:
                     from onec_courier_card import inspect as inspect_card
-                    result['courier_study'] = inspect_card(page,private,*inspect_courier)
+                    expected_id=pool_identity
+                    if attendance_task:
+                        from onec_approved_measure import load_task
+                        expected_id=load_task(*attendance_task)['payload']['courier_id']
+                    if expected_id:
+                        result['courier_study'] = inspect_card(page,private,*inspect_courier,expected_id=expected_id)
+                    else:
+                        result['courier_study'] = inspect_card(page,private,*inspect_courier)
                     if pool_identity:
                         from matryoshka_pools import save_read
                         save_read(page,pool_identity,inspect_courier[1])

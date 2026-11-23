@@ -32,7 +32,13 @@ def fresh_evidence(case):
 def execute(page,private,identity,mode,study):
     with connect() as db:
         case=load_task(identity,mode);p=case['payload']
-        if not study.get('card_opened') or study.get('candidate',{}).get('courier_id')!=p['courier_id'] or study['shop_id']!=p['shop_id']:raise ValueError('Opened card identity not verified')
+        if not study.get('card_opened') or study.get('candidate',{}).get('courier_id')!=p['courier_id'] or study['shop_id']!=p['shop_id']:
+            if mode=='read':
+                reason=study.get('search_failure','card_identity_not_verified')
+                if reason not in ('courier_id_not_unique','courier_name_id_mismatch','courier_search_unstable'):reason='card_identity_not_verified'
+                db.execute('UPDATE cases SET last_read_error=? WHERE id=?',(reason,identity));db.commit()
+            raise ValueError('Opened card identity not verified')
+        if mode=='read':db.execute('UPDATE cases SET last_read_error=NULL WHERE id=?',(identity,));db.commit()
         prefix,current,taking=card(page,p['courier_id'],p['name'])
         if mode=='read':
             try:target=proposed_target(current,p['proposed_measure'])

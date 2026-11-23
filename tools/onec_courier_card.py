@@ -21,6 +21,17 @@ def matching_row(data,name):
     return matches[0]
 
 
+def matching_id_row(data,identity,name):
+    heads=data.get('headings',[])
+    if heads.count('Id')!=1 or heads.count('Name')!=1:raise ValueError('Courier list columns changed')
+    a,b=heads.index('Id'),heads.index('Name')
+    rows=[(i,r) for i,r in enumerate(data.get('rows',[])) if len(r)==len(heads) and r[a].strip()==identity]
+    if len(rows)!=1:raise ValueError('courier_id_not_unique')
+    index,row=rows[0]
+    if normalized(row[b])!=normalized(name):raise ValueError('courier_name_id_mismatch')
+    return {'courier_id':identity,'name':row[b].strip(),'row_index':index}
+
+
 SEARCH_IDS=('form0_ПолеПоиска_i0','form0_ФормаКоманднаяПанельСписокСтрокаПоиска_i0')
 
 
@@ -74,7 +85,7 @@ def _save(page,folder,status):
             if os.path.exists(name):os.unlink(name)
 
 
-def inspect(page,private,shop,name):
+def inspect(page,private,shop,name,expected_id=None):
     if shop not in (8889,7745,9107) or not isinstance(name,str) or len(name)>150 or len(name.split())<2 or any(ord(c)<32 for c in name):
         raise ValueError('Invalid read-only courier study target')
     from onec_browser import open_roster_navigation
@@ -109,8 +120,25 @@ def inspect(page,private,shop,name):
         if search.input_value().strip()!=name or point.input_value().strip()!=str(shop):raise ValueError('Search scope not retained')
         status['stage']='verify_search_results'
         first=_grid(page);page.wait_for_timeout(1200);second=_grid(page)
-        if first!=second:raise ValueError('Courier search still changing')
-        candidate=matching_row(second,name);status['candidate']=candidate
+        try:
+            if first!=second:raise ValueError('Courier search still changing')
+            candidate=matching_id_row(second,expected_id,name) if expected_id else matching_row(second,name)
+        except ValueError:
+            if not expected_id:raise
+            status['stage']='verify_id_search'
+            search.click();search.press('Control+A');search.press('Backspace');search.press_sequentially(expected_id,delay=80);search.press('Enter')
+            page.wait_for_timeout(2500)
+            if search.input_value().strip()!=expected_id or point.input_value().strip()!=str(shop):raise ValueError('Courier ID search scope changed')
+            previous=None;candidate=None
+            for attempt in range(4):
+                second=_grid(page)
+                if second==previous:
+                    try:candidate=matching_id_row(second,expected_id,name);break
+                    except ValueError as error:
+                        status['search_failure']=str(error)
+                previous=second;page.wait_for_timeout(1200)
+            if candidate is None:raise ValueError(status.get('search_failure','courier_search_unstable'))
+        status['candidate']=candidate
         status['visible_results']=len(second['rows'])
         status['list_completeness_verified']=False
         # Read-only opening of a candidate is allowed; it is not authorization

@@ -10,7 +10,7 @@ def connect(path=DB):
     db=sqlite3.connect(path,timeout=15);db.row_factory=sqlite3.Row
     db.execute('CREATE TABLE IF NOT EXISTS cases (id TEXT PRIMARY KEY,event TEXT UNIQUE,payload TEXT,state TEXT,current_limit INTEGER,target_limit INTEGER,observed REAL,message_id INTEGER,nonce TEXT,actor INTEGER,result TEXT,notified INTEGER DEFAULT 0)')
     columns={r[1] for r in db.execute('PRAGMA table_info(cases)')}
-    for name,definition in [('read_attempts','INTEGER NOT NULL DEFAULT 0'),('next_attempt','REAL NOT NULL DEFAULT 0')]:
+    for name,definition in [('read_attempts','INTEGER NOT NULL DEFAULT 0'),('next_attempt','REAL NOT NULL DEFAULT 0'),('last_read_error','TEXT')]:
         if name not in columns:db.execute('ALTER TABLE cases ADD COLUMN '+name+' '+definition)
     db.execute('CREATE TABLE IF NOT EXISTS ledger (day TEXT,courier TEXT,state TEXT,case_id TEXT,PRIMARY KEY(day,courier))')
     db.execute('CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY,value TEXT)');db.commit()

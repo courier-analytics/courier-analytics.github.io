@@ -1,7 +1,7 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from onec_courier_card import matching_row,search_field_id,SEARCH_IDS
+from onec_courier_card import matching_row,matching_id_row,search_field_id,SEARCH_IDS
 class CardStudyTests(unittest.TestCase):
  def test_exact_name_id_and_row_index(self):
   data={'headings':['Id','Name'],'rows':[['1','Другое имя'],['123','ЖУКОВ  МАКСИМ СЕРГЕЕВИЧ']]}
@@ -10,6 +10,12 @@ class CardStudyTests(unittest.TestCase):
  def test_duplicate_name_or_no_id_stops(self):
   for rows in [[['1','Жуков Максим'],['2','Жуков Максим']],[['','Жуков Максим']],[['1','Жуков Максимов']]]:
    with self.assertRaises(ValueError):matching_row({'headings':['Id','Name'],'rows':rows},'Жуков Максим')
+class IdSearchTests(unittest.TestCase):
+ def test_id_disambiguates_same_name_without_weakening_identity(self):
+  data={'headings':['Id','Name'],'rows':[['123','Одинаковое Имя'],['456','Одинаковое Имя']]}
+  self.assertEqual(matching_id_row(data,'456','Одинаковое Имя')['row_index'],1)
+  with self.assertRaisesRegex(ValueError,'courier_name_id_mismatch'):matching_id_row(data,'456','Другое Имя')
+  with self.assertRaisesRegex(ValueError,'courier_id_not_unique'):matching_id_row(data,'789','Одинаковое Имя')
 class SearchControlTests(unittest.TestCase):
  def test_both_evidenced_layouts(self):
   for identity in SEARCH_IDS:
