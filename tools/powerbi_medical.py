@@ -504,6 +504,18 @@ def candidate_records(rows, observed_at, shops=None):
     return {'schema_version': 1, 'records': result}
 
 
+def isolated_candidate_records(rows,observed_at,shops=None):
+    selected=shops if shops is not None else [s for s in SHOPS if any(isinstance(r[0],str) and re.search(r'(?<!\d)'+str(s)+r'(?!\d)',r[0]) for r in rows)]
+    records=[];unavailable=[]
+    for shop in selected:
+        try:records.extend(candidate_records(rows,observed_at,shops=(shop,))['records'])
+        except ValueError as error:
+            unavailable.append({'shop_id':shop,'reason':str(error)})
+            print('Medical shop unavailable; prior published record preserved: '+str(shop),flush=True)
+    if not records:raise ValueError('No verified medical shops available')
+    return {'schema_version':1,'records':records,'unavailable_shops':unavailable}
+
+
 def response_shape(payload):
     if not isinstance(payload, dict):
         return {'json_object': False}
@@ -539,7 +551,7 @@ def collect_candidate(address, credentials, folder, private_folder, shops=None):
     query = request['queries'][0]['Query']['Commands'][0]['SemanticQueryDataShapeCommand']['Query']
     try:
         rows = decode_rows(data, [item['Name'] for item in query['Select']])
-        candidate = candidate_records(rows, datetime.now(timezone.utc), shops=shops)
+        candidate = isolated_candidate_records(rows, datetime.now(timezone.utc), shops=shops)
     except (ValueError, KeyError, TypeError, IndexError, AttributeError) as error:
         print('Aggregate validation: ' + str(error), flush=True)
         print('Safe response shape: ' + json.dumps(response_shape(data), ensure_ascii=False), flush=True)
