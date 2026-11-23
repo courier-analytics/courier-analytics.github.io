@@ -14,10 +14,14 @@ SHOPS=(8889,7745,9107)
 TZ=ZoneInfo('Europe/Moscow')
 
 
-def proposed_measure(status,late_seconds,has_start=False):
+def proposed_measure(status,late_seconds,has_start=False,shop_id=None):
     if status=='no_show':
         return {'operation':'set','value':1} if not has_start else None
     if status!='late' or late_seconds is None:return None
+    if shop_id==8889:
+        if late_seconds>180*60:return {'operation':'set','value':1}
+        if late_seconds>30*60:return {'operation':'subtract','value':2}
+        return None
     if late_seconds>90*60:return {'operation':'subtract','value':2}
     if late_seconds>30*60:return {'operation':'subtract','value':1}
     return None
@@ -42,7 +46,7 @@ def review_rows(observations,day):
                     seconds=(actual-planned).total_seconds()
                 # Missing timestamp or conflicting facts must remain evidence
                 # requiring investigation, never an automatically issued measure.
-                measure=proposed_measure(status,seconds,bool(value))
+                measure=proposed_measure(status,seconds,bool(value),shop['shop_id'])
                 unresolved=status=='no_show' and bool(value) or status=='late' and seconds is None
                 if measure is None and not unresolved:continue
                 cid=person['courier_id']
