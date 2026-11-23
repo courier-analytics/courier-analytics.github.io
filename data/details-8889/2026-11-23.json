@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-23": {
-      "generated_at": "2026-11-23T11:31:43.725817+00:00",
+      "generated_at": "2026-11-23T11:57:01.420142+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -68,10 +68,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-23T06:00:00+03:00",
                       "planned_end": "2026-11-23T19:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-23T14:35:58+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 8 часов 35 мин",
+                      "late_seconds": 30958,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -612,15 +612,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-23T10:00:00+03:00",
                       "planned_end": "2026-11-23T23:00:00+03:00",
-                      "actual_start": "2026-11-22T10:14:30+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 10 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 4 часа 48 мин",
+                      "late_seconds": 17324,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-22. Исходное начало: 2026-11-23T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-22",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1209,15 +1209,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-23T10:00:00+03:00",
                       "planned_end": "2026-11-23T23:00:00+03:00",
-                      "actual_start": "2026-11-22T10:14:30+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 10 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 4 часа 48 мин",
+                      "late_seconds": 17324,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-22. Исходное начало: 2026-11-23T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-22",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1829,8 +1829,8 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 29.41,
-            "numerator": 5,
+            "value": 35.29,
+            "numerator": 6,
             "denominator": 17,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1838,7 +1838,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -1877,6 +1877,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 54 минуты",
                       "late_seconds": 3273,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62490",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T10:00:00+03:00",
+                      "planned_end": "2026-11-23T23:00:00+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 48 мин",
+                      "late_seconds": 17324,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1959,7 +1982,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 12,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2100,29 +2123,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800095811",
-                  "name": "Миронов Илья Сергеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62490",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-23T10:00:00+03:00",
-                      "planned_end": "2026-11-23T23:00:00+03:00",
-                      "actual_start": "2026-11-22T10:14:30+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 10 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-22. Исходное начало: 2026-11-23T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-22",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800122176",
                   "name": "Нефедов Даниил Сергеевич",
                   "slots": [
@@ -2250,16 +2250,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 10.53,
-            "numerator": 2,
-            "denominator": 19,
+            "value": 15.0,
+            "numerator": 3,
+            "denominator": 20,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800133631",
@@ -2275,6 +2275,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 31 мин",
                       "late_seconds": 5493,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
+                  "slots": [
+                    {
+                      "slot_id": "62486",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T06:00:00+03:00",
+                      "planned_end": "2026-11-23T19:00:00+03:00",
+                      "actual_start": "2026-11-23T14:35:58+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 8 часов 35 мин",
+                      "late_seconds": 30958,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2507,15 +2530,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-23T10:00:00+03:00",
                       "planned_end": "2026-11-23T23:00:00+03:00",
-                      "actual_start": "2026-11-22T10:14:30+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 10 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 4 часа 48 мин",
+                      "late_seconds": 17324,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-22. Исходное начало: 2026-11-23T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-22",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -2731,7 +2754,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2895,6 +2918,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
+                  "slots": [
+                    {
+                      "slot_id": "62486",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T06:00:00+03:00",
+                      "planned_end": "2026-11-23T19:00:00+03:00",
+                      "actual_start": "2026-11-23T14:35:58+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 8 часов 35 мин",
+                      "late_seconds": 30958,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800095811",
                   "name": "Миронов Илья Сергеевич",
                   "slots": [
@@ -2904,15 +2950,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-23T10:00:00+03:00",
                       "planned_end": "2026-11-23T23:00:00+03:00",
-                      "actual_start": "2026-11-22T10:14:30+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
                       "actual_end": null,
-                      "status": "Вышел раньше на 10 часов",
-                      "late_seconds": 0,
+                      "status": "Опоздал на 4 часа 48 мин",
+                      "late_seconds": 17324,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-22. Исходное начало: 2026-11-23T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-22",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
