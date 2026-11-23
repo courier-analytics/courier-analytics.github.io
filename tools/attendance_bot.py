@@ -75,7 +75,8 @@ def notify(db,config,token):
             db.execute("UPDATE cases SET state='need_limit' WHERE id=?",(case['id'],));db.commit();continue
         if case.get('message_id'):
             previous=case_config(root_config,case)
-            api(token,'editMessageReplyMarkup',{'chat_id':previous['chat_id'],'message_id':case['message_id'],'reply_markup':{'inline_keyboard':[]}})
+            try:api(token,'editMessageReplyMarkup',{'chat_id':previous['chat_id'],'message_id':case['message_id'],'reply_markup':{'inline_keyboard':[]}})
+            except RuntimeError:pass  # Old nonce is already invalid; missing old messages must not block routing.
         db.execute("UPDATE cases SET state='sending',message_chat_id=? WHERE id=?",(config['chat_id'],case['id']));db.commit()
         try:
             sent=api(token,'sendMessage',{'chat_id':config['chat_id'],'text':message(case),'reply_markup':buttons(case)})
