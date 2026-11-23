@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-23T21:21:26.079904+00:00",
+      "generated_at": "2026-11-23T21:45:11.196674+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 78.05,
-            "numerator": 32,
+            "value": 80.49,
+            "numerator": 33,
             "denominator": 41,
             "reason": null,
             "basis": "limited_slot_places"
@@ -43,9 +43,32 @@
               "planned_start": "2026-11-24T07:00:00+03:00",
               "planned_end": "2026-11-24T20:00:00+03:00",
               "capacity": 6,
-              "occupied": 4,
-              "free": 2,
+              "occupied": 5,
+              "free": 1,
               "couriers": [
+                {
+                  "courier_id": "1800134558",
+                  "name": "Абдугаффоров Саламшох Абдусаторович",
+                  "slots": [
+                    {
+                      "slot_id": "62499",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T07:00:00+03:00",
+                      "planned_end": "2026-11-24T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800116805",
                   "name": "Алиджонзода Хусейн",
