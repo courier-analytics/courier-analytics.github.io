@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-23T22:59:42.227240+00:00",
+      "generated_at": "2026-11-23T23:23:13.319189+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -2429,10 +2429,10 @@
         },
         "planned_completion": {
           "aggregate": {
-            "value": null,
+            "value": 0.0,
             "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "denominator": 1,
+            "reason": null,
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
@@ -2443,8 +2443,32 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1699912869",
+                  "name": "Постников Алексей Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "66942",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-23T14:00:00+03:00",
+                      "planned_end": "2026-11-24T01:00:00+03:00",
+                      "actual_start": "2026-11-23T13:53:35+03:00",
+                      "actual_end": "2026-11-24T00:00:00+03:00",
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Нет окончательных данных",
@@ -2452,7 +2476,7 @@
               "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         },
         "training": {
