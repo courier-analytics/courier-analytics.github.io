@@ -184,6 +184,18 @@ class PowerBIMedicalTests(unittest.TestCase):
             with self.subTest(prop=prop), self.assertRaises(ValueError):
                 build_request(source)
 
+    def test_period_filter_is_preserved_with_its_actual_value(self):
+        source=definition()
+        condition={'Condition':{'Comparison':{'ComparisonKind':2,
+            'Left':{'Column':{'Expression':{'SourceRef':{'Entity':'main_mc06'}},'Property':'Период, дней'}},
+            'Right':{'Literal':{'Value':'30L'}}}}}
+        source['definition']['exploration']['filters']=json.dumps([{'filter':{'Where':[condition]}}])
+        request=build_request(source)
+        query=request['queries'][0]['Query']['Commands'][0]['SemanticQueryDataShapeCommand']['Query']
+        predicates=json.dumps(query['Where'],ensure_ascii=False)
+        self.assertIn('Период, дней',predicates);self.assertIn('30L',predicates)
+        self.assertEqual(query['Where'][0]['Condition']['Comparison']['ComparisonKind'],2)
+
     def test_decodes_dictionary_and_repeat_masks_before_calculating_valid_books(self):
         rows = decode_rows(response(), ['field' + str(i) for i in range(5)])
         self.assertEqual(rows, [['ДС 5818', 100, 90, 10, .2], ['ДС 7745', 100, 90, 5, .15]])

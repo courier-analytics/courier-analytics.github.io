@@ -77,3 +77,12 @@ class BackfillTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             select_rows({'records': []}, {'records': []}, {},
                         {(5818, '2026-10-25'): {'slot_fill'}}, '2026-10-25')
+
+class PartialSourceIsolation(unittest.TestCase):
+    def test_missing_bookings_preserve_only_affected_record(self):
+        old={'shop_id':4747,'date':'2026-11-16','metrics':{'planned_attendance':{'value':80,'reason':None}}}
+        bad={'shop_id':4747,'date':'2026-11-16','metrics':{'planned_attendance':{'value':None,'reason':'planned_booking_missing_from_current_data'}}}
+        good={'shop_id':9107,'date':'2026-11-16','metrics':{'planned_attendance':{'value':90,'reason':None}}}
+        result=select_rows({'records':[bad,good]},{'records':[old]}, {},{(4747,'2026-11-16'):{'planned_attendance'},(9107,'2026-11-16'):{'planned_attendance'}},'2026-11-16')
+        self.assertEqual(result['records'][0],old)
+        self.assertEqual(result['records'][1]['metrics']['planned_attendance']['value'],90)

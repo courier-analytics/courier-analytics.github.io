@@ -129,6 +129,12 @@ def select_rows(fresh, previous, manual, work, day):
             if m == 'shift_marked' and day < TOOL_START.get(key[0], day) else
             (None, 'zero_denominator'))]
         if failures:
+            # Isolate missing source bookings to this shop/day. Preserve its
+            # entire prior record; never replace missing facts with zeros.
+            if key in old and all(f['reason']=='planned_booking_missing_from_current_data' for f in failures):
+                rows.append(old[key])
+                print('History source incomplete; prior shop/day preserved: '+json.dumps({'shop_id':key[0],'date':day,'checks':failures}),flush=True)
+                continue
             raise BackfillCheckError(failures)
         # Existing manually entered facts win over retrospective automatic facts.
         row = dict(row)

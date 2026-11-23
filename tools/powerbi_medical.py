@@ -93,6 +93,7 @@ def scoped_conditions(query, scopes, diagnostic=None):
                 ref = value['Column'].get('Expression', {}).get('SourceRef', {})
                 entity = ref.get('Entity') or aliases.get(ref.get('Source')) or root_sources.get(ref.get('Source'))
                 if (entity, prop) not in {('main_mc06', 'name_TT'), ('main_mc06', 'format'),
+                                         ('main_mc06', 'Период, дней'),
                                          ('customer_complaint', 'tag')}:
                     label = entity if isinstance(entity, str) and len(entity) < 256 else '<unresolved>'
                     field = prop if isinstance(prop, str) and len(prop) < 256 else '<unknown>'
