@@ -30,7 +30,7 @@ def load_token(root=ROOT):
 
 
 def api(token,method,payload=None):
-    if method not in ('getMe','getChat','getChatMember','getChatAdministrators','getWebhookInfo','sendMessage','getUpdates','answerCallbackQuery','editMessageReplyMarkup','editMessageText'):
+    if method not in ('deleteMessage','getMe','getChat','getChatMember','getChatAdministrators','getWebhookInfo','sendMessage','getUpdates','answerCallbackQuery','editMessageReplyMarkup','editMessageText'):
         raise ValueError('Unsupported setup method')
     request=urllib.request.Request('https://api.telegram.org/bot'+token+'/'+method,
         data=json.dumps(payload or {}).encode(),headers={'Content-Type':'application/json'},method='POST')
