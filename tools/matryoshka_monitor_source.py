@@ -79,6 +79,19 @@ def collect(opener, token):
             metric('argMax(shopno, tuple(date_delivered,id_order))', 'last_shop'),
             metric("formatDateTime(max(date_delivered), '%Y-%m-%d %H:%i:%S', 'Europe/Moscow')", 'last_delivery')],
             selected, end, success + ' AND ' + where))
+        overdue_by_id = {}
+        try:
+            overdue_rows = fetch(opener, token, query(['id_courier'], ['cnt_all_0_sla_offline'],
+                selected, end, success + ' AND ' + where))
+            for row in overdue_rows:
+                cid = str(row['id_courier']); value = row['cnt_all_0_sla_offline']
+                if cid not in by_id or cid in overdue_by_id or type(value) is not int or value < 0:
+                    raise ValueError('Invalid overdue source count')
+                overdue_by_id[cid] = value
+            if set(overdue_by_id) != set(by_id):raise ValueError('Incomplete overdue counts')
+        except (ValueError, KeyError, TypeError):
+            overdue_by_id = {}
+            print('Matryoshka overdue counts unavailable; not replaced with zero', flush=True)
         seen = set()
         for r in counts:
             identity = str(r['id_courier'])
@@ -97,7 +110,11 @@ def collect(opener, token):
                 'current_type': code, 'current_type_verified': True,
                 'type_basis': 'latest_successful_order_not_live_courier_card',
                 'count_scope': 'delivered_since_enrollment', 'delivered_orders': count,
-                'last_shop': r['last_shop'], 'last_delivery': r['last_delivery']})
+                'last_shop': r['last_shop'], 'last_delivery': r['last_delivery'],
+                'overdue_orders': overdue_by_id.get(identity),
+                'overdue_basis': 'cnt_all_0_sla_offline',
+                'overdue_scope': 'delivered_since_enrollment',
+                'overdue_verified': identity in overdue_by_id})
         if seen != set(by_id):
             raise ValueError('Incomplete program history')
     output = {'verified': True, 'observed_at': datetime.now(ZoneInfo('Europe/Moscow')).isoformat(),

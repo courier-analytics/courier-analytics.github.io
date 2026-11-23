@@ -89,6 +89,10 @@ def render(snapshot, number, now, rosters=None, idle_days=None, pools=None):
     entries = []
     for i, (ds, name, cid, tt, transport, stage, count) in enumerate(rows, 1):
         entry = f'{i}. {name}\nID {cid} · ДС {ds} · ТТ {tt}\n{transport} · этап {stage} · заказов {count}'
+        participant = next(p for p in snapshot['participants'] if p['courier_id']==cid)
+        overdue=participant.get('overdue_orders')
+        confirmed=participant.get('overdue_verified') is True and participant.get('overdue_scope')=='delivered_since_enrollment' and type(overdue) is int and overdue>=0
+        entry += '\nПросрочено за период Матрёшки: ' + (str(overdue) if confirmed else 'нет данных')
         from matryoshka_pools import label
         entry += '\n' + label(cid,now,pools or {})
         if idle_days is not None:

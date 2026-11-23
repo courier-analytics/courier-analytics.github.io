@@ -53,7 +53,8 @@ class MonitorTests(unittest.TestCase):
         fetch.side_effect = [[{'id_courier':123}],
           [{'id_courier':123,'program_first_order':'2026-11-13 12:00:00'}],
           [{'id_courier':123,'qty_orders_delivered':305,'observed_type':'25',
-            'courier_name':'TEST','last_shop':7745,'last_delivery':'2026-11-16 11:00:00'}]]
+            'courier_name':'TEST','last_shop':7745,'last_delivery':'2026-11-16 11:00:00'}],
+          [{'id_courier':123,'cnt_all_0_sla_offline':17}]]
         collect(None, None)
         queries = [call.args[2]['queries'][0] for call in fetch.call_args_list]
         self.assertNotIn('shopno', str(queries[1]['filters']))
@@ -61,6 +62,10 @@ class MonitorTests(unittest.TestCase):
         self.assertNotIn('id_courier_type IN', queries[2]['extras']['where'])
         snapshot = json.loads(write.call_args.args[1])
         self.assertEqual(snapshot['participants'][0]['delivered_orders'], 305)
+        self.assertEqual(snapshot['participants'][0]['overdue_orders'],17)
+        self.assertTrue(snapshot['participants'][0]['overdue_verified'])
+        self.assertEqual(queries[3]['extras']['where'],queries[2]['extras']['where'])
+        self.assertNotIn('shopno',str(queries[3]['filters']))
 
     @patch('matryoshka_monitor_source.private_write')
     @patch('matryoshka_monitor_source.fetch', return_value=[])
@@ -68,3 +73,19 @@ class MonitorTests(unittest.TestCase):
         collect(None,None)
         self.assertEqual(fetch.call_count,1)
         self.assertEqual(json.loads(write.call_args.args[1])['participants'],[])
+
+    @patch('matryoshka_monitor_source.private_write')
+    @patch('matryoshka_monitor_source.fetch')
+    def test_missing_overdue_is_not_zero_and_does_not_break_total(self, fetch, write):
+        fetch.side_effect=[[{'id_courier':123}],
+            [{'id_courier':123,'program_first_order':'2026-11-13 12:00:00'}],
+            [{'id_courier':123,'qty_orders_delivered':10,'observed_type':'24','courier_name':'TEST',
+              'last_shop':9107,'last_delivery':'2026-11-16 11:00:00'}],ValueError('unavailable')]
+        collect(None,None)
+        snapshot=json.loads(write.call_args.args[1]);person=snapshot['participants'][0]
+        self.assertIsNone(person['overdue_orders']);self.assertFalse(person['overdue_verified'])
+        from matryoshka_command_report import render
+        now=datetime.fromisoformat(snapshot['observed_at'])
+        self.assertIn('Просрочено за период Матрёшки: нет данных',render(snapshot,'',now)[0])
+        person.update(overdue_orders=0,overdue_verified=True)
+        self.assertIn('Просрочено за период Матрёшки: 0',render(snapshot,'',now)[0])
