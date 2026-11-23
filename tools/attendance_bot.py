@@ -18,7 +18,7 @@ def message(case):
     else:
         text+='\nФакты или допустимый лимит требуют ручной проверки. Применение недоступно.'
         if case.get('result')=='limit_read_failed':text+='\nНе удалось прочитать лимит в 1С после трёх попыток; уменьшение не выполнялось.'
-        detail={'courier_id_not_unique':'Карточка с указанным ID не найдена однозначно в выбранном ДС.', 'courier_name_id_mismatch':'ID найден, но ФИО в 1С отличается от источника.', 'courier_search_unstable':'Список 1С не завершил обновление.', 'card_identity_not_verified':'Не удалось подтвердить открытую карточку курьера.'}.get(case.get('last_read_error'))
+        detail={'courier_id_not_found':'Указанный ID не найден в выбранном ДС после ожидания результатов.', 'courier_id_not_unique':'Карточка с указанным ID не найдена однозначно в выбранном ДС.', 'courier_name_id_mismatch':'ID найден, но ФИО в 1С отличается от источника.', 'courier_search_unstable':'Список 1С не завершил обновление.', 'card_identity_not_verified':'Не удалось подтвердить открытую карточку курьера.'}.get(case.get('last_read_error'))
         if detail:text+='\nПричина: '+detail
     return text
 

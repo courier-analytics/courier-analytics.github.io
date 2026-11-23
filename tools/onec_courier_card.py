@@ -26,6 +26,7 @@ def matching_id_row(data,identity,name):
     if heads.count('Id')!=1 or heads.count('Name')!=1:raise ValueError('Courier list columns changed')
     a,b=heads.index('Id'),heads.index('Name')
     rows=[(i,r) for i,r in enumerate(data.get('rows',[])) if len(r)==len(heads) and r[a].strip()==identity]
+    if not rows:raise ValueError('courier_id_not_found')
     if len(rows)!=1:raise ValueError('courier_id_not_unique')
     index,row=rows[0]
     if normalized(row[b])!=normalized(name):raise ValueError('courier_name_id_mismatch')
@@ -57,6 +58,21 @@ def _grid(page):
         return {headings:Array.from(root.querySelectorAll('.gridHead .gridLine > .gridBox')).map(e=>e.innerText.trim()),
             rows:Array.from(root.querySelectorAll('.gridBody > .gridLine')).map(r=>Array.from(r.children).filter(e=>e.classList.contains('gridBox')).map(e=>e.innerText.trim()))};
     }''')
+
+
+def wait_for_courier_result(page,name,identity=None,attempts=40):
+    previous=None;last_error='courier_search_unstable'
+    for attempt in range(attempts):
+        data=_grid(page)
+        try:
+            candidate=matching_id_row(data,identity,name) if identity else matching_row(data,name)
+        except ValueError as error:
+            last_error=str(error);previous=None
+        else:
+            if data==previous:return data,candidate
+            previous=data
+        page.wait_for_timeout(500)
+    raise ValueError(last_error)
 
 
 def _save(page,folder,status):
@@ -119,34 +135,34 @@ def inspect(page,private,shop,name,expected_id=None):
         page.wait_for_timeout(2500)
         if search.input_value().strip()!=name or point.input_value().strip()!=str(shop):raise ValueError('Search scope not retained')
         status['stage']='verify_search_results'
-        first=_grid(page);page.wait_for_timeout(1200);second=_grid(page)
         try:
-            if first!=second:raise ValueError('Courier search still changing')
-            candidate=matching_id_row(second,expected_id,name) if expected_id else matching_row(second,name)
+            second,candidate=wait_for_courier_result(page,name,expected_id)
         except ValueError:
             if not expected_id:raise
             status['stage']='verify_id_search'
             search.click();search.press('Control+A');search.press('Backspace');search.press_sequentially(expected_id,delay=80);search.press('Enter')
-            page.wait_for_timeout(2500)
             if search.input_value().strip()!=expected_id or point.input_value().strip()!=str(shop):raise ValueError('Courier ID search scope changed')
-            previous=None;candidate=None
-            for attempt in range(4):
-                second=_grid(page)
-                if second==previous:
-                    try:candidate=matching_id_row(second,expected_id,name);break
-                    except ValueError as error:
-                        status['search_failure']=str(error)
-                previous=second;page.wait_for_timeout(1200)
-            if candidate is None:raise ValueError(status.get('search_failure','courier_search_unstable'))
+            try:second,candidate=wait_for_courier_result(page,name,expected_id)
+            except ValueError as error:
+                status['search_failure']=str(error)
+                raise
         status['candidate']=candidate
         status['visible_results']=len(second['rows'])
         status['list_completeness_verified']=False
         # Read-only opening of a candidate is allowed; it is not authorization
         # to change this record. Exact card ID remains a separate verification.
         status['stage']='open_candidate'
+        second,candidate=wait_for_courier_result(page,name,expected_id)
         rows=grid.locator('.gridBody > .gridLine')
         rows.nth(candidate['row_index']).locator('.gridBox').nth(second['headings'].index('Name')).dblclick(timeout=5000)
-        page.wait_for_timeout(2000)
+        page.wait_for_function(r"""args=>Array.from(document.querySelectorAll('#mainSurface input')).some(e=>{
+            if(!/^form[1-9][0-9]*_Наименование_i0$/.test(e.id)||!e.getClientRects().length)return false;
+            const norm=s=>s.trim().replace(/\s+/g,' ').toLowerCase();
+            if(norm(e.value)!==norm(args.name))return false;
+            if(!args.identity)return true;
+            const id=document.getElementById(e.id.split('_')[0]+'_Идентификатор_i0');
+            return id&&id.value.trim()===args.identity;
+        })""",arg={'name':name,'identity':expected_id},timeout=20000)
         # Do not infer success from the banner: require a new form with a real
         # name field containing the candidate, rather than the global user name.
         name_fields=page.locator('#mainSurface input:not([type="password"])').evaluate_all('''es=>es.filter(e=>e.id.startsWith('form')&&!e.id.startsWith('form0_')&&e.value).map(e=>({id:e.id,value:e.value}))''')

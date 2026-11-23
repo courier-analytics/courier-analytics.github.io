@@ -35,7 +35,7 @@ def execute(page,private,identity,mode,study):
         if not study.get('card_opened') or study.get('candidate',{}).get('courier_id')!=p['courier_id'] or study['shop_id']!=p['shop_id']:
             if mode=='read':
                 reason=study.get('search_failure','card_identity_not_verified')
-                if reason not in ('courier_id_not_unique','courier_name_id_mismatch','courier_search_unstable'):reason='card_identity_not_verified'
+                if reason not in ('courier_id_not_found','courier_id_not_unique','courier_name_id_mismatch','courier_search_unstable'):reason='card_identity_not_verified'
                 db.execute('UPDATE cases SET last_read_error=? WHERE id=?',(reason,identity));db.commit()
             raise ValueError('Opened card identity not verified')
         if mode=='read':db.execute('UPDATE cases SET last_read_error=NULL WHERE id=?',(identity,));db.commit()
