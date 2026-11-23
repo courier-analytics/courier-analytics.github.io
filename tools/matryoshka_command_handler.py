@@ -38,7 +38,10 @@ class Handler:
                                 snapshot=json.loads((ROOT/'matryoshka-monitor.json').read_text())
                                 roster=Path('/opt/courier-contacts/connected/all.json')
                                 rosters=json.loads(roster.read_text()) if roster.exists() else {}
-                                pages=render(snapshot,number,datetime.now(ZoneInfo('Europe/Moscow')),rosters,idle_days=3 if msg.get('text','').split()[0].split('@')[0].lower()=='/matreshka_idle' else None)
+                                pool_path=ROOT/'matryoshka-pools.json'
+                                try:pools=json.loads(pool_path.read_text())
+                                except (OSError,ValueError):pools={}
+                                pages=render(snapshot,number,datetime.now(ZoneInfo('Europe/Moscow')),rosters,pools=pools,idle_days=3 if msg.get('text','').split()[0].split('@')[0].lower()=='/matreshka_idle' else None)
                             except Exception:pages=['Список Матрёшки пока недоступен: источник не подтверждён или данные некорректны.']
                         try:
                             for page in pages:

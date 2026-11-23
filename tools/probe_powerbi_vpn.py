@@ -82,6 +82,7 @@ def main():
     parser.add_argument('--onec-replace-login', action='store_true', help='Replace 1C credentials using hidden prompts; requires --onec-login')
     parser.add_argument('--onec-route-check', action='store_true', help='Compare unauthenticated 1C entry, loader and auth-settings responses')
     parser.add_argument('--onec-inspect-ui', action='store_true', help='Save private interface screenshot and control labels after 1C login')
+    parser.add_argument('--onec-pool-id',help='Read-only verified courier order pool')
     parser.add_argument('--onec-attendance-case')
     parser.add_argument('--onec-attendance-mode',choices=('read','apply'))
     parser.add_argument('--onec-test-decrement-zhukov',action='store_true',help='Authorized one-time test: ID1799892335, 7394 to7393, Save and close, verify')
@@ -90,6 +91,7 @@ def main():
     parser.add_argument('--onec-inspect-roster', action='store_true', help='Open References/Couriers for private read-only interface inspection; requires --onec-login')
     args = parser.parse_args()
     address = private_address(args.address)
+    if args.onec_pool_id and (not args.onec_pool_id.isdigit() or not args.onec_courier_name or not args.onec_login or args.onec_attendance_case or args.onec_test_decrement_zhukov):raise ValueError('Invalid read-only pool task')
     if bool(args.onec_attendance_case)!=bool(args.onec_attendance_mode):raise ValueError('Specify attendance case and operation')
     if args.onec_attendance_case:
         if args.onec_test_decrement_zhukov or args.onec_inspect_roster:raise ValueError('Incompatible task modes')
@@ -187,6 +189,7 @@ def main():
                                            inspect_roster=args.onec_inspect_roster,
                                            inspect_courier=(args.onec_courier_shop,args.onec_courier_name) if args.onec_courier_name else None,
                                            decrement_test=args.onec_test_decrement_zhukov,
+                                           pool_identity=args.onec_pool_id,
                                            attendance_task=(args.onec_attendance_case,args.onec_attendance_mode) if args.onec_attendance_case else None) else 1
                 except BrowserError:
                     raise ValueError('1C browser operation failed; private details hidden') from None

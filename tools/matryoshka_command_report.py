@@ -25,7 +25,7 @@ def membership(rosters):
             result.setdefault(str(row.get('courier_id', '')), set()).add(str(shop))
     return result
 
-def render(snapshot, number, now, rosters=None, idle_days=None):
+def render(snapshot, number, now, rosters=None, idle_days=None, pools=None):
     if snapshot.get('verified') is not True:
         raise ValueError('unverified')
     observed = datetime.fromisoformat(snapshot['observed_at'].replace('Z', '+00:00'))
@@ -89,6 +89,8 @@ def render(snapshot, number, now, rosters=None, idle_days=None):
     entries = []
     for i, (ds, name, cid, tt, transport, stage, count) in enumerate(rows, 1):
         entry = f'{i}. {name}\nID {cid} · ДС {ds} · ТТ {tt}\n{transport} · этап {stage} · заказов {count}'
+        from matryoshka_pools import label
+        entry += '\n' + label(cid,now,pools or {})
         if idle_days is not None:
             last, days = idle_info[cid]
             entry += '\nПоследняя доставка: ' + last.astimezone(now.tzinfo).strftime('%d.%m.%Y %H:%M') + ' МСК · без доставок ' + str(days) + ' полных дн.'
