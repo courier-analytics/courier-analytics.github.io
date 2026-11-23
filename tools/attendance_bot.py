@@ -65,7 +65,7 @@ def handle_callback(db,update,config,token):
     api(token,'answerCallbackQuery',{'callback_query_id':q['id'],'text':answer})
 
 def notify(db,config,token):
-    for row in db.execute("SELECT id FROM cases WHERE state IN ('ready','held') AND notified=0").fetchall():
+    for row in db.execute("SELECT id FROM cases WHERE state='ready' AND current_limit IS NOT NULL AND target_limit IS NOT NULL AND notified=0").fetchall():
         case=get(db,row['id'])
         if case['state']=='ready' and (not case['observed'] or time.time()-case['observed']>300):
             db.execute("UPDATE cases SET state='need_limit' WHERE id=?",(case['id'],));db.commit();continue
@@ -76,9 +76,9 @@ def notify(db,config,token):
             db.execute("UPDATE cases SET state='pending_review',message_id=?,notified=1 WHERE id=?",(sent['message_id'],case['id']));db.commit()
         except RuntimeError:
             db.execute("UPDATE cases SET state='delivery_uncertain',notified=1 WHERE id=?",(case['id'],));db.commit();raise
-    for row in db.execute("SELECT id FROM cases WHERE state IN ('applied','skipped','withdrawn','uncertain') AND notified=0").fetchall():
+    for row in db.execute("SELECT id FROM cases WHERE state IN ('applied','skipped','withdrawn','uncertain','held') AND message_id IS NOT NULL AND notified=0").fetchall():
         case=get(db,row['id']);p=case['payload']
-        labels={'applied':'Сохранено в 1С и проверено повторным открытием карточки.','skipped':'Пропущено ответственным.','withdrawn':'Случай отозван: факты изменились или дата закончилась.','uncertain':'Результат сохранения не подтверждён. Нужна ручная проверка; повторного уменьшения не будет.'}
+        labels={'held':'Проверка не завершена; изменение не подтверждено. Требуется разбор, повторного списания не будет.','applied':'Сохранено в 1С и проверено повторным открытием карточки.','skipped':'Пропущено ответственным.','withdrawn':'Случай отозван: факты изменились или дата закончилась.','uncertain':'Результат сохранения не подтверждён. Нужна ручная проверка; повторного уменьшения не будет.'}
         text=message(case)+'\n\n'+labels[case['state']]
         if case.get('actor'):text+='\nРешение принял Telegram ID '+str(case['actor'])
         if not case['message_id']:
