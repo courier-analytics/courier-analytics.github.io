@@ -83,8 +83,9 @@ def main():
     args = p.parse_args()
     os.umask(0o077)
     before = datetime.now(ZoneInfo('Europe/Moscow'))
-    subprocess.run([sys.executable, str(Path(__file__).with_name('probe_superset_vpn.py')),
-                    '--check-login', '--collect-matryoshka'], check=True, timeout=155)
+    subprocess.run(['flock', '-w', '180', '/opt/courier-analytics/onec-roster.lock',
+                    sys.executable, str(Path(__file__).with_name('probe_superset_vpn.py')),
+                    '--wait-vpn', '120', '--check-login', '--collect-matryoshka'], check=True, timeout=480)
     snapshot = json.loads((ROOT / 'matryoshka-monitor.json').read_text())
     if datetime.fromisoformat(snapshot['observed_at']) < before:
         raise ValueError('Snapshot was not refreshed')
