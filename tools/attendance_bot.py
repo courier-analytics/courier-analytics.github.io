@@ -130,6 +130,8 @@ def main():
     if chat.get('id')!=config['chat_id'] or chat.get('title','').casefold()!='опоздавшие':raise ValueError('Bound group changed')
     if api(token,'getMe')['id']!=config['bot_id']:raise ValueError('Bot identity changed')
     if api(token,'getWebhookInfo').get('url'):raise ValueError('Existing webhook must be integrated; not replaced')
+    from matryoshka_command_handler import Handler
+    matryoshka=Handler(token,api(token,'getMe')['username'])
     db=connect()
     # Ambiguous states after a process crash are never retried as writes/sends.
     db.execute("UPDATE cases SET state='uncertain',notified=0 WHERE state='applying'")
@@ -160,10 +162,11 @@ def main():
             updates=api(token,'getUpdates',{'offset':int(offset[0]) if offset else 0,'timeout':10,'limit':100})
             for update in updates:
                 # Persist unrelated updates rather than silently discarding them.
-                if not update.get('callback_query',{}).get('data','').startswith('att:'):
+                if update.get('callback_query',{}).get('data','').startswith('att:'):
+                    handle_callback(db,update,config,token)
+                elif not matryoshka.handle(update):
                     directory=ROOT/'other-updates';directory.mkdir(mode=0o700,exist_ok=True)
                     (directory/(str(update['update_id'])+'.json')).write_text(json.dumps(update,ensure_ascii=False))
-                else:handle_callback(db,update,config,token)
                 db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('telegram_offset',?)",(str(update['update_id']+1),));db.commit()
     finally:
         if job and job[0].poll() is None:job[0].terminate()
