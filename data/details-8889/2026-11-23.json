@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-23": {
-      "generated_at": "2026-11-23T05:21:13.010383+00:00",
+      "generated_at": "2026-11-23T05:43:59.664244+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 61.54,
-            "numerator": 32,
+            "value": 63.46,
+            "numerator": 33,
             "denominator": 52,
             "reason": null,
             "basis": "limited_slot_places"
@@ -78,9 +78,32 @@
               "planned_start": "2026-11-23T07:00:00+03:00",
               "planned_end": "2026-11-23T20:00:00+03:00",
               "capacity": 6,
-              "occupied": 1,
-              "free": 5,
+              "occupied": 2,
+              "free": 4,
               "couriers": [
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "62487",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T07:00:00+03:00",
+                      "planned_end": "2026-11-23T20:00:00+03:00",
+                      "actual_start": "2026-11-23T08:31:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 31 мин",
+                      "late_seconds": 5493,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800012132",
                   "name": "Шеров Абдумалик Сайвалиевич",
@@ -2028,17 +2051,41 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
-            "denominator": 9,
+            "value": 10.0,
+            "numerator": 1,
+            "denominator": 10,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "62487",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T07:00:00+03:00",
+                      "planned_end": "2026-11-23T20:00:00+03:00",
+                      "actual_start": "2026-11-23T08:31:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 31 мин",
+                      "late_seconds": 5493,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Вышли по плану",
@@ -2278,7 +2325,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2386,6 +2433,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "62487",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T07:00:00+03:00",
+                      "planned_end": "2026-11-23T20:00:00+03:00",
+                      "actual_start": "2026-11-23T08:31:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 31 мин",
+                      "late_seconds": 5493,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
