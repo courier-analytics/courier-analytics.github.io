@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-23": {
-      "generated_at": "2026-11-23T13:29:22.242374+00:00",
+      "generated_at": "2026-11-23T14:12:45.661271+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 71.11,
+            "value": 69.57,
             "numerator": 32,
-            "denominator": 45,
+            "denominator": 46,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -721,6 +721,41 @@
               ]
             },
             {
+              "slot_id": "92925",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-23T17:10:00+03:00",
+              "planned_end": "2026-11-23T23:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
+                  "slots": [
+                    {
+                      "slot_id": "92925",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-23T17:10:00+03:00",
+                      "planned_end": "2026-11-23T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "slot_id": "62493",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "limited",
@@ -970,33 +1005,9 @@
               "planned_start": "2026-11-23T21:00:00+03:00",
               "planned_end": "2026-11-24T09:00:00+03:00",
               "capacity": 4,
-              "occupied": 1,
-              "free": 3,
-              "couriers": [
-                {
-                  "courier_id": "1800134731",
-                  "name": "Норзикулов Озоджон Хасан Угли",
-                  "slots": [
-                    {
-                      "slot_id": "62495",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-23T21:00:00+03:00",
-                      "planned_end": "2026-11-24T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 4,
+              "couriers": []
             },
             {
               "slot_id": "62496",
@@ -1522,7 +1533,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 8,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800120138",
@@ -1580,29 +1591,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-23T18:00:00+03:00",
                       "planned_end": "2026-11-23T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800134731",
-                  "name": "Норзикулов Озоджон Хасан Угли",
-                  "slots": [
-                    {
-                      "slot_id": "62495",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-23T21:00:00+03:00",
-                      "planned_end": "2026-11-24T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -1717,7 +1705,7 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -1827,6 +1815,29 @@
                       "late_seconds": null,
                       "removed_at": "2026-11-23T11:43:50+03:00",
                       "removed_by": "Джамалдаев А",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62495",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-23T21:00:00+03:00",
+                      "planned_end": "2026-11-24T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-23T16:33:06+03:00",
+                      "removed_by": "Норзикулов Озоджон Хасан Угли",
                       "note": "Снятие подтверждено историей бронирования.",
                       "worked_through": null,
                       "shift_start_source_date": null,
