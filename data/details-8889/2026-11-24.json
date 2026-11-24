@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T10:49:27.260794+00:00",
+      "generated_at": "2026-11-24T11:13:41.084935+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 83.72,
-            "numerator": 36,
+            "value": 86.05,
+            "numerator": 37,
             "denominator": 43,
             "reason": null,
             "basis": "limited_slot_places"
@@ -32,9 +32,33 @@
               "planned_start": "2026-11-24T06:00:00+03:00",
               "planned_end": "2026-11-24T19:00:00+03:00",
               "capacity": 3,
-              "occupied": 0,
-              "free": 3,
-              "couriers": []
+              "occupied": 1,
+              "free": 2,
+              "couriers": [
+                {
+                  "courier_id": "1800130023",
+                  "name": "Хасанов Амирхон Турабекович",
+                  "slots": [
+                    {
+                      "slot_id": "62498",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T06:00:00+03:00",
+                      "planned_end": "2026-11-24T19:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62499",
@@ -832,7 +856,7 @@
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1570,8 +1594,31 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "1907833",
+                      "slot_type": "manual",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T14:00:00+03:00",
+                      "planned_end": "2026-11-24T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800094612",
                   "name": "Маматкулов Асадбек Низомиддин Угли",
@@ -1668,7 +1715,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 7,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800120138",
@@ -1726,29 +1773,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-24T18:30:00+03:00",
                       "planned_end": "2026-11-25T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800122842",
-                  "name": "Магомедов Абдула Шамилевич",
-                  "slots": [
-                    {
-                      "slot_id": "1907833",
-                      "slot_type": "manual",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T14:00:00+03:00",
-                      "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
