@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-25": {
-      "generated_at": "2026-11-24T22:29:08.816278+00:00",
+      "generated_at": "2026-11-24T23:12:51.808484+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 80.49,
-            "numerator": 33,
+            "value": 78.05,
+            "numerator": 32,
             "denominator": 41,
             "reason": null,
             "basis": "limited_slot_places"
@@ -135,8 +135,8 @@
               "planned_start": "2026-11-25T07:00:00+03:00",
               "planned_end": "2026-11-25T20:00:00+03:00",
               "capacity": 4,
-              "occupied": 4,
-              "free": 0,
+              "occupied": 3,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -164,29 +164,6 @@
                 {
                   "courier_id": "1800130340",
                   "name": "Мазбутов Шахриёр Умеджонович",
-                  "slots": [
-                    {
-                      "slot_id": "62512",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-25T07:00:00+03:00",
-                      "planned_end": "2026-11-25T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800095411",
-                  "name": "Некрасов Алексей Владимирович",
                   "slots": [
                     {
                       "slot_id": "62512",
@@ -1187,7 +1164,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 32,
+              "count": 31,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1604,29 +1581,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800095411",
-                  "name": "Некрасов Алексей Владимирович",
-                  "slots": [
-                    {
-                      "slot_id": "62512",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-25T07:00:00+03:00",
-                      "planned_end": "2026-11-25T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800122176",
                   "name": "Нефедов Даниил Сергеевич",
                   "slots": [
@@ -1934,7 +1888,7 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -1975,6 +1929,29 @@
                       "late_seconds": null,
                       "removed_at": "2026-11-25T00:17:41+03:00",
                       "removed_by": "Мандрыкин Виталий Артурович",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095411",
+                  "name": "Некрасов Алексей Владимирович",
+                  "slots": [
+                    {
+                      "slot_id": "62512",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-25T07:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-25T02:02:33+03:00",
+                      "removed_by": "Некрасов Алексей Владимирович",
                       "note": "Снятие подтверждено историей бронирования.",
                       "worked_through": null,
                       "shift_start_source_date": null,
