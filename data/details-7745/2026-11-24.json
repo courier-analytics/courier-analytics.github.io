@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T05:36:19.462434+00:00",
+      "generated_at": "2026-11-24T06:00:13.795313+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -340,6 +340,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800085741",
+                  "name": "Прокофьев Алексей Денисович",
+                  "slots": [
+                    {
+                      "slot_id": "66951",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T07:00:00+03:00",
+                      "planned_end": "2026-11-24T16:00:00+03:00",
+                      "actual_start": "2026-11-24T08:29:48+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 29 мин",
+                      "late_seconds": 5388,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800132317",
                   "name": "Пылаев Павел Максимович",
                   "slots": [
@@ -421,29 +444,6 @@
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800026006",
-                  "name": "Тарамов Казбек Хусейнович",
-                  "slots": [
-                    {
-                      "slot_id": "66952",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-24T07:00:00+03:00",
-                      "planned_end": "2026-11-24T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -693,29 +693,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800085741",
-                  "name": "Прокофьев Алексей Денисович",
-                  "slots": [
-                    {
-                      "slot_id": "66951",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-24T07:00:00+03:00",
-                      "planned_end": "2026-11-24T16:00:00+03:00",
-                      "actual_start": "2026-11-24T08:29:48+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 29 мин",
-                      "late_seconds": 5388,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1699934392",
                   "name": "Сапиев Ислам Идрисович",
                   "slots": [
@@ -741,6 +718,29 @@
                 {
                   "courier_id": "1799876935",
                   "name": "Сафаров Азамат Хазраталиевич",
+                  "slots": [
+                    {
+                      "slot_id": "66952",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T07:00:00+03:00",
+                      "planned_end": "2026-11-24T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800026006",
+                  "name": "Тарамов Казбек Хусейнович",
                   "slots": [
                     {
                       "slot_id": "66952",
@@ -3202,8 +3202,8 @@
         },
         "training": {
           "aggregate": {
-            "value": 36.11,
-            "numerator": 13,
+            "value": 33.33,
+            "numerator": 12,
             "denominator": 36,
             "reason": null,
             "basis": "onec_training_named_intersection"
@@ -3211,7 +3211,7 @@
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 13,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -3284,13 +3284,6 @@
                   "match_status": "Обучение подтверждено"
                 },
                 {
-                  "courier_id": "1800026006",
-                  "name": "Тарамов Казбек Хусейнович",
-                  "slots": [],
-                  "training_date": "2026-10-29T11:57:04+03:00",
-                  "match_status": "Обучение подтверждено"
-                },
-                {
                   "courier_id": "1800044072",
                   "name": "Тарамов Хасан Вадудович",
                   "slots": [],
@@ -3308,7 +3301,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -3402,6 +3395,13 @@
                   "match_status": "Нет подтверждённой записи об обучении"
                 },
                 {
+                  "courier_id": "1800085741",
+                  "name": "Прокофьев Алексей Денисович",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
                   "courier_id": "1800132317",
                   "name": "Пылаев Павел Максимович",
                   "slots": [],
@@ -3475,7 +3475,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -3524,6 +3524,13 @@
                   "name": "Ханакаев Лом-Али Исмаилович",
                   "slots": [],
                   "training_date": "2026-10-26T15:23:35+03:00",
+                  "match_status": "Нет точного совпадения в активной базе 1С"
+                },
+                {
+                  "courier_id": "—",
+                  "name": "Тарамов Казбек Хусейнович",
+                  "slots": [],
+                  "training_date": "2026-10-29T11:57:04+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
