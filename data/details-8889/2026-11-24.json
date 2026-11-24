@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T06:47:32.991474+00:00",
+      "generated_at": "2026-11-24T07:14:16.476665+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -643,8 +643,8 @@
               "planned_start": "2026-11-24T10:00:00+03:00",
               "planned_end": "2026-11-24T23:00:00+03:00",
               "capacity": 3,
-              "occupied": 2,
-              "free": 1,
+              "occupied": 3,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1800108759",
@@ -656,10 +656,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-24T09:50:39+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -679,10 +679,33 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-23T14:48:44+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-23",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T09:56:04+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -944,33 +967,9 @@
               "planned_start": "2026-11-24T21:00:00+03:00",
               "planned_end": "2026-11-25T10:00:00+03:00",
               "capacity": 1,
-              "occupied": 1,
-              "free": 0,
-              "couriers": [
-                {
-                  "courier_id": "1800133871",
-                  "name": "Обиджонов Фаррух Фирдавсович",
-                  "slots": [
-                    {
-                      "slot_id": "62507",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T21:00:00+03:00",
-                      "planned_end": "2026-11-25T10:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 1,
+              "couriers": []
             }
           ],
           "groups": [],
@@ -979,8 +978,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 52.94,
-            "numerator": 18,
+            "value": 61.76,
+            "numerator": 21,
             "denominator": 34,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -988,7 +987,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 18,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1027,6 +1026,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 50 минут",
                       "late_seconds": 3007,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108759",
+                  "name": "Белкин Дмитрий Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T09:50:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1221,6 +1243,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-23",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800035484",
                   "name": "Мохамед Карим Мохамед Габер",
                   "slots": [
@@ -1263,6 +1308,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62507",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-24T21:00:00+03:00",
+                      "planned_end": "2026-11-25T10:00:00+03:00",
+                      "actual_start": "2026-11-24T09:56:04+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "62502"
                     }
                   ]
                 },
@@ -1506,7 +1575,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 10,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800120138",
@@ -1517,29 +1586,6 @@
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-24T18:00:00+03:00",
-                      "planned_end": "2026-11-24T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800108759",
-                  "name": "Белкин Дмитрий Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62502",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
@@ -1624,29 +1670,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800095811",
-                  "name": "Миронов Илья Сергеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62502",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T10:00:00+03:00",
-                      "planned_end": "2026-11-24T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800134731",
                   "name": "Норзикулов Озоджон Хасан Угли",
                   "slots": [
@@ -1656,29 +1679,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-24T18:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800133871",
-                  "name": "Обиджонов Фаррух Фирдавсович",
-                  "slots": [
-                    {
-                      "slot_id": "62507",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T21:00:00+03:00",
-                      "planned_end": "2026-11-25T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -1747,7 +1747,7 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -1794,6 +1794,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62507",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-24T21:00:00+03:00",
+                      "planned_end": "2026-11-25T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-24T09:54:58+03:00",
+                      "removed_by": "Обиджонов Фаррух Фирдавсович",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             }
@@ -1803,9 +1826,9 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 27.78,
+            "value": 23.81,
             "numerator": 5,
-            "denominator": 18,
+            "denominator": 21,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
@@ -1933,7 +1956,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 13,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1952,6 +1975,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108759",
+                  "name": "Белкин Дмитрий Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T09:50:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -2093,6 +2139,53 @@
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-23",
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-23",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62507",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-24T21:00:00+03:00",
+                      "planned_end": "2026-11-25T10:00:00+03:00",
+                      "actual_start": "2026-11-24T09:56:04+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "62502"
                     }
                   ]
                 },
@@ -2247,9 +2340,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 5.26,
+            "value": 4.55,
             "numerator": 1,
-            "denominator": 19,
+            "denominator": 22,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2285,7 +2378,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 18,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2324,6 +2417,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 50 минут",
                       "late_seconds": 3007,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108759",
+                  "name": "Белкин Дмитрий Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T09:50:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2518,6 +2634,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-23",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800035484",
                   "name": "Мохамед Карим Мохамед Габер",
                   "slots": [
@@ -2554,6 +2693,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 29 минут",
                       "late_seconds": 1792,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T09:56:04+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2728,7 +2890,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 19,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2767,6 +2929,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 50 минут",
                       "late_seconds": 3007,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108759",
+                  "name": "Белкин Дмитрий Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T09:50:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2961,6 +3146,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-23",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800035484",
                   "name": "Мохамед Карим Мохамед Габер",
                   "slots": [
@@ -3020,6 +3228,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 39 мин",
                       "late_seconds": 9547,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T09:56:04+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
