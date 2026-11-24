@@ -33599,7 +33599,7 @@
       }
     },
     "2026-11-17": {
-      "generated_at": "2026-11-24T09:04:55.148397+00:00",
+      "generated_at": "2026-11-24T10:09:43.617450+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -37148,7 +37148,7 @@
       }
     },
     "2026-11-18": {
-      "generated_at": "2026-11-24T09:01:51.382726+00:00",
+      "generated_at": "2026-11-24T10:06:48.184445+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -40351,7 +40351,7 @@
       }
     },
     "2026-11-19": {
-      "generated_at": "2026-11-24T08:58:43.047307+00:00",
+      "generated_at": "2026-11-24T10:03:42.501009+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-24T08:55:18.275526+00:00",
+      "generated_at": "2026-11-24T10:00:14.113276+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49297,7 +49297,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-24T08:51:33.276556+00:00",
+      "generated_at": "2026-11-24T09:56:30.837291+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -53103,7 +53103,7 @@
       }
     },
     "2026-11-22": {
-      "generated_at": "2026-11-24T07:51:49.671951+00:00",
+      "generated_at": "2026-11-24T09:52:23.470196+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -57856,7 +57856,7 @@
       }
     },
     "2026-11-23": {
-      "generated_at": "2026-11-24T09:32:54.462176+00:00",
+      "generated_at": "2026-11-24T10:15:01.906731+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -61329,10 +61329,10 @@
         },
         "planned_completion": {
           "aggregate": {
-            "value": null,
-            "numerator": null,
-            "denominator": null,
-            "reason": "completion_history_incomplete",
+            "value": 66.67,
+            "numerator": 18,
+            "denominator": 27,
+            "reason": null,
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
@@ -61975,13 +61975,13 @@
               "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         }
       }
     },
     "2026-11-24": {
-      "generated_at": "2026-11-24T09:37:23.240549+00:00",
+      "generated_at": "2026-11-24T10:19:41.376230+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -62774,10 +62774,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-24T12:40:00+03:00",
                       "planned_end": "2026-11-24T18:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-24T12:32:51+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -64412,17 +64412,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 8.7,
-            "numerator": 2,
-            "denominator": 23,
+            "value": 12.5,
+            "numerator": 3,
+            "denominator": 24,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 2,
+              "count": 3,
               "couriers": [
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "93413",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T12:40:00+03:00",
+                      "planned_end": "2026-11-24T18:00:00+03:00",
+                      "actual_start": "2026-11-24T12:32:51+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800127928",
                   "name": "Муджиков Александр Давидович",
@@ -64985,7 +65008,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -65044,6 +65067,29 @@
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
                       "actual_start": "2026-11-24T09:50:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "93413",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T12:40:00+03:00",
+                      "planned_end": "2026-11-24T18:00:00+03:00",
+                      "actual_start": "2026-11-24T12:32:51+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
