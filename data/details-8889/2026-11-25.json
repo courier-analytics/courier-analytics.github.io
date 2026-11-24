@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-25": {
-      "generated_at": "2026-11-24T21:40:38.803160+00:00",
+      "generated_at": "2026-11-24T22:05:09.340199+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 78.05,
-            "numerator": 32,
+            "value": 80.49,
+            "numerator": 33,
             "denominator": 41,
             "reason": null,
             "basis": "limited_slot_places"
@@ -135,9 +135,32 @@
               "planned_start": "2026-11-25T07:00:00+03:00",
               "planned_end": "2026-11-25T20:00:00+03:00",
               "capacity": 4,
-              "occupied": 3,
-              "free": 1,
+              "occupied": 4,
+              "free": 0,
               "couriers": [
+                {
+                  "courier_id": "1800116805",
+                  "name": "Алиджонзода Хусейн",
+                  "slots": [
+                    {
+                      "slot_id": "62512",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T07:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800130340",
                   "name": "Мазбутов Шахриёр Умеджонович",
