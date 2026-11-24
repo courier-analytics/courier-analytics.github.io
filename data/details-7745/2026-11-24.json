@@ -2,20 +2,20 @@
   "shop_id": 7745,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T13:35:58.512867+00:00",
+      "generated_at": "2026-11-24T14:02:53.059749+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 58.82,
-            "numerator": 20,
-            "denominator": 34,
+            "value": 60.0,
+            "numerator": 21,
+            "denominator": 35,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -100,6 +100,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "66954",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T08:00:00+03:00",
+                      "planned_end": "2026-11-24T21:00:00+03:00",
+                      "actual_start": "2026-11-24T08:29:15+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 29 минут",
+                      "late_seconds": 1755,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -557,7 +580,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 12,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1799874691",
@@ -573,29 +596,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 2 мин",
                       "late_seconds": 3779,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800009953",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [
-                    {
-                      "slot_id": "66954",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-24T08:00:00+03:00",
-                      "planned_end": "2026-11-24T21:00:00+03:00",
-                      "actual_start": "2026-11-24T08:29:15+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 29 минут",
-                      "late_seconds": 1755,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -4243,16 +4243,16 @@
         },
         "training": {
           "aggregate": {
-            "value": 26.47,
-            "numerator": 9,
-            "denominator": 34,
+            "value": 28.57,
+            "numerator": 10,
+            "denominator": 35,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
           "groups": [
             {
               "title": "Обучены к выбранной дате",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -4280,6 +4280,13 @@
                   "name": "Васильев Александр Михайлович",
                   "slots": [],
                   "training_date": "2026-10-30T17:22:16+03:00",
+                  "match_status": "Обучение подтверждено"
+                },
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [],
+                  "training_date": "2026-10-16T16:33:50+03:00",
                   "match_status": "Обучение подтверждено"
                 },
                 {
@@ -4502,7 +4509,7 @@
             },
             {
               "title": "Записи таблицы без однозначного совпадения в активной базе",
-              "count": 20,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "—",
@@ -4530,13 +4537,6 @@
                   "name": "Икромов Сиротулло Хакимбекоаич",
                   "slots": [],
                   "training_date": "2026-10-16T15:35:56+03:00",
-                  "match_status": "Нет точного совпадения в активной базе 1С"
-                },
-                {
-                  "courier_id": "—",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [],
-                  "training_date": "2026-10-16T16:33:50+03:00",
                   "match_status": "Нет точного совпадения в активной базе 1С"
                 },
                 {
