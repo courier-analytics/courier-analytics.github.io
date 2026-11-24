@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T03:12:46.924055+00:00",
+      "generated_at": "2026-11-24T03:36:05.764953+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -464,10 +464,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-24T06:00:00+03:00",
                       "planned_end": "2026-11-24T14:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-24T06:31:12+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1872,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -796,10 +796,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-24T06:00:00+03:00",
                       "planned_end": "2026-11-24T14:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-24T06:31:12+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1872,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1672,8 +1672,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
+            "value": 3.45,
+            "numerator": 1,
             "denominator": 29,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1681,11 +1681,6 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 0,
-              "couriers": []
-            },
-            {
-              "title": "Не вышли по статусу источника",
               "count": 1,
               "couriers": [
                 {
@@ -1698,10 +1693,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-24T06:00:00+03:00",
                       "planned_end": "2026-11-24T14:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-24T06:31:12+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1872,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1712,6 +1707,11 @@
                   ]
                 }
               ]
+            },
+            {
+              "title": "Не вышли по статусу источника",
+              "count": 0,
+              "couriers": []
             },
             {
               "title": "Ожидаются",
@@ -2379,17 +2379,41 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "value": 100.0,
+            "numerator": 1,
+            "denominator": 1,
+            "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800044072",
+                  "name": "Тарамов Хасан Вадудович",
+                  "slots": [
+                    {
+                      "slot_id": "66949",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T06:00:00+03:00",
+                      "planned_end": "2026-11-24T14:00:00+03:00",
+                      "actual_start": "2026-11-24T06:31:12+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1872,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Без опоздания от 15 минут",
@@ -2402,15 +2426,15 @@
               "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": ""
         },
         "unplanned_work": {
           "aggregate": {
-            "value": null,
+            "value": 0.0,
             "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "denominator": 1,
+            "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
@@ -2421,19 +2445,43 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800044072",
+                  "name": "Тарамов Хасан Вадудович",
+                  "slots": [
+                    {
+                      "slot_id": "66949",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T06:00:00+03:00",
+                      "planned_end": "2026-11-24T14:00:00+03:00",
+                      "actual_start": "2026-11-24T06:31:12+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1872,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": ""
         },
         "planned_completion": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
-            "denominator": 1,
-            "reason": null,
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "shift_end_or_final_status_missing",
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
@@ -2473,11 +2521,35 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800044072",
+                  "name": "Тарамов Хасан Вадудович",
+                  "slots": [
+                    {
+                      "slot_id": "66949",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T06:00:00+03:00",
+                      "planned_end": "2026-11-24T14:00:00+03:00",
+                      "actual_start": "2026-11-24T06:31:12+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1872,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "reconciled": true,
+          "reconciled": false,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         },
         "training": {
