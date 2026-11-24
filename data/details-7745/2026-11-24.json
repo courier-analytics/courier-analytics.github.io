@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T07:37:58.008906+00:00",
+      "generated_at": "2026-11-24T08:47:27.888774+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -556,10 +556,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-24T10:40:18+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 40 минут",
+                      "late_seconds": 2418,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1559,10 +1559,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-24T10:40:18+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 40 минут",
+                      "late_seconds": 2418,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1812,8 +1812,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 65.52,
-            "numerator": 19,
+            "value": 68.97,
+            "numerator": 20,
             "denominator": 29,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1821,7 +1821,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1699895572",
@@ -2259,12 +2259,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66956",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T10:40:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 40 минут",
+                      "late_seconds": 2418,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2345,29 +2368,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-24T07:00:00+03:00",
                       "planned_end": "2026-11-24T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799984087",
-                  "name": "Худоёров Уткир Усмонкул Угли",
-                  "slots": [
-                    {
-                      "slot_id": "66956",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-24T10:00:00+03:00",
-                      "planned_end": "2026-11-24T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -2520,16 +2520,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 42.11,
-            "numerator": 8,
-            "denominator": 19,
+            "value": 45.0,
+            "numerator": 9,
+            "denominator": 20,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800009953",
@@ -2706,6 +2706,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 20 минут",
                       "late_seconds": 1234,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66956",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T10:40:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 40 минут",
+                      "late_seconds": 2418,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2987,9 +3010,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 9.52,
+            "value": 9.09,
             "numerator": 2,
-            "denominator": 21,
+            "denominator": 22,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -3048,7 +3071,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1699895572",
@@ -3486,6 +3509,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66956",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T10:40:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 40 минут",
+                      "late_seconds": 2418,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             }
@@ -3538,7 +3584,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1799874691",
@@ -3991,6 +4037,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 20 минут",
                       "late_seconds": 1234,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799984087",
+                  "name": "Худоёров Уткир Усмонкул Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66956",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T10:40:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 40 минут",
+                      "late_seconds": 2418,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",

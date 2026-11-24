@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-21": {
-      "generated_at": "2026-11-24T06:55:29.641580+00:00",
+      "generated_at": "2026-11-24T07:53:35.504729+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -220,15 +220,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T17:02:45+03:00",
+                      "actual_start": "2026-11-21T00:00:00+03:00",
                       "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -255,15 +255,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:30:00+03:00",
                       "planned_end": "2026-11-22T00:30:00+03:00",
-                      "actual_start": "2026-11-20T18:27:17+03:00",
+                      "actual_start": "2026-11-21T00:00:00+03:00",
                       "actual_end": "2026-11-21T12:30:00+03:00",
                       "status": "Вышел раньше на 7 часов 30 мин",
-                      "late_seconds": 0,
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1012,7 +1012,7 @@
               "couriers": [
                 {
                   "courier_id": "1800106928",
-                  "name": "Голенищенко Максим Константинович ",
+                  "name": "Голенищенко Максим Константинович",
                   "slots": [
                     {
                       "slot_id": "85981",
@@ -1239,11 +1239,11 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 77.27,
-            "numerator": 17,
-            "denominator": 22,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -1276,7 +1276,7 @@
                 },
                 {
                   "courier_id": "1800106928",
-                  "name": "Голенищенко Максим Константинович ",
+                  "name": "Голенищенко Максим Константинович",
                   "slots": [
                     {
                       "slot_id": "62461",
@@ -1471,15 +1471,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:30:00+03:00",
                       "planned_end": "2026-11-22T00:30:00+03:00",
-                      "actual_start": "2026-11-20T18:27:17+03:00",
+                      "actual_start": "2026-11-21T00:00:00+03:00",
                       "actual_end": "2026-11-21T12:30:00+03:00",
                       "status": "Вышел раньше на 7 часов 30 мин",
-                      "late_seconds": 0,
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1494,15 +1494,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T17:02:45+03:00",
+                      "actual_start": "2026-11-21T00:00:00+03:00",
                       "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1707,16 +1707,34 @@
             },
             {
               "title": "Нет подтверждённых данных",
-              "count": 0,
-              "couriers": []
-            },
-            {
-              "title": "Снятые смены — история",
-              "count": 8,
+              "count": 3,
               "couriers": [
                 {
+                  "courier_id": "1799899246",
+                  "name": "ФИО не передано источником",
+                  "slots": [
+                    {
+                      "slot_id": "62464",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-21T08:00:00+03:00",
+                      "planned_end": "2026-11-21T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Запись из плана отсутствует в текущих данных",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800100778",
-                  "name": "Бычков Никита Алексеевич",
+                  "name": "ФИО не передано источником",
                   "slots": [
                     {
                       "slot_id": "62467",
@@ -1726,126 +1744,11 @@
                       "planned_end": "2026-11-22T00:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Снятая смена",
+                      "status": "Запись из плана отсутствует в текущих данных",
                       "late_seconds": null,
-                      "removed_at": "2026-11-21T15:20:29+03:00",
-                      "removed_by": "Федорова Анастасия Александровна",
-                      "note": "Снятие подтверждено историей бронирования.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800128516",
-                  "name": "Варданян Виген Тигранович",
-                  "slots": [
-                    {
-                      "slot_id": "62461",
-                      "slot_type": "limited",
-                      "scope": "",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T15:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Снятая смена",
-                      "late_seconds": null,
-                      "removed_at": "2026-11-21T08:42:13+03:00",
-                      "removed_by": "Баринов Егор Александрович",
-                      "note": "Снятие подтверждено историей бронирования.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800106928",
-                  "name": "Голенищенко Максим Константинович ",
-                  "slots": [
-                    {
-                      "slot_id": "62461",
-                      "slot_type": "limited",
-                      "scope": "",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T15:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Снятая смена",
-                      "late_seconds": null,
-                      "removed_at": "2026-11-21T08:42:10+03:00",
-                      "removed_by": "Баринов Егор Александрович",
-                      "note": "Снятие подтверждено историей бронирования.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799899246",
-                  "name": "Ибрагимов Фахриддин Салимович",
-                  "slots": [
-                    {
-                      "slot_id": "62464",
-                      "slot_type": "limited",
-                      "scope": "",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Снятая смена",
-                      "late_seconds": null,
-                      "removed_at": "2026-11-21T08:43:04+03:00",
-                      "removed_by": "Баринов Егор Александрович",
-                      "note": "Снятие подтверждено историей бронирования.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800129523",
-                  "name": "Карапетян Димо Маратович",
-                  "slots": [
-                    {
-                      "slot_id": "62464",
-                      "slot_type": "limited",
-                      "scope": "",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Снятая смена",
-                      "late_seconds": null,
-                      "removed_at": "2026-11-21T08:43:11+03:00",
-                      "removed_by": "Баринов Егор Александрович",
-                      "note": "Снятие подтверждено историей бронирования.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800095411",
-                  "name": "Некрасов Алексей Владимирович",
-                  "slots": [
-                    {
-                      "slot_id": "62464",
-                      "slot_type": "limited",
-                      "scope": "",
-                      "planned_start": "2026-11-21T08:00:00+03:00",
-                      "planned_end": "2026-11-21T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Снятая смена",
-                      "late_seconds": null,
-                      "removed_at": "2026-11-21T08:43:07+03:00",
-                      "removed_by": "Баринов Егор Александрович",
-                      "note": "Снятие подтверждено историей бронирования.",
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -1854,7 +1757,7 @@
                 },
                 {
                   "courier_id": "1800130023",
-                  "name": "Хасанов Амирхон Турабекович",
+                  "name": "ФИО не передано источником",
                   "slots": [
                     {
                       "slot_id": "62464",
@@ -1864,34 +1767,11 @@
                       "planned_end": "2026-11-21T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Снятая смена",
+                      "status": "Запись из плана отсутствует в текущих данных",
                       "late_seconds": null,
-                      "removed_at": "2026-11-21T08:43:13+03:00",
-                      "removed_by": "Баринов Егор Александрович",
-                      "note": "Снятие подтверждено историей бронирования.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130000",
-                  "name": "Чориев Аскарбек Аброр Угли",
-                  "slots": [
-                    {
-                      "slot_id": "62463",
-                      "slot_type": "limited",
-                      "scope": "",
-                      "planned_start": "2026-11-21T07:00:00+03:00",
-                      "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Снятая смена",
-                      "late_seconds": null,
-                      "removed_at": "2026-11-21T08:42:48+03:00",
-                      "removed_by": "Баринов Егор Александрович",
-                      "note": "Снятие подтверждено историей бронирования.",
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -1899,18 +1779,23 @@
                   ]
                 }
               ]
+            },
+            {
+              "title": "Снятые смены — история",
+              "count": 0,
+              "couriers": []
             }
           ],
-          "reconciled": true,
-          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
+          "reconciled": false,
+          "note": ""
         },
         "planned_late": {
           "aggregate": {
-            "value": 70.59,
-            "numerator": 12,
-            "denominator": 17,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -1943,7 +1828,7 @@
                 },
                 {
                   "courier_id": "1800106928",
-                  "name": "Голенищенко Максим Константинович ",
+                  "name": "Голенищенко Максим Константинович",
                   "slots": [
                     {
                       "slot_id": "62461",
@@ -2260,15 +2145,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:30:00+03:00",
                       "planned_end": "2026-11-22T00:30:00+03:00",
-                      "actual_start": "2026-11-20T18:27:17+03:00",
+                      "actual_start": "2026-11-21T00:00:00+03:00",
                       "actual_end": "2026-11-21T12:30:00+03:00",
                       "status": "Вышел раньше на 7 часов 30 мин",
-                      "late_seconds": 0,
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -2283,15 +2168,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T17:02:45+03:00",
+                      "actual_start": "2026-11-21T00:00:00+03:00",
                       "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -2327,8 +2212,8 @@
               "couriers": []
             }
           ],
-          "reconciled": true,
-          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
+          "reconciled": false,
+          "note": ""
         },
         "unplanned_work": {
           "aggregate": {
@@ -2788,7 +2673,7 @@
                 },
                 {
                   "courier_id": "1800106928",
-                  "name": "Голенищенко Максим Константинович ",
+                  "name": "Голенищенко Максим Константинович",
                   "slots": [
                     {
                       "slot_id": "85981",
@@ -2980,15 +2865,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:30:00+03:00",
                       "planned_end": "2026-11-22T00:30:00+03:00",
-                      "actual_start": "2026-11-20T18:27:17+03:00",
+                      "actual_start": "2026-11-21T00:00:00+03:00",
                       "actual_end": "2026-11-21T12:30:00+03:00",
                       "status": "Вышел раньше на 7 часов 30 мин",
-                      "late_seconds": 0,
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -3003,15 +2888,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T17:02:45+03:00",
+                      "actual_start": "2026-11-21T00:00:00+03:00",
                       "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -3162,10 +3047,10 @@
         },
         "planned_completion": {
           "aggregate": {
-            "value": 61.54,
-            "numerator": 16,
-            "denominator": 26,
-            "reason": null,
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "completion_history_incomplete",
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
@@ -3595,7 +3480,7 @@
                 },
                 {
                   "courier_id": "1800106928",
-                  "name": "Голенищенко Максим Константинович ",
+                  "name": "Голенищенко Максим Константинович",
                   "slots": [
                     {
                       "slot_id": "85981",
@@ -3758,15 +3643,15 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-21T07:00:00+03:00",
                       "planned_end": "2026-11-21T20:00:00+03:00",
-                      "actual_start": "2026-11-20T17:02:45+03:00",
+                      "actual_start": "2026-11-21T00:00:00+03:00",
                       "actual_end": "2026-11-21T15:00:00+03:00",
                       "status": "Вышел раньше на 7 часов",
-                      "late_seconds": 0,
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-20. Исходное начало: 2026-11-21T00:00:00+03:00.",
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-20",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -3802,7 +3687,7 @@
               "couriers": []
             }
           ],
-          "reconciled": true,
+          "reconciled": false,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         }
       }
