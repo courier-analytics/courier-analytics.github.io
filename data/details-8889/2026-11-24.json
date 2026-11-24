@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T16:08:21.530288+00:00",
+      "generated_at": "2026-11-24T16:33:27.110345+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 85.11,
-            "numerator": 40,
+            "value": 87.23,
+            "numerator": 41,
             "denominator": 47,
             "reason": null,
             "basis": "limited_slot_places"
@@ -127,7 +127,7 @@
                       "planned_start": "2026-11-24T07:00:00+03:00",
                       "planned_end": "2026-11-24T20:00:00+03:00",
                       "actual_start": "2026-11-24T07:50:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T19:10:01+03:00",
                       "status": "Опоздал на 50 минут",
                       "late_seconds": 3007,
                       "removed_at": null,
@@ -346,7 +346,7 @@
                       "planned_start": "2026-11-24T08:00:00+03:00",
                       "planned_end": "2026-11-24T21:00:00+03:00",
                       "actual_start": "2026-11-24T07:29:31+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T19:13:30+03:00",
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -623,7 +623,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-23T14:35:58+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T17:15:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -750,7 +750,7 @@
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
                       "actual_start": "2026-11-23T14:48:44+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T17:15:00+03:00",
                       "status": "Вышел раньше на 10 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1165,12 +1165,35 @@
               "planned_start": "2026-11-24T20:00:00+03:00",
               "planned_end": "2026-11-25T09:00:00+03:00",
               "capacity": 2,
-              "occupied": 1,
-              "free": 1,
+              "occupied": 2,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1699908049",
                   "name": "Магомедов Ибрагим Рагидинович",
+                  "slots": [
+                    {
+                      "slot_id": "62506",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T20:00:00+03:00",
+                      "planned_end": "2026-11-25T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800080693",
+                  "name": "Шарифов Хуршед Пулодович",
                   "slots": [
                     {
                       "slot_id": "62506",
@@ -1256,7 +1279,7 @@
                       "planned_start": "2026-11-24T07:00:00+03:00",
                       "planned_end": "2026-11-24T20:00:00+03:00",
                       "actual_start": "2026-11-24T07:50:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T19:10:01+03:00",
                       "status": "Опоздал на 50 минут",
                       "late_seconds": 3007,
                       "removed_at": null,
@@ -1464,7 +1487,7 @@
                       "planned_start": "2026-11-24T08:00:00+03:00",
                       "planned_end": "2026-11-24T21:00:00+03:00",
                       "actual_start": "2026-11-24T07:29:31+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T19:13:30+03:00",
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1510,7 +1533,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-23T14:35:58+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T17:15:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1533,7 +1556,7 @@
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
                       "actual_start": "2026-11-23T14:48:44+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T17:15:00+03:00",
                       "status": "Вышел раньше на 10 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2104,7 +2127,7 @@
                       "planned_start": "2026-11-24T07:00:00+03:00",
                       "planned_end": "2026-11-24T20:00:00+03:00",
                       "actual_start": "2026-11-24T07:50:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T19:10:01+03:00",
                       "status": "Опоздал на 50 минут",
                       "late_seconds": 3007,
                       "removed_at": null,
@@ -2387,7 +2410,7 @@
                       "planned_start": "2026-11-24T08:00:00+03:00",
                       "planned_end": "2026-11-24T21:00:00+03:00",
                       "actual_start": "2026-11-24T07:29:31+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T19:13:30+03:00",
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2433,7 +2456,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-23T14:35:58+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T17:15:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2456,7 +2479,7 @@
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
                       "actual_start": "2026-11-23T14:48:44+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T17:15:00+03:00",
                       "status": "Вышел раньше на 10 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2855,7 +2878,7 @@
                       "planned_start": "2026-11-24T07:00:00+03:00",
                       "planned_end": "2026-11-24T20:00:00+03:00",
                       "actual_start": "2026-11-24T07:50:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T19:10:01+03:00",
                       "status": "Опоздал на 50 минут",
                       "late_seconds": 3007,
                       "removed_at": null,
@@ -3062,7 +3085,7 @@
                       "planned_start": "2026-11-24T08:00:00+03:00",
                       "planned_end": "2026-11-24T21:00:00+03:00",
                       "actual_start": "2026-11-24T07:29:31+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T19:13:30+03:00",
                       "status": "Вышел раньше на 30 минут",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3108,7 +3131,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-23T14:35:58+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T17:15:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3131,7 +3154,7 @@
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
                       "actual_start": "2026-11-23T14:48:44+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T17:15:00+03:00",
                       "status": "Вышел раньше на 10 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3395,8 +3418,54 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 1,
+              "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1800116805",
+                  "name": "Алиджонзода Хусейн",
+                  "slots": [
+                    {
+                      "slot_id": "62499",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T07:00:00+03:00",
+                      "planned_end": "2026-11-24T20:00:00+03:00",
+                      "actual_start": "2026-11-24T07:50:07+03:00",
+                      "actual_end": "2026-11-24T19:10:01+03:00",
+                      "status": "Опоздал на 50 минут",
+                      "late_seconds": 3007,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130340",
+                  "name": "Мазбутов Шахриёр Умеджонович",
+                  "slots": [
+                    {
+                      "slot_id": "62500",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T08:00:00+03:00",
+                      "planned_end": "2026-11-24T21:00:00+03:00",
+                      "actual_start": "2026-11-24T07:29:31+03:00",
+                      "actual_end": "2026-11-24T19:13:30+03:00",
+                      "status": "Вышел раньше на 30 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800134544",
                   "name": "Мамаражабов Уролбек Нуриддин Угли",
@@ -3419,12 +3488,58 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800093276",
+                  "name": "Мирзаагаев Ахмед Демирович",
+                  "slots": [
+                    {
+                      "slot_id": "62501",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T09:00:00+03:00",
+                      "planned_end": "2026-11-24T22:00:00+03:00",
+                      "actual_start": "2026-11-23T14:35:58+03:00",
+                      "actual_end": "2026-11-24T17:15:00+03:00",
+                      "status": "Вышел раньше на 9 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-23",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800095811",
+                  "name": "Миронов Илья Сергеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-23T14:48:44+03:00",
+                      "actual_end": "2026-11-24T17:15:00+03:00",
+                      "status": "Вышел раньше на 10 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-23",
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 27,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3443,29 +3558,6 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800116805",
-                  "name": "Алиджонзода Хусейн",
-                  "slots": [
-                    {
-                      "slot_id": "62499",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T07:00:00+03:00",
-                      "planned_end": "2026-11-24T20:00:00+03:00",
-                      "actual_start": "2026-11-24T07:50:07+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 50 минут",
-                      "late_seconds": 3007,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -3680,29 +3772,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800130340",
-                  "name": "Мазбутов Шахриёр Умеджонович",
-                  "slots": [
-                    {
-                      "slot_id": "62500",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T08:00:00+03:00",
-                      "planned_end": "2026-11-24T21:00:00+03:00",
-                      "actual_start": "2026-11-24T07:29:31+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 30 минут",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800126140",
                   "name": "Мандрыкин Виталий Артурович",
                   "slots": [
@@ -3721,52 +3790,6 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800093276",
-                  "name": "Мирзаагаев Ахмед Демирович",
-                  "slots": [
-                    {
-                      "slot_id": "62501",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T09:00:00+03:00",
-                      "planned_end": "2026-11-24T22:00:00+03:00",
-                      "actual_start": "2026-11-23T14:35:58+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 9 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-23",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800095811",
-                  "name": "Миронов Илья Сергеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62502",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T10:00:00+03:00",
-                      "planned_end": "2026-11-24T23:00:00+03:00",
-                      "actual_start": "2026-11-23T14:48:44+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 10 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-23",
                       "shift_end_source_date": null
                     }
                   ]
