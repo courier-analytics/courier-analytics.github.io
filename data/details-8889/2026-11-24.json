@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T12:44:54.140584+00:00",
+      "generated_at": "2026-11-24T13:11:45.396654+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 83.72,
-            "numerator": 36,
-            "denominator": 43,
+            "value": 82.22,
+            "numerator": 37,
+            "denominator": 45,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -32,9 +32,32 @@
               "planned_start": "2026-11-24T06:00:00+03:00",
               "planned_end": "2026-11-24T19:00:00+03:00",
               "capacity": 3,
-              "occupied": 1,
-              "free": 2,
+              "occupied": 2,
+              "free": 1,
               "couriers": [
+                {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": [
+                    {
+                      "slot_id": "62498",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T06:00:00+03:00",
+                      "planned_end": "2026-11-24T19:00:00+03:00",
+                      "actual_start": "2026-11-24T15:52:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 9 часов 52 мин",
+                      "late_seconds": 35540,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800130023",
                   "name": "Хасанов Амирхон Турабекович",
@@ -870,25 +893,36 @@
               ]
             },
             {
-              "slot_id": "89416",
+              "slot_id": "96759",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "limited",
-              "planned_start": "2026-11-24T18:00:00+03:00",
-              "planned_end": "2026-11-24T23:00:00+03:00",
-              "capacity": 6,
-              "occupied": 4,
-              "free": 2,
+              "planned_start": "2026-11-24T17:00:00+03:00",
+              "planned_end": "2026-11-24T22:00:00+03:00",
+              "capacity": 1,
+              "occupied": 0,
+              "free": 1,
+              "couriers": []
+            },
+            {
+              "slot_id": "96053",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-24T17:20:00+03:00",
+              "planned_end": "2026-11-24T20:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
               "couriers": [
                 {
-                  "courier_id": "1800120138",
-                  "name": "Ахмедов Рустам Эльшанович",
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
                   "slots": [
                     {
-                      "slot_id": "89416",
+                      "slot_id": "96053",
                       "slot_type": "limited",
                       "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T18:00:00+03:00",
-                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "planned_start": "2026-11-24T17:20:00+03:00",
+                      "planned_end": "2026-11-24T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -901,10 +935,22 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "slot_id": "89416",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-24T18:00:00+03:00",
+              "planned_end": "2026-11-24T23:00:00+03:00",
+              "capacity": 6,
+              "occupied": 3,
+              "free": 3,
+              "couriers": [
                 {
-                  "courier_id": "1800100778",
-                  "name": "Бычков Никита Алексеевич",
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович",
                   "slots": [
                     {
                       "slot_id": "89416",
@@ -2434,16 +2480,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 12.5,
-            "numerator": 3,
-            "denominator": 24,
+            "value": 16.0,
+            "numerator": 4,
+            "denominator": 25,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 3,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1800128516",
@@ -2459,6 +2505,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": [
+                    {
+                      "slot_id": "62498",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T06:00:00+03:00",
+                      "planned_end": "2026-11-24T19:00:00+03:00",
+                      "actual_start": "2026-11-24T15:52:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 9 часов 52 мин",
+                      "late_seconds": 35540,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3030,7 +3099,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 24,
+              "count": 25,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3281,6 +3350,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-23",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": [
+                    {
+                      "slot_id": "62498",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T06:00:00+03:00",
+                      "planned_end": "2026-11-24T19:00:00+03:00",
+                      "actual_start": "2026-11-24T15:52:20+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 9 часов 52 мин",
+                      "late_seconds": 35540,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
