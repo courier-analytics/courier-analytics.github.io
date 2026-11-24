@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T02:49:32.432392+00:00",
+      "generated_at": "2026-11-24T03:12:46.924055+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -466,7 +466,7 @@
                       "planned_end": "2026-11-24T14:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -798,7 +798,7 @@
                       "planned_end": "2026-11-24T14:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1686,12 +1686,36 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800044072",
+                  "name": "Тарамов Хасан Вадудович",
+                  "slots": [
+                    {
+                      "slot_id": "66949",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T06:00:00+03:00",
+                      "planned_end": "2026-11-24T14:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Ожидаются",
-              "count": 29,
+              "count": 28,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -2232,29 +2256,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-24T07:00:00+03:00",
                       "planned_end": "2026-11-24T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800044072",
-                  "name": "Тарамов Хасан Вадудович",
-                  "slots": [
-                    {
-                      "slot_id": "66949",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-24T06:00:00+03:00",
-                      "planned_end": "2026-11-24T14:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
