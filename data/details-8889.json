@@ -57856,7 +57856,7 @@
       }
     },
     "2026-11-23": {
-      "generated_at": "2026-11-24T13:07:03.235281+00:00",
+      "generated_at": "2026-11-24T13:31:22.789103+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -61981,7 +61981,7 @@
       }
     },
     "2026-11-24": {
-      "generated_at": "2026-11-24T13:11:45.396654+00:00",
+      "generated_at": "2026-11-24T13:35:58.512867+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -61997,9 +61997,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 82.22,
+            "value": 80.43,
             "numerator": 37,
-            "denominator": 45,
+            "denominator": 46,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -62872,6 +62872,41 @@
               ]
             },
             {
+              "slot_id": "97368",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-24T16:30:00+03:00",
+              "planned_end": "2026-11-24T20:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "97368",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T16:30:00+03:00",
+                      "planned_end": "2026-11-24T20:00:00+03:00",
+                      "actual_start": "2026-11-24T16:10:14+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "slot_id": "96759",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "limited",
@@ -62889,33 +62924,9 @@
               "planned_start": "2026-11-24T17:20:00+03:00",
               "planned_end": "2026-11-24T20:00:00+03:00",
               "capacity": 1,
-              "occupied": 1,
-              "free": 0,
-              "couriers": [
-                {
-                  "courier_id": "1800100778",
-                  "name": "Бычков Никита Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "96053",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T17:20:00+03:00",
-                      "planned_end": "2026-11-24T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 1,
+              "couriers": []
             },
             {
               "slot_id": "89416",
@@ -63097,8 +63108,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 61.76,
-            "numerator": 21,
+            "value": 64.71,
+            "numerator": 22,
             "denominator": 34,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -63106,7 +63117,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 21,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -63174,6 +63185,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T16:10:14+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 22214,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "97368"
                     }
                   ]
                 },
@@ -63945,16 +63980,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 23.81,
-            "numerator": 5,
-            "denominator": 21,
+            "value": 27.27,
+            "numerator": 6,
+            "denominator": 22,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -63976,6 +64011,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62502",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-24T10:00:00+03:00",
+                      "planned_end": "2026-11-24T23:00:00+03:00",
+                      "actual_start": "2026-11-24T16:10:14+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 22214,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "97368"
                     }
                   ]
                 },
@@ -64459,9 +64518,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 16.0,
+            "value": 15.38,
             "numerator": 4,
-            "denominator": 25,
+            "denominator": 26,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -64566,7 +64625,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 21,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -64625,6 +64684,29 @@
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
                       "actual_start": "2026-11-24T09:50:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "97368",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T16:30:00+03:00",
+                      "planned_end": "2026-11-24T20:00:00+03:00",
+                      "actual_start": "2026-11-24T16:10:14+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -65078,7 +65160,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 25,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -65137,6 +65219,29 @@
                       "planned_start": "2026-11-24T10:00:00+03:00",
                       "planned_end": "2026-11-24T23:00:00+03:00",
                       "actual_start": "2026-11-24T09:50:39+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800100778",
+                  "name": "Бычков Никита Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "97368",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T16:30:00+03:00",
+                      "planned_end": "2026-11-24T20:00:00+03:00",
+                      "actual_start": "2026-11-24T16:10:14+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
