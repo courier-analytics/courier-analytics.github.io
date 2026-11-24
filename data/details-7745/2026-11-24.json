@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T20:00:33.635078+00:00",
+      "generated_at": "2026-11-24T20:27:17.746099+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -690,7 +690,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-24T10:02:59+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:00:00+03:00",
                       "status": "Опоздал на 1 час 2 мин",
                       "late_seconds": 3779,
                       "removed_at": null,
@@ -782,7 +782,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T21:00:00+03:00",
                       "actual_start": "2026-11-24T08:51:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1327,7 +1327,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-24T10:02:59+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:00:00+03:00",
                       "status": "Опоздал на 1 час 2 мин",
                       "late_seconds": 3779,
                       "removed_at": null,
@@ -1489,7 +1489,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T21:00:00+03:00",
                       "actual_start": "2026-11-24T08:51:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2073,7 +2073,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T21:00:00+03:00",
                       "actual_start": "2026-11-24T08:51:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3040,7 +3040,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T21:00:00+03:00",
                       "actual_start": "2026-11-24T08:51:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3202,7 +3202,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-24T10:02:59+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:00:00+03:00",
                       "status": "Опоздал на 1 час 2 мин",
                       "late_seconds": 3779,
                       "removed_at": null,
@@ -3507,7 +3507,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T21:00:00+03:00",
                       "actual_start": "2026-11-24T08:51:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -4002,8 +4002,31 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 11,
+              "count": 12,
               "couriers": [
+                {
+                  "courier_id": "1799874691",
+                  "name": "Алимагомедов Руслан Алимагомедович",
+                  "slots": [
+                    {
+                      "slot_id": "66955",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-24T09:00:00+03:00",
+                      "planned_end": "2026-11-24T22:00:00+03:00",
+                      "actual_start": "2026-11-24T10:02:59+03:00",
+                      "actual_end": "2026-11-24T21:00:00+03:00",
+                      "status": "Опоздал на 1 час 2 мин",
+                      "late_seconds": 3779,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800009953",
                   "name": "Ганиев Журабек Равшанович",
@@ -4278,31 +4301,8 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 9,
+              "count": 8,
               "couriers": [
-                {
-                  "courier_id": "1799874691",
-                  "name": "Алимагомедов Руслан Алимагомедович",
-                  "slots": [
-                    {
-                      "slot_id": "66955",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-24T09:00:00+03:00",
-                      "planned_end": "2026-11-24T22:00:00+03:00",
-                      "actual_start": "2026-11-24T10:02:59+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 2 мин",
-                      "late_seconds": 3779,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1699895572",
                   "name": "Багавудинов Исмаил Абдулаевич",

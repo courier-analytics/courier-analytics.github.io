@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T20:00:33.635078+00:00",
+      "generated_at": "2026-11-24T20:27:17.746099+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -196,7 +196,7 @@
                       "planned_start": "2026-11-24T07:00:00+03:00",
                       "planned_end": "2026-11-24T20:00:00+03:00",
                       "actual_start": "2026-11-24T09:39:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Опоздал на 2 часа 39 мин",
                       "late_seconds": 9547,
                       "removed_at": null,
@@ -692,7 +692,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-24T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": null,
                       "removed_at": null,
@@ -1719,7 +1719,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-24T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": null,
                       "removed_at": null,
@@ -2596,7 +2596,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-24T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": null,
                       "removed_at": null,
@@ -2919,7 +2919,7 @@
                       "planned_start": "2026-11-24T07:00:00+03:00",
                       "planned_end": "2026-11-24T20:00:00+03:00",
                       "actual_start": "2026-11-24T09:39:07+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Опоздал на 2 часа 39 мин",
                       "late_seconds": 9547,
                       "removed_at": null,
@@ -3408,7 +3408,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-24T00:00:00+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T21:15:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": null,
                       "removed_at": null,
@@ -3575,7 +3575,7 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800126140",
@@ -3591,6 +3591,29 @@
                       "actual_end": "2026-11-24T21:29:20+03:00",
                       "status": "Опоздал на 9 часов 52 мин",
                       "late_seconds": 35540,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800063653",
+                  "name": "Нуров Джавхан Амрдинович",
+                  "slots": [
+                    {
+                      "slot_id": "62499",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T07:00:00+03:00",
+                      "planned_end": "2026-11-24T20:00:00+03:00",
+                      "actual_start": "2026-11-24T09:39:07+03:00",
+                      "actual_end": "2026-11-24T21:15:00+03:00",
+                      "status": "Опоздал на 2 часа 39 мин",
+                      "late_seconds": 9547,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3627,7 +3650,7 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 13,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -3860,6 +3883,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800098576",
+                  "name": "Погор Степан Александрович",
+                  "slots": [
+                    {
+                      "slot_id": "62501",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T09:00:00+03:00",
+                      "planned_end": "2026-11-24T22:00:00+03:00",
+                      "actual_start": "2026-11-24T00:00:00+03:00",
+                      "actual_end": "2026-11-24T21:15:00+03:00",
+                      "status": "Вышел раньше на 9 часов",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799971289",
                   "name": "Сучков Денис Дмитриевич",
                   "slots": [
@@ -3932,7 +3978,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 14,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -4165,29 +4211,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800063653",
-                  "name": "Нуров Джавхан Амрдинович",
-                  "slots": [
-                    {
-                      "slot_id": "62499",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T07:00:00+03:00",
-                      "planned_end": "2026-11-24T20:00:00+03:00",
-                      "actual_start": "2026-11-24T09:39:07+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 2 часа 39 мин",
-                      "late_seconds": 9547,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800133871",
                   "name": "Обиджонов Фаррух Фирдавсович",
                   "slots": [
@@ -4204,29 +4227,6 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800098576",
-                  "name": "Погор Степан Александрович",
-                  "slots": [
-                    {
-                      "slot_id": "62501",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T09:00:00+03:00",
-                      "planned_end": "2026-11-24T22:00:00+03:00",
-                      "actual_start": "2026-11-24T00:00:00+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 9 часов",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
