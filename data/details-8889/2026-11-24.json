@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T14:27:54.526185+00:00",
+      "generated_at": "2026-11-24T14:52:32.466841+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -600,7 +600,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-23T17:24:59+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T15:45:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1382,7 +1382,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-23T17:24:59+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T15:45:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2306,7 +2306,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-23T17:24:59+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T15:45:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2889,7 +2889,7 @@
                       "planned_start": "2026-11-24T09:00:00+03:00",
                       "planned_end": "2026-11-24T22:00:00+03:00",
                       "actual_start": "2026-11-23T17:24:59+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-24T15:45:00+03:00",
                       "status": "Вышел раньше на 9 часов",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -3176,12 +3176,36 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800134544",
+                  "name": "Мамаражабов Уролбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62501",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T09:00:00+03:00",
+                      "planned_end": "2026-11-24T22:00:00+03:00",
+                      "actual_start": "2026-11-23T17:24:59+03:00",
+                      "actual_end": "2026-11-24T15:45:00+03:00",
+                      "status": "Вышел раньше на 9 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-23",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 26,
+              "count": 25,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3432,29 +3456,6 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800134544",
-                  "name": "Мамаражабов Уролбек Нуриддин Угли",
-                  "slots": [
-                    {
-                      "slot_id": "62501",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-24T09:00:00+03:00",
-                      "planned_end": "2026-11-24T22:00:00+03:00",
-                      "actual_start": "2026-11-23T17:24:59+03:00",
-                      "actual_end": null,
-                      "status": "Вышел раньше на 9 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-23. Исходное начало: 2026-11-24T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-23",
                       "shift_end_source_date": null
                     }
                   ]
