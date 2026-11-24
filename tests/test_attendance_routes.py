@@ -26,3 +26,12 @@ class MemberReview(unittest.TestCase):
   self.assertTrue(case_config(config,{'payload':{'shop_id':8889}})['allow_group_members'])
   self.assertFalse(case_config(config,{'payload':{'shop_id':8889},'message_id':9})['allow_group_members'])
   self.assertFalse(case_config(config,{'payload':{'shop_id':7745}})['allow_group_members'])
+
+class Separate7745(unittest.TestCase):
+ def test_three_destinations_and_existing_card_binding(self):
+  config={'chat_id':-1004439978802,'shop_routes':{'8889':-1003908974924,'7745':-1004365044892},'member_approval_shops':[8889]}
+  for shop,chat in ((8889,-1003908974924),(7745,-1004365044892),(9107,-1004439978802)):
+   routed=case_config(config,{'payload':{'shop_id':shop}})
+   self.assertEqual(routed['chat_id'],chat)
+   self.assertEqual(routed['allow_group_members'],shop==8889)
+  self.assertEqual(case_config(config,{'payload':{'shop_id':7745},'message_id':12})['chat_id'],-1004439978802)
