@@ -3,7 +3,7 @@
 This report does not approve a measure or call a limit-changing worker.
 """
 import argparse,csv,hashlib,io,json,os
-from datetime import date,datetime,time
+from datetime import date,datetime,time,timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from audit_sources import audit
@@ -27,7 +27,9 @@ def proposed_measure(status,late_seconds,has_start=False,shop_id=None):
     return None
 
 
-def review_rows(observations,day):
+def review_rows(observations,day,now=None):
+    now=datetime.now(TZ) if now is None else now
+    if now.tzinfo is None:raise ValueError('Review time must include timezone')
     day=date.fromisoformat(day)
     if day<START:raise ValueError('No measures before 2026-11-22')
     output=[]
@@ -39,6 +41,7 @@ def review_rows(observations,day):
             for person in slot['couriers']:
                 text=(person.get('shift_status') or '').strip()
                 status=source_status(text)
+                if status=='no_show' and now < planned+timedelta(hours=3):continue
                 value=person.get('shift_start');seconds=None
                 if value:
                     actual=datetime.fromisoformat(value.replace('Z','+00:00'))

@@ -1,4 +1,5 @@
 import sys,unittest
+from datetime import datetime
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from attendance_review import proposed_measure,review_rows
@@ -22,4 +23,16 @@ class AttendanceReviewTests(unittest.TestCase):
   self.assertEqual(a['event_id'],b['event_id'])
   self.assertEqual(a['review_state'],'pending_review');self.assertFalse(a['applied'])
   self.assertIsNone(a['current_limit']);self.assertIsNone(a['target_limit'])
+class NoShowDelayTests(unittest.TestCase):
+ def source(self,shop,start='08:00'):
+  return {'shops':[{'shop_id':shop,'slots':[{'date':'2026-11-24','slot_id':1,'slot_type':'limited','scope_kind':'shopno','scope_id':shop,'time_from':start,'couriers':[{'courier_id':'123','name':'Fixture','shift_status':'Не вышел','shift_start':None}]}]}]}
+ def test_three_hour_boundary_for_each_shop(self):
+  for shop in (8889,7745,9107):
+   source=self.source(shop)
+   self.assertEqual(review_rows(source,'2026-11-24',datetime.fromisoformat('2026-11-24T10:59:59+03:00')),[])
+   rows=review_rows(source,'2026-11-24',datetime.fromisoformat('2026-11-24T11:00:00+03:00'))
+   self.assertEqual(len(rows),1);self.assertEqual(rows[0]['proposed_measure'],{'operation':'set','value':1})
+ def test_future_slot_and_midnight_do_not_trigger_early(self):
+  self.assertEqual(review_rows(self.source(8889,'23:00'),'2026-11-24',datetime.fromisoformat('2026-11-25T01:59:59+03:00')),[])
+  self.assertEqual(len(review_rows(self.source(8889,'23:00'),'2026-11-24',datetime.fromisoformat('2026-11-25T02:00:00+03:00'))),1)
 if __name__=='__main__':unittest.main()
