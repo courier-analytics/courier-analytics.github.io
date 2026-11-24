@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-24": {
-      "generated_at": "2026-11-24T08:47:27.888774+00:00",
+      "generated_at": "2026-11-24T09:13:47.117757+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 80.95,
-            "numerator": 34,
+            "value": 83.33,
+            "numerator": 35,
             "denominator": 42,
             "reason": null,
             "basis": "limited_slot_places"
@@ -516,8 +516,8 @@
               "planned_start": "2026-11-24T09:00:00+03:00",
               "planned_end": "2026-11-24T22:00:00+03:00",
               "capacity": 6,
-              "occupied": 5,
-              "free": 1,
+              "occupied": 6,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -591,6 +591,29 @@
                 {
                   "courier_id": "1800050823",
                   "name": "Мирзоев Зубайдулло Рахмидинович",
+                  "slots": [
+                    {
+                      "slot_id": "62501",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-24T09:00:00+03:00",
+                      "planned_end": "2026-11-24T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800127928",
+                  "name": "Муджиков Александр Давидович",
                   "slots": [
                     {
                       "slot_id": "62501",
@@ -739,7 +762,7 @@
                       "planned_end": "2026-11-24T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
