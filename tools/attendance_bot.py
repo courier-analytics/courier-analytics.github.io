@@ -170,8 +170,10 @@ def main():
                     collect(db,config)
                     db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('last_source_success',?)",(datetime.now(TZ).isoformat(),));db.commit()
                 except (OSError,ValueError,RuntimeError,KeyError,TypeError) as error:
-                    print('Evidence refresh failed:',type(error).__name__,flush=True)
-                    db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('last_source_error',?)",(type(error).__name__,));db.commit()
+                    from verify_server_proxy import error_code
+                    reason=error_code(error)
+                    print('Evidence refresh failed:',reason,flush=True)
+                    db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('last_source_error',?)",(reason,));db.commit()
                 next_collect=time.monotonic()+120
             notify(db,config,token)
             if not job and time.monotonic()>=next_job:job=start_job(db)
