@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-25": {
-      "generated_at": "2026-11-25T05:36:00.933685+00:00",
+      "generated_at": "2026-11-25T05:59:42.839889+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 80.49,
-            "numerator": 33,
-            "denominator": 41,
+            "value": 83.33,
+            "numerator": 35,
+            "denominator": 42,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -89,9 +89,33 @@
               "planned_start": "2026-11-25T06:00:00+03:00",
               "planned_end": "2026-11-25T15:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62510",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T06:00:00+03:00",
+                      "planned_end": "2026-11-25T15:00:00+03:00",
+                      "actual_start": "2026-11-25T08:37:00+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 37 мин",
+                      "late_seconds": 9420,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "62511",
@@ -774,6 +798,41 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-25T09:01:00+03:00",
                       "planned_end": "2026-11-25T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "98397",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-25T09:01:00+03:00",
+              "planned_end": "2026-11-25T21:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800133631",
+                  "name": "Камолов Саидмурод Меликмуродович",
+                  "slots": [
+                    {
+                      "slot_id": "98397",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T09:01:00+03:00",
+                      "planned_end": "2026-11-25T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2182,16 +2241,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 12.5,
-            "numerator": 1,
-            "denominator": 8,
+            "value": 22.22,
+            "numerator": 2,
+            "denominator": 9,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -2207,6 +2266,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 54 минуты",
                       "late_seconds": 3247,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62510",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T06:00:00+03:00",
+                      "planned_end": "2026-11-25T15:00:00+03:00",
+                      "actual_start": "2026-11-25T08:37:00+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 37 мин",
+                      "late_seconds": 9420,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2410,7 +2492,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -2495,6 +2577,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 5 минут",
                       "late_seconds": 345,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
+                  "slots": [
+                    {
+                      "slot_id": "62510",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T06:00:00+03:00",
+                      "planned_end": "2026-11-25T15:00:00+03:00",
+                      "actual_start": "2026-11-25T08:37:00+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 2 часа 37 мин",
+                      "late_seconds": 9420,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
