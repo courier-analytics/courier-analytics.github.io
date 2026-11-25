@@ -119134,7 +119134,7 @@
       }
     },
     "2026-11-23": {
-      "generated_at": "2026-11-25T17:56:32.858777+00:00",
+      "generated_at": "2026-11-25T20:52:38.195226+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -123908,7 +123908,7 @@
       }
     },
     "2026-11-24": {
-      "generated_at": "2026-11-25T20:30:16.114419+00:00",
+      "generated_at": "2026-11-25T20:57:11.424503+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -128824,20 +128824,20 @@
       }
     },
     "2026-11-25": {
-      "generated_at": "2026-11-25T20:34:51.142556+00:00",
+      "generated_at": "2026-11-25T21:01:47.651704+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 57.14,
-            "numerator": 20,
-            "denominator": 35,
+            "value": 58.33,
+            "numerator": 21,
+            "denominator": 36,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -128922,6 +128922,29 @@
                       "actual_end": "2026-11-25T20:30:00+03:00",
                       "status": "Опоздал на 26 минут",
                       "late_seconds": 1601,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699919412",
+                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
+                  "slots": [
+                    {
+                      "slot_id": "66969",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T10:00:00+03:00",
+                      "planned_end": "2026-11-25T23:00:00+03:00",
+                      "actual_start": "2026-11-25T14:04:38+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 4 часа 4 мин",
+                      "late_seconds": 14678,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -129384,7 +129407,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 8,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1699932352",
@@ -129423,29 +129446,6 @@
                       "actual_end": "2026-11-25T20:30:00+03:00",
                       "status": "Опоздал на 43 минуты",
                       "late_seconds": 2632,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699919412",
-                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
-                  "slots": [
-                    {
-                      "slot_id": "66969",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-25T10:00:00+03:00",
-                      "planned_end": "2026-11-25T23:00:00+03:00",
-                      "actual_start": "2026-11-25T14:04:38+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 4 часа 4 мин",
-                      "late_seconds": 14678,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -132830,9 +132830,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 34.29,
+            "value": 33.33,
             "numerator": 12,
-            "denominator": 35,
+            "denominator": 36,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -132929,11 +132929,18 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800104389",
                   "name": "Анисимов Арсений Антонович",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1699919412",
+                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
