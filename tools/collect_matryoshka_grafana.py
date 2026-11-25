@@ -73,6 +73,9 @@ def main():
             raise RuntimeError('Participant snapshot changed during collection; retry next run')
         export = json.loads((ROOT/'delivered-shop-9107.json').read_text())
         print('Matryoshka ledger:', json.dumps(ingest(ROOT/'orders.sqlite3', snapshot, export)))
+        from reconcile_matryoshka_orders import save_report
+        report = save_report(snapshot)
+        print('Reconciliation saved; participants:',len(report['participants']),'; overlapping totals not added.')
 
 if __name__ == '__main__':
     try:
