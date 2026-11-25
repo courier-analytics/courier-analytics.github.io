@@ -103,3 +103,14 @@ class HistoricalWindow(unittest.TestCase):
   body=request.call_args.args[1]
   self.assertIn("INTERVAL '30 days'",body['queries'][0]['rawSql'])
   self.assertEqual(body['from'],str(1800000000000-30*86400000))
+
+class HistoryDiagnostic(unittest.TestCase):
+ def test_history_is_not_limited_to_seven_days(self):
+  from unittest.mock import patch
+  from probe_grafana import history_diagnostic_query
+  with patch('probe_grafana.shop_query',return_value={}):
+   sql=history_diagnostic_query({},['123'])['rawSql']
+  self.assertIn('IN (123)',sql)
+  self.assertIn('older_than_seven_days',sql)
+  self.assertIn("current_setting('TimeZone')",sql)
+  self.assertNotIn('t.delivered_at >=',sql)

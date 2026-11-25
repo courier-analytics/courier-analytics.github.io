@@ -119,6 +119,23 @@ def fetch_delivered(request,target,now,page_size=5000,max_pages=100,lookback_day
   if len(batch)<page_size:return rows
  raise ValueError('Result limit reached; incomplete export rejected')
 
+def history_diagnostic_query(document,ids):
+ target=delivered_query(document,9107,ids)
+ numeric=','.join(str(int(v)) for v in ids)
+ target['rawSql']="""SELECT t.courier_id::text AS courier_id,
+ pg_typeof(t.delivered_at)::text AS timestamp_type,
+ current_setting('TimeZone') AS session_timezone,
+ MIN(t.delivered_at)::text AS earliest_delivery,
+ MAX(t.delivered_at)::text AS latest_delivery,
+ COUNT(DISTINCT j.parcel_id) AS all_orders,
+ COUNT(DISTINCT j.parcel_id) FILTER (WHERE t.delivered_at < NOW()-INTERVAL '7 days') AS older_than_seven_days,
+ NOW()::text AS server_now
+ FROM task t JOIN job j ON j.job_id=t.job_id
+ WHERE t.status='delivered' AND t.delivered_at IS NOT NULL
+ AND t.courier_id IN ("""+numeric+""")
+ GROUP BY t.courier_id, pg_typeof(t.delivered_at)"""
+ return target
+
 def matryoshka_ids(path=Path('/opt/courier-analytics/private/matryoshka-monitor.json')):
  snapshot=json.loads(path.read_text())
  if snapshot.get('verified') is not True:raise ValueError('Unverified participants')
@@ -132,7 +149,7 @@ def matryoshka_ids(path=Path('/opt/courier-analytics/private/matryoshka-monitor.
  if not ids:raise ValueError('No verified participants')
  return sorted(ids)
 
-def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana'),proxy=None,query_shop=None,delivered=False,courier_ids=None,matryoshka_only=False,lookback_days=7):
+def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana'),proxy=None,query_shop=None,delivered=False,courier_ids=None,matryoshka_only=False,lookback_days=7,diagnose_history=False):
  info=credentials.lstat()
  if not stat.S_ISREG(info.st_mode) or info.st_mode&0o077 or info.st_uid!=os.geteuid():raise ValueError('Credential file owner/permissions invalid')
  saved=json.loads(credentials.read_text())
@@ -195,6 +212,14 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
     if len(fields)!=len(values) or len({len(v) for v in values})>1:raise ValueError('Invalid frame')
     summary.append({'columns':[f.get('name') for f in fields],'rows':len(values[0]) if values else 0})
    print('Orders read:',json.dumps({'shop':query_shop,'frames':summary,'scope':'couriers_with_deliveries_from_shop; panel totals may include other shops'},ensure_ascii=False),flush=True)
+  if diagnose_history:
+   target=history_diagnostic_query(document,matryoshka_ids())
+   code,result=request('/api/ds/query',{'queries':[target],'from':str(int(time.time()*1000)-30*86400000),'to':str(int(time.time()*1000))})
+   print('History diagnostic HTTP:',code,flush=True)
+   if code!=200 or not isinstance(result,dict):return False
+   rows=frame_rows(result)
+   private_write(folder/'history-diagnostic.json',json.dumps(rows,ensure_ascii=False,indent=2))
+   print('History diagnostic:',json.dumps(rows,ensure_ascii=False),flush=True)
   if delivered:
    if query_shop is None:raise ValueError('Shop required')
    ids=matryoshka_ids() if matryoshka_only else courier_ids
@@ -215,10 +240,10 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
   return True
 if __name__=='__main__':
  os.umask(0o077)
- parser=argparse.ArgumentParser();parser.add_argument('--proxy');parser.add_argument('--query-shop',type=int);parser.add_argument('--delivered-orders',action='store_true');parser.add_argument('--courier-id',action='append');parser.add_argument('--matryoshka-only',action='store_true');parser.add_argument('--lookback-days',type=int,default=7);args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--proxy');parser.add_argument('--query-shop',type=int);parser.add_argument('--delivered-orders',action='store_true');parser.add_argument('--courier-id',action='append');parser.add_argument('--matryoshka-only',action='store_true');parser.add_argument('--lookback-days',type=int,default=7);parser.add_argument('--diagnose-history',action='store_true');args=parser.parse_args()
  try:
   if not network_check(args.proxy):raise SystemExit(1)
-  raise SystemExit(0 if probe(proxy=args.proxy,query_shop=args.query_shop,delivered=args.delivered_orders,courier_ids=args.courier_id,matryoshka_only=args.matryoshka_only,lookback_days=args.lookback_days) else 1)
+  raise SystemExit(0 if probe(proxy=args.proxy,query_shop=args.query_shop,delivered=args.delivered_orders,courier_ids=args.courier_id,matryoshka_only=args.matryoshka_only,lookback_days=args.lookback_days,diagnose_history=args.diagnose_history) else 1)
  except GrafanaNetworkError as error:
   print('Grafana connection failure:',str(error),flush=True)
   raise SystemExit(1)
