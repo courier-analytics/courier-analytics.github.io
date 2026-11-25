@@ -53103,7 +53103,7 @@
       }
     },
     "2026-11-22": {
-      "generated_at": "2026-11-25T06:52:03.013494+00:00",
+      "generated_at": "2026-11-25T07:56:14.977399+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -57856,7 +57856,7 @@
       }
     },
     "2026-11-23": {
-      "generated_at": "2026-11-25T05:51:16.568038+00:00",
+      "generated_at": "2026-11-25T07:52:02.848840+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -61981,7 +61981,7 @@
       }
     },
     "2026-11-24": {
-      "generated_at": "2026-11-25T07:34:32.179396+00:00",
+      "generated_at": "2026-11-25T08:00:45.277687+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -66266,7 +66266,7 @@
       }
     },
     "2026-11-25": {
-      "generated_at": "2026-11-25T07:39:03.403022+00:00",
+      "generated_at": "2026-11-25T08:05:22.520807+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -66506,10 +66506,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-25T07:00:00+03:00",
                       "planned_end": "2026-11-25T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T10:43:33+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 3 часа 43 мин",
+                      "late_seconds": 13413,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -67561,8 +67561,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 42.86,
-            "numerator": 15,
+            "value": 45.71,
+            "numerator": 16,
             "denominator": 35,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -67570,7 +67570,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -67701,6 +67701,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130340",
+                  "name": "Мазбутов Шахриёр Умеджонович",
+                  "slots": [
+                    {
+                      "slot_id": "62512",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T07:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T10:43:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 3 часа 43 мин",
+                      "late_seconds": 13413,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -67921,7 +67944,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 9,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -67944,29 +67967,6 @@
                       "shift_start_source_date": null,
                       "shift_end_source_date": null,
                       "fact_source_slot_id": "98353"
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130340",
-                  "name": "Мазбутов Шахриёр Умеджонович",
-                  "slots": [
-                    {
-                      "slot_id": "62512",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-25T07:00:00+03:00",
-                      "planned_end": "2026-11-25T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
                     }
                   ]
                 },
@@ -68432,16 +68432,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 46.67,
-            "numerator": 7,
-            "denominator": 15,
+            "value": 50.0,
+            "numerator": 8,
+            "denominator": 16,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 7,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1699938129",
@@ -68480,6 +68480,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 35 минут",
                       "late_seconds": 2144,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130340",
+                  "name": "Мазбутов Шахриёр Умеджонович",
+                  "slots": [
+                    {
+                      "slot_id": "62512",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T07:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T10:43:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 3 часа 43 мин",
+                      "late_seconds": 13413,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -68807,9 +68830,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 31.82,
+            "value": 30.43,
             "numerator": 7,
-            "denominator": 22,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -68983,7 +69006,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -69114,6 +69137,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130340",
+                  "name": "Мазбутов Шахриёр Умеджонович",
+                  "slots": [
+                    {
+                      "slot_id": "62512",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T07:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T10:43:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 3 часа 43 мин",
+                      "late_seconds": 13413,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -69381,7 +69427,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -69581,6 +69627,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 3 часа 58 мин",
                       "late_seconds": 14303,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800130340",
+                  "name": "Мазбутов Шахриёр Умеджонович",
+                  "slots": [
+                    {
+                      "slot_id": "62512",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T07:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T10:43:33+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 3 часа 43 мин",
+                      "late_seconds": 13413,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",

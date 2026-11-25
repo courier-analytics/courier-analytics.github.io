@@ -2,13 +2,13 @@
   "shop_id": 7745,
   "records": {
     "2026-11-25": {
-      "generated_at": "2026-11-25T07:39:03.403022+00:00",
+      "generated_at": "2026-11-25T08:05:22.520807+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 51.22,
+            "value": 50.0,
             "numerator": 21,
-            "denominator": 41,
+            "denominator": 42,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
@@ -188,10 +188,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-25T11:00:00+03:00",
                       "planned_end": "2026-11-25T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T10:59:44+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -504,7 +504,7 @@
             },
             {
               "title": "Не записались",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -519,6 +519,11 @@
                 {
                   "courier_id": "1800130726",
                   "name": "ДЖУМАЕВ АДАМ СУЛТАНОВИЧ",
+                  "slots": []
+                },
+                {
+                  "courier_id": "1800050764",
+                  "name": "Зироян Хачатур Давидович",
                   "slots": []
                 },
                 {
@@ -1397,10 +1402,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-25T11:00:00+03:00",
                       "planned_end": "2026-11-25T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T10:59:44+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1590,7 +1595,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 15,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -1721,6 +1726,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 15 мин",
                       "late_seconds": 4524,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1811870",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T11:00:00+03:00",
+                      "planned_end": "2026-11-25T21:00:00+03:00",
+                      "actual_start": "2026-11-25T10:59:44+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2039,7 +2067,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 4,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1699932352",
@@ -2074,29 +2102,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-25T21:00:00+03:00",
                       "planned_end": "2026-11-26T10:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799946181",
-                  "name": "Кубатбеков Максатбек",
-                  "slots": [
-                    {
-                      "slot_id": "1811870",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-25T11:00:00+03:00",
-                      "planned_end": "2026-11-25T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2467,7 +2472,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -2488,6 +2493,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-24. Исходное начало: 2026-11-25T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-24",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1811870",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T11:00:00+03:00",
+                      "planned_end": "2026-11-25T21:00:00+03:00",
+                      "actual_start": "2026-11-25T10:59:44+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -2597,9 +2625,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 5.88,
+            "value": 5.56,
             "numerator": 1,
-            "denominator": 17,
+            "denominator": 18,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2635,7 +2663,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -2766,6 +2794,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 15 мин",
                       "late_seconds": 4524,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1811870",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T11:00:00+03:00",
+                      "planned_end": "2026-11-25T21:00:00+03:00",
+                      "actual_start": "2026-11-25T10:59:44+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3410,9 +3461,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 31.71,
+            "value": 30.95,
             "numerator": 13,
-            "denominator": 41,
+            "denominator": 42,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -3516,7 +3567,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 28,
+              "count": 29,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -3535,6 +3586,13 @@
                 {
                   "courier_id": "1800130726",
                   "name": "ДЖУМАЕВ АДАМ СУЛТАНОВИЧ",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1800050764",
+                  "name": "Зироян Хачатур Давидович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
