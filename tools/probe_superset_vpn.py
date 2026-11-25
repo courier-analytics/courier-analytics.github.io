@@ -57,6 +57,7 @@ def main():
     parser.add_argument('--pay-couriers',type=int,nargs='+',help='Private payroll type export for specified courier IDs')
     parser.add_argument('--staffing-shop',type=int,choices=(7745,8889,9107),help='Export one staffing shop instead of the default pair')
     parser.add_argument('--collect-staffing',action='store_true',help='Private paginated workforce export for weeks 910-914')
+    parser.add_argument('--compare-order-ids',action='store_true',help='Read-only Matryoshka order ID comparison')
     parser.add_argument('--reconcile-matryoshka',action='store_true',help='Compare native delivered counts by date and courier type; no sends')
     parser.add_argument('--collect-matryoshka',action='store_true',help='Collect explicitly assigned Matryoshka participants; no sends')
     parser.add_argument('--matryoshka-history',action='store_true',help='Private all-company history diagnostic; no alerts')
@@ -114,7 +115,7 @@ def main():
             print('Superset health: ' + ('PASSED' if success else 'not confirmed'))
             if success and args.check_login:
                 from superset_access import check_login
-                success = check_login(args.provider, args.inspect_datasets, args.inspect_matryoshka, args.matryoshka_history, args.collect_matryoshka, args.reconcile_matryoshka, args.collect_staffing, args.staffing_shop, args.pay_couriers, args.ziz_services)
+                success = check_login(args.provider, args.inspect_datasets, args.inspect_matryoshka, args.matryoshka_history, args.collect_matryoshka, args.reconcile_matryoshka, args.collect_staffing, args.staffing_shop, args.pay_couriers, args.ziz_services, args.compare_order_ids)
                 print('Superset authentication: ' + ('PASSED' if success else 'not confirmed'))
             return 0 if success else 1
         finally:
