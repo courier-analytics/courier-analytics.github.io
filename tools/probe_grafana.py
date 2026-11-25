@@ -1,5 +1,6 @@
 """One Grafana login attempt and read-only dashboard inspection; secrets stay local."""
-import json,os,stat,http.cookiejar,urllib.request,urllib.error,ssl,socket,subprocess
+import json,os,stat,http.cookiejar,urllib.request,urllib.error,ssl,socket,subprocess,tempfile,argparse
+from urllib.parse import urlsplit
 from pathlib import Path
 from prepare_openvpn import private_write
 BASE='https://grafana-courier.vkusvill.ru'
@@ -24,36 +25,48 @@ def network_reason(error):
  if isinstance(reason,OSError):return 'network_os_error_'+str(reason.errno)
  return 'network_connection_failed'
 
-def network_check():
+def proxy_options(proxy):
+ if not proxy:return ['--noproxy','*']
+ value=urlsplit(proxy)
+ if value.scheme not in ('socks5h','http','https') or not value.hostname or value.username or value.password or value.query or value.fragment:
+  raise ValueError('Proxy must not contain credentials')
+ return ['--proxy',proxy,'--noproxy','']
+
+def network_check(proxy=None):
  try:
   addresses=sorted({r[4][0] for r in socket.getaddrinfo('grafana-courier.vkusvill.ru',443,type=socket.SOCK_STREAM)})
   print('Grafana DNS:',json.dumps(addresses),flush=True)
  except OSError as error:print('Grafana DNS:',network_reason(error),flush=True)
- result=subprocess.run(['curl','--silent','--show-error','--connect-timeout','10','--max-time','20',
-     '--output','/dev/null','--write-out','%{http_code}',BASE+'/api/health'],capture_output=True,text=True,timeout=25)
- print('Grafana unauthenticated HTTPS:',json.dumps({'curl_exit':result.returncode,'http_status':result.stdout.strip()[:3]}),flush=True)
+ command=['curl','--disable','--silent','--show-error','--connect-timeout','10','--max-time','20',
+     '--output','/dev/null','--write-out','%{http_code}']+proxy_options(proxy)+[BASE+'/api/health']
+ result=subprocess.run(command,capture_output=True,text=True,timeout=25)
+ print('Grafana unauthenticated HTTPS:',json.dumps({'route':'proxy' if proxy else 'direct','curl_exit':result.returncode,'http_status':result.stdout.strip()[:3]}),flush=True)
+ return result.returncode==0
 
-def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana')):
+def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana'),proxy=None):
  info=credentials.lstat()
  if not stat.S_ISREG(info.st_mode) or info.st_mode&0o077 or info.st_uid!=os.geteuid():raise ValueError('Credential file owner/permissions invalid')
  saved=json.loads(credentials.read_text())
  if not all(isinstance(saved.get(k),str) and saved[k] for k in ('username','password')):raise ValueError('Missing credentials')
- jar=http.cookiejar.CookieJar();opener=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar),NoRedirect())
+ folder.mkdir(mode=0o700,parents=True,exist_ok=True)
+ session=tempfile.TemporaryDirectory(prefix='.login-',dir=folder)
+ cookies=Path(session.name)/'cookies.txt';private_write(cookies,'')
  def request(path,data=None):
   if path not in ('/login','/api/user','/api/dashboards/uid/'+UID):raise ValueError('Endpoint not allowed')
-  headers={'Accept':'application/json','Origin':BASE,'Referer':BASE+'/login'}
-  body=None if data is None else json.dumps(data).encode()
-  if body is not None:headers['Content-Type']='application/json'
-  req=urllib.request.Request(BASE+path,data=body,headers=headers)
-  try:
-   with opener.open(req,timeout=25) as response:
-    raw=response.read(4_000_001)
-    if len(raw)>4_000_000:raise ValueError('Response exceeds inspection bound')
-    try:answer=json.loads(raw)
-    except ValueError:answer=None
-    return response.status,answer
-  except urllib.error.HTTPError as error:return error.code,None
-  except (urllib.error.URLError,TimeoutError,ssl.SSLError) as error:raise GrafanaNetworkError(network_reason(error)) from None
+  command=['curl','--disable','--silent','--show-error','--connect-timeout','10','--max-time','25','--max-filesize','4000000',
+    '--cookie',str(cookies),'--cookie-jar',str(cookies),'--header','Accept: application/json',
+    '--header','Origin: '+BASE,'--header','Referer: '+BASE+'/login','--write-out','\\n%{http_code}']+proxy_options(proxy)
+  body=None
+  if data is not None:
+   command+=['--header','Content-Type: application/json','--data-binary','@-'];body=json.dumps(data)
+  response=subprocess.run(command+[BASE+path],input=body,capture_output=True,text=True,timeout=30)
+  if response.returncode:
+   raise GrafanaNetworkError({28:'connection_timed_out',60:'tls_certificate_verification_failed',5:'proxy_dns_failed',6:'dns_resolution_failed',7:'connection_failed',97:'proxy_connection_failed'}.get(response.returncode,'curl_error_'+str(response.returncode)))
+  raw,separator,status=response.stdout.rpartition('\n')
+  if not separator or not status.isdigit():raise ValueError('Malformed HTTP response')
+  try:answer=json.loads(raw)
+  except ValueError:answer=None
+  return int(status),answer
  code,_=request('/login',{'user':saved['username'],'password':saved['password']})
  print('Grafana login HTTP:',code,flush=True)
  code,user=request('/api/user')
@@ -76,9 +89,10 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
  return True
 if __name__=='__main__':
  os.umask(0o077)
+ parser=argparse.ArgumentParser();parser.add_argument('--proxy');args=parser.parse_args()
  try:
-  network_check()
-  raise SystemExit(0 if probe() else 1)
+  if not network_check(args.proxy):raise SystemExit(1)
+  raise SystemExit(0 if probe(proxy=args.proxy) else 1)
  except GrafanaNetworkError as error:
   print('Grafana connection failure:',str(error),flush=True)
   raise SystemExit(1)
