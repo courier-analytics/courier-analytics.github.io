@@ -174,7 +174,9 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
    code,result=request('/api/ds/query',{'queries':[target],'from':str(now-7*86400000),'to':str(now)})
    print('Delivered orders query HTTP:',code,flush=True)
    if code!=200 or not isinstance(result,dict):return False
+   private_write(folder/('delivered-response-shop-'+str(query_shop)+'.json'),json.dumps(result,ensure_ascii=False))
    rows=frame_rows(result)
+   print('Delivered validation:',json.dumps({'rows':len(rows),'columns':sorted({k for r in rows for k in r}),'null_counts':{k:sum(r.get(k) is None for r in rows) for k in ('courier_id','order_id','shop_number','delivered_at')}}),flush=True)
    if len(rows)>=10001:raise ValueError('Result limit reached; incomplete export rejected')
    required={'courier_id','order_id','shop_number','delivered_at'}
    for row in rows:
@@ -193,5 +195,6 @@ if __name__=='__main__':
   print('Grafana connection failure:',str(error),flush=True)
   raise SystemExit(1)
  except (ValueError,KeyError,OSError,RuntimeError) as error:
-  print('Grafana check failed:',type(error).__name__,'; private details hidden',flush=True)
+  reasons={'Result limit reached; incomplete export rejected':'result_limit_reached','Incomplete order row':'incomplete_order_row','Unexpected courier':'unexpected_courier','Invalid frame':'invalid_frame','Missing frames':'missing_frames','Datasource query failed':'datasource_query_failed'}
+  print('Grafana check failed:',type(error).__name__,'reason:',reasons.get(str(error),'private_details_hidden'),flush=True)
   raise SystemExit(1)
