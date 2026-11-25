@@ -61,3 +61,22 @@ class DeliveredOrders(unittest.TestCase):
   valid['results']['A']['frames'][0]['data']['values'][0].append('100')
   with self.assertRaises(ValueError):frame_rows(valid)
   with self.assertRaises(ValueError):frame_rows({'results':{'A':{'error':'private SQL error'}}})
+
+class DeliveredPagination(unittest.TestCase):
+ def test_multiple_pages_and_fixed_window(self):
+  from unittest.mock import Mock,patch
+  from probe_grafana import fetch_delivered
+  target={'rawSql':"SELECT NOW() ORDER BY delivered_at, courier_id, order_id LIMIT 10001"}
+  request=Mock(return_value=(200,{}))
+  with patch('probe_grafana.frame_rows',side_effect=[[{'order_id':'1'},{'order_id':'2'}],[{'order_id':'3'}]]):
+   rows=fetch_delivered(request,target,100000,page_size=2)
+  self.assertEqual(len(rows),3)
+  queries=[c.args[1]['queries'][0]['rawSql'] for c in request.call_args_list]
+  self.assertIn('OFFSET 0',queries[0]);self.assertIn('OFFSET 2',queries[1])
+  self.assertTrue(all('to_timestamp(100.0)' in q for q in queries))
+ def test_incomplete_export_is_not_accepted(self):
+  from unittest.mock import Mock,patch
+  from probe_grafana import fetch_delivered
+  target={'rawSql':'SELECT 1 ORDER BY delivered_at, courier_id, order_id LIMIT 10001'}
+  with patch('probe_grafana.frame_rows',return_value=[{'order_id':'1'}]):
+   with self.assertRaises(ValueError):fetch_delivered(Mock(return_value=(200,{})),target,100000,page_size=1,max_pages=2)

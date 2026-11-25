@@ -79,7 +79,7 @@ def delivered_query(document,shop,courier_ids):
  FROM task t JOIN job j ON j.job_id=t.job_id
  JOIN parcel p ON p.parcel_id=j.parcel_id
  WHERE t.status='delivered' AND t.delivered_at IS NOT NULL
- AND t.delivered_at >= NOW() - INTERVAL '7 days'
+ AND t.delivered_at >= NOW() - INTERVAL '7 days' AND t.delivered_at < NOW()
  AND t.courier_id IN ("""+','.join(sorted(set(ids)))+""")
  ORDER BY delivered_at, courier_id, order_id LIMIT 10001"""
  return target
@@ -99,6 +99,24 @@ def frame_rows(result):
    raise ValueError('Invalid frame')
   rows.extend(dict(zip(names,row)) for row in zip(*values))
  return rows
+
+def fetch_delivered(request,target,now,page_size=5000,max_pages=100):
+ # Fixed window and deterministic ordering across pages; no partial success.
+ base=target['rawSql'].replace("NOW()",'to_timestamp('+str(now/1000)+')')
+ suffix='ORDER BY delivered_at, courier_id, order_id LIMIT 10001'
+ if not base.endswith(suffix):raise ValueError('Unexpected pagination query')
+ base=base[:-len(suffix)]
+ rows=[]
+ for page in range(max_pages):
+  query=dict(target)
+  query['rawSql']=base+'ORDER BY delivered_at, courier_id, order_id, shop_number LIMIT '+str(page_size)+' OFFSET '+str(page*page_size)
+  code,result=request('/api/ds/query',{'queries':[query],'from':str(now-7*86400000),'to':str(now)})
+  print('Delivered page:',page+1,'HTTP:',code,flush=True)
+  if code!=200 or not isinstance(result,dict):raise ValueError('Datasource query failed')
+  batch=frame_rows(result)
+  rows.extend(batch)
+  if len(batch)<page_size:return rows
+ raise ValueError('Result limit reached; incomplete export rejected')
 
 def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana'),proxy=None,query_shop=None,delivered=False,courier_ids=None):
  info=credentials.lstat()
@@ -171,13 +189,8 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
     ids=sorted({str(row['courier_id']) for row in frame_rows(previous)})
    target=delivered_query(document,query_shop,ids)
    now=int(time.time()*1000)
-   code,result=request('/api/ds/query',{'queries':[target],'from':str(now-7*86400000),'to':str(now)})
-   print('Delivered orders query HTTP:',code,flush=True)
-   if code!=200 or not isinstance(result,dict):return False
-   private_write(folder/('delivered-response-shop-'+str(query_shop)+'.json'),json.dumps(result,ensure_ascii=False))
-   rows=frame_rows(result)
-   print('Delivered validation:',json.dumps({'rows':len(rows),'columns':sorted({k for r in rows for k in r}),'null_counts':{k:sum(r.get(k) is None for r in rows) for k in ('courier_id','order_id','shop_number','delivered_at')}}),flush=True)
-   if len(rows)>=10001:raise ValueError('Result limit reached; incomplete export rejected')
+   rows=fetch_delivered(request,target,now)
+   print('Delivered validation:',json.dumps({'rows':len(rows),'columns':sorted({k for r in rows for k in r})}),flush=True)
    required={'courier_id','order_id','shop_number','delivered_at'}
    for row in rows:
     if set(row)!=required or any(row[k] is None for k in required):raise ValueError('Incomplete order row')
