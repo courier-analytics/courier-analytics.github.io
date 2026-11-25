@@ -80,3 +80,15 @@ class DeliveredPagination(unittest.TestCase):
   target={'rawSql':'SELECT 1 ORDER BY delivered_at, courier_id, order_id LIMIT 10001'}
   with patch('probe_grafana.frame_rows',return_value=[{'order_id':'1'}]):
    with self.assertRaises(ValueError):fetch_delivered(Mock(return_value=(200,{})),target,100000,page_size=1,max_pages=2)
+
+class MatryoshkaSelection(unittest.TestCase):
+ def test_only_verified_participant_ids(self):
+  import tempfile,json
+  from probe_grafana import matryoshka_ids
+  with tempfile.TemporaryDirectory() as folder:
+   path=Path(folder)/'participants.json'
+   path.write_text(json.dumps({'verified':True,'participants':[{'courier_id':'123'},{'courier_id':'456'},{'courier_id':'123'}]}))
+   self.assertEqual(matryoshka_ids(path),['123','456'])
+   for snapshot in ({'verified':False,'participants':[{'courier_id':'123'}]},{'verified':True,'participants':[]},{'verified':True,'participants':[{'courier_id':'invalid'}]}):
+    path.write_text(json.dumps(snapshot))
+    with self.assertRaises(ValueError):matryoshka_ids(path)
