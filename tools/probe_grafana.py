@@ -54,7 +54,8 @@ def shop_query(document,shop):
  selection=variable.get('query')
  if not isinstance(selection,str):raise ValueError('Expected SQL variable')
  selection=selection.replace('${shop_number:csv}',str(shop)).strip().rstrip(';')
- sql=target.get('rawSql','').replace('${courier_id:csv}',selection)
+ sql=target.get('rawSql','').replace('${courier_id:csv}',selection).strip()
+ if sql.endswith(';'):sql=sql[:-1].rstrip()
  for statement in (selection,sql):
   if not statement.lstrip().upper().startswith('SELECT') or '$' in statement or ';' in statement:
    raise ValueError('Unexpected SQL template')
