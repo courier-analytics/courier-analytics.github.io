@@ -96165,7 +96165,7 @@
       }
     },
     "2026-11-18": {
-      "generated_at": "2026-11-25T04:02:07.801261+00:00",
+      "generated_at": "2026-11-25T06:02:25.698421+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -123908,7 +123908,7 @@
       }
     },
     "2026-11-24": {
-      "generated_at": "2026-11-25T05:55:32.139463+00:00",
+      "generated_at": "2026-11-25T06:19:19.582397+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -128824,7 +128824,7 @@
       }
     },
     "2026-11-25": {
-      "generated_at": "2026-11-25T05:59:42.839889+00:00",
+      "generated_at": "2026-11-25T06:23:48.507751+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -128920,7 +128920,7 @@
                       "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -129033,10 +129033,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-25T09:00:00+03:00",
                       "planned_end": "2026-11-25T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T08:25:36+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 34 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -129173,7 +129173,7 @@
                       "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -130031,7 +130031,7 @@
                       "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -130052,10 +130052,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-25T09:00:00+03:00",
                       "planned_end": "2026-11-25T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T08:25:36+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 34 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -130077,7 +130077,7 @@
                       "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -130398,8 +130398,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 32.0,
-            "numerator": 8,
+            "value": 36.0,
+            "numerator": 9,
             "denominator": 25,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -130407,7 +130407,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -130492,6 +130492,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 15 мин",
                       "late_seconds": 4524,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799882751",
+                  "name": "Маматкулов Зияитдин Кимсанбаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66968",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T09:00:00+03:00",
+                      "planned_end": "2026-11-25T22:00:00+03:00",
+                      "actual_start": "2026-11-25T08:25:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 34 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -130597,8 +130620,31 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 5,
+              "count": 7,
               "couriers": [
+                {
+                  "courier_id": "1800009953",
+                  "name": "Ганиев Журабек Равшанович",
+                  "slots": [
+                    {
+                      "slot_id": "66968",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T09:00:00+03:00",
+                      "planned_end": "2026-11-25T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800132813",
                   "name": "Киргизов Илёсбек Нуриддин Угли",
@@ -130669,6 +130715,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800132511",
+                  "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66968",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T09:00:00+03:00",
+                      "planned_end": "2026-11-25T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799876935",
                   "name": "Сафаров Азамат Хазраталиевич",
                   "slots": [
@@ -130718,7 +130787,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 10,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1699895572",
@@ -130730,29 +130799,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-25T10:00:00+03:00",
                       "planned_end": "2026-11-25T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800009953",
-                  "name": "Ганиев Журабек Равшанович",
-                  "slots": [
-                    {
-                      "slot_id": "66968",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-25T09:00:00+03:00",
-                      "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -130859,29 +130905,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1799882751",
-                  "name": "Маматкулов Зияитдин Кимсанбаевич",
-                  "slots": [
-                    {
-                      "slot_id": "66968",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-25T09:00:00+03:00",
-                      "planned_end": "2026-11-25T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800056742",
                   "name": "Маматкулов Хумоюдин Фарходович",
                   "slots": [
@@ -130891,29 +130914,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-25T20:00:00+03:00",
                       "planned_end": "2026-11-26T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800132511",
-                  "name": "Нематжонов Искандар Умаржон Угли",
-                  "slots": [
-                    {
-                      "slot_id": "66968",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-25T09:00:00+03:00",
-                      "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -131015,9 +131015,9 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 50.0,
+            "value": 44.44,
             "numerator": 4,
-            "denominator": 8,
+            "denominator": 9,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
@@ -131122,7 +131122,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -131143,6 +131143,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-24. Исходное начало: 2026-11-25T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-24",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799882751",
+                  "name": "Маматкулов Зияитдин Кимсанбаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66968",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T09:00:00+03:00",
+                      "planned_end": "2026-11-25T22:00:00+03:00",
+                      "actual_start": "2026-11-25T08:25:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 34 минуты",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -131229,9 +131252,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 11.11,
+            "value": 10.0,
             "numerator": 1,
-            "denominator": 9,
+            "denominator": 10,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -131267,7 +131290,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -131352,6 +131375,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 15 мин",
                       "late_seconds": 4524,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799882751",
+                  "name": "Маматкулов Зияитдин Кимсанбаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66968",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T09:00:00+03:00",
+                      "planned_end": "2026-11-25T22:00:00+03:00",
+                      "actual_start": "2026-11-25T08:25:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 34 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -131480,7 +131526,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1120965906",
@@ -131542,6 +131588,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 15 мин",
                       "late_seconds": 4524,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799882751",
+                  "name": "Маматкулов Зияитдин Кимсанбаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66968",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T09:00:00+03:00",
+                      "planned_end": "2026-11-25T22:00:00+03:00",
+                      "actual_start": "2026-11-25T08:25:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 34 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
