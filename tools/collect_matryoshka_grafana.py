@@ -76,6 +76,11 @@ def main():
         from reconcile_matryoshka_orders import save_report
         report = save_report(snapshot)
         print('Reconciliation saved; participants:',len(report['participants']),'; overlapping totals not added.')
+        if (ROOT/'order-id-comparison.json').exists():
+            from merge_matryoshka_history import merge
+            from prepare_openvpn import private_write
+            history=merge(ROOT/'orders.sqlite3',json.loads((ROOT/'order-id-comparison.json').read_text()),snapshot)
+            private_write(ROOT/'unified-history.json',json.dumps(history,ensure_ascii=False,indent=2))
 
 if __name__ == '__main__':
     try:
