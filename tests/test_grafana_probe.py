@@ -40,3 +40,24 @@ class ShopQuery(unittest.TestCase):
   with self.assertRaises(ValueError):shop_query(document,'9107')
   document['dashboard']['panels'][0]['targets'][0]['rawSql']+='; DELETE FROM courier'
   with self.assertRaises(ValueError):shop_query(document,9107)
+
+class DeliveredOrders(unittest.TestCase):
+ def test_exact_courier_ids_and_delivered_filter(self):
+  from unittest.mock import patch
+  from probe_grafana import delivered_query
+  with patch('probe_grafana.shop_query',return_value={'datasource':{'type':'postgres'}}):
+   sql=delivered_query({},9107,['123','456','123'])['rawSql']
+   self.assertIn('IN (123,456)',sql)
+   self.assertIn("t.status='delivered'",sql)
+   self.assertIn('p.parcel_id::text AS order_id',sql)
+   self.assertIn("INTERVAL '7 days'",sql)
+   self.assertNotIn('p.shop_number=9107',sql)
+   for ids in ([],['123); DELETE FROM task'],list(range(101))):
+    with self.assertRaises(ValueError):delivered_query({},9107,ids)
+ def test_frames_reject_errors_and_misaligned_columns(self):
+  from probe_grafana import frame_rows
+  valid={'results':{'A':{'frames':[{'schema':{'fields':[{'name':'order_id'},{'name':'courier_id'}]},'data':{'values':[['99'],['123']]}}]}}}
+  self.assertEqual(frame_rows(valid),[{'order_id':'99','courier_id':'123'}])
+  valid['results']['A']['frames'][0]['data']['values'][0].append('100')
+  with self.assertRaises(ValueError):frame_rows(valid)
+  with self.assertRaises(ValueError):frame_rows({'results':{'A':{'error':'private SQL error'}}})

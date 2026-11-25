@@ -65,7 +65,42 @@ def shop_query(document,shop):
  target.update(rawSql=sql,refId='A',format='table',rawQuery=True)
  return target
 
-def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana'),proxy=None,query_shop=None):
+def delivered_query(document,shop,courier_ids):
+ target=shop_query(document,shop)
+ if not courier_ids or len(courier_ids)>100:raise ValueError('Expected 1 to 100 courier IDs')
+ ids=[]
+ for value in courier_ids:
+  value=str(value)
+  if not re.fullmatch(r'[0-9]{1,18}',value):raise ValueError('Invalid courier ID')
+  ids.append(str(int(value)))
+ target['rawSql']="""SELECT DISTINCT t.courier_id::text AS courier_id,
+ p.parcel_id::text AS order_id, p.shop_number AS shop_number,
+ t.delivered_at AS delivered_at
+ FROM task t JOIN job j ON j.job_id=t.job_id
+ JOIN parcel p ON p.parcel_id=j.parcel_id
+ WHERE t.status='delivered' AND t.delivered_at IS NOT NULL
+ AND t.delivered_at >= NOW() - INTERVAL '7 days'
+ AND t.courier_id IN ("""+','.join(sorted(set(ids)))+""")
+ ORDER BY delivered_at, courier_id, order_id LIMIT 10001"""
+ return target
+
+def frame_rows(result):
+ answer=result.get('results',{}).get('A',{})
+ if not answer or answer.get('error') or answer.get('status',200)!=200:
+  raise ValueError('Datasource query failed')
+ frames=answer.get('frames')
+ if not isinstance(frames,list):raise ValueError('Missing frames')
+ rows=[]
+ for frame in frames:
+  fields=frame.get('schema',{}).get('fields',[])
+  values=frame.get('data',{}).get('values',[])
+  names=[f.get('name') for f in fields]
+  if len(names)!=len(set(names)) or len(names)!=len(values) or len({len(v) for v in values})>1:
+   raise ValueError('Invalid frame')
+  rows.extend(dict(zip(names,row)) for row in zip(*values))
+ return rows
+
+def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana'),proxy=None,query_shop=None,delivered=False,courier_ids=None):
  info=credentials.lstat()
  if not stat.S_ISREG(info.st_mode) or info.st_mode&0o077 or info.st_uid!=os.geteuid():raise ValueError('Credential file owner/permissions invalid')
  saved=json.loads(credentials.read_text())
@@ -128,13 +163,32 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
     if len(fields)!=len(values) or len({len(v) for v in values})>1:raise ValueError('Invalid frame')
     summary.append({'columns':[f.get('name') for f in fields],'rows':len(values[0]) if values else 0})
    print('Orders read:',json.dumps({'shop':query_shop,'frames':summary,'scope':'couriers_with_deliveries_from_shop; panel totals may include other shops'},ensure_ascii=False),flush=True)
+  if delivered:
+   if query_shop is None:raise ValueError('Shop required')
+   ids=courier_ids
+   if not ids:
+    previous=json.loads((folder/('orders-shop-'+str(query_shop)+'.json')).read_text())
+    ids=sorted({str(row['courier_id']) for row in frame_rows(previous)})
+   target=delivered_query(document,query_shop,ids)
+   now=int(time.time()*1000)
+   code,result=request('/api/ds/query',{'queries':[target],'from':str(now-7*86400000),'to':str(now)})
+   print('Delivered orders query HTTP:',code,flush=True)
+   if code!=200 or not isinstance(result,dict):return False
+   rows=frame_rows(result)
+   if len(rows)>=10001:raise ValueError('Result limit reached; incomplete export rejected')
+   required={'courier_id','order_id','shop_number','delivered_at'}
+   for row in rows:
+    if set(row)!=required or any(row[k] is None for k in required):raise ValueError('Incomplete order row')
+    if str(row['courier_id']) not in {str(int(v)) for v in ids}:raise ValueError('Unexpected courier')
+   private_write(folder/('delivered-shop-'+str(query_shop)+'.json'),json.dumps({'observed_at_ms':now,'lookback_days':7,'scope':'selected couriers across all shops','rows':rows},ensure_ascii=False))
+   print('Delivered orders:',json.dumps({'requested_couriers':len(set(ids)),'rows':len(rows),'unique_order_ids':len({r['order_id'] for r in rows}),'other_shop_rows':sum(str(r['shop_number'])!=str(query_shop) for r in rows),'saved_privately':True}),flush=True)
   return True
 if __name__=='__main__':
  os.umask(0o077)
- parser=argparse.ArgumentParser();parser.add_argument('--proxy');parser.add_argument('--query-shop',type=int);args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--proxy');parser.add_argument('--query-shop',type=int);parser.add_argument('--delivered-orders',action='store_true');parser.add_argument('--courier-id',action='append');args=parser.parse_args()
  try:
   if not network_check(args.proxy):raise SystemExit(1)
-  raise SystemExit(0 if probe(proxy=args.proxy,query_shop=args.query_shop) else 1)
+  raise SystemExit(0 if probe(proxy=args.proxy,query_shop=args.query_shop,delivered=args.delivered_orders,courier_ids=args.courier_id) else 1)
  except GrafanaNetworkError as error:
   print('Grafana connection failure:',str(error),flush=True)
   raise SystemExit(1)
