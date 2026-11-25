@@ -44,6 +44,13 @@ def collect(db,config):
             db.execute("UPDATE cases SET state='withdrawn',notified=0 WHERE id=?",(row['id'],))
     db.commit()
 
+def reviewer_label(user):
+    username=user.get('username','')
+    if isinstance(username,str) and re.fullmatch(r'[A-Za-z0-9_]{1,32}',username):return '@'+username
+    name=' '.join(str(user.get(k) or '') for k in ('first_name','last_name'))
+    name=' '.join(''.join(c for c in name if c.isprintable()).split())
+    return name[:150] or 'Участник группы'
+
 def handle_callback(db,update,config,token):
     from attendance_cases import callback_decision
     q=update.get('callback_query');
@@ -59,7 +66,7 @@ def handle_callback(db,update,config,token):
         if q['from'].get('is_bot'):raise ValueError('Not a human reviewer')
         member=api(token,'getChatMember',{'chat_id':config['chat_id'],'user_id':actor})
         if not reviewer_allowed(config,member,actor):raise ValueError('Group reviewer rights required')
-        config={**config,'verified_member_id':actor}
+        config={**config,'verified_member_id':actor,'actor_label':reviewer_label(q['from'])}
         outcome=callback_decision(db,identity,nonce,actor,msg['chat']['id'],msg['message_id'],'apply' if action=='a' else 'skip',config)
         answer='Подтверждение принято; проверяем данные и сохраняем в 1С.' if outcome=='approved' else 'Пропущено.' if outcome=='skipped' else 'Лимит устарел. Перечитаем и запросим подтверждение заново.'
         # Strip buttons immediately; durable database state is the authority.
@@ -91,7 +98,14 @@ def notify(db,config,token,only_id=None):
         case=get(db,row['id']);config=case_config(root_config,case);p=case['payload']
         labels={'held':'Проверка не завершена; изменение не подтверждено. Требуется разбор, повторного списания не будет.','applied':'Сохранено в 1С и проверено повторным открытием карточки.','skipped':'Пропущено ответственным.','withdrawn':'Случай отозван: факты изменились или дата закончилась.','uncertain':'Результат сохранения не подтверждён. Нужна ручная проверка; повторного уменьшения не будет.'}
         text=message(case)+'\n\n'+labels[case['state']]
-        if case.get('actor'):text+='\nРешение принял Telegram ID '+str(case['actor'])
+        if case.get('actor'):
+            label=case.get('actor_label')
+            if not label:
+                try:
+                    member=api(token,'getChatMember',{'chat_id':config['chat_id'],'user_id':case['actor']})
+                    if member.get('user',{}).get('id')==case['actor']:label=reviewer_label(member['user'])
+                except RuntimeError:pass
+            text+='\nРешение принял: '+(label or 'Участник группы')
         if not case['message_id']:
             db.execute('UPDATE cases SET notified=1 WHERE id=?',(case['id'],));db.commit();continue
         try:api(token,'editMessageText',{'chat_id':config['chat_id'],'message_id':case['message_id'],'text':text,'reply_markup':{'inline_keyboard':[]}})
