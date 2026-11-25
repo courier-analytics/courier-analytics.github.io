@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-25": {
-      "generated_at": "2026-11-25T10:58:06.753139+00:00",
+      "generated_at": "2026-11-25T11:23:44.141454+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -1045,7 +1045,7 @@
                       "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1078,10 +1078,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-25T14:00:00+03:00",
                       "planned_end": "2026-11-25T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T13:51:15+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1785,7 +1785,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -1808,6 +1808,29 @@
                       "shift_start_source_date": null,
                       "shift_end_source_date": null,
                       "fact_source_slot_id": "98353"
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "62516",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T14:00:00+03:00",
+                      "planned_end": "2026-11-25T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
                     }
                   ]
                 },
@@ -1930,7 +1953,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 8,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1799970585",
@@ -1988,29 +2011,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-25T19:00:00+03:00",
                       "planned_end": "2026-11-26T10:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800122842",
-                  "name": "Магомедов Абдула Шамилевич",
-                  "slots": [
-                    {
-                      "slot_id": "62516",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-25T14:00:00+03:00",
-                      "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2695,16 +2695,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 26.92,
-            "numerator": 7,
-            "denominator": 26,
+            "value": 29.63,
+            "numerator": 8,
+            "denominator": 27,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 7,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -2740,6 +2740,29 @@
                       "planned_start": "2026-11-25T10:30:00+03:00",
                       "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": "2026-11-25T10:19:01+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800135300",
+                  "name": "ЗИМИН ДАНИИЛ ДЕНИСОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "99037",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T14:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T13:51:15+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
@@ -3408,7 +3431,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3536,6 +3559,29 @@
                       "planned_start": "2026-11-25T10:30:00+03:00",
                       "planned_end": "2026-11-25T22:00:00+03:00",
                       "actual_start": "2026-11-25T10:19:01+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800135300",
+                  "name": "ЗИМИН ДАНИИЛ ДЕНИСОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "99037",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T14:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T13:51:15+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
