@@ -4,7 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from attendance_cases import connect,get,proposed_target,claim_write,fingerprint
 from onec_limit_test import card,save_button
-from onec_courier_card import matching_row,matching_id_row,_grid,_save
+from onec_courier_card import matching_row,matching_id_row,wait_for_courier_result,wait_for_card_identity,_grid,_save
 from attendance_review import TZ,review_rows
 
 def load_task(identity,mode):
@@ -66,10 +66,10 @@ def execute(page,private,identity,mode,study):
             if edited!=target or unchanged!=taking:raise ValueError('Edit buffer validation failed')
             button.click(timeout=10000);field.wait_for(state='hidden',timeout=20000)
             grid=page.locator('[id="grid_form0_Список"]');grid.wait_for(state='visible',timeout=10000);page.wait_for_timeout(1000)
-            data=_grid(page);row=matching_id_row(data,p['courier_id'],p['name'])
+            data,row=wait_for_courier_result(page,p['name'],p['courier_id'])
             if row['courier_id']!=p['courier_id']:raise ValueError('Readback courier ID mismatch')
             grid.locator('.gridBody > .gridLine').nth(row['row_index']).locator('.gridBox').nth(data['headings'].index('Name')).dblclick(timeout=5000)
-            page.wait_for_timeout(2000)
+            wait_for_card_identity(page,p['name'],p['courier_id'])
             _,observed,unchanged=card(page,p['courier_id'],p['name'])
             if observed!=target or unchanged!=taking:raise ValueError('Persisted limit not verified')
             db.execute("UPDATE cases SET state='applied',result=?,notified=0 WHERE id=?",(json.dumps({'before':current,'after':target,'verified':True,'actor':case['actor']}),identity))

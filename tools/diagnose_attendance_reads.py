@@ -19,6 +19,8 @@ def inspect(root=ROOT):
             if row['state'] in ('applied','skipped','withdrawn'):continue
             reason=row['last_read_error']
             safe=reason if reason in SAFE_REASONS else ('other_recorded_reason' if reason else 'no_detailed_reason')
+            if reason is None:
+                safe={'Manual review required':'limit_rule_requires_manual_review','Verify persisted limit manually; no retry':'write_result_unconfirmed','Worker interrupted; verify manually':'write_worker_interrupted','limit_read_failed':'limit_read_failed','Worker did not complete; no verified write':'worker_not_completed'}.get(row['result'],safe)
             states[row['state']]+=1;reasons[safe]+=1
             cases.append({'date':payload.get('date'),'shop':payload.get('shop_id'),'courier_id':payload.get('courier_id'),
                           'state':row['state'],'attempts':row['read_attempts'],'reason':safe})

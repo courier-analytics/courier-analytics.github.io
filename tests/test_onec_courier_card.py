@@ -39,3 +39,14 @@ class ResultWaitTests(unittest.TestCase):
   with patch('onec_courier_card._grid',return_value=wrong),self.assertRaisesRegex(ValueError,'courier_id_not_found'):
    wait_for_courier_result(page,'Тест Имя','123',attempts=3)
   self.assertEqual(page.wait_for_timeout.call_count,3)
+
+class CardIdentityWait(unittest.TestCase):
+ def test_exact_identity_and_name_are_required_before_readback(self):
+  from unittest.mock import MagicMock
+  from onec_courier_card import wait_for_card_identity
+  page=MagicMock()
+  wait_for_card_identity(page,'Тест Имя','123')
+  call=page.wait_for_function.call_args
+  self.assertEqual(call.kwargs['arg'],{'name':'Тест Имя','identity':'123'})
+  self.assertEqual(call.kwargs['timeout'],20000)
+  self.assertIn('Идентификатор_i0',call.args[0])

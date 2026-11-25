@@ -101,6 +101,17 @@ def _save(page,folder,status):
             if os.path.exists(name):os.unlink(name)
 
 
+def wait_for_card_identity(page,name,identity=None):
+    page.wait_for_function(r"""args=>Array.from(document.querySelectorAll('#mainSurface input')).some(e=>{
+            if(!/^form[1-9][0-9]*_Наименование_i0$/.test(e.id)||!e.getClientRects().length)return false;
+            const norm=s=>s.trim().replace(/\s+/g,' ').toLowerCase();
+            if(norm(e.value)!==norm(args.name))return false;
+            if(!args.identity)return true;
+            const id=document.getElementById(e.id.split('_')[0]+'_Идентификатор_i0');
+            return id&&id.value.trim()===args.identity;
+        })""",arg={'name':name,'identity':identity},timeout=20000)
+
+
 def inspect(page,private,shop,name,expected_id=None):
     if shop not in (8889,7745,9107) or not isinstance(name,str) or len(name)>150 or len(name.split())<2 or any(ord(c)<32 for c in name):
         raise ValueError('Invalid read-only courier study target')
@@ -155,14 +166,7 @@ def inspect(page,private,shop,name,expected_id=None):
         second,candidate=wait_for_courier_result(page,name,expected_id)
         rows=grid.locator('.gridBody > .gridLine')
         rows.nth(candidate['row_index']).locator('.gridBox').nth(second['headings'].index('Name')).dblclick(timeout=5000)
-        page.wait_for_function(r"""args=>Array.from(document.querySelectorAll('#mainSurface input')).some(e=>{
-            if(!/^form[1-9][0-9]*_Наименование_i0$/.test(e.id)||!e.getClientRects().length)return false;
-            const norm=s=>s.trim().replace(/\s+/g,' ').toLowerCase();
-            if(norm(e.value)!==norm(args.name))return false;
-            if(!args.identity)return true;
-            const id=document.getElementById(e.id.split('_')[0]+'_Идентификатор_i0');
-            return id&&id.value.trim()===args.identity;
-        })""",arg={'name':name,'identity':expected_id},timeout=20000)
+        wait_for_card_identity(page,name,expected_id)
         # Do not infer success from the banner: require a new form with a real
         # name field containing the candidate, rather than the global user name.
         name_fields=page.locator('#mainSurface input:not([type="password"])').evaluate_all('''es=>es.filter(e=>e.id.startsWith('form')&&!e.id.startsWith('form0_')&&e.value).map(e=>({id:e.id,value:e.value}))''')
