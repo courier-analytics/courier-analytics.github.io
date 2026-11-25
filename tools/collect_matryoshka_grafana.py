@@ -66,7 +66,7 @@ def main():
             print('Collector already running; deferred.')
             return
         snapshot = json.loads(PARTICIPANTS.read_text())
-        if not probe(proxy='socks5h://127.0.0.1:18081', query_shop=9107, delivered=True, matryoshka_only=True):
+        if not probe(proxy='socks5h://127.0.0.1:18081', query_shop=9107, delivered=True, matryoshka_only=True, lookback_days=30):
             raise RuntimeError('Grafana collection failed')
         current = json.loads(PARTICIPANTS.read_text())
         if current != snapshot:

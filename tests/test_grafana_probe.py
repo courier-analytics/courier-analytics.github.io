@@ -92,3 +92,14 @@ class MatryoshkaSelection(unittest.TestCase):
    for snapshot in ({'verified':False,'participants':[{'courier_id':'123'}]},{'verified':True,'participants':[]},{'verified':True,'participants':[{'courier_id':'invalid'}]}):
     path.write_text(json.dumps(snapshot))
     with self.assertRaises(ValueError):matryoshka_ids(path)
+
+class HistoricalWindow(unittest.TestCase):
+ def test_requested_window_reaches_sql_and_api(self):
+  from unittest.mock import Mock,patch
+  from probe_grafana import fetch_delivered
+  target={'rawSql':"SELECT NOW() - INTERVAL '7 days' ORDER BY delivered_at, courier_id, order_id LIMIT 10001"}
+  request=Mock(return_value=(200,{}))
+  with patch('probe_grafana.frame_rows',return_value=[]):fetch_delivered(request,target,1800000000000,lookback_days=30)
+  body=request.call_args.args[1]
+  self.assertIn("INTERVAL '30 days'",body['queries'][0]['rawSql'])
+  self.assertEqual(body['from'],str(1800000000000-30*86400000))
