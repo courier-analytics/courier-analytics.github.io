@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-25": {
-      "generated_at": "2026-11-25T12:44:18.072279+00:00",
+      "generated_at": "2026-11-25T13:32:25.886689+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 75.47,
-            "numerator": 40,
+            "value": 73.58,
+            "numerator": 39,
             "denominator": 53,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1030,33 +1030,9 @@
               "planned_start": "2026-11-25T14:00:00+03:00",
               "planned_end": "2026-11-25T22:00:00+03:00",
               "capacity": 1,
-              "occupied": 1,
-              "free": 0,
-              "couriers": [
-                {
-                  "courier_id": "1800122842",
-                  "name": "Магомедов Абдула Шамилевич",
-                  "slots": [
-                    {
-                      "slot_id": "62516",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-25T14:00:00+03:00",
-                      "planned_end": "2026-11-25T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 1,
+              "couriers": []
             },
             {
               "slot_id": "99037",
@@ -1808,7 +1784,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -1831,29 +1807,6 @@
                       "shift_start_source_date": null,
                       "shift_end_source_date": null,
                       "fact_source_slot_id": "98353"
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800122842",
-                  "name": "Магомедов Абдула Шамилевич",
-                  "slots": [
-                    {
-                      "slot_id": "62516",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-25T14:00:00+03:00",
-                      "planned_end": "2026-11-25T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
                     }
                   ]
                 },
@@ -2125,7 +2078,7 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -2143,6 +2096,29 @@
                       "late_seconds": null,
                       "removed_at": "2026-11-25T00:34:09+03:00",
                       "removed_by": "Алиев Ибрагим Эльдарович",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800122842",
+                  "name": "Магомедов Абдула Шамилевич",
+                  "slots": [
+                    {
+                      "slot_id": "62516",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-25T14:00:00+03:00",
+                      "planned_end": "2026-11-25T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-25T16:01:00+03:00",
+                      "removed_by": "Джамалдаев А",
                       "note": "Снятие подтверждено историей бронирования.",
                       "worked_through": null,
                       "shift_start_source_date": null,
