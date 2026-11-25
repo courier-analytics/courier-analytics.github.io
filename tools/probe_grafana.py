@@ -49,44 +49,44 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
  saved=json.loads(credentials.read_text())
  if not all(isinstance(saved.get(k),str) and saved[k] for k in ('username','password')):raise ValueError('Missing credentials')
  folder.mkdir(mode=0o700,parents=True,exist_ok=True)
- session=tempfile.TemporaryDirectory(prefix='.login-',dir=folder)
- cookies=Path(session.name)/'cookies.txt';private_write(cookies,'')
- def request(path,data=None):
-  if path not in ('/login','/api/user','/api/dashboards/uid/'+UID):raise ValueError('Endpoint not allowed')
-  command=['curl','--disable','--silent','--show-error','--connect-timeout','10','--max-time','25','--max-filesize','4000000',
-    '--cookie',str(cookies),'--cookie-jar',str(cookies),'--header','Accept: application/json',
-    '--header','Origin: '+BASE,'--header','Referer: '+BASE+'/login','--write-out','\\n%{http_code}']+proxy_options(proxy)
-  body=None
-  if data is not None:
-   command+=['--header','Content-Type: application/json','--data-binary','@-'];body=json.dumps(data)
-  response=subprocess.run(command+[BASE+path],input=body,capture_output=True,text=True,timeout=30)
-  if response.returncode:
-   raise GrafanaNetworkError({28:'connection_timed_out',60:'tls_certificate_verification_failed',5:'proxy_dns_failed',6:'dns_resolution_failed',7:'connection_failed',97:'proxy_connection_failed'}.get(response.returncode,'curl_error_'+str(response.returncode)))
-  raw,separator,status=response.stdout.rpartition('\n')
-  if not separator or not status.isdigit():raise ValueError('Malformed HTTP response')
-  try:answer=json.loads(raw)
-  except ValueError:answer=None
-  return int(status),answer
- code,_=request('/login',{'user':saved['username'],'password':saved['password']})
- print('Grafana login HTTP:',code,flush=True)
- code,user=request('/api/user')
- authenticated=code==200 and isinstance(user,dict) and isinstance(user.get('id'),int)
- print('Grafana authenticated session:',authenticated,'HTTP:',code,flush=True)
- if not authenticated:return False
- code,document=request('/api/dashboards/uid/'+UID)
- print('Dashboard read HTTP:',code,flush=True)
- if code!=200 or not isinstance(document,dict) or document.get('dashboard',{}).get('uid')!=UID:return False
- found=[p for p in panels(document['dashboard']) if p.get('id')==6]
- if len(found)!=1:raise ValueError('Panel 6 not uniquely present')
- panel=found[0];folder.mkdir(mode=0o700,parents=True,exist_ok=True)
- # Dashboard query definitions only. No cookies, saved credentials or order rows.
- private_write(folder/'dashboard-definition.json',json.dumps(document,ensure_ascii=False,indent=2))
- summary={'panel_id':6,'panel_type':panel.get('type'),'target_count':len(panel.get('targets',[])),
-  'datasource_types':sorted({str(t.get('datasource',{}).get('type')) for t in panel.get('targets',[]) if isinstance(t.get('datasource'),dict)}),
-  'refresh':document['dashboard'].get('refresh'),'order_data_queried':False}
- print('Panel inspection:',json.dumps(summary,ensure_ascii=False),flush=True)
- print('Private dashboard definition saved; no orders or secrets printed.',flush=True)
- return True
+ with tempfile.TemporaryDirectory(prefix='.login-',dir=folder) as session:
+  cookies=Path(session)/'cookies.txt';private_write(cookies,'')
+  def request(path,data=None):
+   if path not in ('/login','/api/user','/api/dashboards/uid/'+UID):raise ValueError('Endpoint not allowed')
+   command=['curl','--disable','--silent','--show-error','--connect-timeout','10','--max-time','25','--max-filesize','4000000',
+     '--cookie',str(cookies),'--cookie-jar',str(cookies),'--header','Accept: application/json',
+     '--header','Origin: '+BASE,'--header','Referer: '+BASE+'/login','--write-out','\\n%{http_code}']+proxy_options(proxy)
+   body=None
+   if data is not None:
+    command+=['--header','Content-Type: application/json','--data-binary','@-'];body=json.dumps(data)
+   response=subprocess.run(command+[BASE+path],input=body,capture_output=True,text=True,timeout=30)
+   if response.returncode:
+    raise GrafanaNetworkError({28:'connection_timed_out',60:'tls_certificate_verification_failed',5:'proxy_dns_failed',6:'dns_resolution_failed',7:'connection_failed',97:'proxy_connection_failed'}.get(response.returncode,'curl_error_'+str(response.returncode)))
+   raw,separator,status=response.stdout.rpartition('\n')
+   if not separator or not status.isdigit():raise ValueError('Malformed HTTP response')
+   try:answer=json.loads(raw)
+   except ValueError:answer=None
+   return int(status),answer
+  code,_=request('/login',{'user':saved['username'],'password':saved['password']})
+  print('Grafana login HTTP:',code,flush=True)
+  code,user=request('/api/user')
+  authenticated=code==200 and isinstance(user,dict) and isinstance(user.get('id'),int)
+  print('Grafana authenticated session:',authenticated,'HTTP:',code,flush=True)
+  if not authenticated:return False
+  code,document=request('/api/dashboards/uid/'+UID)
+  print('Dashboard read HTTP:',code,flush=True)
+  if code!=200 or not isinstance(document,dict) or document.get('dashboard',{}).get('uid')!=UID:return False
+  found=[p for p in panels(document['dashboard']) if p.get('id')==6]
+  if len(found)!=1:raise ValueError('Panel 6 not uniquely present')
+  panel=found[0];folder.mkdir(mode=0o700,parents=True,exist_ok=True)
+  # Dashboard query definitions only. No cookies, saved credentials or order rows.
+  private_write(folder/'dashboard-definition.json',json.dumps(document,ensure_ascii=False,indent=2))
+  summary={'panel_id':6,'panel_type':panel.get('type'),'target_count':len(panel.get('targets',[])),
+   'datasource_types':sorted({str(t.get('datasource',{}).get('type')) for t in panel.get('targets',[]) if isinstance(t.get('datasource'),dict)}),
+   'refresh':document['dashboard'].get('refresh'),'order_data_queried':False}
+  print('Panel inspection:',json.dumps(summary,ensure_ascii=False),flush=True)
+  print('Private dashboard definition saved; no orders or secrets printed.',flush=True)
+  return True
 if __name__=='__main__':
  os.umask(0o077)
  parser=argparse.ArgumentParser();parser.add_argument('--proxy');args=parser.parse_args()
