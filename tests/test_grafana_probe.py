@@ -27,3 +27,15 @@ class ProxyLogin(unittest.TestCase):
     self.assertIn('--proxy',call.args[0]);self.assertNotIn('--insecure',call.args[0])
    self.assertIn('PRIVATE_PASSWORD',run.call_args_list[0].kwargs['input'])
    self.assertEqual(list((root/'private').glob('.login-*')),[])
+
+class ShopQuery(unittest.TestCase):
+ def test_shop_scope_and_unresolved_variables(self):
+  from probe_grafana import shop_query
+  document={'dashboard':{'panels':[{'id':6,'targets':[{'datasource':{'type':'postgres'},'rawSql':'SELECT * FROM courier WHERE courier_id IN (${courier_id:csv})'}]}], 'templating':{'list':[{'name':'courier_id','query':'SELECT courier_id FROM parcel WHERE shop_number IN (${shop_number:csv})'}]}}}
+  sql=shop_query(document,9107)['rawSql']
+  self.assertIn('shop_number IN (9107)',sql)
+  self.assertNotIn('$',sql)
+  self.assertIn('${courier_id:csv}',document['dashboard']['panels'][0]['targets'][0]['rawSql'])
+  with self.assertRaises(ValueError):shop_query(document,'9107')
+  document['dashboard']['panels'][0]['targets'][0]['rawSql']+='; DELETE FROM courier'
+  with self.assertRaises(ValueError):shop_query(document,9107)

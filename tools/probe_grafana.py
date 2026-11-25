@@ -1,5 +1,5 @@
 """One Grafana login attempt and read-only dashboard inspection; secrets stay local."""
-import json,os,stat,http.cookiejar,urllib.request,urllib.error,ssl,socket,subprocess,tempfile,argparse
+import re,time,json,os,stat,http.cookiejar,urllib.request,urllib.error,ssl,socket,subprocess,tempfile,argparse
 from urllib.parse import urlsplit
 from pathlib import Path
 from prepare_openvpn import private_write
@@ -43,7 +43,28 @@ def network_check(proxy=None):
  print('Grafana unauthenticated HTTPS:',json.dumps({'route':'proxy' if proxy else 'direct','curl_exit':result.returncode,'http_status':result.stdout.strip()[:3]}),flush=True)
  return result.returncode==0
 
-def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana'),proxy=None):
+def shop_query(document,shop):
+ if type(shop) is not int or not 1 <= shop <= 999999:raise ValueError('Invalid shop')
+ dashboard=document['dashboard']
+ panel=next(p for p in panels(dashboard) if p.get('id')==6)
+ targets=[t for t in panel.get('targets',[]) if not t.get('hide')]
+ if len(targets)!=1:raise ValueError('Expected one panel query')
+ target=dict(targets[0])
+ variable=next(v for v in dashboard.get('templating',{}).get('list',[]) if v.get('name')=='courier_id')
+ selection=variable.get('query')
+ if not isinstance(selection,str):raise ValueError('Expected SQL variable')
+ selection=selection.replace('${shop_number:csv}',str(shop)).strip().rstrip(';')
+ sql=target.get('rawSql','').replace('${courier_id:csv}',selection)
+ for statement in (selection,sql):
+  if not statement.lstrip().upper().startswith('SELECT') or '$' in statement or ';' in statement:
+   raise ValueError('Unexpected SQL template')
+  if re.search(r'\b(INSERT|UPDATE|DELETE|DROP|ALTER|TRUNCATE|COPY|CALL|GRANT)\b',statement,re.I):
+   raise ValueError('Expected read-only query')
+ if target.get('datasource',{}).get('type')!='postgres':raise ValueError('Unexpected datasource')
+ target.update(rawSql=sql,refId='A',format='table',rawQuery=True)
+ return target
+
+def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana'),proxy=None,query_shop=None):
  info=credentials.lstat()
  if not stat.S_ISREG(info.st_mode) or info.st_mode&0o077 or info.st_uid!=os.geteuid():raise ValueError('Credential file owner/permissions invalid')
  saved=json.loads(credentials.read_text())
@@ -52,7 +73,7 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
  with tempfile.TemporaryDirectory(prefix='.login-',dir=folder) as session:
   cookies=Path(session)/'cookies.txt';private_write(cookies,'')
   def request(path,data=None):
-   if path not in ('/login','/api/user','/api/dashboards/uid/'+UID):raise ValueError('Endpoint not allowed')
+   if path not in ('/login','/api/user','/api/dashboards/uid/'+UID,'/api/ds/query'):raise ValueError('Endpoint not allowed')
    command=['curl','--disable','--silent','--show-error','--connect-timeout','10','--max-time','25','--max-filesize','4000000',
      '--cookie',str(cookies),'--cookie-jar',str(cookies),'--header','Accept: application/json',
      '--header','Origin: '+BASE,'--header','Referer: '+BASE+'/login','--write-out','\\n%{http_code}']+proxy_options(proxy)
@@ -86,13 +107,33 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
    'refresh':document['dashboard'].get('refresh'),'order_data_queried':False}
   print('Panel inspection:',json.dumps(summary,ensure_ascii=False),flush=True)
   print('Private dashboard definition saved; no orders or secrets printed.',flush=True)
+  if query_shop is not None:
+   target=shop_query(document,query_shop)
+   now=int(time.time()*1000)
+   code,result=request('/api/ds/query',{'queries':[target],'from':str(now-86400000),'to':str(now)})
+   print('Orders query HTTP:',code,flush=True)
+   if code!=200 or not isinstance(result,dict):return False
+   answers=result.get('results',{})
+   answer=answers.get('A',{})
+   if not answer or answer.get('error') or answer.get('status',200)!=200:
+    print('Orders query failed; private response details hidden.',flush=True);return False
+   frames=answer.get('frames')
+   if not isinstance(frames,list):raise ValueError('Missing data frames')
+   private_write(folder/('orders-shop-'+str(query_shop)+'.json'),json.dumps(result,ensure_ascii=False))
+   summary=[]
+   for frame in frames:
+    fields=frame.get('schema',{}).get('fields',[])
+    values=frame.get('data',{}).get('values',[])
+    if len(fields)!=len(values) or len({len(v) for v in values})>1:raise ValueError('Invalid frame')
+    summary.append({'columns':[f.get('name') for f in fields],'rows':len(values[0]) if values else 0})
+   print('Orders read:',json.dumps({'shop':query_shop,'frames':summary,'scope':'couriers_with_deliveries_from_shop; panel totals may include other shops'},ensure_ascii=False),flush=True)
   return True
 if __name__=='__main__':
  os.umask(0o077)
- parser=argparse.ArgumentParser();parser.add_argument('--proxy');args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--proxy');parser.add_argument('--query-shop',type=int);args=parser.parse_args()
  try:
   if not network_check(args.proxy):raise SystemExit(1)
-  raise SystemExit(0 if probe(proxy=args.proxy) else 1)
+  raise SystemExit(0 if probe(proxy=args.proxy,query_shop=args.query_shop) else 1)
  except GrafanaNetworkError as error:
   print('Grafana connection failure:',str(error),flush=True)
   raise SystemExit(1)
