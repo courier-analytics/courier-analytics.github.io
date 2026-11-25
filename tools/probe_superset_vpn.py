@@ -80,7 +80,13 @@ def main():
         raise ValueError('VPN auth file missing or permissions too broad; require 600')
     # Refuse overlapping tests instead of mistaking an existing tunnel for success.
     from shared_vpn_resource import acquire
-    vpn_lease=acquire()
+    if not 0 <= args.wait_vpn <= 600:
+        raise ValueError('VPN wait must be between 0 and 600 seconds')
+    try:
+        vpn_lease=acquire(wait=max(120,args.wait_vpn))
+    except RuntimeError:
+        print('Corporate VPN still busy; comparison not started. Retry later; no tunnel stopped.',flush=True)
+        return 75
     wait_for_idle_vpn(args.wait_vpn)
     with tempfile.TemporaryDirectory(prefix='courier-superset-', dir='/root') as folder:
         folder = Path(folder)
