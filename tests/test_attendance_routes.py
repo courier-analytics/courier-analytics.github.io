@@ -35,3 +35,15 @@ class Separate7745(unittest.TestCase):
    self.assertEqual(routed['chat_id'],chat)
    self.assertEqual(routed['allow_group_members'],shop==8889)
   self.assertEqual(case_config(config,{'payload':{'shop_id':7745},'message_id':12})['chat_id'],-1004439978802)
+
+class MemberReview7745(unittest.TestCase):
+ def test_7745_members_enabled_without_expanding_other_groups(self):
+  from attendance_routes import reviewer_allowed
+  config={'chat_id':-1004439978802,'shop_routes':{'8889':-1003908974924,'7745':-1004365044892},'member_approval_shops':[8889,7745],'approver_ids':[1]}
+  current={'payload':{'shop_id':7745},'message_id':10,'message_chat_id':-1004365044892}
+  routed=case_config(config,current)
+  self.assertTrue(reviewer_allowed(routed,{'user':{'id':7,'is_bot':False},'status':'member'},7))
+  self.assertFalse(reviewer_allowed(routed,{'user':{'id':7,'is_bot':False},'status':'left'},7))
+  self.assertFalse(case_config(config,{'payload':{'shop_id':9107}})['allow_group_members'])
+  self.assertFalse(case_config(config,{'payload':{'shop_id':7745},'message_id':9,'message_chat_id':-1004439978802})['allow_group_members'])
+  self.assertTrue(case_config(config,{'payload':{'shop_id':8889}})['allow_group_members'])
