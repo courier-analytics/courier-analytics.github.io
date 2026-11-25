@@ -114827,7 +114827,7 @@
       }
     },
     "2026-11-22": {
-      "generated_at": "2026-11-25T08:57:31.189574+00:00",
+      "generated_at": "2026-11-25T09:57:27.542238+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -119134,7 +119134,7 @@
       }
     },
     "2026-11-23": {
-      "generated_at": "2026-11-25T08:52:59.739754+00:00",
+      "generated_at": "2026-11-25T09:53:02.807082+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -123908,7 +123908,7 @@
       }
     },
     "2026-11-24": {
-      "generated_at": "2026-11-25T09:35:21.373342+00:00",
+      "generated_at": "2026-11-25T10:02:10.348489+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -128824,20 +128824,20 @@
       }
     },
     "2026-11-25": {
-      "generated_at": "2026-11-25T09:40:01.525112+00:00",
+      "generated_at": "2026-11-25T10:06:56.433475+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 51.22,
-            "numerator": 21,
-            "denominator": 41,
+            "value": 52.38,
+            "numerator": 22,
+            "denominator": 42,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 21,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -128991,6 +128991,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 1 час 15 мин",
                       "late_seconds": 4524,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66967",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-25T08:00:00+03:00",
+                      "planned_end": "2026-11-25T21:00:00+03:00",
+                      "actual_start": "2026-11-25T11:43:25+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 3 часа 43 мин",
+                      "late_seconds": 13405,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -129449,7 +129472,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 5,
+              "count": 4,
               "couriers": [
                 {
                   "courier_id": "1799937997",
@@ -129488,29 +129511,6 @@
                       "actual_end": null,
                       "status": "Не вышел",
                       "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800132813",
-                  "name": "Киргизов Илёсбек Нуриддин Угли",
-                  "slots": [
-                    {
-                      "slot_id": "66967",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-25T08:00:00+03:00",
-                      "planned_end": "2026-11-25T21:00:00+03:00",
-                      "actual_start": "2026-11-25T11:43:25+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 3 часа 43 мин",
-                      "late_seconds": 13405,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -132507,9 +132507,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 31.71,
+            "value": 30.95,
             "numerator": 13,
-            "denominator": 41,
+            "denominator": 42,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -132613,7 +132613,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 28,
+              "count": 29,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -132632,6 +132632,13 @@
                 {
                   "courier_id": "1800130726",
                   "name": "ДЖУМАЕВ АДАМ СУЛТАНОВИЧ",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
