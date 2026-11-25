@@ -12,6 +12,10 @@ def main():
     os.kill(pid,signal.SIGSTOP)
     terminating=False
     try:
+        deadline=time.monotonic()+3
+        while not any(line.startswith('State:') and line.split()[1] in ('T','t') for line in Path(f'/proc/{pid}/status').read_text().splitlines()):
+            if time.monotonic()>=deadline:raise SystemExit('Could not confirm idle inspection pause; update deferred.')
+            time.sleep(.05)
         # A stopped parent cannot launch a worker between the check and SIGTERM.
         children=Path(f'/proc/{pid}/task/{pid}/children').read_text().strip()
         with sqlite3.connect('file:/opt/courier-analytics/private/attendance-bot/cases.sqlite3?mode=ro',uri=True) as db:
