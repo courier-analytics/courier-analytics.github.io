@@ -1,5 +1,5 @@
 """One Grafana login attempt and read-only dashboard inspection; secrets stay local."""
-import json,os,stat,http.cookiejar,urllib.request,urllib.error
+import json,os,stat,http.cookiejar,urllib.request,urllib.error,ssl,socket,subprocess
 from pathlib import Path
 from prepare_openvpn import private_write
 BASE='https://grafana-courier.vkusvill.ru'
@@ -11,6 +11,27 @@ def panels(dashboard):
  for panel in dashboard.get('panels',[]):
   yield panel
   yield from panels(panel)
+
+class GrafanaNetworkError(RuntimeError):pass
+
+def network_reason(error):
+ reason=error.reason if isinstance(error,urllib.error.URLError) else error
+ if isinstance(reason,ssl.SSLCertVerificationError):return 'tls_certificate_verification_failed'
+ if isinstance(reason,ssl.SSLError):return 'tls_handshake_failed'
+ if isinstance(reason,socket.gaierror):return 'dns_resolution_failed'
+ if isinstance(reason,(TimeoutError,socket.timeout)):return 'connection_timed_out'
+ if isinstance(reason,ConnectionRefusedError):return 'connection_refused'
+ if isinstance(reason,OSError):return 'network_os_error_'+str(reason.errno)
+ return 'network_connection_failed'
+
+def network_check():
+ try:
+  addresses=sorted({r[4][0] for r in socket.getaddrinfo('grafana-courier.vkusvill.ru',443,type=socket.SOCK_STREAM)})
+  print('Grafana DNS:',json.dumps(addresses),flush=True)
+ except OSError as error:print('Grafana DNS:',network_reason(error),flush=True)
+ result=subprocess.run(['curl','--silent','--show-error','--connect-timeout','10','--max-time','20',
+     '--output','/dev/null','--write-out','%{http_code}',BASE+'/api/health'],capture_output=True,text=True,timeout=25)
+ print('Grafana unauthenticated HTTPS:',json.dumps({'curl_exit':result.returncode,'http_status':result.stdout.strip()[:3]}),flush=True)
 
 def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/courier-analytics/private/grafana')):
  info=credentials.lstat()
@@ -32,7 +53,7 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
     except ValueError:answer=None
     return response.status,answer
   except urllib.error.HTTPError as error:return error.code,None
-  except urllib.error.URLError:raise RuntimeError('Grafana network or TLS connection failed') from None
+  except (urllib.error.URLError,TimeoutError,ssl.SSLError) as error:raise GrafanaNetworkError(network_reason(error)) from None
  code,_=request('/login',{'user':saved['username'],'password':saved['password']})
  print('Grafana login HTTP:',code,flush=True)
  code,user=request('/api/user')
@@ -55,7 +76,12 @@ def probe(credentials=Path('/root/courier-grafana.json'),folder=Path('/opt/couri
  return True
 if __name__=='__main__':
  os.umask(0o077)
- try:raise SystemExit(0 if probe() else 1)
+ try:
+  network_check()
+  raise SystemExit(0 if probe() else 1)
+ except GrafanaNetworkError as error:
+  print('Grafana connection failure:',str(error),flush=True)
+  raise SystemExit(1)
  except (ValueError,KeyError,OSError,RuntimeError) as error:
   print('Grafana check failed:',type(error).__name__,'; private details hidden',flush=True)
   raise SystemExit(1)
