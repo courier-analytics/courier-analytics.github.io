@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-25": {
-      "generated_at": "2026-11-25T05:12:32.250874+00:00",
+      "generated_at": "2026-11-25T05:36:00.933685+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -379,10 +379,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-25T08:00:00+03:00",
                       "planned_end": "2026-11-25T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T08:13:22+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 13 минут",
+                      "late_seconds": 802,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -414,10 +414,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-25T08:00:00+03:00",
                       "planned_end": "2026-11-25T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T08:23:59+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 23 минуты",
+                      "late_seconds": 1439,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1144,8 +1144,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 14.29,
-            "numerator": 5,
+            "value": 20.0,
+            "numerator": 7,
             "denominator": 35,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1153,7 +1153,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 5,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -1269,12 +1269,58 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799971289",
+                  "name": "Сучков Денис Дмитриевич",
+                  "slots": [
+                    {
+                      "slot_id": "93181",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T08:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T08:23:59+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 23 минуты",
+                      "late_seconds": 1439,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800121394",
+                  "name": "Шокаримов Шохрух Шохсалимович",
+                  "slots": [
+                    {
+                      "slot_id": "62513",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T08:00:00+03:00",
+                      "planned_end": "2026-11-25T21:00:00+03:00",
+                      "actual_start": "2026-11-25T08:13:22+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 13 минут",
+                      "late_seconds": 802,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 8,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800130340",
@@ -1369,29 +1415,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1799971289",
-                  "name": "Сучков Денис Дмитриевич",
-                  "slots": [
-                    {
-                      "slot_id": "93181",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-25T08:00:00+03:00",
-                      "planned_end": "2026-11-25T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800130023",
                   "name": "Хасанов Амирхон Турабекович",
                   "slots": [
@@ -1424,29 +1447,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-25T06:00:00+03:00",
                       "planned_end": "2026-11-25T19:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800121394",
-                  "name": "Шокаримов Шохрух Шохсалимович",
-                  "slots": [
-                    {
-                      "slot_id": "62513",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-25T08:00:00+03:00",
-                      "planned_end": "2026-11-25T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -1991,21 +1991,45 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
-            "denominator": 5,
+            "value": 14.29,
+            "numerator": 1,
+            "denominator": 7,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1799971289",
+                  "name": "Сучков Денис Дмитриевич",
+                  "slots": [
+                    {
+                      "slot_id": "93181",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T08:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T08:23:59+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 23 минуты",
+                      "late_seconds": 1439,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -2121,6 +2145,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800121394",
+                  "name": "Шокаримов Шохрух Шохсалимович",
+                  "slots": [
+                    {
+                      "slot_id": "62513",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T08:00:00+03:00",
+                      "planned_end": "2026-11-25T21:00:00+03:00",
+                      "actual_start": "2026-11-25T08:13:22+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 13 минут",
+                      "late_seconds": 802,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
@@ -2135,9 +2182,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 16.67,
+            "value": 12.5,
             "numerator": 1,
-            "denominator": 6,
+            "denominator": 8,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2173,7 +2220,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 5,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1799990068",
@@ -2281,6 +2328,52 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 211,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799971289",
+                  "name": "Сучков Денис Дмитриевич",
+                  "slots": [
+                    {
+                      "slot_id": "93181",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T08:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T08:23:59+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 23 минуты",
+                      "late_seconds": 1439,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800121394",
+                  "name": "Шокаримов Шохрух Шохсалимович",
+                  "slots": [
+                    {
+                      "slot_id": "62513",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T08:00:00+03:00",
+                      "planned_end": "2026-11-25T21:00:00+03:00",
+                      "actual_start": "2026-11-25T08:13:22+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 13 минут",
+                      "late_seconds": 802,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2317,7 +2410,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 6,
+              "count": 8,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -2448,6 +2541,52 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 211,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799971289",
+                  "name": "Сучков Денис Дмитриевич",
+                  "slots": [
+                    {
+                      "slot_id": "93181",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T08:00:00+03:00",
+                      "planned_end": "2026-11-25T20:00:00+03:00",
+                      "actual_start": "2026-11-25T08:23:59+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 23 минуты",
+                      "late_seconds": 1439,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800121394",
+                  "name": "Шокаримов Шохрух Шохсалимович",
+                  "slots": [
+                    {
+                      "slot_id": "62513",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-25T08:00:00+03:00",
+                      "planned_end": "2026-11-25T21:00:00+03:00",
+                      "actual_start": "2026-11-25T08:13:22+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 13 минут",
+                      "late_seconds": 802,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
