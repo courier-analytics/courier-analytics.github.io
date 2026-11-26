@@ -35,6 +35,9 @@ def main():
   if identity in seen:continue
   seen.add(identity)
   if not identity.isdigit() or not name or shop not in ('8889','7745','9107'):continue
-  result=subprocess.run(['flock','-w','30','/opt/courier-analytics/onec-roster.lock','/opt/courier-analytics/onec-venv/bin/python','/opt/courier-analytics/dashboard-code/tools/probe_powerbi_vpn.py','--address','10.210.254.19','--onec-login','--onec-courier-shop',shop,'--onec-courier-name',name,'--onec-pool-id',identity],timeout=330)
+  result=subprocess.run(['flock','-w','0','-E','75','/opt/courier-analytics/onec-roster.lock','/opt/courier-analytics/onec-venv/bin/python','/opt/courier-analytics/dashboard-code/tools/probe_powerbi_vpn.py','--address','10.210.254.19','--onec-login','--onec-courier-shop',shop,'--onec-courier-name',name,'--onec-pool-id',identity],timeout=330)
+  if result.returncode==75:
+   print('Pool collection deferred: shared resource busy; remaining participants wait for next timer',flush=True)
+   return 75
   print('Pool read completed; success:',result.returncode==0,flush=True)
-if __name__=='__main__':main()
+if __name__=='__main__':raise SystemExit(main())
