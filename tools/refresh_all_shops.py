@@ -45,6 +45,14 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
                 rosters[identity] = load_native_roster(native_path.parent, day)
             except (OSError, ValueError, KeyError, TypeError):
                 roster_errors[identity] = 'native_roster_stale_or_invalid'
+        if identity == 8889:
+            from typed_roster_8889 import load_for_day as load_typed_roster
+            use_native = True
+            rosters.pop(identity, None)
+            try:
+                rosters[identity] = load_typed_roster(state_dir/'onec-rosters',day)
+            except (OSError, ValueError, KeyError, TypeError):
+                roster_errors[identity] = 'typed_connected_roster_stale_or_invalid'
         scope_config=next((s for s in observations.get('scope_config',{}).get('shops',[]) if s['shop_id']==identity),None)
         scopes=([('shopno',identity)]+[('cluster_id',int(c)) for c in scope_config['cluster_ids']]) if scope_config else None
         shop['slots'], shop['overnight_completion'] = resolve_overnight(shop['slots'], token, proxy, source_cache=stitch_cache,scopes=scopes)
@@ -85,9 +93,6 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
                 metrics['shift_marked'] = collect_active_base(day, identity, shop['slots'], token, proxy)
             except (RuntimeError, ValueError, KeyError, TypeError):
                 metrics['shift_marked'] = metric(reason='active_base_incomplete', basis=ACTIVE_BASIS)
-        if identity == 8889:
-            # Do not substitute schedule participants for the requested typed 1C base.
-            metrics['shift_marked'] = metric(reason='assigned_roster_not_verified')
         from training import configured as collect_training
         training=collect_training(day,rosters.get(identity),state_dir) if identity==7745 else None
         if training:metrics['training']=training['metric']
