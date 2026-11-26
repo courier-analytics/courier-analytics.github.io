@@ -27,6 +27,14 @@ def main():
         from attendance_bot import collect,CONFIG
         config=json.loads(CONFIG.read_text())
         db=connect()
-        try:return run_once(db,config,collect)
+        try:
+            result=run_once(db,config,collect)
+            if result==0:
+                from attendance_card_cleanup import cleanup_withdrawn
+                from late_bot_group import load_token,api
+                try:cleanup_withdrawn(db,config,load_token(),api)
+                except (OSError,ValueError,RuntimeError,KeyError,TypeError):
+                    print('Card cleanup deferred; receiver and source data unchanged',flush=True)
+            return result
         finally:db.close()
 if __name__=='__main__':raise SystemExit(main())

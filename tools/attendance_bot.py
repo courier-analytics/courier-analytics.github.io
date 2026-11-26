@@ -40,8 +40,8 @@ def collect(db,config):
     live=ingest(db,rows,config.get('ignored_cases',[]))
     for row in db.execute('SELECT id,state,payload FROM cases').fetchall():
         p=json.loads(row['payload'])
-        if row['state'] not in TERMINAL|{'applying'} and (p['date']!=day.isoformat() or row['id'] not in live):
-            db.execute("UPDATE cases SET state='withdrawn',notified=0 WHERE id=?",(row['id'],))
+        if row['state'] not in TERMINAL|{'applying','delivery_uncertain','sending'} and (p['date']!=day.isoformat() or row['id'] not in live):
+            db.execute("UPDATE cases SET state='withdrawn',notified=0 WHERE id=? AND state NOT IN ('applied','skipped','withdrawn','uncertain','applying','delivery_uncertain','sending')",(row['id'],))
     db.commit()
 
 def reviewer_label(user):
@@ -93,7 +93,7 @@ def notify(db,config,token,only_id=None):
             db.execute("UPDATE cases SET state='pending_review',message_id=?,notified=1 WHERE id=?",(sent['message_id'],case['id']));db.commit()
         except RuntimeError:
             db.execute("UPDATE cases SET state='delivery_uncertain',notified=1 WHERE id=?",(case['id'],));db.commit();raise
-    for row in db.execute("SELECT id FROM cases WHERE state IN ('applied','skipped','withdrawn','uncertain','held') AND message_id IS NOT NULL AND notified=0").fetchall():
+    for row in db.execute("SELECT id FROM cases WHERE state IN ('applied','skipped','uncertain','held') AND message_id IS NOT NULL AND notified=0").fetchall():
         if only_id is not None and row['id']!=only_id:continue
         case=get(db,row['id']);config=case_config(root_config,case);p=case['payload']
         labels={'held':'Проверка не завершена; изменение не подтверждено. Требуется разбор, повторного списания не будет.','applied':'Сохранено в 1С и проверено повторным открытием карточки.','skipped':'Пропущено ответственным.','withdrawn':'Случай отозван: факты изменились или дата закончилась.','uncertain':'Результат сохранения не подтверждён. Нужна ручная проверка; повторного уменьшения не будет.'}
