@@ -12,7 +12,8 @@ PAGE=5000
 
 def stamp(value):
     if not value:return None
-    moment=datetime.fromisoformat(str(value).replace('Z','+00:00'))
+    try:moment=datetime.fromisoformat(str(value).replace('Z','+00:00'))
+    except (ValueError,TypeError):raise ValueError('Invalid delivery timestamp') from None
     return moment if moment.tzinfo else moment.replace(tzinfo=TZ)
 
 def summarize(rows,shop,start,end):
@@ -51,7 +52,19 @@ def summarize(rows,shop,start,end):
             'definitions':{'order_to_delivery':'date_order → date_delivered','courier_delivery_leg':'date_delivery_start → date_delivered'},
             'averaging':'Arithmetic mean per unique successfully delivered order, not mean of daily averages.'}
 
+SAFE_ERRORS={'Wrong shop in report','Invalid order identity','Conflicting duplicate order',
+             'Delivery outside report period','Invalid delivery timestamp','Source changed during export',
+             'Delivery query failed','Invalid delivery response','Invalid report row count',
+             'Required delivery fields unavailable','Invalid report scope','Truncated or changing report'}
+
 def collect(opener,token,shop,start_text,end_text):
+    try:return _collect(opener,token,shop,start_text,end_text)
+    except (OSError,ValueError,KeyError,TypeError) as error:
+        reason=str(error) if type(error) is ValueError and str(error) in SAFE_ERRORS else 'details_hidden'
+        print('Delivery report failed:',type(error).__name__,'reason='+reason,flush=True)
+        raise
+
+def _collect(opener,token,shop,start_text,end_text):
     shop=int(shop);start=date.fromisoformat(start_text);end=date.fromisoformat(end_text)
     if not 1<=shop<=999999 or not 0<(end-start).days<=31:raise ValueError('Invalid report scope')
     fields=['id_order','shopno','date_order','date_delivery_start','date_delivered']
@@ -83,8 +96,11 @@ def collect(opener,token,shop,start_text,end_text):
         if not batch or len(rows)+len(batch)>expected:raise ValueError('Truncated or changing report')
         rows.extend(batch)
         print('Delivery report rows:',len(rows),'/',expected,flush=True)
+    print('Delivery report phase: verifying source count',flush=True)
     if size()!=expected:raise ValueError('Source changed during export')
+    print('Delivery report phase: calculating durations',flush=True)
     report=summarize(rows,shop,start,end)
     target=Path('/opt/courier-analytics/private')/f'delivery-speed-{shop}-{start}-{end}.json'
+    print('Delivery report phase: saving aggregate',flush=True)
     private_write(target,json.dumps(report,ensure_ascii=False,indent=2))
     print('DELIVERY SPEED REPORT:',json.dumps(report,ensure_ascii=False,indent=2),flush=True)

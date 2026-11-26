@@ -17,3 +17,10 @@ class Speed(unittest.TestCase):
   with self.assertRaises(ValueError):summarize([row],4702,date(2026,11,19),date(2026,11,26))
   row['shopno']=4702;row['date_delivered']='2026-11-26T00:00:00'
   with self.assertRaises(ValueError):summarize([row],4702,date(2026,11,19),date(2026,11,26))
+ def test_diagnostic_hides_arbitrary_response_details(self):
+  from unittest.mock import patch
+  from delivery_speed_report import collect
+  for error,reason in [(ValueError('Conflicting duplicate order'),'Conflicting duplicate order'),(ValueError('private response content'),'details_hidden')]:
+   with patch('delivery_speed_report._collect',side_effect=error),patch('builtins.print') as output:
+    with self.assertRaises(ValueError):collect(None,None,4702,'2026-11-19','2026-11-26')
+    self.assertEqual(output.call_args.args,('Delivery report failed:','ValueError','reason='+reason))
