@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-26": {
-      "generated_at": "2026-11-26T03:14:24.350517+00:00",
+      "generated_at": "2026-11-26T03:38:00.494474+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 63.89,
-            "numerator": 23,
+            "value": 66.67,
+            "numerator": 24,
             "denominator": 36,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -234,6 +234,29 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-26T11:00:00+03:00",
                       "planned_end": "2026-11-26T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799882751",
+                  "name": "Маматкулов Зияитдин Кимсанбаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66983",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T10:00:00+03:00",
+                      "planned_end": "2026-11-26T23:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -550,7 +573,7 @@
             },
             {
               "title": "Не записались",
-              "count": 13,
+              "count": 12,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -565,11 +588,6 @@
                 {
                   "courier_id": "1800121052",
                   "name": "Маковский Иван Дмитриевич",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1799882751",
-                  "name": "Маматкулов Зияитдин Кимсанбаевич",
                   "slots": []
                 },
                 {
@@ -746,8 +764,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 68.42,
-            "numerator": 26,
+            "value": 71.05,
+            "numerator": 27,
             "denominator": 38,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1325,12 +1343,35 @@
               "planned_start": "2026-11-26T10:00:00+03:00",
               "planned_end": "2026-11-26T23:00:00+03:00",
               "capacity": 4,
-              "occupied": 2,
-              "free": 2,
+              "occupied": 3,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1699895572",
                   "name": "Багавудинов Исмаил Абдулаевич",
+                  "slots": [
+                    {
+                      "slot_id": "66983",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T10:00:00+03:00",
+                      "planned_end": "2026-11-26T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799882751",
+                  "name": "Маматкулов Зияитдин Кимсанбаевич",
                   "slots": [
                     {
                       "slot_id": "66983",
