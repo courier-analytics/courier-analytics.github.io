@@ -165,17 +165,28 @@ def stop_source_refresh(source_job):
         except ProcessLookupError:pass
         source_job[0].wait(timeout=10)
 
+STARTUP_MESSAGES={'Human review required','Bound group identity changed','Bot identity changed',
+                  'Existing webhook must be integrated; not replaced','Matryoshka configuration not private','Unexpected Matryoshka group'}
+
+def verify_startup(config,token):
+    if not config.get('human_review_required') or config.get('automatic_limit_changes') is not False:
+        raise ValueError('Human review required')
+    chat=api(token,'getChat',{'chat_id':config['chat_id']})
+    # Group titles are editable display labels; authorization is bound to ID.
+    if chat.get('id')!=config['chat_id']:raise ValueError('Bound group identity changed')
+    me=api(token,'getMe')
+    if me.get('id')!=config['bot_id']:raise ValueError('Bot identity changed')
+    if api(token,'getWebhookInfo').get('url'):
+        raise ValueError('Existing webhook must be integrated; not replaced')
+    return me
+
 def main():
     os.umask(0o077);ROOT.mkdir(mode=0o700,parents=True,exist_ok=True)
     lock=(ROOT/'bot.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     config=json.loads(CONFIG.read_text());token=load_token()
-    if not config.get('human_review_required') or config.get('automatic_limit_changes') is not False:raise ValueError('Human review required')
-    chat=api(token,'getChat',{'chat_id':config['chat_id']})
-    if chat.get('id')!=config['chat_id'] or chat.get('title','').casefold()!='опоздавшие':raise ValueError('Bound group changed')
-    if api(token,'getMe')['id']!=config['bot_id']:raise ValueError('Bot identity changed')
-    if api(token,'getWebhookInfo').get('url'):raise ValueError('Existing webhook must be integrated; not replaced')
+    me=verify_startup(config,token)
     from matryoshka_command_handler import Handler
-    matryoshka=Handler(token,api(token,'getMe')['username'])
+    matryoshka=Handler(token,me['username'])
     db=connect()
     # Ambiguous states after a process crash are never retried as writes/sends.
     db.execute("UPDATE cases SET state='uncertain',notified=0 WHERE state='applying'")
@@ -226,6 +237,6 @@ def main():
 if __name__=='__main__':
     try:main()
     except Exception as error:
-        safe=str(error) if re.fullmatch(r'Telegram HTTP \d{3}|Unsupported setup method',str(error)) else type(error).__name__
+        safe=str(error) if str(error) in STARTUP_MESSAGES or re.fullmatch(r'Telegram HTTP \d{3}|Unsupported setup method',str(error)) else type(error).__name__
         print('Attendance bot stopped: '+safe+'. No automatic write retries; inspect private state.',flush=True)
         raise SystemExit(78 if isinstance(error,ValueError) or 'Telegram HTTP 409' in str(error) else 1)
