@@ -51,8 +51,9 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
             rosters.pop(identity, None)
             try:
                 rosters[identity] = load_typed_roster(state_dir/'onec-rosters',day)
-            except (OSError, ValueError, KeyError, TypeError):
+            except (OSError, ValueError, KeyError, TypeError) as error:
                 roster_errors[identity] = 'typed_connected_roster_stale_or_invalid'
+                print('DS8889 typed roster load failed:',type(error).__name__,'errno:',getattr(error,'errno',None),flush=True)
         scope_config=next((s for s in observations.get('scope_config',{}).get('shops',[]) if s['shop_id']==identity),None)
         scopes=([('shopno',identity)]+[('cluster_id',int(c)) for c in scope_config['cluster_ids']]) if scope_config else None
         shop['slots'], shop['overnight_completion'] = resolve_overnight(shop['slots'], token, proxy, source_cache=stitch_cache,scopes=scopes)
@@ -71,6 +72,8 @@ def refresh(day, token, proxy, private_dir, feed_path, active_base=False, comple
             daily_plan['cancellations']=collect_cancellations(day,identity,daily_plan,shop['slots'],token,proxy)
             shop['plan_cancellations']=daily_plan['cancellations']
         metrics = calculate(shop['slots'], day, roster=rosters.get(identity), plan=daily_plan)
+        if identity == 8889:
+            print('DS8889 shift_marked:',json.dumps(metrics['shift_marked']),flush=True)
         try:
             scope_config = next(s for s in observations['scope_config']['shops'] if s['shop_id'] == identity)
             metrics['planned_completion'], shop['completion_reporting'] = collect_completion(
