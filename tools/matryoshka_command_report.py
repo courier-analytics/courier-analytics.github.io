@@ -65,7 +65,10 @@ def render(snapshot, number, now, rosters=None, idle_days=None, pools=None):
                 unknown_last += 1
                 continue
             if last > observed + timedelta(minutes=2):
-                raise ValueError('last_delivery_after_snapshot')
+                # One inconsistent timestamp must not hide other verified rows.
+                # Never reinterpret it as an idle courier or guess a time offset.
+                unknown_last += 1
+                continue
             elapsed = observed - last
             if elapsed < timedelta(days=idle_days):
                 continue
@@ -78,12 +81,10 @@ def render(snapshot, number, now, rosters=None, idle_days=None, pools=None):
     if idle_days is not None:
         header = header.replace('Матрёшка', 'Матрёшка · без доставок ' + str(idle_days) + ' полных дня', 1)
     footer = ''
-    if idle_days is not None:
-        pass
-        if unknown_last:
-            pass
+    if idle_days is not None and unknown_last:
+        header += '\n⚠ Не включены в проверку простоя: ' + str(unknown_last) + ' — время последней доставки отсутствует или противоречит времени выгрузки.'
     if not rows:
-        return [header + ('\nУчастники с таким простоем не найдены.\n' if idle_days is not None else '\nУчастники не найдены.\n') + footer]
+        return [header + ('\nПодтверждённых участников с таким простоем не найдено.\n' if idle_days is not None else '\nУчастники не найдены.\n') + footer]
     entries = {}
     for i, (ds, name, cid, tt, transport, stage, count) in enumerate(rows, 1):
         group=entries.setdefault(ds,[])
