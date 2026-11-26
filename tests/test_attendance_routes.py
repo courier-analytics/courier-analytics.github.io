@@ -47,3 +47,22 @@ class MemberReview7745(unittest.TestCase):
   self.assertFalse(case_config(config,{'payload':{'shop_id':9107}})['allow_group_members'])
   self.assertFalse(case_config(config,{'payload':{'shop_id':7745},'message_id':9,'message_chat_id':-1004439978802})['allow_group_members'])
   self.assertTrue(case_config(config,{'payload':{'shop_id':8889}})['allow_group_members'])
+
+class MemberReview9107(unittest.TestCase):
+ def test_existing_9107_cards_allow_members_without_expanding_old_other_shop_cards(self):
+  from enable_9107_member_approval import enabled_config,CHAT
+  from attendance_routes import reviewer_allowed
+  original={'chat_id':CHAT,'bot_id':99,'shop_routes':{'8889':-1003908974924,'7745':-1004365044892},'member_approval_shops':[8889,7745],'approver_ids':[1]}
+  config=enabled_config(original)
+  self.assertNotIn('9107',original['shop_routes'])
+  self.assertEqual(config['member_approval_shops'],[7745,8889,9107])
+  member={'user':{'id':7,'is_bot':False},'status':'member'}
+  for bound in (None,CHAT):
+   case={'payload':{'shop_id':9107},'message_id':12,'message_chat_id':bound}
+   self.assertTrue(reviewer_allowed(case_config(config,case),member,7))
+  for shop in (8889,7745):
+   self.assertFalse(case_config(config,{'payload':{'shop_id':shop},'message_id':12,'message_chat_id':CHAT})['allow_group_members'])
+  self.assertFalse(case_config(config,{'payload':{'shop_id':9107},'message_id':12,'message_chat_id':-1004365044892})['allow_group_members'])
+ def test_unexpected_existing_route_is_not_replaced(self):
+  from enable_9107_member_approval import enabled_config,CHAT
+  with self.assertRaises(ValueError):enabled_config({'chat_id':CHAT,'shop_routes':{'9107':-999}})
