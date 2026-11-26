@@ -49297,7 +49297,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-26T12:04:41.425798+00:00",
+      "generated_at": "2026-11-26T14:07:06.145539+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -53103,7 +53103,7 @@
       }
     },
     "2026-11-22": {
-      "generated_at": "2026-11-26T12:00:33.512835+00:00",
+      "generated_at": "2026-11-26T14:02:50.575712+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -57856,7 +57856,7 @@
       }
     },
     "2026-11-23": {
-      "generated_at": "2026-11-26T12:58:15.243579+00:00",
+      "generated_at": "2026-11-26T13:57:59.037022+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -61981,7 +61981,7 @@
       }
     },
     "2026-11-24": {
-      "generated_at": "2026-11-26T12:53:29.746011+00:00",
+      "generated_at": "2026-11-26T13:53:20.610108+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -66266,7 +66266,7 @@
       }
     },
     "2026-11-25": {
-      "generated_at": "2026-11-26T13:28:36.670046+00:00",
+      "generated_at": "2026-11-26T14:11:57.934844+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -70784,7 +70784,7 @@
       }
     },
     "2026-11-26": {
-      "generated_at": "2026-11-26T13:33:29.349827+00:00",
+      "generated_at": "2026-11-26T14:16:58.346663+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -70832,10 +70832,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-26T16:30:00+03:00",
                       "planned_end": "2026-11-26T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-26T16:15:46+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -72488,10 +72488,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-26T16:30:00+03:00",
                       "planned_end": "2026-11-26T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-26T16:15:46+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -72707,8 +72707,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 57.14,
-            "numerator": 20,
+            "value": 60.0,
+            "numerator": 21,
             "denominator": 35,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -72716,7 +72716,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -72738,6 +72738,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "89417",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-26T18:00:00+03:00",
+                      "planned_end": "2026-11-26T23:00:00+03:00",
+                      "actual_start": "2026-11-26T16:15:46+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "104424"
                     }
                   ]
                 },
@@ -73602,9 +73626,9 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 70.0,
+            "value": 66.67,
             "numerator": 14,
-            "denominator": 20,
+            "denominator": 21,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
@@ -73940,7 +73964,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -73962,6 +73986,30 @@
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "89417",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-26T18:00:00+03:00",
+                      "planned_end": "2026-11-26T23:00:00+03:00",
+                      "actual_start": "2026-11-26T16:15:46+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "104424"
                     }
                   ]
                 },
@@ -74094,9 +74142,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 9.09,
+            "value": 8.7,
             "numerator": 2,
-            "denominator": 22,
+            "denominator": 23,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -74155,7 +74203,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -74174,6 +74222,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "104424",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-26T16:30:00+03:00",
+                      "planned_end": "2026-11-26T22:00:00+03:00",
+                      "actual_start": "2026-11-26T16:15:46+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -74668,7 +74739,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 21,
+              "count": 22,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -74710,6 +74781,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "104424",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-26T16:30:00+03:00",
+                      "planned_end": "2026-11-26T22:00:00+03:00",
+                      "actual_start": "2026-11-26T16:15:46+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
