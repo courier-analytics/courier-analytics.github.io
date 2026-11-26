@@ -13,15 +13,18 @@ class Idle(unittest.TestCase):
  def test_bad_row_does_not_hide_valid_idle_courier(self):
   text=self.report([self.person('1',(self.now-timedelta(days=3)).isoformat()),self.person('2',(self.now+timedelta(hours=3)).isoformat())])
   self.assertIn('Courier 1',text);self.assertNotIn('Courier 2',text)
-  self.assertIn('Не включены в проверку простоя: 1',text)
+  self.assertNotIn('Не включены в проверку простоя',text)
+  self.assertNotIn('Superset:',text)
  def test_future_only_is_not_reported_as_idle(self):
   text=self.report([self.person('2',(self.now+timedelta(hours=3)).isoformat())])
   self.assertIn('Подтверждённых участников',text)
-  self.assertIn('Не включены в проверку простоя: 1',text)
+  self.assertNotIn('Не включены в проверку простоя',text)
+  self.assertNotIn('Superset:',text)
   self.assertNotIn('Courier 2',text)
  def test_three_full_days_boundary_and_missing_time(self):
   text=self.report([self.person('1',(self.now-timedelta(days=3)).isoformat()),self.person('2',(self.now-timedelta(days=3)+timedelta(seconds=1)).isoformat()),self.person('3',None)])
   self.assertIn('Courier 1',text);self.assertNotIn('Courier 2',text);self.assertNotIn('Courier 3',text)
-  self.assertIn('Не включены в проверку простоя: 1',text)
+  self.assertNotIn('Не включены в проверку простоя',text)
+  self.assertNotIn('Superset:',text)
  def test_addressed_command_still_accepted(self):
   self.assertEqual(command('/matreshka_idle@vv_services_reports_bot','vv_services_reports_bot'),'')

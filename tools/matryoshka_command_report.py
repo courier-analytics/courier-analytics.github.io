@@ -1,5 +1,6 @@
 """Render verified Matryoshka participants; no network or message sending."""
 import re
+import logging
 from datetime import datetime, timedelta
 TYPES = {code: (transport, i + 1) for transport, codes in [('Вело', (24, 25, 26, 27)), ('Авто', (28, 29, 30, 31))] for i, code in enumerate(codes)}
 
@@ -77,12 +78,12 @@ def render(snapshot, number, now, rosters=None, idle_days=None, pools=None):
         name = ' '.join(str(p.get('name') or cid).split())[:200]
         rows.append((ds or 'Не определён', name, cid, tt, transport, stage, count))
     rows.sort(key=lambda r: (r[0], idle_info[r[2]][0] if idle_days is not None else r[1].casefold(), r[1].casefold(), r[2]))
-    header = 'Матрёшка' + (' · ' + number if number else ' · все участники') + '\nSuperset: получено ' + observed.astimezone(now.tzinfo).strftime('%d.%m.%Y %H:%M') + ' МСК'
+    header = 'Матрёшка' + (' · ' + number if number else ' · все участники')
     if idle_days is not None:
         header = header.replace('Матрёшка', 'Матрёшка · без доставок ' + str(idle_days) + ' полных дня', 1)
     footer = ''
     if idle_days is not None and unknown_last:
-        header += '\n⚠ Не включены в проверку простоя: ' + str(unknown_last) + ' — время последней доставки отсутствует или противоречит времени выгрузки.'
+        logging.getLogger(__name__).warning('Idle report: omitted %s participants with unverified delivery timestamps',unknown_last)
     if not rows:
         return [header + ('\nПодтверждённых участников с таким простоем не найдено.\n' if idle_days is not None else '\nУчастники не найдены.\n') + footer]
     entries = {}
