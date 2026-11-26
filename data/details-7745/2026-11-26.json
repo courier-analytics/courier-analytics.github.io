@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-26": {
-      "generated_at": "2026-11-26T03:38:00.494474+00:00",
+      "generated_at": "2026-11-26T04:04:15.820815+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -142,15 +142,15 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-26T07:00:00+03:00",
                       "planned_end": "2026-11-26T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T14:04:38+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "",
+                      "note": "Начало восстановлено из выгрузки за 2026-11-25. Исходное начало: 2026-11-26T00:00:00+03:00.",
                       "worked_through": null,
-                      "shift_start_source_date": null,
+                      "shift_start_source_date": "2026-11-25",
                       "shift_end_source_date": null
                     }
                   ]
@@ -374,7 +374,7 @@
                       "planned_end": "2026-11-26T16:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -443,7 +443,7 @@
                       "planned_end": "2026-11-26T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -466,7 +466,7 @@
                       "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -722,7 +722,7 @@
                       "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -837,7 +837,7 @@
                       "planned_end": "2026-11-26T16:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -870,15 +870,15 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-26T07:00:00+03:00",
                       "planned_end": "2026-11-26T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-25T14:04:38+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "",
+                      "note": "Начало восстановлено из выгрузки за 2026-11-25. Исходное начало: 2026-11-26T00:00:00+03:00.",
                       "worked_through": null,
-                      "shift_start_source_date": null,
+                      "shift_start_source_date": "2026-11-25",
                       "shift_end_source_date": null
                     }
                   ]
@@ -895,7 +895,7 @@
                       "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -918,7 +918,7 @@
                       "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -953,7 +953,7 @@
                       "planned_end": "2026-11-26T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1656,11 +1656,11 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
-            "denominator": 27,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -1670,12 +1670,105 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 0,
-              "couriers": []
+              "count": 4,
+              "couriers": [
+                {
+                  "courier_id": "1800085741",
+                  "name": "Прокофьев Алексей Денисович",
+                  "slots": [
+                    {
+                      "slot_id": "66979",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T16:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799876935",
+                  "name": "Сафаров Азамат Хазраталиевич",
+                  "slots": [
+                    {
+                      "slot_id": "66980",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699917748",
+                  "name": "Смирнов Станислав Николаевич",
+                  "slots": [
+                    {
+                      "slot_id": "100713",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800026006",
+                  "name": "Тарамов Казбек Хусейнович",
+                  "slots": [
+                    {
+                      "slot_id": "66980",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Ожидаются",
-              "count": 25,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -2046,29 +2139,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800085741",
-                  "name": "Прокофьев Алексей Денисович",
-                  "slots": [
-                    {
-                      "slot_id": "66979",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-26T07:00:00+03:00",
-                      "planned_end": "2026-11-26T16:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800111023",
                   "name": "Саидов Мухамад Амиршоевич",
                   "slots": [
@@ -2078,75 +2148,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-26T16:00:00+03:00",
                       "planned_end": "2026-11-27T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799876935",
-                  "name": "Сафаров Азамат Хазраталиевич",
-                  "slots": [
-                    {
-                      "slot_id": "66980",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-26T07:00:00+03:00",
-                      "planned_end": "2026-11-26T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699917748",
-                  "name": "Смирнов Станислав Николаевич",
-                  "slots": [
-                    {
-                      "slot_id": "100713",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-26T07:00:00+03:00",
-                      "planned_end": "2026-11-26T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800026006",
-                  "name": "Тарамов Казбек Хусейнович",
-                  "slots": [
-                    {
-                      "slot_id": "66980",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-26T07:00:00+03:00",
-                      "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2256,8 +2257,32 @@
             },
             {
               "title": "Нет подтверждённых данных",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1699919412",
+                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
+                  "slots": [
+                    {
+                      "slot_id": "66983",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-26T10:00:00+03:00",
+                      "planned_end": "2026-11-26T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Запись из плана отсутствует в текущих данных",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Снятые смены — история",
@@ -2312,16 +2337,16 @@
               ]
             }
           ],
-          "reconciled": true,
+          "reconciled": false,
           "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "planned_late": {
           "aggregate": {
             "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
-            "basis": "frozen_plan_unique_couriers"
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -2345,10 +2370,10 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": null,
+            "value": 0.0,
             "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "denominator": 1,
+            "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
@@ -2359,19 +2384,43 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1699919412",
+                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
+                  "slots": [
+                    {
+                      "slot_id": "66980",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T20:00:00+03:00",
+                      "actual_start": "2026-11-25T14:04:38+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-25. Исходное начало: 2026-11-26T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-25",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": ""
         },
         "planned_completion": {
           "aggregate": {
             "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "numerator": null,
+            "denominator": null,
+            "reason": "shift_end_or_final_status_missing",
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
@@ -2387,8 +2436,32 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1699919412",
+                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
+                  "slots": [
+                    {
+                      "slot_id": "66980",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T20:00:00+03:00",
+                      "actual_start": "2026-11-25T14:04:38+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 7 часов",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Начало восстановлено из выгрузки за 2026-11-25. Исходное начало: 2026-11-26T00:00:00+03:00.",
+                      "worked_through": null,
+                      "shift_start_source_date": "2026-11-25",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "reconciled": false,

@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-26": {
-      "generated_at": "2026-11-26T03:38:00.494474+00:00",
+      "generated_at": "2026-11-26T04:04:15.820815+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -104,7 +104,7 @@
                       "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -127,7 +127,7 @@
                       "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -150,7 +150,7 @@
                       "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1016,8 +1016,31 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 1,
+              "count": 4,
               "couriers": [
+                {
+                  "courier_id": "1800130340",
+                  "name": "Мазбутов Шахриёр Умеджонович",
+                  "slots": [
+                    {
+                      "slot_id": "62525",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800134544",
                   "name": "Мамаражабов Уролбек Нуриддин Угли",
@@ -1040,12 +1063,58 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800130023",
+                  "name": "Хасанов Амирхон Турабекович",
+                  "slots": [
+                    {
+                      "slot_id": "62525",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800012132",
+                  "name": "Шеров Абдумалик Сайвалиевич",
+                  "slots": [
+                    {
+                      "slot_id": "62525",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Ожидаются",
-              "count": 32,
+              "count": 29,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1287,29 +1356,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-26T08:00:00+03:00",
                       "planned_end": "2026-11-26T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130340",
-                  "name": "Мазбутов Шахриёр Умеджонович",
-                  "slots": [
-                    {
-                      "slot_id": "62525",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-26T07:00:00+03:00",
-                      "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -1678,52 +1724,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-26T19:00:00+03:00",
                       "planned_end": "2026-11-27T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130023",
-                  "name": "Хасанов Амирхон Турабекович",
-                  "slots": [
-                    {
-                      "slot_id": "62525",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-26T07:00:00+03:00",
-                      "planned_end": "2026-11-26T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800012132",
-                  "name": "Шеров Абдумалик Сайвалиевич",
-                  "slots": [
-                    {
-                      "slot_id": "62525",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-26T07:00:00+03:00",
-                      "planned_end": "2026-11-26T20:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
