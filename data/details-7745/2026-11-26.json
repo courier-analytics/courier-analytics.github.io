@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-26": {
-      "generated_at": "2026-11-26T15:10:52.843535+00:00",
+      "generated_at": "2026-11-26T15:36:49.039525+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -662,7 +662,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1699932352",
@@ -734,6 +734,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800080844",
+                  "name": "Рахимов Хафиз Абдурасулович",
+                  "slots": [
+                    {
+                      "slot_id": "66988",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T21:00:00+03:00",
+                      "planned_end": "2026-11-27T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799876935",
                   "name": "Сафаров Азамат Хазраталиевич",
                   "slots": [
@@ -787,8 +810,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 71.79,
-            "numerator": 28,
+            "value": 74.36,
+            "numerator": 29,
             "denominator": 39,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1656,12 +1679,35 @@
               "planned_start": "2026-11-26T21:00:00+03:00",
               "planned_end": "2026-11-27T10:00:00+03:00",
               "capacity": 3,
-              "occupied": 2,
-              "free": 1,
+              "occupied": 3,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1800091474",
                   "name": "Зокиров Иззатуллох",
+                  "slots": [
+                    {
+                      "slot_id": "66988",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T21:00:00+03:00",
+                      "planned_end": "2026-11-27T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800080844",
+                  "name": "Рахимов Хафиз Абдурасулович",
                   "slots": [
                     {
                       "slot_id": "66988",
