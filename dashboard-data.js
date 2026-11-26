@@ -192,7 +192,7 @@
         if (window.metricDetails) window.metricDetails.attach(cell, {
           key, name: metrics[metricIndexes[key]].name, shop, day: row.date,
           metric, explanation: metric.value === null ? reasons[metric.reason] + " " + basis[key] : cell.title,
-          source: key === "training" ? "Таблица обучения и база 1С" : key === "shift_marked" && metric.basis === "onec_accessible_nonmobile_unique_couriers" ? "База 1С и API «Выходы курьеров»" : "API «Выходы курьеров»",
+          source: key === "training" ? "Таблица обучения и база 1С" : key === "shift_marked" && ["onec_accessible_nonmobile_unique_couriers","onec_connected_auto_velo_employment_3_5"].includes(metric.basis) ? "База 1С и API «Выходы курьеров»" : "API «Выходы курьеров»",
           reportedAt: metric.last_success_at || row.reported_at
         });
       });
