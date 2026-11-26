@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-26": {
-      "generated_at": "2026-11-26T18:01:49.113580+00:00",
+      "generated_at": "2026-11-26T18:29:25.783926+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 71.05,
-            "numerator": 27,
+            "value": 73.68,
+            "numerator": 28,
             "denominator": 38,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 27,
+              "count": 28,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -167,7 +167,7 @@
                       "planned_end": "2026-11-27T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -396,7 +396,7 @@
                       "planned_start": "2026-11-26T07:00:00+03:00",
                       "planned_end": "2026-11-26T16:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:10+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 1 час 51 мин",
                       "late_seconds": 6670,
                       "removed_at": null,
@@ -420,7 +420,7 @@
                       "planned_end": "2026-11-27T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -491,6 +491,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 3 часа 12 мин",
                       "late_seconds": 11550,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "66984",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T16:00:00+03:00",
+                      "planned_end": "2026-11-27T00:00:00+03:00",
+                      "actual_start": "2026-11-26T21:16:46+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 16 мин",
+                      "late_seconds": 19006,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -627,7 +650,7 @@
                       "planned_end": "2026-11-27T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -642,7 +665,7 @@
             },
             {
               "title": "Не записались",
-              "count": 11,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -672,11 +695,6 @@
                 {
                   "courier_id": "1800132979",
                   "name": "Сайфуллоев Мухаммаджон Исомидинович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1799950967",
-                  "name": "Тагоев Лочин Хакимович",
                   "slots": []
                 },
                 {
@@ -808,7 +826,7 @@
                       "planned_start": "2026-11-26T08:00:00+03:00",
                       "planned_end": "2026-11-26T21:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 51 минута",
                       "late_seconds": 3071,
                       "removed_at": null,
@@ -828,8 +846,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 76.92,
-            "numerator": 30,
+            "value": 79.49,
+            "numerator": 31,
             "denominator": 39,
             "reason": null,
             "basis": "limited_slot_places"
@@ -900,7 +918,7 @@
                       "planned_start": "2026-11-26T07:00:00+03:00",
                       "planned_end": "2026-11-26T16:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:10+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 1 час 51 мин",
                       "late_seconds": 6670,
                       "removed_at": null,
@@ -1189,7 +1207,7 @@
                       "planned_start": "2026-11-26T08:00:00+03:00",
                       "planned_end": "2026-11-26T21:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 51 минута",
                       "late_seconds": 3071,
                       "removed_at": null,
@@ -1558,8 +1576,8 @@
               "planned_start": "2026-11-26T16:00:00+03:00",
               "planned_end": "2026-11-27T00:00:00+03:00",
               "capacity": 3,
-              "occupied": 2,
-              "free": 1,
+              "occupied": 3,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1800111023",
@@ -1575,6 +1593,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 18 минут",
                       "late_seconds": 1085,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "66984",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T16:00:00+03:00",
+                      "planned_end": "2026-11-27T00:00:00+03:00",
+                      "actual_start": "2026-11-26T21:16:46+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 16 мин",
+                      "late_seconds": 19006,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1736,7 +1777,7 @@
                       "planned_end": "2026-11-27T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1759,7 +1800,7 @@
                       "planned_end": "2026-11-27T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1782,7 +1823,7 @@
                       "planned_end": "2026-11-27T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -2123,7 +2164,7 @@
                       "planned_start": "2026-11-26T07:00:00+03:00",
                       "planned_end": "2026-11-26T16:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:10+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 1 час 51 мин",
                       "late_seconds": 6670,
                       "removed_at": null,
@@ -2238,7 +2279,7 @@
                       "planned_start": "2026-11-26T08:00:00+03:00",
                       "planned_end": "2026-11-26T21:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 51 минута",
                       "late_seconds": 3071,
                       "removed_at": null,
@@ -2277,7 +2318,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1699932352",
@@ -2289,6 +2330,29 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-26T09:00:00+03:00",
                       "planned_end": "2026-11-26T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800091474",
+                  "name": "Зокиров Иззатуллох",
+                  "slots": [
+                    {
+                      "slot_id": "66988",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T21:00:00+03:00",
+                      "planned_end": "2026-11-27T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -2371,35 +2435,6 @@
                       "fact_source_slot_id": "66984"
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "title": "Ожидаются",
-              "count": 2,
-              "couriers": [
-                {
-                  "courier_id": "1800091474",
-                  "name": "Зокиров Иззатуллох",
-                  "slots": [
-                    {
-                      "slot_id": "66988",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-26T21:00:00+03:00",
-                      "planned_end": "2026-11-27T10:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
                 },
                 {
                   "courier_id": "1800040185",
@@ -2413,7 +2448,7 @@
                       "planned_end": "2026-11-27T10:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -2425,6 +2460,11 @@
                   ]
                 }
               ]
+            },
+            {
+              "title": "Ожидаются",
+              "count": 0,
+              "couriers": []
             },
             {
               "title": "Нет подтверждённых данных",
@@ -2650,7 +2690,7 @@
                       "planned_start": "2026-11-26T07:00:00+03:00",
                       "planned_end": "2026-11-26T16:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:10+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 1 час 51 мин",
                       "late_seconds": 6670,
                       "removed_at": null,
@@ -2742,7 +2782,7 @@
                       "planned_start": "2026-11-26T08:00:00+03:00",
                       "planned_end": "2026-11-26T21:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 51 минута",
                       "late_seconds": 3071,
                       "removed_at": null,
@@ -3003,16 +3043,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 16.0,
-            "numerator": 4,
-            "denominator": 25,
+            "value": 19.23,
+            "numerator": 5,
+            "denominator": 26,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 4,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1799882751",
@@ -3074,6 +3114,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "66984",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T16:00:00+03:00",
+                      "planned_end": "2026-11-27T00:00:00+03:00",
+                      "actual_start": "2026-11-26T21:16:46+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 16 мин",
+                      "late_seconds": 19006,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3445,7 +3508,7 @@
                       "planned_start": "2026-11-26T07:00:00+03:00",
                       "planned_end": "2026-11-26T16:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:10+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 1 час 51 мин",
                       "late_seconds": 6670,
                       "removed_at": null,
@@ -3560,7 +3623,7 @@
                       "planned_start": "2026-11-26T08:00:00+03:00",
                       "planned_end": "2026-11-26T21:00:00+03:00",
                       "actual_start": "2026-11-26T08:51:11+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-26T19:00:00+03:00",
                       "status": "Опоздал на 51 минута",
                       "late_seconds": 3071,
                       "removed_at": null,
@@ -3612,7 +3675,7 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800056742",
@@ -3636,12 +3699,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800085741",
+                  "name": "Прокофьев Алексей Денисович",
+                  "slots": [
+                    {
+                      "slot_id": "66979",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T07:00:00+03:00",
+                      "planned_end": "2026-11-26T16:00:00+03:00",
+                      "actual_start": "2026-11-26T08:51:10+03:00",
+                      "actual_end": "2026-11-26T19:00:00+03:00",
+                      "status": "Опоздал на 1 час 51 мин",
+                      "late_seconds": 6670,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800132243",
@@ -3688,12 +3774,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799898133",
+                  "name": "Худойдодов Абдурахман Низомович",
+                  "slots": [
+                    {
+                      "slot_id": "66981",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-26T08:00:00+03:00",
+                      "planned_end": "2026-11-26T21:00:00+03:00",
+                      "actual_start": "2026-11-26T08:51:11+03:00",
+                      "actual_end": "2026-11-26T19:00:00+03:00",
+                      "status": "Опоздал на 51 минута",
+                      "late_seconds": 3071,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Нет окончательных данных",
-              "count": 18,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -3949,29 +4058,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800085741",
-                  "name": "Прокофьев Алексей Денисович",
-                  "slots": [
-                    {
-                      "slot_id": "66979",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-26T07:00:00+03:00",
-                      "planned_end": "2026-11-26T16:00:00+03:00",
-                      "actual_start": "2026-11-26T08:51:10+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 51 мин",
-                      "late_seconds": 6670,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800100693",
                   "name": "Рустамжонов Юсуфжон Маруфжон Угли",
                   "slots": [
@@ -4054,29 +4140,6 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799898133",
-                  "name": "Худойдодов Абдурахман Низомович",
-                  "slots": [
-                    {
-                      "slot_id": "66981",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-26T08:00:00+03:00",
-                      "planned_end": "2026-11-26T21:00:00+03:00",
-                      "actual_start": "2026-11-26T08:51:11+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 51 минута",
-                      "late_seconds": 3071,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
