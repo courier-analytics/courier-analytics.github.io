@@ -138,7 +138,7 @@ def check_protected_endpoints(opener, token, inspect_datasets=False):
     return identity_ok or csrf_ok or dataset_ok
 
 
-def check_login(provider_override=None, inspect_datasets=False, inspect_matryoshka=False, matryoshka_history=False, collect_matryoshka=False, reconcile_matryoshka=False, collect_staffing=False, staffing_shop=None, pay_couriers=None, ziz_services=None, compare_order_ids=False):
+def check_login(provider_override=None, inspect_datasets=False, inspect_matryoshka=False, matryoshka_history=False, collect_matryoshka=False, reconcile_matryoshka=False, collect_staffing=False, staffing_shop=None, pay_couriers=None, ziz_services=None, compare_order_ids=False, delivery_speed=None):
     try:
         if CREDENTIALS.stat().st_mode & 0o077:
             raise ValueError('Credential permissions must be 600')
@@ -161,6 +161,9 @@ def check_login(provider_override=None, inspect_datasets=False, inspect_matryosh
         if confirmed and (inspect_matryoshka or matryoshka_history):
             from matryoshka_source import inspect
             inspect(opener,token,history=matryoshka_history)
+        if confirmed and delivery_speed:
+            from delivery_speed_report import collect
+            collect(opener,token,*delivery_speed)
         if confirmed and ziz_services:
             from ziz_services import collect
             collect(opener,token,*ziz_services)
