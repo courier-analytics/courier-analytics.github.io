@@ -133278,7 +133278,7 @@
       }
     },
     "2026-11-26": {
-      "generated_at": "2026-11-26T22:21:19.975075+00:00",
+      "generated_at": "2026-11-26T22:45:25.740407+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -137958,12 +137958,12 @@
       }
     },
     "2026-11-27": {
-      "generated_at": "2026-11-26T22:25:53.597377+00:00",
+      "generated_at": "2026-11-26T22:49:55.173149+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 42.11,
-            "numerator": 16,
+            "value": 44.74,
+            "numerator": 17,
             "denominator": 38,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -137971,7 +137971,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -138121,6 +138121,29 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-27T08:00:00+03:00",
                       "planned_end": "2026-11-27T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66995",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-27T09:00:00+03:00",
+                      "planned_end": "2026-11-27T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -138345,7 +138368,7 @@
             },
             {
               "title": "Не записались",
-              "count": 22,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -138355,11 +138378,6 @@
                 {
                   "courier_id": "1699895572",
                   "name": "Багавудинов Исмаил Абдулаевич",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800132813",
-                  "name": "Киргизов Илёсбек Нуриддин Угли",
                   "slots": []
                 },
                 {
@@ -138517,8 +138535,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 44.44,
-            "numerator": 16,
+            "value": 47.22,
+            "numerator": 17,
             "denominator": 36,
             "reason": null,
             "basis": "limited_slot_places"
@@ -138877,9 +138895,32 @@
               "planned_start": "2026-11-27T09:00:00+03:00",
               "planned_end": "2026-11-27T22:00:00+03:00",
               "capacity": 4,
-              "occupied": 2,
-              "free": 2,
+              "occupied": 3,
+              "free": 1,
               "couriers": [
+                {
+                  "courier_id": "1800132813",
+                  "name": "Киргизов Илёсбек Нуриддин Угли",
+                  "slots": [
+                    {
+                      "slot_id": "66995",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-27T09:00:00+03:00",
+                      "planned_end": "2026-11-27T22:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799882751",
                   "name": "Маматкулов Зияитдин Кимсанбаевич",
