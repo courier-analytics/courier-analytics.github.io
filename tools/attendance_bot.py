@@ -152,6 +152,19 @@ def finish_job(db,job,timeout=False):
         print('1C worker did not complete:',mode,'read attempt:',attempts,'next state:',target,flush=True)
     db.commit()
 
+def start_source_refresh():
+    with (ROOT/'source-refresh.log').open('a') as log:
+        process=subprocess.Popen([sys.executable,'-u',str(Path(__file__).with_name('attendance_source_refresh.py'))],
+                                 stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+    print('Evidence refresh started in background; Telegram receiver remains available.',flush=True)
+    return process,time.monotonic()
+
+def stop_source_refresh(source_job):
+    if source_job and source_job[0].poll() is None:
+        try:os.killpg(source_job[0].pid,signal.SIGTERM)
+        except ProcessLookupError:pass
+        source_job[0].wait(timeout=10)
+
 def main():
     os.umask(0o077);ROOT.mkdir(mode=0o700,parents=True,exist_ok=True)
     lock=(ROOT/'bot.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -170,7 +183,7 @@ def main():
     db.execute("UPDATE cases SET state='need_limit' WHERE state='reading'");db.commit()
     def stop(*args):raise SystemExit(0)
     signal.signal(signal.SIGTERM,stop)
-    job=None;next_collect=0;next_job=0
+    job=None;source_job=None;next_collect=0;next_job=0
     print('Attendance review bot started. Group verified; individual approval required.',flush=True)
     try:
         while True:
@@ -179,16 +192,20 @@ def main():
             if job and (job[0].poll() is not None or time.monotonic()-job[3]>300):
                 if job[0].poll() is None:job[0].terminate();job[0].wait(timeout=10)
                 finish_job(db,job);job=None;next_job=time.monotonic()+30
-            if time.monotonic()>=next_collect:
-                try:
-                    collect(db,config)
-                    db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('last_source_success',?)",(datetime.now(TZ).isoformat(),));db.commit()
-                except (OSError,ValueError,RuntimeError,KeyError,TypeError) as error:
-                    from verify_server_proxy import error_code
-                    reason=error_code(error)
-                    print('Evidence refresh failed:',reason,flush=True)
-                    db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('last_source_error',?)",(reason,));db.commit()
-                next_collect=time.monotonic()+120
+            if source_job:
+                status=source_job[0].poll()
+                if status is not None:
+                    print('Background evidence refresh finished; exit:',status,flush=True)
+                    source_job=None;next_collect=time.monotonic()+(60 if status==75 else 120)
+                elif time.monotonic()-source_job[1]>600:
+                    stop_source_refresh(source_job);source_job=None;next_collect=time.monotonic()+120
+                    db.execute("INSERT OR REPLACE INTO meta VALUES('last_source_error','source_refresh_timeout')");db.commit()
+                    print('Background evidence refresh timed out; Telegram receiver continues.',flush=True)
+            if source_job is None and time.monotonic()>=next_collect:
+                try:source_job=start_source_refresh()
+                except OSError:
+                    next_collect=time.monotonic()+120
+                    print('Could not start evidence refresh; Telegram receiver continues.',flush=True)
             notify(db,config,token)
             if not job and time.monotonic()>=next_job:job=start_job(db)
             offset=db.execute("SELECT value FROM meta WHERE key='telegram_offset'").fetchone()
@@ -202,6 +219,7 @@ def main():
                     (directory/(str(update['update_id'])+'.json')).write_text(json.dumps(update,ensure_ascii=False))
                 db.execute("INSERT OR REPLACE INTO meta(key,value) VALUES ('telegram_offset',?)",(str(update['update_id']+1),));db.commit()
     finally:
+        stop_source_refresh(source_job)
         if job and job[0].poll() is None:job[0].terminate()
         db.close()
 
