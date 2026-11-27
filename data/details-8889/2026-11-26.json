@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-26": {
-      "generated_at": "2026-11-27T16:07:51.200431+00:00",
+      "generated_at": "2026-11-27T16:50:08.351135+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -4287,10 +4287,10 @@
         },
         "planned_completion": {
           "aggregate": {
-            "value": null,
-            "numerator": null,
-            "denominator": null,
-            "reason": "completion_history_incomplete",
+            "value": 61.54,
+            "numerator": 16,
+            "denominator": 26,
+            "reason": null,
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
@@ -4910,7 +4910,7 @@
               "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": "В знаменателе только фактически вышедшие курьеры. Ожидающиеся и невышедшие исключены. Ночные смены относятся к дате фактического завершения; допуск окончания — 10 минут."
         }
       }

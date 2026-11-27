@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-27": {
-      "generated_at": "2026-11-27T16:14:16.342998+00:00",
+      "generated_at": "2026-11-27T17:13:42.517877+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -144,7 +144,7 @@
                       "planned_end": "2026-11-28T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -259,7 +259,7 @@
                       "planned_end": "2026-11-28T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -327,7 +327,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T16:00:00+03:00",
                       "actual_start": "2026-11-27T07:58:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T18:00:00+03:00",
                       "status": "Опоздал на 58 минут",
                       "late_seconds": 3535,
                       "removed_at": null,
@@ -536,7 +536,7 @@
                 },
                 {
                   "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович ",
+                  "name": "Анисимов Арсений Антонович",
                   "slots": []
                 },
                 {
@@ -769,7 +769,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T16:00:00+03:00",
                       "actual_start": "2026-11-27T07:58:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T18:00:00+03:00",
                       "status": "Опоздал на 58 минут",
                       "late_seconds": 3535,
                       "removed_at": null,
@@ -1417,7 +1417,7 @@
                       "planned_end": "2026-11-28T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1440,7 +1440,7 @@
                       "planned_end": "2026-11-28T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1482,11 +1482,11 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 88.24,
-            "numerator": 15,
-            "denominator": 17,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -1734,7 +1734,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T16:00:00+03:00",
                       "actual_start": "2026-11-27T07:58:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T18:00:00+03:00",
                       "status": "Опоздал на 58 минут",
                       "late_seconds": 3535,
                       "removed_at": null,
@@ -1842,11 +1842,6 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 0,
-              "couriers": []
-            },
-            {
-              "title": "Ожидаются",
               "count": 1,
               "couriers": [
                 {
@@ -1861,7 +1856,7 @@
                       "planned_end": "2026-11-28T09:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -1875,17 +1870,17 @@
               ]
             },
             {
-              "title": "Нет подтверждённых данных",
+              "title": "Ожидаются",
               "count": 0,
               "couriers": []
             },
             {
-              "title": "Снятые смены — история",
+              "title": "Нет подтверждённых данных",
               "count": 1,
               "couriers": [
                 {
                   "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович ",
+                  "name": "Анисимов Арсений Антонович",
                   "slots": [
                     {
                       "slot_id": "67000",
@@ -1895,11 +1890,11 @@
                       "planned_end": "2026-11-28T01:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Снятая смена",
+                      "status": "Запись из плана отсутствует в текущих данных",
                       "late_seconds": null,
-                      "removed_at": "2026-11-27T18:44:51+03:00",
-                      "removed_by": "Османов Арслан Сагадуллаевич",
-                      "note": "Снятие подтверждено историей бронирования.",
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -1907,18 +1902,23 @@
                   ]
                 }
               ]
+            },
+            {
+              "title": "Снятые смены — история",
+              "count": 0,
+              "couriers": []
             }
           ],
-          "reconciled": true,
-          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
+          "reconciled": false,
+          "note": ""
         },
         "planned_late": {
           "aggregate": {
-            "value": 46.67,
-            "numerator": 7,
-            "denominator": 15,
-            "reason": null,
-            "basis": "frozen_plan_unique_couriers"
+            "value": null,
+            "numerator": null,
+            "denominator": null,
+            "reason": "planned_booking_missing_from_current_data",
+            "basis": null
           },
           "groups": [
             {
@@ -2028,7 +2028,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T16:00:00+03:00",
                       "actual_start": "2026-11-27T07:58:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T18:00:00+03:00",
                       "status": "Опоздал на 58 минут",
                       "late_seconds": 3535,
                       "removed_at": null,
@@ -2284,8 +2284,8 @@
               "couriers": []
             }
           ],
-          "reconciled": true,
-          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
+          "reconciled": false,
+          "note": ""
         },
         "unplanned_work": {
           "aggregate": {
@@ -2685,7 +2685,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T16:00:00+03:00",
                       "actual_start": "2026-11-27T07:58:55+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T18:00:00+03:00",
                       "status": "Опоздал на 58 минут",
                       "late_seconds": 3535,
                       "removed_at": null,
@@ -2800,13 +2800,13 @@
             "value": null,
             "numerator": null,
             "denominator": null,
-            "reason": "completion_history_incomplete",
+            "reason": "shift_end_or_final_status_missing",
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800056742",
@@ -2830,6 +2830,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800085741",
+                  "name": "Прокофьев Алексей Денисович",
+                  "slots": [
+                    {
+                      "slot_id": "66992",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-27T07:00:00+03:00",
+                      "planned_end": "2026-11-27T16:00:00+03:00",
+                      "actual_start": "2026-11-27T07:58:55+03:00",
+                      "actual_end": "2026-11-27T18:00:00+03:00",
+                      "status": "Опоздал на 58 минут",
+                      "late_seconds": 3535,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
@@ -2840,7 +2863,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 16,
+              "count": 15,
               "couriers": [
                 {
                   "courier_id": "1120965906",
@@ -3063,29 +3086,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 7 часов 11 мин",
                       "late_seconds": 25865,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800085741",
-                  "name": "Прокофьев Алексей Денисович",
-                  "slots": [
-                    {
-                      "slot_id": "66992",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-27T07:00:00+03:00",
-                      "planned_end": "2026-11-27T16:00:00+03:00",
-                      "actual_start": "2026-11-27T07:58:55+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 58 минут",
-                      "late_seconds": 3535,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
