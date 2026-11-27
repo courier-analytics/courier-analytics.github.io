@@ -128824,7 +128824,7 @@
       }
     },
     "2026-11-25": {
-      "generated_at": "2026-11-27T06:53:39.453511+00:00",
+      "generated_at": "2026-11-27T07:52:37.713386+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -133278,7 +133278,7 @@
       }
     },
     "2026-11-26": {
-      "generated_at": "2026-11-27T07:48:02.653748+00:00",
+      "generated_at": "2026-11-27T07:57:11.397075+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -137957,20 +137957,20 @@
       }
     },
     "2026-11-27": {
-      "generated_at": "2026-11-27T07:35:17.466704+00:00",
+      "generated_at": "2026-11-27T08:01:46.965587+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 47.37,
-            "numerator": 18,
-            "denominator": 38,
+            "value": 47.5,
+            "numerator": 19,
+            "denominator": 40,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 18,
+              "count": 19,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -138055,6 +138055,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799951105",
+                  "name": "Гулов Бахтиер Мирзоалиевич",
+                  "slots": [
+                    {
+                      "slot_id": "66995",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-27T09:00:00+03:00",
+                      "planned_end": "2026-11-27T22:00:00+03:00",
+                      "actual_start": "2026-11-27T09:38:31+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 38 минут",
+                      "late_seconds": 2311,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -138390,7 +138413,7 @@
             },
             {
               "title": "Не записались",
-              "count": 20,
+              "count": 21,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -138425,6 +138448,11 @@
                 {
                   "courier_id": "1800132243",
                   "name": "Насонов Владимир Константинович",
+                  "slots": []
+                },
+                {
+                  "courier_id": "1799972130",
+                  "name": "Одинаев Саидмаъруфджон Гулмуродович",
                   "slots": []
                 },
                 {
@@ -138496,31 +138524,8 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 3,
+              "count": 2,
               "couriers": [
-                {
-                  "courier_id": "1799951105",
-                  "name": "Гулов Бахтиер Мирзоалиевич",
-                  "slots": [
-                    {
-                      "slot_id": "66995",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-27T09:00:00+03:00",
-                      "planned_end": "2026-11-27T22:00:00+03:00",
-                      "actual_start": "2026-11-27T09:38:31+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 38 минут",
-                      "late_seconds": 2311,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1799937997",
                   "name": "Джабраилов Имам Дуквахович",
@@ -140740,9 +140745,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 34.21,
+            "value": 32.5,
             "numerator": 13,
-            "denominator": 38,
+            "denominator": 40,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -140846,11 +140851,18 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 25,
+              "count": 27,
               "couriers": [
                 {
                   "courier_id": "1800104389",
                   "name": "Анисимов Арсений Антонович",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1799951105",
+                  "name": "Гулов Бахтиер Мирзоалиевич",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
@@ -140914,6 +140926,13 @@
                 {
                   "courier_id": "1800132511",
                   "name": "Нематжонов Искандар Умаржон Угли",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1799972130",
+                  "name": "Одинаев Саидмаъруфджон Гулмуродович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
