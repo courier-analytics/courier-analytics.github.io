@@ -36,17 +36,7 @@ def api(token,method,payload=None):
         data=json.dumps(payload or {}).encode(),headers={'Content-Type':'application/json'},method='POST')
     try:
         with urllib.request.build_opener(NoRedirect()).open(request,timeout=25) as response:result=json.load(response)
-    except urllib.error.HTTPError as error:
-        # Retrying an edit after a lost response is safe; an identical message
-        # is already in the desired state. Never expose the response text.
-        if error.code==400 and method in ('editMessageText','editMessageReplyMarkup'):
-            try:
-                body=json.loads(error.read(16384))
-                description=body.get('description','')
-                if isinstance(description,str) and description.startswith('Bad Request: message is not modified'):
-                    return {'not_modified':True}
-            except (ValueError,OSError,TypeError):pass
-        raise RuntimeError('Telegram HTTP '+str(error.code)) from None
+    except urllib.error.HTTPError as error:raise RuntimeError('Telegram HTTP '+str(error.code)) from None
     except Exception:raise RuntimeError('Telegram request outcome unknown; inspect group before retrying sends') from None
     if result.get('ok') is not True:raise RuntimeError('Telegram did not confirm setup request')
     return result['result']
