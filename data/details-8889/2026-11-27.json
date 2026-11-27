@@ -2,12 +2,12 @@
   "shop_id": 8889,
   "records": {
     "2026-11-27": {
-      "generated_at": "2026-11-27T14:30:41.219959+00:00",
+      "generated_at": "2026-11-27T15:08:17.132431+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 53.57,
-            "numerator": 30,
+            "value": 55.36,
+            "numerator": 31,
             "denominator": 56,
             "reason": null,
             "basis": "onec_connected_auto_velo_employment_3_5"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 30,
+              "count": 31,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -236,7 +236,7 @@
                       "planned_end": "2026-11-28T07:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -284,6 +284,29 @@
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699908049",
+                  "name": "Магомедов Ибрагим Рагидинович",
+                  "slots": [
+                    {
+                      "slot_id": "62544",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T18:00:00+03:00",
+                      "planned_end": "2026-11-28T07:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -711,7 +734,7 @@
             },
             {
               "title": "Не записались",
-              "count": 26,
+              "count": 25,
               "couriers": [
                 {
                   "courier_id": "1800116805",
@@ -751,11 +774,6 @@
                 {
                   "courier_id": "1800122842",
                   "name": "Магомедов Абдула Шамилевич",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1699908049",
-                  "name": "Магомедов Ибрагим Рагидинович",
                   "slots": []
                 },
                 {
@@ -949,8 +967,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 70.21,
-            "numerator": 33,
+            "value": 72.34,
+            "numerator": 34,
             "denominator": 47,
             "reason": null,
             "basis": "limited_slot_places"
@@ -1796,8 +1814,8 @@
               "planned_start": "2026-11-27T18:00:00+03:00",
               "planned_end": "2026-11-28T07:00:00+03:00",
               "capacity": 2,
-              "occupied": 1,
-              "free": 1,
+              "occupied": 2,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1699900182",
@@ -1811,7 +1829,30 @@
                       "planned_end": "2026-11-28T07:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699908049",
+                  "name": "Магомедов Ибрагим Рагидинович",
+                  "slots": [
+                    {
+                      "slot_id": "62544",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T18:00:00+03:00",
+                      "planned_end": "2026-11-28T07:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -2483,7 +2524,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -2506,6 +2547,29 @@
                       "shift_start_source_date": null,
                       "shift_end_source_date": null,
                       "fact_source_slot_id": "62540"
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699900182",
+                  "name": "Идирисов Исмаил Бадурудинович",
+                  "slots": [
+                    {
+                      "slot_id": "62544",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T18:00:00+03:00",
+                      "planned_end": "2026-11-28T07:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
                     }
                   ]
                 },
@@ -2628,7 +2692,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 4,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1799970585",
@@ -2640,29 +2704,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-27T18:30:00+03:00",
                       "planned_end": "2026-11-28T09:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699900182",
-                  "name": "Идирисов Исмаил Бадурудинович",
-                  "slots": [
-                    {
-                      "slot_id": "62544",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-27T18:00:00+03:00",
-                      "planned_end": "2026-11-28T07:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
