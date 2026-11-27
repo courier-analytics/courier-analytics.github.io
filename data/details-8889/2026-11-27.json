@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-27": {
-      "generated_at": "2026-11-27T07:11:08.560401+00:00",
+      "generated_at": "2026-11-27T07:35:17.466704+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -96,10 +96,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-27T09:00:00+03:00",
                       "planned_end": "2026-11-27T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-27T10:17:30+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 17 мин",
+                      "late_seconds": 4650,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1404,10 +1404,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-27T09:00:00+03:00",
                       "planned_end": "2026-11-27T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-27T10:17:30+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 1 час 17 мин",
+                      "late_seconds": 4650,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1971,8 +1971,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 38.24,
-            "numerator": 13,
+            "value": 41.18,
+            "numerator": 14,
             "denominator": 34,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1980,7 +1980,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 13,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1999,6 +1999,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108759",
+                  "name": "Белкин Дмитрий Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62538",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T09:00:00+03:00",
+                      "planned_end": "2026-11-27T22:00:00+03:00",
+                      "actual_start": "2026-11-27T10:17:30+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 17 мин",
+                      "late_seconds": 4650,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -2285,31 +2308,8 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 9,
+              "count": 8,
               "couriers": [
-                {
-                  "courier_id": "1800108759",
-                  "name": "Белкин Дмитрий Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62538",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-27T09:00:00+03:00",
-                      "planned_end": "2026-11-27T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800130340",
                   "name": "Мазбутов Шахриёр Умеджонович",
@@ -2795,17 +2795,40 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 30.77,
-            "numerator": 4,
-            "denominator": 13,
+            "value": 35.71,
+            "numerator": 5,
+            "denominator": 14,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 4,
+              "count": 5,
               "couriers": [
+                {
+                  "courier_id": "1800108759",
+                  "name": "Белкин Дмитрий Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62538",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T09:00:00+03:00",
+                      "planned_end": "2026-11-27T22:00:00+03:00",
+                      "actual_start": "2026-11-27T10:17:30+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 17 мин",
+                      "late_seconds": 4650,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800133631",
                   "name": "Камолов Саидмурод Меликмуродович",
@@ -3124,9 +3147,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 7.14,
+            "value": 6.67,
             "numerator": 1,
-            "denominator": 14,
+            "denominator": 15,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -3162,7 +3185,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 13,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3181,6 +3204,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108759",
+                  "name": "Белкин Дмитрий Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62538",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T09:00:00+03:00",
+                      "planned_end": "2026-11-27T22:00:00+03:00",
+                      "actual_start": "2026-11-27T10:17:30+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 17 мин",
+                      "late_seconds": 4650,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -3490,7 +3536,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 13,
+              "count": 14,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3509,6 +3555,29 @@
                       "removed_at": null,
                       "removed_by": null,
                       "note": "Начало 00:00 передано источником. Сборщик ищет предыдущий фрагмент смены.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800108759",
+                  "name": "Белкин Дмитрий Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62538",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T09:00:00+03:00",
+                      "planned_end": "2026-11-27T22:00:00+03:00",
+                      "actual_start": "2026-11-27T10:17:30+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 1 час 17 мин",
+                      "late_seconds": 4650,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
