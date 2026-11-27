@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-28": {
-      "generated_at": "2026-11-27T21:51:59.023355+00:00",
+      "generated_at": "2026-11-27T22:16:18.149185+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -42,14 +42,14 @@
                 },
                 {
                   "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович",
+                  "name": "Анисимов Арсений Антонович ",
                   "slots": [
                     {
-                      "slot_id": "67015",
+                      "slot_id": "67005",
                       "slot_type": "limited",
                       "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T16:00:00+03:00",
-                      "planned_end": "2026-11-29T00:00:00+03:00",
+                      "planned_start": "2026-11-28T06:00:00+03:00",
+                      "planned_end": "2026-11-28T14:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -698,9 +698,33 @@
               "planned_start": "2026-11-28T06:00:00+03:00",
               "planned_end": "2026-11-28T14:00:00+03:00",
               "capacity": 2,
-              "occupied": 0,
-              "free": 2,
-              "couriers": []
+              "occupied": 1,
+              "free": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800104389",
+                  "name": "Анисимов Арсений Антонович ",
+                  "slots": [
+                    {
+                      "slot_id": "67005",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T06:00:00+03:00",
+                      "planned_end": "2026-11-28T14:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "67006",
@@ -1344,33 +1368,9 @@
               "planned_start": "2026-11-28T16:00:00+03:00",
               "planned_end": "2026-11-29T00:00:00+03:00",
               "capacity": 2,
-              "occupied": 1,
-              "free": 1,
-              "couriers": [
-                {
-                  "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович",
-                  "slots": [
-                    {
-                      "slot_id": "67015",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T16:00:00+03:00",
-                      "planned_end": "2026-11-29T00:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 2,
+              "couriers": []
             },
             {
               "slot_id": "67016",
@@ -1477,7 +1477,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 24,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -1512,29 +1512,6 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-28T09:00:00+03:00",
                       "planned_end": "2026-11-28T22:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович",
-                  "slots": [
-                    {
-                      "slot_id": "67015",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T16:00:00+03:00",
-                      "planned_end": "2026-11-29T00:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Ожидается выход",
@@ -2040,12 +2017,36 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800104389",
+                  "name": "Анисимов Арсений Антонович ",
+                  "slots": [
+                    {
+                      "slot_id": "67015",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-28T16:00:00+03:00",
+                      "planned_end": "2026-11-29T00:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-28T00:57:09+03:00",
+                      "removed_by": "Анисимов Арсений Антонович ",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "reconciled": true,
-          "note": ""
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "planned_late": {
           "aggregate": {
@@ -2073,7 +2074,7 @@
             }
           ],
           "reconciled": false,
-          "note": ""
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "unplanned_work": {
           "aggregate": {
