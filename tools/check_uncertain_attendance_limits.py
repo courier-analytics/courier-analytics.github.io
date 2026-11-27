@@ -21,11 +21,26 @@ def comparison(current,before,target):
     return 'different_limit_requires_review'
 
 
+def wait_for_account(lock,seconds):
+    deadline=time.monotonic()+seconds;announced=False
+    while True:
+        try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);return True
+        except BlockingIOError:
+            remaining=deadline-time.monotonic()
+            if remaining<=0:return False
+            if not announced:
+                print('Secondary account queued; waiting for current read to finish',flush=True)
+                announced=True
+            time.sleep(min(1,remaining))
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--wait',type=int,default=0,help='Wait 0..600 seconds for secondary account without interrupting its owner')
     parser.add_argument('--state',choices=('uncertain','held'),default='uncertain')
     parser.add_argument('--limit',type=int,default=6,choices=range(1,11))
     args=parser.parse_args()
+    if not 0<=args.wait<=600:raise SystemExit('Wait must be between 0 and 600 seconds')
     if pool_account()[0]!='secondary':raise SystemExit('Verified secondary account required; no reads started')
     day=datetime.now(TZ).date().isoformat()
     with sqlite3.connect('file:'+str(ROOT/'attendance-bot/cases.sqlite3')+'?mode=ro',uri=True) as db:
@@ -35,8 +50,7 @@ def main():
     folder.mkdir(mode=0o700,parents=True)
     report={'date':day,'selected_state':args.state,'cases':[],'writes_performed':False,'case_states_changed':False}
     with SECONDARY_LOCK.open('a') as lock:
-        try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        except BlockingIOError:raise SystemExit('Secondary account busy; no checks started')
+        if not wait_for_account(lock,args.wait):raise SystemExit('Secondary account still busy; no checks started; no running task interrupted')
         for case in rows:
             p=json.loads(case['payload']);identity=p['courier_id']
             if not isinstance(identity,str) or not identity.isdigit() or p['shop_id'] not in (7745,8889,9107):raise ValueError('Invalid case identity')
