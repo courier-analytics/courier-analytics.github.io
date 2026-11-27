@@ -2,20 +2,20 @@
   "shop_id": 7745,
   "records": {
     "2026-11-27": {
-      "generated_at": "2026-11-27T12:33:52.655451+00:00",
+      "generated_at": "2026-11-27T13:37:10.862329+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 47.5,
-            "numerator": 19,
-            "denominator": 40,
+            "value": 48.78,
+            "numerator": 20,
+            "denominator": 41,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
           },
           "groups": [
             {
               "title": "Записались",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -432,6 +432,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800017902",
+                  "name": "Хамидов Хасанбек Оруфович",
+                  "slots": [
+                    {
+                      "slot_id": "66991",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-27T07:00:00+03:00",
+                      "planned_end": "2026-11-27T15:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Не вышел",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800109182",
                   "name": "Ходжаев Жасурбек",
                   "slots": [
@@ -569,7 +592,7 @@
             },
             {
               "title": "Записи вне базы 1С — не входят в процент",
-              "count": 3,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1799937997",
@@ -608,29 +631,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3452,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800017902",
-                  "name": "Хамидов Хасанбек Оруфович",
-                  "slots": [
-                    {
-                      "slot_id": "66991",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-27T07:00:00+03:00",
-                      "planned_end": "2026-11-27T15:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2929,9 +2929,9 @@
         },
         "training": {
           "aggregate": {
-            "value": 32.5,
+            "value": 31.71,
             "numerator": 13,
-            "denominator": 40,
+            "denominator": 41,
             "reason": null,
             "basis": "onec_training_named_intersection"
           },
@@ -3035,7 +3035,7 @@
             },
             {
               "title": "В базе 1С — обучение не подтверждено",
-              "count": 27,
+              "count": 28,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -3180,6 +3180,13 @@
                 {
                   "courier_id": "1800125641",
                   "name": "Тургунов Нурилло Иномжон Угли",
+                  "slots": [],
+                  "training_date": null,
+                  "match_status": "Нет подтверждённой записи об обучении"
+                },
+                {
+                  "courier_id": "1800017902",
+                  "name": "Хамидов Хасанбек Оруфович",
                   "slots": [],
                   "training_date": null,
                   "match_status": "Нет подтверждённой записи об обучении"
