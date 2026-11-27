@@ -44707,7 +44707,7 @@
       }
     },
     "2026-11-20": {
-      "generated_at": "2026-11-27T09:05:48.896734+00:00",
+      "generated_at": "2026-11-27T10:13:08.527961+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -49297,7 +49297,7 @@
       }
     },
     "2026-11-21": {
-      "generated_at": "2026-11-27T09:02:02.503070+00:00",
+      "generated_at": "2026-11-27T10:10:00.459182+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -53103,7 +53103,7 @@
       }
     },
     "2026-11-22": {
-      "generated_at": "2026-11-27T08:58:29.546886+00:00",
+      "generated_at": "2026-11-27T10:06:25.067234+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -57856,7 +57856,7 @@
       }
     },
     "2026-11-23": {
-      "generated_at": "2026-11-27T08:54:40.545587+00:00",
+      "generated_at": "2026-11-27T10:02:33.843427+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -61981,7 +61981,7 @@
       }
     },
     "2026-11-24": {
-      "generated_at": "2026-11-27T06:57:55.242827+00:00",
+      "generated_at": "2026-11-27T09:58:21.626001+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -66266,7 +66266,7 @@
       }
     },
     "2026-11-25": {
-      "generated_at": "2026-11-27T07:52:37.713386+00:00",
+      "generated_at": "2026-11-27T09:53:52.485532+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -70784,7 +70784,7 @@
       }
     },
     "2026-11-26": {
-      "generated_at": "2026-11-27T09:49:11.409124+00:00",
+      "generated_at": "2026-11-27T10:21:49.645783+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -75698,7 +75698,7 @@
       }
     },
     "2026-11-27": {
-      "generated_at": "2026-11-27T09:44:03.785504+00:00",
+      "generated_at": "2026-11-27T10:26:30.686846+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -76298,10 +76298,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-27T08:00:00+03:00",
                       "planned_end": "2026-11-27T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-27T13:14:52+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 5 часов 14 мин",
+                      "late_seconds": 18892,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -76972,10 +76972,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-27T08:00:00+03:00",
                       "planned_end": "2026-11-27T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-27T13:14:52+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 5 часов 14 мин",
+                      "late_seconds": 18892,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -77677,8 +77677,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 50.0,
-            "numerator": 17,
+            "value": 52.94,
+            "numerator": 18,
             "denominator": 34,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -77686,7 +77686,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -78012,6 +78012,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800134474",
+                  "name": "Саидзода Алишер Нурали",
+                  "slots": [
+                    {
+                      "slot_id": "62537",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T08:00:00+03:00",
+                      "planned_end": "2026-11-27T21:00:00+03:00",
+                      "actual_start": "2026-11-27T13:14:52+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 14 мин",
+                      "late_seconds": 18892,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799971289",
                   "name": "Сучков Денис Дмитриевич",
                   "slots": [
@@ -78084,7 +78107,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800130340",
@@ -78165,29 +78188,6 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800134474",
-                  "name": "Саидзода Алишер Нурали",
-                  "slots": [
-                    {
-                      "slot_id": "62537",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-27T08:00:00+03:00",
-                      "planned_end": "2026-11-27T21:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
                       "status": "Не вышел",
@@ -78525,16 +78525,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 47.06,
-            "numerator": 8,
-            "denominator": 17,
+            "value": 50.0,
+            "numerator": 9,
+            "denominator": 18,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800108759",
@@ -78665,6 +78665,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 22 мин",
                       "late_seconds": 8541,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134474",
+                  "name": "Саидзода Алишер Нурали",
+                  "slots": [
+                    {
+                      "slot_id": "62537",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T08:00:00+03:00",
+                      "planned_end": "2026-11-27T21:00:00+03:00",
+                      "actual_start": "2026-11-27T13:14:52+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 14 мин",
+                      "late_seconds": 18892,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -78947,9 +78970,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 10.53,
+            "value": 10.0,
             "numerator": 2,
-            "denominator": 19,
+            "denominator": 20,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -79008,7 +79031,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -79328,6 +79351,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-26. Исходное начало: 2026-11-27T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-26",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134474",
+                  "name": "Саидзода Алишер Нурали",
+                  "slots": [
+                    {
+                      "slot_id": "62537",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T08:00:00+03:00",
+                      "planned_end": "2026-11-27T21:00:00+03:00",
+                      "actual_start": "2026-11-27T13:14:52+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 14 мин",
+                      "late_seconds": 18892,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -79452,7 +79498,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800120138",
@@ -79795,6 +79841,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-26. Исходное начало: 2026-11-27T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-26",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134474",
+                  "name": "Саидзода Алишер Нурали",
+                  "slots": [
+                    {
+                      "slot_id": "62537",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T08:00:00+03:00",
+                      "planned_end": "2026-11-27T21:00:00+03:00",
+                      "actual_start": "2026-11-27T13:14:52+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 14 мин",
+                      "late_seconds": 18892,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
