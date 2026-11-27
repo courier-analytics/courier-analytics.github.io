@@ -498,13 +498,15 @@ def save_failure_interface(page, private, stage):
             if os.path.exists(name):os.unlink(name)
 
 
-def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False, inspect_roster=False, inspect_courier=None, decrement_test=False, attendance_task=None, pool_identity=None):
+def check_login(address, private=Path('/opt/courier-analytics/private'), local_mac=False, comparison_credentials=None, sync_vps=False, inspect_ui=False, inspect_roster=False, inspect_courier=None, decrement_test=False, attendance_task=None, pool_identity=None, credentials_path=None):
     from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     if local_mac and (sys.platform != 'darwin' or address != '10.210.254.19'):
         raise ValueError('Local comparison requires the authorized Mac and fixed 1C address')
     if decrement_test and (local_mac or inspect_courier!=(9107,'Жуков Максим Сергеевич')):
         raise ValueError('Only the explicitly authorized courier test is allowed')
-    credentials = None if local_mac else load_credentials()
+    if local_mac:credentials=None
+    elif credentials_path is not None:credentials=load_credentials(credentials_path)
+    else:credentials=load_credentials()
     if sync_vps and not local_mac:
         raise ValueError('Credential synchronization requires local manual login')
     captured = []

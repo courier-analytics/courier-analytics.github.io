@@ -65,6 +65,7 @@ def probe(address, scheme, path, folder):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--onec-account',choices=('primary','secondary'),default='primary',help='Isolated 1C account; secondary is read-only')
     parser.add_argument('--address', required=True, help='IPv4 resolved on the corporate network')
     parser.add_argument('--profile', type=Path, default=Path('/root/courier-openvpn-tcp.ovpn'))
     parser.add_argument('--auth', type=Path, default=Path('/root/courier-openvpn.auth'))
@@ -124,6 +125,8 @@ def main():
     if (args.onec_probe or args.onec_login) and any((args.check_login, args.save_login, args.replace_login,
                                args.inspect_model, args.collect_medical, args.preflight)):
         raise ValueError('1C page inspection cannot be combined with Power BI actions')
+    if args.onec_account=='secondary' and (not args.onec_login or args.onec_attendance_case or args.onec_test_decrement_zhukov or args.onec_save_login or args.onec_replace_login or args.onec_inspect_roster or args.onec_inspect_ui or (args.onec_courier_name and not args.onec_pool_id)):
+        raise ValueError('Secondary account supports only login verification and read-only pools')
     if os.geteuid() != 0:
         raise ValueError('Run on the VPS as root')
     if args.preflight:
@@ -150,7 +153,10 @@ def main():
         from onec_browser import save_credentials, load_credentials
         if args.onec_save_login or args.onec_replace_login:
             save_credentials(replace=args.onec_replace_login)
-        load_credentials()
+        if args.onec_account=='secondary':
+            from onec_accounts import secondary_credentials
+            load_credentials(secondary_credentials())
+        else:load_credentials()
     from corporate_vpn_session import session
     from shared_vpn_resource import VPNBusy
     try:
@@ -163,12 +169,15 @@ def main():
                 from onec_browser import check_login
                 from playwright.sync_api import Error as BrowserError
                 try:
+                    account_options={}
+                    if args.onec_account=='secondary':
+                        account_options={'credentials_path':secondary_credentials(),'private':Path('/opt/courier-analytics/private/onec-secondary')}
                     return 0 if check_login(address, inspect_ui=args.onec_inspect_ui,
                                            inspect_roster=args.onec_inspect_roster,
                                            inspect_courier=(args.onec_courier_shop,args.onec_courier_name) if args.onec_courier_name else None,
                                            decrement_test=args.onec_test_decrement_zhukov,
                                            pool_identity=args.onec_pool_id,
-                                           attendance_task=(args.onec_attendance_case,args.onec_attendance_mode) if args.onec_attendance_case else None) else 1
+                                           attendance_task=(args.onec_attendance_case,args.onec_attendance_mode) if args.onec_attendance_case else None, **account_options) else 1
                 except BrowserError:
                     raise ValueError('1C browser operation failed; private details hidden') from None
             if args.onec_probe:
