@@ -1,4 +1,4 @@
-"""Temporary OpenVPN test for Superset. No permanent network or collector changes."""
+"""Superset collector through the managed corporate VPN, with legacy test fallback."""
 import argparse
 import json
 import os
@@ -79,42 +79,11 @@ def main():
     config, needs_auth = vpn_config(args.profile.read_text(), addresses, args.auth)
     if needs_auth and (not args.auth.is_file() or args.auth.stat().st_mode & 0o077):
         raise ValueError('VPN auth file missing or permissions too broad; require 600')
-    # Refuse overlapping tests instead of mistaking an existing tunnel for success.
-    from shared_vpn_resource import acquire
-    if not 0 <= args.wait_vpn <= 600:
-        raise ValueError('VPN wait must be between 0 and 600 seconds')
+    from corporate_vpn_session import session
+    from shared_vpn_resource import VPNBusy
+    if not 0<=args.wait_vpn<=600:raise ValueError('VPN wait must be between 0 and 600 seconds')
     try:
-        vpn_lease=acquire(wait=max(120,args.wait_vpn))
-    except RuntimeError:
-        print('Corporate VPN still busy; comparison not started. Retry later; no tunnel stopped.',flush=True)
-        return 75
-    wait_for_idle_vpn(args.wait_vpn)
-    with tempfile.TemporaryDirectory(prefix='courier-superset-', dir='/root') as folder:
-        folder = Path(folder)
-        path, log = folder/'candidate.conf', folder/'private.log'
-        private_write(path, config)
-        private_write(log, '')
-        worker = subprocess.Popen(['timeout', '--signal=TERM', '--kill-after=5s', ('600s' if args.collect_staffing else '120s'),
-            'openvpn', '--config', str(path), '--log', str(log), '--verb', '3'],
-            stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        try:
-            print('Temporary VPN test, maximum '+('605' if args.collect_staffing else '125')+' seconds. Profile and log remain private.', flush=True)
-            deadline = time.monotonic() + 60
-            connected = False
-            while time.monotonic() < deadline:
-                text = log.read_text(errors='replace')
-                if 'Initialization Sequence Completed' in text:
-                    connected = True
-                    break
-                if worker.poll() is not None or 'AUTH_FAILED' in text:
-                    break
-                time.sleep(.5)
-            if not connected:
-                text = log.read_text(errors='replace')
-                print(json.dumps({'vpn_connected': False, 'auth_failed': 'AUTH_FAILED' in text,
-                    'tls_error': 'TLS Error' in text, 'certificate_error': 'VERIFY ERROR' in text}))
-                return 1
-            print('VPN connected. Superset destination routes only; TLS verification enabled.', flush=True)
+        with session(config,addresses,seconds=600 if args.collect_staffing else 120,wait=max(120,args.wait_vpn)):
             probes = [health_probe(address) for address in addresses]
             for result in probes:
                 print(json.dumps(result), flush=True)
@@ -125,15 +94,10 @@ def main():
                 success = check_login(args.provider, args.inspect_datasets, args.inspect_matryoshka, args.matryoshka_history, args.collect_matryoshka, args.reconcile_matryoshka, args.collect_staffing, args.staffing_shop, args.pay_couriers, args.ziz_services, args.compare_order_ids, args.delivery_speed)
                 print('Superset authentication: ' + ('PASSED' if success else 'not confirmed'))
             return 0 if success else 1
-        finally:
-            if worker.poll() is None:
-                worker.terminate()
-                try:
-                    worker.wait(timeout=7)
-                except subprocess.TimeoutExpired:
-                    worker.kill()
-                    worker.wait(timeout=3)
-            print('Temporary VPN stopped. Collector, timers and system DNS unchanged.', flush=True)
+    except VPNBusy:
+        print('Corporate VPN unavailable; collection deferred; no tunnel stopped',flush=True)
+        return 75
+
 
 
 if __name__ == '__main__':

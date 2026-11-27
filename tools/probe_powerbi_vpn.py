@@ -1,4 +1,4 @@
-"""Power BI access test through a temporary corporate VPN on the VPS."""
+"""Power BI and 1C access through managed VPN, with legacy test fallback."""
 import argparse
 import ipaddress
 import json
@@ -137,15 +137,6 @@ def main():
     config, needs_auth = candidate(args.profile.read_text(), [address], args.auth)
     if needs_auth and (not args.auth.is_file() or args.auth.stat().st_mode & 0o077):
         raise ValueError('Saved VPN auth file missing or permissions broader than 600')
-    from shared_vpn_resource import acquire, VPNBusy
-    try:
-        # 1C callers already hold the roster lock: do not occupy it while waiting for VPN.
-        vpn_lease=acquire(wait=0 if args.onec_login else 120)
-    except VPNBusy:
-        print('Corporate VPN busy; read deferred; no tunnel started',flush=True)
-        return 75
-    if subprocess.run(['pgrep', '-x', 'openvpn'], capture_output=True).returncode != 1:
-        raise ValueError('An OpenVPN process exists; review it before starting this test')
     if args.replace_login and not args.save_login:
         raise ValueError('--replace-login requires --save-login')
     if args.save_login:
@@ -160,30 +151,10 @@ def main():
         if args.onec_save_login or args.onec_replace_login:
             save_credentials(replace=args.onec_replace_login)
         load_credentials()
-    with tempfile.TemporaryDirectory(prefix='courier-powerbi-', dir='/root') as directory:
-        folder = Path(directory)
-        profile, log = folder / 'candidate.conf', folder / 'private.log'
-        private_write(profile, config)
-        private_write(log, '')
-        worker = subprocess.Popen(['timeout', '--signal=TERM', '--kill-after=5s', '240s',
-            'openvpn', '--config', str(profile), '--log', str(log), '--verb', '3'],
-            stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        try:
-            print('Temporary corporate VPN; authorized single-courier write test.' if args.onec_test_decrement_zhukov or args.onec_attendance_mode=='apply' else 'Temporary corporate VPN test; read-only requests, private data hidden.', flush=True)
-            deadline = time.monotonic() + 60
-            while time.monotonic() < deadline:
-                text = log.read_text(errors='replace')
-                if 'Initialization Sequence Completed' in text:
-                    break
-                if worker.poll() is not None or 'AUTH_FAILED' in text:
-                    break
-                time.sleep(.5)
-            text = log.read_text(errors='replace')
-            if 'Initialization Sequence Completed' not in text:
-                print(json.dumps({'vpn_connected': False, 'auth_failed': 'AUTH_FAILED' in text,
-                    'tls_error': 'TLS Error' in text, 'certificate_error': 'VERIFY ERROR' in text}))
-                return 1
-            print('VPN connected; only the specified corporate IPv4 is routed through it.', flush=True)
+    from corporate_vpn_session import session
+    from shared_vpn_resource import VPNBusy
+    try:
+        with session(config,[address],seconds=240,wait=0 if args.onec_login else 120) as folder:
             if args.onec_route_check:
                 from onec_route_check import check
                 from powerbi_access import corporate_interface
@@ -214,15 +185,10 @@ def main():
                     collect_medical=args.collect_medical, medical_shops=tuple(args.shops) if args.shops else None) else 1
             print('This test does not authenticate, export medical data, or update metric 10.', flush=True)
             return 0 if any(r['curl_exit'] == 0 and r['http_status'] for r in results) else 1
-        finally:
-            if worker.poll() is None:
-                worker.terminate()
-                try:
-                    worker.wait(timeout=7)
-                except subprocess.TimeoutExpired:
-                    worker.kill()
-                    worker.wait(timeout=3)
-            print('Temporary VPN stopped; system DNS, public proxy and dashboard jobs unchanged.', flush=True)
+    except VPNBusy:
+        print('Corporate VPN unavailable; read deferred; no tunnel stopped',flush=True)
+        return 75
+
 
 
 if __name__ == '__main__':
