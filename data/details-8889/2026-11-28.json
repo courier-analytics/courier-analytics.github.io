@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-28": {
-      "generated_at": "2026-11-27T21:27:21.015855+00:00",
+      "generated_at": "2026-11-27T21:51:59.023355+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 65.31,
-            "numerator": 32,
+            "value": 67.35,
+            "numerator": 33,
             "denominator": 49,
             "reason": null,
             "basis": "limited_slot_places"
@@ -230,8 +230,8 @@
               "planned_start": "2026-11-28T08:00:00+03:00",
               "planned_end": "2026-11-28T21:00:00+03:00",
               "capacity": 11,
-              "occupied": 10,
-              "free": 1,
+              "occupied": 11,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1800134558",
@@ -259,6 +259,29 @@
                 {
                   "courier_id": "1800108273",
                   "name": "Александров Александр Алексеевич",
+                  "slots": [
+                    {
+                      "slot_id": "62552",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T08:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
                   "slots": [
                     {
                       "slot_id": "62552",
