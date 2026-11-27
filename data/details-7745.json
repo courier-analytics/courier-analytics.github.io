@@ -137957,12 +137957,12 @@
       }
     },
     "2026-11-27": {
-      "generated_at": "2026-11-27T17:13:42.517877+00:00",
+      "generated_at": "2026-11-27T17:34:16.470954+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 53.66,
-            "numerator": 22,
+            "value": 56.1,
+            "numerator": 23,
             "denominator": 41,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -137970,7 +137970,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 22,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -138341,6 +138341,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "67003",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-27T21:00:00+03:00",
+                      "planned_end": "2026-11-28T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800125641",
                   "name": "Тургунов Нурилло Иномжон Угли",
                   "slots": [
@@ -138482,7 +138505,7 @@
             },
             {
               "title": "Не записались",
-              "count": 19,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -138491,7 +138514,7 @@
                 },
                 {
                   "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович",
+                  "name": "Анисимов Арсений Антонович ",
                   "slots": []
                 },
                 {
@@ -138547,11 +138570,6 @@
                 {
                   "courier_id": "1800132979",
                   "name": "Сайфуллоев Мухаммаджон Исомидинович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1799950967",
-                  "name": "Тагоев Лочин Хакимович",
                   "slots": []
                 },
                 {
@@ -138639,8 +138657,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 56.41,
-            "numerator": 22,
+            "value": 58.97,
+            "numerator": 23,
             "denominator": 39,
             "reason": null,
             "basis": "limited_slot_places"
@@ -139415,9 +139433,33 @@
               "planned_start": "2026-11-27T21:00:00+03:00",
               "planned_end": "2026-11-28T10:00:00+03:00",
               "capacity": 2,
-              "occupied": 0,
-              "free": 2,
-              "couriers": []
+              "occupied": 1,
+              "free": 1,
+              "couriers": [
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "67003",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-27T21:00:00+03:00",
+                      "planned_end": "2026-11-28T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "67004",
@@ -139437,11 +139479,11 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": null,
-            "numerator": null,
-            "denominator": null,
-            "reason": "planned_booking_missing_from_current_data",
-            "basis": null
+            "value": 88.24,
+            "numerator": 15,
+            "denominator": 17,
+            "reason": null,
+            "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
@@ -139831,11 +139873,16 @@
             },
             {
               "title": "Нет подтверждённых данных",
+              "count": 0,
+              "couriers": []
+            },
+            {
+              "title": "Снятые смены — история",
               "count": 1,
               "couriers": [
                 {
                   "courier_id": "1800104389",
-                  "name": "Анисимов Арсений Антонович",
+                  "name": "Анисимов Арсений Антонович ",
                   "slots": [
                     {
                       "slot_id": "67000",
@@ -139845,11 +139892,11 @@
                       "planned_end": "2026-11-28T01:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Запись из плана отсутствует в текущих данных",
+                      "status": "Снятая смена",
                       "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
+                      "removed_at": "2026-11-27T18:44:51+03:00",
+                      "removed_by": "Османов Арслан Сагадуллаевич",
+                      "note": "Снятие подтверждено историей бронирования.",
                       "worked_through": null,
                       "shift_start_source_date": null,
                       "shift_end_source_date": null
@@ -139857,23 +139904,18 @@
                   ]
                 }
               ]
-            },
-            {
-              "title": "Снятые смены — история",
-              "count": 0,
-              "couriers": []
             }
           ],
-          "reconciled": false,
-          "note": ""
+          "reconciled": true,
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "planned_late": {
           "aggregate": {
-            "value": null,
-            "numerator": null,
-            "denominator": null,
-            "reason": "planned_booking_missing_from_current_data",
-            "basis": null
+            "value": 46.67,
+            "numerator": 7,
+            "denominator": 15,
+            "reason": null,
+            "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
@@ -140239,8 +140281,8 @@
               "couriers": []
             }
           ],
-          "reconciled": false,
-          "note": ""
+          "reconciled": true,
+          "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "unplanned_work": {
           "aggregate": {
