@@ -17,6 +17,8 @@ def message(case):
     if case['current_limit'] is not None:text+='\nТекущий лимит: '+str(case['current_limit'])
     if case['target_limit'] is not None:text+='\nПредлагаемый лимит: '+str(case['target_limit'])+'\nПроверьте обстоятельства перед подтверждением.'
     else:
+        if case['state'] in ('need_limit','reading'):
+            return text+'\n\nОпоздание получено из КПС. Лимит проверяется в 1С. Применение пока недоступно.'
         text+='\nФакты или допустимый лимит требуют ручной проверки. Применение недоступно.'
         if case.get('result')=='limit_read_failed':text+='\nНе удалось прочитать лимит в 1С после трёх попыток; уменьшение не выполнялось.'
         detail={'courier_id_not_found':'Указанный ID не найден в выбранном ДС после ожидания результатов.', 'courier_id_not_unique':'Карточка с указанным ID не найдена однозначно в выбранном ДС.', 'courier_name_id_mismatch':'ID найден, но ФИО в 1С отличается от источника.', 'courier_search_unstable':'Список 1С не завершил обновление.', 'card_identity_not_verified':'Не удалось подтвердить открытую карточку курьера.'}.get(case.get('last_read_error'))
@@ -75,13 +77,41 @@ def handle_callback(db,update,config,token):
     except (ValueError,KeyError,TypeError):answer='Кнопка устарела, уже обработана или у вас нет права подтверждения.'
     api(token,'answerCallbackQuery',{'callback_query_id':q['id'],'text':answer})
 
+def notify_preliminary(db,config,token,only_id=None):
+    # Persist intent separately: reading the limit must not wait for Telegram.
+    rows=db.execute("SELECT id FROM cases WHERE state IN ('need_limit','reading','held') AND message_id IS NULL AND notice_state IS NULL ORDER BY rowid LIMIT 3").fetchall()
+    for row in rows:
+        if only_id is not None and row['id']!=only_id:continue
+        case=get(db,row['id'])
+        if case['payload']['date']!=datetime.now(TZ).date().isoformat():continue
+        route=case_config(config,case)
+        changed=db.execute("UPDATE cases SET notice_state='sending',message_chat_id=? WHERE id=? AND notice_state IS NULL AND message_id IS NULL AND state IN ('need_limit','reading','held')",(route['chat_id'],case['id'])).rowcount
+        db.commit()
+        if not changed:continue
+        try:
+            sent=api(token,'sendMessage',{'chat_id':route['chat_id'],'text':message(case),'reply_markup':{'inline_keyboard':[]}})
+            if type(sent.get('message_id')) is not int:raise RuntimeError('Message unconfirmed')
+            db.execute("UPDATE cases SET message_id=?,message_kind='preliminary',notice_state='sent',notified=CASE WHEN state IN ('need_limit','reading','held') THEN 1 ELSE notified END WHERE id=?",(sent['message_id'],case['id']));db.commit()
+        except RuntimeError:
+            db.execute("UPDATE cases SET notice_state='uncertain' WHERE id=?",(case['id'],));db.commit()
+            print('Preliminary card delivery unconfirmed; no automatic duplicate send',flush=True)
+        return
+
 def notify(db,config,token,only_id=None):
+    notify_preliminary(db,config,token,only_id)
     root_config=config
-    for row in db.execute("SELECT id FROM cases WHERE state='ready' AND current_limit IS NOT NULL AND target_limit IS NOT NULL AND notified=0").fetchall():
+    for row in db.execute("SELECT id FROM cases WHERE state='ready' AND current_limit IS NOT NULL AND target_limit IS NOT NULL AND notified=0 AND coalesce(notice_state,'') NOT IN ('sending','uncertain') LIMIT 1").fetchall():
         if only_id is not None and row['id']!=only_id:continue
         case=get(db,row['id']);config=case_config(root_config,{**case,'message_id':None,'message_chat_id':None})
         if case['state']=='ready' and (not case['observed'] or case['observed']>time.time()+120):
             db.execute("UPDATE cases SET state='need_limit' WHERE id=?",(case['id'],));db.commit();continue
+        if case.get('message_id') and case.get('message_kind')=='preliminary':
+            # A known message is edited in place. Failed edits are safe to retry;
+            # never replace them with another sendMessage.
+            previous=case_config(root_config,case)
+            api(token,'editMessageText',{'chat_id':previous['chat_id'],'message_id':case['message_id'],'text':message(case),'reply_markup':buttons(case)})
+            db.execute("UPDATE cases SET state='pending_review',message_kind='proposal',notified=1 WHERE id=? AND state='ready' AND nonce=?",(case['id'],case['nonce']));db.commit()
+            continue
         if case.get('message_id'):
             previous=case_config(root_config,case)
             try:api(token,'editMessageReplyMarkup',{'chat_id':previous['chat_id'],'message_id':case['message_id'],'reply_markup':{'inline_keyboard':[]}})
@@ -93,7 +123,7 @@ def notify(db,config,token,only_id=None):
             db.execute("UPDATE cases SET state='pending_review',message_id=?,notified=1 WHERE id=?",(sent['message_id'],case['id']));db.commit()
         except RuntimeError:
             db.execute("UPDATE cases SET state='delivery_uncertain',notified=1 WHERE id=?",(case['id'],));db.commit();raise
-    for row in db.execute("SELECT id FROM cases WHERE state IN ('applied','skipped','uncertain','held') AND message_id IS NOT NULL AND notified=0").fetchall():
+    for row in db.execute("SELECT id FROM cases WHERE state IN ('applied','skipped','uncertain','held') AND message_id IS NOT NULL AND notified=0 LIMIT 1").fetchall():
         if only_id is not None and row['id']!=only_id:continue
         case=get(db,row['id']);config=case_config(root_config,case);p=case['payload']
         labels={'held':'Проверка не завершена; изменение не подтверждено. Требуется разбор, повторного списания не будет.','applied':'Сохранено в 1С и проверено повторным открытием карточки.','skipped':'Пропущено ответственным.','withdrawn':'Случай отозван: факты изменились или дата закончилась.','uncertain':'Результат сохранения не подтверждён. Нужна ручная проверка; повторного уменьшения не будет.'}
@@ -217,10 +247,15 @@ def main():
                 except OSError:
                     next_collect=time.monotonic()+120
                     print('Could not start evidence refresh; Telegram receiver continues.',flush=True)
-            notify(db,config,token)
+            try:notify(db,config,token)
+            except RuntimeError:print('Telegram card update deferred; receiver continues',flush=True)
             if not job and time.monotonic()>=next_job:job=start_job(db)
             offset=db.execute("SELECT value FROM meta WHERE key='telegram_offset'").fetchone()
-            updates=api(token,'getUpdates',{'offset':int(offset[0]) if offset else 0,'timeout':10,'limit':100})
+            try:updates=api(token,'getUpdates',{'offset':int(offset[0]) if offset else 0,'timeout':10,'limit':100})
+            except RuntimeError as error:
+                if str(error)=='Telegram HTTP 409':raise
+                print('Telegram polling temporarily unavailable; retrying',flush=True)
+                time.sleep(3);continue
             for update in updates:
                 # Persist unrelated updates rather than silently discarding them.
                 if update.get('callback_query',{}).get('data','').startswith('att:'):
