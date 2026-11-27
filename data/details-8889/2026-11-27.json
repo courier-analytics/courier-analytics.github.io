@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-27": {
-      "generated_at": "2026-11-27T08:26:06.139458+00:00",
+      "generated_at": "2026-11-27T08:50:32.335588+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -386,29 +386,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800126140",
-                  "name": "Мандрыкин Виталий Артурович",
-                  "slots": [
-                    {
-                      "slot_id": "62541",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-27T14:00:00+03:00",
-                      "planned_end": "2026-11-27T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800095811",
                   "name": "Миронов Илья Сергеевич",
                   "slots": [
@@ -537,6 +514,29 @@
                       "actual_end": null,
                       "status": "Ожидается выход",
                       "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "106839",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T11:30:00+03:00",
+                      "planned_end": "2026-11-27T23:00:00+03:00",
+                      "actual_start": "2026-11-27T11:30:59+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 59,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -754,6 +754,11 @@
                   "slots": []
                 },
                 {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": []
+                },
+                {
                   "courier_id": "1800093276",
                   "name": "Мирзаагаев Ахмед Демирович",
                   "slots": []
@@ -786,11 +791,6 @@
                 {
                   "courier_id": "1800063653",
                   "name": "Нуров Джавхан Амрдинович",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800133871",
-                  "name": "Обиджонов Фаррух Фирдавсович",
                   "slots": []
                 },
                 {
@@ -949,9 +949,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 73.33,
+            "value": 71.74,
             "numerator": 33,
-            "denominator": 45,
+            "denominator": 46,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -1593,6 +1593,41 @@
               ]
             },
             {
+              "slot_id": "106839",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-27T11:30:00+03:00",
+              "planned_end": "2026-11-27T23:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "106839",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T11:30:00+03:00",
+                      "planned_end": "2026-11-27T23:00:00+03:00",
+                      "actual_start": "2026-11-27T11:30:59+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 59,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "slot_id": "62540",
               "scope": "8889ДС_ЛиповыйПарк1",
               "slot_type": "limited",
@@ -1634,33 +1669,9 @@
               "planned_start": "2026-11-27T14:00:00+03:00",
               "planned_end": "2026-11-27T23:00:00+03:00",
               "capacity": 1,
-              "occupied": 1,
-              "free": 0,
-              "couriers": [
-                {
-                  "courier_id": "1800126140",
-                  "name": "Мандрыкин Виталий Артурович",
-                  "slots": [
-                    {
-                      "slot_id": "62541",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-27T14:00:00+03:00",
-                      "planned_end": "2026-11-27T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 1,
+              "couriers": []
             },
             {
               "slot_id": "62542",
@@ -2498,7 +2509,7 @@
             },
             {
               "title": "Ожидаются",
-              "count": 10,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800033763",
@@ -2616,29 +2627,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800126140",
-                  "name": "Мандрыкин Виталий Артурович",
-                  "slots": [
-                    {
-                      "slot_id": "62541",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-27T14:00:00+03:00",
-                      "planned_end": "2026-11-27T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800134731",
                   "name": "Норзикулов Озоджон Хасан Угли",
                   "slots": [
@@ -2739,7 +2727,7 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800100778",
@@ -2757,6 +2745,29 @@
                       "late_seconds": null,
                       "removed_at": "2026-11-27T02:36:31+03:00",
                       "removed_by": "Бычков Никита Алексеевич",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": [
+                    {
+                      "slot_id": "62541",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-27T14:00:00+03:00",
+                      "planned_end": "2026-11-27T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-27T11:26:41+03:00",
+                      "removed_by": "Мандрыкин Виталий Артурович",
                       "note": "Снятие подтверждено историей бронирования.",
                       "worked_through": null,
                       "shift_start_source_date": null,
@@ -3193,16 +3204,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 5.88,
-            "numerator": 1,
-            "denominator": 17,
+            "value": 11.11,
+            "numerator": 2,
+            "denominator": 18,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1800017327",
@@ -3218,6 +3229,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 43 минуты",
                       "late_seconds": 2633,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "106839",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T11:30:00+03:00",
+                      "planned_end": "2026-11-27T23:00:00+03:00",
+                      "actual_start": "2026-11-27T11:30:59+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 59,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3628,7 +3662,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 16,
+              "count": 17,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3897,6 +3931,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 22 мин",
                       "late_seconds": 8541,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "106839",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-27T11:30:00+03:00",
+                      "planned_end": "2026-11-27T23:00:00+03:00",
+                      "actual_start": "2026-11-27T11:30:59+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 59,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
