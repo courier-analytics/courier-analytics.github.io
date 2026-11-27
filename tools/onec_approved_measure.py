@@ -7,6 +7,23 @@ from onec_limit_test import card,save_button
 from onec_courier_card import matching_row,matching_id_row,wait_for_courier_result,wait_for_card_identity,_grid,_save
 from attendance_review import TZ,review_rows
 
+def wait_for_persisted_limit(page,identity,name,target,taking,attempts=40):
+    # A card name/ID may render before its numeric fields. Require two stable
+    # reads of the exact target and unchanged taking-time field; never save again.
+    previous=None
+    for attempt in range(attempts):
+        try:
+            prefix,observed,unchanged=card(page,identity,name)
+            current=(prefix,observed,unchanged)
+            if observed==target and unchanged==taking:
+                if current==previous:return observed
+                previous=current
+            else:previous=None
+        except ValueError:previous=None
+        if attempt+1<attempts:page.wait_for_timeout(500)
+    raise ValueError('Persisted limit not verified')
+
+
 def load_task(identity,mode):
     import re
     if not re.fullmatch('[0-9a-f]{24}',identity) or mode not in ('read','apply'):raise ValueError('Invalid case task')
@@ -59,21 +76,38 @@ def execute(page,private,identity,mode,study):
             db.execute("UPDATE cases SET state='need_limit',actor=NULL,target_limit=NULL,read_attempts=0,next_attempt=0 WHERE id=?",(identity,));db.commit()
             return {'refresh_required':True,'applied':False}
         button=save_button(page);claim_write(db,identity)
+        stage='edit_buffer'
+        def set_stage(value):
+            nonlocal stage
+            stage=value
+            db.execute('UPDATE cases SET write_stage=?,last_write_error=NULL WHERE id=?',(stage,identity));db.commit()
         try:
+            set_stage('edit_buffer')
             field=page.locator('[id="'+prefix+'ОграничениеНаКоличествоЗаказов_i0"]')
             field.click();field.press('Control+A');field.press('Backspace');field.press_sequentially(str(target),delay=90);field.press('Tab');page.wait_for_timeout(300)
             _,edited,unchanged=card(page,p['courier_id'],p['name'])
             if edited!=target or unchanged!=taking:raise ValueError('Edit buffer validation failed')
-            button.click(timeout=10000);field.wait_for(state='hidden',timeout=20000)
+            set_stage('save_click')
+            button.click(timeout=10000)
+            set_stage('wait_save_close')
+            field.wait_for(state='hidden',timeout=20000)
+            set_stage('readback_list')
             grid=page.locator('[id="grid_form0_Список"]');grid.wait_for(state='visible',timeout=10000);page.wait_for_timeout(1000)
+            set_stage('readback_search')
             data,row=wait_for_courier_result(page,p['name'],p['courier_id'])
             if row['courier_id']!=p['courier_id']:raise ValueError('Readback courier ID mismatch')
+            set_stage('readback_open_card')
             grid.locator('.gridBody > .gridLine').nth(row['row_index']).locator('.gridBox').nth(data['headings'].index('Name')).dblclick(timeout=5000)
+            set_stage('readback_identity')
             wait_for_card_identity(page,p['name'],p['courier_id'])
-            _,observed,unchanged=card(page,p['courier_id'],p['name'])
-            if observed!=target or unchanged!=taking:raise ValueError('Persisted limit not verified')
+            set_stage('readback_fields')
+            observed=wait_for_persisted_limit(page,p['courier_id'],p['name'],target,taking)
+            set_stage('verified')
             db.execute("UPDATE cases SET state='applied',result=?,notified=0 WHERE id=?",(json.dumps({'before':current,'after':target,'verified':True,'actor':case['actor']}),identity))
             db.execute("UPDATE ledger SET state='applied' WHERE case_id=?",(identity,));db.commit()
             return {'applied':True,'verified':True,'before':current,'after':target}
-        except Exception:
-            db.execute("UPDATE cases SET state='uncertain',result='Verify persisted limit manually; no retry',notified=0 WHERE id=?",(identity,));db.commit();raise
+        except Exception as error:
+            category=type(error).__name__
+            db.execute("UPDATE cases SET state='uncertain',result='Verify persisted limit manually; no retry',notified=0,write_stage=?,last_write_error=? WHERE id=?",(stage,category,identity));db.commit()
+            print('1C write verification incomplete: stage='+stage+' category='+category+'; no repeat write',flush=True)
+            raise
