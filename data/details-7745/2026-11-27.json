@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-27": {
-      "generated_at": "2026-11-27T17:34:16.470954+00:00",
+      "generated_at": "2026-11-27T18:45:42.616354+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -51,7 +51,7 @@
                       "planned_start": "2026-11-27T08:30:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T08:25:08+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -395,10 +395,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-27T21:00:00+03:00",
                       "planned_end": "2026-11-28T10:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-27T20:28:06+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 31 минута",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -682,7 +682,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T07:57:32+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T21:10:26+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3452,
                       "removed_at": null,
@@ -868,7 +868,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T07:57:32+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T21:10:26+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3452,
                       "removed_at": null,
@@ -1065,7 +1065,7 @@
                       "planned_start": "2026-11-27T08:30:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T08:25:08+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1491,10 +1491,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-27T21:00:00+03:00",
                       "planned_end": "2026-11-28T10:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-27T20:28:06+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 31 минута",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1569,7 +1569,7 @@
                       "planned_start": "2026-11-27T08:30:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T08:25:08+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -1822,7 +1822,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T07:57:32+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T21:10:26+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3452,
                       "removed_at": null,
@@ -2116,7 +2116,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T07:57:32+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T21:10:26+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3452,
                       "removed_at": null,
@@ -2168,7 +2168,7 @@
                       "planned_start": "2026-11-27T08:30:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T08:25:08+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2331,16 +2331,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 28.57,
-            "numerator": 6,
-            "denominator": 21,
+            "value": 31.82,
+            "numerator": 7,
+            "denominator": 22,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1799951105",
@@ -2379,6 +2379,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 6 часов 24 мин",
                       "late_seconds": 23096,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799950967",
+                  "name": "Тагоев Лочин Хакимович",
+                  "slots": [
+                    {
+                      "slot_id": "67003",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-27T21:00:00+03:00",
+                      "planned_end": "2026-11-28T10:00:00+03:00",
+                      "actual_start": "2026-11-27T20:28:06+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 31 минута",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2520,7 +2543,7 @@
                       "planned_start": "2026-11-27T08:30:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T08:25:08+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2773,7 +2796,7 @@
                       "planned_start": "2026-11-27T07:00:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T07:57:32+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T21:10:26+03:00",
                       "status": "Опоздал на 57 минут",
                       "late_seconds": 3452,
                       "removed_at": null,
@@ -2848,7 +2871,7 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800056742",
@@ -2895,17 +2918,35 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1799876935",
+                  "name": "Сафаров Азамат Хазраталиевич",
+                  "slots": [
+                    {
+                      "slot_id": "66993",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-27T07:00:00+03:00",
+                      "planned_end": "2026-11-27T20:00:00+03:00",
+                      "actual_start": "2026-11-27T07:57:32+03:00",
+                      "actual_end": "2026-11-27T21:10:26+03:00",
+                      "status": "Опоздал на 57 минут",
+                      "late_seconds": 3452,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 0,
-              "couriers": []
-            },
-            {
-              "title": "Нет окончательных данных",
-              "count": 15,
+              "count": 1,
               "couriers": [
                 {
                   "courier_id": "1120965906",
@@ -2918,7 +2959,7 @@
                       "planned_start": "2026-11-27T08:30:00+03:00",
                       "planned_end": "2026-11-27T20:00:00+03:00",
                       "actual_start": "2026-11-27T08:25:08+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-27T19:30:00+03:00",
                       "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
@@ -2929,7 +2970,13 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "title": "Нет окончательных данных",
+              "count": 13,
+              "couriers": [
                 {
                   "courier_id": "1800009953",
                   "name": "Ганиев Журабек Равшанович",
@@ -3151,29 +3198,6 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 24 мин",
                       "late_seconds": 8698,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1799876935",
-                  "name": "Сафаров Азамат Хазраталиевич",
-                  "slots": [
-                    {
-                      "slot_id": "66993",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-27T07:00:00+03:00",
-                      "planned_end": "2026-11-27T20:00:00+03:00",
-                      "actual_start": "2026-11-27T07:57:32+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 57 минут",
-                      "late_seconds": 3452,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
