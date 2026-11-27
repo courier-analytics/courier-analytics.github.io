@@ -3,6 +3,8 @@ import argparse
 from datetime import datetime
 import fcntl
 import json
+import re
+import shutil
 from pathlib import Path
 import sqlite3
 import subprocess
@@ -21,16 +23,17 @@ def comparison(current,before,target):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--state',choices=('uncertain','held'),default='uncertain')
     parser.add_argument('--limit',type=int,default=6,choices=range(1,11))
     args=parser.parse_args()
     if pool_account()[0]!='secondary':raise SystemExit('Verified secondary account required; no reads started')
     day=datetime.now(TZ).date().isoformat()
     with sqlite3.connect('file:'+str(ROOT/'attendance-bot/cases.sqlite3')+'?mode=ro',uri=True) as db:
         db.row_factory=sqlite3.Row
-        rows=[dict(row) for row in db.execute("SELECT id,payload,current_limit,target_limit FROM cases WHERE state='uncertain' ORDER BY rowid") if json.loads(row['payload']).get('date')==day][:args.limit]
+        rows=[dict(row) for row in db.execute("SELECT id,payload,current_limit,target_limit FROM cases WHERE state=? AND (?='uncertain' OR last_read_error='courier_id_not_found') ORDER BY rowid",(args.state,args.state)) if json.loads(row['payload']).get('date')==day][:args.limit]
     folder=ROOT/'attendance-limit-checks'/datetime.now(TZ).strftime('%Y%m%dT%H%M%S%f')
     folder.mkdir(mode=0o700,parents=True)
-    report={'date':day,'cases':[],'writes_performed':False,'case_states_changed':False}
+    report={'date':day,'selected_state':args.state,'cases':[],'writes_performed':False,'case_states_changed':False}
     with SECONDARY_LOCK.open('a') as lock:
         try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:raise SystemExit('Secondary account busy; no checks started')
@@ -43,16 +46,27 @@ def main():
             try:
                 result=subprocess.run(command,capture_output=True,text=True,timeout=300)
                 private_write(folder/(case['id']+'.log'),result.stdout+'\n'+result.stderr)
+                study=ROOT/'onec-secondary/onec-courier-study-status.json'
+                if study.exists() and study.stat().st_mtime>=start:
+                    details=json.loads(study.read_text())
+                    stage=details.get('stage_failed') or details.get('stage')
+                    if isinstance(stage,str) and re.fullmatch('[a-z_]{1,60}',stage):output['search_stage']=stage
+                    reason=details.get('search_failure')
+                    if reason in ('courier_id_not_found','courier_id_not_unique','courier_name_id_mismatch','courier_search_unstable'):output['search_failure']=reason
+                    private_write(folder/(case['id']+'-study.json'),json.dumps(details,ensure_ascii=False))
+                    archive=study.with_name('onec-courier-study.zip')
+                    if archive.exists() and archive.stat().st_mtime>=start:shutil.copy2(archive,folder/(case['id']+'-study.zip'))
+
                 cache=json.loads((ROOT/'matryoshka-pools.json').read_text()).get(identity,{})
                 observed=datetime.fromisoformat(cache['observed_at']).timestamp() if cache.get('observed_at') else 0
                 if result.returncode==0 and cache.get('verified') is True and type(cache.get('limit')) is int and start<=observed<=time.time()+120:
-                    output.update(verified_read=True,current_limit=cache['limit'],comparison=comparison(cache['limit'],case['current_limit'],case['target_limit']))
+                    output.update(verified_read=True,current_limit=cache['limit'],comparison=comparison(cache['limit'],case['current_limit'],case['target_limit']) if args.state=='uncertain' else 'held_case_read_verified_no_action')
                 else:output['reason']='read_not_confirmed'
             except (OSError,ValueError,subprocess.TimeoutExpired):output['reason']='read_failed_details_private'
             output['elapsed_seconds']=round(time.time()-start,2)
             report['cases'].append(output)
             private_write(folder/'report.json',json.dumps(report,ensure_ascii=False,indent=2))
-            print('UNCERTAIN LIMIT CHECK:',json.dumps(output,ensure_ascii=False),flush=True)
+            print(args.state.upper()+' LIMIT CHECK:',json.dumps(output,ensure_ascii=False),flush=True)
     print('Read-only checks finished. Case states and ledger unchanged; no limit decreases performed.',flush=True)
 
 

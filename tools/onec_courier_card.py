@@ -112,6 +112,31 @@ def wait_for_card_identity(page,name,identity=None):
         })""",arg={'name':name,'identity':identity},timeout=20000)
 
 
+def clear_known_list_filters(page):
+    prefix='form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент'
+    checked=[]
+    for number in (4,5,6,7,8):
+        identity=prefix+str(number)+'Использование'
+        control=page.locator('[id="'+identity+'"]')
+        if control.count()!=1 or not control.is_visible():continue
+        checked.append(identity)
+        if control.evaluate('(e)=>e.classList.contains("select")'):
+            control.click(timeout=5000)
+            page.wait_for_function('(id)=>{const e=document.getElementById(id);return e&&!e.classList.contains("select")}',arg=identity,timeout=10000)
+    # A subsequent 1C callback must not silently restore earlier checkboxes.
+    if checked:
+        page.wait_for_function('(ids)=>ids.every(id=>{const e=document.getElementById(id);return e&&!e.classList.contains("select")})',arg=checked,timeout=10000)
+
+
+def submit_scoped_search(page,search,point,query,shop):
+    search.click();search.press('Control+A');search.press('Backspace')
+    search.press_sequentially(query,delay=40);search.press('Enter');search.press('Tab')
+    # Reacquire/check controls after the native callback; never trust only the
+    # text typed into a still-pending editor.
+    page.wait_for_function('(args)=>{const q=document.getElementById(args.search);const p=document.getElementById("form0_НомерТочки_i0");return q&&p&&!q.disabled&&q.value.trim()===args.query&&p.value.trim()===args.shop}',arg={'search':search.get_attribute('id'),'query':query,'shop':str(shop)},timeout=10000)
+    if search.input_value().strip()!=query or point.input_value().strip()!=str(shop):raise ValueError('Search scope not retained')
+
+
 def inspect(page,private,shop,name,expected_id=None):
     if shop not in (8889,7745,9107) or not isinstance(name,str) or len(name)>150 or len(name.split())<2 or any(ord(c)<32 for c in name):
         raise ValueError('Invalid read-only courier study target')
@@ -126,33 +151,28 @@ def inspect(page,private,shop,name,expected_id=None):
         grid.wait_for(state='visible',timeout=20000)
         status['stage']='list_filters'
         # Disable only known list filters; this never changes a courier setting.
-        prefix='form0_КомпоновщикНастроекПользовательскиеНастройкиЭлемент'
-        for number in (4,5,6,7,8):
-            control=page.locator('[id="'+prefix+str(number)+'Использование"]')
-            if control.count()==1 and control.is_visible() and control.evaluate('(e)=>e.classList.contains("select")'):
-                control.click(timeout=5000)
-                page.wait_for_timeout(300)
+        clear_known_list_filters(page)
         _choice(page,'form0_Служба',('','Без отбора','No filter','Without filter'))
         point=page.locator('[id="form0_НомерТочки_i0"]')
         point.wait_for(state='visible',timeout=10000)
         point.click();point.press('Control+A');point.press('Backspace');point.press_sequentially(str(shop),delay=80)
         point.press('Enter');point.press('Tab');page.wait_for_timeout(3000)
         if point.input_value().strip()!=str(shop):raise ValueError('Courier shop filter not retained')
+        status['stage']='verify_list_filters'
+        clear_known_list_filters(page)
+        if point.input_value().strip()!=str(shop):raise ValueError('Courier shop filter not retained')
         status['stage']='exact_name_search'
         search,identity=_search_field(page)
         status['search_control']=identity
         status['stage']='enter_exact_name'
-        search.click();search.press('Control+A');search.press('Backspace');search.press_sequentially(name,delay=40);search.press('Enter')
-        page.wait_for_timeout(2500)
-        if search.input_value().strip()!=name or point.input_value().strip()!=str(shop):raise ValueError('Search scope not retained')
+        submit_scoped_search(page,search,point,name,shop)
         status['stage']='verify_search_results'
         try:
             second,candidate=wait_for_courier_result(page,name,expected_id)
         except ValueError:
             if not expected_id:raise
             status['stage']='verify_id_search'
-            search.click();search.press('Control+A');search.press('Backspace');search.press_sequentially(expected_id,delay=80);search.press('Enter')
-            if search.input_value().strip()!=expected_id or point.input_value().strip()!=str(shop):raise ValueError('Courier ID search scope changed')
+            submit_scoped_search(page,search,point,expected_id,shop)
             try:second,candidate=wait_for_courier_result(page,name,expected_id)
             except ValueError as error:
                 status['search_failure']=str(error)
