@@ -75698,7 +75698,7 @@
       }
     },
     "2026-11-27": {
-      "generated_at": "2026-11-28T11:07:53.434324+00:00",
+      "generated_at": "2026-11-28T11:32:41.681101+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80556,7 +80556,7 @@
       }
     },
     "2026-11-28": {
-      "generated_at": "2026-11-28T11:12:42.419322+00:00",
+      "generated_at": "2026-11-28T11:37:46.703680+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80572,8 +80572,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 63.46,
-            "numerator": 33,
+            "value": 65.38,
+            "numerator": 34,
             "denominator": 52,
             "reason": null,
             "basis": "limited_slot_places"
@@ -81317,10 +81317,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-28T14:00:00+03:00",
                       "planned_end": "2026-11-28T22:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-28T14:19:39+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1179,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -81443,12 +81443,35 @@
               "planned_start": "2026-11-28T18:30:00+03:00",
               "planned_end": "2026-11-29T09:00:00+03:00",
               "capacity": 3,
-              "occupied": 1,
-              "free": 2,
+              "occupied": 2,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1799970585",
                   "name": "ДЖУМАЕВ ДАНИЁЛ НАСРУЛЛОЕВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "92989",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T18:30:00+03:00",
+                      "planned_end": "2026-11-29T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800134731",
+                  "name": "Норзикулов Озоджон Хасан Угли",
                   "slots": [
                     {
                       "slot_id": "92989",
@@ -82959,17 +82982,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 4.17,
-            "numerator": 1,
-            "denominator": 24,
+            "value": 8.0,
+            "numerator": 2,
+            "denominator": 25,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 1,
+              "count": 2,
               "couriers": [
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "113891",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T14:00:00+03:00",
+                      "planned_end": "2026-11-28T22:00:00+03:00",
+                      "actual_start": "2026-11-28T14:19:39+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1179,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800135300",
                   "name": "ЗИМИН ДАНИИЛ ДЕНИСОВИЧ",
@@ -83579,7 +83625,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -83595,6 +83641,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 57 минут",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800128516",
+                  "name": "Варданян Виген Тигранович",
+                  "slots": [
+                    {
+                      "slot_id": "113891",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T14:00:00+03:00",
+                      "planned_end": "2026-11-28T22:00:00+03:00",
+                      "actual_start": "2026-11-28T14:19:39+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1179,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
