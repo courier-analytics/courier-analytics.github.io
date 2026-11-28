@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-28": {
-      "generated_at": "2026-11-28T10:46:03.494815+00:00",
+      "generated_at": "2026-11-28T11:12:42.419322+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 66.67,
-            "numerator": 34,
-            "denominator": 51,
+            "value": 63.46,
+            "numerator": 33,
+            "denominator": 52,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -46,7 +46,7 @@
                       "planned_start": "2026-11-28T06:00:00+03:00",
                       "planned_end": "2026-11-28T14:00:00+03:00",
                       "actual_start": "2026-11-28T07:46:09+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-28T14:06:27+03:00",
                       "status": "Опоздал на 1 час 46 мин",
                       "late_seconds": 6369,
                       "removed_at": null,
@@ -749,8 +749,8 @@
               "slot_type": "limited",
               "planned_start": "2026-11-28T14:00:00+03:00",
               "planned_end": "2026-11-28T22:00:00+03:00",
-              "capacity": 1,
-              "occupied": 1,
+              "capacity": 2,
+              "occupied": 2,
               "free": 0,
               "couriers": [
                 {
@@ -765,8 +765,31 @@
                       "planned_end": "2026-11-28T22:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133468",
+                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "113891",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T14:00:00+03:00",
+                      "planned_end": "2026-11-28T22:00:00+03:00",
+                      "actual_start": "2026-11-28T14:03:22+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 202,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -785,35 +808,12 @@
               "planned_start": "2026-11-28T15:00:00+03:00",
               "planned_end": "2026-11-28T23:00:00+03:00",
               "capacity": 2,
-              "occupied": 2,
-              "free": 0,
+              "occupied": 1,
+              "free": 1,
               "couriers": [
                 {
                   "courier_id": "1800100778",
                   "name": "Бычков Никита Алексеевич",
-                  "slots": [
-                    {
-                      "slot_id": "62555",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-28T15:00:00+03:00",
-                      "planned_end": "2026-11-28T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800133468",
-                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
                   "slots": [
                     {
                       "slot_id": "62555",
@@ -854,35 +854,12 @@
               "planned_start": "2026-11-28T18:00:00+03:00",
               "planned_end": "2026-11-28T23:00:00+03:00",
               "capacity": 6,
-              "occupied": 2,
-              "free": 4,
+              "occupied": 1,
+              "free": 5,
               "couriers": [
                 {
                   "courier_id": "1800033763",
                   "name": "Алиев Ибрагим Эльдарович",
-                  "slots": [
-                    {
-                      "slot_id": "89418",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-28T18:00:00+03:00",
-                      "planned_end": "2026-11-28T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800120138",
-                  "name": "Ахмедов Рустам Эльшанович",
                   "slots": [
                     {
                       "slot_id": "89418",
@@ -1039,8 +1016,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 70.97,
-            "numerator": 22,
+            "value": 74.19,
+            "numerator": 23,
             "denominator": 31,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -1048,7 +1025,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 22,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1246,7 +1223,7 @@
                       "planned_start": "2026-11-28T06:00:00+03:00",
                       "planned_end": "2026-11-28T14:00:00+03:00",
                       "actual_start": "2026-11-28T07:46:09+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-28T14:06:27+03:00",
                       "status": "Опоздал на 1 час 46 мин",
                       "late_seconds": 6369,
                       "removed_at": null,
@@ -1513,6 +1490,30 @@
                   ]
                 },
                 {
+                  "courier_id": "1800133468",
+                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "62555",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-28T15:00:00+03:00",
+                      "planned_end": "2026-11-28T23:00:00+03:00",
+                      "actual_start": "2026-11-28T14:03:22+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "113891"
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800119813",
                   "name": "Шокаримов Жахонгир Шохсалимович",
                   "slots": [
@@ -1637,31 +1638,8 @@
             },
             {
               "title": "Ожидаются",
-              "count": 5,
+              "count": 3,
               "couriers": [
-                {
-                  "courier_id": "1800120138",
-                  "name": "Ахмедов Рустам Эльшанович",
-                  "slots": [
-                    {
-                      "slot_id": "89418",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-28T18:00:00+03:00",
-                      "planned_end": "2026-11-28T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800100778",
                   "name": "Бычков Никита Алексеевич",
@@ -1730,29 +1708,6 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
-                {
-                  "courier_id": "1800133468",
-                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
-                  "slots": [
-                    {
-                      "slot_id": "62555",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-28T15:00:00+03:00",
-                      "planned_end": "2026-11-28T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
                 }
               ]
             },
@@ -1763,7 +1718,7 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 3,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -1812,6 +1767,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800120138",
+                  "name": "Ахмедов Рустам Эльшанович ",
+                  "slots": [
+                    {
+                      "slot_id": "89418",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-28T18:00:00+03:00",
+                      "planned_end": "2026-11-28T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-28T14:02:12+03:00",
+                      "removed_by": "Ахмедов Рустам Эльшанович ",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800035484",
                   "name": "Мохамед Карим Мохамед Габер",
                   "slots": [
@@ -1833,6 +1811,29 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800133468",
+                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "62555",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-28T15:00:00+03:00",
+                      "planned_end": "2026-11-28T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-28T13:53:03+03:00",
+                      "removed_by": "Джамалдаев А",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
                 }
               ]
             }
@@ -1842,9 +1843,9 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 63.64,
+            "value": 60.87,
             "numerator": 14,
-            "denominator": 22,
+            "denominator": 23,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
@@ -1957,7 +1958,7 @@
                       "planned_start": "2026-11-28T06:00:00+03:00",
                       "planned_end": "2026-11-28T14:00:00+03:00",
                       "actual_start": "2026-11-28T07:46:09+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-28T14:06:27+03:00",
                       "status": "Опоздал на 1 час 46 мин",
                       "late_seconds": 6369,
                       "removed_at": null,
@@ -2180,7 +2181,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 8,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1800106928",
@@ -2366,6 +2367,30 @@
                       "shift_end_source_date": null
                     }
                   ]
+                },
+                {
+                  "courier_id": "1800133468",
+                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "62555",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-28T15:00:00+03:00",
+                      "planned_end": "2026-11-28T23:00:00+03:00",
+                      "actual_start": "2026-11-28T14:03:22+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "Фактический выход найден в перенесённой записи этого курьера. Опоздание считается от исходного времени зафиксированного плана.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null,
+                      "fact_source_slot_id": "113891"
+                    }
+                  ]
                 }
               ]
             },
@@ -2380,9 +2405,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 4.35,
+            "value": 4.17,
             "numerator": 1,
-            "denominator": 23,
+            "denominator": 24,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -2418,7 +2443,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 22,
+              "count": 23,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -2615,7 +2640,7 @@
                       "planned_start": "2026-11-28T06:00:00+03:00",
                       "planned_end": "2026-11-28T14:00:00+03:00",
                       "actual_start": "2026-11-28T07:46:09+03:00",
-                      "actual_end": null,
+                      "actual_end": "2026-11-28T14:06:27+03:00",
                       "status": "Опоздал на 1 час 46 мин",
                       "late_seconds": 6369,
                       "removed_at": null,
@@ -2881,6 +2906,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1800133468",
+                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "113891",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T14:00:00+03:00",
+                      "planned_end": "2026-11-28T22:00:00+03:00",
+                      "actual_start": "2026-11-28T14:03:22+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 202,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800119813",
                   "name": "Шокаримов Жахонгир Шохсалимович",
                   "slots": [
@@ -2943,8 +2991,32 @@
           "groups": [
             {
               "title": "Завершили учитываемые смены",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800126140",
+                  "name": "Мандрыкин Виталий Артурович",
+                  "slots": [
+                    {
+                      "slot_id": "62547",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T06:00:00+03:00",
+                      "planned_end": "2026-11-28T14:00:00+03:00",
+                      "actual_start": "2026-11-28T07:46:09+03:00",
+                      "actual_end": "2026-11-28T14:06:27+03:00",
+                      "status": "Опоздал на 1 час 46 мин",
+                      "late_seconds": 6369,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Не завершили или ушли раньше",
@@ -3163,29 +3235,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800126140",
-                  "name": "Мандрыкин Виталий Артурович",
-                  "slots": [
-                    {
-                      "slot_id": "62547",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-28T06:00:00+03:00",
-                      "planned_end": "2026-11-28T14:00:00+03:00",
-                      "actual_start": "2026-11-28T07:46:09+03:00",
-                      "actual_end": null,
-                      "status": "Опоздал на 1 час 46 мин",
-                      "late_seconds": 6369,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1800093276",
                   "name": "Мирзаагаев Ахмед Демирович",
                   "slots": [
@@ -3429,6 +3478,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 2 часа 23 мин",
                       "late_seconds": 8585,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133468",
+                  "name": "ШИХОВ ПАВЕЛ АНТОНОВИЧ",
+                  "slots": [
+                    {
+                      "slot_id": "113891",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T14:00:00+03:00",
+                      "planned_end": "2026-11-28T22:00:00+03:00",
+                      "actual_start": "2026-11-28T14:03:22+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 202,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
