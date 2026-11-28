@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-28": {
-      "generated_at": "2026-11-28T12:02:31.060380+00:00",
+      "generated_at": "2026-11-28T12:27:06.113380+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,9 +18,9 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 67.31,
+            "value": 66.04,
             "numerator": 35,
-            "denominator": 52,
+            "denominator": 53,
             "reason": null,
             "basis": "limited_slot_places"
           },
@@ -821,10 +821,45 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-28T15:00:00+03:00",
                       "planned_end": "2026-11-28T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-28T14:54:48+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slot_id": "113919",
+              "scope": "8889ДС_ЛиповыйПарк1",
+              "slot_type": "limited",
+              "planned_start": "2026-11-28T15:15:00+03:00",
+              "planned_end": "2026-11-28T20:00:00+03:00",
+              "capacity": 1,
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800136967",
+                  "name": "Амонуллоев Абубакр Маликович",
+                  "slots": [
+                    {
+                      "slot_id": "113919",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T15:15:00+03:00",
+                      "planned_end": "2026-11-28T20:00:00+03:00",
+                      "actual_start": "2026-11-28T15:03:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -878,33 +913,9 @@
               "planned_start": "2026-11-28T18:00:00+03:00",
               "planned_end": "2026-11-28T23:00:00+03:00",
               "capacity": 6,
-              "occupied": 1,
-              "free": 5,
-              "couriers": [
-                {
-                  "courier_id": "1800033763",
-                  "name": "Алиев Ибрагим Эльдарович",
-                  "slots": [
-                    {
-                      "slot_id": "89418",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-28T18:00:00+03:00",
-                      "planned_end": "2026-11-28T23:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "occupied": 0,
+              "free": 6,
+              "couriers": []
             },
             {
               "slot_id": "92989",
@@ -2452,17 +2463,40 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 8.0,
-            "numerator": 2,
-            "denominator": 25,
+            "value": 14.81,
+            "numerator": 4,
+            "denominator": 27,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 2,
+              "count": 4,
               "couriers": [
+                {
+                  "courier_id": "1800136967",
+                  "name": "Амонуллоев Абубакр Маликович",
+                  "slots": [
+                    {
+                      "slot_id": "113919",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T15:15:00+03:00",
+                      "planned_end": "2026-11-28T20:00:00+03:00",
+                      "actual_start": "2026-11-28T15:03:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1800128516",
                   "name": "Варданян Виген Тигранович",
@@ -2500,6 +2534,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 15 минут",
                       "late_seconds": 943,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62555",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T15:00:00+03:00",
+                      "planned_end": "2026-11-28T23:00:00+03:00",
+                      "actual_start": "2026-11-28T14:54:48+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3095,7 +3152,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 24,
+              "count": 26,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3110,6 +3167,29 @@
                       "actual_start": "2026-11-28T10:02:04+03:00",
                       "actual_end": null,
                       "status": "Вышел раньше на 57 минут",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800136967",
+                  "name": "Амонуллоев Абубакр Маликович",
+                  "slots": [
+                    {
+                      "slot_id": "113919",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T15:15:00+03:00",
+                      "planned_end": "2026-11-28T20:00:00+03:00",
+                      "actual_start": "2026-11-28T15:03:36+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
                       "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
@@ -3456,6 +3536,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 4 часа 40 мин",
                       "late_seconds": 16823,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800133871",
+                  "name": "Обиджонов Фаррух Фирдавсович",
+                  "slots": [
+                    {
+                      "slot_id": "62555",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T15:00:00+03:00",
+                      "planned_end": "2026-11-28T23:00:00+03:00",
+                      "actual_start": "2026-11-28T14:54:48+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
