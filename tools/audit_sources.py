@@ -60,8 +60,9 @@ def sanitize_slot(raw, day, kind, scope_id):
             'couriers': clean}
 
 
-def audit(day, token, proxy, directory, extra_details=True):
-    config = discover(api_get('/v1/shops', token, proxy), api_get('/v1/clusters', token, proxy))
+def audit(day, token, proxy, directory, extra_details=True, targets=None):
+    options={} if targets is None else {'targets':targets}
+    config = discover(api_get('/v1/shops', token, proxy), api_get('/v1/clusters', token, proxy),**options)
     private = {'date': day, 'generated_at': datetime.now(timezone.utc).isoformat(),
                'scope_config': config, 'shops': []}
     public = {'date': day, 'shops': []}

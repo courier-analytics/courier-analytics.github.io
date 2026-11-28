@@ -3,7 +3,7 @@ import fcntl,json,os,re,secrets,signal,subprocess,sys,time
 from datetime import datetime
 from pathlib import Path
 from attendance_cases import connect,get,ingest,DB,ROOT,TERMINAL
-from attendance_review import review_rows,TZ,START
+from attendance_review import review_rows,TZ,START,SHOPS
 from late_bot_group import load_token,api
 from audit_sources import audit
 from proxy_config import configured_proxy
@@ -15,6 +15,7 @@ def message(case):
     p=case['payload'];minutes=p.get('late_seconds')
     late='\nОпоздание: '+str(round(minutes/60,2))+' мин.' if minutes is not None else ''
     text=f"ДС {p['shop_id']} · {p['date']}\n{p['name']} · ID {p['courier_id']}\nНачало слота: {p['planned_start']}\nСтатус источника: {p['source_status']}"+late
+    if case.get('courier_transport'):text+='\nТранспорт по 1С: '+{'bike':'ВЕЛО','car':'АВТО'}.get(case['courier_transport'],'не определён')
     if case['current_limit'] is not None:text+='\nТекущий лимит: '+str(case['current_limit'])
     if case['target_limit'] is not None:text+='\nПредлагаемый лимит: '+str(case['target_limit'])+'\nПроверьте обстоятельства перед подтверждением.'
     else:
@@ -35,8 +36,8 @@ def collect(db,config):
     if day<START:return
     token=json.loads(Path('/root/curator-session.json').read_text())['token']
     folder=ROOT/'source'/day.isoformat()
-    summary=audit(day.isoformat(),token,configured_proxy(),folder,extra_details=False)
-    shops={shop for shop in (8889,7745,9107) if enabled(config,shop)}
+    shops={shop for shop in SHOPS if enabled(config,shop)}
+    summary=audit(day.isoformat(),token,configured_proxy(),folder,extra_details=False,targets=tuple(sorted(shops)))
     if not shops<={s['shop_id'] for s in summary['shops'] if s.get('scope_verified')}:raise ValueError('Enabled source scopes must be verified')
     observations=json.loads((folder/'all-shops-observations.json').read_text())
     observations['shops']=[s for s in observations['shops'] if s['shop_id'] in shops]

@@ -10,11 +10,14 @@ from audit_sources import audit
 from enrich_slots import atomic_json,source_status
 from proxy_config import configured_proxy
 START=date(2026,11,22)
-SHOPS=(8889,7745,9107)
+SHOPS=(8889,7745,9107,8353)
 TZ=ZoneInfo('Europe/Moscow')
 
 
 def proposed_measure(status,late_seconds,has_start=False,shop_id=None):
+    if shop_id==8353:
+        from attendance_8353 import measure
+        return measure(status,late_seconds)
     if status=='no_show':
         return {'operation':'set','value':1} if not has_start else None
     if status!='late' or late_seconds is None:return None
@@ -79,9 +82,9 @@ def main():
     os.umask(0o077)
     token=json.loads(Path('/root/curator-session.json').read_text())['token']
     folder=args.private_dir/'attendance-review'/day.isoformat();folder.mkdir(mode=0o700,parents=True,exist_ok=True)
-    summary=audit(day.isoformat(),token,configured_proxy(),folder/'source',extra_details=False)
+    summary=audit(day.isoformat(),token,configured_proxy(),folder/'source',extra_details=False,targets=SHOPS)
     verified={s['shop_id'] for s in summary['shops'] if s.get('scope_verified')}
-    if not set(SHOPS)<=verified:raise ValueError('Not all three shop scopes verified')
+    if not set(SHOPS)<=verified:raise ValueError('Not all requested shop scopes verified')
     observations=json.loads((folder/'source/all-shops-observations.json').read_text())
     rows=review_rows(observations,args.date)
     report={'date':args.date,'observed_at':datetime.now(TZ).isoformat(),'shops':list(SHOPS),
@@ -91,7 +94,9 @@ def main():
     writer.writerow(['ДС','ID курьера','ФИО','Начало слота, МСК','Статус источника','Опоздание, минут','Предложенная мера','Проверить факты','Повторные записи','Состояние'])
     for r in rows:
         measure=r['proposed_measure'];label='Не определена'
-        if measure:label='Установить 1 заказ' if measure['operation']=='set' else 'Уменьшить текущий лимит на '+str(measure['value'])
+        if measure:
+            if measure['operation']=='transport_cap':label='Пул не выше: ВЕЛО 3, АВТО 8; меньший пул оставить'
+            else:label='Установить 1 заказ' if measure['operation']=='set' else 'Уменьшить текущий лимит на '+str(measure['value'])
         writer.writerow([r['shop_id'],r['courier_id'],r['name'],r['planned_start'],r['source_status'],
             '' if r['late_seconds'] is None else round(r['late_seconds']/60,2),label,r['unresolved_facts'],r['multiple_bookings_for_courier'],'Ожидает проверки ответственным'])
     (folder/'pending-review.csv').write_text('\ufeff'+text.getvalue())

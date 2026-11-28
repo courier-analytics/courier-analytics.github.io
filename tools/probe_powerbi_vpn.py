@@ -88,7 +88,7 @@ def main():
     parser.add_argument('--onec-attendance-mode',choices=('read','apply'))
     parser.add_argument('--onec-test-decrement-zhukov',action='store_true',help='Authorized one-time test: ID1799892335, 7394 to7393, Save and close, verify')
     parser.add_argument('--onec-courier-name',help='Read-only study of one courier card, without editing')
-    parser.add_argument('--onec-courier-shop',type=int,choices=(8889,7745,9107),help='Shop for the read-only card study')
+    parser.add_argument('--onec-courier-shop',type=int,choices=(8889,7745,9107,8353),help='Shop for the read-only card study')
     parser.add_argument('--onec-inspect-roster', action='store_true', help='Open References/Couriers for private read-only interface inspection; requires --onec-login')
     args = parser.parse_args()
     address = private_address(args.address)

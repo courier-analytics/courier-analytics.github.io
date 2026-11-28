@@ -2,7 +2,7 @@
 import json,time
 from datetime import datetime
 from pathlib import Path
-from attendance_cases import connect,get,proposed_target,claim_write,fingerprint
+from attendance_cases import connect,get,proposed_target,claim_write,fingerprint,case_target
 from onec_limit_test import card,save_button
 from onec_courier_card import matching_row,matching_id_row,wait_for_courier_result,wait_for_card_identity,_grid,_save
 from attendance_review import TZ,review_rows
@@ -42,7 +42,10 @@ def fresh_evidence(case):
     if p['date']!=day:raise ValueError('Approval is for a different Moscow day')
     token=json.loads(Path('/root/curator-session.json').read_text())['token']
     folder=ROOT/'recheck'/case['id']
-    summary=audit(day,token,configured_proxy(),folder,extra_details=False)
+    from attendance_review import SHOPS
+    from attendance_shop_policy import enabled
+    config=json.loads(Path('/etc/superset-telegram/late-group.json').read_text())
+    summary=audit(day,token,configured_proxy(),folder,extra_details=False,targets=tuple(shop for shop in SHOPS if enabled(config,shop)))
     if not any(s['shop_id']==p['shop_id'] and s.get('scope_verified') for s in summary['shops']):raise ValueError('Fresh source scope not verified')
     rows=review_rows(json.loads((folder/'all-shops-observations.json').read_text()),day)
     matches=[r for r in rows if r['event_id']==p['event_id']]
@@ -60,11 +63,15 @@ def execute(page,private,identity,mode,study):
             raise ValueError('Opened card identity not verified')
         if mode=='read':db.execute('UPDATE cases SET last_read_error=NULL WHERE id=?',(identity,));db.commit()
         prefix,current,taking=card(page,p['courier_id'],p['name'])
+        transport=None
+        if p['shop_id']==8353 and p.get('late_seconds') is not None and p['late_seconds']<=3600:
+            from attendance_8353 import read_transport
+            transport=read_transport(page,prefix)
         if mode=='read':
-            try:target=proposed_target(current,p['proposed_measure'])
+            try:target=case_target(case,current,transport)
             except ValueError:
                 db.execute("UPDATE cases SET state='held',current_limit=?,target_limit=NULL,result='Manual review required',notified=0 WHERE id=?",(current,identity));db.commit();return {'read':True,'held':True}
-            db.execute("UPDATE cases SET state='ready',current_limit=?,target_limit=?,observed=?,notified=0 WHERE id=?",(current,target,time.time(),identity));db.commit()
+            db.execute("UPDATE cases SET state='ready',current_limit=?,target_limit=?,observed=?,courier_transport=?,notified=0 WHERE id=?",(current,target,time.time(),transport,identity));db.commit()
             return {'read':True,'current_limit':current,'target_limit':target}
         config=json.loads(Path('/etc/superset-telegram/late-group.json').read_text())
         from attendance_routes import case_config,reviewer_allowed
@@ -74,7 +81,7 @@ def execute(page,private,identity,mode,study):
         member=api(load_token(),'getChatMember',{'chat_id':config['chat_id'],'user_id':case['actor']})
         if not reviewer_allowed(config,member,case['actor']):raise ValueError('Reviewer authority no longer verified')
         fresh_evidence(case)
-        target=proposed_target(current,p['proposed_measure'])
+        target=case_target(case,current,transport)
         if current!=case['current_limit'] or target!=case['target_limit']:
             db.execute("UPDATE cases SET state='need_limit',actor=NULL,target_limit=NULL,read_attempts=0,next_attempt=0 WHERE id=?",(identity,));db.commit()
             return {'refresh_required':True,'applied':False}
