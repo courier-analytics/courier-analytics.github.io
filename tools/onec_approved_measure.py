@@ -45,9 +45,10 @@ def fresh_evidence(case):
     from attendance_review import SHOPS
     from attendance_shop_policy import enabled
     config=json.loads(Path('/etc/superset-telegram/late-group.json').read_text())
-    summary=audit(day,token,configured_proxy(),folder,extra_details=False,targets=tuple(shop for shop in SHOPS if enabled(config,shop)))
+    source_day=p.get('source_date',day) if p.get('case_kind')=='early_departure' else day
+    summary=audit(source_day,token,configured_proxy(),folder,extra_details=False,targets=tuple(shop for shop in SHOPS if enabled(config,shop)))
     if not any(s['shop_id']==p['shop_id'] and s.get('scope_verified') for s in summary['shops']):raise ValueError('Fresh source scope not verified')
-    rows=review_rows(json.loads((folder/'all-shops-observations.json').read_text()),day)
+    rows=review_rows(json.loads((folder/'all-shops-observations.json').read_text()),source_day)
     matches=[r for r in rows if r['event_id']==p['event_id']]
     if len(matches)!=1 or fingerprint(matches[0])!=fingerprint(p) or matches[0]['unresolved_facts'] or matches[0]['multiple_bookings_for_courier']:
         raise ValueError('Attendance facts changed; review again')

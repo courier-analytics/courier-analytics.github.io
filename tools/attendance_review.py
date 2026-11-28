@@ -64,10 +64,13 @@ def review_rows(observations,day,now=None):
                     'actual_start':value,'late_seconds':seconds,'proposed_measure':measure,
                     'review_state':'pending_review','unresolved_facts':bool(unresolved),
                     'current_limit':None,'target_limit':None,'applied':False})
-    # A repeated booking across slots/shops is highlighted for human review.
-    counts={}
-    for row in output:counts[row['courier_id']]=counts.get(row['courier_id'],0)+1
-    for row in output:row['multiple_bookings_for_courier']=counts[row['courier_id']]>1
+    from attendance_early_departure import review_rows as early_rows
+    output.extend(early_rows(observations,day.isoformat(),now))
+    # Two reasons for the same booking are separate approvals, not duplicate bookings.
+    bookings={}
+    for row in output:
+        bookings.setdefault(row['courier_id'],set()).add(row.get('booking_event_id',row['event_id']))
+    for row in output:row['multiple_bookings_for_courier']=len(bookings[row['courier_id']])>1
     ids=[r['event_id'] for r in output]
     if len(ids)!=len(set(ids)):raise ValueError('Duplicate source event')
     return output

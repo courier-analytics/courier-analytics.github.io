@@ -1,6 +1,6 @@
 """Attendance review bot: two authorized humans, one explicit decision per case."""
 import fcntl,json,os,re,secrets,signal,subprocess,sys,time
-from datetime import datetime
+from datetime import datetime,timedelta
 from pathlib import Path
 from attendance_cases import connect,get,ingest,DB,ROOT,TERMINAL
 from attendance_review import review_rows,TZ,START,SHOPS
@@ -15,6 +15,8 @@ def message(case):
     p=case['payload'];minutes=p.get('late_seconds')
     late='\nОпоздание: '+str(round(minutes/60,2))+' мин.' if minutes is not None else ''
     text=f"ДС {p['shop_id']} · {p['date']}\n{p['name']} · ID {p['courier_id']}\nНачало слота: {p['planned_start']}\nСтатус источника: {p['source_status']}"+late
+    if p.get('case_kind')=='early_departure':
+        text+='\nПричина: ранний уход со смены\nПлановый конец: '+p['planned_end']+'\nФактический конец: '+p['actual_end']+'\nУшёл раньше на: '+str(round(p['early_departure_seconds']/60,2))+' мин.'
     if case.get('courier_transport'):text+='\nТранспорт по 1С: '+{'bike':'ВЕЛО','car':'АВТО'}.get(case['courier_transport'],'не определён')
     if case['current_limit'] is not None:text+='\nТекущий лимит: '+str(case['current_limit'])
     if case['target_limit'] is not None:text+='\nПредлагаемый лимит: '+str(case['target_limit'])+'\nПроверьте обстоятельства перед подтверждением.'
@@ -42,6 +44,17 @@ def collect(db,config):
     observations=json.loads((folder/'all-shops-observations.json').read_text())
     observations['shops']=[s for s in observations['shops'] if s['shop_id'] in shops]
     rows=review_rows(observations,day.isoformat())
+    # Overnight slots may belong to yesterday while the physical finish is today.
+    if 8889 in shops and day-timedelta(days=1)>=START:
+        from attendance_early_departure import review_rows as early_rows
+        previous=(day-timedelta(days=1)).isoformat();night_folder=ROOT/'early-source'/previous
+        night=audit(previous,token,configured_proxy(),night_folder,extra_details=False,targets=(8889,))
+        if not any(s['shop_id']==8889 and s.get('scope_verified') for s in night['shops']):raise ValueError('Overnight DS8889 scope not verified')
+        night_observations=json.loads((night_folder/'all-shops-observations.json').read_text())
+        rows.extend(r for r in early_rows(night_observations,previous,datetime.now(TZ)) if r['date']==day.isoformat())
+        bookings={}
+        for row in rows:bookings.setdefault(row['courier_id'],set()).add(row.get('booking_event_id',row['event_id']))
+        for row in rows:row['multiple_bookings_for_courier']=len(bookings[row['courier_id']])>1
     live=ingest(db,rows,config.get('ignored_cases',[]))
     for row in db.execute('SELECT id,state,payload FROM cases').fetchall():
         p=json.loads(row['payload'])
