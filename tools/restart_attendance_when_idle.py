@@ -6,7 +6,7 @@ import subprocess
 import time
 from pathlib import Path
 UNIT='courier-attendance-bot.service'
-def main():
+def main(before_stop=None):
     pid=int(subprocess.check_output(['systemctl','show',UNIT,'-p','MainPID','--value'],text=True).strip())
     if pid<=0:raise SystemExit('Bot is not running; inspect service before starting.')
     os.kill(pid,signal.SIGSTOP)
@@ -21,6 +21,7 @@ def main():
         with sqlite3.connect('file:/opt/courier-analytics/private/attendance-bot/cases.sqlite3?mode=ro',uri=True) as db:
             applying=db.execute("SELECT count(*) FROM cases WHERE state='applying'").fetchone()[0]
         if children or applying:raise SystemExit('Bot is processing a task; update deferred. Run again after it finishes.')
+        if before_stop is not None:before_stop()
         os.kill(pid,signal.SIGTERM)
         terminating=True
     finally:

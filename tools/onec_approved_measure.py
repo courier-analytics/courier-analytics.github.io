@@ -28,6 +28,9 @@ def load_task(identity,mode):
     import re
     if not re.fullmatch('[0-9a-f]{24}',identity) or mode not in ('read','apply'):raise ValueError('Invalid case task')
     with connect() as db:case=get(db,identity)
+    from attendance_shop_policy import enabled
+    config=json.loads(Path('/etc/superset-telegram/late-group.json').read_text())
+    if not enabled(config,case['payload']['shop_id']):raise ValueError('Attendance disabled for this shop')
     if case['state'] not in ({'reading'} if mode=='read' else {'approved'}):raise ValueError('Case not available for this operation')
     return case
 

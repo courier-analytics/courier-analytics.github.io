@@ -51,6 +51,8 @@ def proposed_target(current,measure):
     return target
 
 def callback_decision(db,identity,nonce,actor,chat_id,message_id,action,config,now=None):
+    from attendance_shop_policy import enabled
+    if not enabled(config,get(db,identity)['payload']['shop_id']):raise ValueError('Attendance disabled for this shop')
     allowed=actor in config['approver_ids'] or (config.get('allow_group_members') is True and config.get('verified_member_id')==actor)
     if not allowed or chat_id!=config['chat_id']:raise ValueError('Not an authorized reviewer or group')
     if action not in ('apply','skip'):raise ValueError('Unknown action')

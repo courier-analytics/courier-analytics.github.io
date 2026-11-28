@@ -8,6 +8,7 @@ from late_bot_group import load_token,api
 from audit_sources import audit
 from proxy_config import configured_proxy
 from attendance_routes import case_config,reviewer_allowed
+from attendance_shop_policy import enabled
 CONFIG=Path('/etc/superset-telegram/late-group.json')
 
 def message(case):
@@ -35,8 +36,11 @@ def collect(db,config):
     token=json.loads(Path('/root/curator-session.json').read_text())['token']
     folder=ROOT/'source'/day.isoformat()
     summary=audit(day.isoformat(),token,configured_proxy(),folder,extra_details=False)
-    if not {8889,7745,9107}<={s['shop_id'] for s in summary['shops'] if s.get('scope_verified')}:raise ValueError('All three source scopes must be verified')
-    rows=review_rows(json.loads((folder/'all-shops-observations.json').read_text()),day.isoformat())
+    shops={shop for shop in (8889,7745,9107) if enabled(config,shop)}
+    if not shops<={s['shop_id'] for s in summary['shops'] if s.get('scope_verified')}:raise ValueError('Enabled source scopes must be verified')
+    observations=json.loads((folder/'all-shops-observations.json').read_text())
+    observations['shops']=[s for s in observations['shops'] if s['shop_id'] in shops]
+    rows=review_rows(observations,day.isoformat())
     live=ingest(db,rows,config.get('ignored_cases',[]))
     for row in db.execute('SELECT id,state,payload FROM cases').fetchall():
         p=json.loads(row['payload'])
@@ -61,7 +65,9 @@ def handle_callback(db,update,config,token):
         match=re.fullmatch(r'att:([as]):([0-9a-f]{24}):([0-9a-f]{8})',data)
         if not match:raise ValueError('Invalid callback')
         action,identity,nonce=match.groups()
-        config=case_config(config,get(db,identity))
+        case=get(db,identity)
+        if not enabled(config,case['payload']['shop_id']):raise ValueError('Attendance disabled for this shop')
+        config=case_config(config,case)
         actor=q['from']['id'];msg=q['message']
         if q['from'].get('is_bot'):raise ValueError('Not a human reviewer')
         member=api(token,'getChatMember',{'chat_id':config['chat_id'],'user_id':actor})
@@ -79,7 +85,9 @@ def notify(db,config,token,only_id=None):
     root_config=config
     for row in db.execute("SELECT id FROM cases WHERE state='ready' AND current_limit IS NOT NULL AND target_limit IS NOT NULL AND notified=0").fetchall():
         if only_id is not None and row['id']!=only_id:continue
-        case=get(db,row['id']);config=case_config(root_config,{**case,'message_id':None,'message_chat_id':None})
+        case=get(db,row['id'])
+        if not enabled(root_config,case['payload']['shop_id']):continue
+        config=case_config(root_config,{**case,'message_id':None,'message_chat_id':None})
         if case['state']=='ready' and (not case['observed'] or case['observed']>time.time()+120):
             db.execute("UPDATE cases SET state='need_limit' WHERE id=?",(case['id'],));db.commit();continue
         if case.get('message_id'):
@@ -95,7 +103,9 @@ def notify(db,config,token,only_id=None):
             db.execute("UPDATE cases SET state='delivery_uncertain',notified=1 WHERE id=?",(case['id'],));db.commit();raise
     for row in db.execute("SELECT id FROM cases WHERE state IN ('applied','skipped','uncertain','held') AND message_id IS NOT NULL AND notified=0").fetchall():
         if only_id is not None and row['id']!=only_id:continue
-        case=get(db,row['id']);config=case_config(root_config,case);p=case['payload']
+        case=get(db,row['id'])
+        if not enabled(root_config,case['payload']['shop_id']):continue
+        config=case_config(root_config,case);p=case['payload']
         labels={'held':'Проверка не завершена; изменение не подтверждено. Требуется разбор, повторного списания не будет.','applied':'Сохранено в 1С и проверено повторным открытием карточки.','skipped':'Пропущено ответственным.','withdrawn':'Случай отозван: факты изменились или дата закончилась.','uncertain':'Результат сохранения не подтверждён. Нужна ручная проверка; повторного уменьшения не будет.'}
         text=message(case)+'\n\n'+labels[case['state']]
         if case.get('actor'):
@@ -114,9 +124,11 @@ def notify(db,config,token,only_id=None):
             pass
         db.execute('UPDATE cases SET notified=1 WHERE id=?',(case['id'],));db.commit()
 
-def start_job(db):
+def start_job(db,config=None):
     # Approved cases take priority so the reviewed current value remains fresh.
-    row=db.execute("SELECT id,state FROM cases WHERE state IN ('approved','need_limit') AND next_attempt<=? ORDER BY CASE state WHEN 'approved' THEN 0 ELSE 1 END,next_attempt,rowid LIMIT 1",(time.time(),)).fetchone()
+    config=json.loads(CONFIG.read_text()) if config is None else config
+    rows=db.execute("SELECT id,state,payload FROM cases WHERE state IN ('approved','need_limit') AND next_attempt<=? ORDER BY CASE state WHEN 'approved' THEN 0 ELSE 1 END,next_attempt,rowid",(time.time(),)).fetchall()
+    row=next((row for row in rows if enabled(config,json.loads(row['payload'])['shop_id'])),None)
     if not row:return None
     mode='apply' if row['state']=='approved' else 'read'
     if mode=='read':db.execute("UPDATE cases SET state='reading',read_attempts=read_attempts+1 WHERE id=?",(row['id'],));db.commit()
@@ -218,7 +230,7 @@ def main():
                     next_collect=time.monotonic()+120
                     print('Could not start evidence refresh; Telegram receiver continues.',flush=True)
             notify(db,config,token)
-            if not job and time.monotonic()>=next_job:job=start_job(db)
+            if not job and time.monotonic()>=next_job:job=start_job(db,config)
             offset=db.execute("SELECT value FROM meta WHERE key='telegram_offset'").fetchone()
             updates=api(token,'getUpdates',{'offset':int(offset[0]) if offset else 0,'timeout':10,'limit':100})
             for update in updates:
