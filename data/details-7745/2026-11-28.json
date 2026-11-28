@@ -2,12 +2,12 @@
   "shop_id": 7745,
   "records": {
     "2026-11-28": {
-      "generated_at": "2026-11-28T10:21:43.446787+00:00",
+      "generated_at": "2026-11-28T10:46:03.494815+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
-            "value": 57.5,
-            "numerator": 23,
+            "value": 60.0,
+            "numerator": 24,
             "denominator": 40,
             "reason": null,
             "basis": "onec_accessible_nonmobile_unique_couriers"
@@ -15,7 +15,7 @@
           "groups": [
             {
               "title": "Записались",
-              "count": 23,
+              "count": 24,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -165,15 +165,38 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-28T08:00:00+03:00",
                       "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": "2026-11-27T16:44:07+03:00",
-                      "actual_end": "2026-11-28T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "actual_start": "2026-11-28T13:33:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 33 мин",
+                      "late_seconds": 19998,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-27",
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800091474",
+                  "name": "Зокиров Иззатуллох",
+                  "slots": [
+                    {
+                      "slot_id": "67019",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T21:00:00+03:00",
+                      "planned_end": "2026-11-29T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -550,7 +573,7 @@
             },
             {
               "title": "Не записались",
-              "count": 17,
+              "count": 16,
               "couriers": [
                 {
                   "courier_id": "1800128719",
@@ -560,11 +583,6 @@
                 {
                   "courier_id": "1799982117",
                   "name": "Булгакова Анна Дмитриевна",
-                  "slots": []
-                },
-                {
-                  "courier_id": "1800091474",
-                  "name": "Зокиров Иззатуллох",
                   "slots": []
                 },
                 {
@@ -697,8 +715,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 64.86,
-            "numerator": 24,
+            "value": 67.57,
+            "numerator": 25,
             "denominator": 37,
             "reason": null,
             "basis": "limited_slot_places"
@@ -966,15 +984,15 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-28T08:00:00+03:00",
                       "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": "2026-11-27T16:44:07+03:00",
-                      "actual_end": "2026-11-28T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "actual_start": "2026-11-28T13:33:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 33 мин",
+                      "late_seconds": 19998,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-27",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1449,9 +1467,32 @@
               "planned_start": "2026-11-28T21:00:00+03:00",
               "planned_end": "2026-11-29T10:00:00+03:00",
               "capacity": 2,
-              "occupied": 1,
-              "free": 1,
+              "occupied": 2,
+              "free": 0,
               "couriers": [
+                {
+                  "courier_id": "1800091474",
+                  "name": "Зокиров Иззатуллох",
+                  "slots": [
+                    {
+                      "slot_id": "67019",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T21:00:00+03:00",
+                      "planned_end": "2026-11-29T10:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
                 {
                   "courier_id": "1799950967",
                   "name": "Тагоев Лочин Хакимович",
@@ -1678,15 +1719,15 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-28T08:00:00+03:00",
                       "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": "2026-11-27T16:44:07+03:00",
-                      "actual_end": "2026-11-28T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "actual_start": "2026-11-28T13:33:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 33 мин",
+                      "late_seconds": 19998,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-27",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -2113,8 +2154,8 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 50.0,
-            "numerator": 10,
+            "value": 55.0,
+            "numerator": 11,
             "denominator": 20,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -2122,7 +2163,7 @@
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 10,
+              "count": 11,
               "couriers": [
                 {
                   "courier_id": "1799874691",
@@ -2184,6 +2225,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 51 минута",
                       "late_seconds": 3075,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699919412",
+                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
+                  "slots": [
+                    {
+                      "slot_id": "67012",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T08:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": "2026-11-28T13:33:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 33 мин",
+                      "late_seconds": 19998,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2358,7 +2422,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 10,
+              "count": 9,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -2449,29 +2513,6 @@
                       "note": "",
                       "worked_through": null,
                       "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699919412",
-                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
-                  "slots": [
-                    {
-                      "slot_id": "67012",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T08:00:00+03:00",
-                      "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": "2026-11-27T16:44:07+03:00",
-                      "actual_end": "2026-11-28T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-27",
                       "shift_end_source_date": null
                     }
                   ]
@@ -2815,15 +2856,15 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-28T08:00:00+03:00",
                       "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": "2026-11-27T16:44:07+03:00",
-                      "actual_end": "2026-11-28T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
+                      "actual_start": "2026-11-28T13:33:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 33 мин",
+                      "late_seconds": 19998,
                       "removed_at": null,
                       "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
+                      "note": "",
                       "worked_through": null,
-                      "shift_start_source_date": "2026-11-27",
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -3150,36 +3191,12 @@
             },
             {
               "title": "Не завершили или ушли раньше",
-              "count": 1,
-              "couriers": [
-                {
-                  "courier_id": "1699919412",
-                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
-                  "slots": [
-                    {
-                      "slot_id": "67012",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T08:00:00+03:00",
-                      "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": "2026-11-27T16:44:07+03:00",
-                      "actual_end": "2026-11-28T10:00:00+03:00",
-                      "status": "Вышел раньше на 8 часов",
-                      "late_seconds": 0,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
-                      "worked_through": null,
-                      "shift_start_source_date": "2026-11-27",
-                      "shift_end_source_date": null
-                    }
-                  ]
-                }
-              ]
+              "count": 0,
+              "couriers": []
             },
             {
               "title": "Нет окончательных данных",
-              "count": 19,
+              "count": 20,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -3333,6 +3350,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 51 минута",
                       "late_seconds": 3075,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699919412",
+                  "name": "Джамалдаев Сайд Абдалхамид Бесланович",
+                  "slots": [
+                    {
+                      "slot_id": "67012",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T08:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": "2026-11-28T13:33:18+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 5 часов 33 мин",
+                      "late_seconds": 19998,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
