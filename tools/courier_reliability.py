@@ -16,6 +16,8 @@ TZ=ZoneInfo('Europe/Moscow')
 LABELS={'vpn_unavailable':'Нет готового VPN-маршрута к 1С.', 'bot_not_running':'Процесс бота опозданий не работает.',
         'receiver_stale':'Цикл бота не обновлялся более 3 минут.', 'source_stale':'Нет успешного обновления КПС более 10 минут.',
         'queue_overdue':'Есть случаи, ожидающие обработки более 15 минут с начала наблюдения.',
+        'reads_held':'Есть случаи, где исчерпаны попытки чтения 1С; нужна проверка.',
+        'result_unconfirmed':'Есть случаи с неподтверждённым результатом изменения или отправки; нужна ручная проверка.',
         'health_unavailable':'Не удалось прочитать состояние бота или служб.'}
 
 
@@ -62,10 +64,12 @@ def collect(state,now):
         if bot.get('ActiveState')=='active' and age(meta.get('last_loop'),now)>180:issues.append('receiver_stale')
         if age(meta.get('last_source_success'),now)>600:issues.append('source_stale')
         today=datetime.fromtimestamp(now,TZ).date().isoformat()
-        for identity,payload,status in db.execute('SELECT id,payload,state FROM cases'):
+        for identity,payload,status,attempts in db.execute('SELECT id,payload,state,read_attempts FROM cases'):
             p=json.loads(payload)
             if p.get('date')!=today or not enabled(config,p['shop_id']):continue
             counts[status]=counts.get(status,0)+1
+            if status=='held' and attempts>=3:issues.append('reads_held')
+            if status in ('uncertain','delivery_uncertain'):issues.append('result_unconfirmed')
             if status in ('need_limit','reading','ready'):
                 pending[identity]=previous.get(identity,now)
     if any(now-t>=900 for t in pending.values()):issues.append('queue_overdue')
@@ -81,7 +85,7 @@ def notify(state,issues,now):
     previous=state.get('notice_signature')
     if signature==previous or (not issues and previous is None):return
     if type(config.get('chat_id')) is not int or config['chat_id']>=0:raise ValueError('Invalid technical group')
-    text=('Сбой работы сервисов курьеров:\n'+'\n'.join('• '+LABELS[issue] for issue in issues)) if issues else 'Восстановление: проверки доступности VPN, бота, свежести КПС и ожидания очереди снова проходят.'
+    text=('Сбой работы сервисов курьеров:\n'+'\n'.join('• '+LABELS[issue] for issue in issues)) if issues else 'Восстановление: проверки VPN, бота, свежести КПС и очереди проходят; случаев с исчерпанными попытками чтения или неподтверждённым результатом за сегодня на включённых ДС не обнаружено.'
     text+='\nПроверка: '+datetime.fromtimestamp(now,TZ).strftime('%d.%m.%Y %H:%M МСК')
     # Claim before network send. Unknown delivery is never automatically repeated.
     state.update(notice_signature=signature,notice_delivery='sending');private_write(STATE,json.dumps(state))

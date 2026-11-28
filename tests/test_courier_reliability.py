@@ -32,3 +32,26 @@ class WatchSafety(unittest.TestCase):
    with patch.object(watch,'ALERTS',config),patch.object(watch,'STATE',root/'state.json'),patch('late_bot_group.load_token',return_value='hidden'),patch('late_bot_group.api',side_effect=RuntimeError('network')) as api:
     state={};watch.notify(state,['vpn_unavailable'],1500);watch.notify(state,['vpn_unavailable'],1600)
     self.assertEqual(api.call_count,1);self.assertEqual(state['notice_delivery'],'uncertain')
+class HeldCaseMonitoring(unittest.TestCase):
+ def test_failed_reads_stay_visible_after_leaving_queue(self):
+  import tempfile,json,sqlite3
+  from datetime import datetime
+  from unittest.mock import patch
+  import courier_reliability as watch
+  now=1806400000
+  day=datetime.fromtimestamp(now,watch.TZ).date().isoformat()
+  with tempfile.TemporaryDirectory() as folder:
+   root=Path(folder);config=root/'config.json';config.write_text(json.dumps({'disabled_attendance_shops':[7745]}))
+   database=root/'cases.sqlite3'
+   with sqlite3.connect(database) as db:
+    db.execute('CREATE TABLE meta(key TEXT,value TEXT)')
+    stamp=datetime.fromtimestamp(now,watch.TZ).isoformat()
+    db.executemany('INSERT INTO meta VALUES(?,?)',[('last_loop',stamp),('last_source_success',stamp)])
+    db.execute('CREATE TABLE cases(id TEXT,payload TEXT,state TEXT,read_attempts INT)')
+    for identity,shop,status,attempts in [('failed',8889,'held',3),('smaller_pool',9107,'held',0),('disabled',7745,'uncertain',1)]:
+     db.execute('INSERT INTO cases VALUES(?,?,?,?)',(identity,json.dumps({'date':day,'shop_id':shop}),status,attempts))
+   with patch.object(watch,'Path',side_effect=[config,database]),patch.object(watch,'MODE',root/'absent'),patch.object(watch,'service',return_value={'ActiveState':'active'}):
+    state={};issues,details=watch.collect(state,now)
+   self.assertEqual(issues,['reads_held'])
+   self.assertEqual(state['pending_since'],{})
+   self.assertEqual(details['today_states'],{'held':2})
