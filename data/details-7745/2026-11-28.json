@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-28": {
-      "generated_at": "2026-11-28T07:33:55.586196+00:00",
+      "generated_at": "2026-11-28T08:17:26.576336+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -18,8 +18,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 62.16,
-            "numerator": 23,
+            "value": 64.86,
+            "numerator": 24,
             "denominator": 37,
             "reason": null,
             "basis": "limited_slot_places"
@@ -680,10 +680,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-28T11:00:00+03:00",
                       "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-28T10:15:08+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел раньше на 44 минуты",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -735,9 +735,33 @@
               "planned_start": "2026-11-28T20:00:00+03:00",
               "planned_end": "2026-11-29T09:00:00+03:00",
               "capacity": 1,
-              "occupied": 0,
-              "free": 1,
-              "couriers": []
+              "occupied": 1,
+              "free": 0,
+              "couriers": [
+                {
+                  "courier_id": "1800056742",
+                  "name": "Маматкулов Хумоюдин Фарходович",
+                  "slots": [
+                    {
+                      "slot_id": "67018",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T20:00:00+03:00",
+                      "planned_end": "2026-11-29T09:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "67019",
@@ -792,8 +816,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 70.83,
-            "numerator": 17,
+            "value": 75.0,
+            "numerator": 18,
             "denominator": 24,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -801,7 +825,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -1030,6 +1054,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-27",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1845744",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T11:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": "2026-11-28T10:15:08+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 44 минуты",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -1297,31 +1344,8 @@
             },
             {
               "title": "Ожидаются",
-              "count": 2,
+              "count": 1,
               "couriers": [
-                {
-                  "courier_id": "1799946181",
-                  "name": "Кубатбеков Максатбек",
-                  "slots": [
-                    {
-                      "slot_id": "1845744",
-                      "slot_type": "manual",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T11:00:00+03:00",
-                      "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1799950967",
                   "name": "Тагоев Лочин Хакимович",
@@ -1410,9 +1434,9 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 47.06,
+            "value": 44.44,
             "numerator": 8,
-            "denominator": 17,
+            "denominator": 18,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
@@ -1609,7 +1633,7 @@
             },
             {
               "title": "Без опоздания от 15 минут",
-              "count": 9,
+              "count": 10,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -1751,6 +1775,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1845744",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T11:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": "2026-11-28T10:15:08+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 44 минуты",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1799882751",
                   "name": "Маматкулов Зияитдин Кимсанбаевич",
                   "slots": [
@@ -1832,9 +1879,9 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 5.56,
+            "value": 5.26,
             "numerator": 1,
-            "denominator": 18,
+            "denominator": 19,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -1870,7 +1917,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 17,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -2098,6 +2145,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-27",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799946181",
+                  "name": "Кубатбеков Максатбек",
+                  "slots": [
+                    {
+                      "slot_id": "1845744",
+                      "slot_type": "manual",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T11:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": "2026-11-28T10:15:08+03:00",
+                      "actual_end": null,
+                      "status": "Вышел раньше на 44 минуты",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
