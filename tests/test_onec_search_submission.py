@@ -23,3 +23,11 @@ class Search(unittest.TestCase):
  def test_changed_shop_aborts_even_if_search_matches(self):
   page=Mock();search=Mock();point=Mock();search.input_value.return_value='123';point.input_value.return_value='7745'
   with self.assertRaises(ValueError):submit_scoped_search(page,search,point,'123',8889)
+
+ def test_id_search_requires_blank_point_and_exact_query(self):
+  page=Mock();search=Mock();point=Mock()
+  search.get_attribute.return_value='form0_ПолеПоиска_i0';search.input_value.return_value='1800050823';point.input_value.return_value=''
+  submit_scoped_search(page,search,point,'1800050823',None)
+  self.assertEqual(page.wait_for_function.call_args.kwargs['arg']['shop'],'')
+  point.input_value.return_value='8889'
+  with self.assertRaises(ValueError):submit_scoped_search(page,search,point,'1800050823',None)

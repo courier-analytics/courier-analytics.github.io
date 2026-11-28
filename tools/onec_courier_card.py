@@ -129,12 +129,13 @@ def clear_known_list_filters(page):
 
 
 def submit_scoped_search(page,search,point,query,shop):
+    scope='' if shop is None else str(shop)
     search.click();search.press('Control+A');search.press('Backspace')
     search.press_sequentially(query,delay=40);search.press('Enter');search.press('Tab')
     # Reacquire/check controls after the native callback; never trust only the
     # text typed into a still-pending editor.
-    page.wait_for_function('(args)=>{const q=document.getElementById(args.search);const p=document.getElementById("form0_НомерТочки_i0");return q&&p&&!q.disabled&&q.value.trim()===args.query&&p.value.trim()===args.shop}',arg={'search':search.get_attribute('id'),'query':query,'shop':str(shop)},timeout=10000)
-    if search.input_value().strip()!=query or point.input_value().strip()!=str(shop):raise ValueError('Search scope not retained')
+    page.wait_for_function('(args)=>{const q=document.getElementById(args.search);const p=document.getElementById("form0_НомерТочки_i0");return q&&p&&!q.disabled&&q.value.trim()===args.query&&p.value.trim()===args.shop}',arg={'search':search.get_attribute('id'),'query':query,'shop':scope},timeout=10000)
+    if search.input_value().strip()!=query or point.input_value().strip()!=scope:raise ValueError('Search scope not retained')
 
 
 def inspect(page,private,shop,name,expected_id=None):
@@ -172,7 +173,13 @@ def inspect(page,private,shop,name,expected_id=None):
         except ValueError:
             if not expected_id:raise
             status['stage']='verify_id_search'
-            submit_scoped_search(page,search,point,expected_id,shop)
+            # Exact ID lookup must not inherit the DS list restriction.
+            point.click();point.press('Control+A');point.press('Backspace')
+            point.press('Enter');point.press('Tab')
+            page.wait_for_function('()=>{const p=document.getElementById("form0_НомерТочки_i0");return p&&!p.disabled&&p.value.trim()===""}',timeout=10000)
+            clear_known_list_filters(page)
+            status['id_search_shop_filter']='cleared'
+            submit_scoped_search(page,search,point,expected_id,None)
             try:second,candidate=wait_for_courier_result(page,name,expected_id)
             except ValueError as error:
                 status['search_failure']=str(error)
