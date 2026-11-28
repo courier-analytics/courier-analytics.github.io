@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-28": {
-      "generated_at": "2026-11-28T14:57:24.594173+00:00",
+      "generated_at": "2026-11-28T15:21:52.206938+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -926,10 +926,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-28T18:00:00+03:00",
                       "planned_end": "2026-11-28T23:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-28T17:52:57+03:00",
                       "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -2487,16 +2487,16 @@
         },
         "unplanned_work": {
           "aggregate": {
-            "value": 17.86,
-            "numerator": 5,
-            "denominator": 28,
+            "value": 20.69,
+            "numerator": 6,
+            "denominator": 29,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Вышли вне плана",
-              "count": 5,
+              "count": 6,
               "couriers": [
                 {
                   "courier_id": "1800136967",
@@ -2604,6 +2604,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 36 минут",
                       "late_seconds": 2195,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800098576",
+                  "name": "Погор Степан Александрович",
+                  "slots": [
+                    {
+                      "slot_id": "89418",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T18:00:00+03:00",
+                      "planned_end": "2026-11-28T23:00:00+03:00",
+                      "actual_start": "2026-11-28T17:52:57+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -3199,7 +3222,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 26,
+              "count": 27,
               "couriers": [
                 {
                   "courier_id": "1800108273",
@@ -3603,6 +3626,29 @@
                       "planned_start": "2026-11-28T15:00:00+03:00",
                       "planned_end": "2026-11-28T23:00:00+03:00",
                       "actual_start": "2026-11-28T14:54:48+03:00",
+                      "actual_end": null,
+                      "status": "Вышел",
+                      "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800098576",
+                  "name": "Погор Степан Александрович",
+                  "slots": [
+                    {
+                      "slot_id": "89418",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T18:00:00+03:00",
+                      "planned_end": "2026-11-28T23:00:00+03:00",
+                      "actual_start": "2026-11-28T17:52:57+03:00",
                       "actual_end": null,
                       "status": "Вышел",
                       "late_seconds": 0,
