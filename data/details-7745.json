@@ -137957,7 +137957,7 @@
       }
     },
     "2026-11-27": {
-      "generated_at": "2026-11-28T05:04:11.826069+00:00",
+      "generated_at": "2026-11-28T05:27:57.825074+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -141889,7 +141889,7 @@
       }
     },
     "2026-11-28": {
-      "generated_at": "2026-11-28T05:08:36.484389+00:00",
+      "generated_at": "2026-11-28T05:32:13.987461+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -142220,10 +142220,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-28T08:00:00+03:00",
                       "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-28T08:19:24+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1164,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -142656,8 +142656,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 25.0,
-            "numerator": 6,
+            "value": 29.17,
+            "numerator": 7,
             "denominator": 24,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -142665,7 +142665,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -142761,6 +142761,29 @@
                   ]
                 },
                 {
+                  "courier_id": "1699917748",
+                  "name": "Смирнов Станислав Николаевич",
+                  "slots": [
+                    {
+                      "slot_id": "67012",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T08:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": "2026-11-28T08:19:24+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1164,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
                   "courier_id": "1800109182",
                   "name": "Ходжаев Жасурбек",
                   "slots": [
@@ -142810,7 +142833,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 4,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800009953",
@@ -142838,29 +142861,6 @@
                 {
                   "courier_id": "1799937997",
                   "name": "Джабраилов Имам Дуквахович",
-                  "slots": [
-                    {
-                      "slot_id": "67012",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T08:00:00+03:00",
-                      "planned_end": "2026-11-28T21:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1699917748",
-                  "name": "Смирнов Станислав Николаевич",
                   "slots": [
                     {
                       "slot_id": "67012",
@@ -143274,16 +143274,16 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 16.67,
-            "numerator": 1,
-            "denominator": 6,
+            "value": 28.57,
+            "numerator": 2,
+            "denominator": 7,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 1,
+              "count": 2,
               "couriers": [
                 {
                   "courier_id": "1799997420",
@@ -143299,6 +143299,29 @@
                       "actual_end": null,
                       "status": "Опоздал на 32 минуты",
                       "late_seconds": 1970,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699917748",
+                  "name": "Смирнов Станислав Николаевич",
+                  "slots": [
+                    {
+                      "slot_id": "67012",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T08:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": "2026-11-28T08:19:24+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1164,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -143445,7 +143468,7 @@
           "aggregate": {
             "value": 0.0,
             "numerator": 0,
-            "denominator": 6,
+            "denominator": 7,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -143457,7 +143480,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -143547,6 +143570,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-27",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699917748",
+                  "name": "Смирнов Станислав Николаевич",
+                  "slots": [
+                    {
+                      "slot_id": "67012",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T08:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": "2026-11-28T08:19:24+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1164,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
@@ -143624,7 +143670,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 6,
+              "count": 7,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -143714,6 +143760,29 @@
                       "note": "Начало восстановлено из выгрузки за 2026-11-27. Исходное начало: 2026-11-28T00:00:00+03:00.",
                       "worked_through": null,
                       "shift_start_source_date": "2026-11-27",
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699917748",
+                  "name": "Смирнов Станислав Николаевич",
+                  "slots": [
+                    {
+                      "slot_id": "67012",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T08:00:00+03:00",
+                      "planned_end": "2026-11-28T21:00:00+03:00",
+                      "actual_start": "2026-11-28T08:19:24+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 19 минут",
+                      "late_seconds": 1164,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
                       "shift_end_source_date": null
                     }
                   ]
