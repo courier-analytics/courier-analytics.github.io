@@ -2,7 +2,7 @@
   "shop_id": 8889,
   "records": {
     "2026-11-28": {
-      "generated_at": "2026-11-28T04:19:57.078981+00:00",
+      "generated_at": "2026-11-28T04:43:30.064501+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -208,10 +208,10 @@
                       "scope": "8889ДС_ЛиповыйПарк1",
                       "planned_start": "2026-11-28T07:00:00+03:00",
                       "planned_end": "2026-11-28T20:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-28T07:31:29+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1889,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -969,8 +969,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
+            "value": 3.23,
+            "numerator": 1,
             "denominator": 31,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -978,12 +978,36 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800130023",
+                  "name": "Хасанов Амирхон Турабекович",
+                  "slots": [
+                    {
+                      "slot_id": "62551",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T07:00:00+03:00",
+                      "planned_end": "2026-11-28T20:00:00+03:00",
+                      "actual_start": "2026-11-28T07:31:29+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1889,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 6,
+              "count": 5,
               "couriers": [
                 {
                   "courier_id": "1800134544",
@@ -1057,29 +1081,6 @@
                 {
                   "courier_id": "1800131972",
                   "name": "Саиджафъарзода Эмоммахдии Зикриоллох",
-                  "slots": [
-                    {
-                      "slot_id": "62551",
-                      "slot_type": "limited",
-                      "scope": "8889ДС_ЛиповыйПарк1",
-                      "planned_start": "2026-11-28T07:00:00+03:00",
-                      "planned_end": "2026-11-28T20:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
-                  "courier_id": "1800130023",
-                  "name": "Хасанов Амирхон Турабекович",
                   "slots": [
                     {
                       "slot_id": "62551",
@@ -1723,17 +1724,41 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "value": 100.0,
+            "numerator": 1,
+            "denominator": 1,
+            "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800130023",
+                  "name": "Хасанов Амирхон Турабекович",
+                  "slots": [
+                    {
+                      "slot_id": "62551",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T07:00:00+03:00",
+                      "planned_end": "2026-11-28T20:00:00+03:00",
+                      "actual_start": "2026-11-28T07:31:29+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1889,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Без опоздания от 15 минут",
@@ -1746,15 +1771,15 @@
               "couriers": []
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": "Снятые смены остаются в исходном плане. История снятий показана отдельно и может пересекаться с группой вышедших после перезаписи."
         },
         "unplanned_work": {
           "aggregate": {
-            "value": null,
+            "value": 0.0,
             "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "denominator": 1,
+            "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
           "groups": [
@@ -1765,19 +1790,43 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800130023",
+                  "name": "Хасанов Амирхон Турабекович",
+                  "slots": [
+                    {
+                      "slot_id": "62551",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T07:00:00+03:00",
+                      "planned_end": "2026-11-28T20:00:00+03:00",
+                      "actual_start": "2026-11-28T07:31:29+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1889,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "reconciled": false,
+          "reconciled": true,
           "note": ""
         },
         "planned_completion": {
           "aggregate": {
             "value": null,
-            "numerator": 0,
-            "denominator": 0,
-            "reason": "zero_denominator",
+            "numerator": null,
+            "denominator": null,
+            "reason": "shift_end_or_final_status_missing",
             "basis": "slot_completion_arrived_by_actual_night_end_date"
           },
           "groups": [
@@ -1793,8 +1842,32 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1800130023",
+                  "name": "Хасанов Амирхон Турабекович",
+                  "slots": [
+                    {
+                      "slot_id": "62551",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T07:00:00+03:00",
+                      "planned_end": "2026-11-28T20:00:00+03:00",
+                      "actual_start": "2026-11-28T07:31:29+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 31 минута",
+                      "late_seconds": 1889,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "reconciled": false,

@@ -2,7 +2,7 @@
   "shop_id": 7745,
   "records": {
     "2026-11-28": {
-      "generated_at": "2026-11-28T04:19:57.078981+00:00",
+      "generated_at": "2026-11-28T04:43:30.064501+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -113,10 +113,10 @@
                       "scope": "7745ДС_Мосфильмовская74",
                       "planned_start": "2026-11-28T07:00:00+03:00",
                       "planned_end": "2026-11-28T17:00:00+03:00",
-                      "actual_start": null,
+                      "actual_start": "2026-11-28T07:32:50+03:00",
                       "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
+                      "status": "Опоздал на 32 минуты",
+                      "late_seconds": 1970,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -193,32 +193,9 @@
               "planned_start": "2026-11-28T08:00:00+03:00",
               "planned_end": "2026-11-28T16:00:00+03:00",
               "capacity": 3,
-              "occupied": 3,
-              "free": 0,
+              "occupied": 2,
+              "free": 1,
               "couriers": [
-                {
-                  "courier_id": "1800085741",
-                  "name": "Прокофьев Алексей Денисович",
-                  "slots": [
-                    {
-                      "slot_id": "67011",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T08:00:00+03:00",
-                      "planned_end": "2026-11-28T16:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
                 {
                   "courier_id": "1800125641",
                   "name": "Тургунов Нурилло Иномжон Угли",
@@ -378,8 +355,8 @@
               "planned_start": "2026-11-28T08:30:00+03:00",
               "planned_end": "2026-11-28T20:00:00+03:00",
               "capacity": 3,
-              "occupied": 2,
-              "free": 1,
+              "occupied": 3,
+              "free": 0,
               "couriers": [
                 {
                   "courier_id": "1120965906",
@@ -407,6 +384,29 @@
                 {
                   "courier_id": "1799882751",
                   "name": "Маматкулов Зияитдин Кимсанбаевич",
+                  "slots": [
+                    {
+                      "slot_id": "90037",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T08:30:00+03:00",
+                      "planned_end": "2026-11-28T20:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1699918514",
+                  "name": "Махмудов Элвар Сардар Оглы",
                   "slots": [
                     {
                       "slot_id": "90037",
@@ -769,8 +769,8 @@
         },
         "planned_attendance": {
           "aggregate": {
-            "value": 8.33,
-            "numerator": 2,
+            "value": 12.5,
+            "numerator": 3,
             "denominator": 24,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
@@ -778,7 +778,7 @@
           "groups": [
             {
               "title": "Вышли",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -801,6 +801,29 @@
                       "shift_start_source_date": null,
                       "shift_end_source_date": null,
                       "fact_source_slot_id": "67005"
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "67009",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T07:00:00+03:00",
+                      "planned_end": "2026-11-28T17:00:00+03:00",
+                      "actual_start": "2026-11-28T07:32:50+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 32 минуты",
+                      "late_seconds": 1970,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
                     }
                   ]
                 },
@@ -831,7 +854,7 @@
             },
             {
               "title": "Не вышли по статусу источника",
-              "count": 2,
+              "count": 1,
               "couriers": [
                 {
                   "courier_id": "1800009953",
@@ -855,35 +878,12 @@
                       "shift_end_source_date": null
                     }
                   ]
-                },
-                {
-                  "courier_id": "1799997420",
-                  "name": "Имомкулов Иззат Имомович",
-                  "slots": [
-                    {
-                      "slot_id": "67009",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T07:00:00+03:00",
-                      "planned_end": "2026-11-28T17:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Не вышел",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
                 }
               ]
             },
             {
               "title": "Ожидаются",
-              "count": 19,
+              "count": 18,
               "couriers": [
                 {
                   "courier_id": "1799948166",
@@ -1162,29 +1162,6 @@
                   ]
                 },
                 {
-                  "courier_id": "1800085741",
-                  "name": "Прокофьев Алексей Денисович",
-                  "slots": [
-                    {
-                      "slot_id": "67011",
-                      "slot_type": "limited",
-                      "scope": "7745ДС_Мосфильмовская74",
-                      "planned_start": "2026-11-28T08:00:00+03:00",
-                      "planned_end": "2026-11-28T16:00:00+03:00",
-                      "actual_start": null,
-                      "actual_end": null,
-                      "status": "Ожидается выход",
-                      "late_seconds": null,
-                      "removed_at": null,
-                      "removed_by": null,
-                      "note": "",
-                      "worked_through": null,
-                      "shift_start_source_date": null,
-                      "shift_end_source_date": null
-                    }
-                  ]
-                },
-                {
                   "courier_id": "1699917748",
                   "name": "Смирнов Станислав Николаевич",
                   "slots": [
@@ -1331,7 +1308,7 @@
             },
             {
               "title": "Снятые смены — история",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -1349,6 +1326,29 @@
                       "late_seconds": null,
                       "removed_at": "2026-11-28T00:57:09+03:00",
                       "removed_by": "Анисимов Арсений Антонович ",
+                      "note": "Снятие подтверждено историей бронирования.",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1800085741",
+                  "name": "Прокофьев Алексей Денисович",
+                  "slots": [
+                    {
+                      "slot_id": "67011",
+                      "slot_type": "limited",
+                      "scope": "",
+                      "planned_start": "2026-11-28T08:00:00+03:00",
+                      "planned_end": "2026-11-28T16:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Снятая смена",
+                      "late_seconds": null,
+                      "removed_at": "2026-11-28T07:35:19+03:00",
+                      "removed_by": "Федорова Анастасия Александровна",
                       "note": "Снятие подтверждено историей бронирования.",
                       "worked_through": null,
                       "shift_start_source_date": null,
@@ -1387,17 +1387,41 @@
         },
         "planned_late": {
           "aggregate": {
-            "value": 0.0,
-            "numerator": 0,
-            "denominator": 2,
+            "value": 33.33,
+            "numerator": 1,
+            "denominator": 3,
             "reason": null,
             "basis": "frozen_plan_unique_couriers"
           },
           "groups": [
             {
               "title": "Опоздали от 15 минут",
-              "count": 0,
-              "couriers": []
+              "count": 1,
+              "couriers": [
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "67009",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T07:00:00+03:00",
+                      "planned_end": "2026-11-28T17:00:00+03:00",
+                      "actual_start": "2026-11-28T07:32:50+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 32 минуты",
+                      "late_seconds": 1970,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Без опоздания от 15 минут",
@@ -1465,7 +1489,7 @@
           "aggregate": {
             "value": 0.0,
             "numerator": 0,
-            "denominator": 2,
+            "denominator": 3,
             "reason": null,
             "basis": "worked_without_frozen_plan_unique_couriers"
           },
@@ -1477,7 +1501,7 @@
             },
             {
               "title": "Вышли по плану",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -1493,6 +1517,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 41 минута",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "67009",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T07:00:00+03:00",
+                      "planned_end": "2026-11-28T17:00:00+03:00",
+                      "actual_start": "2026-11-28T07:32:50+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 32 минуты",
+                      "late_seconds": 1970,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
@@ -1552,7 +1599,7 @@
             },
             {
               "title": "Нет окончательных данных",
-              "count": 2,
+              "count": 3,
               "couriers": [
                 {
                   "courier_id": "1800104389",
@@ -1568,6 +1615,29 @@
                       "actual_end": null,
                       "status": "Вышел раньше на 41 минута",
                       "late_seconds": 0,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                },
+                {
+                  "courier_id": "1799997420",
+                  "name": "Имомкулов Иззат Имомович",
+                  "slots": [
+                    {
+                      "slot_id": "67009",
+                      "slot_type": "limited",
+                      "scope": "7745ДС_Мосфильмовская74",
+                      "planned_start": "2026-11-28T07:00:00+03:00",
+                      "planned_end": "2026-11-28T17:00:00+03:00",
+                      "actual_start": "2026-11-28T07:32:50+03:00",
+                      "actual_end": null,
+                      "status": "Опоздал на 32 минуты",
+                      "late_seconds": 1970,
                       "removed_at": null,
                       "removed_by": null,
                       "note": "",
