@@ -66266,7 +66266,7 @@
       }
     },
     "2026-11-25": {
-      "generated_at": "2026-11-28T10:54:56.163141+00:00",
+      "generated_at": "2026-11-28T13:57:07.731836+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -75698,7 +75698,7 @@
       }
     },
     "2026-11-27": {
-      "generated_at": "2026-11-28T13:48:08.435809+00:00",
+      "generated_at": "2026-11-28T14:01:46.566898+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80556,7 +80556,7 @@
       }
     },
     "2026-11-28": {
-      "generated_at": "2026-11-28T13:40:36.230307+00:00",
+      "generated_at": "2026-11-28T14:06:33.483178+00:00",
       "metrics": {
         "shift_marked": {
           "aggregate": {
@@ -80572,8 +80572,8 @@
         },
         "slot_fill": {
           "aggregate": {
-            "value": 58.33,
-            "numerator": 35,
+            "value": 60.0,
+            "numerator": 36,
             "denominator": 60,
             "reason": null,
             "basis": "limited_slot_places"
@@ -81447,7 +81447,7 @@
                       "planned_end": "2026-11-29T01:00:00+03:00",
                       "actual_start": null,
                       "actual_end": null,
-                      "status": "Ожидается выход",
+                      "status": "Не вышел",
                       "late_seconds": null,
                       "removed_at": null,
                       "removed_by": null,
@@ -81467,9 +81467,33 @@
               "planned_start": "2026-11-28T18:00:00+03:00",
               "planned_end": "2026-11-28T23:00:00+03:00",
               "capacity": 6,
-              "occupied": 0,
-              "free": 6,
-              "couriers": []
+              "occupied": 1,
+              "free": 5,
+              "couriers": [
+                {
+                  "courier_id": "1800098576",
+                  "name": "Погор Степан Александрович",
+                  "slots": [
+                    {
+                      "slot_id": "89418",
+                      "slot_type": "limited",
+                      "scope": "8889ДС_ЛиповыйПарк1",
+                      "planned_start": "2026-11-28T18:00:00+03:00",
+                      "planned_end": "2026-11-28T23:00:00+03:00",
+                      "actual_start": null,
+                      "actual_end": null,
+                      "status": "Ожидается выход",
+                      "late_seconds": null,
+                      "removed_at": null,
+                      "removed_by": null,
+                      "note": "",
+                      "worked_through": null,
+                      "shift_start_source_date": null,
+                      "shift_end_source_date": null
+                    }
+                  ]
+                }
+              ]
             },
             {
               "slot_id": "92989",
